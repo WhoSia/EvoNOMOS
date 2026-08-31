@@ -26,10 +26,13 @@ jobs:
           set -euo pipefail
           test -n "${GROQ_API_KEY:-}" || { echo MISSING_GROQ_API_KEY; exit 78; }
           python3 -m py_compile experiments/dip69_wc5/run_wc5.py experiments/dip69_wc5/run_wc6c.py
-          test "$(grep -c 'for mode in MODES' experiments/dip69_wc5/run_wc6c.py)" -eq 1
           grep -F 'MODES=("STRICT_JSON","PROMPT_JSON")' experiments/dip69_wc5/run_wc6c.py
-          grep -F '"phase":0' experiments/dip69_wc5/run_wc6c.py
-          grep -F '"core_inference":"PROHIBITED"' experiments/dip69_wc5/run_wc6c.py
+          grep -F 'ANCHORS=("A00","A10","A01","A11")' experiments/dip69_wc5/run_wc6c.py
+          grep -F 'POLICIES=("I","D")' experiments/dip69_wc5/run_wc6c.py
+          grep -F 'REGIMES=("reset","warm")' experiments/dip69_wc5/run_wc6c.py
+          grep -F '"policy":policy,"regime":regime,"mode":mode,"phase":0,' experiments/dip69_wc5/run_wc6c.py
+          grep -F '"identities":16,"calls":32,"phase":0,' experiments/dip69_wc5/run_wc6c.py
+          grep -F '"core_inference":"PROHIBITED",' experiments/dip69_wc5/run_wc6c.py
           echo WC6C_ZERO_CORE_ENVELOPE_PASS
 
       - name: Execute exact 32-call calibration
