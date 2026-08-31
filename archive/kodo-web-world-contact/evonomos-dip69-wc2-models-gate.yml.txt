@@ -1,0 +1,56 @@
+name: EvoNOMOS DIP-69 WC2 GitHub Models parity gate
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-wc2-models-gate
+
+permissions:
+  contents: read
+  models: read
+
+jobs:
+  parity:
+    strategy:
+      fail-fast: false
+      matrix:
+        regime: [reset, frozen-warm]
+    runs-on: ubuntu-24.04
+    env:
+      MODEL_ID: openai/gpt-4o
+      ENDPOINT: https://models.github.ai/inference/chat/completions
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seal runner tools
+        run: |
+          set -euo pipefail
+          python3 --version
+          jq --version
+      - name: RESET direct inference
+        if: matrix.regime == 'reset'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          jq -n --arg model "$MODEL_ID" '{model:$model,temperature:0,max_tokens:20,messages:[{role:"user",content:"Actionable packet: output exactly EXECUTOR_PARITY_OK and nothing else. No repository inspection or implementation is requested."}]}' > request.json
+          curl --fail-with-body -sS "$ENDPOINT" -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" -H "Accept: application/vnd.github+json" -d @request.json > response.json
+          jq -r '.choices[0].message.content' response.json | tr -d '\r' | sed -e 's/[[:space:]]*$//' > answer.txt
+          test "$(cat answer.txt)" = "EXECUTOR_PARITY_OK"
+      - name: FROZEN-WARM direct inference
+        if: matrix.regime == 'frozen-warm'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          PREFIX='Neutral warm-history prefix only. The later actionable packet will be evaluated separately. No source solution, implementation hint, sibling artifact, result, or current-study outcome is present. Reply exactly WARM_PREFIX_ACK and nothing else.'
+          ACTION='Actionable packet: output exactly EXECUTOR_PARITY_OK and nothing else. No repository inspection or implementation is requested.'
+          jq -n --arg model "$MODEL_ID" --arg p "$PREFIX" '{model:$model,temperature:0,max_tokens:20,messages:[{role:"user",content:$p}]}' > prefix-request.json
+          curl --fail-with-body -sS "$ENDPOINT" -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" -H "Accept: application/vnd.github+json" -d @prefix-request.json > prefix-response.json
+          ACK="$(jq -r '.choices[0].message.content' prefix-response.json | tr -d '\r' | sed -e 's/[[:space:]]*$//')"
+          test "$ACK" = "WARM_PREFIX_ACK"
+          jq -n --arg model "$MODEL_ID" --arg p "$PREFIX" --arg ack "$ACK" --arg a "$ACTION" '{model:$model,temperature:0,max_tokens:20,messages:[{role:"user",content:$p},{role:"assistant",content:$ack},{role:"user",content:$a}]}' > action-request.json
+          curl --fail-with-body -sS "$ENDPOINT" -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" -H "Accept: application/vnd.github+json" -d @action-request.json > action-response.json
+          jq -r '.choices[0].message.content' action-response.json | tr -d '\r' | sed -e 's/[[:space:]]*$//' > answer.txt
+          test "$(cat answer.txt)" = "EXECUTOR_PARITY_OK"
+
+# Source: WhoSia/Kodo-web@9c53d93b7dd2656bc57cdafb2b7573c468cbf800
