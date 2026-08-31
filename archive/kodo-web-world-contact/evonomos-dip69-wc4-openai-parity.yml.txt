@@ -1,0 +1,60 @@
+name: EvoNOMOS DIP-69 WC4 OpenAI parity gate
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-wc4-openai-parity
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    strategy:
+      fail-fast: false
+      matrix:
+        regime: [reset, frozen-warm]
+    runs-on: ubuntu-24.04
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: gpt-5.6-sol
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seal execution envelope
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "runner=ubuntu-24.04"
+          echo "model=${OPENAI_MODEL}"
+          echo "regime=${{ matrix.regime }}"
+          test -n "${OPENAI_API_KEY:-}" || { echo MISSING_OPENAI_API_KEY; exit 78; }
+          echo OPENAI_API_KEY_PRESENT
+      - name: Execute parity inference
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTION='Return exactly the token PARITY_OK and nothing else.'
+          call_api() {
+            local payload="$1"; local out="$2"; local code
+            code=$(curl -sS -o "$out" -w '%{http_code}' https://api.openai.com/v1/responses -H "Authorization: Bearer ${OPENAI_API_KEY}" -H 'Content-Type: application/json' -d "$payload")
+            echo "http_status=${code}"
+            test "$code" = "200" || { cat "$out"; exit 79; }
+          }
+          if [ "${{ matrix.regime }}" = reset ]; then
+            payload=$(jq -nc --arg m "$OPENAI_MODEL" --arg a "$ACTION" '{model:$m,input:$a,max_output_tokens:16}')
+            call_api "$payload" reset.json
+            jq -e --arg m "$OPENAI_MODEL" '.model == $m and .status == "completed"' reset.json >/dev/null
+            token=$(jq -r '[.output[]?.content[]? | select(.type=="output_text") | .text] | join("")' reset.json | tr -d '\r\n ')
+            test "$token" = PARITY_OK
+          else
+            prefix='This is a neutral, outcome-free warm-up message. Reply exactly WARM_ACK.'
+            p1=$(jq -nc --arg m "$OPENAI_MODEL" --arg p "$prefix" '{model:$m,input:$p,max_output_tokens:16}')
+            call_api "$p1" warm1.json
+            rid=$(jq -r '.id' warm1.json)
+            p2=$(jq -nc --arg m "$OPENAI_MODEL" --arg a "$ACTION" --arg prev "$rid" '{model:$m,input:$a,previous_response_id:$prev,max_output_tokens:16}')
+            call_api "$p2" warm2.json
+            token=$(jq -r '[.output[]?.content[]? | select(.type=="output_text") | .text] | join("")' warm2.json | tr -d '\r\n ')
+            test "$token" = PARITY_OK
+          fi
+
+# Source: WhoSia/Kodo-web@f5d24e09da3b1336dd67089edf4d56915316b760
