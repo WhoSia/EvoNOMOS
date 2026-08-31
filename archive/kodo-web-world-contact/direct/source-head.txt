@@ -1,0 +1,7 @@
+source_repository=WhoSia/Kodo-web
+source_base=bd47de6f07250bb6c5cd9fd3ade99b911eda1596
+source_branch=agent/evonomos-dip65-direct
+source_head=114ec3007080e4fe1e516059015da40446bef264
+policy=DIRECT
+followup_label=staging
+retired_label=preview
