@@ -1,0 +1,63 @@
+name: EvoNOMOS DIP-69 WC3 OpenAI parity gate
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-wc3-openai-gate
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        regime: [reset, frozen-warm]
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: gpt-5.6-sol
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seal execution envelope
+        run: |
+          set -euo pipefail
+          echo "runner=ubuntu-24.04"
+          echo "model=${OPENAI_MODEL}"
+          echo "regime=${{ matrix.regime }}"
+          if [ -z "${OPENAI_API_KEY:-}" ]; then
+            echo "MISSING_OPENAI_API_KEY"
+            exit 78
+          fi
+      - name: Execute parity inference
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          regime = "${{ matrix.regime }}"
+          if regime == "reset":
+              input_obj = [{"role":"user","content":"Actionable packet: output exactly EXECUTOR_PARITY_OK and nothing else. Do not inspect or modify repository files."}]
+          else:
+              input_obj = [
+                  {"role":"user","content":"Neutral warm-history prefix only. The later actionable packet will be evaluated separately. No source solution, implementation hint, sibling artifact, result, or current-study outcome is present. Reply exactly WARM_PREFIX_ACK and nothing else."},
+                  {"role":"assistant","content":"WARM_PREFIX_ACK"},
+                  {"role":"user","content":"Actionable packet: output exactly EXECUTOR_PARITY_OK and nothing else. Do not inspect or modify repository files."}
+              ]
+          payload = json.dumps({"model": os.environ["OPENAI_MODEL"],"input": input_obj,"reasoning":{"effort":"none"},"max_output_tokens":32}).encode()
+          req = urllib.request.Request("https://api.openai.com/v1/responses",data=payload,headers={"Authorization":"Bearer "+os.environ["OPENAI_API_KEY"],"Content-Type":"application/json"},method="POST")
+          try:
+              with urllib.request.urlopen(req, timeout=120) as r: data=json.load(r)
+          except urllib.error.HTTPError as e:
+              print(f"OPENAI_HTTP_{e.code}"); raise SystemExit(79)
+          texts=[]
+          for item in data.get("output", []):
+              for c in item.get("content", []):
+                  if c.get("type") == "output_text": texts.append(c.get("text", ""))
+          text="".join(texts).strip()
+          if text != "EXECUTOR_PARITY_OK": raise SystemExit(80)
+          if data.get("model") != os.environ["OPENAI_MODEL"]: raise SystemExit(81)
+          print("EXECUTOR_PARITY_PASS")
+          PY
+
+# Source: WhoSia/Kodo-web@e639d529a9bb5ed7f0f35b1fc439a8080e2bda43
