@@ -1,0 +1,7 @@
+source_repository=WhoSia/Kodo-web
+source_base=bd47de6f07250bb6c5cd9fd3ade99b911eda1596
+source_branch=agent/evonomos-dip65-invert
+source_head=2b25f6709a3f937f447b860912adfdd439cfc5dd
+policy=INVERT
+followup_label=staging
+retired_label=preview
