@@ -1,0 +1,43 @@
+name: EvoNOMOS DIP-69 WC5 world contact
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-wc5-groq-parity
+    paths:
+      - .github/workflows/evonomos-dip69-wc5-world-contact.yml
+
+permissions:
+  contents: read
+
+jobs:
+  execute:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seal execution prerequisite
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${GROQ_API_KEY:-}" || { echo MISSING_GROQ_API_KEY; exit 78; }
+          python3 --version
+          node --version
+          git --version
+          python3 -m py_compile experiments/dip69_wc5/run_wc5.py experiments/dip69_wc5/run_wc5_final.py
+          echo WC5_EXECUTION_ENVELOPE_PASS
+      - name: Execute frozen four-anchor challenge
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 experiments/dip69_wc5/run_wc5_final.py
+      - name: Upload sealed results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip69-wc5-results
+          path: wc5_output/
+          if-no-files-found: warn
+          retention-days: 90
