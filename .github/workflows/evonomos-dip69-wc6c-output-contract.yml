@@ -1,0 +1,67 @@
+name: EvoNOMOS DIP-69 WC6C output-contract calibration
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-wc6c-output-contract
+    paths:
+      - experiments/dip69_wc5/run_wc6c.py
+      - .github/workflows/evonomos-dip69-wc6c-output-contract.yml
+
+permissions:
+  contents: read
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Seal WC6C zero-Core envelope
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${GROQ_API_KEY:-}" || { echo MISSING_GROQ_API_KEY; exit 78; }
+          python3 -m py_compile experiments/dip69_wc5/run_wc5.py experiments/dip69_wc5/run_wc6c.py
+          test "$(grep -c 'for mode in MODES' experiments/dip69_wc5/run_wc6c.py)" -eq 1
+          grep -F 'MODES=("STRICT_JSON","PROMPT_JSON")' experiments/dip69_wc5/run_wc6c.py
+          grep -F '"phase":0' experiments/dip69_wc5/run_wc6c.py
+          grep -F '"core_inference":"PROHIBITED"' experiments/dip69_wc5/run_wc6c.py
+          echo WC6C_ZERO_CORE_ENVELOPE_PASS
+
+      - name: Execute exact 32-call calibration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 experiments/dip69_wc5/run_wc6c.py
+
+      - name: Verify bounded result geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('wc6c_output/results.jsonl').read_text().splitlines() if x.strip()]
+          s=json.loads(Path('wc6c_output/summary.json').read_text())
+          assert len(rows)==32, len(rows)
+          assert len({r['identity'] for r in rows})==16
+          assert {r['mode'] for r in rows}=={'STRICT_JSON','PROMPT_JSON'}
+          assert all(r['phase']==0 and r['replicate']==1 for r in rows)
+          assert s['authority']=='ZERO_CORE_MEASUREMENT_CALIBRATION_ONLY'
+          assert s['core_inference']=='PROHIBITED'
+          assert s['next']=='MANDATORY_PI_RECOURT'
+          print('WC6C_BOUNDED_RESULT_GEOMETRY_PASS')
+          PY
+
+      - name: Upload sealed WC6C calibration
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip69-wc6c-output-contract-calibration
+          path: wc6c_output/
+          if-no-files-found: warn
+          retention-days: 90
