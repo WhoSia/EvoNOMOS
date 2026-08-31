@@ -1,0 +1,81 @@
+name: EvoNOMOS DIP-69 WC5 Groq parity gate
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-wc5-groq-parity
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    strategy:
+      fail-fast: false
+      matrix:
+        regime: [reset, frozen-warm]
+    runs-on: ubuntu-24.04
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GROQ_MODEL: openai/gpt-oss-20b
+      GROQ_ENDPOINT: https://api.groq.com/openai/v1/chat/completions
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seal execution envelope
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "runner=ubuntu-24.04"
+          echo "provider=Groq"
+          echo "model=${GROQ_MODEL}"
+          echo "regime=${{ matrix.regime }}"
+          test -n "${GROQ_API_KEY:-}" || { echo MISSING_GROQ_API_KEY; exit 78; }
+          echo GROQ_API_KEY_PRESENT
+      - name: Execute fixed-model parity inference
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTION='Return exactly EXECUTOR_PARITY_OK and nothing else.'
+          PREFIX='Neutral warm-history prefix only. No source solution, implementation hint, sibling artifact, result, or current-study outcome is present. Reply exactly WARM_PREFIX_ACK and nothing else.'
+          call_groq() {
+            local payload="$1"
+            local out="$2"
+            local code
+            code=$(curl -sS -o "$out" -w '%{http_code}' "$GROQ_ENDPOINT" \
+              -H "Authorization: Bearer ${GROQ_API_KEY}" \
+              -H 'Content-Type: application/json' \
+              -d "$payload")
+            echo "http_status=${code}"
+            if [ "$code" != "200" ]; then
+              jq -c '{error:.error}' "$out" 2>/dev/null || cat "$out"
+              exit 79
+            fi
+          }
+          if [ "${{ matrix.regime }}" = reset ]; then
+            payload=$(jq -nc --arg m "$GROQ_MODEL" --arg a "$ACTION" '{model:$m,messages:[{role:"user",content:$a}],reasoning_effort:"medium",reasoning_format:"hidden",temperature:0,max_completion_tokens:32,stream:false}')
+            call_groq "$payload" reset.json
+            model=$(jq -r '.model // empty' reset.json)
+            token=$(jq -r '.choices[0].message.content // empty' reset.json | tr -d '\r\n ')
+            echo "response_model=${model}"
+            echo "parity_token=${token}"
+            test "$model" = "$GROQ_MODEL"
+            test "$token" = EXECUTOR_PARITY_OK
+          else
+            p1=$(jq -nc --arg m "$GROQ_MODEL" --arg p "$PREFIX" '{model:$m,messages:[{role:"user",content:$p}],reasoning_effort:"medium",reasoning_format:"hidden",temperature:0,max_completion_tokens:32,stream:false}')
+            call_groq "$p1" warm1.json
+            model1=$(jq -r '.model // empty' warm1.json)
+            ack=$(jq -r '.choices[0].message.content // empty' warm1.json | tr -d '\r\n ')
+            echo "prefix_model=${model1}"
+            echo "prefix_token=${ack}"
+            test "$model1" = "$GROQ_MODEL"
+            test "$ack" = WARM_PREFIX_ACK
+            p2=$(jq -nc --arg m "$GROQ_MODEL" --arg p "$PREFIX" --arg ack "$ack" --arg a "$ACTION" '{model:$m,messages:[{role:"user",content:$p},{role:"assistant",content:$ack},{role:"user",content:$a}],reasoning_effort:"medium",reasoning_format:"hidden",temperature:0,max_completion_tokens:32,stream:false}')
+            call_groq "$p2" warm2.json
+            model2=$(jq -r '.model // empty' warm2.json)
+            token=$(jq -r '.choices[0].message.content // empty' warm2.json | tr -d '\r\n ')
+            echo "response_model=${model2}"
+            echo "parity_token=${token}"
+            test "$model2" = "$GROQ_MODEL"
+            test "$token" = EXECUTOR_PARITY_OK
+          fi
+          echo EXECUTOR_PARITY_PASS
