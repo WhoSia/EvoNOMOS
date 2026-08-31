@@ -1,0 +1,49 @@
+name: EvoNOMOS DIP-69 executor parity gate
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip69-executor-gate
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        regime: [reset, frozen-warm]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
+      - name: Seal CLI version
+        run: copilot --version
+      - name: RESET session
+        if: matrix.regime == 'reset'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_MODEL: gpt-5.3-codex
+        run: |
+          set -euo pipefail
+          copilot --silent --allow-all-tools --deny-tool='write' --deny-tool='shell' -p 'Actionable packet: output exactly EXECUTOR_PARITY_OK and nothing else. Do not inspect or modify repository files.' | tee reset.out
+          test "$(tr -d '\r\n' < reset.out)" = 'EXECUTOR_PARITY_OK'
+      - name: FROZEN-WARM session
+        if: matrix.regime == 'frozen-warm'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_MODEL: gpt-5.3-codex
+        run: |
+          set -euo pipefail
+          copilot --silent --allow-all-tools --deny-tool='write' --deny-tool='shell' -p 'Neutral warm-history prefix only. The later actionable packet will be evaluated separately. No source solution, implementation hint, sibling artifact, result, or current-study outcome is present. Reply exactly WARM_PREFIX_ACK and nothing else.' | tee warm-prefix.out
+          test "$(tr -d '\r\n' < warm-prefix.out)" = 'WARM_PREFIX_ACK'
+          copilot --continue --silent --allow-all-tools --deny-tool='write' --deny-tool='shell' -p 'Actionable packet: output exactly EXECUTOR_PARITY_OK and nothing else. Do not inspect or modify repository files.' | tee warm-action.out
+          test "$(tr -d '\r\n' < warm-action.out)" = 'EXECUTOR_PARITY_OK'
+
+# Source: WhoSia/Kodo-web@ceb481452a702b7746d5ae1713623d47eb60175e
