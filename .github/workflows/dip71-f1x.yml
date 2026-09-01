@@ -1,0 +1,41 @@
+name: DIP-71 F1-X
+
+on:
+  push:
+    branches:
+      - agent/dip71-f1x-wollipog-294
+    paths:
+      - experiments/dip71_f1x/**
+      - .github/workflows/dip71-f1x.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/dip71-f1x-wollipog-294
+          fetch-depth: 0
+      - name: Runtime identity
+        run: |
+          python3 --version
+          git --version
+      - name: Exact-base preflight census
+        if: ${{ hashFiles('experiments/dip71_f1x/materialize.py') == '' }}
+        run: python3 experiments/dip71_f1x/preflight.py
+      - name: Execute sealed paired falsifier
+        if: ${{ hashFiles('experiments/dip71_f1x/materialize.py') != '' }}
+        run: python3 experiments/dip71_f1x/materialize.py
+      - name: Seal paired result
+        if: ${{ always() && hashFiles('experiments/dip71_f1x/RESULT_SEAL.json') != '' }}
+        run: |
+          git config user.name EvoNOMOS
+          git config user.email evonomos@example.invalid
+          git add experiments/dip71_f1x/RESULT_SEAL.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'experiment: seal DIP-71 F1-X result'
+          git push origin HEAD:agent/dip71-f1x-wollipog-294
