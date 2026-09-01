@@ -1,0 +1,77 @@
+{
+  "stage": "DIP-71-F2-X",
+  "subject": "SpillwaveSolutions/data-engineering-knowledge-capture#27",
+  "base": "cdfcddb12f6248d881fd6789c905bae30058ecdd",
+  "direct": {
+    "V": [
+      1,
+      5,
+      2,
+      5,
+      0
+    ],
+    "phase0": [
+      [
+        "scripts/dekc_grade.py",
+        4,
+        1
+      ]
+    ],
+    "phase1": [
+      [
+        "scripts/dekc_business.py",
+        2,
+        1
+      ],
+      [
+        "scripts/dekc_pack.py",
+        1,
+        1
+      ]
+    ],
+    "oracle": "Traceback (most recent call last):\n  File \"<string>\", line 13, in <module>\n  File \"/tmp/tmp1pn4p1kf/direct/scripts/dekc_grade.py\", line 162, in grade_bundle\n    + 0.25 * min(1.0, d[\"glossary_terms\"] / max(len(bos), 1))\n                      ~^^^^^^^^^^^^^^^^^^\nKeyError: 'glossary_terms'\n"
+  },
+  "invert": {
+    "V": [
+      2,
+      8,
+      2,
+      7,
+      0
+    ],
+    "phase0": [
+      [
+        "scripts/dekc_common.py",
+        5,
+        0
+      ],
+      [
+        "scripts/dekc_grade.py",
+        2,
+        1
+      ]
+    ],
+    "phase1": [
+      [
+        "scripts/dekc_business.py",
+        2,
+        2
+      ],
+      [
+        "scripts/dekc_pack.py",
+        2,
+        1
+      ]
+    ],
+    "oracle": "Traceback (most recent call last):\n  File \"<string>\", line 13, in <module>\n  File \"/tmp/tmp1pn4p1kf/invert/scripts/dekc_grade.py\", line 160, in grade_bundle\n    + 0.25 * min(1.0, d[\"glossary_terms\"] / max(len(bos), 1))\n                      ~^^^^^^^^^^^^^^^^^^\nKeyError: 'glossary_terms'\n"
+  },
+  "delta_invert_minus_direct": [
+    1,
+    3,
+    0,
+    2,
+    0
+  ],
+  "geometry": "PARETO_DIRECT",
+  "historical_patch_used": false
+}
