@@ -15,6 +15,12 @@ TARGET = Path("scripts/video_intel.py")
 HELPER = Path("scripts/index_update_policy.py")
 POLICIES = ("DIRECT", "INVERT")
 PHASES = (0, 1)
+FROZEN_TREATMENT_SHA256 = {
+    ("DIRECT", 0): "fbc256d7fd0cbda5c9f588538479f32170b9ace5d2ead1fa1459e51b318005f3",
+    ("DIRECT", 1): "e05eb5988fb92f2d80da4e023e8fd6f840e8a32eeaa61be707c04e814c1febae",
+    ("INVERT", 0): "4fddac6c396ee7533a4295b7b8876c21b6dd79124cb114c5182357c428468640",
+    ("INVERT", 1): "7362f7430944f432b275efbe15a9163453b4e45a7ca661ac74092ed0082bdd58",
+}
 
 
 def run(cmd: list[str], *, cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -63,7 +69,20 @@ def overlay_snapshot(base: Path, snapshot: Path, work: Path) -> None:
         shutil.copy2(src, dst)
 
 
+def snapshot_hash(snapshot: Path, policy: str) -> tuple[str, dict[str, str]]:
+    expected = sorted(production_paths(policy))
+    hashes: dict[str, str] = {}
+    for rel in expected:
+        p = snapshot / rel
+        if not p.exists():
+            raise RuntimeError(f"RCERT_HOLD:FROZEN_HASH_MISSING:{policy}:{rel}")
+        hashes[rel] = sha256(p)
+    return aggregate_hash(hashes), hashes
+
+
 def validate_snapshot(work: Path, policy: str, phase: int) -> dict:
+    # WC4's only correction to the WC3 verifier: changed-path identity is a set,
+    # not an order-bearing list. changed_paths() is sorted, so sort expected too.
     expected = sorted(production_paths(policy))
     observed = changed_paths(work)
     if observed != expected:
@@ -186,6 +205,19 @@ def main() -> int:
     treatments = out / "treatments"
     run([sys.executable, str(materializer), "--base-dir", str(base), "--out", str(treatments)])
 
+    frozen_hash_receipt: dict[str, dict[str, str]] = {}
+    for policy in POLICIES:
+        frozen_hash_receipt[policy] = {}
+        for phase in PHASES:
+            snap = treatments / policy / f"phase{phase}"
+            observed_hash, _ = snapshot_hash(snap, policy)
+            expected_hash = FROZEN_TREATMENT_SHA256[(policy, phase)]
+            if observed_hash != expected_hash:
+                raise RuntimeError(
+                    f"RCERT_HOLD:FROZEN_HASH_MISMATCH:{policy}:phase{phase}:expected={expected_hash}:observed={observed_hash}"
+                )
+            frozen_hash_receipt[policy][f"phase{phase}"] = observed_hash
+
     receipts: dict[str, dict] = {}
     work_root = out / "work"
     for policy in POLICIES:
@@ -207,6 +239,7 @@ def main() -> int:
         "scientific_oracle_opened": False,
         "exact_base": head,
         "cert_python": sys.version.split()[0],
+        "frozen_hash_equality": frozen_hash_receipt,
         "policies": receipts,
     }
     seal_payload = json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode()
