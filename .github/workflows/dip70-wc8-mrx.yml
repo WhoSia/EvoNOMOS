@@ -1,4 +1,5 @@
 name: DIP-70 WC8-MR-X
+# execution-trigger: registered-on-main-before-outcomes
 
 on:
   push:
