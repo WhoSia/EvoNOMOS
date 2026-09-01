@@ -1,14 +1,53 @@
 {
   "arms": {
     "DIRECT": {
-      "V": null,
-      "log": "Traceback (most recent call last):\n  File \"/tmp/tmpsmmcgexo/direct/subject/evonomos_oracle.py\", line 12, in <module>\n    result=dekc_grade.grade_bundle(bundle)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpsmmcgexo/direct/subject/scripts/dekc_grade.py\", line 272, in grade_bundle\n    \"concept_count\": d[\"concept_count\"],\n                     ~^^^^^^^^^^^^^^^^^\nKeyError: 'concept_count'\n",
-      "phase0_pass": false
+      "C0": 8,
+      "C1": 14,
+      "F0": 1,
+      "F1": 2,
+      "P1": 0,
+      "V": [
+        1,
+        8,
+        2,
+        14,
+        0
+      ],
+      "log_tail": "ORACLE_PASS\nTraceback (most recent call last):\n  File \"/tmp/tmpqfbs97tx/direct/subject/evonomos_oracle.py\", line 22, in <module>\n    manifest=dekc_index.build_index(bundle)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpqfbs97tx/direct/subject/scripts/dekc_index.py\", line 122, in build_index\n    if _edge_count == 0 and concepts:\n                            ^^^^^^^^\nNameError: name 'concepts' is not defined\n",
+      "numstat0": [
+        "6\t2\tscripts/dekc_grade.py"
+      ],
+      "numstat1": [
+        "5\t1\tscripts/dekc_business.py",
+        "6\t2\tscripts/dekc_index.py"
+      ],
+      "phase0_pass": true,
+      "phase1_pass": false
     },
     "INVERT": {
-      "V": null,
-      "log": "Traceback (most recent call last):\n  File \"/tmp/tmpsmmcgexo/invert/subject/evonomos_oracle.py\", line 12, in <module>\n    result=dekc_grade.grade_bundle(bundle)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpsmmcgexo/invert/subject/scripts/dekc_grade.py\", line 269, in grade_bundle\n    \"concept_count\": d[\"concept_count\"],\n                     ~^^^^^^^^^^^^^^^^^\nKeyError: 'concept_count'\n",
-      "phase0_pass": false
+      "C0": 10,
+      "C1": 10,
+      "F0": 2,
+      "F1": 2,
+      "P1": 0,
+      "V": [
+        2,
+        10,
+        2,
+        10,
+        0
+      ],
+      "log_tail": "ORACLE_PASS\nTraceback (most recent call last):\n  File \"/tmp/tmpqfbs97tx/invert/subject/evonomos_oracle.py\", line 22, in <module>\n    manifest=dekc_index.build_index(bundle)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpqfbs97tx/invert/subject/scripts/dekc_index.py\", line 118, in build_index\n    if _edge_count == 0 and concepts:\n                            ^^^^^^^^\nNameError: name 'concepts' is not defined\n",
+      "numstat0": [
+        "5\t0\tscripts/dekc_common.py",
+        "3\t2\tscripts/dekc_grade.py"
+      ],
+      "numstat1": [
+        "2\t2\tscripts/dekc_business.py",
+        "3\t3\tscripts/dekc_index.py"
+      ],
+      "phase0_pass": true,
+      "phase1_pass": false
     }
   },
   "base": "cdfcddb12f6248d881fd6789c905bae30058ecdd",
