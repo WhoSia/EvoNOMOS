@@ -110,7 +110,7 @@ def phase1_invert(root: Path):
 
 def oracle(root: Path):
     scripts = root / "scripts"
-    code = f'''\nimport sys\nfrom pathlib import Path\nsys.path.insert(0, {str(scripts)!r})\nimport dekc_grade as g\nimport dekc_business as b\nimport dekc_pack as p\n\n# phase-0 grade oracle: patch collaborators so only description boundary is exercised.\ng.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','description':{{'nested':True}},'layer':'gold'}}, 'body text long enough for evidence')]\ng.build_graph=lambda bundle:{{}}\ng.doctor=lambda bundle:{{'validation_ok':True,'orphan_technical':[]}}\nr=g.grade_bundle(Path('/tmp/bundle'))\nassert isinstance(r, dict)\n\n# Strings preserve byte semantics in the transformed boundary.\ng.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','description':'alpha','layer':'gold'}}, 'beta')]\nr2=g.grade_bundle(Path('/tmp/bundle'))\nassert isinstance(r2, dict)\n\n# phase-1 business reader: non-text falls back to body, text remains unchanged.\nassert b.infer_definition('X', {{'description':{{'nested':True}},'layer':'gold'}}, 'Fallback prose') == 'Fallback prose'\nassert b.infer_definition('X', {{'description':'Exact text','layer':'gold'}}, 'Fallback prose') == 'Exact text'\n\n# phase-1 pack reader: non-text becomes absent; ordinary strings are preserved.\norig_list=p.list_concepts\norig_graph=p.build_graph\np.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','title':'X','description':{{'nested':True}}}}, 'body')]\np.build_graph=lambda bundle:{{}}\nr3=p.pack(Path('/tmp/bundle'),'tables/x.md',hops=0,max_nodes=1)\nassert r3['nodes'][0]['description']==''\np.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','title':'X','description':'Exact text'}}, 'body')]\nr4=p.pack(Path('/tmp/bundle'),'tables/x.md',hops=0,max_nodes=1)\nassert r4['nodes'][0]['description']=='Exact text'\nprint('ORACLE_PASS')\n'''
+    code = f'''\nimport sys\nfrom pathlib import Path\nsys.path.insert(0, {str(scripts)!r})\nimport dekc_grade as g\nimport dekc_business as b\nimport dekc_pack as p\n\n# Exercise only the description boundary; collaborators return a complete neutral fixture.\ng.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','description':{{'nested':True}},'layer':'gold'}}, 'body text long enough for evidence')]\ng.build_graph=lambda bundle:{{}}\ng.doctor=lambda bundle:{{'validation_ok':True,'orphan_technical':[],'glossary_terms':0,'business_coverage':0.0,'index_built':False,'errors':[]}}\nr=g.grade_bundle(Path('/tmp/bundle'))\nassert isinstance(r, dict)\n\n# Strings preserve semantics in the transformed boundary.\ng.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','description':'alpha','layer':'gold'}}, 'beta')]\nr2=g.grade_bundle(Path('/tmp/bundle'))\nassert isinstance(r2, dict)\n\n# phase-1 business reader: non-text falls back to body, text remains unchanged.\nassert b.infer_definition('X', {{'description':{{'nested':True}},'layer':'gold'}}, 'Fallback prose') == 'Fallback prose'\nassert b.infer_definition('X', {{'description':'Exact text','layer':'gold'}}, 'Fallback prose') == 'Exact text'\n\n# phase-1 pack reader: non-text becomes absent; ordinary strings are preserved.\np.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','title':'X','description':{{'nested':True}}}}, 'body')]\np.build_graph=lambda bundle:{{}}\nr3=p.pack(Path('/tmp/bundle'),'tables/x.md',hops=0,max_nodes=1)\nassert r3['nodes'][0]['description']==''\np.list_concepts=lambda bundle:[(bundle/'tables/x.md', {{'type':'Table','title':'X','description':'Exact text'}}, 'body')]\nr4=p.pack(Path('/tmp/bundle'),'tables/x.md',hops=0,max_nodes=1)\nassert r4['nodes'][0]['description']=='Exact text'\nprint('ORACLE_PASS')\n'''
     p = run(["python3", "-c", code], root, check=False)
     return p.returncode == 0, p.stdout
 
@@ -139,7 +139,6 @@ def execute_arm(base_clone: Path, work: Path, arm: str):
 
 
 def pareto(dv, iv):
-    # lower F/C is better, P1 higher is better
     if dv[4] != iv[4]:
         return "PARETO_DIRECT" if dv[4] > iv[4] else "PARETO_INVERT"
     direct_no_worse = all(dv[i] <= iv[i] for i in range(4)) and any(dv[i] < iv[i] for i in range(4))
@@ -169,6 +168,7 @@ def main():
         "delta_invert_minus_direct":[iv[i]-dv[i] for i in range(5)],
         "geometry":pareto(dv,iv),
         "historical_patch_used":False,
+        "oracle_only_repair":True,
     }
     out_path.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps(result,indent=2))
