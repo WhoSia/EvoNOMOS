@@ -86,7 +86,7 @@ def oracle(subject,phase):
         fm={'type':'Table','title':'X','description':{'nested':'value'},'layer':'bronze','tags':[]}
         dekc_grade.list_concepts=lambda b:[(path,fm,'body text long enough for evidence traceability')]
         dekc_grade.build_graph=lambda b:{}
-        dekc_grade.doctor=lambda b:{'validation_ok':True,'orphan_technical':[],'glossary_terms':0,'business_coverage':0.0,'index_built':False,'errors':[]}
+        dekc_grade.doctor=lambda b:{'concept_count':1,'edge_count':0,'validation_ok':True,'orphan_technical':[],'glossary_terms':0,'business_coverage':0.0,'index_built':False,'errors':[]}
         result=dekc_grade.grade_bundle(bundle)
         assert isinstance(result,dict) and 'score' in result
     ''')
