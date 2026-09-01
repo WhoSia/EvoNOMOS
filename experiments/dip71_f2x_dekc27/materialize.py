@@ -85,8 +85,8 @@ def oracle(subject,phase):
         path=bundle/'tables'/'x.md'; path.parent.mkdir(parents=True); path.write_text('fixture')
         fm={'type':'Table','title':'X','description':{'nested':'value'},'layer':'bronze','tags':[]}
         dekc_grade.list_concepts=lambda b:[(path,fm,'body text long enough for evidence traceability')]
-        dekc_grade.build_graph=lambda b:{}
-        dekc_grade.doctor=lambda b:{'concept_count':1,'edge_count':0,'validation_ok':True,'orphan_technical':[],'glossary_terms':0,'business_coverage':0.0,'index_built':False,'errors':[]}
+        dekc_grade.build_graph=lambda b:{'tables/x.md':['tables/y.md']}
+        dekc_grade.doctor=lambda b:{'concept_count':1,'edge_count':1,'validation_ok':True,'orphan_technical':[],'glossary_terms':0,'business_coverage':0.0,'index_built':False,'errors':[]}
         result=dekc_grade.grade_bundle(bundle)
         assert isinstance(result,dict) and 'score' in result
     ''')
@@ -98,7 +98,7 @@ def oracle(subject,phase):
             ipath=bundle/'tables'/'y.md'; ipath.write_text('fixture')
             ifm={'type':'Table','title':'Y','description':{'secret_semantic_token':'SHOULD_NOT_INDEX'},'tags':[]}
             dekc_index.list_concepts=lambda b:[(ipath,ifm,'ordinary body')]
-            dekc_index.build_graph=lambda b:{}
+            dekc_index.build_graph=lambda b:{'tables/y.md':['tables/z.md']}
             manifest=dekc_index.build_index(bundle)
             inv=json.loads((bundle/'.index/inventory.json').read_text())
             assert inv[0]['description']=='', inv
@@ -160,6 +160,7 @@ def main():
           'context_cell':{'D0':'LOW','Dplus':'HIGH'},
           'phase0':'grade-only tolerant description boundary; non-string/None becomes empty text',
           'phase1':'same policy propagated to dekc_business infer_definition and dekc_index build_index',
+          'oracle_repair':'non-empty lineage fixture avoids unrelated exact-base NameError on empty graph; treatments unchanged',
           'arms':{'DIRECT':d,'INVERT':i},'d_I_minus_D':dv,'classification':cls}
     OUT.write_text(json.dumps(seal,indent=2,sort_keys=True)+'\n',encoding='utf-8')
     print(json.dumps(seal,indent=2))
