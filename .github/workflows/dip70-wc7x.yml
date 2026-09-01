@@ -33,7 +33,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           p=Path('/tmp/wc7_runner.py')
-          p.write_text(r'''import json, os, re, subprocess
+          p.write_text(r'''import json, subprocess
           from pathlib import Path
           BASE="e4559d1e0d3a50d696bb6f6d1863b94d57d98256"
           root=Path.cwd()
@@ -61,11 +61,11 @@ jobs:
               sh('git add -- '+ ' '.join(paths))
               r=sh(f'git diff --cached --numstat {against} -- '+ ' '.join(paths))
               rows=[x for x in r.stdout.strip().splitlines() if x.strip()]
-              files=len(rows); churn=0
+              churn=0
               for row in rows:
                   a,d,_=row.split('\t',2)
                   churn += (0 if a=='-' else int(a)) + (0 if d=='-' else int(d))
-              return files,churn,rows
+              return len(rows),churn,rows
           def run_oracle():
               r=sh('pnpm exec vitest run packages/plugin-form/src/LineItemsPanel.childObjectDecline.test.tsx',check=False)
               return r.returncode==0, (r.stdout+r.stderr)[-6000:]
@@ -82,20 +82,16 @@ jobs:
               else:
                   helper.write_text("""export interface LineItemsAdmissibility {\n  resolvable: boolean;\n  childObject: string;\n}\n\nexport function lineItemsAdmissibility(childObject: string | undefined): LineItemsAdmissibility {\n  return { resolvable: !!childObject, childObject: childObject ?? '' };\n}\n""")
                   s=s.replace("import { buildMasterDetailEditBatch, sumRows } from './masterDetailTx';","import { buildMasterDetailEditBatch, sumRows } from './masterDetailTx';\nimport { lineItemsAdmissibility } from './lineItemsAdmissibility';")
-                  anchor="  const filterKey = JSON.stringify(schema.filter ?? null);"
-                  s=s.replace(anchor,"  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);\n\n"+anchor)
+                  marker='  const [childSchema, setChildSchema] = useState<{ fields?: Record<string, any> } | null>(null);'
+                  if marker not in s: raise RuntimeError('childSchema marker missing')
+                  s=s.replace(marker,marker+'\n  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);',1)
                   s=s.replace('if (!dataSource || !parentId) {','if (!dataSource || !parentId || !admissibility.resolvable) {',1)
                   s=s.replace('dataSource.find(schema.childObject, {','dataSource.find(admissibility.childObject, {',1)
                   s=s.replace('    schema.childObject,\n    schema.relationshipField,','    admissibility,\n    schema.relationshipField,',1)
                   s=s.replace('if (!dataSource || !parentId) return;','if (!dataSource || !parentId || !admissibility.resolvable) return;',1)
                   s=s.replace("{loading ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Loading…</p>","{!admissibility.resolvable ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Set childObject to the child object this panel lists.</p>\n        ) : loading ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Loading…</p>")
-                  # Existing child-schema read must share the central predicate too.
                   s=s.replace('if (!schema.childObject) {','if (!admissibility.resolvable) {',1)
                   s=s.replace('ds.getObjectSchema(schema.childObject)','ds.getObjectSchema(admissibility.childObject)',1)
-                  # admissibility declaration must precede the child-schema effect; move declaration upward.
-                  s=s.replace('  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);\n\n','')
-                  marker='  const [childSchema, setChildSchema] = useState<any>(null);'
-                  s=s.replace(marker,marker+'\n  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);')
                   src.write_text(s)
                   prod=[str(src.relative_to(root)),str(helper.relative_to(root))]
 
@@ -110,7 +106,6 @@ jobs:
               sh(f'git commit -m "wc7 {arm} phase0" -- '+ ' '.join(prod))
               phase0_sha=sh('git rev-parse HEAD').stdout.strip()
 
-              # Phase 1: prospectively frozen follow-up — whitespace-only childObject is unresolved.
               if arm=='DIRECT':
                   s=src.read_text()
                   s=s.replace('if (!schema.childObject) {','if (!schema.childObject?.trim()) {',1)
@@ -119,8 +114,7 @@ jobs:
                   s=s.replace('{!schema.childObject ? (','{!schema.childObject?.trim() ? (',1)
                   src.write_text(s)
               else:
-                  h=helper.read_text().replace('resolvable: !!childObject,','resolvable: !!childObject?.trim(),')
-                  helper.write_text(h)
+                  helper.write_text(helper.read_text().replace('resolvable: !!childObject,','resolvable: !!childObject?.trim(),'))
               patch_test('whitespace')
               f1,c1,rows1=metric(prod,phase0_sha)
               ok1,log1=run_oracle()
@@ -132,9 +126,7 @@ jobs:
           if not D or not I or D[-1]!=1 or I[-1]!=1:
               out['classification']='HOLD'
           else:
-              d=[I[i]-D[i] for i in range(4)]+[I[4]-D[4]]
-              out['d_I_minus_D']=d
-              # Lower is better for first four; P1 must tie at 1.
+              out['d_I_minus_D']=[I[i]-D[i] for i in range(5)]
               if all(I[i]<=D[i] for i in range(4)) and any(I[i]<D[i] for i in range(4)):
                   out['classification']='PARETO_INVERT'
               elif all(D[i]<=I[i] for i in range(4)) and any(D[i]<I[i] for i in range(4)):
@@ -155,5 +147,5 @@ jobs:
           git add experiments/dip70_wc7x/RESULT_SEAL.json
           git config user.email evonomos@example.invalid
           git config user.name EvoNOMOS
-          git commit -m 'experiment: seal DIP-70 WC7-X result'
+          git commit -m 'experiment: seal repaired DIP-70 WC7-X result'
           git push
