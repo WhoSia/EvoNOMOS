@@ -1,0 +1,119 @@
+name: EvoNOMOS DIP-70 WC1 compose-service world contact
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip70-wc1-compose-services
+    paths:
+      - experiments/dip70_wc1/**
+      - .github/workflows/evonomos-dip70-wc1-compose-services.yml
+
+permissions:
+  contents: read
+
+jobs:
+  execute:
+    name: ${{ matrix.policy }} / node${{ matrix.node }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        policy: [DIRECT, INVERT]
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Seal exact preoutcome execution envelope
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool experiments/dip70_wc1/preregistration.json >/dev/null
+          python3 -m json.tool experiments/dip70_wc1/preexecution_correction_receipt.json >/dev/null
+          python3 -m py_compile \
+            experiments/dip70_wc1/run_wc1.py \
+            experiments/dip70_wc1/run_wc1_sealed.py \
+            experiments/dip70_wc1/aggregate_wc1.py
+          python3 - <<'PY'
+          import json
+          p=json.load(open('experiments/dip70_wc1/preregistration.json'))
+          assert p['authority']=='CI-0.11R-015'
+          assert p['global_start']==3200
+          assert p['scientific_substrate']['repository']=='yashumani/open-source-reviewer-app'
+          assert p['scientific_substrate']['issue']==16
+          assert p['scientific_substrate']['base_sha']=='60caaccb7514e28c633c3aa3bd179e9ae8d5b154'
+          assert p['realization']['stochastic_llm_synthesis'] is False
+          assert p['realization']['post_outcome_repair'] is False
+          assert p['realization']['treatment_materialization']=='experiments/dip70_wc1/run_wc1_sealed.py'
+          assert p['route_contrast']['routes']==['node22','node24']
+          assert p['compose_detection_contract']['followup_families']==['MongoDB','NATS-compatible']
+          c=json.load(open('experiments/dip70_wc1/preexecution_correction_receipt.json'))
+          assert c['outcomes_observed_before_correction']==0
+          assert c['workflow_runs_before_correction']==0
+          print('DIP70_WC1_PREOUTCOME_ENVELOPE_PASS')
+          PY
+
+      - name: Execute frozen treatment and oracle trajectory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p wc1_output
+          python3 experiments/dip70_wc1/run_wc1_sealed.py \
+            --policy '${{ matrix.policy }}' \
+            --route 'node${{ matrix.node }}' \
+            --out wc1_output/result.json
+          test -s wc1_output/result.json
+          python3 - <<'PY'
+          import json
+          r=json.load(open('wc1_output/result.json'))
+          assert r['policy'] in {'DIRECT','INVERT'}
+          assert r['route'] in {'node22','node24'}
+          assert r['base_sha']=='60caaccb7514e28c633c3aa3bd179e9ae8d5b154'
+          assert r['status'] in {'PASS','HOLD'}
+          print('DIP70_WC1_CELL_SEALED', r['policy'], r['route'], r['status'], r.get('first_failure_stage'), r.get('V'))
+          PY
+
+      - name: Upload required cell receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc1-${{ matrix.policy }}-node${{ matrix.node }}
+          path: wc1_output/result.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  aggregate:
+    name: bounded Pareto / transport court input
+    needs: execute
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dip70-wc1-*
+          path: downloaded
+
+      - name: Apply frozen no-complete-case adjudicator
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p wc1_aggregate
+          python3 experiments/dip70_wc1/aggregate_wc1.py \
+            --root downloaded \
+            --out wc1_aggregate/summary.json
+          cat wc1_aggregate/summary.json
+
+      - name: Upload aggregate court input
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc1-aggregate
+          path: wc1_aggregate/summary.json
+          if-no-files-found: error
+          retention-days: 90
