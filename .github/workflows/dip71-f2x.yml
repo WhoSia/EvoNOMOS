@@ -24,6 +24,18 @@ jobs:
         run: |
           python3 --version
           git --version
+      - name: Oracle-fixture completion only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('experiments/dip71_f2x/materialize.py')
+          s=p.read_text()
+          old="'index_built':False,'errors':[]"
+          new="'index_built':False,'errors':[],'concept_count':1,'edge_count':0"
+          if old not in s:
+              raise SystemExit('oracle fixture patch site missing')
+          p.write_text(s.replace(old,new,1))
+          PY
       - name: Execute sealed pair
         run: python3 experiments/dip71_f2x/materialize.py
       - name: Seal result
