@@ -1,0 +1,73 @@
+{
+  "stage": "EvoNOMOS Generation VI DIP-70-WC1 — Censoring-Transparent Treatment Realization, Fresh Demand Pairing & Transport-Invariant Pareto World-Contact Cell",
+  "authority": "CI-0.11R-015",
+  "global_start": 3200,
+  "frozen_before_outcome": true,
+  "scientific_substrate": {
+    "repository": "yashumani/open-source-reviewer-app",
+    "issue": 16,
+    "issue_url": "https://github.com/yashumani/open-source-reviewer-app/issues/16",
+    "base_sha": "60caaccb7514e28c633c3aa3bd179e9ae8d5b154",
+    "base_license": "Apache-2.0",
+    "base_engine": "node >=22"
+  },
+  "initial_real_demand": "Improve static Docker Compose database/cache/queue/broker service detection so custom service names can be recognized from image/command/environment evidence, duplicate signals are deduplicated, source path/service evidence is preserved, templated or ambiguous configuration is marked uncertain, unrelated services are not classified, and npm run validate passes. Initial frozen families: PostgreSQL, MySQL/MariaDB, Redis, RabbitMQ, Kafka-compatible.",
+  "frozen_followup": "Extend the exact same service-evidence contract to MongoDB and NATS-compatible services without changing the initial families, uncertainty rule, output schema, functional oracle, or lifecycle measurement.",
+  "policies": {
+    "DIRECT": "Implement Compose service detection inside the existing src/analyzer.js consumer/operations surface. No new production provider/module boundary is introduced solely for this demand.",
+    "INVERT": "Introduce exactly one stable src/compose-services.js detector/provider boundary. src/analyzer.js consumes detector output; service-family rules and parsing remain behind that boundary."
+  },
+  "realization": {
+    "type": "deterministic_edit_grammar",
+    "stochastic_llm_synthesis": false,
+    "post_outcome_repair": false,
+    "treatment_materialization": "experiments/dip70_wc1/run_wc1.py",
+    "treatment_bytes_must_match_across_routes": true
+  },
+  "route_contrast": {
+    "routes": ["node22", "node24"],
+    "runner": "github-hosted ubuntu-24.04",
+    "meaning": "Execution/evaluation route only. Route may not modify treatment bytes.",
+    "same_oracle": true,
+    "same_measurement": true
+  },
+  "oracle": {
+    "baseline": "npm run validate on the exact base before treatment",
+    "phase0": "frozen issue-specific tests plus full npm run validate after initial treatment",
+    "phase1": "frozen follow-up tests plus full npm run validate after follow-up treatment",
+    "security_boundary": "static Compose text only; no Docker start, registry lookup, remote include, credential validation, or runtime deployment claim"
+  },
+  "compose_detection_contract": {
+    "initial_families": ["PostgreSQL", "MySQL/MariaDB", "Redis", "RabbitMQ", "Kafka-compatible"],
+    "followup_families": ["MongoDB", "NATS-compatible"],
+    "evidence_sources": ["image", "command", "environment", "simple YAML anchor merge"],
+    "dedup_key": ["path", "service", "family"],
+    "uncertain_when": "the resolved service evidence block contains ${...} templating",
+    "runtime_use_claim": "prohibited"
+  },
+  "lifecycle_vector": ["F0", "C0", "F1", "C1", "P1"],
+  "measurement": {
+    "production_scope": "src/** only",
+    "F0": "number of production files whose bytes differ from exact base after phase0",
+    "C0": "line additions plus deletions over production files from exact base to phase0",
+    "F1": "number of production files whose bytes differ from phase0 after frozen follow-up",
+    "C1": "line additions plus deletions over production files from phase0 to phase1",
+    "P1": "count of pre-existing consumer loci revisited by follow-up beyond the dedicated policy provider locus; frozen consumer set = [src/analyzer.js]; DIRECT has no dedicated provider exclusion; INVERT provider exclusion = [src/compose-services.js]"
+  },
+  "pareto": {
+    "contrast": "d = V_INVERT - V_DIRECT",
+    "PARETO_I": "all components <= 0 and at least one < 0",
+    "PARETO_D": "all components >= 0 and at least one > 0",
+    "EXACT_TIE": "all components = 0",
+    "TRADEOFF": "mixed positive and negative components",
+    "HOLD": "required treatment certification/oracle/measurement unavailable"
+  },
+  "no_rescue": [
+    "No alternate repository or issue after treatment outcome is observed.",
+    "No changing service families, follow-up, policy realization, route, oracle, vector, or P1 definition after outcome.",
+    "No stochastic model-generated treatment patch.",
+    "No complete-case deletion of a failed route/policy cell.",
+    "No scalar utility winner in primary adjudication.",
+    "First complete bounded readout or concrete validity HOLD triggers mandatory PI re-Court."
+  ]
+}
