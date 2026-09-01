@@ -1,0 +1,25 @@
+{
+  "status": "PRE_EXECUTION_ONLY",
+  "outcomes_observed_before_correction": 0,
+  "workflow_runs_before_correction": 0,
+  "draft_entrypoint": "experiments/dip70_wc1/run_wc1.py",
+  "sealed_entrypoint": "experiments/dip70_wc1/run_wc1_sealed.py",
+  "corrections": [
+    "Rule regex sources in the draft used Python raw strings with one excess backslash layer; the sealed entrypoint binds the same preregistered regex semantics with the correct source representation.",
+    "The synthetic templated-Compose fixture needed escaped dollar-brace literals so JavaScript does not interpolate DB_IMAGE/DB_NAME while constructing the test string.",
+    "The draft route-version check represented the Python regex digit class with one excess raw-string backslash; the sealed entrypoint normalizes only that exact version-check pattern."
+  ],
+  "unchanged": [
+    "external repository and issue",
+    "exact base SHA",
+    "DIRECT and INVERT policy definitions",
+    "initial service families",
+    "frozen MongoDB + NATS follow-up",
+    "Node22/Node24 route contrast",
+    "npm run validate oracle",
+    "five-component lifecycle vector",
+    "Pareto adjudication",
+    "no-rescue rules"
+  ],
+  "scientific_effect": "NONE_BEFORE_OUTCOME"
+}
