@@ -5,15 +5,15 @@
       "C1": 14,
       "F0": 1,
       "F1": 2,
-      "P1": 0,
+      "P1": 1,
       "V": [
         1,
         8,
         2,
         14,
-        0
+        1
       ],
-      "log_tail": "ORACLE_PASS\nTraceback (most recent call last):\n  File \"/tmp/tmpqfbs97tx/direct/subject/evonomos_oracle.py\", line 22, in <module>\n    manifest=dekc_index.build_index(bundle)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpqfbs97tx/direct/subject/scripts/dekc_index.py\", line 122, in build_index\n    if _edge_count == 0 and concepts:\n                            ^^^^^^^^\nNameError: name 'concepts' is not defined\n",
+      "log_tail": "ORACLE_PASS\nORACLE_PASS\n",
       "numstat0": [
         "6\t2\tscripts/dekc_grade.py"
       ],
@@ -22,22 +22,22 @@
         "6\t2\tscripts/dekc_index.py"
       ],
       "phase0_pass": true,
-      "phase1_pass": false
+      "phase1_pass": true
     },
     "INVERT": {
       "C0": 10,
       "C1": 10,
       "F0": 2,
       "F1": 2,
-      "P1": 0,
+      "P1": 1,
       "V": [
         2,
         10,
         2,
         10,
-        0
+        1
       ],
-      "log_tail": "ORACLE_PASS\nTraceback (most recent call last):\n  File \"/tmp/tmpqfbs97tx/invert/subject/evonomos_oracle.py\", line 22, in <module>\n    manifest=dekc_index.build_index(bundle)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpqfbs97tx/invert/subject/scripts/dekc_index.py\", line 118, in build_index\n    if _edge_count == 0 and concepts:\n                            ^^^^^^^^\nNameError: name 'concepts' is not defined\n",
+      "log_tail": "ORACLE_PASS\nORACLE_PASS\n",
       "numstat0": [
         "5\t0\tscripts/dekc_common.py",
         "3\t2\tscripts/dekc_grade.py"
@@ -47,17 +47,24 @@
         "3\t3\tscripts/dekc_index.py"
       ],
       "phase0_pass": true,
-      "phase1_pass": false
+      "phase1_pass": true
     }
   },
   "base": "cdfcddb12f6248d881fd6789c905bae30058ecdd",
-  "classification": "FUNCTIONAL_HOLD",
+  "classification": "TRADEOFF",
   "context_cell": {
     "D0": "LOW",
     "Dplus": "HIGH"
   },
-  "d_I_minus_D": null,
+  "d_I_minus_D": [
+    1,
+    2,
+    0,
+    -4,
+    0
+  ],
   "issue": "SpillwaveSolutions/data-engineering-knowledge-capture#27",
+  "oracle_repair": "non-empty lineage fixture avoids unrelated exact-base NameError on empty graph; treatments unchanged",
   "phase0": "grade-only tolerant description boundary; non-string/None becomes empty text",
   "phase1": "same policy propagated to dekc_business infer_definition and dekc_index build_index"
 }
