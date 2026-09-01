@@ -21,7 +21,9 @@
     "type": "deterministic_edit_grammar",
     "stochastic_llm_synthesis": false,
     "post_outcome_repair": false,
-    "treatment_materialization": "experiments/dip70_wc1/run_wc1.py",
+    "treatment_materialization": "experiments/dip70_wc1/run_wc1_sealed.py",
+    "preexecution_draft": "experiments/dip70_wc1/run_wc1.py",
+    "preexecution_correction": "The draft was never executed. Before any workflow/outcome, the sealed entrypoint corrected regex-source over-escaping and literal ${...} fixture escaping only; policy, demand, follow-up, metric, route and oracle were unchanged.",
     "treatment_bytes_must_match_across_routes": true
   },
   "route_contrast": {
