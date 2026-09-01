@@ -1,0 +1,24 @@
+{
+  "arms": {
+    "DIRECT": {
+      "V": null,
+      "log": "Traceback (most recent call last):\n  File \"/tmp/tmpsmmcgexo/direct/subject/evonomos_oracle.py\", line 12, in <module>\n    result=dekc_grade.grade_bundle(bundle)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpsmmcgexo/direct/subject/scripts/dekc_grade.py\", line 272, in grade_bundle\n    \"concept_count\": d[\"concept_count\"],\n                     ~^^^^^^^^^^^^^^^^^\nKeyError: 'concept_count'\n",
+      "phase0_pass": false
+    },
+    "INVERT": {
+      "V": null,
+      "log": "Traceback (most recent call last):\n  File \"/tmp/tmpsmmcgexo/invert/subject/evonomos_oracle.py\", line 12, in <module>\n    result=dekc_grade.grade_bundle(bundle)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpsmmcgexo/invert/subject/scripts/dekc_grade.py\", line 269, in grade_bundle\n    \"concept_count\": d[\"concept_count\"],\n                     ~^^^^^^^^^^^^^^^^^\nKeyError: 'concept_count'\n",
+      "phase0_pass": false
+    }
+  },
+  "base": "cdfcddb12f6248d881fd6789c905bae30058ecdd",
+  "classification": "FUNCTIONAL_HOLD",
+  "context_cell": {
+    "D0": "LOW",
+    "Dplus": "HIGH"
+  },
+  "d_I_minus_D": null,
+  "issue": "SpillwaveSolutions/data-engineering-knowledge-capture#27",
+  "phase0": "grade-only tolerant description boundary; non-string/None becomes empty text",
+  "phase1": "same policy propagated to dekc_business infer_definition and dekc_index build_index"
+}
