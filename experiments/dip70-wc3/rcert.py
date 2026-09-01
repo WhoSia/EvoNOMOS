@@ -89,10 +89,11 @@ def validate_snapshot(work: Path, policy: str, phase: int) -> dict:
         if "class IndexUpdatePolicy:" not in helper:
             raise RuntimeError(f"RCERT_HOLD:TOPOLOGY:INVERT_PROVIDER:phase{phase}")
 
-    phase1_markers = ("Scoped index requires an existing full index", "quote_lancedb_literal")
     if phase == 0:
         combined = main + "\n" + helper
-        if any(marker in combined for marker in phase1_markers):
+        forbidden = ["Scoped index requires an existing full index"]
+        forbidden.append("_lancedb_quote_literal" if policy == "DIRECT" else "quote_lancedb_literal")
+        if any(marker in combined for marker in forbidden):
             raise RuntimeError(f"RCERT_HOLD:PHASE_LEAK:{policy}:phase0")
     else:
         combined = main + "\n" + helper
