@@ -1,0 +1,51 @@
+name: DIP-70 WC8-MR-X
+
+on:
+  push:
+    branches:
+      - agent/dip70-wc8-mrx-simple-rms-29
+    paths:
+      - experiments/dip70_wc8_mrx/materialize.py
+      - .github/workflows/dip70-wc8-mrx.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  matched-replication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/dip70-wc8-mrx-simple-rms-29
+          fetch-depth: 0
+      - name: Runtime identity
+        run: |
+          python3 --version
+          php --version
+          git --version
+      - name: Pre-outcome infrastructure correction
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('experiments/dip70_wc8_mrx/materialize.py')
+          s=p.read_text()
+          old="def clone_subject(root):\n    d=root/'subject'"
+          new="def clone_subject(root):\n    root.mkdir(parents=True,exist_ok=True)\n    d=root/'subject'"
+          if old not in s:
+              raise SystemExit('expected preflight patch site missing')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Execute exact matched replication
+        run: python3 experiments/dip70_wc8_mrx/materialize.py
+      - name: Seal result on experiment branch
+        if: always()
+        run: |
+          test -f experiments/dip70_wc8_mrx/RESULT_SEAL.json || exit 1
+          git config user.name EvoNOMOS
+          git config user.email evonomos@example.invalid
+          git add experiments/dip70_wc8_mrx/RESULT_SEAL.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'experiment: seal DIP-70 WC8-MR-X result'
+          git push origin HEAD:agent/dip70-wc8-mrx-simple-rms-29
