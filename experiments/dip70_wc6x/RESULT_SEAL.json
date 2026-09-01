@@ -1,0 +1,50 @@
+{
+  "schema": "evonomos.dip70.wc6x.result.v1",
+  "demand": "CIRCLEUP-AJO/CIRCLEUP#369",
+  "upstream_repo": "CIRCLEUP-AJO/CIRCLEUP",
+  "exact_base": "9f056cd3e340361947d3bb5e7b63ae2edf47b445",
+  "harness_repo": "WhoSia/EvoNOMOS",
+  "harness_branch": "agent/dip70-wc6x-circleup369",
+  "final_harness_head": "5257ecbed09d1a0670461eaa25c9c63fd2b122f6",
+  "final_actions_run_id": 33473234812,
+  "final_job_id": 99747083313,
+  "baseline_createApp": "PASS",
+  "phase0_contract": {
+    "DIRECT": "5/5 PASS",
+    "INVERT": "5/5 PASS"
+  },
+  "phase1_demand": "Accept a valid x-request-id as fallback client alias while keeping x-correlation-id as the canonical response header.",
+  "phase1_contract": {
+    "DIRECT": "6/6 PASS",
+    "INVERT": "6/6 PASS"
+  },
+  "vectors": {
+    "DIRECT": [1, 22, 1, 2, 1],
+    "INVERT": [2, 26, 1, 2, 1]
+  },
+  "delta_I_minus_D": [1, 4, 0, 0, 0],
+  "geometry": "PARETO_DIRECT",
+  "production_change_rows": {
+    "phase0": {
+      "DIRECT": [[22, 0, "indexer/src/api.ts"]],
+      "INVERT": [[2, 0, "indexer/src/api.ts"], [24, 0, "indexer/src/correlation.ts"]]
+    },
+    "phase1": {
+      "DIRECT": [[1, 1, "indexer/src/api.ts"]],
+      "INVERT": [[1, 1, "indexer/src/correlation.ts"]]
+    }
+  },
+  "retired_measurement_artifact": {
+    "run_id": 33473159962,
+    "reported_geometry": "PARETO_INVERT",
+    "authority": "ZERO",
+    "reason": "Pre-staging git diff --numstat omitted the new untracked INVERT production file indexer/src/correlation.ts. The artifact was detected before scientific authority sealing. Treatment bytes and functional oracle results were unchanged; only the measurement receipt was repaired."
+  },
+  "measurement_repair": "Stage existing production files before phase-0 numstat, then compute cached diff against exact base so untracked production files are included.",
+  "excluded_symmetric_base_nuisance": [
+    "whole-repo tsc pre-existing MigrationStatus.modified error",
+    "stale upstream api.test source assertion",
+    "unrelated full-suite environment/schema/health failures"
+  ],
+  "scope": "One frozen real maintenance demand with prospectively paired functionally equivalent structural realizations and a prospectively declared phase-1 maintenance perturbation. Supports local PARETO_DIRECT ordering only. Does not establish prevalence, universal DIRECT superiority, PARETO_INVERT, sign reversal, moderator law, or global transport authority."
+}
