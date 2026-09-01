@@ -1,0 +1,64 @@
+{
+  "stage": "EvoNOMOS Generation VI DIP-71-F1-X",
+  "subject": "picoduck/wollipog#294",
+  "exact_base": "374155134a39439060fb84a535bc8051f4ef5dfe",
+  "phase1_morphism": "exact legacy generated label Codex — Interactive joins canonical Codex App Server equivalence class; custom names preserved",
+  "DIRECT": {
+    "V": [
+      7,
+      21,
+      2,
+      3,
+      1
+    ],
+    "phase0_numstat": [
+      "1\t1\tapps/control-plane/src/archive-session-page.ts",
+      "1\t1\tapps/control-plane/src/db.ts",
+      "1\t1\tapps/control-plane/src/sessions.ts",
+      "1\t1\tapps/web/src/components/AgentSessionDiscoveryDialog.tsx",
+      "2\t2\tapps/web/src/components/NewSessionDialog.tsx",
+      "4\t3\tapps/web/src/components/agent-options.ts",
+      "1\t1\tapps/web/src/onboarding.ts"
+    ],
+    "phase1_numstat": [
+      "2\t0\tapps/control-plane/src/archive-session-page.ts",
+      "1\t0\tapps/web/src/components/agent-options.ts"
+    ],
+    "phase0_commit": "671e870608582603dbbf097dd048fff116cf8c6d",
+    "phase1_commit": "747f718f0d92f8378cd0d46b484276eb97dc2b7e"
+  },
+  "INVERT": {
+    "V": [
+      8,
+      36,
+      1,
+      2,
+      1
+    ],
+    "phase0_numstat": [
+      "2\t4\tapps/control-plane/src/archive-session-page.ts",
+      "2\t1\tapps/control-plane/src/db.ts",
+      "1\t1\tapps/control-plane/src/sessions.ts",
+      "1\t1\tapps/web/src/components/AgentSessionDiscoveryDialog.tsx",
+      "2\t2\tapps/web/src/components/NewSessionDialog.tsx",
+      "5\t4\tapps/web/src/components/agent-options.ts",
+      "2\t1\tapps/web/src/onboarding.ts",
+      "7\t0\tpackages/protocol/src/index.ts"
+    ],
+    "phase1_numstat": [
+      "1\t1\tpackages/protocol/src/index.ts"
+    ],
+    "phase0_commit": "e1fabfce66098b952d8ca9c90d208d8dd982db32",
+    "phase1_commit": "f3fee5fd3eeeabb9625cc03a2f3408cebe739159"
+  },
+  "d_I_minus_D": [
+    1,
+    15,
+    -1,
+    -1,
+    0
+  ],
+  "geometry": "TRADEOFF",
+  "oracle": "PASS",
+  "authority": "first complete paired readout; mandatory PI re-Court; no prevalence/moderator law by itself"
+}
