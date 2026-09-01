@@ -1,0 +1,159 @@
+name: DIP-70 WC7-X
+
+on:
+  push:
+    paths:
+      - '.github/workflows/dip70-wc7x.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  wc7x:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+      - name: Execute frozen paired experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=e4559d1e0d3a50d696bb6f6d1863b94d57d98256
+          git clone --filter=blob:none https://github.com/objectstack-ai/objectui.git subject
+          cd subject
+          git checkout --detach "$BASE"
+          test "$(git rev-parse HEAD)" = "$BASE"
+          git config user.email evonomos@example.invalid
+          git config user.name EvoNOMOS
+          corepack enable
+          pnpm install --frozen-lockfile
+
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/wc7_runner.py')
+          p.write_text(r'''import json, os, re, subprocess
+          from pathlib import Path
+          BASE="e4559d1e0d3a50d696bb6f6d1863b94d57d98256"
+          root=Path.cwd()
+          src=root/'packages/plugin-form/src/LineItemsPanel.tsx'
+          test=root/'packages/plugin-form/src/LineItemsPanel.childObjectDecline.test.tsx'
+          helper=root/'packages/plugin-form/src/lineItemsAdmissibility.ts'
+          out={"base":BASE,"issue":"objectstack-ai/objectui#6194","phase1_followup":"whitespace-only childObject must be unresolved","arms":{}}
+
+          def sh(cmd, check=True):
+              r=subprocess.run(cmd,shell=True,text=True,capture_output=True)
+              if check and r.returncode:
+                  print(r.stdout); print(r.stderr); raise SystemExit(r.returncode)
+              return r
+          def reset():
+              sh(f'git reset --hard {BASE}')
+              sh('git clean -fd -e node_modules')
+          def patch_test(mode='missing'):
+              s=test.read_text()
+              s=s.replace("expect(calls).toEqual(['find(undefined)']);", "expect(calls).toEqual([]);")
+              if mode=='whitespace':
+                  s=s.replace('const calls = await callsFor({});', "const calls = await callsFor({ childObject: '   ' });", 1)
+                  s=s.replace("expect(calls).not.toContain('getObjectSchema(undefined)');", "expect(calls).not.toContain('getObjectSchema(\"   \")');", 1)
+              test.write_text(s)
+          def metric(paths, against='HEAD'):
+              sh('git add -- '+ ' '.join(paths))
+              r=sh(f'git diff --cached --numstat {against} -- '+ ' '.join(paths))
+              rows=[x for x in r.stdout.strip().splitlines() if x.strip()]
+              files=len(rows); churn=0
+              for row in rows:
+                  a,d,_=row.split('\t',2)
+                  churn += (0 if a=='-' else int(a)) + (0 if d=='-' else int(d))
+              return files,churn,rows
+          def run_oracle():
+              r=sh('pnpm exec vitest run packages/plugin-form/src/LineItemsPanel.childObjectDecline.test.tsx',check=False)
+              return r.returncode==0, (r.stdout+r.stderr)[-6000:]
+
+          for arm in ('DIRECT','INVERT'):
+              reset()
+              s=src.read_text()
+              if arm=='DIRECT':
+                  s=s.replace('if (!dataSource || !parentId) {','if (!dataSource || !parentId || !schema.childObject) {',1)
+                  s=s.replace('if (!dataSource || !parentId) return;','if (!dataSource || !parentId || !schema.childObject) return;',1)
+                  s=s.replace("{loading ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Loading…</p>","{!schema.childObject ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Set childObject to the child object this panel lists.</p>\n        ) : loading ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Loading…</p>")
+                  src.write_text(s)
+                  prod=[str(src.relative_to(root))]
+              else:
+                  helper.write_text("""export interface LineItemsAdmissibility {\n  resolvable: boolean;\n  childObject: string;\n}\n\nexport function lineItemsAdmissibility(childObject: string | undefined): LineItemsAdmissibility {\n  return { resolvable: !!childObject, childObject: childObject ?? '' };\n}\n""")
+                  s=s.replace("import { buildMasterDetailEditBatch, sumRows } from './masterDetailTx';","import { buildMasterDetailEditBatch, sumRows } from './masterDetailTx';\nimport { lineItemsAdmissibility } from './lineItemsAdmissibility';")
+                  anchor="  const filterKey = JSON.stringify(schema.filter ?? null);"
+                  s=s.replace(anchor,"  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);\n\n"+anchor)
+                  s=s.replace('if (!dataSource || !parentId) {','if (!dataSource || !parentId || !admissibility.resolvable) {',1)
+                  s=s.replace('dataSource.find(schema.childObject, {','dataSource.find(admissibility.childObject, {',1)
+                  s=s.replace('    schema.childObject,\n    schema.relationshipField,','    admissibility,\n    schema.relationshipField,',1)
+                  s=s.replace('if (!dataSource || !parentId) return;','if (!dataSource || !parentId || !admissibility.resolvable) return;',1)
+                  s=s.replace("{loading ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Loading…</p>","{!admissibility.resolvable ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Set childObject to the child object this panel lists.</p>\n        ) : loading ? (\n          <p className=\"py-6 text-center text-sm text-muted-foreground\">Loading…</p>")
+                  # Existing child-schema read must share the central predicate too.
+                  s=s.replace('if (!schema.childObject) {','if (!admissibility.resolvable) {',1)
+                  s=s.replace('ds.getObjectSchema(schema.childObject)','ds.getObjectSchema(admissibility.childObject)',1)
+                  # admissibility declaration must precede the child-schema effect; move declaration upward.
+                  s=s.replace('  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);\n\n','')
+                  marker='  const [childSchema, setChildSchema] = useState<any>(null);'
+                  s=s.replace(marker,marker+'\n  const admissibility = useMemo(() => lineItemsAdmissibility(schema.childObject), [schema.childObject]);')
+                  src.write_text(s)
+                  prod=[str(src.relative_to(root)),str(helper.relative_to(root))]
+
+              patch_test('missing')
+              f0,c0,rows0=metric(prod)
+              ok0,log0=run_oracle()
+              if not ok0:
+                  out['arms'][arm]={"phase0_pass":False,"log":log0,"V":None}
+                  continue
+              sh('git reset HEAD -- '+ ' '.join(prod))
+              sh('git add -- '+ ' '.join(prod))
+              sh(f'git commit -m "wc7 {arm} phase0" -- '+ ' '.join(prod))
+              phase0_sha=sh('git rev-parse HEAD').stdout.strip()
+
+              # Phase 1: prospectively frozen follow-up — whitespace-only childObject is unresolved.
+              if arm=='DIRECT':
+                  s=src.read_text()
+                  s=s.replace('if (!schema.childObject) {','if (!schema.childObject?.trim()) {',1)
+                  s=s.replace('!schema.childObject) {','!schema.childObject?.trim()) {',1)
+                  s=s.replace('!schema.childObject) return;','!schema.childObject?.trim()) return;',1)
+                  s=s.replace('{!schema.childObject ? (','{!schema.childObject?.trim() ? (',1)
+                  src.write_text(s)
+              else:
+                  h=helper.read_text().replace('resolvable: !!childObject,','resolvable: !!childObject?.trim(),')
+                  helper.write_text(h)
+              patch_test('whitespace')
+              f1,c1,rows1=metric(prod,phase0_sha)
+              ok1,log1=run_oracle()
+              out['arms'][arm]={"phase0_pass":ok0,"phase1_pass":ok1,"phase0_sha":phase0_sha,
+                "F0":f0,"C0":c0,"F1":f1,"C1":c1,"P1":1 if ok1 else 0,
+                "V":[f0,c0,f1,c1,1 if ok1 else 0],"numstat0":rows0,"numstat1":rows1,"log_tail":log1}
+
+          D=out['arms'].get('DIRECT',{}).get('V'); I=out['arms'].get('INVERT',{}).get('V')
+          if not D or not I or D[-1]!=1 or I[-1]!=1:
+              out['classification']='HOLD'
+          else:
+              d=[I[i]-D[i] for i in range(4)]+[I[4]-D[4]]
+              out['d_I_minus_D']=d
+              # Lower is better for first four; P1 must tie at 1.
+              if all(I[i]<=D[i] for i in range(4)) and any(I[i]<D[i] for i in range(4)):
+                  out['classification']='PARETO_INVERT'
+              elif all(D[i]<=I[i] for i in range(4)) and any(D[i]<I[i] for i in range(4)):
+                  out['classification']='PARETO_DIRECT'
+              elif all(D[i]==I[i] for i in range(4)):
+                  out['classification']='TIE'
+              else:
+                  out['classification']='TRADEOFF'
+          Path('/tmp/RESULT_SEAL.json').write_text(json.dumps(out,indent=2,sort_keys=True))
+          print(json.dumps(out,indent=2,sort_keys=True))
+          ''')
+          PY
+          python3 /tmp/wc7_runner.py
+
+          cd ../evonomos
+          mkdir -p experiments/dip70_wc7x
+          cp /tmp/RESULT_SEAL.json experiments/dip70_wc7x/RESULT_SEAL.json
+          git add experiments/dip70_wc7x/RESULT_SEAL.json
+          git config user.email evonomos@example.invalid
+          git config user.name EvoNOMOS
+          git commit -m 'experiment: seal DIP-70 WC7-X result'
+          git push
