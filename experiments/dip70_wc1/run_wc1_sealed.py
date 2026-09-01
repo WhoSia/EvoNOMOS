@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Pre-outcome sealed WC1 realization harness.
 
-The first draft run_wc1.py was never executed. This wrapper corrects two
-pre-execution representation bugs only: regex-source over-escaping and literal
-${...} fixture escaping. It changes no preregistered policy, demand, follow-up,
-metric, route, or oracle.
+The first draft run_wc1.py was never executed. This wrapper corrects three
+pre-execution representation bugs only: rule-regex source over-escaping,
+literal ${...} fixture escaping, and the route-version regex literal. It
+changes no preregistered policy, demand, follow-up, metric, route, or oracle.
 """
 from pathlib import Path
 import sys
@@ -60,6 +60,15 @@ def sealed_tests_js(followup=False):
     return text.replace("${DB_IMAGE}", "\\${DB_IMAGE}").replace("${DB_NAME}", "\\${DB_NAME}")
 
 m.tests_js = sealed_tests_js
+
+_original_re_match = m.re.match
+
+def sealed_re_match(pattern, string, *args, **kwargs):
+    if pattern == r"v(\\d+)":
+        pattern = r"v(\d+)"
+    return _original_re_match(pattern, string, *args, **kwargs)
+
+m.re.match = sealed_re_match
 
 if __name__ == "__main__":
     m.main()
