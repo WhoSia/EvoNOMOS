@@ -1,0 +1,62 @@
+{
+  "stage": "EvoNOMOS Generation VI DIP-70-WC3 — Independent Topology Replication, Fresh Cross-Demand Treatment Certification & Route-Invariant Pareto Generalization Cell",
+  "authority": "CI-0.11R-017",
+  "global_start": 3264,
+  "external_repo": "dzivkovi/video-intel",
+  "external_issue": 183,
+  "exact_base": "57fc8f74366170b55ec5473d764336c75a08f169",
+  "demand": {
+    "phase0": "On an existing multi-channel LanceDB index, `index --channel X` must embed only X and replace only X after embedding, preserving every other channel and preserving the old index if embedding fails.",
+    "phase1_frozen_followup": "Complete the issue safety envelope: a scoped run on a missing table refuses before embedding; `--channel X --force` never drops the whole table; channel predicates safely quote apostrophes and the same quoting rule is used by hybrid search."
+  },
+  "policies": {
+    "DIRECT": "Keep scoped/full index mutation ownership inline in scripts/video_intel.py. No new production mutation-policy module.",
+    "INVERT": "Move scoped/full index mutation lifecycle behind one scripts/index_update_policy.py provider boundary; build_search_index delegates pre-embed and post-embed mutation to it. In phase1 the shared quote rule may also be consumed by hybrid_search."
+  },
+  "hard_semantic_invariants": [
+    "Real LanceDB is used; only the paid Voyage client is replaced by a deterministic fake.",
+    "Full index behavior remains whole-corpus overwrite unless --channel is present.",
+    "Scoped embedding is limited to the requested channel.",
+    "Delete happens only after embeddings exist.",
+    "No production corpus/transcript/search ranking semantics change beyond scoped index mutation and predicate quoting.",
+    "No network or model call is required for the scientific oracle."
+  ],
+  "measurement": {
+    "vector": ["F0", "C0", "F1", "C1", "P1"],
+    "scope": "production Python files only; tests/evaluator/workflow excluded",
+    "lower_is_better": true,
+    "pareto": "DIP-69 exact componentwise signature on d=V_INVERT-V_DIRECT",
+    "provider_locus": {
+      "DIRECT": [],
+      "INVERT": ["scripts/index_update_policy.py"]
+    },
+    "consumer_loci_for_P1": ["scripts/video_intel.py"]
+  },
+  "routes": [
+    {"python": "3.12", "os": "ubuntu-24.04"},
+    {"python": "3.13", "os": "ubuntu-24.04"}
+  ],
+  "r_cert": [
+    "exact external base identity",
+    "python byte compilation of every changed production Python file",
+    "ruff check of changed production Python files",
+    "git diff --check",
+    "exact allowed production path set",
+    "DIRECT has no index_update_policy.py and retains inline mutation topology",
+    "INVERT has exactly one index_update_policy.py provider and build_search_index delegates mutation",
+    "phase0 excludes the frozen phase1-only safety/quoting markers",
+    "phase1 contains the complete frozen safety/quoting envelope",
+    "all treatment hashes sealed before any functional/scientific oracle"
+  ],
+  "science_oracle": [
+    "baseline reproduces destructive scoped overwrite on a two-channel real-LanceDB fixture",
+    "phase0 preserves non-target rows and re-embeds only the target channel",
+    "phase0 embed failure preserves old target and non-target rows",
+    "phase1 scoped missing-table refusal occurs before any fake-Voyage embed call",
+    "phase1 --channel --force preserves other-channel rows",
+    "phase1 apostrophe channel replacement touches only its own rows",
+    "phase1 hybrid-search predicate uses the same quote rule",
+    "treatment bytes and lifecycle vector/signature are identical across Python 3.12/3.13 routes"
+  ],
+  "stopping_rule": "First R-CERT HOLD or first complete bounded two-route readout ends WC3 and requires mandatory PI re-Court. No in-cell treatment repair, route substitution, candidate replacement, scalar rescue, or DIP-71 continuation."
+}
