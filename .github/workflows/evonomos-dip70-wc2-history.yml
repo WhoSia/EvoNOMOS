@@ -1,0 +1,157 @@
+name: EvoNOMOS DIP-70 WC2 pre-certified history world contact
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip70-wc2-homebridge-history
+    paths:
+      - experiments/dip70_wc2/**
+      - .github/workflows/evonomos-dip70-wc2-history.yml
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    name: pre-outcome R-CERT and treatment hash seal
+    runs-on: ubuntu-24.04
+    outputs:
+      status: ${{ steps.read_status.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate frozen constitution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool experiments/dip70_wc2/preregistration.json >/dev/null
+          python3 -m py_compile \
+            experiments/dip70_wc2/materialize_and_certify.py \
+            experiments/dip70_wc2/run_science.py \
+            experiments/dip70_wc2/aggregate_wc2.py
+          python3 - <<'PY'
+          import json
+          p=json.load(open('experiments/dip70_wc2/preregistration.json'))
+          assert p['authority']=='CI-0.11R-016'
+          assert p['global_start']==3230
+          assert p['scientific_substrate']['repository']=='Plimmerton-Labs/homebridge-ups-monitor'
+          assert p['scientific_substrate']['issue']==241
+          assert p['scientific_substrate']['base_sha']=='000e26da0b4c7c699e472207df447964960b8b11'
+          assert p['route_contrast']['routes']==['node18','node24']
+          assert p['realization']['stochastic_llm_synthesis'] is False
+          assert p['r_cert']['must_complete_before_science'] is True
+          assert p['r_cert']['scientific_oracle_forbidden_during_certification'] is True
+          print('DIP70_WC2_CONSTITUTION_PASS')
+          PY
+
+      - name: Materialize complete treatments and R-CERT before science
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 experiments/dip70_wc2/materialize_and_certify.py --out wc2_sealed
+          test -s wc2_sealed/r_cert.json
+          cat wc2_sealed/r_cert.json
+
+      - name: Read R-CERT terminal
+        id: read_status
+        shell: bash
+        run: |
+          set -euo pipefail
+          STATUS="$(python3 - <<'PY'
+          import json
+          print(json.load(open('wc2_sealed/r_cert.json'))['status'])
+          PY
+          )"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          echo "DIP70_WC2_RCERT_TERMINAL=$STATUS"
+
+      - name: Upload sealed treatment/R-CERT artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc2-sealed-treatments
+          path: wc2_sealed
+          if-no-files-found: error
+          retention-days: 90
+
+  science:
+    name: ${{ matrix.policy }} / node${{ matrix.node }}
+    needs: certify
+    if: needs.certify.outputs.status == 'PASS'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        policy: [DIRECT, INVERT]
+        node: [18, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: dip70-wc2-sealed-treatments
+          path: wc2_sealed
+
+      - name: Execute exact sealed treatment and scientific oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p wc2_output
+          python3 experiments/dip70_wc2/run_science.py \
+            --policy '${{ matrix.policy }}' \
+            --route 'node${{ matrix.node }}' \
+            --sealed wc2_sealed \
+            --evaluator experiments/dip70_wc2/evonomos-wc2.test.js \
+            --out wc2_output/result.json
+          test -s wc2_output/result.json
+          cat wc2_output/result.json
+
+      - name: Upload required science cell receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc2-${{ matrix.policy }}-node${{ matrix.node }}
+          path: wc2_output
+          if-no-files-found: warn
+          retention-days: 90
+
+  aggregate:
+    name: bounded Pareto / transport court input
+    needs: [certify, science]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dip70-wc2-*
+          path: downloaded
+
+      - name: Apply frozen no-complete-case adjudicator
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p wc2_aggregate
+          python3 experiments/dip70_wc2/aggregate_wc2.py \
+            --root downloaded \
+            --out wc2_aggregate/summary.json
+          cat wc2_aggregate/summary.json
+
+      - name: Upload aggregate court input
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc2-aggregate
+          path: wc2_aggregate/summary.json
+          if-no-files-found: error
+          retention-days: 90
