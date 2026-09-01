@@ -1,0 +1,38 @@
+name: DIP-71 F2-X DEKC27
+
+on:
+  push:
+    branches:
+      - agent/dip71-f2x-dekc27
+    paths:
+      - experiments/dip71_f2x_dekc27/materialize.py
+      - .github/workflows/dip71-f2x-dekc27.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  paired-execution:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/dip71-f2x-dekc27
+          fetch-depth: 0
+      - name: Runtime identity
+        run: |
+          python3 --version
+          git --version
+      - name: Execute sealed pair
+        run: python3 experiments/dip71_f2x_dekc27/materialize.py
+      - name: Seal result
+        if: always()
+        run: |
+          test -f experiments/dip71_f2x_dekc27/RESULT_SEAL.json || exit 1
+          git config user.name EvoNOMOS
+          git config user.email evonomos@example.invalid
+          git add experiments/dip71_f2x_dekc27/RESULT_SEAL.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'experiment: seal DIP-71 F2-X DEKC27 result'
+          git push origin HEAD:agent/dip71-f2x-dekc27
