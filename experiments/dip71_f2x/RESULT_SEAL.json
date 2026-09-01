@@ -8,7 +8,7 @@
       5,
       2,
       5,
-      0
+      1
     ],
     "phase0": [
       [
@@ -29,7 +29,7 @@
         1
       ]
     ],
-    "oracle": "Traceback (most recent call last):\n  File \"<string>\", line 13, in <module>\n  File \"/tmp/tmptasmrax3/direct/scripts/dekc_grade.py\", line 271, in grade_bundle\n    \"concept_count\": d[\"concept_count\"],\n                     ~^^^^^^^^^^^^^^^^^\nKeyError: 'concept_count'\n"
+    "oracle": "ORACLE_PASS\n"
   },
   "invert": {
     "V": [
@@ -37,7 +37,7 @@
       8,
       2,
       7,
-      0
+      1
     ],
     "phase0": [
       [
@@ -63,7 +63,7 @@
         1
       ]
     ],
-    "oracle": "Traceback (most recent call last):\n  File \"<string>\", line 13, in <module>\n  File \"/tmp/tmptasmrax3/invert/scripts/dekc_grade.py\", line 269, in grade_bundle\n    \"concept_count\": d[\"concept_count\"],\n                     ~^^^^^^^^^^^^^^^^^\nKeyError: 'concept_count'\n"
+    "oracle": "ORACLE_PASS\n"
   },
   "delta_invert_minus_direct": [
     1,
