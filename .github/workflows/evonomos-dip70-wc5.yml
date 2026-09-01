@@ -1,0 +1,204 @@
+name: EvoNOMOS DIP-70 WC5 frozen scientific-oracle completion
+
+on:
+  push:
+    branches:
+      - agent/evonomos-dip70-wc5-pandas-completion
+    paths:
+      - .github/workflows/evonomos-dip70-wc5.yml
+
+permissions:
+  contents: read
+
+jobs:
+  rcert:
+    name: exact frozen-hash equality + order-invariant R-CERT
+    runs-on: ubuntu-24.04
+    outputs:
+      pass: ${{ steps.gate.outputs.pass }}
+    steps:
+      - name: Checkout frozen WC5 constitution
+        uses: actions/checkout@v4
+      - name: Checkout exact external base
+        uses: actions/checkout@v4
+        with:
+          repository: dzivkovi/video-intel
+          ref: 57fc8f74366170b55ec5473d764336c75a08f169
+          path: external
+          fetch-depth: 0
+      - name: Bind certification Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install static certification tool
+        run: |
+          python -m pip install --disable-pip-version-check ruff
+          python --version
+          ruff --version
+          git --version
+      - name: Re-materialize exact frozen treatments and requalify before science
+        id: run_rcert
+        continue-on-error: true
+        shell: bash
+        run: |
+          rm -rf sealed rcert-console.log
+          set +e
+          python experiments/dip70-wc4/rcert.py \
+            --base-dir external \
+            --materializer experiments/dip70-wc3/materialize.py \
+            --out sealed > rcert-console.log 2>&1
+          code=$?
+          mkdir -p sealed
+          cp rcert-console.log sealed/rcert-console.log
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit "$code"
+      - name: Classify requalification terminal without rescue
+        id: gate
+        shell: bash
+        run: |
+          if [ -f sealed/RCERT.json ] && python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('sealed/RCERT.json').read_text())
+          expected={
+            'DIRECT':{
+              'phase0':'fbc256d7fd0cbda5c9f588538479f32170b9ace5d2ead1fa1459e51b318005f3',
+              'phase1':'e05eb5988fb92f2d80da4e023e8fd6f840e8a32eeaa61be707c04e814c1febae',
+            },
+            'INVERT':{
+              'phase0':'4fddac6c396ee7533a4295b7b8876c21b6dd79124cb114c5182357c428468640',
+              'phase1':'7362f7430944f432b275efbe15a9163453b4e45a7ca661ac74092ed0082bdd58',
+            },
+          }
+          ok=(
+            r.get('status')=='RCERT_PASS_PREOUTCOME'
+            and r.get('scientific_oracle_opened') is False
+            and r.get('frozen_hash_equality')==expected
+          )
+          raise SystemExit(0 if ok else 1)
+          PY
+          then
+            echo "pass=true" >> "$GITHUB_OUTPUT"
+            echo "WC5_RCERT_PASS_PREOUTCOME__FROZEN_HASHES_EXACT"
+          else
+            echo "pass=false" >> "$GITHUB_OUTPUT"
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          log=Path('sealed/rcert-console.log').read_text(errors='replace') if Path('sealed/rcert-console.log').exists() else ''
+          Path('sealed/RCERT_HOLD.json').write_text(json.dumps({
+              'status':'RCERT_HOLD',
+              'scientific_oracle_opened':False,
+              'console_tail':log[-8000:]
+          }, indent=2, sort_keys=True)+'\n')
+          PY
+            echo "WC5_RCERT_HOLD; science matrix remains unopened"
+          fi
+      - name: Upload sealed frozen treatments and R-CERT receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc5-sealed
+          path: sealed
+          if-no-files-found: error
+
+  science:
+    name: ${{ matrix.policy }} / Python ${{ matrix.python }}
+    needs: rcert
+    if: needs.rcert.outputs.pass == 'true'
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        policy: [DIRECT, INVERT]
+        python: ['3.12', '3.13']
+    steps:
+      - name: Checkout frozen WC5 constitution
+        uses: actions/checkout@v4
+      - name: Checkout exact external base
+        uses: actions/checkout@v4
+        with:
+          repository: dzivkovi/video-intel
+          ref: 57fc8f74366170b55ec5473d764336c75a08f169
+          path: external
+          fetch-depth: 0
+      - name: Bind frozen scientific Python route
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install exact real-LanceDB scientific substrate plus authorized pandas completion
+        run: |
+          python -m pip install --disable-pip-version-check -e './external[vector,dev]' 'lancedb==0.30.2' 'pandas==3.0.5'
+          python --version
+          python - <<'PY'
+          import importlib.metadata
+          print('lancedb', importlib.metadata.version('lancedb'))
+          print('pandas', importlib.metadata.version('pandas'))
+          PY
+      - name: Download immutable WC5 R-CERT treatment artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dip70-wc5-sealed
+          path: sealed
+      - name: Execute frozen real-LanceDB scientific oracle
+        run: |
+          mkdir -p receipts
+          python experiments/dip70-wc3/science.py \
+            --base-dir external \
+            --sealed-root sealed \
+            --policy '${{ matrix.policy }}' \
+            --out 'receipts/science-${{ matrix.policy }}-py${{ matrix.python }}.json'
+      - name: Upload mandatory science receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc5-science-${{ matrix.policy }}-py${{ matrix.python }}
+          path: receipts
+          if-no-files-found: warn
+
+  aggregate:
+    name: bounded route-invariance and Pareto adjudication
+    needs: [rcert, science]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout frozen adjudicator
+        uses: actions/checkout@v4
+      - name: Download WC5 R-CERT terminal
+        uses: actions/download-artifact@v4
+        with:
+          name: dip70-wc5-sealed
+          path: sealed
+      - name: Download all available science receipts
+        if: needs.rcert.outputs.pass == 'true'
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: dip70-wc5-science-*
+          path: receipts
+          merge-multiple: true
+      - name: Adjudicate without rescue
+        shell: bash
+        run: |
+          mkdir -p aggregate
+          if [ '${{ needs.rcert.outputs.pass }}' != 'true' ]; then
+            python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          hold=json.loads(Path('sealed/RCERT_HOLD.json').read_text())
+          out={'status':'AGGREGATE_HOLD','stage':'PREOUTCOME_RCERT','rcert':hold,'transport_adjudication':'NOT_OPENED','pareto_signature':'NOT_OPENED'}
+          payload=json.dumps(out,sort_keys=True,separators=(',',':')).encode()
+          out['aggregate_sha256']=hashlib.sha256(payload).hexdigest()
+          Path('aggregate/aggregate.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+          PY
+          else
+            python experiments/dip70-wc3/aggregate.py --receipts-dir receipts --out aggregate/aggregate.json
+          fi
+          cat aggregate/aggregate.json
+      - name: Upload terminal aggregate receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dip70-wc5-aggregate
+          path: aggregate
+          if-no-files-found: error
