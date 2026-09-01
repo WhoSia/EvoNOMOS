@@ -69,16 +69,17 @@ jobs:
           base='9f056cd3e340361947d3bb5e7b63ae2edf47b445'
           out={}
           for arm in ['DIRECT','INVERT']:
-              p=subprocess.run(['git','-C',arm,'diff','--numstat',base,'--','indexer/src/api.ts','indexer/src/correlation.ts'],text=True,capture_output=True,check=True).stdout.strip().splitlines()
+              candidates=['indexer/src/api.ts','indexer/src/correlation.ts','indexer/src/correlation.contract.test.ts']
+              existing=[x for x in candidates if pathlib.Path(arm,x).exists()]
+              # Stage first so new production files are visible to numstat; tests remain excluded from production metrics.
+              subprocess.run(['git','-C',arm,'add',*existing],check=True)
+              p=subprocess.run(['git','-C',arm,'diff','--cached','--numstat',base,'--','indexer/src/api.ts','indexer/src/correlation.ts'],text=True,capture_output=True,check=True).stdout.strip().splitlines()
               rows=[]
               for line in p:
                   if not line: continue
                   a,d,path=line.split('\t')
                   rows.append((int(a),int(d),path))
               out[arm]={'F0':len(rows),'C0':sum(a+d for a,d,_ in rows),'rows':rows}
-              candidates=['indexer/src/api.ts','indexer/src/correlation.ts','indexer/src/correlation.contract.test.ts']
-              existing=[x for x in candidates if pathlib.Path(arm,x).exists()]
-              subprocess.run(['git','-C',arm,'add',*existing],check=True)
               subprocess.run(['git','-C',arm,'commit','-q','-m','WC6-X phase0 sealed'],check=True)
               out[arm]['phase0_commit']=subprocess.check_output(['git','-C',arm,'rev-parse','HEAD'],text=True).strip()
           pathlib.Path('phase0.json').write_text(json.dumps(out,indent=2))
@@ -123,7 +124,7 @@ jobs:
           elif all(x<=0 for x in delta) and any(x<0 for x in delta): g='PARETO_INVERT'
           elif all(x==0 for x in delta): g='TIE'
           else: g='TRADEOFF'
-          result={'base':'9f056cd3e340361947d3bb5e7b63ae2edf47b445','demand':'CIRCLEUP-AJO/CIRCLEUP#369','phase1':'x-request-id fallback alias','vectors':vectors,'phase0_rows':{a:p0[a]['rows'] for a in p0},'phase1_rows':phase1_rows,'delta_I_minus_D':delta,'geometry':g,'functional_oracle':'PASS_BOTH','baseline_createApp':'PASS','excluded_base_nuisance':['whole-repo tsc modified-field error','stale api.test source assertion','unrelated full-suite env/schema/health failures'],'P1':'phase1 issue-derived contract pass indicator'}
+          result={'base':'9f056cd3e340361947d3bb5e7b63ae2edf47b445','demand':'CIRCLEUP-AJO/CIRCLEUP#369','phase1':'x-request-id fallback alias','vectors':vectors,'phase0_rows':{a:p0[a]['rows'] for a in p0},'phase1_rows':phase1_rows,'delta_I_minus_D':delta,'geometry':g,'functional_oracle':'PASS_BOTH','baseline_createApp':'PASS','measurement_repair':'phase0 staged numstat includes untracked production files','excluded_base_nuisance':['whole-repo tsc modified-field error','stale api.test source assertion','unrelated full-suite env/schema/health failures'],'P1':'phase1 issue-derived contract pass indicator'}
           pathlib.Path('wc6x_result.json').write_text(json.dumps(result,indent=2))
           print('WC6X_RESULT='+json.dumps(result,sort_keys=True))
           PY
