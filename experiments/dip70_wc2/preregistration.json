@@ -1,0 +1,106 @@
+{
+  "stage": "EvoNOMOS Generation VI DIP-70-WC2 — Pre-Outcome Treatment Certification, Fresh-Demand Byte Sealing & Transport-Invariant Pareto World-Contact Cell",
+  "authority": "CI-0.11R-016",
+  "global_start": 3230,
+  "frozen_before_treatment_outcome": true,
+  "scientific_substrate": {
+    "repository": "Plimmerton-Labs/homebridge-ups-monitor",
+    "issue": 241,
+    "issue_url": "https://github.com/Plimmerton-Labs/homebridge-ups-monitor/issues/241",
+    "base_branch": "develop",
+    "base_sha": "000e26da0b4c7c699e472207df447964960b8b11",
+    "base_license": "MIT",
+    "base_engine": "node >=18.0.0"
+  },
+  "source_derived_pairing": {
+    "phase0": "Correct the standalone dashboard transport so last-known-good lookup scans backward past trailing legacy all-null telemetry and returns null when no usable telemetry sample exists.",
+    "frozen_phase1": "Apply identical last-known-good semantics to the Homebridge custom-UI transport, as required by issue #241's explicit cross-transport parity acceptance criterion.",
+    "usable_sample": "A point is usable iff it is an object and at least one of inV, outV, bat, load, runtime is neither null nor undefined. Timestamp alone is not usable; numeric zero is usable."
+  },
+  "policies": {
+    "DIRECT": "Each transport owns its own backward usable-sample scan inline in its existing _lastKnownGoodFor method. No shared semantic provider is introduced for this demand.",
+    "INVERT": "The usable-sample selection rule is owned once behind the existing lib/telemetryStore.js shared transport boundary; transport _lastKnownGoodFor methods consume that provider result and do not duplicate the scan."
+  },
+  "realization": {
+    "type": "deterministic_edit_grammar",
+    "stochastic_llm_synthesis": false,
+    "post_seal_edit": false,
+    "same_demand_post_outcome_rescue": false,
+    "materializer": "experiments/dip70_wc2/materialize_and_certify.py"
+  },
+  "r_cert": {
+    "must_complete_before_science": true,
+    "certification_node": "22",
+    "checks": [
+      "clone exact base SHA",
+      "materialize complete phase0 and phase1 production bytes for both policies",
+      "node --check on every changed JavaScript production file",
+      "git diff --check",
+      "exact allowed-path certification",
+      "DIRECT topology certification: duplicated inline scan only in opened transport consumers; telemetryStore unchanged",
+      "INVERT topology certification: one exported telemetryStore provider; consumers call provider; no inline scan duplication",
+      "phase-order certification: phase0 changes standalone only as the opened consumer; phase1 opens Homebridge UI parity without changing the frozen rule",
+      "seal per-file and aggregate SHA-256 treatment hashes only after all certification checks pass"
+    ],
+    "scientific_oracle_forbidden_during_certification": true,
+    "first_certification_failure": "HOLD_AND_MANDATORY_PI_RECOURT"
+  },
+  "route_contrast": {
+    "routes": ["node18", "node24"],
+    "runner": "github-hosted ubuntu-24.04",
+    "role": "execution/evaluation transport only",
+    "treatment_bytes_immutable_across_routes": true,
+    "route_may_not_materialize_or_repair_treatment": true
+  },
+  "scientific_oracle": {
+    "base": ["npm ci", "npm run lint", "npm test"],
+    "phase0": [
+      "apply exact sealed phase0 production bytes",
+      "inject identical evaluator-only test outside production scope",
+      "standalone last-known-good semantic tests",
+      "npm run lint",
+      "npm test"
+    ],
+    "phase1": [
+      "apply exact sealed phase1 production bytes",
+      "same evaluator-only test",
+      "standalone plus Homebridge custom-UI last-known-good semantic tests",
+      "npm run lint",
+      "npm test"
+    ],
+    "evaluator_file": "test/evonomos-wc2.test.js",
+    "evaluator_excluded_from_lifecycle_measurement": true
+  },
+  "lifecycle_vector": ["F0", "C0", "F1", "C1", "P1"],
+  "measurement": {
+    "production_scope": ["lib/**/*.js", "homebridge-ui/server.js"],
+    "F0": "number of production files changed from exact base to sealed phase0",
+    "C0": "production additions plus deletions from exact base to sealed phase0",
+    "F1": "number of production files changed from sealed phase0 to sealed phase1",
+    "C1": "production additions plus deletions from sealed phase0 to sealed phase1",
+    "P1": "number of frozen pre-existing transport consumer loci revisited in phase1; consumer set=[lib/dashboardServer.js,homebridge-ui/server.js]. Provider lib/telemetryStore.js is excluded only as provider, never as consumer.",
+    "diagnostic_only": ["walltime", "npm install time", "test count"]
+  },
+  "pareto": {
+    "contrast": "d = V_INVERT - V_DIRECT",
+    "PARETO_I": "all components <= 0 and at least one < 0",
+    "PARETO_D": "all components >= 0 and at least one > 0",
+    "EXACT_TIE": "all components = 0",
+    "TRADEOFF": "at least one component < 0 and at least one > 0",
+    "HOLD": "R-CERT, base oracle, policy oracle, measurement, or required route parity unavailable"
+  },
+  "transport_adjudication": {
+    "TRANSPORT_INVARIANT_LOCAL": "both routes execute exact same treatment hashes, both policies are admissible, per-policy V vectors are identical across routes, and Pareto signatures match",
+    "ROUTE_OUTCOME_DISAGREEMENT": "treatment hashes match but required V/signature differs across routes",
+    "ROUTE_CHANGED_TREATMENT_BYTES": "hard HOLD"
+  },
+  "no_rescue": [
+    "No reuse of WC1 issue #16 as fresh Core evidence.",
+    "No alternate repository, issue, base SHA, phase pairing, usable-sample predicate, policy, route, oracle, vector, or P1 definition after R-CERT or scientific outcome opens.",
+    "No scientific functional/lifecycle result may be inspected before treatment hashes are sealed.",
+    "No route-specific treatment materialization or repair.",
+    "No complete-case deletion of a failed policy/route cell.",
+    "No scalar utility winner in primary adjudication.",
+    "First R-CERT HOLD or complete bounded scientific readout triggers mandatory PI re-Court."
+  ]
+}
