@@ -76,7 +76,9 @@ jobs:
                   a,d,path=line.split('\t')
                   rows.append((int(a),int(d),path))
               out[arm]={'F0':len(rows),'C0':sum(a+d for a,d,_ in rows),'rows':rows}
-              subprocess.run(['git','-C',arm,'add','indexer/src/api.ts','indexer/src/correlation.ts','indexer/src/correlation.contract.test.ts'],check=True)
+              candidates=['indexer/src/api.ts','indexer/src/correlation.ts','indexer/src/correlation.contract.test.ts']
+              existing=[x for x in candidates if pathlib.Path(arm,x).exists()]
+              subprocess.run(['git','-C',arm,'add',*existing],check=True)
               subprocess.run(['git','-C',arm,'commit','-q','-m','WC6-X phase0 sealed'],check=True)
               out[arm]['phase0_commit']=subprocess.check_output(['git','-C',arm,'rev-parse','HEAD'],text=True).strip()
           pathlib.Path('phase0.json').write_text(json.dumps(out,indent=2))
