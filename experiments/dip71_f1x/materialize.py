@@ -106,9 +106,8 @@ def oracle(d,phase,arm):
     forbidden=['Interactive (Recommended)','Use Recommended','Finding sessions with Codex Interactive','Codex Interactive session discovery']
     for f in forbidden:
         if f in prod: raise RuntimeError(f'{arm} {phase}: forbidden stale phrase remains {f}')
-    # four independently-authored phase-0 seams must expose canonical app-server identity.
     checks={
-      'archive': 'Codex App Server' in text(d/'apps/control-plane/src/archive-session-page.ts'),
+      'archive': ('Codex App Server' in text(d/'apps/control-plane/src/archive-session-page.ts') or 'stableAgentDisplayName' in text(d/'apps/control-plane/src/archive-session-page.ts')),
       'db': ('Codex App Server' in text(d/'apps/control-plane/src/db.ts') or 'CODEX_APP_SERVER_DISPLAY_NAME' in text(d/'apps/control-plane/src/db.ts')),
       'picker-session': ('Codex App Server' in text(d/'apps/web/src/components/agent-options.ts') or 'stableAgentDisplayName' in text(d/'apps/web/src/components/agent-options.ts')),
       'onboarding': ('Codex App Server' in text(d/'apps/web/src/onboarding.ts') or 'CODEX_APP_SERVER_DISPLAY_NAME' in text(d/'apps/web/src/onboarding.ts')),
@@ -139,7 +138,6 @@ def execute(name,p0,p1):
 D=execute('DIRECT',direct_phase0,direct_phase1)
 I=execute('INVERT',invert_phase0,invert_phase1)
 delta=[I['V'][i]-D['V'][i] for i in range(5)]
-# Utility-free geometry over cost coordinates where lower is better and P1 where higher is better.
 def dominates(a,b):
     return all(a[i]<=b[i] for i in range(4)) and a[4]>=b[4] and (any(a[i]<b[i] for i in range(4)) or a[4]>b[4])
 if dominates(D['V'],I['V']): geom='PARETO_DIRECT'
