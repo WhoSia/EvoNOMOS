@@ -1,0 +1,70 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P1",
+  "source_world": {
+    "repository": "2GT-Media-Group-LLC/mikrotik-manager",
+    "issue": 169,
+    "exact_pre_demand_commit": "68f3c7fc50a91f7dee79f7af914d9dd205498fc7"
+  },
+  "external_protocol_anchor": {
+    "repository": "gotify/server",
+    "observed_commit": "d02796bd084af7fb6d81168ec0f79d9d496d1dd8",
+    "endpoint": "POST /message",
+    "application_auth_header": "X-Gotify-Key",
+    "payload_fields": ["title","message","priority"]
+  },
+  "channel_type": "gotify",
+  "configuration": {
+    "server_url": {
+      "required": true,
+      "semantics": "operator supplied Gotify base URL; trailing slashes normalized; only http/https accepted"
+    },
+    "app_token": {
+      "required": true,
+      "secret": true,
+      "semantics": "Gotify application token sent as X-Gotify-Key"
+    }
+  },
+  "request": {
+    "method": "POST",
+    "url": "<normalized server_url>/message",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Gotify-Key": "<app_token>"
+    },
+    "body": {
+      "title": "<event emoji> <event label>",
+      "message": "<message>[\\nDevice: <deviceName>][\\n<details>]",
+      "priority": "<frozen event-priority mapping>"
+    }
+  },
+  "priority_mapping": {
+    "device_offline": 4,
+    "log_error": 4,
+    "high_cpu": 4,
+    "high_memory": 4,
+    "device_online": 2,
+    "device_discovered": 2,
+    "default": 3
+  },
+  "behavior": [
+    "Gotify appears as a normal alert channel type through the existing channel-management surface.",
+    "Creating a channel rejects unsupported type values as before and accepts gotify.",
+    "Reading channel configuration masks app_token.",
+    "Updating a channel with the mask placeholder preserves the existing app_token.",
+    "Dispatch respects existing rule, cooldown and maintenance-window semantics unchanged.",
+    "Test-channel uses the same Gotify send path and emits one deterministic test notification.",
+    "Any HTTP 2xx is success; non-2xx is surfaced as channel-send failure under existing dispatch isolation.",
+    "Invalid server_url or missing app_token is surfaced as a channel configuration/send error.",
+    "No live Gotify server or internet access is required for the experimental oracle."
+  ],
+  "out_of_scope": [
+    "Gotify client-token management",
+    "creating Gotify applications",
+    "message extras/plugins",
+    "websocket receive path",
+    "changing alert-rule semantics",
+    "changing cooldown or maintenance semantics",
+    "new notification features beyond parity with the requested provider capability"
+  ],
+  "same_contract_for_both_arms": true
+}
