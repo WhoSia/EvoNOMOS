@@ -1,0 +1,23 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P9-R1-E3",
+  "status": "TERMINAL_HOLD__EXACT_ARM_STATE_CUSTODY_UNAVAILABLE__MEASUREMENT_NOT_OPENED__LOCAL_CELL_TERMINATED",
+  "authorized_vector": ["S0","L0","Q0","S1","L1","Q1"],
+  "required_exact_arm_commits": {
+    "DIRECT_DEDICATED": "041c5cb28c0018f313593d0cb28ce4f89a1c4c3c",
+    "INVERT_SPEC": "5512e5f650fb6c20fb727fbfbd818c165ac3dd26"
+  },
+  "remote_commit_lookup": {
+    "WhoSia/EvoNOMOS": "NOT_FOUND",
+    "sumatrapdfreader/sumatrapdf": "NOT_FOUND"
+  },
+  "retained_exact_arm_bytes_found": false,
+  "reconstruction_from_prose_or_memory": "FORBIDDEN",
+  "p9_contaminated_direct_reuse": "FORBIDDEN",
+  "downstream_sumatra_implementation_reuse": "FORBIDDEN",
+  "raw_values_opened": false,
+  "followup_executed": false,
+  "pair_measurement_adjudicated": false,
+  "winner": null,
+  "scientific_effect": "Local SumatraPDF lifecycle-measurement branch terminated. No evidence added for or against reversal, Pareto direction, or DIP-like lifecycle benefit.",
+  "successor_rule": "Return to fresh cross-project conditional-law testing rather than reconstructing or rescuing the local cell."
+}
