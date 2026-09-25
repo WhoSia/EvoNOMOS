@@ -1,0 +1,64 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P1",
+  "oracle_id": "GOTIFY_MOCK_HTTP_ORACLE_v1",
+  "network": "NO_LIVE_NETWORK",
+  "same_cases_for_both_arms": true,
+  "cases": [
+    {
+      "id": "OFFLINE_EVENT",
+      "input": {"event":"device_offline","message":"sw1 is unreachable","deviceName":"sw1","details":"timeout"},
+      "expect": {"method":"POST","path":"/message","header_X_Gotify_Key":"app_test","title_contains":"Device Offline","message_contains":["sw1 is unreachable","Device: sw1","timeout"],"priority":4}
+    },
+    {
+      "id": "RECOVERY_EVENT",
+      "input": {"event":"device_online","message":"sw1 recovered","deviceName":"sw1"},
+      "expect": {"priority":2}
+    },
+    {
+      "id": "DEFAULT_PRIORITY_EVENT",
+      "input": {"event":"config_drift","message":"config changed"},
+      "expect": {"priority":3}
+    },
+    {
+      "id": "URL_NORMALIZATION",
+      "config": {"server_url":"http://127.0.0.1:<PORT>/","app_token":"app_test"},
+      "expect": {"path":"/message","single_separator":true}
+    },
+    {
+      "id": "TOKEN_HEADER",
+      "expect": {"X-Gotify-Key":"app_test","Authorization_absent":true}
+    },
+    {
+      "id": "HTTP_2XX",
+      "response_status": 200,
+      "expect": "PASS"
+    },
+    {
+      "id": "HTTP_NON_2XX",
+      "response_status": 401,
+      "response_body":"unauthorized",
+      "expect": "CHANNEL_SEND_FAILURE"
+    },
+    {
+      "id": "INVALID_URL",
+      "config": {"server_url":"ftp://invalid","app_token":"app_test"},
+      "expect": "CONFIG_OR_SEND_ERROR"
+    },
+    {
+      "id": "MISSING_TOKEN",
+      "config": {"server_url":"http://127.0.0.1:<PORT>","app_token":""},
+      "expect": "CONFIG_OR_SEND_ERROR"
+    },
+    {
+      "id": "MASK_PRESERVE",
+      "existing": {"app_token":"secret-token"},
+      "incoming": {"app_token":"••••••••"},
+      "expect": {"stored_app_token":"secret-token"}
+    },
+    {
+      "id": "TEST_CHANNEL_PARITY",
+      "expect": {"same_send_path":true,"exactly_one_http_request":true}
+    }
+  ],
+  "adjudication": "Every case must pass in both arms before pair comparability can be considered. No arm-specific oracle case is permitted."
+}
