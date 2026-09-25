@@ -1,0 +1,14 @@
+[package]
+name = "evonomos-aichat-fake"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "aichat"
+path = "src/main.rs"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+
