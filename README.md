@@ -4,17 +4,16 @@ Canonical GitHub repository for EvoNOMOS research execution artifacts, preregist
 
 ## Current active lineage
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P10 — Cross-Project Conditional-Law Reconstitution, Fresh Notification-Provider Demand Admission, Exact Pre-Demand Capability-Absence Certification, Mechanism-Family Transport & Replication-Trap Avoidance Gate**
+**EvoNOMOS Generation VIII ORIGIN-R1-P10-P1 — Exact Gotify Functional-Contract Freeze, Pre-Treatment Moderator Vector, DIRECT_DEDICATED↔INVERT_CHANNEL_ADAPTER Treatment Constitution, Shared Mocked-HTTP Oracle & Durable Exact-Arm Custody Preseal**
 
-- Active executable/evidence surface: `active/g8-origin-r1-p10/`
-- Status: `P10_PRESEAL_PASS / FRESH_WORLD_PROMOTED / ZERO_TREATMENT_BYTES / NO_REPLICATION_CLAIM`.
-- SumatraPDF E3 terminated before measurement because the exact sealed E1 arm states were local-only and unavailable for exact custody; no raw lifecycle coordinate was opened.
-- P10 deliberately exits the local SumatraPDF cell and returns to the founding cross-project conditional-law program.
-- Primary fresh world: `2GT-Media-Group-LLC/mikrotik-manager#169`.
+- Active executable/evidence surface: `active/g8-origin-r1-p10-p1/`
+- Status: `PRESEAL_PASS / CONTRACT_FROZEN / MODERATORS_FROZEN / RIVALS_FROZEN / ORACLE_FROZEN / ZERO_TREATMENT_BYTES`.
+- Fresh world: `2GT-Media-Group-LLC/mikrotik-manager#169`.
 - Exact pre-demand source: `68f3c7fc50a91f7dee79f7af914d9dd205498fc7`.
-- Admission gate `G=(E,A,T,P,O)=11111`; zero treatment bytes.
-- The next gate must freeze the exact functional contract, moderator vector, bounded rival treatments and common oracle before construction.
-- Replication count is not authority. Same-sign survival, sign reversal, moderator localization, or abstention are all admissible outcomes.
+- External Gotify protocol anchor: `gotify/server@d02796bd084af7fb6d81168ec0f79d9d496d1dd8`.
+- Common Gotify functional contract, source-observable moderator vector, bounded DIRECT/INVERT treatments, one deterministic mocked-HTTP oracle, and durable exact-arm custody protocol are frozen before treatment birth.
+- Conditional law candidate CIL-C1 treats DIP/OCP as conditional intervention families, not axioms. Same-sign replication is not itself scientific authority.
+- The next phase may materialize both arms independently, but must archive reconstructible exact arm bundles before workspace retirement or later lifecycle measurement.
 
 ## Repository workflow
 
