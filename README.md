@@ -4,12 +4,14 @@ Canonical GitHub repository for EvoNOMOS research execution artifacts, preregist
 
 ## Current active lineage
 
-**Generation VIII ORIGIN-R1-P9 — SumatraPDF AIChat-NG treatment-birth attempt (HOLD)**
+**Generation VIII ORIGIN-R1-P9-R1 — Clean-Wave Dual-Arm Reconstitution, Outcome-Silent Build/Commit Harness, Shared-Oracle Equivalence & Pre-Measurement Pair Comparability Adjudication**
 
-- Active executable/evidence surface: `active/g8-origin-r1-p9/`
-- P9 verdict: `OUTCOME_BLINDNESS_BREACH / HOLD`. The contract and shared Rust fake CLI were frozen and DIRECT_DEDICATED built, but commit output exposed arm change-volume statistics before INVERT_SPEC materialization.
-- Comparative authority: none. INVERT_SPEC is not materialized; pair comparability, lifecycle outcomes, and a winner are not adjudicated.
-- Next authorized stage: a separately constituted clean wave may rematerialize the pair from the frozen contract and source anchor. This contaminated wave must not be resumed or repaired in place.
+- Active executable/evidence surface: `active/g8-origin-r1-p9-r1/`
+- Status: `PRESEAL_READY / EXECUTION_PENDING / OUTCOMES_CLOSED`.
+- Inherited source anchor: `sumatrapdfreader/sumatrapdf@7061d827d0a31e3e623811991b5eb8ebda8b82ec`.
+- P9 contaminated DIRECT implementation is forbidden as construction input.
+- Outcome-silent protocol and clean-wave constitution are prospectively sealed before arm materialization.
+- Comparative authority: none yet. No P9-R1 arm has been materialized, pair comparability is not adjudicated, and the measurement firewall remains closed.
 
 ## Repository workflow
 
