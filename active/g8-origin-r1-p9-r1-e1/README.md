@@ -1,10 +1,10 @@
-# EvoNOMOS Generation VIII ORIGIN-R1-P9-R1
+# EvoNOMOS Generation VIII ORIGIN-R1-P9-R1-E1
 
-**Clean-Wave Dual-Arm Reconstitution, Outcome-Silent Build/Commit Harness, Shared-Oracle Equivalence & Pre-Measurement Pair Comparability Adjudication**
+**Outcome-Silent Isolated Dual-Arm Materialization, Byte-Identical Neutral-Scaffold Build, Frozen-Contract Execution & Shared-Oracle Equivalence Gate**
 
-Status: `PRESEAL_READY / EXECUTION_PENDING / OUTCOMES_CLOSED`
+Status: `TERMINAL_SEAL / PAIR_COMPARABLE / MEASUREMENT_ELIGIBLE / OUTCOMES_UNOPENED`
 
-This is a new wave, not a repair of P9. The contaminated P9 DIRECT implementation and its diff are excluded from treatment-construction input.
+This is the terminal execution seal of the clean wave. The contaminated P9 DIRECT implementation and its diff were excluded from treatment-construction input.
 
 ## Inheritance
 
@@ -35,4 +35,10 @@ Mandatory order:
 
 `BUILD_ADMISSIBILITY -> CONTRACT_SATISFACTION -> SHARED_ORACLE_EQUIVALENCE -> PAIR_COMPARABILITY -> FIREWALL_RELEASE_ELIGIBILITY`
 
-This phase ends at pre-measurement comparability adjudication. It does not authorize lifecycle measurement, a winner, or a design recommendation.
+## E1 adjudication
+
+`BUILD_ADMISSIBILITY -> CONTRACT_SATISFACTION -> SHARED_ORACLE_EQUIVALENCE -> PAIR_COMPARABILITY -> FIREWALL_RELEASE_ELIGIBILITY`
+
+All gates passed. `measurement_firewall_released=true` records eligibility for the next phase only. E1 did not open or report LOC, churn, lifecycle, ranking, or a winner.
+
+Canonical custody identifiers and the Notion ranges are sealed in `receipts/E1_TERMINAL_SEAL.json`.
