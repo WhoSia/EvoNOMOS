@@ -4,11 +4,12 @@ Canonical GitHub repository for EvoNOMOS research execution artifacts, preregist
 
 ## Current active lineage
 
-**Generation VIII ORIGIN-R1-P8 — Capability-Absence Certified Fresh-Holdout Reconstitution, Unsatisfied-Demand Proof, Cross-Topology Pairability Screen & Prospective Treatment-Birth Gate**
+**Generation VIII ORIGIN-R1-P9 — SumatraPDF AIChat-NG treatment-birth attempt (HOLD)**
 
-- Active executable/evidence surface: `active/g8-origin-r1-p8/`
-- P8 verdict: SumatraPDF AIChat-NG demand promoted to the treatment-birth gate; no treatment bytes or comparative outcomes exist yet.
-- Next authorized stage: P9 exact pre-birth source freeze + DIRECT_DEDICATED vs INVERT_SPEC construction under one shared fake-CLI oracle.
+- Active executable/evidence surface: `active/g8-origin-r1-p9/`
+- P9 verdict: `OUTCOME_BLINDNESS_BREACH / HOLD`. The contract and shared Rust fake CLI were frozen and DIRECT_DEDICATED built, but commit output exposed arm change-volume statistics before INVERT_SPEC materialization.
+- Comparative authority: none. INVERT_SPEC is not materialized; pair comparability, lifecycle outcomes, and a winner are not adjudicated.
+- Next authorized stage: a separately constituted clean wave may rematerialize the pair from the frozen contract and source anchor. This contaminated wave must not be resumed or repaired in place.
 
 ## Repository workflow
 
