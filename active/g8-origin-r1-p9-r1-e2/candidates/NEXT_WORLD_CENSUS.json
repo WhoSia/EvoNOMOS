@@ -1,0 +1,42 @@
+{
+  "status": "DISCOVERY_ONLY__NO_NEXT_CANDIDATE_SELECTED",
+  "purpose": "Avoid local attachment to SumatraPDF and preserve cross-project return-to-origin after this cell.",
+  "observations": [
+    {
+      "candidate": "2GT-Media-Group-LLC/mikrotik-manager#169",
+      "demand": "Add Gotify as an additional notification provider where ntfy already exists.",
+      "provisional_read": "PROMISING_FRESH_CROSS_PROJECT",
+      "reason": "Independent user-facing provider addition with an existing sibling provider and relatively low internal-treatment prescription.",
+      "authority": "DISCOVERY_ONLY"
+    },
+    {
+      "candidate": "windingwind/zotero-pdf-translate#1480",
+      "demand": "Support provider-specific custom HTTP headers for OpenAI-compatible services.",
+      "provisional_read": "PROMISING_MODERATOR_CASE",
+      "reason": "Concrete compatibility failure that may discriminate generic configuration from provider-specific branching, but the issue contains source-level diagnosis and therefore treatment-contamination risk.",
+      "authority": "DISCOVERY_ONLY"
+    },
+    {
+      "candidate": "submersion-app/submersion#2327",
+      "demand": "Add generic remote media resolvers beyond the existing local resolver.",
+      "provisional_read": "DISCOVERY_DONOR_ONLY",
+      "reason": "Strong abstraction question but the issue itself proposes a resolver-chain and generic provider representation.",
+      "authority": "DISCOVERY_ONLY"
+    },
+    {
+      "candidate": "RaceeyXo/use-stellar#367",
+      "demand": "Bring React autoConnect/session-restore semantics to the Vue adapter.",
+      "provisional_read": "DISCOVERY_DONOR_ONLY",
+      "reason": "Cross-framework duplication/abstraction pressure is scientifically interesting, but implementation files and shared-utility treatment are prescribed.",
+      "authority": "DISCOVERY_ONLY"
+    },
+    {
+      "candidate": "sumatrapdfreader/sumatrapdf post-cutoff AntiGravity history",
+      "demand": "A further external CLI AI backend appeared after the frozen source.",
+      "provisional_read": "NATURAL_HISTORY_ONLY",
+      "reason": "It supports the plausibility of repeated external-CLI demand, but commit messages expose implementation choices and later refactors, so it has zero confirmatory treatment authority for E2/E3.",
+      "authority": "ZERO_CONFIRMATORY_AUTHORITY"
+    }
+  ],
+  "selection_rule_for_future": "Run a fresh conjunctive E/A/T/P/O screen before any new treatment birth. No candidate is promoted by this census."
+}
