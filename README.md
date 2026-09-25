@@ -4,14 +4,17 @@ Canonical GitHub repository for EvoNOMOS research execution artifacts, preregist
 
 ## Current active lineage
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P9-R1-E2 — Prospective Lifecycle-Vector Constitution, Structural-Cost Surface Preseal, One-Shot Comparative Measurement Authorization & No-Winner Interpretation Firewall**
+**EvoNOMOS Generation VIII ORIGIN-R1-P10 — Cross-Project Conditional-Law Reconstitution, Fresh Notification-Provider Demand Admission, Exact Pre-Demand Capability-Absence Certification, Mechanism-Family Transport & Replication-Trap Avoidance Gate**
 
-- Active executable/evidence surface: `active/g8-origin-r1-p9-r1-e2/`
-- Status: `PRESEAL_PASS / MEASUREMENT_AUTHORIZED_NEXT / VALUES_UNREAD / NO_WINNER`.
-- E1 established an independently materialized, build-valid, oracle-equivalent, semantically comparable SumatraPDF pair.
-- E2 freezes the reused lifecycle vector `Y=(S0,L0,Q0,S1,L1,Q1)`, a one-shot second-CLI-dialect follow-up, and a no-winner interpretation firewall before any comparative value is read.
-- The next execution may reveal only the six frozen coordinates after both arms and the follow-up are sealed.
-- SumatraPDF is one world-contact cell, not the target of the research program. Post-cell candidate scouting remains discovery-only until a fresh E/A/T/P/O admission screen.
+- Active executable/evidence surface: `active/g8-origin-r1-p10/`
+- Status: `P10_PRESEAL_PASS / FRESH_WORLD_PROMOTED / ZERO_TREATMENT_BYTES / NO_REPLICATION_CLAIM`.
+- SumatraPDF E3 terminated before measurement because the exact sealed E1 arm states were local-only and unavailable for exact custody; no raw lifecycle coordinate was opened.
+- P10 deliberately exits the local SumatraPDF cell and returns to the founding cross-project conditional-law program.
+- Primary fresh world: `2GT-Media-Group-LLC/mikrotik-manager#169`.
+- Exact pre-demand source: `68f3c7fc50a91f7dee79f7af914d9dd205498fc7`.
+- Admission gate `G=(E,A,T,P,O)=11111`; zero treatment bytes.
+- The next gate must freeze the exact functional contract, moderator vector, bounded rival treatments and common oracle before construction.
+- Replication count is not authority. Same-sign survival, sign reversal, moderator localization, or abstention are all admissible outcomes.
 
 ## Repository workflow
 
