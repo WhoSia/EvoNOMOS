@@ -1,0 +1,40 @@
+{
+  "protocol": "EvoNOMOS Generation VIII ORIGIN-R1-P9-R1",
+  "inherits_exact_contract_sha256": "4C99A9002BF37F27DEB2F580B9F4F74312B69BB37E5854AB8A6FCE35CA2EB58B",
+  "source": {
+    "repository": "sumatrapdfreader/sumatrapdf",
+    "commit": "7061d827d0a31e3e623811991b5eb8ebda8b82ec"
+  },
+  "demand": "Expose AIChat-NG/aichat as a fourth document-chat CLI backend.",
+  "rivals": {
+    "DIRECT_DEDICATED": "A dedicated C++ AIChatProvider implementation owns AIChat-NG mechanics.",
+    "INVERT_SPEC": "A reusable C++ external-CLI provider owns mechanics and consumes a typed AIChat-NG specification instance."
+  },
+  "common_functional_contract": [
+    "discover aichat.exe or aichat on PATH",
+    "transmit the exact document path with -f",
+    "transmit the exact user prompt as one argument",
+    "transmit configured model with -m when non-empty",
+    "transmit the generated session id with -s",
+    "recover arbitrarily chunked UTF-8 assistant stdout without loss",
+    "surface a non-zero child exit as an error",
+    "surface a NUL-containing output stream as invalid instead of silent success"
+  ],
+  "shared_exclusions": [
+    "enumerating AIChat-NG session history",
+    "replaying saved AIChat-NG session history",
+    "network or live-model calls"
+  ],
+  "minimality_rule": "Existing Claude, Grok, and Codex behavior must remain unchanged; no downstream SumatraPDF implementation bytes and no P9 DIRECT implementation bytes may be used.",
+  "comparability_stop": "If either arm cannot satisfy this exact contract with a buildable minimally scoped change, stop as NONCOMPARABLE.",
+  "outcome_firewall": {
+    "loc": "closed",
+    "churn": "closed",
+    "touched_files": "closed",
+    "binary_size": "closed",
+    "timing": "closed",
+    "complexity": "closed",
+    "lifecycle_vector": "closed",
+    "winner": "forbidden"
+  }
+}
