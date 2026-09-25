@@ -1,0 +1,24 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P9-R1-E2",
+  "allowed_after_raw_vector_reveal": [
+    "coordinatewise equality/inequality",
+    "phasewise direction",
+    "Pareto relation on structural-cost coordinates conditional on Q0=Q1=1",
+    "initial-vs-follow-up sign reversal or no-reversal classification",
+    "local mechanism-consistency statement",
+    "abstention when coordinates conflict"
+  ],
+  "reversal_definition": "A reversal requires the direction of DIRECT minus INVERT to change sign between phase 0 and phase 1 on at least one homologous structural-cost coordinate, with both arms valid in both phases.",
+  "pareto_rule": "One arm may be called locally Pareto-dominant only if it is no worse on every authorized cost coordinate and strictly better on at least one, with Q0=Q1=1 for both arms.",
+  "forbidden": [
+    "scalarization",
+    "overall winner",
+    "SOLID is true",
+    "DIP is universally better",
+    "abstraction is generally good",
+    "retrospective metric addition",
+    "post-result follow-up redesign",
+    "unmeasured cognitive-effort claims"
+  ],
+  "founding_return": "A result is useful only as one conditional-law witness toward identifying when inversion helps, hurts, reverses or warrants abstention."
+}
