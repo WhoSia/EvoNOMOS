@@ -4,9 +4,18 @@
   "global_start": 8492,
   "source_commit": "68f3c7fc50a91f7dee79f7af914d9dd205498fc7",
   "external_protocol_anchor": "gotify/server@d02796bd084af7fb6d81168ec0f79d9d496d1dd8",
-  "rivals": ["DIRECT_DEDICATED","INVERT_CHANNEL_ADAPTER"],
+  "rivals": [
+    "DIRECT_DEDICATED",
+    "INVERT_CHANNEL_ADAPTER"
+  ],
   "treatment_bytes": 0,
   "outcomes_opened": false,
   "winner": null,
-  "next_gate": "Independently materialize both arms from the exact base, run the same mocked-HTTP oracle, prove semantic comparability, and durably archive exact reconstructible arm bundles before any workspace retirement or lifecycle measurement."
+  "next_gate": "Independently materialize both arms from the exact base, run the same mocked-HTTP oracle, prove semantic comparability, and durably archive exact reconstructible arm bundles before any workspace retirement or lifecycle measurement.",
+  "notion": {
+    "ravel_range": "8492-8512",
+    "decision_range": "8513-8528",
+    "global_next": 8529
+  },
+  "github_preseal_head": "db014ae67f044a94c945b71d7b899a6314abe023"
 }
