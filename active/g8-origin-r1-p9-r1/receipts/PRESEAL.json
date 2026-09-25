@@ -1,0 +1,20 @@
+{
+  "stage": "Generation VIII ORIGIN-R1-P9-R1",
+  "status": "PRESEAL_READY_EXECUTION_PENDING",
+  "source_commit": "7061d827d0a31e3e623811991b5eb8ebda8b82ec",
+  "parent_p9_terminal_commit": "bd2c1d61e4037f74ed6e254b4ecd963a3cf2d7b3",
+  "inherited_contract_sha256": "4C99A9002BF37F27DEB2F580B9F4F74312B69BB37E5854AB8A6FCE35CA2EB58B",
+  "p9_direct_implementation_admitted_as_input": false,
+  "shared_scaffold_presealed": true,
+  "outcome_silent_protocol_presealed": true,
+  "arms_materialized": {
+    "DIRECT_DEDICATED": false,
+    "INVERT_SPEC": false
+  },
+  "build_admissibility": "NOT_RUN",
+  "contract_satisfaction": "NOT_RUN",
+  "shared_oracle_equivalence": "NOT_RUN",
+  "pair_comparability": "NOT_ADJUDICATED",
+  "measurement_firewall_released": false,
+  "winner": null
+}
