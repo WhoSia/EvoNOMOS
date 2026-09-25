@@ -1,0 +1,43 @@
+{
+  "id": "CIL-C1",
+  "name": "Conditional Inversion / Membership-Propagation Law Candidate",
+  "status": "HYPOTHESIS_ONLY__PRE_OUTCOME",
+  "target_principle_family": ["Dependency Inversion Principle","Open-Closed Principle","provider/adapter abstractions"],
+  "claim_form": "When a recurring implementation family is represented as an explicit closed set across multiple semantic surfaces, concentrating family membership and dispatch behind a stable typed boundary can trade a one-time coordination/setup cost for lower marginal propagation burden on later family additions. The sign is conditional, not universal.",
+  "candidate_variables": {
+    "F": "provider-membership surface fanout",
+    "M": "expected number/rate of future same-family additions or changes",
+    "S": "shared mechanism fraction across family members",
+    "H": "provider-specific payload/auth/configuration heterogeneity",
+    "B": "strength of an already-existing stable polymorphic boundary",
+    "K": "one-time abstraction/inversion coordination cost",
+    "R": "later propagation reduction attributable to concentration of membership knowledge"
+  },
+  "qualitative_prediction": [
+    "Higher F can increase the opportunity for propagation reduction.",
+    "Higher S can increase the opportunity for shared abstraction without erasing semantics.",
+    "Higher H can reduce or reverse abstraction benefit by forcing leaky special cases.",
+    "Strong pre-existing B can make a second inversion layer redundant or harmful.",
+    "Low expected future M can leave K unrepaid even if later marginal changes are cheaper."
+  ],
+  "falsifiers_or_boundary_evidence": [
+    "DIRECT remains no worse under later same-family additions despite high F and high S.",
+    "INVERT requires provider-specific escape hatches whose burden grows with H.",
+    "The abstraction reduces textual duplication but not semantic propagation surfaces.",
+    "The boundary causes invalid behavior, hidden coupling, or broader unrelated edits.",
+    "Outcome sign changes primarily with deployment/UI/schema boundaries rather than dependency direction itself."
+  ],
+  "relation_to_SOLID": "DIP/OCP are treated as named design interventions or mechanism families, not axioms. Evidence may support a bounded support domain, a reversal domain, or abstention rather than the principle itself.",
+  "anti_replication_rule": "Additional projects are scientifically useful only when they alter or discriminate a predeclared moderator, mechanism, or boundary. Same-sign repetition without moderator gain is not cumulative authority by itself.",
+  "current_world": {
+    "repository": "2GT-Media-Group-LLC/mikrotik-manager",
+    "moderator_signature": {
+      "F": 7,
+      "S": "4/5 shared postJson transport",
+      "H": "HIGH",
+      "B": "ABSENT",
+      "M": "UNKNOWN_PROSPECTIVELY"
+    }
+  },
+  "authority": "No outcome has been observed. CIL-C1 is a falsifiable organizing hypothesis for P10 and future cross-project worlds."
+}
