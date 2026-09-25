@@ -1,0 +1,49 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P1",
+  "common_base": "2GT-Media-Group-LLC/mikrotik-manager@68f3c7fc50a91f7dee79f7af914d9dd205498fc7",
+  "common_non_treatment_work": [
+    "database migration/constraint change required to persist channel type gotify",
+    "frontend API channel-type admission",
+    "frontend Gotify configuration UI for server_url and app_token",
+    "documentation updates if required by project build/tests",
+    "shared test fixtures needed solely to expose the frozen functional contract"
+  ],
+  "DIRECT_DEDICATED": {
+    "backend_rule": "Extend the existing closed-set architecture directly.",
+    "allowed": [
+      "add gotify to backend AlertChannel union",
+      "add gotify case to sendToChannel switch",
+      "add dedicated sendGotify method",
+      "add gotify to API validTypes",
+      "add gotify app_token policy to SENSITIVE_KEYS",
+      "reuse existing postJson helper",
+      "add only Gotify-specific validation needed by the frozen contract"
+    ],
+    "forbidden": [
+      "introducing a generic provider registry",
+      "moving existing providers behind new adapters",
+      "generalizing configuration beyond Gotify requirements",
+      "unrelated alert-service refactors"
+    ]
+  },
+  "INVERT_CHANNEL_ADAPTER": {
+    "backend_rule": "Introduce one typed backend channel-provider descriptor/adapter boundary that owns closed-set backend membership, sensitive-field policy, validation and dispatch; existing sender implementations may be wrapped rather than rewritten.",
+    "required": [
+      "a typed provider key/descriptor registry becomes the backend source of truth for supported channel kinds",
+      "API admission derives supported types from that registry instead of a second hardcoded list",
+      "sensitive-field masking/merge policy derives from provider descriptors instead of a second hardcoded map",
+      "dispatch resolves through the provider boundary rather than a channel-type switch",
+      "Gotify is one descriptor/adapter instance",
+      "existing email/slack/discord/telegram/ntfy user-visible behavior remains unchanged"
+    ],
+    "boundedness": [
+      "do not redesign frontend state management",
+      "do not replace database representation with a plugin table",
+      "do not create dynamic third-party plugin loading",
+      "do not rewrite existing provider payload logic merely for stylistic uniformity",
+      "do not generalize outbound webhooks into the alert-channel abstraction"
+    ]
+  },
+  "pair_symmetry": "Frontend, DB and frozen Gotify user-visible capability are held common. The intended treatment difference is backend membership/dispatch organization.",
+  "noncomparability_rule": "If either arm cannot satisfy the exact same contract without violating its frozen treatment boundary or requiring unrelated redesign, stop as NONCOMPARABLE rather than widening either treatment."
+}
