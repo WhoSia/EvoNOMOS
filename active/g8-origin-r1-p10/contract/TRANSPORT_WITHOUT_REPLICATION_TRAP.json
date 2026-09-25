@@ -1,0 +1,29 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10",
+  "target": "conditional structural law transport, not same-sign replication",
+  "law_family": "Abstraction can impose setup/indirection burden at treatment birth while reducing propagation burden under later members of a recurring provider/implementation family.",
+  "required_observable_moderators_before_outcomes": [
+    "existing provider-family cardinality",
+    "number of source surfaces carrying provider membership",
+    "shared transport/mechanism fraction",
+    "provider-specific payload heterogeneity",
+    "provider-specific authentication heterogeneity",
+    "configuration/schema heterogeneity",
+    "fanout across backend/API/DB/UI surfaces",
+    "presence_or_absence_of_existing_polymorphic_boundary"
+  ],
+  "transport_claims_allowed": [
+    "mechanism survived under a materially different topology",
+    "mechanism failed or reversed under a materially different topology",
+    "a moderator boundary became sharper",
+    "available evidence is insufficient and the program abstains"
+  ],
+  "transport_claims_forbidden": [
+    "two same-sign cells prove SOLID/DIP",
+    "replication count substitutes for moderator identification",
+    "more benchmark cells are progress without a new discriminating condition",
+    "a local implementation preference becomes a universal design principle",
+    "measurement-infrastructure refinement substitutes for new world contact"
+  ],
+  "stop_rule": "After one fully adjudicated P10 world-contact cycle, return to a PI-level conditional-law Court. No P10-Rn suffix chain by continuity."
+}
