@@ -4,15 +4,14 @@ Canonical GitHub repository for EvoNOMOS research execution artifacts, preregist
 
 ## Current active lineage
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P9-R1-E1 — Outcome-Silent Isolated Dual-Arm Materialization, Byte-Identical Neutral-Scaffold Build, Frozen-Contract Execution & Shared-Oracle Equivalence Gate**
+**EvoNOMOS Generation VIII ORIGIN-R1-P9-R1-E2 — Prospective Lifecycle-Vector Constitution, Structural-Cost Surface Preseal, One-Shot Comparative Measurement Authorization & No-Winner Interpretation Firewall**
 
-- Active executable/evidence surface: `active/g8-origin-r1-p9-r1-e1/`
-- Status: `TERMINAL_SEAL / PAIR_COMPARABLE / MEASUREMENT_ELIGIBLE / OUTCOMES_UNOPENED`.
-- Inherited source anchor: `sumatrapdfreader/sumatrapdf@7061d827d0a31e3e623811991b5eb8ebda8b82ec`.
-- P9 contaminated DIRECT implementation is forbidden as construction input.
-- Both isolated arms passed Release x64 build admissibility, frozen-contract execution, and the shared offline Rust oracle.
-- The neutral scaffold is byte-identical and pair comparability passed semantically.
-- `measurement_firewall_released=true` is eligibility for the next phase only; no LOC, churn, lifecycle, ranking, or winner is reported here.
+- Active executable/evidence surface: `active/g8-origin-r1-p9-r1-e2/`
+- Status: `PRESEAL_PASS / MEASUREMENT_AUTHORIZED_NEXT / VALUES_UNREAD / NO_WINNER`.
+- E1 established an independently materialized, build-valid, oracle-equivalent, semantically comparable SumatraPDF pair.
+- E2 freezes the reused lifecycle vector `Y=(S0,L0,Q0,S1,L1,Q1)`, a one-shot second-CLI-dialect follow-up, and a no-winner interpretation firewall before any comparative value is read.
+- The next execution may reveal only the six frozen coordinates after both arms and the follow-up are sealed.
+- SumatraPDF is one world-contact cell, not the target of the research program. Post-cell candidate scouting remains discovery-only until a fresh E/A/T/P/O admission screen.
 
 ## Repository workflow
 
