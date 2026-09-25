@@ -1,0 +1,45 @@
+{
+  "stage": "Generation VIII ORIGIN-R1-P9-R1",
+  "parent_terminal_state": "HOLD_OUTCOME_BLINDNESS_BREACH",
+  "global_start": 8366,
+  "wave_identity": "new_clean_wave",
+  "construction_inputs_allowed": [
+    "frozen SumatraPDF source at 7061d827d0a31e3e623811991b5eb8ebda8b82ec",
+    "frozen P9 treatment contract",
+    "frozen fake-CLI behavioral specification",
+    "public AIChatProvider architecture present in the frozen source"
+  ],
+  "construction_inputs_forbidden": [
+    "P9 DIRECT_DEDICATED diff",
+    "P9 DIRECT implementation details",
+    "P9 arm change-volume output",
+    "downstream SumatraPDF implementation bytes",
+    "the other P9-R1 arm's patch, logs, artifacts, or metadata"
+  ],
+  "shared_scaffold": {
+    "status": "presealed_before_arms",
+    "purpose": "satisfy contract requirements that belong to common process/stream plumbing rather than the structural treatment",
+    "requirements": [
+      "deliver final stdout remainder instead of silently discarding it",
+      "detect NUL-containing provider output and surface invalid-output error",
+      "surface non-zero child exit as an error"
+    ],
+    "symmetry_rule": "shared scaffold must be byte-identical in both arms"
+  },
+  "arm_isolation": {
+    "separate_workspaces": true,
+    "separate_build_directories": true,
+    "cross_arm_read": false,
+    "cross_arm_log_read": false,
+    "cross_arm_artifact_read": false
+  },
+  "adjudication_order": [
+    "BUILD_ADMISSIBILITY",
+    "CONTRACT_SATISFACTION",
+    "SHARED_ORACLE_EQUIVALENCE",
+    "PAIR_COMPARABILITY",
+    "FIREWALL_RELEASE_ELIGIBILITY"
+  ],
+  "phase_stop": "pre-measurement comparability adjudication",
+  "measurement_firewall_released": false
+}
