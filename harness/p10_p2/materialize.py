@@ -87,18 +87,12 @@ def patch_common(subject: Path) -> None:
         gotify_ui + "              ) : chForm.type === 'ntfy' ? (\n",
     )
 
-    replace_once(
-        migrate,
-        "CHECK (type IN ('email','slack','discord','telegram','ntfy'))",
-        "CHECK (type IN ('email','slack','discord','telegram','ntfy','gotify'))",
-    )
-    migration = """-- EvoNOMOS P10-P2 common product migration: widen the existing closed set.
-ALTER TABLE alert_channels DROP CONSTRAINT IF EXISTS alert_channels_type_check;
-ALTER TABLE alert_channels ADD CONSTRAINT alert_channels_type_check
-  CHECK (type IN ('email','slack','discord','telegram','ntfy','gotify'));
-
-"""
-    insert_before_once(migrate, "-- Alert send history\n", migration)
+    old_check = "CHECK (type IN ('email','slack','discord','telegram','ntfy'))"
+    new_check = "CHECK (type IN ('email','slack','discord','telegram','ntfy','gotify'))"
+    migrate_text = migrate.read_text(encoding="utf-8")
+    if migrate_text.count(old_check) != 2:
+        raise RuntimeError("migrate.ts: expected exactly two alert-channel CHECK anchors")
+    migrate.write_text(migrate_text.replace(old_check, new_check), encoding="utf-8")
 
     replace_once(
         service,
