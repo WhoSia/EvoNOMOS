@@ -1,0 +1,87 @@
+name: G8 P11 Fresh World Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p11/**'
+      - 'lawkit/adapters/github_provider_family_v01.mjs'
+      - '.github/workflows/g8-p11-world-audit.yml'
+
+concurrency:
+  group: g8-p11-world-audit
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SUBJECT_REPO: https://github.com/truefoundry/trueforge.git
+  BASE: dd421b79216c9b42eefd7b0191e546919f8be3f1
+  WORLD: active/g8-origin-r1-p11/world/TRUEFORGE_EXA_TAVILY_WORLD.json
+  SPEC: active/g8-origin-r1-p11/world/TRUEFORGE_SOURCE_ADAPTER_SPEC.json
+
+jobs:
+  audit:
+    name: Exact-source world evidence and LawKit admission
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+
+      - name: Clone exact pre-demand TrueForge world
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "$SUBJECT_REPO" subject
+          git -C subject checkout --detach "$BASE"
+          test "$(git -C subject rev-parse HEAD)" = "$BASE"
+          test -z "$(git -C subject status --porcelain)"
+          echo SOURCE_OK
+
+      - name: Extract provider-family evidence from exact source
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node evonomos/lawkit/adapters/github_provider_family_v01.mjs             subject "evonomos/$SPEC" out/source-evidence.json
+
+      - name: Cross-check source evidence against frozen world envelope
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          world=json.loads(Path('evonomos/active/g8-origin-r1-p11/world/TRUEFORGE_EXA_TAVILY_WORLD.json').read_text())
+          src=json.loads(Path('out/source-evidence.json').read_text())
+          assert src['status']=='PASS'
+          assert src['exact_source_commit']==world['source']['exact_pre_demand_commit']
+          assert src['membership_surface_fanout']==world['moderators']['membership_surface_fanout']
+          assert src['existing_runtime_interface']==world['moderators']['existing_runtime_interface']
+          assert src['interface_capabilities']==world['moderators']['existing_interface_capabilities']
+          assert all(v['status']=='ABSENT' for v in src['forbidden_provider_tokens'].values())
+          assert world['demands']['pair_frozen_before_treatment'] is True
+          assert world['moderators']['capability_bundle_mismatch'] is True
+          assert all(world['admission_gates'].values())
+          Path('out/world-source-crosscheck.json').write_text(json.dumps({
+            'stage':'EvoNOMOS Generation VIII ORIGIN-R1-P11',
+            'world_id':world['world_id'],
+            'source_adapter':'PASS',
+            'source_envelope_concordance':'PASS',
+            'zero_treatment_bytes':True,
+            'winner':None
+          },indent=2,sort_keys=True)+'\n')
+          PY
+          echo WORLD_SOURCE_CONCORDANCE=PASS
+
+      - name: Seal source-audit custody
+        run: |
+          set -euo pipefail
+          sha256sum out/* | sort > out/p11-source-audit-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-trueforge-world-audit
+          path: out/
+          retention-days: 30
