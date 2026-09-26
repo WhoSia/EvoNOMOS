@@ -1,0 +1,300 @@
+name: G8 P11-P2 Exa Dual-Arm Materialization
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p11-p1/**'
+      - 'active/g8-origin-r1-p11-p2/**'
+      - 'harness/p11_p2/**'
+      - 'tools/p11-p2-*.mjs'
+      - 'tools/p11-p1-exposure-verify.mjs'
+      - 'lawkit/oracles/provider-surface-v01/**'
+      - '.github/workflows/g8-p11-p2.yml'
+
+concurrency:
+  group: g8-p11-p2-exa
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SUBJECT_REPO: https://github.com/truefoundry/trueforge.git
+  BASE: dd421b79216c9b42eefd7b0191e546919f8be3f1
+  P1: active/g8-origin-r1-p11-p1
+  P2: active/g8-origin-r1-p11-p2
+  ORACLE_ID: SEARCH_FETCH_EXPOSURE_V01
+
+jobs:
+  preflight:
+    name: Parent authority and execution firewall
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify P11-P1 parent seal and P2 harness syntax
+        run: |
+          set -euo pipefail
+          python3 -m py_compile harness/p11_p2/materialize.py harness/p11_p2/fidelity.py
+          node --check tools/p11-p2-phase0-verify.mjs
+          node --check tools/p11-p2-pair-adjudicate.mjs
+          python3 - <<'PY'
+          import json
+          p1=json.load(open('active/g8-origin-r1-p11-p1/receipts/PRESEAL.json'))
+          p2=json.load(open('active/g8-origin-r1-p11-p2/contract/PARENT_AUTHORITY.json'))
+          assert p1['status'].startswith('PRESEAL_PASS')
+          assert p1['treatment_bytes']==0
+          assert p1['measurement_firewall_released'] is False
+          assert p2['exact_source']=='dd421b79216c9b42eefd7b0191e546919f8be3f1'
+          assert p2['phase0']=={'issue':852,'provider':'exa'}
+          assert p2['phase1']['provider']=='tavily' and p2['phase1']['state']=='SEALED'
+          assert p2['measurement_firewall_released'] is False
+          PY
+          echo SOURCE_OK
+
+  arm:
+    name: Phase0 Exa — ${{ matrix.arm }}
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: WIDE_BOUNDARY_REUSE
+            artifact: wide
+          - arm: CAPABILITY_SEGREGATED
+            artifact: segregated
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.16.0'
+          run_install: false
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.23.x'
+          cache: false
+
+      - name: Reconstruct exact common source
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "$SUBJECT_REPO" subject >/dev/null 2>&1
+          git -C subject checkout --quiet --detach "$BASE"
+          test "$(git -C subject rev-parse HEAD)" = "$BASE"
+          test -z "$(git -C subject status --porcelain)"
+          echo SOURCE_OK
+
+      - name: Independently materialize frozen Exa treatment
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 evonomos/harness/p11_p2/materialize.py             --arm "${{ matrix.arm }}"             --subject subject             --out out
+          python3 evonomos/harness/p11_p2/fidelity.py             --arm "${{ matrix.arm }}"             --subject subject
+
+      - name: Install frozen TrueForge workspace
+        working-directory: subject
+        run: |
+          set -euo pipefail
+          pnpm install --frozen-lockfile --reporter=silent
+
+      - name: Build independent shared Go oracle
+        run: |
+          set -euo pipefail
+          pushd evonomos/lawkit/oracles/provider-surface-v01 >/dev/null
+          go test ./... >/dev/null
+          go build -o "$GITHUB_WORKSPACE/provider-surface-oracle" .
+          popd >/dev/null
+          echo ORACLE_BUILD_OK
+
+      - name: Start mock-only provider surface
+        run: |
+          set -euo pipefail
+          "$GITHUB_WORKSPACE/provider-surface-oracle" --listen 127.0.0.1:18765 > out/oracle.log 2>&1 &
+          echo $! > out/oracle.pid
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:18765/healthz >/dev/null; then
+              exit 0
+            fi
+            sleep 0.1
+          done
+          exit 1
+
+      - name: Compile product surfaces
+        working-directory: subject
+        run: |
+          set -euo pipefail
+          pnpm --filter @truefoundry/trueforge-core typecheck --silent
+          pnpm --filter @truefoundry/trueforge typecheck --silent
+          echo BUILD_OK
+
+      - name: Execute shared Exa wire and capability exposure oracle
+        working-directory: subject
+        env:
+          EVONOMOS_ORACLE_BASE_URL: http://127.0.0.1:18765
+          EVONOMOS_PROBE_OUT: ${{ github.workspace }}/out/exposure-probe.json
+        run: |
+          set -euo pipefail
+          pnpm --filter @truefoundry/trueforge-core exec jest             --config jest.config.cjs             --runInBand             tests/core/web-search/EvoNomosExaProvider.test.ts >/dev/null
+          echo ORACLE_TEST_OK
+
+      - name: Execute settings and runtime contract
+        working-directory: subject
+        run: |
+          set -euo pipefail
+          pnpm --filter @truefoundry/trueforge exec jest             --config jest.unit.config.cjs             --runInBand             tests/unit/apis/webSearchProviders.evonomos.test.ts >/dev/null
+          echo SETTINGS_CONTRACT_OK
+
+      - name: Verify arm-specific phase0 exposure
+        run: |
+          set -euo pipefail
+          node evonomos/tools/p11-p2-phase0-verify.mjs             "${{ matrix.arm }}"             out/exposure-probe.json
+
+      - name: Seal exact treatment tree and bundle without diff output
+        run: |
+          set -euo pipefail
+          git -C subject config user.name "EvoNOMOS Treatment Builder"
+          git -C subject config user.email "evonomos@example.invalid"
+          git -C subject add -A
+          export GIT_AUTHOR_DATE="2026-09-26T09:00:00Z"
+          export GIT_COMMITTER_DATE="2026-09-26T09:00:00Z"
+          git -C subject commit --quiet -m "EvoNOMOS P11-P2 Exa ${{ matrix.arm }}"
+          git -C subject rev-parse HEAD > out/arm-head.txt
+          git -C subject rev-parse 'HEAD^{tree}' > out/arm-tree.txt
+          git -C subject bundle create "$GITHUB_WORKSPACE/out/arm.bundle" HEAD ^"$BASE"
+          git -C subject bundle verify "$GITHUB_WORKSPACE/out/arm.bundle" >/dev/null 2>&1
+          sha256sum out/arm.bundle > out/arm.bundle.sha256
+          echo CUSTODY_OK
+
+      - name: Fresh tree reconstruction check
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "$SUBJECT_REPO" recon >/dev/null 2>&1
+          git -C recon checkout --quiet --detach "$BASE"
+          git -C recon fetch --quiet "$GITHUB_WORKSPACE/out/arm.bundle" HEAD:refs/heads/evonomos-arm
+          git -C recon checkout --quiet --detach refs/heads/evonomos-arm
+          test "$(git -C recon rev-parse 'HEAD^{tree}')" = "$(cat out/arm-tree.txt)"
+          echo RECONSTRUCTION_OK
+
+      - name: Seal coordinate-blind arm receipt
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          arm=os.environ['ARM']
+          root=Path('evonomos')
+          def h(p):
+              return hashlib.sha256(p.read_bytes()).hexdigest()
+          bundle=Path('out/arm.bundle')
+          receipt={
+            'stage':'EvoNOMOS Generation VIII ORIGIN-R1-P11-P2',
+            'arm':arm,
+            'status':'PASS',
+            'source':'dd421b79216c9b42eefd7b0191e546919f8be3f1',
+            'phase0_provider':'exa',
+            'phase1_state':'SEALED',
+            'materialization':'PASS',
+            'treatment_fidelity':'PASS',
+            'build':'PASS',
+            'shared_oracle':'PASS',
+            'settings_contract':'PASS',
+            'custody':'PASS',
+            'reconstruction':'PASS',
+            'q0':1,
+            'oracle_id':'SEARCH_FETCH_EXPOSURE_V01',
+            'demand_contract_sha256':h(root/'active/g8-origin-r1-p11-p1/contract/DUAL_REAL_DEMAND_CONTRACT.json'),
+            'rival_contract_sha256':h(root/'active/g8-origin-r1-p11-p1/contract/RIVAL_CONSTITUTION.json'),
+            'arm_head':Path('out/arm-head.txt').read_text().strip(),
+            'arm_tree':Path('out/arm-tree.txt').read_text().strip(),
+            'arm_bundle_sha256':hashlib.sha256(bundle.read_bytes()).hexdigest(),
+            'measurement_firewall_released':False,
+            'coordinates_opened':False,
+            'coordinate_values':'SEALED',
+            'winner':None
+          }
+          Path('out/arm-receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+        env:
+          ARM: ${{ matrix.arm }}
+
+      - name: Stop oracle
+        if: always()
+        run: |
+          if test -f out/oracle.pid; then
+            kill "$(cat out/oracle.pid)" 2>/dev/null || true
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-p2-arm-${{ matrix.artifact }}
+          path: |
+            out/arm.bundle
+            out/arm.bundle.sha256
+            out/arm-head.txt
+            out/arm-tree.txt
+            out/arm-receipt.json
+            out/materialization-manifest.json
+            out/exposure-probe.json
+          retention-days: 30
+
+  adjudicate:
+    name: Coordinate-blind semantic pair court
+    needs: arm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p2-arm-wide
+          path: evidence/wide
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p2-arm-segregated
+          path: evidence/segregated
+
+      - name: Adjudicate pair without opening S/L/C/A
+        run: |
+          set -euo pipefail
+          mkdir -p final
+          node tools/p11-p2-pair-adjudicate.mjs             evidence/wide             evidence/segregated             final/P11_P2_PAIR_COURT.json
+
+      - name: Enforce firewall remains closed
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('final/P11_P2_PAIR_COURT.json'))
+          assert x['pair_comparability']=='PASS'
+          assert x['measurement_firewall_released'] is False
+          assert x['coordinates_opened'] is False
+          assert x['coordinate_values']=='SEALED'
+          assert x['phase1']=={'provider':'tavily','state':'SEALED'}
+          assert x['winner'] is None
+          PY
+          echo COMPARABLE
+
+      - name: Seal final custody
+        run: |
+          set -euo pipefail
+          sha256sum final/P11_P2_PAIR_COURT.json > final/P11_P2_PAIR_COURT.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-p2-pair-court
+          path: final/
+          retention-days: 30
