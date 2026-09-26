@@ -89,9 +89,7 @@ pub fn inspect(env: ModeratorEnvelope) -> Result<LawInspection> {
 
     let heterogeneity = format!(
         "payload={};auth={};config={}",
-        v.payload_heterogeneity,
-        v.authentication_heterogeneity,
-        v.configuration_heterogeneity
+        v.payload_heterogeneity, v.authentication_heterogeneity, v.configuration_heterogeneity
     );
 
     Ok(LawInspection {
@@ -154,9 +152,21 @@ mod tests {
     fn cil_c1_preoutcome_abstains() {
         let out = inspect(sample()).unwrap();
         assert_eq!(out.law_candidate, "CIL-C1");
-        assert_eq!(out.mechanism_channels.membership_propagation_opportunity, "PRESENT");
-        assert_eq!(out.mechanism_channels.shared_mechanism_opportunity, "PRESENT");
-        assert_eq!(out.mechanism_channels.boundary_redundancy_pressure, "ABSENT");
-        assert_eq!(out.mechanism_channels.decision_authority, "ABSTAIN_PRE_OUTCOME");
+        assert_eq!(
+            out.mechanism_channels.membership_propagation_opportunity,
+            "PRESENT"
+        );
+        assert_eq!(
+            out.mechanism_channels.shared_mechanism_opportunity,
+            "PRESENT"
+        );
+        assert_eq!(
+            out.mechanism_channels.boundary_redundancy_pressure,
+            "ABSENT"
+        );
+        assert_eq!(
+            out.mechanism_channels.decision_authority,
+            "ABSTAIN_PRE_OUTCOME"
+        );
     }
 }
