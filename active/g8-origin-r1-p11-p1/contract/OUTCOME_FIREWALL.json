@@ -1,0 +1,54 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P11-P1",
+  "vector_by_phase": ["S","L","C","A","Q"],
+  "coordinates": {
+    "S": "count of semantic provider-membership authority sites changed in handwritten product source during the phase",
+    "L": "normalized additions plus deletions in handwritten product source required by the phase; generated SDK/OpenAPI artifacts, lockfiles and experiment harness files excluded",
+    "C": "count of demand-extraneous runtime capability obligations that must be truthfully implemented because the chosen treatment exposes/requires them",
+    "A": "count of distinct handwritten product-source authority sites whose logic must distinguish provider authentication policy in the phase",
+    "Q": "binary frozen-demand validity gate; 1 only if baseline, settings/auth, search normalization, tool exposure and required oracle behaviors pass"
+  },
+  "quality_gate": {
+    "parallel_baseline": "web_search and web_fetch both visible and functional",
+    "exa": "web_search visible and functional; if web_fetch is visible it must also be functional",
+    "tavily": "web_search visible and functional; if web_fetch is visible it must also be functional",
+    "false_fetch_exposure": "Q=0",
+    "unsupported_fetch_stub": "Q=0",
+    "live_network_dependency": "Q=0",
+    "credential_leak": "Q=0"
+  },
+  "measurement_order": [
+    "SOURCE_IDENTITY",
+    "TREATMENT_FIDELITY",
+    "BUILD_AND_TEST_VALIDITY",
+    "SEARCH_FETCH_EXPOSURE_ORACLE",
+    "EXACT_ARM_CUSTODY",
+    "PAIR_COMPARABILITY",
+    "RELEASE_MEASUREMENT_FIREWALL",
+    "SIMULTANEOUS_VECTOR_REVEAL"
+  ],
+  "before_firewall_release_allowed_tokens": [
+    "SOURCE_OK",
+    "TREATMENT_FIDELITY_PASS",
+    "BUILD_OK",
+    "ORACLE_OK",
+    "CUSTODY_OK",
+    "COMPARABLE"
+  ],
+  "before_firewall_release_forbidden": [
+    "git diff --stat",
+    "git --shortstat",
+    "git --numstat",
+    "ordinary git commit summaries",
+    "arm-specific additions/deletions",
+    "arm-specific changed-file counts",
+    "arm-specific S/L/C/A values",
+    "binary or artifact size comparisons",
+    "build-duration comparisons",
+    "complexity rankings",
+    "winner-like language"
+  ],
+  "breach": "HOLD_OUTCOME_BLINDNESS_BREACH; no same-wave rescue",
+  "scalarization": false,
+  "winner": "FORBIDDEN"
+}
