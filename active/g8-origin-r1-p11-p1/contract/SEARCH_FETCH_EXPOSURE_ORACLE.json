@@ -1,0 +1,35 @@
+{
+  "oracle_id": "SEARCH_FETCH_EXPOSURE_V01",
+  "implementation": "lawkit/oracles/provider-surface-v01",
+  "independence": "Go standard-library mock server and self-tests; treatment product code remains TypeScript",
+  "baseline": {
+    "provider": "parallel",
+    "required_visible_tools": ["web_search","web_fetch"],
+    "required_behavior": ["search_success","fetch_success"]
+  },
+  "phase0": {
+    "provider": "exa",
+    "demand_required": ["web_search"],
+    "conditional_rule": "web_fetch may be hidden; if visible it must pass the Exa contents fixture and normalized WebFetchPages semantics",
+    "mock_routes": ["/exa/search","/exa/contents"]
+  },
+  "phase1": {
+    "provider": "tavily",
+    "demand_required": ["web_search"],
+    "conditional_rule": "web_fetch may be hidden; if visible it must pass the Tavily extract fixture and normalized WebFetchPages semantics",
+    "mock_routes": ["/tavily/search","/tavily/extract"]
+  },
+  "normalized_search_hit": {
+    "required_fields": ["title","url","snippet","published_at"]
+  },
+  "normalized_fetch_page": {
+    "required_fields": ["url","title","content","error"]
+  },
+  "forbidden_successes": [
+    "unsupported exception counted as fetch success",
+    "empty placeholder counted as fetch success",
+    "search response reused as arbitrary-URL fetch without an actual fetch/extract request",
+    "tool hidden in WIDE_BOUNDARY_REUSE",
+    "tool visible for a search-only provider in CAPABILITY_SEGREGATED"
+  ]
+}
