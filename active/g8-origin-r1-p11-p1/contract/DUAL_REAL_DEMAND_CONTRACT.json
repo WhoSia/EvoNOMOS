@@ -1,0 +1,66 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P11-P1",
+  "world": {
+    "repository": "truefoundry/trueforge",
+    "exact_source": "dd421b79216c9b42eefd7b0191e546919f8be3f1"
+  },
+  "phase0": {
+    "provider": "exa",
+    "issue": 852,
+    "created_at": "2026-09-23T05:07:06Z",
+    "natural_demand": true,
+    "required_product_behavior": [
+      "catalog/API schema can represent provider type exa",
+      "settings PUT/GET can store and redact an Exa API key",
+      "missing Exa credentials fail clearly",
+      "when Exa is configured, agent turns can execute web_search through Exa",
+      "normalized search hits contain title, url, snippet and nullable published_at",
+      "no live vendor call is required by the experiment"
+    ],
+    "required_capabilities": ["search"],
+    "not_required_by_demand": ["fetch", "crawl", "map", "research", "UI redesign", "multi-provider tenancy"],
+    "wire_freeze": {
+      "search_method": "POST",
+      "search_path": "/search",
+      "preferred_auth": "x-api-key",
+      "search_query_field": "query",
+      "result_fields_used": ["title", "url", "publishedDate", "text"]
+    }
+  },
+  "phase1": {
+    "provider": "tavily",
+    "issue": 853,
+    "created_at": "2026-09-23T05:12:43Z",
+    "natural_demand": true,
+    "required_product_behavior": [
+      "catalog/API schema can represent provider type tavily",
+      "settings PUT/GET support optional key semantics without leaking stored secrets",
+      "with a key, search uses bearer authentication",
+      "without a key, the frozen issue contract allows keyless access mode",
+      "when Tavily is configured, agent turns can execute web_search through Tavily",
+      "normalized search hits contain title, url, snippet and nullable published_at",
+      "no live vendor call is required by the experiment"
+    ],
+    "required_capabilities": ["search"],
+    "not_required_by_demand": ["extract", "crawl", "map", "research", "UI redesign", "multi-provider tenancy"],
+    "wire_freeze": {
+      "search_method": "POST",
+      "search_path": "/search",
+      "keyed_auth": "Authorization: Bearer <key>",
+      "keyless_auth_from_issue_contract": "X-Tavily-Access-Mode: keyless",
+      "search_query_field": "query",
+      "result_fields_used": ["title", "url", "content"]
+    }
+  },
+  "baseline_invariants": [
+    "Parallel remains functionally unchanged",
+    "Parallel continues to expose and satisfy web_search and web_fetch",
+    "existing singleton-provider semantics remain unchanged",
+    "existing secret redaction guarantees remain unchanged",
+    "no arm may read post-demand TrueForge implementation commits as construction input"
+  ],
+  "freeze": {
+    "pair_frozen_before_treatment": true,
+    "contract_mutation_after_treatment_birth": "FORBIDDEN"
+  }
+}
