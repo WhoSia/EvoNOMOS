@@ -1,17 +1,22 @@
-# EvoNOMOS LawKit
+# EvoNOMOS LawKit — Rust Kernel
 
-LawKit is the executable theory layer of EvoNOMOS.
+This crate is the current canonical deterministic kernel implementation for the language-neutral EvoNOMOS LawKit protocol.
 
-It does **not** encode SOLID, DIP, OCP, or any other software-design maxim as a commandment. It compiles source-observable architecture evidence into a conditional-law pressure signature and an explicit authority state.
+It does **not** make Rust canonical to EvoNOMOS and it does **not** encode SOLID/DIP/OCP as commandments.
 
-v0.1 implements the pre-outcome inspection kernel for **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**.
-
-Current command:
+Current commands:
 
 ```bash
-cargo run --release --manifest-path crates/evonomos-law/Cargo.toml --   inspect active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json
+cargo run --release --manifest-path crates/evonomos-law/Cargo.toml -- \
+  inspect <moderator-envelope.json>
+
+cargo run --release --manifest-path crates/evonomos-law/Cargo.toml -- \
+  adjudicate <moderator-envelope.json> <lifecycle.json> <authority-firewall.json>
 ```
 
-The output may expose mechanism opportunities, resistance, boundary redundancy, and unknowns. It must not choose a design before lifecycle evidence exists.
+- `inspect`: pre-outcome CIL-C1 mechanism inspection; decision authority must abstain.
+- `adjudicate`: post-outcome coordinate/reversal classification under an explicit authority ceiling.
 
-Language policy is capability-driven. Rust is used here because this layer is a small deterministic kernel with strong typing and straightforward independent replay. Future discovery, source-analysis, IDE, graph, or interactive surfaces may use other languages when they fit the role better.
+Independent semantics live in Python under `lawkit/reference/`; independent output/authority verifiers live in Node.js under `tools/`. GitHub Actions checks cross-language concordance.
+
+The scientific contract lives under `lawkit/protocol/`. The protocol, not this crate, is the durable interface.
