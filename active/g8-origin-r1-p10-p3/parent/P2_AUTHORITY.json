@@ -1,0 +1,32 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P3",
+  "parent_stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P2",
+  "actions_run_id": 36222076393,
+  "actions_head_sha": "a8fedf42c54b87ccdb15b74f3fb8e7810aed067e",
+  "base": "68f3c7fc50a91f7dee79f7af914d9dd205498fc7",
+  "artifacts": {
+    "direct": {
+      "id": 10898883519,
+      "digest": "sha256:6673f57e30a4a0b8e79f0d21e631e3b8dd682d9be52f44af934efa2ef6f95f6c",
+      "name": "p10-p2-arm-direct"
+    },
+    "invert": {
+      "id": 10898793670,
+      "digest": "sha256:8668166613238817b2fba1b9469b6afbe8f5e5e7da3fe317dac16d62574ea274",
+      "name": "p10-p2-arm-invert"
+    },
+    "pair": {
+      "id": 10899492131,
+      "digest": "sha256:40367d1601782bd3bf6cfd0cc8c6e4696a6b458fbb8b989d21bf8b0bae988082",
+      "name": "p10-p2-pair-seal"
+    }
+  },
+  "gates": {
+    "build_admissibility": "PASS",
+    "shared_oracle_equivalence": "PASS",
+    "semantic_pair_comparability": "PASS",
+    "durable_exact_arm_reconstruction": "PASS"
+  },
+  "confirmatory_lifecycle_authority": "HOLD_LOG_PROXY_LEAK",
+  "winner": null
+}
