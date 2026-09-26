@@ -1,0 +1,184 @@
+name: G8 P10-P2 Dual-Arm Materialization
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p10-p1/**'
+      - 'harness/p10_p2/**'
+      - 'tools/p10-p2-verify.mjs'
+      - '.github/workflows/g8-p10-p2.yml'
+
+concurrency:
+  group: g8-p10-p2-dual-arm
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SUBJECT_REPO: https://github.com/2GT-Media-Group-LLC/mikrotik-manager.git
+  BASE: 68f3c7fc50a91f7dee79f7af914d9dd205498fc7
+  CONSTITUTION: active/g8-origin-r1-p10-p1
+
+jobs:
+  preflight:
+    name: Source-locked preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static harness gates
+        run: |
+          set -euo pipefail
+          python3 -m py_compile harness/p10_p2/materialize.py harness/p10_p2/seal_receipt.py
+          node --check tools/p10-p2-verify.mjs
+          test -f "${CONSTITUTION}/contract/GOTIFY_FUNCTIONAL_CONTRACT.json"
+          test -f "${CONSTITUTION}/contract/PRETREATMENT_MODERATOR_VECTOR.json"
+          test -f "${CONSTITUTION}/contract/TREATMENT_CONSTITUTION.json"
+          test -f "${CONSTITUTION}/contract/DURABLE_ARM_CUSTODY_PROTOCOL.json"
+          test -f "${CONSTITUTION}/oracle/SHARED_MOCK_HTTP_ORACLE.json"
+          test -f "${CONSTITUTION}/theory/CONDITIONAL_INVERSION_LAW_CANDIDATE.json"
+          echo P10_P2_PREFLIGHT=PASS
+
+  materialize:
+    name: Materialize, build, oracle and reconstruct — ${{ matrix.arm }}
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: DIRECT_DEDICATED
+            artifact: direct
+          - arm: INVERT_CHANNEL_ADAPTER
+            artifact: invert
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Clone exact pre-demand world
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "${SUBJECT_REPO}" subject
+          git -C subject checkout --detach "${BASE}"
+          test "$(git -C subject rev-parse HEAD)" = "${BASE}"
+          test -z "$(git -C subject status --porcelain)"
+          echo SOURCE_OK
+
+      - name: Deterministically materialize frozen arm
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 evonomos/harness/p10_p2/materialize.py             --arm "${{ matrix.arm }}"             --subject subject             --constitution "evonomos/${CONSTITUTION}"             --out out
+          echo MATERIALIZE_OK
+
+      - name: Backend build and shared Gotify oracle
+        working-directory: subject/backend
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          npm test -- --runInBand             src/services/__tests__/AlertService.test.ts             src/services/__tests__/Gotify.contract.test.ts             src/routes/__tests__/alerts-gotify.contract.test.ts
+          echo BUILD_OK
+          echo ORACLE_EQUIVALENT_ARM=PASS
+
+      - name: Frontend compile gate
+        working-directory: subject/frontend
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          echo FRONTEND_BUILD_OK
+
+      - name: Seal exact treatment tree and reconstructible Git bundle
+        run: |
+          set -euo pipefail
+          git -C subject config user.name "EvoNOMOS Treatment Builder"
+          git -C subject config user.email "evonomos@example.invalid"
+          git -C subject add -A
+          export GIT_AUTHOR_DATE="2026-09-25T08:19:49Z"
+          export GIT_COMMITTER_DATE="2026-09-25T08:19:49Z"
+          git -C subject commit -m "EvoNOMOS P10-P2 ${{ matrix.arm }}"
+          ARM_COMMIT="$(git -C subject rev-parse HEAD)"
+          ARM_TREE="$(git -C subject rev-parse 'HEAD^{tree}')"
+          printf '%s\n' "$ARM_COMMIT" > out/arm-commit.txt
+          printf '%s\n' "$ARM_TREE" > out/arm-tree.txt
+          git -C subject bundle create "$GITHUB_WORKSPACE/out/arm.bundle" HEAD ^"${BASE}"
+          git -C subject bundle verify "$GITHUB_WORKSPACE/out/arm.bundle"
+          sha256sum out/arm.bundle > out/arm.bundle.sha256
+          echo CUSTODY_BUNDLE_OK
+
+      - name: Fresh reconstruction from exact base plus bundle
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "${SUBJECT_REPO}" reconstructed
+          git -C reconstructed checkout --detach "${BASE}"
+          git -C reconstructed fetch "$GITHUB_WORKSPACE/out/arm.bundle" HEAD:refs/heads/reconstructed
+          git -C reconstructed checkout --detach refs/heads/reconstructed
+          EXPECTED_TREE="$(cat out/arm-tree.txt)"
+          test "$(git -C reconstructed rev-parse 'HEAD^{tree}')" = "$EXPECTED_TREE"
+          test -z "$(git -C reconstructed status --porcelain)"
+          echo RECONSTRUCTION_TREE_OK
+
+      - name: Re-run contract from reconstructed bytes
+        run: |
+          set -euo pipefail
+          cd reconstructed/backend
+          npm ci
+          npm run build
+          npm test -- --runInBand             src/services/__tests__/Gotify.contract.test.ts             src/routes/__tests__/alerts-gotify.contract.test.ts
+          cd ../frontend
+          npm ci
+          npm run build
+          cd ../..
+          echo RECONSTRUCTION_ORACLE_OK
+
+      - name: Seal arm receipt
+        run: |
+          set -euo pipefail
+          python3 evonomos/harness/p10_p2/seal_receipt.py             --arm "${{ matrix.arm }}"             --manifest out/materialization-manifest.json             --bundle out/arm.bundle             --commit "$(cat out/arm-commit.txt)"             --tree "$(cat out/arm-tree.txt)"             --build PASS             --oracle PASS             --reconstruction PASS             --out out/arm-receipt.json
+          echo ARM_RECEIPT_OK
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-p2-arm-${{ matrix.artifact }}
+          path: out/
+          retention-days: 30
+
+  adjudicate:
+    name: Independent semantic pair and custody court
+    needs: materialize
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p10-p2-arm-direct
+          path: evidence/direct
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p10-p2-arm-invert
+          path: evidence/invert
+
+      - name: Verify pair without opening comparative cost metrics
+        run: |
+          set -euo pipefail
+          mkdir -p final
+          node tools/p10-p2-verify.mjs             evidence/direct             evidence/invert             final/p10-p2-pair-seal.json             | tee final/p10-p2-independent-verification.txt
+          sha256sum final/* | sort > final/p10-p2-final-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-p2-pair-seal
+          path: final/
+          retention-days: 30
