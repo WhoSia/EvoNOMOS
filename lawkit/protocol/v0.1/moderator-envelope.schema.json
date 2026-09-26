@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evonomos.local/lawkit/v0.1/moderator-envelope.schema.json",
+  "title": "EvoNOMOS LawKit Moderator Envelope v0.1",
+  "type": "object",
+  "required": [
+    "vector"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "vector": {
+      "type": "object",
+      "required": [
+        "existing_provider_family_cardinality",
+        "canonical_provider_membership_surface_fanout",
+        "shared_transport_fraction",
+        "payload_heterogeneity",
+        "authentication_heterogeneity",
+        "configuration_heterogeneity",
+        "existing_polymorphic_provider_boundary"
+      ],
+      "properties": {
+        "existing_provider_family_cardinality": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "canonical_provider_membership_surface_fanout": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shared_transport_fraction": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "pattern": "^[0-9]+/[1-9][0-9]*$"
+            }
+          },
+          "additionalProperties": true
+        },
+        "payload_heterogeneity": {
+          "type": "string"
+        },
+        "authentication_heterogeneity": {
+          "type": "string"
+        },
+        "configuration_heterogeneity": {
+          "type": "string"
+        },
+        "existing_polymorphic_provider_boundary": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
