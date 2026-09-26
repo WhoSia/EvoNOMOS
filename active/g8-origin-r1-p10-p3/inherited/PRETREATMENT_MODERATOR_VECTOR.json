@@ -1,0 +1,34 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P1",
+  "source_commit": "68f3c7fc50a91f7dee79f7af914d9dd205498fc7",
+  "vector": {
+    "existing_provider_family_cardinality": 5,
+    "existing_providers": ["email","slack","discord","telegram","ntfy"],
+    "canonical_provider_membership_surface_fanout": 7,
+    "membership_surfaces": [
+      "backend AlertChannel type union",
+      "backend sendToChannel dispatch switch",
+      "API validTypes admission list",
+      "API sensitive-field policy map",
+      "database alert_channels type CHECK",
+      "frontend AlertChannel type union",
+      "frontend channel-type selector/configuration surface"
+    ],
+    "shared_transport_fraction": {
+      "value": "4/5",
+      "definition": "existing providers whose send path uses the shared postJson HTTP helper",
+      "members": ["slack","discord","telegram","ntfy"],
+      "exception": "email uses nodemailer/SMTP"
+    },
+    "payload_heterogeneity": "HIGH",
+    "payload_basis": "Slack attachments, Discord embeds, Telegram chat/text/parse-mode and ntfy topic/title/message/priority/tags use materially different JSON schemas.",
+    "authentication_heterogeneity": "HIGH",
+    "auth_basis": "webhook-URL credentials, Telegram bot-token URL semantics, ntfy bearer/basic headers and SMTP credentials coexist.",
+    "configuration_heterogeneity": "HIGH",
+    "config_basis": "provider-specific config shapes and secret sets are already explicit.",
+    "existing_polymorphic_provider_boundary": false,
+    "existing_common_transport_helper": true,
+    "membership_representation": "EXPLICIT_DUPLICATED_CLOSED_SET"
+  },
+  "interpretive_role": "These values are moderators fixed before outcomes. They may explain transport survival, reversal or failure; they are not scores and are not altered after treatment results."
+}
