@@ -1,0 +1,33 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P11",
+  "selection_rule": "conjunctive gates only; no scalar ranking",
+  "promoted": {
+    "id": "TRUEFORGE_EXA_TAVILY",
+    "repository": "truefoundry/trueforge",
+    "initial_issue": 852,
+    "followup_issue": 853,
+    "reason": "two independent real open provider demands, both observable before treatment birth; exact pre-demand source recoverable; topology discriminates P10 by already having a runtime provider interface; search-only issue contracts expose possible capability-bundle mismatch"
+  },
+  "not_promoted": [
+    {
+      "repository": "truefoundry/trueforge",
+      "issue": 855,
+      "reason": "closed treatment-bearing refactor landed the same day; outcome/treatment contamination"
+    },
+    {
+      "repository": "oauth2-proxy/oauth2-proxy",
+      "issue": 926,
+      "reason": "real but opened in 2020 with years of exposed design discussion; no clean prospectively paired follow-up"
+    },
+    {
+      "repository": "TranBaDat2607/PDFusion",
+      "issue": 88,
+      "reason": "roadmap phase explicitly prescribes registry architecture and exists to prove that refactor; not independent architecture-blind demand"
+    },
+    {
+      "repository": "freeCodeCamp-Summer-Cohort-2026/math-blasters",
+      "issue": 87,
+      "reason": "real feature request but already blocked on and prescribes a specific OAuthProvider protocol; useful reserve, weaker counterexample world"
+    }
+  ]
+}
