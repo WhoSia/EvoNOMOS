@@ -1,4 +1,4 @@
-name: EvoNOMOS LawKit v0.1
+name: EvoNOMOS LawKit
 
 on:
   workflow_dispatch:
@@ -6,13 +6,14 @@ on:
     branches: [main]
     paths:
       - 'crates/evonomos-law/**'
-      - 'tools/lawkit-verify.mjs'
+      - 'tools/lawkit*.mjs'
       - 'lawkit/**'
       - 'active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json'
+      - 'active/g8-origin-r1-p10-p3/**'
       - '.github/workflows/evonomos-lawkit.yml'
 
 concurrency:
-  group: evonomos-lawkit-v01
+  group: evonomos-lawkit
   cancel-in-progress: true
 
 permissions:
@@ -21,7 +22,7 @@ permissions:
 
 jobs:
   lawkit:
-    name: CIL-C1 executable theory kernel
+    name: Cross-language conditional-law kernel
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +39,7 @@ jobs:
           cargo test --manifest-path crates/evonomos-law/Cargo.toml
           cargo build --release --manifest-path crates/evonomos-law/Cargo.toml
 
-      - name: Compile P10 moderator evidence with independent implementations
+      - name: v0.1 pre-outcome cross-language concordance
         run: |
           set -euo pipefail
           mkdir -p out
@@ -56,14 +57,56 @@ jobs:
               Path(dst).write_text(json.dumps(x,sort_keys=True,separators=(",",":"))+"\n")
           PY
           diff -u out/cil-c1-rust.canon.json out/cil-c1-python.canon.json
-          cp out/cil-c1-rust.json out/cil-c1-p10-preoutcome.json
-          node tools/lawkit-verify.mjs out/cil-c1-p10-preoutcome.json | tee out/lawkit-independent-verification.txt
-          echo EVONOMOS_LAWKIT_RUST_PYTHON_CONCORDANCE=PASS | tee out/lawkit-concordance.txt
+          node tools/lawkit-verify.mjs out/cil-c1-rust.json
+          echo EVONOMOS_LAWKIT_V01_CONCORDANCE=PASS
+
+      - name: v0.2 post-outcome authority concordance fixture
+        run: |
+          set -euo pipefail
+          MOD=active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json
+          cat > out/v02-lifecycle-fixture.json <<'JSON'
+          {
+            "vectors": {
+              "DIRECT_DEDICATED": {"S0":7,"L0":20,"Q0":1,"S1":7,"L1":14,"Q1":1},
+              "INVERT_CHANNEL_ADAPTER": {"S0":8,"L0":30,"Q0":1,"S1":4,"L1":8,"Q1":1}
+            }
+          }
+          JSON
+          cat > out/v02-firewall-fixture.json <<'JSON'
+          {
+            "lawkit_required_authority":"HOLD_SELECTION_BLINDNESS",
+            "forbidden":[
+              "confirmatory CIL-C1 update",
+              "SOLID/DIP/OCP validation",
+              "overall winner",
+              "general design recommendation"
+            ]
+          }
+          JSON
+          ./crates/evonomos-law/target/release/evonomos-law adjudicate             "$MOD" out/v02-lifecycle-fixture.json out/v02-firewall-fixture.json             > out/cil-c1-v02-rust.json
+          python3 lawkit/reference/cil_c1_v02.py             "$MOD" out/v02-lifecycle-fixture.json out/v02-firewall-fixture.json             > out/cil-c1-v02-python.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for src,dst in [
+              ("out/cil-c1-v02-rust.json","out/cil-c1-v02-rust.canon.json"),
+              ("out/cil-c1-v02-python.json","out/cil-c1-v02-python.canon.json"),
+          ]:
+              x=json.loads(Path(src).read_text())
+              Path(dst).write_text(json.dumps(x,sort_keys=True,separators=(",",":"))+"\n")
+          PY
+          diff -u out/cil-c1-v02-rust.canon.json out/cil-c1-v02-python.canon.json
+          node tools/lawkit-v02-verify.mjs out/cil-c1-v02-rust.json
+          echo EVONOMOS_LAWKIT_V02_CONCORDANCE=PASS
+
+      - name: Seal tool custody
+        run: |
+          set -euo pipefail
           sha256sum crates/evonomos-law/target/release/evonomos-law > out/evonomos-law-binary-sha256.txt
-          sha256sum out/cil-c1-p10-preoutcome.json > out/cil-c1-p10-preoutcome-sha256.txt
+          sha256sum out/cil-c1-rust.json > out/cil-c1-p10-preoutcome-sha256.txt
 
       - uses: actions/upload-artifact@v4
         with:
-          name: evonomos-lawkit-v01-cil-c1
+          name: evonomos-lawkit
           path: out/
           retention-days: 30
