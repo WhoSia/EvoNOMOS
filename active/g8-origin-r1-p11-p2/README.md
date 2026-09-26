@@ -2,14 +2,21 @@
 
 **Isolated Phase-0 Exa Dual-Arm Materialization, Shared Mock-HTTP Oracle Execution, Exact Bundle Custody, Semantic Pair Comparability & Pre-Measurement Firewall Court**
 
-Status: `EXECUTION_AUTHORIZED / MEASUREMENT_FIREWALL_CLOSED`
+Status: `PAIR_COMPARABLE / PHASE0_Q_PASS / EXACT_CUSTODY_PASS / MEASUREMENT_FIREWALL_CLOSED / TAVILY_SEALED`
 
-Parent authority: P11-P1 terminal preseal.
+Canonical passing run: `36232534560`.
 
-This stage may materialize **Exa only** in two independent exact-source workspaces:
-- `WIDE_BOUNDARY_REUSE`
-- `CAPABILITY_SEGREGATED`
+Both treatments were independently materialized from the same exact TrueForge source. Both passed:
+- frozen treatment-fidelity gate;
+- TypeScript product compilation;
+- Exa settings/redaction/runtime contract;
+- independent Go mock HTTP search/fetch surface;
+- treatment-specific tool-exposure verification;
+- exact Git bundle creation;
+- fresh reconstructed-tree identity.
 
-The real Tavily follow-up remains sealed. No S/L/C/A coordinate may be printed, stored in logs, or compared in this stage. Q, custody and semantic comparability are the only visible scientific gates.
+The pair court opened no `S/L/C/A` values. It used only source/contract identity, Q, oracle identity, custody hashes and reconstruction status.
 
-If both arms pass, this stage authorizes Tavily phase-1 materialization while keeping the phase-0 measurement firewall closed.
+Phase 0 therefore ends with `Q0=1` for both arms and a valid comparable pair, **not** with a lifecycle winner.
+
+The real Tavily #853 follow-up remains unopened. The next phase must reconstruct the exact P2 bundles and apply Tavily under the already-frozen treatment semantics before any phase-0 or phase-1 `S/L/C/A` coordinate is revealed.

@@ -1,0 +1,84 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P11-P2",
+  "status": "PAIR_COMPARABLE__PHASE0_Q_PASS__EXACT_CUSTODY_PASS__MEASUREMENT_FIREWALL_CLOSED__TAVILY_SEALED",
+  "source": "dd421b79216c9b42eefd7b0191e546919f8be3f1",
+  "phase0": {
+    "issue": 852,
+    "provider": "exa",
+    "q": {
+      "WIDE_BOUNDARY_REUSE": 1,
+      "CAPABILITY_SEGREGATED": 1
+    },
+    "coordinates": {
+      "names": [
+        "S",
+        "L",
+        "C",
+        "A"
+      ],
+      "values": "SEALED"
+    }
+  },
+  "phase1": {
+    "issue": 853,
+    "provider": "tavily",
+    "state": "SEALED"
+  },
+  "pair": {
+    "arms": [
+      "WIDE_BOUNDARY_REUSE",
+      "CAPABILITY_SEGREGATED"
+    ],
+    "comparability": "PASS",
+    "shared_oracle": "SEARCH_FETCH_EXPOSURE_V01",
+    "exact_bundle_custody": "PASS",
+    "fresh_tree_reconstruction": "PASS",
+    "winner": null
+  },
+  "actions": {
+    "canonical_run": {
+      "id": 36232534560,
+      "head_sha": "801801c7b56d26a17acf631ee207c8d7312e2b0d",
+      "conclusion": "success"
+    },
+    "artifacts": {
+      "WIDE_BOUNDARY_REUSE": {
+        "id": 10903450436,
+        "name": "p11-p2-arm-wide",
+        "digest": "sha256:c7e1560e765e5d81007820b1cc4978ab7fb8c8c32dc160982dcd3b23c62ec13a"
+      },
+      "CAPABILITY_SEGREGATED": {
+        "id": 10901994962,
+        "name": "p11-p2-arm-segregated",
+        "digest": "sha256:ff03bb841214b4692b03252ede1537fc60db319a49b00bc211f34029c019b083"
+      },
+      "pair_court": {
+        "id": 10902797257,
+        "name": "p11-p2-pair-court",
+        "digest": "sha256:93e760eac2faaa446f80d9cfdea445d053f2dd32cf682c61e9b81b96d6f910fa"
+      }
+    },
+    "prior_waves": [
+      {
+        "id": 36232359813,
+        "status": "FAIL_RUNNER_ARGUMENT_BEFORE_PRODUCT_COMPILE",
+        "outcomes_opened": false
+      },
+      {
+        "id": 36232448503,
+        "status": "FAIL_STRICT_TYPECHECK_BEFORE_ORACLE",
+        "outcomes_opened": false
+      },
+      {
+        "id": 36232534560,
+        "status": "PASS",
+        "outcomes_opened": false
+      }
+    ]
+  },
+  "measurement_firewall_released": false,
+  "coordinates_opened": false,
+  "outcome_interpretation_authorized": false,
+  "next_gate": "RECONSTRUCT_EXACT_P2_BUNDLES__MATERIALIZE_REAL_TAVILY_PHASE1__PASS_Q1_AND_CUSTODY__THEN_SIMULTANEOUSLY_REVEAL_BOTH_PHASES",
+  "winner": null
+}
