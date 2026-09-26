@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'active/g8-origin-r1-p11/**'
+      - 'active/g8-origin-r1-p11/world/**'
       - 'lawkit/adapters/github_provider_family_v01.mjs'
       - '.github/workflows/g8-p11-world-audit.yml'
 
