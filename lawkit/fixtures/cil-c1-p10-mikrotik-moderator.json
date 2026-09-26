@@ -1,0 +1,18 @@
+{
+  "fixture_id": "CIL-C1-P10-MIKROTIK-MODERATOR-v1",
+  "provenance": {
+    "world": "2GT-Media-Group-LLC/mikrotik-manager#169",
+    "pre_demand_source": "68f3c7fc50a91f7dee79f7af914d9dd205498fc7",
+    "historical_stage": "EvoNOMOS Generation VIII ORIGIN-R1-P10-P1"
+  },
+  "vector": {
+    "existing_provider_family_cardinality": 5,
+    "canonical_provider_membership_surface_fanout": 7,
+    "shared_transport_fraction": {"value": "4/5"},
+    "payload_heterogeneity": "HIGH",
+    "authentication_heterogeneity": "HIGH",
+    "configuration_heterogeneity": "HIGH",
+    "existing_polymorphic_provider_boundary": false
+  },
+  "role": "Stable LawKit regression fixture. This is not current active scientific evidence and carries no new authority."
+}
