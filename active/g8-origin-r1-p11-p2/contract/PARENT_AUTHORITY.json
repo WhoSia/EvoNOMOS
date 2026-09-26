@@ -1,0 +1,42 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P11-P2",
+  "parent": "EvoNOMOS Generation VIII ORIGIN-R1-P11-P1",
+  "exact_source": "dd421b79216c9b42eefd7b0191e546919f8be3f1",
+  "arms": [
+    "WIDE_BOUNDARY_REUSE",
+    "CAPABILITY_SEGREGATED"
+  ],
+  "phase0": {
+    "issue": 852,
+    "provider": "exa"
+  },
+  "phase1": {
+    "issue": 853,
+    "provider": "tavily",
+    "state": "SEALED"
+  },
+  "vector": [
+    "S",
+    "L",
+    "C",
+    "A",
+    "Q"
+  ],
+  "measurement_firewall_released": false,
+  "permitted_visible_gates": [
+    "SOURCE_OK",
+    "MATERIALIZE_OK",
+    "TREATMENT_FIDELITY_PASS",
+    "BUILD_OK",
+    "ORACLE_OK",
+    "CUSTODY_OK",
+    "COMPARABLE"
+  ],
+  "forbidden_visible_coordinates": [
+    "S",
+    "L",
+    "C",
+    "A"
+  ],
+  "winner": null
+}
