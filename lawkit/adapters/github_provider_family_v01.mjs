@@ -26,10 +26,16 @@ for(const site of spec.authority_sites){
   scanned.push({path:site.path,text});
 }
 const forbidden={};
-for(const token of spec.forbidden_provider_tokens??[]){
-  const locations=scanned.filter(x=>x.text.toLowerCase().includes(token.toLowerCase())).map(x=>x.path);
-  forbidden[token]={status:locations.length===0?'ABSENT':'PRESENT',locations};
-  if(locations.length)fail('forbidden pre-demand provider token present: '+token);
+for(const pattern of spec.forbidden_provider_patterns??[]){
+  let re;
+  try {
+    re=new RegExp(pattern,'i');
+  } catch (error) {
+    fail('invalid forbidden provider regex '+JSON.stringify(pattern)+': '+String(error));
+  }
+  const locations=scanned.filter(x=>re.test(x.text)).map(x=>x.path);
+  forbidden[pattern]={status:locations.length===0?'ABSENT':'PRESENT',locations};
+  if(locations.length)fail('forbidden pre-demand provider pattern present: '+pattern);
 }
 const ifacePath=path.join(repoRoot,spec.interface.path);
 const ifaceText=fs.readFileSync(ifacePath,'utf8');
@@ -44,7 +50,7 @@ const out={
   authority_sites:siteResults,
   existing_runtime_interface:true,
   interface_capabilities:spec.interface.capabilities,
-  forbidden_provider_tokens:forbidden,
+  forbidden_provider_patterns:forbidden,
   status:'PASS',
 };
 fs.mkdirSync(path.dirname(outPath),{recursive:true});
