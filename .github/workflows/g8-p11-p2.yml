@@ -136,8 +136,14 @@ jobs:
         working-directory: subject
         run: |
           set -euo pipefail
-          pnpm --filter @truefoundry/trueforge-core typecheck --silent
-          pnpm --filter @truefoundry/trueforge typecheck --silent
+          if ! pnpm --filter @truefoundry/trueforge-core typecheck > "$GITHUB_WORKSPACE/out/core-typecheck.log" 2>&1; then
+            cat "$GITHUB_WORKSPACE/out/core-typecheck.log"
+            exit 1
+          fi
+          if ! pnpm --filter @truefoundry/trueforge typecheck > "$GITHUB_WORKSPACE/out/server-typecheck.log" 2>&1; then
+            cat "$GITHUB_WORKSPACE/out/server-typecheck.log"
+            exit 1
+          fi
           echo BUILD_OK
 
       - name: Execute shared Exa wire and capability exposure oracle
