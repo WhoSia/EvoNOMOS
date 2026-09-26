@@ -34,17 +34,40 @@
     "winner": null
   },
   "vectors": {
-    "DIRECT_DEDICATED": {"S0":7,"L0":70,"Q0":1,"S1":7,"L1":103,"Q1":1},
-    "INVERT_CHANNEL_ADAPTER": {"S0":8,"L0":208,"Q0":1,"S1":4,"L1":112,"Q1":1}
+    "DIRECT_DEDICATED": {
+      "S0": 7,
+      "L0": 70,
+      "Q0": 1,
+      "S1": 7,
+      "L1": 103,
+      "Q1": 1
+    },
+    "INVERT_CHANNEL_ADAPTER": {
+      "S0": 8,
+      "L0": 208,
+      "Q0": 1,
+      "S1": 4,
+      "L1": 112,
+      "Q1": 1
+    }
   },
   "phasewise_direction": {
-    "surface": {"phase0":"INVERT_HIGHER","phase1":"DIRECT_HIGHER"},
-    "churn": {"phase0":"INVERT_HIGHER","phase1":"INVERT_HIGHER"}
+    "surface": {
+      "phase0": "INVERT_HIGHER",
+      "phase1": "DIRECT_HIGHER"
+    },
+    "churn": {
+      "phase0": "INVERT_HIGHER",
+      "phase1": "INVERT_HIGHER"
+    }
   },
-  "reversal": {"surface":true,"churn":false},
+  "reversal": {
+    "surface": true,
+    "churn": false
+  },
   "lifecycle_pattern": {
-    "surface":"INITIAL_INVERSION_TAX_THEN_PROPAGATION_SAVING",
-    "churn":"NO_SIGN_REVERSAL"
+    "surface": "INITIAL_INVERSION_TAX_THEN_PROPAGATION_SAVING",
+    "churn": "NO_SIGN_REVERSAL"
   },
   "moderator_context": {
     "membership_surface_fanout": 7,
@@ -61,5 +84,12 @@
     "Because selection blindness failed before follow-up freeze and the follow-up is synthetic rather than independently demanded, no confirmatory CIL-C1 support-domain update is authorized."
   ],
   "p10_terminal": true,
-  "next_program_rule": "RETURN_TO_FRESH_CROSS_PROJECT_WORLD_WITH_FOLLOWUP_AND_OUTCOME_SURFACE_PRESEALED_BEFORE_ANY_TREATMENT_SIZE_PROXY_IS_VISIBLE"
+  "next_program_rule": "RETURN_TO_FRESH_CROSS_PROJECT_WORLD_WITH_FOLLOWUP_AND_OUTCOME_SURFACE_PRESEALED_BEFORE_ANY_TREATMENT_SIZE_PROXY_IS_VISIBLE",
+  "notion": {
+    "ravel_range": "8557-8576",
+    "decision_range": "8577-8590",
+    "run_url": "https://app.notion.com/p/3e7ef561cf928151bff0de80b198b34f",
+    "decision_url": "https://app.notion.com/p/3e7ef561cf9281af9f5dd69ba62281b7",
+    "global_next": 8591
+  }
 }
