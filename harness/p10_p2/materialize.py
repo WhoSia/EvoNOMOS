@@ -278,7 +278,7 @@ def write_manifest(subject: Path, arm: str, constitution: Path, out: Path) -> No
     }
     out.mkdir(parents=True, exist_ok=True)
     (out / "materialization-manifest.json").write_text(
-        json.dumps(manifest, indent=2, sort_keys=True) + "\\n", encoding="utf-8"
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
 
 def main() -> None:
