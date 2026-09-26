@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evonomos.example/protocol/v0.3/world-envelope.schema.json",
+  "type": "object",
+  "required": ["protocol_version","world_id","source","demands","moderators","admission_gates","outcome_surface","observability_firewall"],
+  "properties": {
+    "protocol_version": {"const":"0.3"},
+    "world_id": {"type":"string","minLength":1},
+    "source": {"type":"object"},
+    "demands": {"type":"object"},
+    "moderators": {"type":"object"},
+    "admission_gates": {
+      "type":"object",
+      "required":["exact_source_locked","independent_real_initial_demand","independent_real_followup_demand","pair_frozen_before_treatment","discriminates_prior_world","outcome_surface_frozen","observability_firewall_frozen"],
+      "additionalProperties": false,
+      "properties": {
+        "exact_source_locked":{"type":"boolean"},
+        "independent_real_initial_demand":{"type":"boolean"},
+        "independent_real_followup_demand":{"type":"boolean"},
+        "pair_frozen_before_treatment":{"type":"boolean"},
+        "discriminates_prior_world":{"type":"boolean"},
+        "outcome_surface_frozen":{"type":"boolean"},
+        "observability_firewall_frozen":{"type":"boolean"}
+      }
+    },
+    "outcome_surface":{"type":"object"},
+    "observability_firewall":{"type":"object"}
+  }
+}
