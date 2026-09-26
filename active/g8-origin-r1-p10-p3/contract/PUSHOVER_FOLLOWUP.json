@@ -1,0 +1,65 @@
+{
+  "id": "PUSHOVER_PROTOCOL_REAL_SYNTHETIC_FOLLOWUP_v1",
+  "role": "exploratory lifecycle stressor",
+  "natural_demand_authority": false,
+  "source_basis": "Official Pushover Message API, observed 2026-09-26",
+  "protocol": {
+    "method": "POST",
+    "url": "https://api.pushover.net/1/messages.json",
+    "content_type": "application/json",
+    "required_fields": [
+      "token",
+      "user",
+      "message"
+    ],
+    "optional_used_fields": [
+      "title",
+      "priority"
+    ],
+    "priority_domain": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "frozen_priority_mapping": {
+      "device_offline": 1,
+      "log_error": 1,
+      "high_cpu": 1,
+      "high_memory": 1,
+      "device_online": -1,
+      "device_discovered": -1,
+      "default": 0
+    },
+    "success": "HTTP 200 with response status=1 or mocked equivalent",
+    "failure": "non-2xx or response status != 1"
+  },
+  "config": {
+    "api_token": {
+      "required": true,
+      "secret": true
+    },
+    "user_key": {
+      "required": true,
+      "secret": true
+    }
+  },
+  "scope": [
+    "add pushover as an alert channel through the existing channel-management surface",
+    "preserve alert rule/cooldown/maintenance semantics",
+    "preserve all existing provider behavior",
+    "use no live network in the experimental oracle"
+  ],
+  "out_of_scope": [
+    "subscriptions",
+    "group administration",
+    "emergency priority 2",
+    "retry/expire receipts",
+    "attachments",
+    "device-specific routing",
+    "new UI features"
+  ],
+  "execution_count_per_arm": 1,
+  "post_result_redesign": false
+}
