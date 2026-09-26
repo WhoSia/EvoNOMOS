@@ -113,7 +113,9 @@ pub fn admit_world(world: WorldEnvelope) -> WorldAdmission {
         gates,
         law_pressures: LawPressures {
             cil_c1: CilC1WorldPressure {
-                membership_propagation_opportunity: if world.moderators.membership_surface_fanout > 1 {
+                membership_propagation_opportunity: if world.moderators.membership_surface_fanout
+                    > 1
+                {
                     "PRESENT"
                 } else {
                     "LIMITED"
@@ -179,7 +181,10 @@ mod tests {
         assert_eq!(out.admission, "ADMIT");
         assert_eq!(out.authorized_next, "PRETREATMENT_RIVAL_CONSTITUTION");
         assert_eq!(out.decision_authority, "NO_DESIGN_RECOMMENDATION");
-        assert_eq!(out.law_pressures.cbl_c1.capability_bundle_mismatch, "PRESENT");
+        assert_eq!(
+            out.law_pressures.cbl_c1.capability_bundle_mismatch,
+            "PRESENT"
+        );
     }
 
     #[test]
