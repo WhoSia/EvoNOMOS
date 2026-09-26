@@ -1,28 +1,43 @@
 # EvoNOMOS
 
-Canonical GitHub repository for EvoNOMOS research execution artifacts, preregistrations, active harnesses, and migration receipts.
+Canonical repository for executable conditional software-design law research.
 
-## Current active lineage
+## Current scientific head
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P10-P1 — Exact Gotify Functional-Contract Freeze, Pre-Treatment Moderator Vector, DIRECT_DEDICATED↔INVERT_CHANNEL_ADAPTER Treatment Constitution, Shared Mocked-HTTP Oracle & Durable Exact-Arm Custody Preseal**
+**EvoNOMOS Generation VIII ORIGIN-R1-P10-P3 — Frozen Follow-Up Demand, Lifecycle Sign Exposure, CIL-C1 Moderator Adjudication & PI-Level Return-to-Origin Court**
 
-- Active executable/evidence surface: `active/g8-origin-r1-p10-p1/`
-- Status: `PRESEAL_PASS / CONTRACT_FROZEN / MODERATORS_FROZEN / RIVALS_FROZEN / ORACLE_FROZEN / ZERO_TREATMENT_BYTES`.
-- Fresh world: `2GT-Media-Group-LLC/mikrotik-manager#169`.
-- Exact pre-demand source: `68f3c7fc50a91f7dee79f7af914d9dd205498fc7`.
-- External Gotify protocol anchor: `gotify/server@d02796bd084af7fb6d81168ec0f79d9d496d1dd8`.
-- Common Gotify functional contract, source-observable moderator vector, bounded DIRECT/INVERT treatments, one deterministic mocked-HTTP oracle, and durable exact-arm custody protocol are frozen before treatment birth.
-- Conditional law candidate CIL-C1 treats DIP/OCP as conditional intervention families, not axioms. Same-sign replication is not itself scientific authority.
-- The next phase may materialize both arms independently, but must archive reconstructible exact arm bundles before workspace retirement or later lifecycle measurement.
+- Active evidence surface: `active/g8-origin-r1-p10-p3/`
+- Status: `P10 TERMINAL / EXPLORATORY LIFECYCLE PASS / CONFIRMATORY AUTHORITY HOLD / NO WINNER`.
+- GitHub Actions run `36223178665` completed both exact-arm follow-ups and the final LawKit court successfully.
+- Surface coordinate: birth-tax → propagation-saving reversal.
+- Churn coordinate: no reversal.
+- LawKit authority: `HOLD_SELECTION_BLINDNESS / ABSTAIN`.
+- P10 is closed. The next mainline must leave MikroTik Manager and seek a fresh real cross-project world with follow-up and outcome surfaces presealed before treatment-size observability.
+
+## LawKit
+
+`lawkit/` + `crates/evonomos-law/` form the executable theory layer.
+
+LawKit does **not** encode SOLID, DIP, OCP, or another design principle as an axiom. It consumes architecture/moderator evidence and lifecycle observations, then emits bounded mechanism statements, authority ceilings and abstentions.
+
+The protocol is canonical; implementation language is not. Current independent implementations use Rust, Python and Node.js because those roles fit the present kernels and verifiers. Future implementations may use C++, Haskell, Scala, Kotlin, OCaml, Prolog, Ada, D, R, TypeScript or another language when it provides a useful independent semantics, static guarantee, solver, graph engine, IDE surface or runtime property.
+
+The research target is not “which language?” or “which SOLID rule?”. It is:
+
+> under which observable structural and demand conditions does a design intervention change the sign of later engineering cost or validity?
+
+## GitHub Actions policy
+
+Actions is the read-only experimental substrate.
+
+- workflow permissions default to `contents: read`;
+- Actions may build, execute, reconstruct, measure and upload artifacts;
+- Actions does not commit experimental results back to the repository;
+- canonical source/theory changes are committed by the researcher, not `github-actions[bot]`;
+- raw logs are part of the measurement instrument and must obey the same blindness/firewall rules as code and data.
 
 ## Repository workflow
 
-`main` is the canonical working branch. Do not create one branch per stage, provider check, experiment snapshot, or historical checkpoint. Temporary branches are allowed only for genuinely risky work and should be merged or deleted promptly.
+`main` is canonical. Keep only the current live scientific surface under `active/`; prior stages remain in Git history and Research OS.
 
-GitHub is the compact executable evidence layer, not the historical archive. Preserve scientific history in Notion, Google Drive, commit SHAs/tags, and frozen receipts rather than by accumulating long-lived remote branches or superseded experiment directories.
-
-At every generation or major phase transition, retire obsolete execution scaffolding that is no longer required to reproduce or interpret the active lineage.
-
-Language choice is problem-driven rather than Python-default: C/C++, Rust, Go, TypeScript/JavaScript, Java/Kotlin, Ada, D, Ruby, R, Python, Docker and mixed-language harnesses are all admissible when their properties fit the scientific or engineering role.
-
-See `REPOSITORY_POLICY.md` for the full hygiene rule.
+Language choice is capability-driven rather than Python-default or Rust-default. The protocol and scientific contract outrank any implementation language.
