@@ -80,5 +80,12 @@
   "coordinates_opened": false,
   "outcome_interpretation_authorized": false,
   "next_gate": "RECONSTRUCT_EXACT_P2_BUNDLES__MATERIALIZE_REAL_TAVILY_PHASE1__PASS_Q1_AND_CUSTODY__THEN_SIMULTANEOUSLY_REVEAL_BOTH_PHASES",
-  "winner": null
+  "winner": null,
+  "research_os": {
+    "ravel_range": "8666-8693",
+    "decision_range": "8694-8708",
+    "run_url": "https://app.notion.com/p/3e7ef561cf9281509626f6bed912b71d",
+    "decision_url": "https://app.notion.com/p/3e7ef561cf928187b009cf85682e7c24",
+    "global_next": 8709
+  }
 }
