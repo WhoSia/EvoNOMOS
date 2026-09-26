@@ -1,7 +1,5 @@
 use anyhow::{Context, Result};
-use evonomos_law::{
-    adjudicate, inspect, AuthorityFirewall, LifecycleExposure, ModeratorEnvelope,
-};
+use evonomos_law::{adjudicate, inspect, AuthorityFirewall, LifecycleExposure, ModeratorEnvelope};
 use serde::de::DeserializeOwned;
 use std::{env, fs, path::PathBuf};
 
