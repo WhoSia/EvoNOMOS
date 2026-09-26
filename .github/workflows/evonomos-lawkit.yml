@@ -98,11 +98,33 @@ jobs:
           node tools/lawkit-v02-verify.mjs out/cil-c1-v02-rust.json
           echo EVONOMOS_LAWKIT_V02_CONCORDANCE=PASS
 
+      - name: v0.3 fresh-world admission concordance
+        run: |
+          set -euo pipefail
+          WORLD=lawkit/fixtures/p11-trueforge-exa-tavily-world.json
+          ./crates/evonomos-law/target/release/evonomos-law admit-world "$WORLD" > out/world-v03-rust.json
+          python3 lawkit/reference/world_admission_v03.py "$WORLD" > out/world-v03-python.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for src,dst in [
+              ("out/world-v03-rust.json","out/world-v03-rust.canon.json"),
+              ("out/world-v03-python.json","out/world-v03-python.canon.json"),
+          ]:
+              x=json.loads(Path(src).read_text())
+              Path(dst).write_text(json.dumps(x,sort_keys=True,separators=(",",":"))+"\n")
+          PY
+          diff -u out/world-v03-rust.canon.json out/world-v03-python.canon.json
+          node tools/lawkit-world-v03-verify.mjs out/world-v03-rust.json
+          test "$(python3 -c "import json;print(json.load(open('out/world-v03-rust.json'))['admission'])")" = "ADMIT"
+          echo EVONOMOS_LAWKIT_V03_CONCORDANCE=PASS
+
       - name: Seal tool custody
         run: |
           set -euo pipefail
           sha256sum crates/evonomos-law/target/release/evonomos-law > out/evonomos-law-binary-sha256.txt
           sha256sum out/cil-c1-rust.json > out/cil-c1-p10-preoutcome-sha256.txt
+          sha256sum out/world-v03-rust.json > out/p11-world-v03-sha256.txt
 
       - uses: actions/upload-artifact@v4
         with:
