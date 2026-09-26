@@ -38,7 +38,13 @@
     "node_authority_verifier": "PASS",
     "admission": "ADMIT",
     "authorized_next": "PRETREATMENT_RIVAL_CONSTITUTION",
-    "decision_authority": "NO_DESIGN_RECOMMENDATION"
+    "decision_authority": "NO_DESIGN_RECOMMENDATION",
+    "latest_validation": {
+      "actions_run_id": 36230443503,
+      "artifact_id": 10902570859,
+      "artifact_digest": "sha256:7ac5f8c9659eec31157601a5f3a0ded40a3c688d478a2c06f9dc3169725b642a",
+      "status": "PASS"
+    }
   },
   "law_pressures": {
     "CIL-C1": {
