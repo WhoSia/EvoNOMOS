@@ -67,5 +67,12 @@
     "tavily_search": "https://docs.tavily.com/documentation/api-reference/endpoint/search",
     "tavily_extract": "https://docs.tavily.com/documentation/api-reference/endpoint/extract"
   },
-  "next_gate": "Independently materialize both phase0 Exa arms from the same exact source under separate workspaces, shared mock oracle and silent logs; seal exact Git bundle custody and pair comparability before revealing any S/L/C/A coordinate. Tavily remains unopened follow-up."
+  "next_gate": "Independently materialize both phase0 Exa arms from the same exact source under separate workspaces, shared mock oracle and silent logs; seal exact Git bundle custody and pair comparability before revealing any S/L/C/A coordinate. Tavily remains unopened follow-up.",
+  "research_os": {
+    "ravel_range": "8629-8651",
+    "decision_range": "8652-8665",
+    "run_url": "https://app.notion.com/p/3e7ef561cf928179a209e5a90c3024d8",
+    "decision_url": "https://app.notion.com/p/3e7ef561cf9281dea2a9c0566ba8ea10",
+    "global_next": 8666
+  }
 }
