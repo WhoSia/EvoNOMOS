@@ -2,68 +2,55 @@
 
 LawKit is the executable theory/tool layer of EvoNOMOS.
 
-Its purpose is not to encode SOLID, DIP, OCP, DRY, or another software-design maxim as a commandment. It turns **observable architecture conditions + prospective lifecycle evidence + authority constraints** into bounded conditional-law statements, falsifiers, and abstentions.
+Its purpose is not to encode SOLID, DIP, OCP, ISP, DRY, or another software-design maxim as a commandment. It turns **world evidence + prospectively frozen demands + architecture moderators + lifecycle evidence + authority constraints** into bounded conditional-law statements, falsifiers and abstentions.
 
 ## Product thesis
 
-Traditional design guidance often starts from named rules:
+Traditional design guidance often starts from:
 
 `principle → implementation advice`
 
-LawKit is intended to support the opposite workflow:
+LawKit targets:
 
-`world evidence → moderator envelope → candidate mechanism → prospective intervention → lifecycle evidence → bounded law / reversal / abstention`
+`exact world → real demand pair → source evidence → moderator geometry → candidate mechanism → prospective intervention → lifecycle evidence → bounded law / reversal / abstention`
 
-That makes it usable during actual software development without pretending that a rule is universally correct.
+That makes it usable during actual development without pretending that a named rule is universally correct.
 
 ## Commands today
-
-The canonical Rust implementation currently exposes:
 
 ```bash
 evonomos-law inspect <moderator-envelope.json>
 evonomos-law adjudicate <moderator-envelope.json> <lifecycle.json> <authority-firewall.json>
+evonomos-law admit-world <world-envelope.json>
 ```
 
-- `inspect` is pre-outcome: it may expose mechanism opportunities and resistance but must abstain from choosing a design.
-- `adjudicate` is post-outcome: it may classify coordinatewise directions and reversals but must preserve the supplied authority ceiling.
+- `inspect` — pre-outcome mechanism inspection; no design choice.
+- `adjudicate` — post-outcome coordinate/reversal classification under an explicit authority ceiling.
+- `admit-world` — conjunctive fresh-world admission; no scalar repository score and no design recommendation.
 
-## Language policy
+## Source adapters
 
-**The protocol is canonical; implementation language is not.**
+`lawkit/adapters/` is the beginning of the developer-facing evidence compiler.
 
-Current independent implementations:
+The first adapter, `github_provider_family_v01.mjs`, checks an exact Git checkout against a frozen source-evidence specification. It verifies source identity, architecture authority sites, runtime interface evidence and pre-demand provider absence. The adapter emits evidence; it does not choose an architecture.
 
-- Rust — deterministic typed kernel
-- Python — independent reference semantics
-- Node.js — independent authority/output verifier
+Future adapters may use TypeScript, C++, Haskell, Scala, Kotlin, OCaml, Prolog, Ada, D, R or another language when useful. **The protocol is canonical; implementation language is not.**
 
-Future components may use TypeScript, C++, Haskell, Scala, Kotlin, OCaml, Prolog, Ada, D, R, or another language when that language supplies a useful property: IDE integration, static analysis, graph inference, solver semantics, compilation guarantees, interactive UI, or independent replay.
+## Current candidate laws
 
-Choosing a language is an engineering decision inside the experiment, not a scientific axiom.
+- **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**
+- **CBL-C1 — Capability-Bundle Mismatch Law Candidate**
 
-## Current law candidate
-
-`CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate`
-
-P10 produced an exploratory coordinate split:
-
-- semantic membership surfaces: initial inversion tax, then lower follow-up propagation;
-- handwritten source churn: no sign reversal within one follow-up;
-- overall winner: forbidden;
-- confirmatory authority: held.
-
-This is precisely the sort of result LawKit is built to preserve without collapsing into “use DIP” or “do not use DIP.”
+CBL-C1 asks whether reusing an existing abstraction that requires capabilities outside the real demand creates conformance burden or semantic overclaim, and when capability segregation repays its own coordination cost.
 
 ## Development direction
 
-LawKit should grow as a real developer-facing harness:
+1. source adapters extract auditable world evidence;
+2. world-admission protocols reject contaminated or non-discriminating cases;
+3. rival constitutions define bounded interventions before treatment bytes;
+4. Actions executes exact-world experiments under log firewalls;
+5. LawKit classifies vector-valued lifecycle results without scalar winners;
+6. editor/CLI surfaces explain both candidate mechanisms and why authority is bounded;
+7. law families compete, fail, split, mutate or retire.
 
-1. source adapters extract moderator envelopes from repositories;
-2. protocol schemas define observable conditions and authority ceilings;
-3. independent kernels evaluate candidate conditional laws;
-4. CI executes prospective interventions and lifecycle probes;
-5. editor/CLI surfaces explain **why authority is bounded**;
-6. future law families compete, fail, fork, or retire.
-
-Tool quality is an important engineering axis, but a better tool is not automatically new scientific evidence. EvoNOMOS mainline progress still requires fresh world contact and discriminating observations.
+A better LawKit is an engineering achievement. New scientific authority still requires fresh world contact.
