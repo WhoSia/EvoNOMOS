@@ -1,0 +1,53 @@
+name: EvoNOMOS LawKit v0.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'crates/evonomos-law/**'
+      - 'tools/lawkit-verify.mjs'
+      - 'active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json'
+      - '.github/workflows/evonomos-lawkit.yml'
+
+concurrency:
+  group: evonomos-lawkit-v01
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  lawkit:
+    name: CIL-C1 executable theory kernel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Rust kernel quality gates
+        run: |
+          set -euo pipefail
+          cargo fmt --manifest-path crates/evonomos-law/Cargo.toml -- --check
+          cargo clippy --manifest-path crates/evonomos-law/Cargo.toml --all-targets -- -D warnings
+          cargo test --manifest-path crates/evonomos-law/Cargo.toml
+          cargo build --release --manifest-path crates/evonomos-law/Cargo.toml
+
+      - name: Compile P10 moderator evidence into CIL-C1 pressure signature
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          ./crates/evonomos-law/target/release/evonomos-law inspect             active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json             > out/cil-c1-p10-preoutcome.json
+          node tools/lawkit-verify.mjs out/cil-c1-p10-preoutcome.json             | tee out/lawkit-independent-verification.txt
+          sha256sum crates/evonomos-law/target/release/evonomos-law             > out/evonomos-law-binary-sha256.txt
+          sha256sum out/cil-c1-p10-preoutcome.json             > out/cil-c1-p10-preoutcome-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: evonomos-lawkit-v01-cil-c1
+          path: out/
+          retention-days: 30
