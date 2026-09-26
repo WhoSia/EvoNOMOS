@@ -1,0 +1,57 @@
+{
+  "world_id": "TRUEFORGE_EXA_TAVILY",
+  "expected_commit": "dd421b79216c9b42eefd7b0191e546919f8be3f1",
+  "forbidden_provider_tokens": ["exa","tavily"],
+  "interface": {
+    "path": "packages/trueforge-core/src/core/web-search/WebSearchProvider.ts",
+    "capabilities": ["search","fetch"],
+    "must_contain": ["export interface IWebSearchProvider","search(input:","fetch(input:"]
+  },
+  "authority_sites": [
+    {
+      "name": "core provider enum",
+      "path": "packages/trueforge-core/src/core/web-search/WebSearchProvider.ts",
+      "must_contain": ["export enum WebSearchProviders","Parallel = 'parallel'"]
+    },
+    {
+      "name": "manifest discriminated union",
+      "path": "packages/trueforge/src/schemas/webSearchProvider.ts",
+      "must_contain": ["ParallelWebSearchProviderSchema","discriminatedUnion('type'"]
+    },
+    {
+      "name": "catalog schema provider variant",
+      "path": "packages/trueforge/src/schemas/webSearchCatalog.ts",
+      "must_contain": ["ParallelWebSearchProviderSchema.omit"]
+    },
+    {
+      "name": "shipped catalog",
+      "path": "packages/trueforge/catalog/web-search-catalog.yaml",
+      "must_contain": ["type: parallel"]
+    },
+    {
+      "name": "runtime resolver",
+      "path": "packages/trueforge/src/websearch/providers.ts",
+      "must_contain": ["return new ParallelWebSearchProvider"]
+    },
+    {
+      "name": "settings secret policy",
+      "path": "packages/trueforge/src/apis/webSearchProviders.ts",
+      "must_contain": ["redactWebSearchProvider","resolveWebSearchProviderManifestForWrite","api_key"]
+    },
+    {
+      "name": "host env parser",
+      "path": "packages/trueforge/src/config.ts",
+      "must_contain": ["parseTrueFoundryWebSearchProvider","name: 'parallel'"]
+    },
+    {
+      "name": "managed provider synthesis",
+      "path": "packages/trueforge/src/truefoundry/TrueFoundryWebSearchProviderStore.ts",
+      "must_contain": ["synthesizeParallelRecord","type: 'parallel'"]
+    },
+    {
+      "name": "UI manifest mapper",
+      "path": "packages/trueforge-ui/src/plugins/trueforge-agent-server-adapter/catalogs/webSearchProviderCatalog.ts",
+      "must_contain": ["PARALLEL_TYPE = 'parallel'","Unsupported web-search provider type"]
+    }
+  ]
+}
