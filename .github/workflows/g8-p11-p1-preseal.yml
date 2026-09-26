@@ -43,14 +43,17 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version: '1.23.x'
+          cache: false
 
       - name: Validate independent Go provider-surface oracle
         run: |
           set -euo pipefail
           test -z "$(gofmt -l lawkit/oracles/provider-surface-v01)"
-          go test ./lawkit/oracles/provider-surface-v01
           mkdir -p out
-          go build -o out/provider-surface-oracle ./lawkit/oracles/provider-surface-v01
+          pushd lawkit/oracles/provider-surface-v01
+          go test ./...
+          go build -o ../../../out/provider-surface-oracle .
+          popd
           echo ORACLE_OK
 
       - name: Reconfirm exact pre-demand source boundary
