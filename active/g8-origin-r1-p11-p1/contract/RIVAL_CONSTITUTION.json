@@ -1,0 +1,60 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P11-P1",
+  "treatments": {
+    "WIDE_BOUNDARY_REUSE": {
+      "intent": "Honor the existing OCP/DIP-like provider boundary without changing its capability width.",
+      "must_preserve": [
+        "IWebSearchProvider requires both search and fetch",
+        "WebSearchTools exposes both web_search and web_fetch whenever a provider is configured",
+        "Parallel behavior is unchanged"
+      ],
+      "must_do": [
+        "implement Exa search for phase0",
+        "implement a truthful Exa fetch path because web_fetch remains exposed",
+        "implement Tavily search for phase1",
+        "implement a truthful Tavily extract/fetch path because web_fetch remains exposed"
+      ],
+      "fetch_fidelity": "A visible web_fetch must return normalized page content through the frozen mock HTTP oracle. Throwing unsupported, returning an empty fake success, silently redirecting to search, or hiding the tool is treatment failure.",
+      "forbidden": [
+        "splitting search and fetch interfaces",
+        "optional fetch capability markers",
+        "provider-dependent tool exposure",
+        "generic plugin/registry redesign beyond the existing provider-family mechanisms",
+        "UI feature work",
+        "multi-provider tenancy"
+      ]
+    },
+    "CAPABILITY_SEGREGATED": {
+      "intent": "Apply only the minimum ISP-like capability split needed for a real search-only provider while preserving existing full-capability behavior.",
+      "must_do": [
+        "represent search and fetch as independently satisfiable runtime capabilities",
+        "keep Parallel as both search-capable and fetch-capable",
+        "implement Exa as search-capable only in phase0",
+        "implement Tavily as search-capable only in phase1",
+        "expose web_fetch only when a fetch capability is actually present"
+      ],
+      "must_not_do": [
+        "implement Exa fetch solely to satisfy the previous wide boundary",
+        "implement Tavily extract solely to satisfy the previous wide boundary",
+        "generic plugin/registry redesign",
+        "unrelated schema redesign",
+        "UI feature work",
+        "multi-provider tenancy"
+      ],
+      "allowed_minimal_shapes": [
+        "separate IWebSearchProvider and IWebFetchProvider contracts",
+        "an equivalent typed capability composition with the same semantic separation"
+      ],
+      "treatment_fidelity": "Search-only providers must not expose web_fetch. Parallel must still expose both tools."
+    }
+  },
+  "shared_constraints": {
+    "target_language": "TypeScript in the TrueForge product because that is the host codebase; oracle language is independent",
+    "network": "mocked HTTP only; no Exa/Tavily live calls",
+    "new_provider_testability": "test-only endpoint/fetch injection is allowed if it does not change production semantics and is available symmetrically",
+    "generated_outputs": "may be regenerated only when required by existing build/API machinery; excluded from handwritten churn coordinate",
+    "post_demand_source_reading": "FORBIDDEN until treatment construction is sealed",
+    "cross_arm_rescue": "FORBIDDEN",
+    "winner": null
+  }
+}
