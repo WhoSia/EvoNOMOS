@@ -1,5 +1,7 @@
 use anyhow::{Context, Result};
-use evonomos_law::{adjudicate, inspect, AuthorityFirewall, LifecycleExposure, ModeratorEnvelope};
+use evonomos_law::{
+    adjudicate, admit_world, inspect, AuthorityFirewall, LifecycleExposure, ModeratorEnvelope, WorldEnvelope,
+};
 use serde::de::DeserializeOwned;
 use std::{env, fs, path::PathBuf};
 
@@ -34,8 +36,19 @@ fn main() -> Result<()> {
                 serde_json::to_string_pretty(&adjudicate(env, lifecycle, firewall)?)?
             );
         }
+        Some("admit-world") => {
+            let world = PathBuf::from(args.next().context("missing world-envelope path")?);
+            if args.next().is_some() {
+                anyhow::bail!("unexpected extra arguments");
+            }
+            let world: WorldEnvelope = read_json(&world)?;
+            if world.protocol_version != "0.3" {
+                anyhow::bail!("world envelope protocol_version must be 0.3");
+            }
+            println!("{}", serde_json::to_string_pretty(&admit_world(world))?);
+        }
         _ => anyhow::bail!(
-            "usage: evonomos-law inspect <moderator-json> | adjudicate <moderator-json> <lifecycle-json> <firewall-json>"
+            "usage: evonomos-law inspect <moderator-json> | adjudicate <moderator-json> <lifecycle-json> <firewall-json> | admit-world <world-envelope.json>"
         ),
     }
     Ok(())
