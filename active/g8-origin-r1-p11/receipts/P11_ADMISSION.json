@@ -74,5 +74,13 @@
   "treatment_bytes": 0,
   "outcomes_opened": false,
   "winner": null,
-  "next_gate": "Freeze bounded wide-boundary-reuse versus capability-segregated rivals under the same Exa contract, preserve the already-frozen real Tavily follow-up, then materialize outcome-blind arms with exact durable custody."
+  "next_gate": "Freeze bounded wide-boundary-reuse versus capability-segregated rivals under the same Exa contract, preserve the already-frozen real Tavily follow-up, then materialize outcome-blind arms with exact durable custody.",
+  "notion": {
+    "ravel_range": "8591-8614",
+    "decision_range": "8615-8628",
+    "run_url": "https://app.notion.com/p/3e7ef561cf92817196fbf46065c16d82",
+    "decision_url": "https://app.notion.com/p/3e7ef561cf92819b8377cbb093535400",
+    "global_next": 8629
+  },
+  "github_seal_parent": "59145c3b7c3be9482abf09825afff0dad660236e"
 }
