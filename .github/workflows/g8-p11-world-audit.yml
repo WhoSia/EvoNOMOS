@@ -60,7 +60,7 @@ jobs:
           assert src['membership_surface_fanout']==world['moderators']['membership_surface_fanout']
           assert src['existing_runtime_interface']==world['moderators']['existing_runtime_interface']
           assert src['interface_capabilities']==world['moderators']['existing_interface_capabilities']
-          assert all(v['status']=='ABSENT' for v in src['forbidden_provider_tokens'].values())
+          assert all(v['status']=='ABSENT' for v in src['forbidden_provider_patterns'].values())
           assert world['demands']['pair_frozen_before_treatment'] is True
           assert world['moderators']['capability_bundle_mismatch'] is True
           assert all(world['admission_gates'].values())
