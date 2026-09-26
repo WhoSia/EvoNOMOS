@@ -1,0 +1,230 @@
+name: G8 P10-P3 Exploratory Lifecycle Exposure
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p10-p3/**'
+      - 'harness/p10_p3/**'
+      - 'tools/p10-p3-adjudicate.mjs'
+      - 'tools/lawkit-v02-verify.mjs'
+      - 'lawkit/reference/cil_c1_v02.py'
+      - 'crates/evonomos-law/**'
+      - '.github/workflows/g8-p10-p3.yml'
+
+concurrency:
+  group: g8-p10-p3-lifecycle
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SUBJECT_REPO: https://github.com/2GT-Media-Group-LLC/mikrotik-manager.git
+  BASE: 68f3c7fc50a91f7dee79f7af914d9dd205498fc7
+  P2_RUN_ID: '36222076393'
+  P3: active/g8-origin-r1-p10-p3
+
+jobs:
+  preflight:
+    name: Authority-locked P3 preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static authority and harness gates
+        run: |
+          set -euo pipefail
+          python3 -m py_compile harness/p10_p3/apply_followup.py harness/p10_p3/seal_measurement.py
+          node --check tools/p10-p3-adjudicate.mjs
+          node --check tools/lawkit-v02-verify.mjs
+          python3 -m py_compile lawkit/reference/cil_c1_v02.py
+          test -f "$P3/contract/PUSHOVER_FOLLOWUP.json"
+          test -f "$P3/contract/LIFECYCLE_EXPOSURE.json"
+          test -f "$P3/contract/AUTHORITY_FIREWALL.json"
+          test "$(python3 -c "import json;print(json.load(open('$P3/contract/AUTHORITY_FIREWALL.json'))['lawkit_required_authority'])")" = "HOLD_SELECTION_BLINDNESS"
+          echo P10_P3_PREFLIGHT=PASS
+
+  followup:
+    name: Reconstruct P2, apply frozen follow-up — ${{ matrix.arm }}
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: DIRECT_DEDICATED
+            p2_artifact: p10-p2-arm-direct
+            artifact: direct
+          - arm: INVERT_CHANNEL_ADAPTER
+            p2_artifact: p10-p2-arm-invert
+            artifact: invert
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Download exact P2 custody artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.p2_artifact }}
+          path: p2-evidence
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.P2_RUN_ID }}
+
+      - name: Verify and reconstruct exact P2 arm
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          r=json.loads(Path('p2-evidence/arm-receipt.json').read_text())
+          b=Path('p2-evidence/arm.bundle')
+          assert r['arm']=='${{ matrix.arm }}'
+          assert r['status']=='PASS' and r['build']=='PASS' and r['shared_oracle']=='PASS'
+          assert r['reconstruction_verified'] is True
+          assert hashlib.sha256(b.read_bytes()).hexdigest()==r['arm_bundle_sha256']
+          PY
+          git clone --filter=blob:none "$SUBJECT_REPO" subject
+          git -C subject checkout --detach "$BASE"
+          git -C subject fetch "$GITHUB_WORKSPACE/p2-evidence/arm.bundle" HEAD:refs/heads/p2-arm
+          git -C subject checkout --detach refs/heads/p2-arm
+          EXPECTED_TREE="$(python3 -c "import json;print(json.load(open('p2-evidence/arm-receipt.json'))['arm_tree'])")"
+          test "$(git -C subject rev-parse 'HEAD^{tree}')" = "$EXPECTED_TREE"
+          test -z "$(git -C subject status --porcelain)"
+          printf '%s\n' "$(git -C subject rev-parse HEAD)" > p2-head.txt
+          echo P2_EXACT_RECONSTRUCTION=PASS
+
+      - name: Apply frozen Pushover follow-up once
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 evonomos/harness/p10_p3/apply_followup.py             --arm "${{ matrix.arm }}"             --subject subject             --out out
+          echo FOLLOWUP_ONCE=PASS
+
+      - name: Backend build and Pushover oracle
+        working-directory: subject/backend
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          npm test -- --runInBand             src/services/__tests__/AlertService.test.ts             src/services/__tests__/Gotify.contract.test.ts             src/routes/__tests__/alerts-gotify.contract.test.ts             src/services/__tests__/Pushover.contract.test.ts             src/routes/__tests__/alerts-pushover.contract.test.ts
+          echo P10_P3_Q1=PASS
+
+      - name: Frontend compile gate
+        working-directory: subject/frontend
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          echo P10_P3_FRONTEND=PASS
+
+      - name: Seal follow-up tree without change-volume output
+        run: |
+          set -euo pipefail
+          git -C subject config user.name "EvoNOMOS Treatment Builder"
+          git -C subject config user.email "evonomos@example.invalid"
+          git -C subject add -A
+          export GIT_AUTHOR_DATE="2026-09-26T06:00:47Z"
+          export GIT_COMMITTER_DATE="2026-09-26T06:00:47Z"
+          git -C subject commit --quiet -m "EvoNOMOS P10-P3 Pushover ${{ matrix.arm }}"
+          printf '%s\n' "$(git -C subject rev-parse HEAD)" > out/p3-head.txt
+          printf '%s\n' "$(git -C subject rev-parse 'HEAD^{tree}')" > out/p3-tree.txt
+          git -C subject bundle create "$GITHUB_WORKSPACE/out/p3-arm.bundle" HEAD ^"$BASE"
+          git -C subject bundle verify "$GITHUB_WORKSPACE/out/p3-arm.bundle" >/dev/null
+          sha256sum out/p3-arm.bundle > out/p3-arm.bundle.sha256
+          echo P3_CUSTODY=PASS
+
+      - name: Seal arm lifecycle coordinates without disclosure
+        run: |
+          set -euo pipefail
+          python3 evonomos/harness/p10_p3/seal_measurement.py             --arm "${{ matrix.arm }}"             --repo subject             --base "$BASE"             --p2-head "$(cat p2-head.txt)"             --p3-head "$(cat out/p3-head.txt)"             --exposure "evonomos/$P3/contract/LIFECYCLE_EXPOSURE.json"             --q0 1 --q1 1             --out out/lifecycle-arm.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-p3-arm-${{ matrix.artifact }}
+          path: out/
+          retention-days: 30
+
+  adjudicate:
+    name: Lifecycle reveal, LawKit authority court and return-to-origin seal
+    needs: followup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p10-p3-arm-direct
+          path: evidence/direct
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p10-p3-arm-invert
+          path: evidence/invert
+
+      - name: Reveal both vectors together and classify signs
+        run: |
+          set -euo pipefail
+          mkdir -p final
+          node tools/p10-p3-adjudicate.mjs             evidence/direct/lifecycle-arm.json             evidence/invert/lifecycle-arm.json             final/p10-p3-lifecycle-seal.json
+
+      - name: Cross-language LawKit v0.2 authority adjudication
+        run: |
+          set -euo pipefail
+          cargo build --release --manifest-path crates/evonomos-law/Cargo.toml
+          MOD="$P3/inherited/PRETREATMENT_MODERATOR_VECTOR.json"
+          FW="$P3/contract/AUTHORITY_FIREWALL.json"
+          LIFE=final/p10-p3-lifecycle-seal.json
+          ./crates/evonomos-law/target/release/evonomos-law adjudicate "$MOD" "$LIFE" "$FW"             > final/lawkit-v02-rust.json
+          python3 lawkit/reference/cil_c1_v02.py "$MOD" "$LIFE" "$FW"             > final/lawkit-v02-python.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for src,dst in [
+              ('final/lawkit-v02-rust.json','final/lawkit-v02-rust.canon.json'),
+              ('final/lawkit-v02-python.json','final/lawkit-v02-python.canon.json'),
+          ]:
+              x=json.loads(Path(src).read_text())
+              Path(dst).write_text(json.dumps(x,sort_keys=True,separators=(',',':'))+'\n')
+          PY
+          diff -u final/lawkit-v02-rust.canon.json final/lawkit-v02-python.canon.json
+          node tools/lawkit-v02-verify.mjs final/lawkit-v02-rust.json
+          echo P10_P3_LAWKIT_CROSS_LANGUAGE=PASS
+
+      - name: Seal PI-level exploratory authority
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          life=json.loads(Path('final/p10-p3-lifecycle-seal.json').read_text())
+          law=json.loads(Path('final/lawkit-v02-rust.json').read_text())
+          out={
+            'stage':'EvoNOMOS Generation VIII ORIGIN-R1-P10-P3',
+            'status':'PASS_EXPLORATORY_LIFECYCLE_EXPOSURE__CONFIRMATORY_AUTHORITY_HOLD',
+            'lifecycle':life,
+            'lawkit':law,
+            'p10_terminal':True,
+            'next_program_rule':'RETURN_TO_FRESH_CROSS_PROJECT_WORLD_WITH_PRESEALED_FOLLOWUP_AND_OUTCOME_SURFACE',
+            'winner':None,
+          }
+          Path('final/p10-p3-terminal-seal.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+          PY
+          sha256sum final/* | sort > final/p10-p3-final-sha256.txt
+          echo P10_P3_TERMINAL=PASS_EXPLORATORY_ONLY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-p3-terminal-seal
+          path: final/
+          retention-days: 30
