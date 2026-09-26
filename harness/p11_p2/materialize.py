@@ -160,7 +160,7 @@ def exa_provider(wide: bool) -> str:
       results?: Array<{ url?: string; title?: string | null; text?: string | null }>;
       statuses?: Array<{ id?: string; status?: string; error?: { tag?: string; httpStatusCode?: number } }>;
     };
-    const pages = (payload.results ?? []).map(result => ({
+    const pages: WebFetchPages['pages'] = (payload.results ?? []).map(result => ({
       url: result.url ?? '',
       title: result.title ?? null,
       content: result.text ?? '',
@@ -442,8 +442,8 @@ async function toolNames(provider: IWebSearchProvider): Promise<string[]> {{
 
 describe('EvoNOMOS Exa phase0 contract', () => {{
   it('satisfies frozen wire behavior and treatment-specific capability exposure', async () => {{
-    const base = process.env.EVONOMOS_ORACLE_BASE_URL;
-    const probeOut = process.env.EVONOMOS_PROBE_OUT;
+    const base = process.env['EVONOMOS_ORACLE_BASE_URL'];
+    const probeOut = process.env['EVONOMOS_PROBE_OUT'];
     if (!base || !probeOut) throw new Error('EvoNOMOS oracle/probe env missing');
 
     const provider = new ExaWebSearchProvider({{
