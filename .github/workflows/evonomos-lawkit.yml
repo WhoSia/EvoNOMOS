@@ -8,8 +8,7 @@ on:
       - 'crates/evonomos-law/**'
       - 'tools/lawkit*.mjs'
       - 'lawkit/**'
-      - 'active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json'
-      - 'active/g8-origin-r1-p10-p3/**'
+      - 'lawkit/fixtures/**'
       - '.github/workflows/evonomos-lawkit.yml'
 
 concurrency:
@@ -43,7 +42,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p out
-          INPUT=active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json
+          INPUT=lawkit/fixtures/cil-c1-p10-mikrotik-moderator.json
           ./crates/evonomos-law/target/release/evonomos-law inspect "$INPUT" > out/cil-c1-rust.json
           python3 lawkit/reference/cil_c1_v01.py "$INPUT" > out/cil-c1-python.json
           python3 - <<'PY'
@@ -63,7 +62,7 @@ jobs:
       - name: v0.2 post-outcome authority concordance fixture
         run: |
           set -euo pipefail
-          MOD=active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json
+          MOD=lawkit/fixtures/cil-c1-p10-mikrotik-moderator.json
           cat > out/v02-lifecycle-fixture.json <<'JSON'
           {
             "vectors": {
