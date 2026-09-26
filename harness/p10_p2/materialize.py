@@ -238,16 +238,12 @@ def patch_invert(subject: Path) -> None:
 
 """
     replace_once(routes, sensitive_block, "")
-    replace_once(
-        routes,
-        "for (const key of SENSITIVE_KEYS[type] ?? []) {",
-        "for (const key of sensitiveKeysFor(type)) {",
-    )
-    replace_once(
-        routes,
-        "for (const key of SENSITIVE_KEYS[type] ?? []) {",
-        "for (const key of sensitiveKeysFor(type)) {",
-    )
+    old_loop = "for (const key of SENSITIVE_KEYS[type] ?? []) {"
+    new_loop = "for (const key of sensitiveKeysFor(type)) {"
+    routes_text = routes.read_text(encoding="utf-8")
+    if routes_text.count(old_loop) != 2:
+        raise RuntimeError("alerts.ts: expected exactly two sensitive-key loops")
+    routes.write_text(routes_text.replace(old_loop, new_loop), encoding="utf-8")
 
 def contract_digest(constitution: Path) -> str:
     h = hashlib.sha256()
