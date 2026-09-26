@@ -7,6 +7,7 @@ on:
     paths:
       - 'crates/evonomos-law/**'
       - 'tools/lawkit-verify.mjs'
+      - 'lawkit/**'
       - 'active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json'
       - '.github/workflows/evonomos-lawkit.yml'
 
@@ -37,14 +38,29 @@ jobs:
           cargo test --manifest-path crates/evonomos-law/Cargo.toml
           cargo build --release --manifest-path crates/evonomos-law/Cargo.toml
 
-      - name: Compile P10 moderator evidence into CIL-C1 pressure signature
+      - name: Compile P10 moderator evidence with independent implementations
         run: |
           set -euo pipefail
           mkdir -p out
-          ./crates/evonomos-law/target/release/evonomos-law inspect             active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json             > out/cil-c1-p10-preoutcome.json
-          node tools/lawkit-verify.mjs out/cil-c1-p10-preoutcome.json             | tee out/lawkit-independent-verification.txt
-          sha256sum crates/evonomos-law/target/release/evonomos-law             > out/evonomos-law-binary-sha256.txt
-          sha256sum out/cil-c1-p10-preoutcome.json             > out/cil-c1-p10-preoutcome-sha256.txt
+          INPUT=active/g8-origin-r1-p10-p1/contract/PRETREATMENT_MODERATOR_VECTOR.json
+          ./crates/evonomos-law/target/release/evonomos-law inspect "$INPUT" > out/cil-c1-rust.json
+          python3 lawkit/reference/cil_c1_v01.py "$INPUT" > out/cil-c1-python.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for src,dst in [
+              ("out/cil-c1-rust.json","out/cil-c1-rust.canon.json"),
+              ("out/cil-c1-python.json","out/cil-c1-python.canon.json"),
+          ]:
+              x=json.loads(Path(src).read_text())
+              Path(dst).write_text(json.dumps(x,sort_keys=True,separators=(",",":"))+"\n")
+          PY
+          diff -u out/cil-c1-rust.canon.json out/cil-c1-python.canon.json
+          cp out/cil-c1-rust.json out/cil-c1-p10-preoutcome.json
+          node tools/lawkit-verify.mjs out/cil-c1-p10-preoutcome.json | tee out/lawkit-independent-verification.txt
+          echo EVONOMOS_LAWKIT_RUST_PYTHON_CONCORDANCE=PASS | tee out/lawkit-concordance.txt
+          sha256sum crates/evonomos-law/target/release/evonomos-law > out/evonomos-law-binary-sha256.txt
+          sha256sum out/cil-c1-p10-preoutcome.json > out/cil-c1-p10-preoutcome-sha256.txt
 
       - uses: actions/upload-artifact@v4
         with:
