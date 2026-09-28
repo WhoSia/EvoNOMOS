@@ -1,0 +1,139 @@
+name: G8 P12-P2 OCI Materialization
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p12-p2/**'
+      - 'tools/p12-p2-methodset-audit.go'
+      - 'tools/p12-p2-seal.mjs'
+      - '.github/workflows/g8-p12-p2-oci-materialization.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  DONOR: 495982232cf1af184eac0a97871ef8161e8708ee
+  OCI_SDK: v65.50.0
+
+jobs:
+  materialize:
+    name: Independent OCI arms + common mandatory-capability oracle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.23.x'
+          cache: false
+
+      - name: Reconstruct two independent exact donors
+        run: |
+          set -euo pipefail
+          for arm in full composed; do
+            git clone --quiet --filter=blob:none https://github.com/restic/restic.git "$arm"
+            git -C "$arm" checkout --quiet --detach "$DONOR"
+            test "$(git -C "$arm" rev-parse HEAD)" = "$DONOR"
+            test -z "$(git -C "$arm" status --porcelain)"
+          done
+          echo P12_P2_DONORS=EXACT
+
+      - name: Materialize byte-identical neutral OCI SDK scaffold
+        run: |
+          set -euo pipefail
+          for arm in full composed; do
+            pushd "$arm" >/dev/null
+            go get "github.com/oracle/oci-go-sdk/v65@$OCI_SDK" >/dev/null
+            git add go.mod go.sum
+            GIT_AUTHOR_NAME=EvoNOMOS GIT_AUTHOR_EMAIL=evonomos@example.invalid             GIT_COMMITTER_NAME=EvoNOMOS GIT_COMMITTER_EMAIL=evonomos@example.invalid             GIT_AUTHOR_DATE=2026-09-28T06:30:00Z GIT_COMMITTER_DATE=2026-09-28T06:30:00Z               git commit --quiet -m "neutral: pin pre-demand OCI Go SDK"
+            popd >/dev/null
+          done
+          FT="$(git -C full rev-parse HEAD^{tree})"
+          CT="$(git -C composed rev-parse HEAD^{tree})"
+          test "$FT" = "$CT"
+          echo P12_P2_NEUTRAL_TREE=IDENTICAL
+
+      - name: Birth FULL_BACKEND_REUSE arm
+        run: |
+          set -euo pipefail
+          mkdir -p full/internal/backend/oci
+          cp evonomos/active/g8-origin-r1-p12-p2/treatment/common/config.go full/internal/backend/oci/config.go
+          cp evonomos/active/g8-origin-r1-p12-p2/treatment/full/backend.go full/internal/backend/oci/backend.go
+          cp evonomos/active/g8-origin-r1-p12-p2/oracle/oracle_test.go full/internal/backend/oci/oracle_test.go
+          pushd full >/dev/null
+          gofmt -w internal/backend/oci
+          test -z "$(gofmt -l internal/backend/oci)"
+          git add internal/backend/oci
+          GIT_AUTHOR_NAME=EvoNOMOS GIT_AUTHOR_EMAIL=evonomos@example.invalid           GIT_COMMITTER_NAME=EvoNOMOS GIT_COMMITTER_EMAIL=evonomos@example.invalid           GIT_AUTHOR_DATE=2026-09-28T06:31:00Z GIT_COMMITTER_DATE=2026-09-28T06:31:00Z             git commit --quiet -m "treatment: OCI full backend reuse"
+          popd >/dev/null
+          echo P12_P2_FULL=BORN
+
+      - name: Birth CAPABILITY_COMPOSED_BACKEND arm
+        run: |
+          set -euo pipefail
+          mkdir -p composed/internal/backend/oci
+          cp evonomos/active/g8-origin-r1-p12-p2/treatment/common/config.go composed/internal/backend/oci/config.go
+          cp evonomos/active/g8-origin-r1-p12-p2/treatment/composed/backend.go composed/internal/backend/oci/backend.go
+          cp evonomos/active/g8-origin-r1-p12-p2/oracle/oracle_test.go composed/internal/backend/oci/oracle_test.go
+          pushd composed >/dev/null
+          gofmt -w internal/backend/oci
+          test -z "$(gofmt -l internal/backend/oci)"
+          git add internal/backend/oci
+          GIT_AUTHOR_NAME=EvoNOMOS GIT_AUTHOR_EMAIL=evonomos@example.invalid           GIT_COMMITTER_NAME=EvoNOMOS GIT_COMMITTER_EMAIL=evonomos@example.invalid           GIT_AUTHOR_DATE=2026-09-28T06:31:00Z GIT_COMMITTER_DATE=2026-09-28T06:31:00Z             git commit --quiet -m "treatment: OCI capability-composed backend"
+          popd >/dev/null
+          echo P12_P2_COMPOSED=BORN
+
+      - name: Run identical no-network mandatory-capability oracle
+        run: |
+          set -euo pipefail
+          for arm in full composed; do
+            pushd "$arm" >/dev/null
+            go test ./internal/backend/oci -run '^TestMandatoryCapabilityOracle$' -count=1
+            popd >/dev/null
+          done
+          echo P12_P2_SHARED_ORACLE=PASS
+
+      - name: Audit invariant public Backend method set
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          go run evonomos/tools/p12-p2-methodset-audit.go             full/internal/backend/oci/backend.go             composed/internal/backend/oci/backend.go             out/methodset.json
+
+      - name: Seal custody without lifecycle-coordinate exposure
+        run: |
+          set -euo pipefail
+          FULL_COMMIT="$(git -C full rev-parse HEAD)"
+          COMPOSED_COMMIT="$(git -C composed rev-parse HEAD)"
+          FULL_TREE="$(git -C full rev-parse HEAD^{tree})"
+          COMPOSED_TREE="$(git -C composed rev-parse HEAD^{tree})"
+          FULL_ORACLE="$(sha256sum full/internal/backend/oci/oracle_test.go | cut -d' ' -f1)"
+          COMPOSED_ORACLE="$(sha256sum composed/internal/backend/oci/oracle_test.go | cut -d' ' -f1)"
+          test "$FULL_ORACLE" = "$COMPOSED_ORACLE"
+          node -e 'const fs=require("fs"); const x={
+            donor:process.env.DONOR,
+            sdk:process.env.OCI_SDK,
+            neutral_tree_equal:true,
+            oracle_sha_equal:true,
+            oracle_sha256:process.argv[1],
+            full_build_oracle:"PASS",
+            composed_build_oracle:"PASS",
+            full_commit:process.argv[2],
+            composed_commit:process.argv[3],
+            full_tree:process.argv[4],
+            composed_tree:process.argv[5],
+            onedrive_opened:false,
+            lifecycle_coordinates_opened:false
+          }; fs.writeFileSync("out/custody.json",JSON.stringify(x,null,2)+"\n")'             "$FULL_ORACLE" "$FULL_COMMIT" "$COMPOSED_COMMIT" "$FULL_TREE" "$COMPOSED_TREE"
+          node evonomos/tools/p12-p2-seal.mjs out/custody.json out/methodset.json out/P2_COMPARABILITY.json
+          sha256sum out/custody.json out/methodset.json out/P2_COMPARABILITY.json | sort > out/MANIFEST.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p12-p2-oci-pre-reveal-comparability
+          path: out/
+          retention-days: 30

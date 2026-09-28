@@ -1,0 +1,15 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P12-P1",
+  "verdict": "PRESEAL_PASS__RESTIC_FULL_COREQUIREMENT_6_OF_6__INVARIANT_PUBLIC_BACKEND__BOUND_FULL_REUSE_VS_CAPABILITY_COMPOSED_RIVALS__NO_NETWORK__ZERO_TREATMENT_BYTES__OUTCOMES_CLOSED",
+  "ravel_range": "8800-8822",
+  "decision_range": "8823-8837",
+  "global_next": 8838,
+  "donor": "restic/restic@495982232cf1af184eac0a97871ef8161e8708ee",
+  "backend_blob": "df3281641d743d3777a440485e79d1ccc0f3af52",
+  "conformance_blob": "c03db79e37f56f9670af58d254792c2af162f66d",
+  "packet_manifest_sha256": "be027914b6aaadb8cc372c19a304111d69425cf57f63c01bd91579b8cc34678c",
+  "packet_zip_sha256": "8794bc5f405767c168e0f9065c76eaacdd53d528ac62be8997b539ccff7da3e7",
+  "packet_zip_bytes": 10695,
+  "treatment_bytes": 0,
+  "outcomes_opened": false
+}
