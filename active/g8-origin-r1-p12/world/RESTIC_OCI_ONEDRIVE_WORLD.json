@@ -1,0 +1,71 @@
+{
+  "protocol_version": "0.5",
+  "world_id": "RESTIC_OCI_ONEDRIVE",
+  "source": {
+    "repository": "restic/restic",
+    "exact_pre_demand_commit": "495982232cf1af184eac0a97871ef8161e8708ee",
+    "commit_time": "2023-10-17T21:06:34Z",
+    "source_before_initial_demand": true
+  },
+  "demands": {
+    "initial": {
+      "issue": 4517,
+      "created_at": "2023-10-17T23:13:21Z",
+      "provider": "oci_object_storage",
+      "natural": true,
+      "request": "native OCI Object Storage backend",
+      "implementation_exposure": "POST_DEMAND_IMPLEMENTATION_EXISTS_BUT_UNREAD"
+    },
+    "followup": {
+      "issue": 5301,
+      "created_at": "2025-03-23T20:41:48Z",
+      "provider": "onedrive",
+      "natural": true,
+      "request": "native OneDrive storage backend",
+      "implementation_exposure": "NONE_OBSERVED"
+    },
+    "pair_frozen_before_evonomos_treatment": true
+  },
+  "moderators": {
+    "preexisting_boundary": "STRONG_MANDATORY_BACKEND_INTERFACE",
+    "interface_path": "internal/restic/backend.go",
+    "backend_test_suite": "internal/backend/test/tests.go",
+    "mandatory_core_operations": [
+      "Save",
+      "Load",
+      "Stat",
+      "List",
+      "Remove",
+      "Delete"
+    ],
+    "demand_corequirement": {
+      "initial": "HIGH_EXPECTED__SOURCE_AUDIT_REQUIRED",
+      "followup": "HIGH_EXPECTED__SOURCE_AUDIT_REQUIRED"
+    },
+    "capability_bundle_mismatch": "EXPECTED_LOW_OR_ABSENT__SOURCE_AUDIT_REQUIRED",
+    "provider_auth_heterogeneity": "HIGH",
+    "optional_transport_metadata": [
+      "Location",
+      "Connections",
+      "Hasher",
+      "HasAtomicReplace",
+      "Close",
+      "IsNotExist"
+    ]
+  },
+  "contamination_firewall": {
+    "allowed_inputs": [
+      "exact pre-demand source at 495982232cf1af184eac0a97871ef8161e8708ee",
+      "issue #4517 demand text and discussion without treatment implementation source",
+      "issue #5301 demand text and discussion"
+    ],
+    "forbidden_inputs": [
+      "post-demand OCI implementation source or PR diff",
+      "closed/merged OneDrive implementation if one later appears",
+      "current restic backend refactors as treatment donor"
+    ]
+  },
+  "outcome_authority": "ADMISSION_PENDING_EXACT_SOURCE_AUDIT",
+  "treatment_bytes": 0,
+  "winner": null
+}
