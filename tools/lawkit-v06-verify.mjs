@@ -1,0 +1,18 @@
+import fs from "node:fs";
+const p=process.argv[2];
+if(!p) throw new Error("usage: node tools/lawkit-v06-verify.mjs <output.json>");
+const x=JSON.parse(fs.readFileSync(p,"utf8"));
+const need=(c,m)=>{if(!c) throw new Error(m)};
+need(x.protocol_version==="0.6","protocol");
+need(x.authority==="LAW_R1_P0_CONSTITUTION_ONLY","authority");
+need(x.coordinate_noncollapse===true,"coordinate noncollapse");
+need(x.p12_full_corequirement_cell==="UNRESOLVED_TERMINAL_NONRESULT","P12 non-result");
+need(x.cbl_c1_evidence==="NARROW_MECHANISM_SUPPORT__FULL_COREQUIREMENT_FALSIFIER_UNRESOLVED","CBL state");
+need(x.capability_bundle_mismatch==="PRESENT","fixture mismatch");
+need(x.mismatch_width===1,"mismatch width");
+need(x.candidate_tests.includes("TEST_CAPABILITY_SEGREGATION_VS_BUNDLE_REUSE"),"candidate test");
+need(x.decision_authority==="SELECT_PROSPECTIVE_RIVAL_TESTS_ONLY","authority ceiling");
+need(x.scalarization===false&&x.winner===null,"no scalar winner");
+need(x.prohibited_inference.includes("P12_NONRESULT_COUNTS_AS_CBL_C1_FALSIFICATION"),"P12 firewall");
+need(x.cbl_c1_falsifiers.includes("DEMAND_COREQUIRES_FULL_BOUNDARY_BUNDLE"),"falsifier");
+console.log("EVONOMOS_LAWKIT_V06_VERIFY=PASS");
