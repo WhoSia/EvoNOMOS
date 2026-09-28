@@ -101,7 +101,9 @@ fn validate_evidence(env: &LawSurfaceEnvelope) -> Result<()> {
 
     let p12 = world(env, "P12_RESTIC")?;
     if p12.evidence_class != "TERMINAL_NONRESULT" || p12.observed.outcomes_opened {
-        return Err(anyhow!("P12 must remain terminal non-result with outcomes closed"));
+        return Err(anyhow!(
+            "P12 must remain terminal non-result with outcomes closed"
+        ));
     }
     Ok(())
 }
@@ -147,9 +149,8 @@ pub fn project_law_surface(env: LawSurfaceEnvelope) -> Result<LawSurfaceProjecti
         candidate_tests.push("TEST_CAPABILITY_SEGREGATION_VS_BUNDLE_REUSE");
     }
 
-    let mut abstention_reasons = vec![
-        "NO_ARCHITECTURE_RECOMMENDATION_WITHOUT_PAIRED_LIFECYCLE_EVIDENCE",
-    ];
+    let mut abstention_reasons =
+        vec!["NO_ARCHITECTURE_RECOMMENDATION_WITHOUT_PAIRED_LIFECYCLE_EVIDENCE"];
     if c.existing_boundary != "ABSENT" {
         abstention_reasons.push("CIL_C1_MEMBERSHIP_SAVING_NOT_INFERRED_WITH_EXISTING_BOUNDARY");
     }
@@ -271,7 +272,10 @@ mod tests {
             out.candidate_tests,
             vec!["TEST_CAPABILITY_SEGREGATION_VS_BUNDLE_REUSE"]
         );
-        assert_eq!(out.decision_authority, "SELECT_PROSPECTIVE_RIVAL_TESTS_ONLY");
+        assert_eq!(
+            out.decision_authority,
+            "SELECT_PROSPECTIVE_RIVAL_TESTS_ONLY"
+        );
         assert!(!out.scalarization);
         assert!(out.winner.is_none());
     }
