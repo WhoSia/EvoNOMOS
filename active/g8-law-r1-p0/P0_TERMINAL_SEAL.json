@@ -1,0 +1,41 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P0",
+  "status": "PASS_TERMINAL",
+  "scientific_authority": {
+    "new_outcomes": false,
+    "coordinate_noncollapse": true,
+    "cil_c1": "BOUND_MECHANISM_CANDIDATE",
+    "cbl_c1": "NARROW_MECHANISM_SUPPORT",
+    "p12_full_corequirement_cell": "UNRESOLVED_TERMINAL_NONRESULT",
+    "scalarization": false,
+    "winner": null
+  },
+  "lawkit_v06": {
+    "canonical_head": "4de16aba3e27288884c5b8a2b6b13ef263a98507",
+    "workflow_run": 36392207102,
+    "run_conclusion": "success",
+    "rust_quality_gates": "PASS",
+    "legacy_regression": [
+      "v0.1_PASS",
+      "v0.2_PASS",
+      "v0.3_PASS"
+    ],
+    "rust_python_concordance": "PASS",
+    "node_verifier": "PASS",
+    "artifact_id": 10957026657,
+    "artifact_digest": "sha256:23d81ddf2a646f5052cd371c70a3b6e12699a90932e2f04839a39dc50a04627f"
+  },
+  "prospective_authority": [
+    "SELECT_RIVAL_STRUCTURAL_TEST",
+    "STATE_MODERATOR_PRESSURE",
+    "STATE_FALSIFIERS",
+    "ABSTAIN"
+  ],
+  "forbidden": [
+    "SOLID_VALIDATION",
+    "UNIVERSAL_DIP_OR_ISP_RECOMMENDATION",
+    "ONE_MAINTAINABILITY_SCALAR",
+    "P12_NONRESULT_AS_FALSIFICATION"
+  ],
+  "next_stage_opened": false
+}
