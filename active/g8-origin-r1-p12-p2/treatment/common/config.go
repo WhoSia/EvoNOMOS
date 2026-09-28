@@ -1,6 +1,7 @@
 package oci
 
 import (
+	"context"
 	stderrors "errors"
 	"path"
 	"strings"
