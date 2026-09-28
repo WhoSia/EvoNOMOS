@@ -1,0 +1,40 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P12",
+  "status": "SOURCE_AUDIT_PASS__DISCOVERY_REPLAY_PENDING",
+  "promoted_candidate": "RESTIC_OCI_ONEDRIVE",
+  "source": "restic/restic@495982232cf1af184eac0a97871ef8161e8708ee",
+  "demands": {
+    "initial": "#4517 OCI Object Storage native backend",
+    "followup": "#5301 OneDrive native backend"
+  },
+  "source_audit": {
+    "actions_run_id": 36384685987,
+    "artifact_id": 10954061813,
+    "artifact_digest": "sha256:6878c852d7b7e71a30ea17b6f386f69e94fd782ad86cd3cf3155192d4a342956",
+    "status": "PASS"
+  },
+  "backend_contract": {
+    "mandatory_core": [
+      "Save",
+      "Load",
+      "Stat",
+      "List",
+      "Remove",
+      "Delete"
+    ],
+    "conformance_suite_exercises_all_core": true,
+    "capability_corequirement": "HIGH",
+    "capability_bundle_mismatch": "LOW_OR_ABSENT"
+  },
+  "contamination": {
+    "exact_predemand_source_locked": true,
+    "OCI_post_demand_implementation_exists": true,
+    "OCI_implementation_source_read": false,
+    "OneDrive_implementation_exposure": "NONE_OBSERVED",
+    "treatment_input_policy": "PREDEMAND_SOURCE_ONLY"
+  },
+  "law_authority": "CBL-C1_FALSIFICATION_PRESSURE_HIGH__NO_RESULT",
+  "treatment_bytes": 0,
+  "outcome_opened": false,
+  "winner": null
+}
