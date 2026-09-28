@@ -1,0 +1,91 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P12",
+  "status": "PASS_WORLD_ADMISSION__RESTIC_OCI_ONEDRIVE__FULL_COREQUIREMENT_6_OF_6__CBL_C1_FALSIFICATION_PRESSURE_HIGH__ZERO_TREATMENT_BYTES",
+  "world_id": "RESTIC_OCI_ONEDRIVE",
+  "source": {
+    "repository": "restic/restic",
+    "exact_pre_demand_commit": "495982232cf1af184eac0a97871ef8161e8708ee",
+    "commit_time": "2023-10-17T21:06:34Z"
+  },
+  "demands": {
+    "initial": {
+      "issue": 4517,
+      "provider": "oci_object_storage",
+      "created_at": "2023-10-17T23:13:21Z",
+      "natural": true
+    },
+    "followup": {
+      "issue": 5301,
+      "provider": "onedrive",
+      "created_at": "2025-03-23T20:41:48Z",
+      "natural": true
+    },
+    "pair_frozen_before_treatment": true
+  },
+  "moderator_geometry": {
+    "preexisting_boundary": "STRONG_MANDATORY_BACKEND_INTERFACE",
+    "mandatory_core_operations": [
+      "Save",
+      "Load",
+      "Stat",
+      "List",
+      "Remove",
+      "Delete"
+    ],
+    "mandatory_core_coverage": "6/6",
+    "canonical_conformance_exercise": "6/6",
+    "capability_corequirement": "HIGH",
+    "capability_bundle_mismatch": "LOW_OR_ABSENT",
+    "cbl_c1_falsification_pressure": "HIGH"
+  },
+  "contamination_firewall": {
+    "exact_predemand_source_locked": true,
+    "OCI_post_demand_implementation_exists": true,
+    "OCI_implementation_source_read": false,
+    "OneDrive_implementation_exposure": "NONE_OBSERVED",
+    "permitted_treatment_input": "EXACT_PREDEMAND_SOURCE_PLUS_DEMAND_TEXT_ONLY"
+  },
+  "lawkit": {
+    "protocol": "0.5",
+    "discovery_language": "SWI-Prolog",
+    "discovery_language_reason": "relational conjunctive falsifier/admission queries",
+    "source_audit_language": "Go",
+    "source_audit_language_reason": "native go/parser and go/ast inspection of Go interface and conformance suite",
+    "independent_authority_verifier": "Node.js",
+    "discovery": {
+      "run_id": 36384870262,
+      "artifact_id": 10954550046,
+      "artifact_digest": "sha256:7765a8a2e335f9b8cc5bb46ccf2c7cef82a809c170c6fd3d8a5d52e7bdc4dc25",
+      "status": "PASS"
+    },
+    "source_audit": {
+      "run_id": 36384685987,
+      "artifact_id": 10954061813,
+      "artifact_digest": "sha256:6878c852d7b7e71a30ea17b6f386f69e94fd782ad86cd3cf3155192d4a342956",
+      "status": "PASS"
+    },
+    "cross_language_ci": {
+      "run_id": 36384870277,
+      "artifact_id": 10954037181,
+      "artifact_digest": "sha256:58f1e12cfb418a411017152420cbc46575bf4ad869d056044f09aff8683c29af",
+      "status": "PASS"
+    }
+  },
+  "rejected_or_held_examples": {
+    "DUPLICATI_MOVISTAR": "HOLD_TREATMENT_CONTAMINATION__MVP_PR_LINKED",
+    "RCLONE_ADOBE_CREATIVE_CLOUD": "HOLD_LOW_OR_UNRESOLVED_COREQUIREMENT",
+    "OPENLIBRARY_COVER_PIPELINE": "HOLD_TREATMENT_LEVEL_DESIGN_DIAGNOSIS_EXPOSED"
+  },
+  "research_os": {
+    "ravel_range": "8759-8784",
+    "decision_range": "8785-8799",
+    "run_url": "https://app.notion.com/p/3e9ef561cf9281b398a6e7819704dcdf",
+    "decision_url": "https://app.notion.com/p/3e9ef561cf928109abc2c136e4eaa548",
+    "global_next": 8800
+  },
+  "treatment_bytes": 0,
+  "outcomes_opened": false,
+  "cbl_c1_falsified": false,
+  "winner": null,
+  "next_gate": "FULL_BACKEND_REUSE_vs_CAPABILITY_COMPOSED_BACKEND_PRETREATMENT_CONSTITUTION__OCI_PHASE0__ONEDRIVE_PHASE1_FROZEN"
+}
