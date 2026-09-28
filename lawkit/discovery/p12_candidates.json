@@ -1,63 +1,136 @@
 {
-  "stage":"EvoNOMOS Generation VIII ORIGIN-R1-P12",
-  "candidates":[
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P12",
+  "candidates": [
     {
-      "id":"DUPLICATI_MOVISTAR",
-      "repository":"duplicati/duplicati",
-      "issue":6835,
-      "family":"backup-storage-backend",
-      "real_demand":true,
-      "preexisting_boundary":"STRONG",
-      "bundled_capabilities":["list","get","put","delete","test"],
-      "demand_capabilities":["list","get","put","delete","test"],
-      "capability_corequirement":"HIGH",
-      "paired_followup":false,
-      "implementation_contamination":true,
-      "contamination_note":"Issue links an existing MVP PR #6821.",
-      "exact_source_recoverable":"UNRESOLVED"
+      "id": "RESTIC_OCI_ONEDRIVE",
+      "repository": "restic/restic",
+      "issue": 4517,
+      "followup_issue": 5301,
+      "family": "native-repository-backend",
+      "real_demand": true,
+      "preexisting_boundary": "STRONG",
+      "bundled_capabilities": [
+        "save",
+        "load",
+        "stat",
+        "list",
+        "remove",
+        "delete"
+      ],
+      "demand_capabilities": [
+        "save",
+        "load",
+        "stat",
+        "list",
+        "remove",
+        "delete"
+      ],
+      "capability_corequirement": "HIGH",
+      "paired_followup": true,
+      "implementation_contamination": false,
+      "post_demand_implementation_exists_unread": true,
+      "exact_source_recoverable": true,
+      "exact_pre_demand_commit": "495982232cf1af184eac0a97871ef8161e8708ee",
+      "note": "Initial OCI demand precedes any known implementation; later comment says code exists but treatment source/PR was not read. OneDrive is an independent later real backend demand."
     },
     {
-      "id":"RCLONE_ADOBE_CREATIVE_CLOUD",
-      "repository":"rclone/rclone",
-      "issue":8868,
-      "family":"cloud-storage-backend",
-      "real_demand":true,
-      "preexisting_boundary":"STRONG_OPTIONAL_CAPABILITY_SYSTEM",
-      "bundled_capabilities":["list","read","write","delete"],
-      "demand_capabilities":["write"],
-      "capability_corequirement":"LOW_OR_UNRESOLVED",
-      "paired_followup":false,
-      "implementation_contamination":false,
-      "exact_source_recoverable":"LIKELY"
+      "id": "DUPLICATI_MOVISTAR",
+      "repository": "duplicati/duplicati",
+      "issue": 6835,
+      "family": "backup-storage-backend",
+      "real_demand": true,
+      "preexisting_boundary": "STRONG",
+      "bundled_capabilities": [
+        "list",
+        "get",
+        "put",
+        "delete",
+        "test"
+      ],
+      "demand_capabilities": [
+        "list",
+        "get",
+        "put",
+        "delete",
+        "test"
+      ],
+      "capability_corequirement": "HIGH",
+      "paired_followup": false,
+      "implementation_contamination": true,
+      "contamination_note": "Issue links an existing MVP PR #6821.",
+      "exact_source_recoverable": "UNRESOLVED"
     },
     {
-      "id":"RESTIC_RCLONE_SSH",
-      "repository":"restic/restic",
-      "issue":4468,
-      "family":"repository-backend",
-      "real_demand":true,
-      "preexisting_boundary":"STRONG",
-      "bundled_capabilities":["load","save","stat","remove","list"],
-      "demand_capabilities":["load","save","stat","remove","list"],
-      "capability_corequirement":"HIGH",
-      "paired_followup":false,
-      "implementation_contamination":"UNRESOLVED",
-      "exact_source_recoverable":"LIKELY"
+      "id": "RCLONE_ADOBE_CREATIVE_CLOUD",
+      "repository": "rclone/rclone",
+      "issue": 8868,
+      "family": "cloud-storage-backend",
+      "real_demand": true,
+      "preexisting_boundary": "STRONG_OPTIONAL_CAPABILITY_SYSTEM",
+      "bundled_capabilities": [
+        "list",
+        "read",
+        "write",
+        "delete"
+      ],
+      "demand_capabilities": [
+        "write"
+      ],
+      "capability_corequirement": "LOW_OR_UNRESOLVED",
+      "paired_followup": false,
+      "implementation_contamination": false,
+      "exact_source_recoverable": "LIKELY"
     },
     {
-      "id":"OPENLIBRARY_COVER_PIPELINE",
-      "repository":"internetarchive/openlibrary",
-      "issue":13682,
-      "family":"cover-import-pipeline",
-      "real_demand":true,
-      "preexisting_boundary":"MEDIUM",
-      "bundled_capabilities":["fetch-remote","validate-host","upload-cover","persist-reference"],
-      "demand_capabilities":["fetch-remote","validate-host","upload-cover","persist-reference"],
-      "capability_corequirement":"HIGH",
-      "paired_followup":false,
-      "implementation_contamination":false,
-      "exact_source_recoverable":"LIKELY"
+      "id": "RESTIC_RCLONE_SSH",
+      "repository": "restic/restic",
+      "issue": 4468,
+      "family": "repository-backend",
+      "real_demand": true,
+      "preexisting_boundary": "STRONG",
+      "bundled_capabilities": [
+        "load",
+        "save",
+        "stat",
+        "remove",
+        "list"
+      ],
+      "demand_capabilities": [
+        "load",
+        "save",
+        "stat",
+        "remove",
+        "list"
+      ],
+      "capability_corequirement": "HIGH",
+      "paired_followup": false,
+      "implementation_contamination": "UNRESOLVED",
+      "exact_source_recoverable": "LIKELY"
+    },
+    {
+      "id": "OPENLIBRARY_COVER_PIPELINE",
+      "repository": "internetarchive/openlibrary",
+      "issue": 13682,
+      "family": "cover-import-pipeline",
+      "real_demand": true,
+      "preexisting_boundary": "MEDIUM",
+      "bundled_capabilities": [
+        "fetch-remote",
+        "validate-host",
+        "upload-cover",
+        "persist-reference"
+      ],
+      "demand_capabilities": [
+        "fetch-remote",
+        "validate-host",
+        "upload-cover",
+        "persist-reference"
+      ],
+      "capability_corequirement": "HIGH",
+      "paired_followup": false,
+      "implementation_contamination": false,
+      "exact_source_recoverable": "LIKELY"
     }
   ],
-  "authority":"DISCOVERY_ONLY"
+  "authority": "DISCOVERY_ONLY"
 }
