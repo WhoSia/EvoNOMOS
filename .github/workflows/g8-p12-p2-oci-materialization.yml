@@ -21,7 +21,7 @@ env:
 jobs:
   materialize:
     name: Independent OCI arms + common mandatory-capability oracle
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
