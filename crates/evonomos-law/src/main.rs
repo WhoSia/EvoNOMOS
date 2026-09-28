@@ -1,7 +1,7 @@
 use anyhow::{Context, Result};
 use evonomos_law::{
-    adjudicate, admit_world, inspect, AuthorityFirewall, LifecycleExposure, ModeratorEnvelope,
-    WorldEnvelope,
+    adjudicate, admit_world, inspect, project_law_surface, AuthorityFirewall, LawSurfaceEnvelope,
+    LifecycleExposure, ModeratorEnvelope, WorldEnvelope,
 };
 use serde::de::DeserializeOwned;
 use std::{env, fs, path::PathBuf};
@@ -48,8 +48,19 @@ fn main() -> Result<()> {
             }
             println!("{}", serde_json::to_string_pretty(&admit_world(world))?);
         }
+        Some("project-law") => {
+            let path = PathBuf::from(args.next().context("missing law-surface path")?);
+            if args.next().is_some() {
+                anyhow::bail!("unexpected extra arguments");
+            }
+            let env: LawSurfaceEnvelope = read_json(&path)?;
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&project_law_surface(env)?)?
+            );
+        }
         _ => anyhow::bail!(
-            "usage: evonomos-law inspect <moderator-json> | adjudicate <moderator-json> <lifecycle-json> <firewall-json> | admit-world <world-envelope.json>"
+            "usage: evonomos-law inspect <moderator-json> | adjudicate <moderator-json> <lifecycle-json> <firewall-json> | admit-world <world-envelope.json> | project-law <law-surface.json>"
         ),
     }
     Ok(())
