@@ -13,5 +13,9 @@ for(const c of src.candidates){
 }
 const contaminated=byId.get('DUPLICATI_MOVISTAR');
 if(contaminated?.admission!=='HOLD') fail('contaminated Duplicati candidate admitted');
+const restic=byId.get('RESTIC_OCI_ONEDRIVE');
+if(restic?.admission!=='ADMITTABLE') fail('Restic adversarial pair not admitted');
+if(restic?.capability_corequirement!=='HIGH') fail('Restic corequirement lost');
+if(restic?.pair_quality!=='STRONG') fail('Restic real followup pair lost');
 console.log('LAWKIT_P12_DISCOVERY=PASS');
 console.log('LAWKIT_P12_PROMOTED=NONE');
