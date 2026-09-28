@@ -145,5 +145,12 @@
   "scalarization": false,
   "winner": null,
   "p11_closed": true,
-  "next_gate": "NEXT_GENERATION_FRESH_WORLD_OR_MATERIAL_MODERATOR_SHIFT"
+  "next_gate": "NEXT_GENERATION_FRESH_WORLD_OR_MATERIAL_MODERATOR_SHIFT",
+  "research_os": {
+    "ravel_range": "8709-8740",
+    "decision_range": "8741-8758",
+    "run_url": "https://app.notion.com/p/3e9ef561cf9281b6a788d5416eaf8295",
+    "decision_url": "https://app.notion.com/p/3e9ef561cf928105a757fc918f9d1483",
+    "global_next": 8759
+  }
 }
