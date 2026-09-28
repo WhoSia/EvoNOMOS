@@ -1,5 +1,11 @@
 # Active lineage
 
-No experiment is currently open.
+Current scientific surface:
 
-Generation VIII ORIGIN-R1-P12 is terminally closed as a non-result. The next authorized lineage is Generation VIII LAW-R1, but it has not been opened yet.
+- `active/g8-law-r1-p0/`
+- status: `CONSTITUTION_AND_TOOLING_MATERIALIZED / CI_PENDING`
+- authority: prospective rival-test selection + abstention only
+- architecture winner: none
+- scalarization: forbidden
+
+Generation VIII ORIGIN-R1 is closed. LAW-R1 is now the only active visible mainline.
