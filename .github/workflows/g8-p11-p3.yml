@@ -1,0 +1,403 @@
+name: G8 P11-P3 Tavily Lifecycle Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p11-p3/**'
+      - 'harness/p11_p3/**'
+      - 'tools/p11-p3-*.mjs'
+      - 'lawkit/protocol/v0.4/**'
+      - 'lawkit/measurements/provider_family_lifecycle_v01.py'
+      - 'lawkit/courts/cil_cbl_support_v01.mjs'
+      - '.github/workflows/g8-p11-p3.yml'
+
+concurrency:
+  group: g8-p11-p3-tavily
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SUBJECT_REPO: https://github.com/truefoundry/trueforge.git
+  BASE: dd421b79216c9b42eefd7b0191e546919f8be3f1
+  P2_RUN: '36232534560'
+  P3: active/g8-origin-r1-p11-p3
+  ORACLE_ID: SEARCH_FETCH_EXPOSURE_V01
+
+jobs:
+  preflight:
+    name: Exact-parent and measurement preseal
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify contracts and executable grammar
+        run: |
+          set -euo pipefail
+          python3 -m py_compile harness/p11_p3/materialize_tavily.py harness/p11_p3/fidelity.py lawkit/measurements/provider_family_lifecycle_v01.py
+          node --check tools/p11-p3-phase1-verify.mjs
+          node --check tools/p11-p3-pair-adjudicate.mjs
+          node --check lawkit/courts/cil_cbl_support_v01.mjs
+          cmp "$P3/contract/MEASUREMENT_CONSTITUTION.json" lawkit/protocol/v0.4/MEASUREMENT_CONSTITUTION_P11_P3.json
+          cmp "$P3/contract/LAW_COURT_CONSTITUTION.json" lawkit/protocol/v0.4/LAW_COURT_CONSTITUTION_P11_P3.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('active/g8-origin-r1-p11-p3/contract/PARENT_AUTHORITY.json'))
+          assert p['p2_run_id']==36232534560
+          assert p['phase0']=='SEALED_PARENT_MEASUREMENT'
+          assert p['phase1']=={'issue':853,'provider':'tavily','state':'AUTHORIZED'}
+          assert p['measurement_firewall_released'] is False
+          PY
+          echo SOURCE_OK
+
+  arm:
+    name: Phase1 Tavily — ${{ matrix.arm }}
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: WIDE_BOUNDARY_REUSE
+            parent_artifact_name: p11-p2-arm-wide
+            parent_artifact_id: 10903450436
+            parent_artifact_digest: sha256:c7e1560e765e5d81007820b1cc4978ab7fb8c8c32dc160982dcd3b23c62ec13a
+            artifact: wide
+          - arm: CAPABILITY_SEGREGATED
+            parent_artifact_name: p11-p2-arm-segregated
+            parent_artifact_id: 10901994962
+            parent_artifact_digest: sha256:ff03bb841214b4692b03252ede1537fc60db319a49b00bc211f34029c019b083
+            artifact: segregated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.16.0'
+          run_install: false
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.23.x'
+          cache: false
+
+      - name: Verify exact P2 artifact metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED: ${{ matrix.parent_artifact_digest }}
+        run: |
+          set -euo pipefail
+          actual="$(gh api repos/WhoSia/EvoNOMOS/actions/artifacts/${{ matrix.parent_artifact_id }} --jq .digest)"
+          test "$actual" = "$EXPECTED"
+          echo PARENT_METADATA_OK
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.parent_artifact_name }}
+          path: parent-evidence
+          github-token: ${{ github.token }}
+          repository: WhoSia/EvoNOMOS
+          run-id: 36232534560
+
+      - name: Verify P2 receipt and bundle custody
+        env:
+          ARM: ${{ matrix.arm }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          r=json.load(open('parent-evidence/arm-receipt.json'))
+          arm=os.environ['ARM']
+          assert r['arm']==arm and r['status']=='PASS'
+          assert r['source']=='dd421b79216c9b42eefd7b0191e546919f8be3f1'
+          assert r['q0']==1 and r['phase0_provider']=='exa' and r['phase1_state']=='SEALED'
+          assert r['measurement_firewall_released'] is False and r['coordinates_opened'] is False
+          b=Path('parent-evidence/arm.bundle')
+          assert hashlib.sha256(b.read_bytes()).hexdigest()==r['arm_bundle_sha256']
+          Path('out/p2-parent-head.txt').write_text(r['arm_head']+'\n')
+          Path('out/p2-parent-tree.txt').write_text(r['arm_tree']+'\n')
+          Path('out/p2-parent-bundle-sha256.txt').write_text(r['arm_bundle_sha256']+'\n')
+          Path('out/phase0-exposure-probe.json').write_bytes(Path('parent-evidence/exposure-probe.json').read_bytes())
+          PY
+          echo PARENT_CUSTODY_OK
+
+      - name: Reconstruct exact P2 arm
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "$SUBJECT_REPO" subject >/dev/null 2>&1
+          git -C subject checkout --quiet --detach "$BASE"
+          git -C subject fetch --quiet "$GITHUB_WORKSPACE/parent-evidence/arm.bundle" HEAD:refs/heads/p2-parent
+          git -C subject checkout --quiet --detach refs/heads/p2-parent
+          test "$(git -C subject rev-parse HEAD)" = "$(cat out/p2-parent-head.txt)"
+          test "$(git -C subject rev-parse 'HEAD^{tree}')" = "$(cat out/p2-parent-tree.txt)"
+          echo PARENT_RECONSTRUCTION_OK
+
+      - name: Materialize only frozen Tavily continuation
+        run: |
+          set -euo pipefail
+          python3 evonomos/harness/p11_p3/materialize_tavily.py --arm "${{ matrix.arm }}" --subject subject --out out
+          python3 evonomos/harness/p11_p3/fidelity.py --arm "${{ matrix.arm }}" --subject subject
+          parent="$(cat out/p2-parent-head.txt)"
+          git -C subject diff --quiet "$parent" -- packages/trueforge/src/config.ts
+          git -C subject diff --quiet "$parent" -- packages/trueforge/src/truefoundry/TrueFoundryWebSearchProviderStore.ts
+          git -C subject diff --quiet "$parent" -- packages/trueforge-ui/src/plugins/trueforge-agent-server-adapter/catalogs/webSearchProviderCatalog.ts
+
+      - name: Install frozen TrueForge workspace
+        working-directory: subject
+        run: pnpm install --frozen-lockfile --reporter=silent
+
+      - name: Build shared Go oracle
+        run: |
+          set -euo pipefail
+          pushd evonomos/lawkit/oracles/provider-surface-v01 >/dev/null
+          go test ./... >/dev/null
+          go build -o "$GITHUB_WORKSPACE/provider-surface-oracle" .
+          popd >/dev/null
+          echo ORACLE_BUILD_OK
+
+      - name: Start mock-only provider surface
+        run: |
+          set -euo pipefail
+          "$GITHUB_WORKSPACE/provider-surface-oracle" --listen 127.0.0.1:18765 > out/oracle.log 2>&1 &
+          echo $! > out/oracle.pid
+          for i in $(seq 1 50); do
+            curl -fsS http://127.0.0.1:18765/healthz >/dev/null && exit 0
+            sleep 0.1
+          done
+          exit 1
+
+      - name: Compile product surfaces
+        working-directory: subject
+        run: |
+          set -euo pipefail
+          if ! pnpm --filter @truefoundry/trueforge-core typecheck > "$GITHUB_WORKSPACE/out/core-typecheck.log" 2>&1; then cat "$GITHUB_WORKSPACE/out/core-typecheck.log"; exit 1; fi
+          if ! pnpm --filter @truefoundry/trueforge typecheck > "$GITHUB_WORKSPACE/out/server-typecheck.log" 2>&1; then cat "$GITHUB_WORKSPACE/out/server-typecheck.log"; exit 1; fi
+          echo BUILD_OK
+
+      - name: Execute Tavily search/extract and exposure oracle
+        working-directory: subject
+        env:
+          EVONOMOS_ORACLE_BASE_URL: http://127.0.0.1:18765
+          EVONOMOS_PROBE_OUT: ${{ github.workspace }}/out/phase1-exposure-probe.json
+        run: |
+          set -euo pipefail
+          pnpm --filter @truefoundry/trueforge-core exec jest --config jest.config.cjs --runInBand tests/core/web-search/EvoNomosTavilyProvider.test.ts >/dev/null
+          echo ORACLE_TEST_OK
+
+      - name: Execute Tavily settings/runtime contract
+        working-directory: subject
+        run: |
+          set -euo pipefail
+          pnpm --filter @truefoundry/trueforge exec jest --config jest.unit.config.cjs --runInBand tests/unit/apis/webSearchProviders.tavily.evonomos.test.ts >/dev/null
+          echo SETTINGS_CONTRACT_OK
+
+      - name: Verify phase1 exposure
+        run: |
+          set -euo pipefail
+          node evonomos/tools/p11-p3-phase1-verify.mjs "${{ matrix.arm }}" out/phase1-exposure-probe.json
+
+      - name: Seal full exact arm bundle silently
+        run: |
+          set -euo pipefail
+          git -C subject config user.name "EvoNOMOS Treatment Builder"
+          git -C subject config user.email "evonomos@example.invalid"
+          git -C subject add -A
+          export GIT_AUTHOR_DATE="2026-09-28T05:00:00Z"
+          export GIT_COMMITTER_DATE="2026-09-28T05:00:00Z"
+          git -C subject commit --quiet -m "EvoNOMOS P11-P3 Tavily ${{ matrix.arm }}"
+          git -C subject rev-parse HEAD > out/arm-head.txt
+          git -C subject rev-parse 'HEAD^{tree}' > out/arm-tree.txt
+          git -C subject bundle create "$GITHUB_WORKSPACE/out/arm.bundle" HEAD ^"$BASE"
+          git -C subject bundle verify "$GITHUB_WORKSPACE/out/arm.bundle" >/dev/null 2>&1
+          echo CUSTODY_OK
+
+      - name: Fresh full-history reconstruction
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none "$SUBJECT_REPO" recon >/dev/null 2>&1
+          git -C recon checkout --quiet --detach "$BASE"
+          git -C recon fetch --quiet "$GITHUB_WORKSPACE/out/arm.bundle" HEAD:refs/heads/p3-arm
+          git -C recon checkout --quiet --detach refs/heads/p3-arm
+          test "$(git -C recon rev-parse 'HEAD^{tree}')" = "$(cat out/arm-tree.txt)"
+          echo RECONSTRUCTION_OK
+
+      - name: Seal coordinate-blind P3 arm receipt
+        env:
+          ARM: ${{ matrix.arm }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          arm=os.environ['ARM']; root=Path('evonomos')
+          h=lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+          r={
+            'stage':'EvoNOMOS Generation VIII ORIGIN-R1-P11-P3','arm':arm,'status':'PASS',
+            'source':'dd421b79216c9b42eefd7b0191e546919f8be3f1',
+            'phase0_provider':'exa','phase1_provider':'tavily','q0':1,'q1':1,
+            'parent_custody':'PASS','materialization':'PASS','treatment_fidelity':'PASS','build':'PASS',
+            'shared_oracle':'PASS','settings_contract':'PASS','custody':'PASS','reconstruction':'PASS',
+            'oracle_id':'SEARCH_FETCH_EXPOSURE_V01',
+            'p2_parent_head':Path('out/p2-parent-head.txt').read_text().strip(),
+            'p2_parent_tree':Path('out/p2-parent-tree.txt').read_text().strip(),
+            'p2_parent_bundle_sha256':Path('out/p2-parent-bundle-sha256.txt').read_text().strip(),
+            'arm_head':Path('out/arm-head.txt').read_text().strip(),
+            'arm_tree':Path('out/arm-tree.txt').read_text().strip(),
+            'arm_bundle_sha256':h(Path('out/arm.bundle')),
+            'measurement_constitution_sha256':h(root/'active/g8-origin-r1-p11-p3/contract/MEASUREMENT_CONSTITUTION.json'),
+            'law_court_constitution_sha256':h(root/'active/g8-origin-r1-p11-p3/contract/LAW_COURT_CONSTITUTION.json'),
+            'demand_contract_sha256':h(root/'active/g8-origin-r1-p11-p2/inherited/DUAL_REAL_DEMAND_CONTRACT.json'),
+            'rival_contract_sha256':h(root/'active/g8-origin-r1-p11-p2/inherited/RIVAL_CONSTITUTION.json'),
+            'measurement_firewall_released':False,'coordinates_opened':False,'winner':None,
+          }
+          Path('out/arm-receipt.json').write_text(json.dumps(r,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Stop oracle
+        if: always()
+        run: |
+          if test -f out/oracle.pid; then kill "$(cat out/oracle.pid)" 2>/dev/null || true; fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-p3-arm-${{ matrix.artifact }}
+          path: |
+            out/arm.bundle
+            out/arm-head.txt
+            out/arm-tree.txt
+            out/arm-receipt.json
+            out/p2-parent-head.txt
+            out/p2-parent-tree.txt
+            out/p2-parent-bundle-sha256.txt
+            out/phase0-exposure-probe.json
+            out/phase1-exposure-probe.json
+            out/phase1-materialization.json
+          retention-days: 30
+
+  adjudicate:
+    name: Pre-reveal pair comparability court
+    needs: arm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p3-arm-wide
+          path: evidence/wide
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p3-arm-segregated
+          path: evidence/segregated
+      - name: Close Q1 and custody before reveal
+        run: |
+          set -euo pipefail
+          mkdir -p final
+          node tools/p11-p3-pair-adjudicate.mjs evidence/wide evidence/segregated final/P11_P3_PAIR_COURT.json
+          sha256sum final/P11_P3_PAIR_COURT.json > final/P11_P3_PAIR_COURT.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-p3-pair-court
+          path: final/
+          retention-days: 30
+
+  reveal:
+    name: Simultaneous two-phase vector reveal and law court
+    needs: adjudicate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: evonomos
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p3-arm-wide
+          path: evidence/wide
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p3-arm-segregated
+          path: evidence/segregated
+      - uses: actions/download-artifact@v4
+        with:
+          name: p11-p3-pair-court
+          path: evidence/pair
+
+      - name: Release firewall only from completed pair court
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('evidence/pair/P11_P3_PAIR_COURT.json'))
+          assert x['pair_comparability']=='PASS' and x['release_eligible'] is True
+          assert x['coordinate_values']=='SEALED_UNTIL_REVEAL_JOB'
+          assert x['measurement_firewall_released'] is False
+          PY
+          echo FIREWALL_RELEASED
+
+      - name: Reconstruct both complete arm histories
+        run: |
+          set -euo pipefail
+          for spec in "wide:wide" "segregated:seg"; do
+            e="${spec%%:*}"; d="${spec##*:}"
+            git clone --filter=blob:none "$SUBJECT_REPO" "measure-$d" >/dev/null 2>&1
+            git -C "measure-$d" checkout --quiet --detach "$BASE"
+            git -C "measure-$d" fetch --quiet "$GITHUB_WORKSPACE/evidence/$e/arm.bundle" HEAD:refs/heads/p3
+            git -C "measure-$d" checkout --quiet --detach refs/heads/p3
+            test "$(git -C "measure-$d" rev-parse HEAD)" = "$(cat "evidence/$e/arm-head.txt")"
+          done
+
+      - name: Build measurement input without printing coordinates
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          def arm(e,repo):
+              r=json.load(open(f'evidence/{e}/arm-receipt.json'))
+              return {
+                'repo':repo,'parent_head':r['p2_parent_head'],'child_head':r['arm_head'],
+                'phase0_probe':f'evidence/{e}/phase0-exposure-probe.json',
+                'phase1_probe':f'evidence/{e}/phase1-exposure-probe.json',
+                'q0':r['q0'],'q1':r['q1']
+              }
+          x={'base':'dd421b79216c9b42eefd7b0191e546919f8be3f1','arms':{
+            'WIDE_BOUNDARY_REUSE':arm('wide','measure-wide'),
+            'CAPABILITY_SEGREGATED':arm('segregated','measure-seg'),
+          }}
+          Path('measurement-input.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+
+      - name: Simultaneously reveal both phase vectors
+        run: |
+          set -euo pipefail
+          mkdir -p terminal
+          python3 evonomos/lawkit/measurements/provider_family_lifecycle_v01.py             --constitution evonomos/active/g8-origin-r1-p11-p3/contract/MEASUREMENT_CONSTITUTION.json             --input measurement-input.json             --out terminal/P11_P3_MEASUREMENT.json
+
+      - name: Execute CIL-C1 and CBL-C1 support-domain court
+        run: |
+          set -euo pipefail
+          node evonomos/lawkit/courts/cil_cbl_support_v01.mjs terminal/P11_P3_MEASUREMENT.json terminal/P11_P3_LAW_COURT.json
+          python3 - <<'PY'
+          import json
+          m=json.load(open('terminal/P11_P3_MEASUREMENT.json')); c=json.load(open('terminal/P11_P3_LAW_COURT.json'))
+          assert m['winner'] is None and c['winner'] is None
+          assert c['scalarization'] is False
+          PY
+          sha256sum terminal/P11_P3_MEASUREMENT.json terminal/P11_P3_LAW_COURT.json | sort > terminal/P11_P3_TERMINAL.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-p3-terminal-evidence
+          path: terminal/
+          retention-days: 30
