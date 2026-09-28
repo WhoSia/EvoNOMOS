@@ -81,7 +81,7 @@ main :-
       authority:"DISCOVERY_ONLY",
       candidates:Results,
       admissible:Admissible,
-      promoted: @(null)
+      promoted:null
     },
     setup_call_cleanup(
       open(Output, write, O),
