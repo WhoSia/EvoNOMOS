@@ -1,0 +1,53 @@
+{
+  "protocol_version": "0.6",
+  "evidence": [
+    {
+      "world_id": "P10_MIKROTIK",
+      "evidence_class": "EXPLORATORY_ONLY",
+      "observed": {
+        "outcomes_opened": true,
+        "surface_reversal": true,
+        "surface_discrimination": true,
+        "churn_reversal": false,
+        "capability_burden_reduction": null
+      }
+    },
+    {
+      "world_id": "P11_TRUEFORGE",
+      "evidence_class": "REAL_TWO_DEMAND",
+      "observed": {
+        "outcomes_opened": true,
+        "surface_reversal": false,
+        "surface_discrimination": false,
+        "churn_reversal": true,
+        "capability_burden_reduction": true
+      }
+    },
+    {
+      "world_id": "P12_RESTIC",
+      "evidence_class": "TERMINAL_NONRESULT",
+      "observed": {
+        "outcomes_opened": false,
+        "surface_reversal": null,
+        "surface_discrimination": null,
+        "churn_reversal": null,
+        "capability_burden_reduction": null
+      }
+    }
+  ],
+  "prospective_context": {
+    "context_id": "LAW_R1_P0_DEMO_BOUNDARY_PRESENT_SEARCH_ONLY",
+    "existing_boundary": "STRONG",
+    "membership_fanout": 8,
+    "shared_mechanism_fraction": "3/4",
+    "boundary_capabilities": [
+      "search",
+      "fetch"
+    ],
+    "demanded_capabilities": [
+      "search"
+    ],
+    "future_same_family_demand": "OBSERVED_OR_PLAUSIBLE",
+    "heterogeneity": "HIGH"
+  }
+}
