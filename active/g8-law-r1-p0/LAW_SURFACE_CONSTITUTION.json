@@ -1,0 +1,64 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P0",
+  "authority": "CONSTITUTION_ONLY",
+  "inherited_evidence": {
+    "P10": {
+      "authority": "EXPLORATORY_ONLY",
+      "signal": "S_REVERSAL_WITHOUT_L_REVERSAL",
+      "law": "CIL-C1"
+    },
+    "P11": {
+      "authority": "REAL_TWO_DEMAND",
+      "signal": "L_REVERSAL_WITHOUT_S_DISCRIMINATION__C_BURDEN_REMOVED",
+      "law": "CBL-C1"
+    },
+    "P12": {
+      "authority": "TERMINAL_NONRESULT",
+      "signal": "FULL_COREQUIREMENT_FALSIFIER_CELL_UNRESOLVED",
+      "law": "CBL-C1",
+      "retroactive_use": false
+    }
+  },
+  "constitution": {
+    "coordinate_noncollapse": [
+      "S",
+      "L",
+      "C",
+      "A",
+      "Q"
+    ],
+    "scalarization": false,
+    "overall_winner": null,
+    "prospective_authority": [
+      "SELECT_RIVAL_STRUCTURAL_TEST",
+      "STATE_MODERATOR_PRESSURE",
+      "STATE_FALSIFIERS",
+      "ABSTAIN"
+    ],
+    "forbidden": [
+      "SOLID_VALIDATION",
+      "UNIVERSAL_DIP_OR_ISP_RECOMMENDATION",
+      "P12_NONRESULT_AS_FALSIFICATION"
+    ]
+  },
+  "compressed_laws": {
+    "CIL-C1": {
+      "authority": "BOUND_MECHANISM_CANDIDATE",
+      "statement": "Dispersed membership authority without a sufficient boundary can make centralization worth testing for later propagation savings; surface savings do not imply source-churn savings.",
+      "falsifiers": [
+        "PREEXISTING_BOUNDARY_COLLAPSES_MEMBERSHIP_SURFACE_DIFFERENCE",
+        "LOW_OR_LOCAL_MEMBERSHIP_FANOUT",
+        "NO_REPEATED_SAME_FAMILY_MEMBERSHIP_CHANGE"
+      ]
+    },
+    "CBL-C1": {
+      "authority": "NARROW_MECHANISM_SUPPORT",
+      "statement": "A reused boundary that requires demand-extraneous capabilities can create real conformance burden; capability segregation is worth testing, while full bundle co-requirement is a live unresolved falsifier cell.",
+      "falsifiers": [
+        "DEMAND_COREQUIRES_FULL_BOUNDARY_BUNDLE",
+        "SEGREGATION_BIRTH_TAX_DOMINATES_LIFECYCLE",
+        "NO_TRUTHFUL_DEMAND_EXTRANEOUS_CONFORMANCE_OBLIGATION"
+      ]
+    }
+  }
+}
