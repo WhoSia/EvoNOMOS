@@ -183,7 +183,7 @@ export const TavilyWebSearchProviderSchema = z
     s=s.replace("  ParallelWebSearchProvider,\n", "  ParallelWebSearchProvider,\n  TavilyWebSearchProvider,\n")
     s=s.replace("    case 'exa':\n      return new ExaWebSearchProvider({ apiKey: manifest.auth.api_key });\n",
       "    case 'exa':\n      return new ExaWebSearchProvider({ apiKey: manifest.auth.api_key });\n"
-      "    case 'tavily':\n      return new TavilyWebSearchProvider({ apiKey: manifest.auth.api_key });\n")
+      "    case 'tavily':\n      return new TavilyWebSearchProvider(\n        manifest.auth.api_key === undefined ? {} : { apiKey: manifest.auth.api_key },\n      );\n")
     resolver.write_text(s)
 
     api=root/"packages/trueforge/src/apis/webSearchProviders.ts"
