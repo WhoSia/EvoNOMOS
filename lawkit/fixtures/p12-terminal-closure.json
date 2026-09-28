@@ -1,0 +1,43 @@
+{
+  "stage": "EvoNOMOS Generation VIII ORIGIN-R1-P12-P3",
+  "terminal_status": "TERMINAL_NONRESULT",
+  "reason": "AUTHORIZED_GITHUB_HOSTED_EXECUTION_DID_NOT_START_BEFORE_STAGE_CLOSURE",
+  "parent_gate": {
+    "required": "one clean P12-P2 hosted build/oracle/comparability execution",
+    "satisfied": false,
+    "observed_runs": [
+      {
+        "id": 36387981713,
+        "status": "queued"
+      },
+      {
+        "id": 36388352210,
+        "status": "queued"
+      },
+      {
+        "id": 36388425625,
+        "status": "queued"
+      },
+      {
+        "id": 36388588368,
+        "status": "queued"
+      }
+    ]
+  },
+  "scientific_firewall": {
+    "lifecycle_coordinates_opened": false,
+    "loc_churn_opened": false,
+    "scalarization": false,
+    "winner": null,
+    "cbl_c1_verdict": "UNADJUDICATED",
+    "onedrive_phase1_opened": false
+  },
+  "late_run_policy": "Any later completion is post-closure evidence and does not retroactively become P12 authority. Reuse requires explicit successor inheritance.",
+  "lineage": {
+    "origin_recovery_complete": true,
+    "origin_r2_admitted": false,
+    "generation_ix_admitted": false,
+    "next_authorized_lineage": "Generation VIII LAW-R1",
+    "next_stage_opened": false
+  }
+}
