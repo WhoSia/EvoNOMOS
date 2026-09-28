@@ -27,6 +27,7 @@ evonomos-law admit-world <world-envelope.json>
 - `inspect` — pre-outcome mechanism inspection; no design choice.
 - `adjudicate` — post-outcome coordinate/reversal classification under an explicit authority ceiling.
 - `admit-world` — conjunctive fresh-world admission; no scalar repository score and no design recommendation.
+- `project-law` — LAW-R1 prospective moderator-surface compiler; selects rival tests, emits abstention reasons and preserves falsifiers without choosing an architecture.
 - `lawkit/measurements/provider_family_lifecycle_v01.py` — exact-Git two-phase provider-family lifecycle measurement over `S/L/C/A/Q`.
 - `lawkit/courts/cil_cbl_support_v01.mjs` — support-domain court for CIL-C1 and CBL-C1 with explicit no-winner semantics.
 
@@ -43,7 +44,9 @@ The protocol is canonical; implementation language is not.
 - **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**
 - **CBL-C1 — Capability-Bundle Mismatch Law Candidate**
 
-P11 sharpens the distinction between them: membership-surface propagation (`S`) and handwritten source churn (`L`) can dissociate across worlds, while capability-conformance burden (`C`) can remain independently measurable.
+P11 sharpens the distinction between them: membership-surface propagation (`S`) and handwritten source churn (`L`) can dissociate across worlds, while capability-conformance burden (`C`) can remain independently measurable. LAW-R1-P0 therefore treats `S/L/C/A/Q` non-collapse as constitutional, not cosmetic.
+
+P12 is retained as a terminal non-result. Its full-corequirement CBL-C1 falsifier cell is **unresolved**, and `project-law` explicitly forbids treating that non-result as falsification.
 
 ## Development direction
 
