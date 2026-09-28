@@ -4,37 +4,28 @@ Canonical repository for executable conditional software-design law research.
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P12 — Adversarial Fresh-World Discovery, Capability-Co-Requirement Counterexample Search, Boundary-Strength Moderator Mapping, CBL-C1 Falsification Court & LawKit-Guided Cross-Project Admission**
+**EvoNOMOS Generation VIII ORIGIN-R1-P12-P2 — OCI Phase-0 Independent Full-Backend Reuse↔Capability-Composed Dual-Arm Materialization, Mandatory-Capability Oracle, Exact-Custody & Pre-Reveal Comparability Gate**
 
-- Active evidence surface: `active/g8-origin-r1-p12/`
-- Promoted world: `restic/restic` #4517 OCI → #5301 OneDrive.
-- Exact pre-demand source: `495982232cf1af184eac0a97871ef8161e8708ee`.
-- Existing `Backend` boundary is strong and mandatory.
-- Core bundle `Save/Load/Stat/List/Remove/Delete`: **6/6 mandatory, 6/6 exercised by canonical backend tests**.
-- Capability co-requirement: **HIGH**.
-- Capability-bundle mismatch: **LOW/ABSENT**.
-- CBL-C1 falsification pressure: **HIGH**.
-- Treatment bytes: zero. Outcomes: unopened. Winner: none.
+Current status: **EXECUTION HOLD / TREATMENTS MATERIALIZED / BUILD-ORACLE UNADJUDICATED / OUTCOMES CLOSED**
+
+- Active evidence surface: `active/g8-origin-r1-p12-p2/`
+- Exact Restic donor: `495982232cf1af184eac0a97871ef8161e8708ee`
+- OCI phase 0: restic/restic#4517
+- OneDrive phase 1: restic/restic#5301 — frozen and unopened
+- OCI Go SDK: `v65.50.0`, released before donor and demand
+- Rivals: `FULL_BACKEND_REUSE` vs `CAPABILITY_COMPOSED_BACKEND`
+- Public `restic.Backend` surface: invariant
+- Mandatory core: `Save / Load / Stat / List / Remove / Delete`
+- Static public method-set equality: PASS
+- Shared SDK-typed no-network oracle: materialized, execution pending
+- S/L/C/A/Q, LOC, churn, scalar ranking, winner and CBL-C1 verdict: **closed**
+
+The current blocker is not a scientific result: GitHub-hosted workflow jobs remain queued before build/oracle execution. P2 will not be sealed until one clean execution passes exact-donor reconstruction, neutral-scaffold identity, both arm builds/oracles, method-set equality and custody.
 
 ## LawKit
 
-LawKit is the executable theory/developer-tool layer, not a SOLID rule engine.
-
-Current roles include:
-- Rust — deterministic typed law kernels;
-- Python — independent reference semantics and lifecycle measurement;
-- Node.js — independent authority/output verification and courts;
-- Go — HTTP isolation or native Go AST analysis where the Go standard library is the correct instrument;
-- SWI-Prolog — relational adversarial world-discovery and falsifier queries.
-
-**The protocol is canonical; implementation language is not.**
-
-## GitHub Actions policy
-
-Actions is a read-only experimental substrate. It may clone exact worlds, audit, build, execute and upload evidence; it does not commit results back to the repository. CI/log observability is part of the measurement instrument.
+LawKit is the executable theory/developer-tool layer, not a SOLID rule engine. Tool and language choice is role-driven.
 
 ## Repository workflow
 
 `main` is canonical. Only the live scientific lineage remains under `active/`; retired stages stay in Git history and Research OS.
-
-The scientific target is not a replacement doctrine for SOLID. It is a map of when named design interventions help, hurt, reverse, or warrant abstention under observable architecture and demand conditions.
