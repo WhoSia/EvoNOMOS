@@ -4,22 +4,19 @@ Canonical repository for executable conditional software-design law research.
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P12-P3 — TERMINAL NON-RESULT**
+**EvoNOMOS Generation VIII LAW-R1-P0 — Cross-World Conditional Design-Law Consolidation, Moderator-Surface Identification, Falsifier-Preserving Principle Compression & Prospective Design-Decision Constitution**
 
-P12 is closed without outcome exposure.
+Current status: **CONSTITUTION_AND_TOOLING_MATERIALIZED / CI_PENDING**
 
-- Exact Restic donor and both OCI treatment designs remain historically recoverable.
-- The required GitHub-hosted P12-P2 build/oracle/comparability execution never started before closure.
-- OCI `S/L/C/A/Q`, LOC/churn, scalar ranking, winner and CBL-C1 verdict were never opened.
-- OneDrive phase 1 was never opened.
-- A later queued-run completion cannot retroactively become P12 authority; reuse requires explicit successor inheritance.
+LAW-R1 is the forward conditional-law lineage after ORIGIN closure.
 
-ORIGIN's corrective function is complete. The next authorized lineage is **Generation VIII LAW-R1**, but no LAW-R1 experiment has been opened in this commit.
+P0 consolidates existing evidence without manufacturing new outcomes:
+- P10: exploratory CIL-C1 mechanism evidence — S reversal without L reversal.
+- P11: narrow CBL-C1 mechanism support — L reversal without S discrimination, with truthful C-burden removal.
+- P12: terminal non-result — the full-corequirement falsifier cell remains unresolved.
 
-## LawKit
-
-LawKit is the executable theory/developer-tool layer, not a SOLID rule engine. Tool and language choice is role-driven.
+LawKit v0.6 compiles pre-treatment moderator context into rival tests, abstention reasons and preserved falsifiers. It does not issue an architecture winner.
 
 ## Repository workflow
 
-`main` is canonical. Retired stages stay recoverable in Git history and Research OS. The `active/` surface is empty between P12 terminal closure and the next explicitly opened stage.
+`main` is canonical. Only the live scientific lineage remains under `active/`; retired stages remain recoverable in Git history and Research OS.
