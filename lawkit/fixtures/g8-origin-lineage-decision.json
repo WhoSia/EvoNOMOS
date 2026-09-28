@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "current_generation": "Generation VIII",
+  "current_lineage": "Generation VIII ORIGIN-R1",
+  "graduation_label": "Generation VIII LAW-R1",
+  "active_experiment_open": true,
+  "generation_delta": {
+    "theory": false,
+    "ontology": false,
+    "data_regime": false,
+    "measurement": false,
+    "court": false,
+    "authority": false
+  },
+  "origin_recovery": {
+    "founding_explanandum_preserved": true,
+    "real_structural_interventions_resumed": true,
+    "rival_policy_competition_resumed": true,
+    "observed_reversal_or_failure_boundary": true,
+    "design_decision_consequences": true,
+    "independent_world_contacts": 3
+  },
+  "drift_after_recovery": {
+    "method_or_infrastructure_became_primary_object": false,
+    "consecutive_method_only_mainline_stages": 0
+  },
+  "evidence_note": "Gen VIII restored real structural interventions, prospective rival-policy comparisons, lifecycle sign/Pareto readouts, and adversarial fresh-world testing. P12 is still an open experiment, so any lineage label transition waits for terminal closure."
+}
