@@ -1,0 +1,47 @@
+name: G8 P12 Adversarial Discovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-origin-r1-p12/**'
+      - 'lawkit/discovery/**'
+      - 'lawkit/protocol/v0.5/**'
+      - 'tools/lawkit-p12-discovery-verify.mjs'
+      - '.github/workflows/g8-p12-discovery.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  discovery:
+    name: Prolog adversarial admission + Node authority verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SWI-Prolog
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq swi-prolog-nox
+
+      - name: Execute declarative falsification-oriented census
+        run: |
+          mkdir -p out
+          swipl -q -s lawkit/discovery/p12_rules.pl --             lawkit/discovery/p12_candidates.json             out/p12-discovery.json
+
+      - name: Independent authority verification
+        run: |
+          node tools/lawkit-p12-discovery-verify.mjs             lawkit/discovery/p12_candidates.json             out/p12-discovery.json
+
+      - name: Seal discovery evidence
+        run: |
+          sha256sum out/p12-discovery.json > out/p12-discovery.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p12-adversarial-discovery
+          path: out/
+          retention-days: 30
