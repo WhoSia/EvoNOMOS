@@ -4,44 +4,42 @@ Canonical repository for executable conditional software-design law research.
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII ORIGIN-R1-P11-P2 — Isolated Phase-0 Exa Dual-Arm Materialization, Shared Mock-HTTP Oracle Execution, Exact Bundle Custody, Semantic Pair Comparability & Pre-Measurement Firewall Court**
+**EvoNOMOS Generation VIII ORIGIN-R1-P11-P3 — Exact P2 Arm Reconstruction, Real Tavily Phase-1 Dual-Arm Continuation, Shared Search/Extract Oracle Execution, Two-Phase S/L/C/A Simultaneous Reveal & CIL-C1/CBL-C1 Support-Domain Court**
 
-- Active evidence surface: `active/g8-origin-r1-p11-p2/`
-- Exact source: `truefoundry/trueforge@dd421b79216c9b42eefd7b0191e546919f8be3f1`.
-- Phase 0 real demand: #852 Exa.
-- Both frozen treatments independently materialized from the exact same source:
-  - `WIDE_BOUNDARY_REUSE`
-  - `CAPABILITY_SEGREGATED`
-- Both pass product compilation, settings/runtime contract, shared Go mock-wire oracle, treatment-specific search/fetch exposure, exact bundle custody and fresh tree reconstruction.
-- Coordinate-blind pair court: `COMPARABLE`.
-- `Q0=1` for both arms.
-- `S/L/C/A`: **SEALED**; not revealed or compared.
-- Measurement firewall: **CLOSED**.
-- Real Tavily #853 follow-up: **SEALED**, authorized next from the exact P2 arm bundles.
-- Winner: none.
+- Exact world: `truefoundry/trueforge@dd421b79216c9b42eefd7b0191e546919f8be3f1`
+- Real demand pair: Exa #852 → Tavily #853
+- Exact P2 arms reconstructed from durable Git bundles before Tavily continuation
+- Both arms: `Q0=1`, `Q1=1`, exact custody and pair comparability PASS
+- WIDE vectors:
+  - phase0 `[S,L,C,A,Q]=[5,156,1,2,1]`
+  - phase1 `[6,166,1,3,1]`
+- CAPABILITY_SEGREGATED vectors:
+  - phase0 `[5,183,0,2,1]`
+  - phase1 `[6,135,0,3,1]`
+- Phase0 relation: tradeoff
+- Phase1 relation: CAPABILITY_SEGREGATED Pareto-dominates on the frozen cost coordinates
+- CIL-C1: no later membership-surface discrimination in this world
+- CBL-C1: mechanistic support extends across two independently observed real search-only demands
+- Scalarization: forbidden
+- Winner: none
 
-Canonical passing Actions run: `36232534560`.
+Canonical passing Actions run: `36382197510`.
 
 ## LawKit
 
-`lawkit/` + `crates/evonomos-law/` remain the executable theory/developer-tool layer.
+`lawkit/` + `crates/evonomos-law/` are the executable theory/developer-tool layer.
 
-Current tool surfaces include:
-- v0.1 moderator inspection;
-- v0.2 authority-preserving lifecycle adjudication;
-- v0.3 fresh-world admission;
-- exact-source provider-family adapters;
-- provider-surface oracle v0.1 in Go.
+LawKit v0.4 adds a reusable provider-family lifecycle measurement protocol and a CIL-C1/CBL-C1 support-domain court. It keeps semantic authority propagation, handwritten source churn, capability-conformance burden, auth-policy authority and validity as separate coordinates.
 
 LawKit does **not** encode SOLID, DIP, OCP, ISP or another design principle as an axiom. The protocol is canonical; implementation language is not.
 
 ## GitHub Actions policy
 
-Actions is the read-only experimental substrate. It may execute and upload evidence, but it does not commit results back to the repository. Logs are part of the measurement instrument and remain subject to the same blindness rules as source measurements.
+Actions is the read-only experimental substrate. It may execute, reconstruct, measure and upload evidence, but it does not commit scientific results back to the repository.
 
 ## Repository workflow
 
-`main` is canonical. Only the live scientific lineage remains under `active/`; retired experimental scaffolding stays recoverable in Git history and Research OS.
+`main` is canonical. Only the live scientific lineage remains under `active/`; retired experiment-specific runners and harnesses remain recoverable in Git history and Research OS.
 
 The research target remains:
 

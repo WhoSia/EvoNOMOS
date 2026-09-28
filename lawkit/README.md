@@ -16,7 +16,7 @@ LawKit targets:
 
 That makes it usable during actual development without pretending that a named rule is universally correct.
 
-## Commands today
+## Commands and protocol surfaces
 
 ```bash
 evonomos-law inspect <moderator-envelope.json>
@@ -27,21 +27,23 @@ evonomos-law admit-world <world-envelope.json>
 - `inspect` — pre-outcome mechanism inspection; no design choice.
 - `adjudicate` — post-outcome coordinate/reversal classification under an explicit authority ceiling.
 - `admit-world` — conjunctive fresh-world admission; no scalar repository score and no design recommendation.
+- `lawkit/measurements/provider_family_lifecycle_v01.py` — exact-Git two-phase provider-family lifecycle measurement over `S/L/C/A/Q`.
+- `lawkit/courts/cil_cbl_support_v01.mjs` — support-domain court for CIL-C1 and CBL-C1 with explicit no-winner semantics.
 
 ## Source adapters
 
-`lawkit/adapters/` is the beginning of the developer-facing evidence compiler.
+`lawkit/adapters/` is the developer-facing evidence compiler.
 
 The first adapter, `github_provider_family_v01.mjs`, checks an exact Git checkout against a frozen source-evidence specification. It verifies source identity, architecture authority sites, runtime interface evidence and pre-demand provider absence. The adapter emits evidence; it does not choose an architecture.
 
-Future adapters may use TypeScript, C++, Haskell, Scala, Kotlin, OCaml, Prolog, Ada, D, R or another language when useful. **The protocol is canonical; implementation language is not.**
+The protocol is canonical; implementation language is not.
 
 ## Current candidate laws
 
 - **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**
 - **CBL-C1 — Capability-Bundle Mismatch Law Candidate**
 
-CBL-C1 asks whether reusing an existing abstraction that requires capabilities outside the real demand creates conformance burden or semantic overclaim, and when capability segregation repays its own coordination cost.
+P11 sharpens the distinction between them: membership-surface propagation (`S`) and handwritten source churn (`L`) can dissociate across worlds, while capability-conformance burden (`C`) can remain independently measurable.
 
 ## Development direction
 
@@ -49,8 +51,8 @@ CBL-C1 asks whether reusing an existing abstraction that requires capabilities o
 2. world-admission protocols reject contaminated or non-discriminating cases;
 3. rival constitutions define bounded interventions before treatment bytes;
 4. Actions executes exact-world experiments under log firewalls;
-5. LawKit classifies vector-valued lifecycle results without scalar winners;
-6. editor/CLI surfaces explain both candidate mechanisms and why authority is bounded;
+5. lifecycle measurement preserves distinct coordinates instead of scalarizing them;
+6. support-domain courts update candidate laws without recommending a winner;
 7. law families compete, fail, split, mutate or retire.
 
 A better LawKit is an engineering achievement. New scientific authority still requires fresh world contact.
