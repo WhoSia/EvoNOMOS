@@ -1,0 +1,37 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P5",
+  "status": "RECONSTITUTED_PRECOMMIT_BEFORE_RERUN_OUTCOMES",
+  "historical_run": {
+    "run": 36676553417,
+    "artifact": 11080685170,
+    "digest": "sha256:57966ea30bda9117eec78e6732d8ed1445c690d6a9ee7a0966a69890bc7e76dd",
+    "verdict": "NONAUTHORITATIVE_ACTION_ALIASING_BUG",
+    "defect": "In CIL_ABSTAIN, CBL_ABSTAIN and ISP_ABSTAIN, ACTION_B encoded the status quo and was semantically aliased with ABSTAIN/no intervention."
+  },
+  "repair": {
+    "corpus_version": "law-r1-p5-corpus-v2",
+    "corpus_commit": "ac63ad7e99a3a290742849455981013e3a7c2584",
+    "semantic_change_only": "ACTION_B in each ABSTAIN cell is now a distinct alternative intervention; ABSTAIN alone is no intervention/status quo.",
+    "unchanged": [
+      "case families",
+      "moderators",
+      "contexts except choice wording",
+      "principle primes",
+      "APPLY/REVERSE/ABSTAIN cell labels",
+      "precommitted semantic choices",
+      "three prompt arms",
+      "three model interfaces",
+      "replicate count",
+      "primary contrast",
+      "scoring formulas",
+      "pilot thresholds"
+    ]
+  },
+  "rerun_models": [
+    "openai/gpt-oss-20b via Groq",
+    "openai/gpt-oss-120b via Groq",
+    "gemini-3.5-flash-lite via Gemini"
+  ],
+  "rerun_calls": 324,
+  "authority_rule": "Only the repaired rerun may contribute P5 scientific model-result authority."
+}
