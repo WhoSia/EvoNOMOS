@@ -128,10 +128,14 @@ def main():
 
     idir=a.indigo_dir
     idir.mkdir(parents=True,exist_ok=True)
-    for rel,key in [(indigo["provider_file"],"provider"),(indigo["form_file"],"form"),("test/backend-test/notification-providers/test-indigo.js","upstream_test")]:
+    downloads=[
+      (indigo["provider_file"],"indigo.js"),
+      (indigo["form_file"],"Indigo.vue"),
+      ("test/backend-test/notification-providers/test-indigo.js","upstream-test-indigo.js")
+    ]
+    for rel,name in downloads:
         data=raw(f"https://raw.githubusercontent.com/louislam/uptime-kuma/{indigo['sha']}/{rel}")
-        p=idir/(key + Path(rel).suffix)
-        p.write_bytes(data)
+        (idir/name).write_bytes(data)
 
     ha=[ha_commit(n,s) for n,s in HA]
     for x in ha:
