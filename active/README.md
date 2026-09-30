@@ -2,39 +2,26 @@
 
 Current scientific surface:
 
-- `active/g8-law-r1-p6/`
+- `active/g8-law-r1-p7/`
 - status: `CLOSED / PASS`
-- canonical run: `36679311879`
-- execution head: `4c20b1b986dbfd8204452236ae84e213830852f5`
-- artifact: `11081690418`
-- artifact digest: `sha256:f1a99aa29a6fcaa206fe89b2627aeda4c39006ded1c6be4868f1b59ddbe53b1f`
+- canonical run: `36681684652`
+- execution head: `d09b0900ea3056fc7c39e5dcaf4ca22a81ab88c6`
+- artifact: `11082216240`
+- digest: `sha256:bdcf69fb7b122d1feba67f077ec3a059ba3cb70d36ab83f03c0f26e89999ed15`
 
-P6 result:
+P7 result:
 
-- generalized kernel `L=(X,A,Y,M,F,Π,U)` survives as a bounded operational candidate
-- SOLID-family items occupy **different logical roles**
-- SRP / OCP / ISP / DIP = conditional intervention generators
-- LSP = admissibility/substitutability constraint
-- principle authority is revocable and role-dependent
-- terminal law states are not binary: APPLY/TEST, ABSTAIN, REVOKE, UNRESOLVED
-- LLM/provider calls are local probes only; real repository maintenance histories remain primary evidence
+- World Contact was discovery-first; principle labels were forbidden during intake
+- first beyond-SOLID motif emerged across Kyverno, ComfyUI_frontend and TER
+- fresh CrewAI holdout supported the conditional motif
+- generic SSOT novelty was killed by prior art
+- `SEMANTIC_AUTHORITY_CONVERGENCE` is absorbed only as a conditional generator, not claimed as new
+- generalized kernel remains viable because its authority loop can discover, absorb, narrow or kill candidates
+- LLM/provider calls remain local probes only
 
-Fresh external atlas:
+Repository boundary is repaired:
 
-- SRP APPLY: `shinycake/quill#194`
-- SRP local abstain-on-further-split: `kirodotdev/KiroCrew#15153`
-- OCP APPLY: `backstage/backstage#31225`
-- OCP REVOKE: `AgnesAI-Labs/agnes-harness#42`
-- LSP substitutability repair: `ChanyaVRC/pyrust#2388`
-- LSP incompatible-shared-base reject: `brendankowitz/ignixa-fhir#275`
+- `WhoSia/EPISTEME/main` restored to `e2fa965f726baab1b0641961680645508dfe9084`
+- P5 provider host now owned by EvoNOMOS
 
-Existing lifecycle authority retained:
-
-- ISP: P11 TrueForge APPLY support; P12 Restic remains **TERMINAL NON-RESULT**, not an abstain result
-- DIP: prior Kodo/homebridge world contacts retain initial-vs-follow-up tradeoff authority
-
-Novelty status:
-
-`JOINT_OPERATIONAL_CONJUNCTION_ONLY__NOT_YET_ESTABLISHED_AS_NOVEL`
-
-No SOLID true/false verdict, universal replacement claim or scalar architecture winner is authorized.
+No universal deduplication law, no new SSOT novelty claim, and no scalar architecture winner are authorized.
