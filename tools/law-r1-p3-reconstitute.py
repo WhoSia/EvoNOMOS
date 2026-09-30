@@ -19,12 +19,28 @@ def load_p2(path:Path):
     mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     return mod
 
-def materialize(mod,src:Path,dst:Path,arm:str,providers):
+def sanitize_phase0(dst:Path,arm:str):
+    future=["NetGSM","Mutlucell","Verimor","IletiMerkezi"]
+    if arm=="DISPERSED_MEMBERSHIP_EXTENSION":
+        p=dst/"src/components/NotificationDialog.vue"
+        s=p.read_text(encoding="utf-8")
+        for n in future:
+            s=s.replace(f'                {n}: "{n}",\\n',"")
+        p.write_text(s,encoding="utf-8")
+    else:
+        p=dst/"src/components/notifications/law-r1-p2-membership-registry.js"
+        s=p.read_text(encoding="utf-8")
+        s=s.replace('    smsServices: { NetGSM: "NetGSM", Mutlucell: "Mutlucell", Verimor: "Verimor", IletiMerkezi: "IletiMerkezi" }','    smsServices: {}')
+        p.write_text(s,encoding="utf-8")
+
+def materialize(mod,src:Path,dst:Path,arm:str,providers,phase0:bool=False):
     mod.PROVIDERS=list(providers)
     mod.copy_birth(src,dst)
     if arm=="DISPERSED_MEMBERSHIP_EXTENSION": changed=mod.apply_dispersed(dst)
     elif arm=="DUAL_RUNTIME_MEMBERSHIP_REGISTRY": changed=mod.apply_dual(dst)
     else: raise RuntimeError(arm)
+    if phase0:
+        sanitize_phase0(dst,arm)
     return changed
 
 def relevant_files(root:Path):
@@ -77,7 +93,7 @@ def main():
         phase1=a.out/slug/"phase1"
         sealed=a.out/slug/"sealed_final"
         mod.copy_birth(a.source.resolve(),birth)
-        materialize(mod,a.source.resolve(),phase0,arm,P0)
+        materialize(mod,a.source.resolve(),phase0,arm,P0,phase0=True)
         materialize(mod,a.source.resolve(),phase1,arm,ALL)
         materialize(mod,a.source.resolve(),sealed,arm,ALL)
         identity_count=compare(phase1,sealed)
@@ -102,6 +118,7 @@ def main():
       },
       "baseline_census":baseline,
       "phase0_providers":[x[0] for x in P0],
+      "phase0_future_membership_absence_enforced":True,
       "phase1_incremental_providers":[x[0] for x in P1],
       "arms":arms,
       "verdict":"PASS_SEALED_PHASE_RECONSTITUTION"
