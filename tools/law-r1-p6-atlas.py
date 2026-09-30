@@ -25,7 +25,7 @@ PRS = [
   {
     "id":"OCP_REVOKE_AGNES","repo":"AgnesAI-Labs/agnes-harness","number":42,
     "merge":"adfd9bfe473a55b0e6d0779cb34fc3ffd502cac9",
-    "must":["never-dispatched","not an extension point","removed"],
+    "must":["ever dispatched","not an extension point","removed"],
     "role":"OCP","cell":"REVOKE","ceiling":"STRUCTURAL_WORLD_WITNESS"
   },
   {
