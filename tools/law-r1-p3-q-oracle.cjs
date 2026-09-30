@@ -26,18 +26,22 @@ function phase0MembershipIsolation(root){
   for(const n of future) assert(!joined.includes(n),"future phase1 membership leaked into phase0: "+n);
   return true;
 }
-async function checkPhase0(root){
-  phase0MembershipIsolation(root);
+async function checkIssueTrackerBehavior(root){
   const down=await invoke(root,"IssueTracker","service unavailable",0);
   const up=await invoke(root,"IssueTracker","service recovered",1);
   const test=await invoke(root,"IssueTracker","test notification",null);
-  assert(down.transport==="issue_tracker"&&down.action==="open","phase0 down");
-  assert(up.transport==="issue_tracker"&&up.action==="close","phase0 up");
-  assert(test.transport==="issue_tracker"&&test.action==="test","phase0 test");
+  assert(down.transport==="issue_tracker"&&down.action==="open","issue tracker down");
+  assert(up.transport==="issue_tracker"&&up.action==="close","issue tracker up");
+  assert(test.transport==="issue_tracker"&&test.action==="test","issue tracker test");
+  return true;
+}
+async function checkPhase0(root){
+  phase0MembershipIsolation(root);
+  await checkIssueTrackerBehavior(root);
   return {issue_tracker:true,future_membership_absent:true,cases:3};
 }
 async function checkPhase1(root){
-  const regression=await checkPhase0(root);
+  const regression=await checkIssueTrackerBehavior(root);
   const sms={};
   for(const name of ["NetGSM","Mutlucell","Verimor","IletiMerkezi"]){
     const send=await invoke(root,name,"phase1 sms",0);
@@ -46,7 +50,7 @@ async function checkPhase1(root){
     assert(test.transport==="sms"&&test.provider===name,"phase1 test "+name);
     sms[name]=true;
   }
-  return {phase0_regression:regression.issue_tracker,sms,cases:11};
+  return {phase0_regression:regression,sms,cases:11};
 }
 async function main(){
   const result={};
