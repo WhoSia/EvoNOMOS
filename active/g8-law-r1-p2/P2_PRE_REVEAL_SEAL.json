@@ -1,0 +1,33 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P2",
+  "verdict": "PASS_PRE_REVEAL_COMPARABILITY",
+  "canonical_head": "0c40eac7a825780f7907a311cf670421f6aea13b",
+  "workflow_run": 36658508000,
+  "workflow_conclusion": "success",
+  "artifact": {
+    "id": 11073560580,
+    "name": "g8-law-r1-p2-pre-reveal",
+    "digest": "sha256:46eabed26e3aaf2a0fe9ad2f82c51b39ce5ac2e573254ed6d7a8856a85d3021"
+  },
+  "source": {
+    "repository": "louislam/uptime-kuma",
+    "commit": "398482d590daaac0d44e288c9be3bc6f6667f8b8",
+    "tree": "235565c06703a99d759c93778f4c1ef152024cb6"
+  },
+  "passed": [
+    "exact source identity",
+    "92-provider baseline census",
+    "dual-rival materialization",
+    "syntax gate",
+    "cross-arm identical provider implementation bytes",
+    "cross-arm identical provider form bytes",
+    "phase-0 #7316 no-network behavior equivalence",
+    "phase-1 #7559 no-network behavior equivalence",
+    "UI discoverability in both arms",
+    "DISPERSED five-site membership authority",
+    "DUAL two-registry membership authority",
+    "outcome firewall"
+  ],
+  "authority_limit": "This seal establishes bounded pre-reveal comparability only. It does not establish production external-API equivalence, lifecycle superiority, CIL empirical support, or an architecture recommendation.",
+  "still_closed": ["S","L","C","A","Q","LOC","churn","scalar winner"]
+}
