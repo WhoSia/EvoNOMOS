@@ -1,0 +1,34 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P5",
+  "global_start": 9087,
+  "research_question": "Do named software-design principles create an advice prior that persists against moderator evidence, and can an evidence-conditioned rival representation recover reversal or abstention?",
+  "novelty_kill": {
+    "ATAM_CBAM": "Already model multi-quality tradeoffs and architecture alternatives; EvoNOMOS may not claim novelty for tradeoff-awareness alone.",
+    "Parnas_information_hiding": "Already conditions decomposition on difficult/likely-to-change decisions; EvoNOMOS may not claim novelty for volatility-sensitive modularization alone.",
+    "Baldwin_Clark_Sullivan_DSM_real_options": "Already formalize modularity value under uncertainty and future design options; EvoNOMOS may not claim novelty for context-dependent modularity value alone.",
+    "architectural_tactics_ADD": "Already map tactics/design decisions to quality attributes and tradeoffs; EvoNOMOS may not claim novelty for quality-conditioned tactic selection alone.",
+    "surviving_candidate": "A revocable empirical design-law layer whose unit is moderator-conditioned rival intervention with vector outcomes, sign reversal/failure boundary, and explicit abstention, plus direct measurement of named-principle priors in LLM advice."
+  },
+  "arms": {
+    "CONTEXT_ONLY": "No design-principle names. Choose among concrete rival actions and ABSTAIN.",
+    "NAMED_PRINCIPLE_PRIME": "Same evidence and rivals, but explicitly names the associated SOLID principle before choice.",
+    "EVIDENCE_CONDITIONED": "No maxim authority. Presents moderator fields, falsifiers and instruction to choose a rival only when evidence supports a predicted outcome channel; otherwise ABSTAIN."
+  },
+  "metrics": {
+    "principle_pull": "P(principle-congruent action | named prime) - P(principle-congruent action | context only), stratified by APPLY vs REVERSE/ABSTAIN cells.",
+    "evidence_sensitivity": "Probability that choice changes in the correct direction across paired moderator flips.",
+    "advice_reversal": "For paired cells, whether APPLY becomes rival/ABSTAIN when the decisive moderator flips.",
+    "unsupported_maxim_rate": "Rate of principle-congruent action on cells precommitted as REVERSE/ABSTAIN.",
+    "abstention_calibration": "Rate of ABSTAIN on cells whose sufficient boundary/falsifier makes the named principle inapplicable.",
+    "name_mention_leak": "Any unsolicited SOLID/principle-name mention in CONTEXT_ONLY output."
+  },
+  "primary_contrast": "NAMED_PRINCIPLE_PRIME versus EVIDENCE_CONDITIONED on REVERSE/ABSTAIN cells",
+  "authority_rules": {
+    "no_scalar_architecture_winner": true,
+    "no_SOLID_true_false_verdict": true,
+    "model_identity_is_moderator": true,
+    "single_model_pilot_cannot_generalize_to_LLMs": true,
+    "principle_prior_claim_requires_multiple_items_and paired flips": true,
+    "more_general_structure_claim_requires novelty_kill survival": true
+  }
+}
