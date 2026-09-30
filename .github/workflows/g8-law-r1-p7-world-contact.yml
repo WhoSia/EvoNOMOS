@@ -1,0 +1,76 @@
+name: G8 LAW-R1-P7 Discovery World Contact
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lawkit/protocol/v0.11/**'
+      - 'active/g8-law-r1-p7/**'
+      - 'tools/law-r1-p7-*'
+      - '.github/workflows/g8-law-r1-p7-world-contact.yml'
+
+concurrency:
+  group: g8-law-r1-p7-world-contact
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  world-contact:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify P6 predecessor
+        run: |
+          python3 - <<'PY'
+          import json
+          p=json.load(open("active/g8-law-r1-p6/P6_TERMINAL_SEAL.json"))
+          assert p["stage"]=="EvoNOMOS Generation VIII LAW-R1-P6"
+          assert p["kernel"]["llm_role"]=="LOCAL_PROBE_ONLY"
+          print("LAW_R1_P7_P6_AUTHORITY=PASS")
+          PY
+
+      - name: Verify discovery constitution and frozen holdout precommit
+        run: |
+          python3 - <<'PY'
+          import json
+          c=json.load(open("lawkit/protocol/v0.11/LAW_R1_P7_DISCOVERY_CONSTITUTION.json"))
+          h=json.load(open("active/g8-law-r1-p7/P7_OUT_OF_STREAM_CHALLENGE_1_PRECOMMIT.json"))
+          assert c["world_contact_rule"]=="DISCOVERY_FIRST__NO_PRINCIPLE_LABELS_BEFORE_MOTIF_EXTRACTION"
+          assert h["precommit"]=="OUT_OF_STREAM_CHALLENGE_1"
+          assert h["frozen_after_discovery_commit"]=="9e3800476033af3a7beefb0a14e2cc115c35dcd5"
+          print("LAW_R1_P7_PRECOMMIT=PASS")
+          PY
+
+      - name: Live discovery and holdout custody
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p7-worlds.py
+
+      - name: Discovery authority court
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p7-court.mjs out/p7-worlds.json out/p7-court.json
+          python3 - <<'PY'
+          import json
+          c=json.load(open("out/p7-court.json"))
+          assert c["generalized_kernel"]=="NOT_FALSIFIED_BY_P7"
+          assert c["discovered_generator"]["status"]=="ABSORB_EXISTING_FAMILY__CONDITIONAL_SCOPE_REFINED"
+          assert c["novelty"]["generic_ssot"]=="RETIRED"
+          print("LAW_R1_P7_AUTHORITY_FIREWALL=PASS")
+          PY
+
+      - name: Seal custody
+        run: |
+          sha256sum             lawkit/protocol/v0.11/LAW_R1_P7_DISCOVERY_CONSTITUTION.json             active/g8-law-r1-p7/P7_OUT_OF_STREAM_CHALLENGE_1_PRECOMMIT.json             active/g8-law-r1-p7/P7_PRIOR_ART_CONVERGENCE_KILL.md             tools/law-r1-p7-worlds.py             tools/law-r1-p7-court.mjs             out/p7-worlds.json             out/p7-court.json             > out/p7-custody-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p7-discovery-world-contact
+          path: out/
+          retention-days: 30
