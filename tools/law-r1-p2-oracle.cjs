@@ -6,7 +6,7 @@ const [dispRoot,dualRoot,outPath]=process.argv.slice(2);
 if(!dispRoot||!dualRoot||!outPath) throw new Error("usage: oracle <dispersed> <dual> <receipt>");
 
 const providers=["IssueTracker","NetGSM","Mutlucell","Verimor","IletiMerkezi"];
-const fileName=n=>n.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase();
+const fileName=n=>n.replace(/(?<!^)(?=[A-Z])/g,"-").toLowerCase();
 const read=(root,rel)=>fs.readFileSync(path.join(root,rel),"utf8");
 const assert=(cond,msg)=>{if(!cond) throw new Error(msg);};
 
