@@ -1,0 +1,267 @@
+{
+  "schema_version": "law-r1-p5-corpus-v1",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P5",
+  "construction_rule": "paired moderator flips; surface problem held as constant as practical; principle names absent from base context",
+  "options": [
+    "ACTION_A",
+    "ACTION_B",
+    "ABSTAIN"
+  ],
+  "cases": [
+    {
+      "id": "CIL_APPLY",
+      "family": "CIL",
+      "principle_prime": "Dependency Inversion / Open-Closed style abstraction guidance",
+      "context": "A notification system has 92 existing providers. Adding one provider requires handwritten membership edits in five separate runtime/UI registries. Two independent provider-addition demands occurred within months. Provider behavior already shares one stable send contract.",
+      "moderators": {
+        "preexisting_sufficient_boundary": false,
+        "membership_fanout": 5,
+        "shared_mechanism": true,
+        "repeated_same_family_demand": true
+      },
+      "action_map": {
+        "ACTION_A": "Introduce one backend and one frontend membership registry while keeping provider implementations/forms separate.",
+        "ACTION_B": "Keep adding every provider through the existing five handwritten membership sites.",
+        "ABSTAIN": "Do not prefer either structure from current evidence."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_A",
+      "cell": "APPLY"
+    },
+    {
+      "id": "CIL_ABSTAIN",
+      "family": "CIL",
+      "principle_prime": "Dependency Inversion / Open-Closed style abstraction guidance",
+      "context": "A platform adds integrations as self-contained component directories, each with a local manifest. Central runtime discovery is generated automatically from those manifests. New integrations do not require repeated handwritten edits to a central runtime registry.",
+      "moderators": {
+        "preexisting_sufficient_boundary": true,
+        "membership_fanout": 0,
+        "shared_mechanism": true,
+        "repeated_same_family_demand": true
+      },
+      "action_map": {
+        "ACTION_A": "Add another handwritten central integration registry to further centralize membership.",
+        "ACTION_B": "Keep the existing local manifest/component boundary.",
+        "ABSTAIN": "Do not introduce a new membership abstraction because the existing boundary already collapses propagation."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ABSTAIN",
+      "cell": "ABSTAIN"
+    },
+    {
+      "id": "CBL_APPLY",
+      "family": "CBL",
+      "principle_prime": "Interface Segregation Principle",
+      "context": "A reusable provider boundary exposes search and fetch/extract capabilities. Two successive real maintenance demands require search only. Implementers must nevertheless provide truthful conformance for fetch/extract.",
+      "moderators": {
+        "boundary_capabilities": [
+          "search",
+          "fetch"
+        ],
+        "demand_required": [
+          "search"
+        ],
+        "extraneous_capability_burden": true,
+        "repeated_demand": true
+      },
+      "action_map": {
+        "ACTION_A": "Split the boundary so search-only providers implement only search.",
+        "ACTION_B": "Keep one wide search+fetch boundary for all providers.",
+        "ABSTAIN": "Do not prefer either structure from current evidence."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_A",
+      "cell": "APPLY"
+    },
+    {
+      "id": "CBL_ABSTAIN",
+      "family": "CBL",
+      "principle_prime": "Interface Segregation Principle",
+      "context": "A provider boundary exposes save, load, stat, list, remove and delete. Every admitted provider demand requires all six operations and the lifecycle tests exercise all six.",
+      "moderators": {
+        "boundary_capabilities": [
+          "save",
+          "load",
+          "stat",
+          "list",
+          "remove",
+          "delete"
+        ],
+        "demand_required": [
+          "save",
+          "load",
+          "stat",
+          "list",
+          "remove",
+          "delete"
+        ],
+        "extraneous_capability_burden": false,
+        "repeated_demand": true
+      },
+      "action_map": {
+        "ACTION_A": "Split the interface into smaller capability interfaces anyway.",
+        "ACTION_B": "Keep the existing full backend interface.",
+        "ABSTAIN": "Do not introduce segregation because no demand-extraneous capability burden is established."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ABSTAIN",
+      "cell": "ABSTAIN"
+    },
+    {
+      "id": "DIP_APPLY",
+      "family": "DIP",
+      "principle_prime": "Dependency Inversion Principle",
+      "context": "Three interchangeable external implementations change independently and frequently. Client policy semantics have remained stable across those changes, and future implementation substitution is already scheduled.",
+      "moderators": {
+        "implementation_volatility": "high",
+        "policy_semantics_stability": "high",
+        "future_substitution": "observed",
+        "interface_churn": "low"
+      },
+      "action_map": {
+        "ACTION_A": "Bind clients to a stable policy boundary and adapt changing implementations behind it.",
+        "ACTION_B": "Bind clients directly to each concrete implementation.",
+        "ABSTAIN": "Do not prefer inversion or direct binding."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_A",
+      "cell": "APPLY"
+    },
+    {
+      "id": "DIP_REVERSE",
+      "family": "DIP",
+      "principle_prime": "Dependency Inversion Principle",
+      "context": "A single implementation and its client semantics are changing together during a short experimental phase. Each interface revision tracks the same underlying product hypothesis, and there is no observed or scheduled implementation substitution.",
+      "moderators": {
+        "implementation_volatility": "high",
+        "policy_semantics_stability": "low",
+        "future_substitution": "absent",
+        "interface_churn": "high"
+      },
+      "action_map": {
+        "ACTION_A": "Introduce a stable abstraction now and force both sides through it.",
+        "ACTION_B": "Keep direct binding until the semantics stabilize or substitution demand appears.",
+        "ABSTAIN": "Evidence is insufficient to choose."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_B",
+      "cell": "REVERSE"
+    },
+    {
+      "id": "SRP_APPLY",
+      "family": "SRP",
+      "principle_prime": "Single Responsibility Principle",
+      "context": "One class owns billing-rule calculation and customer-notification formatting. Over twelve maintenance events, changes to the two concerns came from different stakeholders and never co-occurred; edits to one concern repeatedly touched tests unrelated to the other.",
+      "moderators": {
+        "change_source_independence": "high",
+        "cochange_rate": 0,
+        "shared_invariants": "low"
+      },
+      "action_map": {
+        "ACTION_A": "Separate the two responsibilities behind explicit collaboration.",
+        "ACTION_B": "Keep both responsibilities in one class.",
+        "ABSTAIN": "Do not prefer either structure."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_A",
+      "cell": "APPLY"
+    },
+    {
+      "id": "SRP_REVERSE",
+      "family": "SRP",
+      "principle_prime": "Single Responsibility Principle",
+      "context": "One component validates and persists a financial record. Across twelve maintenance events, validation and persistence rules changed together every time because they share one transactional invariant; splitting previous prototypes duplicated rollback logic and caused inconsistent states.",
+      "moderators": {
+        "change_source_independence": "low",
+        "cochange_rate": 1,
+        "shared_invariants": "high"
+      },
+      "action_map": {
+        "ACTION_A": "Split validation and persistence into separate services solely to give each one responsibility.",
+        "ACTION_B": "Keep the invariant-owning operations together while isolating unrelated concerns elsewhere.",
+        "ABSTAIN": "Evidence is insufficient to choose."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_B",
+      "cell": "REVERSE"
+    },
+    {
+      "id": "OCP_APPLY",
+      "family": "OCP",
+      "principle_prime": "Open-Closed Principle",
+      "context": "A parser core has received six independent format additions. The core parsing contract has remained stable; each new format varies only in decoding rules and more formats are already requested.",
+      "moderators": {
+        "variant_arrival": "repeated",
+        "core_semantics_stability": "high",
+        "future_variant_demand": "observed",
+        "extension_birth_cost": "moderate"
+      },
+      "action_map": {
+        "ACTION_A": "Create an extension point for format-specific decoders while preserving the stable core contract.",
+        "ACTION_B": "Continue editing the core conditional chain for every new format.",
+        "ABSTAIN": "Do not prefer either structure."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_A",
+      "cell": "APPLY"
+    },
+    {
+      "id": "OCP_REVERSE",
+      "family": "OCP",
+      "principle_prime": "Open-Closed Principle",
+      "context": "A small internal tool has one exceptional export format required for a migration that ends next week. The format changes core semantics rather than only extension behavior, no second variant is expected, and an extension framework would outlive the tool.",
+      "moderators": {
+        "variant_arrival": "one_off",
+        "core_semantics_stability": "low",
+        "future_variant_demand": "absent",
+        "extension_birth_cost": "high"
+      },
+      "action_map": {
+        "ACTION_A": "Build a general extension framework so the core never changes for formats.",
+        "ACTION_B": "Implement the one migration-specific core change directly and remove it with the migration path.",
+        "ABSTAIN": "Evidence is insufficient to choose."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_B",
+      "cell": "REVERSE"
+    },
+    {
+      "id": "ISP_APPLY",
+      "family": "ISP",
+      "principle_prime": "Interface Segregation Principle",
+      "context": "Three client groups use disjoint subsets of a twelve-method interface. In the last ten releases, changes to one subset forced unrelated clients to update mocks and conformance tests despite never calling those methods.",
+      "moderators": {
+        "client_subset_overlap": "low",
+        "extraneous_conformance": "high",
+        "cochange": "low"
+      },
+      "action_map": {
+        "ACTION_A": "Expose smaller client-specific capability interfaces backed by the same implementation.",
+        "ACTION_B": "Keep the single twelve-method interface.",
+        "ABSTAIN": "Do not prefer either structure."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ACTION_A",
+      "cell": "APPLY"
+    },
+    {
+      "id": "ISP_ABSTAIN",
+      "family": "ISP",
+      "principle_prime": "Interface Segregation Principle",
+      "context": "All three client groups call all twelve methods of an interface in each complete workflow. The methods share one lifecycle invariant, and no client-specific subset has remained stable across releases.",
+      "moderators": {
+        "client_subset_overlap": "complete",
+        "extraneous_conformance": "none",
+        "cochange": "high"
+      },
+      "action_map": {
+        "ACTION_A": "Split the interface into smaller interfaces anyway.",
+        "ACTION_B": "Keep the cohesive full interface.",
+        "ABSTAIN": "Do not introduce segregation because no stable client-specific capability boundary is evidenced."
+      },
+      "principle_congruent": "ACTION_A",
+      "precommitted": "ABSTAIN",
+      "cell": "ABSTAIN"
+    }
+  ]
+}
