@@ -1,0 +1,81 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P7",
+  "verdict": "PASS_DISCOVERY_LOOP__GENERIC_SSOT_NOVELTY_KILLED__CONDITIONAL_GENERATOR_ABSORBED__KERNEL_NOT_FALSIFIED",
+  "canonical": {
+    "run": 36681684652,
+    "head": "d09b0900ea3056fc7c39e5dcaf4ca22a81ab88c6",
+    "artifact": 11082216240,
+    "artifact_digest": "sha256:bdcf69fb7b122d1feba67f077ec3a059ba3cb70d36ab83f03c0f26e89999ed15"
+  },
+  "repository_boundary_repair": {
+    "episteme_restored_head": "e2fa965f726baab1b0641961680645508dfe9084",
+    "contaminated_commits_removed_from_main": [
+      "ac9faf79cab7ec90f669e2773143d2ce9c1be33e",
+      "5573a57c3de5955648fdc34186f85d68f24e99eb",
+      "a6eee019e7a821bd76750fb9bc51029a8c087db6",
+      "96e7532a99296466d802ee7258694b4a33e6b980",
+      "d39ed7369f6695a494ac8b1e84d9b988427c653b",
+      "13c92b5ac607835e3246b638222ff37492cd3c40",
+      "f9f61ad94af5e2543bf4ef1e829eca8d36043ad5"
+    ],
+    "native_host_files": [
+      "tools/law-r1-p5-provider-host.py",
+      ".github/workflows/g8-law-r1-p5-provider-host.yml",
+      "active/g8-law-r1-p5/P5_PROVIDER_HOST_PROVENANCE.md"
+    ],
+    "prospective_rule": "EvoNOMOS execution stays in WhoSia/EvoNOMOS unless another repository is itself the declared scientific object."
+  },
+  "discovery": {
+    "worlds": [
+      [
+        "kyverno/kyverno",
+        17769,
+        "c51c8f6fd10824a2560819553b78ac0d4f80a652"
+      ],
+      [
+        "Comfy-Org/ComfyUI_frontend",
+        18700,
+        "888e079ea9999bbde7aadb0e58eb9c848c84590d"
+      ],
+      [
+        "lgriffin/TER",
+        48,
+        "983f0aa2af5cd188f342d5a6daf08cb46f470806"
+      ]
+    ],
+    "motif": "AUTHORITY_PATH_CONVERGENCE_MOTIF",
+    "no_principle_labels_before_motif": true
+  },
+  "holdout": {
+    "precommit": "2354a8a0db1d747221d0699682db6d2aaa47c969",
+    "world": [
+      "crewAIInc/crewAI",
+      7796,
+      "a6e6d0f9d85a72dd03bc041b8ea4648f211b6d9e"
+    ],
+    "prediction": "SUPPORTED"
+  },
+  "generator": {
+    "name": "SEMANTIC_AUTHORITY_CONVERGENCE",
+    "status": "ABSORB_EXISTING_FAMILY__CONDITIONAL_SCOPE_REFINED",
+    "rule": "IF independently editable paths encode or mutate the same semantic authority AND drift/reconciliation burden is observed, THEN test convergence onto one behavioral authority; UNLESS paths encode distinct semantics, intentionally independent evolution, or mechanically derived/read-only representations."
+  },
+  "novelty": {
+    "generic_ssot": "RETIRED",
+    "deduplicate_everything": "REJECTED",
+    "evonomos_claim": "DISCOVERY_AUTHORITY_LOOP_ONLY__NOVELTY_WITHHELD"
+  },
+  "kernel": {
+    "generalized_kernel": "NOT_FALSIFIED_BY_P7",
+    "meaning": "Success includes rediscovery, absorption, narrowing, splitting, or killing candidate generators; invention is not required.",
+    "llm_role": "LOCAL_PROBE_ONLY",
+    "world_contact": "PRIMARY"
+  },
+  "noncanonical_runs": [
+    {
+      "run": 36681589941,
+      "classification": "HARNESS_ONLY_FAILURE",
+      "cause": "ComfyUI PR-body phrase gate mismatch"
+    }
+  ]
+}
