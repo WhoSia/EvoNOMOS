@@ -1,0 +1,86 @@
+name: G8 LAW-R1-P3 Lifecycle Vector Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lawkit/protocol/v0.7/**'
+      - 'tools/law-r1-p3-*.py'
+      - 'tools/law-r1-p3-*.cjs'
+      - 'tools/law-r1-p3-*.mjs'
+      - '.github/workflows/g8-law-r1-p3-lifecycle.yml'
+
+concurrency:
+  group: g8-law-r1-p3-lifecycle
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  lifecycle:
+    name: Sealed two-phase vector reveal
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout EvoNOMOS authority
+        uses: actions/checkout@v4
+
+      - name: Verify sealed P2 treatment authority has not drifted
+        run: |
+          set -euo pipefail
+          test "$(git hash-object tools/law-r1-p2-materialize.py)" = "6ce9dc792419bf51a2884508168babf78ad7b4ba"
+          test "$(git hash-object tools/law-r1-p2-oracle.cjs)" = "cf12e3d9617c021de86a736c706bc84c06aad9d9"
+          test "$(git hash-object lawkit/fixtures/law-r1-p2-uptime-kuma-precommit.json)" = "3183dd0cd7c8e2de0caea8bffbdd2bce0dc22b54"
+          python3 - <<'PY'
+          import json
+          x=json.load(open("active/g8-law-r1-p2/P2_PRE_REVEAL_SEAL.json"))
+          assert x["canonical_head"]=="0c40eac7a825780f7907a311cf670421f6aea13b"
+          assert x["workflow_run"]==36658508000
+          assert x["artifact"]["id"]==11073560580
+          assert x["verdict"]=="PASS_PRE_REVEAL_COMPARABILITY"
+          print("LAW_R1_P3_P2_AUTHORITY=PASS")
+          PY
+
+      - name: Checkout exact Uptime Kuma birth state
+        uses: actions/checkout@v4
+        with:
+          repository: louislam/uptime-kuma
+          ref: 398482d590daaac0d44e288c9be3bc6f6667f8b8
+          path: world
+          fetch-depth: 1
+
+      - name: Reconstitute phase snapshots from sealed treatment
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 tools/law-r1-p3-reconstitute.py             --source world             --repo-root .             --out snapshots             --receipt out/reconstitution.json
+
+      - name: Run bounded phase Q oracle
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p3-q-oracle.cjs snapshots out/q.json
+
+      - name: Simultaneously reveal S L C A Q
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p3-measure.py             --snapshots snapshots             --source world             --q out/q.json             --constitution lawkit/protocol/v0.7/LAW_R1_P3_MEASUREMENT_CONSTITUTION.json             --out out/lifecycle-vectors.json
+
+      - name: Adjudicate bounded CIL update
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p3-court.mjs out/lifecycle-vectors.json out/court.json
+          test "$(python3 -c "import json;print(json.load(open('out/court.json'))['scalarization'])")" = "False"
+          test "$(python3 -c "import json;print(json.load(open('out/court.json'))['winner'])")" = "None"
+
+      - name: Seal P3 custody
+        run: |
+          set -euo pipefail
+          sha256sum             lawkit/protocol/v0.7/LAW_R1_P3_MEASUREMENT_CONSTITUTION.json             tools/law-r1-p3-reconstitute.py             tools/law-r1-p3-q-oracle.cjs             tools/law-r1-p3-measure.py             tools/law-r1-p3-court.mjs             out/reconstitution.json             out/q.json             out/lifecycle-vectors.json             out/court.json             > out/p3-custody-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p3-lifecycle-court
+          path: out/
+          retention-days: 30
