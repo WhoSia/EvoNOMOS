@@ -4,35 +4,54 @@ Canonical repository for executable conditional software-design law research.
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII LAW-R1-P3 — Uptime-Kuma Lifecycle-Vector Exposure, Membership-Propagation Surface Measurement, Oracle-Strength Boundary, Phase-0↔Phase-1 Structural Effect Adjudication & CIL-C1 Update Court**
+**EvoNOMOS Generation VIII LAW-R1-P4 — External-Oracle Transport, Real-Implementation Substitution, Treatment-Semantics Robustness, Cross-World Replication & CIL-C1 Support-Domain Boundary Court**
 
 Current status: **CLOSED / PASS**
 
-Uptime Kuma exact source: `398482d590daaac0d44e288c9be3bc6f6667f8b8`.
+P4 tests whether the P3 conditional mechanism survives real implementation bytes and whether the same law can correctly abstain in a world whose membership boundary is already sufficient.
 
-The sealed P2 rivals were measured without treatment mutation. Vector order is `S/L/C/A/Q`:
+### Uptime Kuma real-merge transport
 
-- DISPERSED: phase0 `(5,22,0,0,1)` → phase1 `(5,80,0,0,1)`
-- DUAL: phase0 `(2,36,0,3,1)` → phase1 `(2,75,0,0,1)`
+Five independent merged notification-provider additions—Plivo, Ooredoo, SMSGateway, AmootSMS and Indigo—each repeat the same five handwritten membership-authority sites observed in P3.
 
-DUAL − DISPERSED:
-- phase0: `S=-3, L=+14, C=0, A=+3`
-- phase1: `S=-3, L=-5, C=0, A=0`
+The Indigo lane used exact merged upstream provider/form blobs and passed an independent local-HTTP behavioral oracle.
 
-This extends CIL-C1 only as a bounded membership-propagation mechanism claim: a sufficient membership boundary reduced actual per-demand membership-surface edits in both observed demands, while paying an architecture/churn birth tax. `L` remains an independent coordinate and is not promised by CIL-C1.
+CIL-C1 authority is therefore extended to:
 
-CBL-C1 is not applicable here because the mandatory provider contract is singleton `send`; `C=0` in both arms.
+`CIL_C1_REAL_IMPLEMENTATION_TRANSPORT__FIVE_REAL_MERGES__LOCAL_HTTP_ORACLE`
+
+Production Indigo-service contact remains untested.
+
+### Home Assistant abstention boundary
+
+Two independent new integrations—my-PV and Greencell—were examined in a different ecosystem.
+
+Both use a local component/manifest boundary. Central changes are generated indices plus non-runtime governance/dependency surfaces; no repeated handwritten central runtime membership registry is required.
+
+Therefore the law action is:
+
+`PREEXISTING_BOUNDARY_COLLAPSES_MEMBERSHIP_SURFACE_DIFFERENCE → ABSTAIN`
+
+This is a support-domain boundary, not a negative treatment result.
+
+### Program direction
+
+EvoNOMOS has two coupled ambitions:
+
+1. test whether named principles such as SOLID are over-axiomatized, including in LLM-mediated engineering;
+2. replace universal maxims with empirical conditional laws that can recommend, reverse, or abstain.
+
+P4 materially advances ambition 2. Ambition 1 is now world-contacted but still underdeveloped. The next stage must directly test principle-prior versus evidence-conditioned design choice rather than running another favorable CIL world.
 
 Canonical validation:
-- GitHub Actions run: `36670337111`
-- execution head: `6223c73e44cf75bcd813c6c7bfda9d6f54fdff5b`
-- artifact: `11077736960`
-- artifact digest: `sha256:3dd3e281230a72d09c0d2759f5800a92ce08203d4193089e15a9bb6ba1e658e5`
-- oracle strength: `BOUNDED_NO_NETWORK`
-- production external-API equivalence: **UNESTABLISHED**
 
-No scalar winner, architecture recommendation, universal SOLID/DIP/OCP validation, or CBL update is authorized.
+- GitHub Actions run: `36671521917`
+- execution head: `4bb14a6ce39dba94dad44ca1140d40fdacad07e0`
+- artifact: `11078606029`
+- artifact digest: `sha256:de4d752fa8d9e9d9c6f7febf71b1df2a4299d79d53f8c2e7ecd448c1e49e7528`
+
+No scalar winner, universal centralization rule, SOLID verdict, CBL update, production external-API equivalence, or LLM-causation claim is authorized.
 
 ## Repository workflow
 
-`main` is canonical. The current scientific lineage is under `active/`; sealed immediate dependencies may remain there when required for reproducible authority checks.
+`main` is canonical. Current scientific surfaces live under `active/`; sealed immediate dependencies remain there when needed for reproducible authority checks.
