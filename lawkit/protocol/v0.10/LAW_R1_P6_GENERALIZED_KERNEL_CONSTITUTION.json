@@ -1,0 +1,73 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P6",
+  "global_start": 9141,
+  "kernel": "L=(X,A,Y,M,F,Pi,U)",
+  "llm_role": "LOCAL_PROBE_ONLY",
+  "primary_data": "REAL_REPOSITORY_MAINTENANCE_HISTORY",
+  "roles": {
+    "SRP": "GENERATOR_PARTITION_IF_CHANGE_CAUSES_SEPARABLE",
+    "OCP": "GENERATOR_EXTENSION_IF_RECURRENT_VARIANTS_STABLE_CORE",
+    "LSP": "ADMISSIBILITY_CONSTRAINT_FOR_SUBTYPE_OR_SHARED_BASE",
+    "ISP": "GENERATOR_PARTITION_IF_EXTRANEOUS_CONFORMANCE",
+    "DIP": "GENERATOR_BOUNDARY_IF_VOLATILE_IMPLEMENTATION_STABLE_POLICY"
+  },
+  "atlas": {
+    "SRP": [
+      [
+        "APPLY",
+        "shinycake/quill#194",
+        "e79d0d5df9a1ebeaeaa200a4ea65b168e0724cfa"
+      ],
+      [
+        "ABSTAIN_FURTHER_SPLIT",
+        "kirodotdev/KiroCrew#15153",
+        "6fce1827e58c8612d85e4b9da9d6eabd9ee3f9b9"
+      ]
+    ],
+    "OCP": [
+      [
+        "REVOKE",
+        "AgnesAI-Labs/agnes-harness#42",
+        "adfd9bfe473a55b0e6d0779cb34fc3ffd502cac9"
+      ]
+    ],
+    "ISP": [
+      [
+        "APPLY",
+        "TrueForge Exa-to-Tavily P11",
+        "existing-authority"
+      ],
+      [
+        "ABSTAIN",
+        "Restic full-backend P12",
+        "existing-boundary"
+      ]
+    ],
+    "DIP": [
+      [
+        "TRADEOFF",
+        "Kodo/homebridge prior EvoNOMOS world contacts",
+        "existing-authority"
+      ]
+    ],
+    "LSP": [
+      [
+        "FAILURE_REPAIR",
+        "ChanyaVRC/pyrust#2388",
+        "161fe6e5607f5a489143435b0cc6fda6b93746d6"
+      ],
+      [
+        "INCOMPATIBLE_BASE_REJECT",
+        "brendankowitz/ignixa-fhir#275",
+        "c61f77bc0c64c5bab6b1afa413413115b22f143d"
+      ]
+    ]
+  },
+  "rules": {
+    "observational_pr_ceiling": "STRUCTURAL_WORLD_WITNESS",
+    "no_scalar_winner": true,
+    "no_solid_verdict": true,
+    "abstain": "NO_AUTHORIZED_STRUCTURAL_INTERVENTION",
+    "revoke": "PREVIOUS_EXTENSION_OR_ABSTRACTION_AUTHORITY_WITHDRAWN"
+  }
+}
