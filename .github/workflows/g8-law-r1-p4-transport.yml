@@ -1,0 +1,87 @@
+name: G8 LAW-R1-P4 Transport Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lawkit/protocol/v0.8/**'
+      - 'tools/law-r1-p4-*'
+      - 'active/g8-law-r1-p4/PROGRAM_DIRECTION_AUDIT.md'
+      - '.github/workflows/g8-law-r1-p4-transport.yml'
+
+concurrency:
+  group: g8-law-r1-p4-transport
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  transport:
+    name: Real implementation transport and support-domain boundary
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify P3 authority
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open("active/g8-law-r1-p3/P3_TERMINAL_SEAL.json"))
+          assert x["canonical_run"]==36670337111
+          assert x["canonical_head"]=="6223c73e44cf75bcd813c6c7bfda9d6f54fdff5b"
+          assert x["winner"] is None
+          print("LAW_R1_P4_P3_AUTHORITY=PASS")
+          PY
+
+      - name: Live real-repository world contact
+        run: |
+          set -euo pipefail
+          mkdir -p out real-indigo
+          python3 tools/law-r1-p4-world-contact.py             --out out/world-contact.json             --indigo-dir real-indigo
+
+      - name: Verify downloaded real implementation custody
+        run: |
+          set -euo pipefail
+          test -s real-indigo/indigo.js
+          test -s real-indigo/Indigo.vue
+          test -s real-indigo/upstream-test-indigo.js
+          git_hash_provider="$(git hash-object real-indigo/indigo.js)"
+          git_hash_form="$(git hash-object real-indigo/Indigo.vue)"
+          test "$git_hash_provider" = "$(python3 -c "import json;print(json.load(open('out/world-contact.json'))['uptime_kuma']['real_implementation_provider_blob'])")"
+          test "$git_hash_form" = "$(python3 -c "import json;print(json.load(open('out/world-contact.json'))['uptime_kuma']['real_implementation_form_blob'])")"
+          echo LAW_R1_P4_REAL_BYTES=PASS
+
+      - name: Run independent local HTTP oracle on real Indigo implementation
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p4-indigo-oracle.cjs real-indigo out/indigo-oracle.json
+
+      - name: Adjudicate transport and abstention boundary
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p4-court.mjs             out/world-contact.json             out/indigo-oracle.json             out/court.json
+          python3 - <<'PY'
+          import json
+          c=json.load(open("out/court.json"))
+          assert c["winner"] is None
+          assert c["scalarization"] is False
+          assert c["axis2"]["abstention"]["action"]=="ABSTAIN"
+          assert c["solid_verdict"]=="WITHHELD"
+          print("LAW_R1_P4_AUTHORITY_FIREWALL=PASS")
+          PY
+
+      - name: Seal custody
+        run: |
+          set -euo pipefail
+          sha256sum             lawkit/protocol/v0.8/LAW_R1_P4_TRANSPORT_CONSTITUTION.json             active/g8-law-r1-p4/PROGRAM_DIRECTION_AUDIT.md             tools/law-r1-p4-world-contact.py             tools/law-r1-p4-indigo-oracle.cjs             tools/law-r1-p4-court.mjs             real-indigo/indigo.js             real-indigo/Indigo.vue             real-indigo/upstream-test-indigo.js             out/world-contact.json             out/indigo-oracle.json             out/court.json             > out/p4-custody-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p4-transport-court
+          path: out/
+          retention-days: 30
