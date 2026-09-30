@@ -1,0 +1,76 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P7",
+  "global_start": 9187,
+  "title": "Principle-Generator Discovery beyond SOLID, Cross-World Intervention Motif Mining, Conditional Rule Compression, Out-of-Stream Predictive Challenge & Generalized Kernel Falsification Court",
+  "world_contact_rule": "DISCOVERY_FIRST__NO_PRINCIPLE_LABELS_BEFORE_MOTIF_EXTRACTION",
+  "repository_boundary": "ALL_EVONOMOS_EXECUTION_IN_WhoSia/EvoNOMOS",
+  "predecessor": {
+    "p6": "Decision 9172–9186",
+    "kernel": "L=(X,A,Y,M,F,Pi,U)",
+    "principle_roles": "heterogeneous",
+    "next": "discover generators beyond SOLID"
+  },
+  "discovery_firewall": {
+    "forbidden_during_world_intake": [
+      "SOLID labels as search selectors",
+      "pre-naming a new principle",
+      "LLM-generated principle as evidence",
+      "selecting worlds because they confirm P6"
+    ],
+    "allowed": [
+      "problem statement",
+      "before/after structural path",
+      "observed failure/drift/reconciliation burden",
+      "verification evidence",
+      "maintainer-stated non-goals"
+    ]
+  },
+  "first_discovery_pool": [
+    {
+      "id": "KYVERNO_17769",
+      "repo": "kyverno/kyverno",
+      "pr": 17769,
+      "raw_motif": "two loaders encoded the same supported PolicyException-version authority; drift caused valid inputs to be silently skipped; repair reuses one shared definition set",
+      "provisional_only": true
+    },
+    {
+      "id": "COMFY_CRDT_18700",
+      "repo": "Comfy-Org/ComfyUI_frontend",
+      "pr": 18700,
+      "raw_motif": "remote CRDT changes followed a store-first shadow mutation path plus reconciliation layers instead of the graph API used by humans/extensions; repair routes all mutations through the graph authority and deletes reconcile machinery",
+      "provisional_only": true
+    },
+    {
+      "id": "TER_48",
+      "repo": "lgriffin/TER",
+      "pr": 48,
+      "raw_motif": "scoring/pricing semantics lived in calculator implementation and hard-coded prices; repair moves semantics to pure domain and prices to versioned data behind a port while preserving outputs",
+      "provisional_only": true
+    }
+  ],
+  "candidate_motif_hypothesis": {
+    "temporary_name": "AUTHORITY_PATH_CONVERGENCE_MOTIF",
+    "status": "UNPROMOTED_DISCOVERY_MOTIF",
+    "shape": "when multiple implementation paths independently encode or mutate the same domain-semantic authority, drift/reconciliation burden can arise; candidate intervention is to converge decisions/mutations onto one canonical behavioral authority while keeping legitimately distinct representations outside that authority",
+    "not_yet_a_principle": true,
+    "required_falsifiers": [
+      "independent paths intentionally encode distinct semantics",
+      "single authority becomes a coordination or availability bottleneck",
+      "convergence destroys necessary isolation/version skew",
+      "shadow representation is read-only/cache-derived and mechanically synchronized"
+    ]
+  },
+  "out_of_stream_rule": {
+    "must_select_fresh_world_after_freeze": true,
+    "fresh_world_must_not_be_used_to_form_motif": true,
+    "prediction_before_full_diff": "predict whether duplicated semantic authority is causal to observed maintenance burden and whether convergence should reduce drift/reconciliation without collapsing distinct semantics",
+    "failure_outcomes": [
+      "KILL_MOTIF",
+      "SPLIT_MOTIF",
+      "NARROW_MODERATORS",
+      "UNRESOLVED"
+    ]
+  },
+  "llm_role": "LOCAL_CLUSTERING_NAMING_PROBE_ONLY",
+  "no_close_without": "fresh out-of-stream challenge plus prior-art novelty kill"
+}
