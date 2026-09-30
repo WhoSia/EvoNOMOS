@@ -4,54 +4,55 @@ Canonical repository for executable conditional software-design law research.
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII LAW-R1-P4 — External-Oracle Transport, Real-Implementation Substitution, Treatment-Semantics Robustness, Cross-World Replication & CIL-C1 Support-Domain Boundary Court**
+**EvoNOMOS Generation VIII LAW-R1-P5 — Blinded Design-Context Corpus, Principle-Prior Elicitation, LLM Maxim-Default Measurement, Evidence-Conditioned Rival Choice, Advice-Reversal Thresholds & Axiomization-to-Conditional-Law Bridge**
 
-Current status: **CLOSED / PASS**
+Current status: **CLOSED / PASS**.
 
-P4 tests whether the P3 conditional mechanism survives real implementation bytes and whether the same law can correctly abstain in a world whose membership boundary is already sufficient.
+P5 directly tests whether naming familiar software-design principles creates a maxim prior that overrides moderator evidence, and whether a more general evidence-conditioned decision representation can recover reversal or abstention.
 
-### Uptime Kuma real-merge transport
+### Canonical repaired field
 
-Five independent merged notification-provider additions—Plivo, Ooredoo, SMSGateway, AmootSMS and Indigo—each repeat the same five handwritten membership-authority sites observed in P3.
+- repaired corpus head: `378cb1cfe3a9506d2f7aefa5ea5eb2effd7a7d45`
+- corpus CI: `36677116768`
+- provider execution host: `WhoSia/EPISTEME`
+- canonical provider run: `36677191280`
+- artifact: `11080830212`
+- digest: `sha256:59cd0b5fd11146dabe9ddb50a8d7af9bf637235a5e156e5f6dbed436c81ccc6b`
 
-The Indigo lane used exact merged upstream provider/form blobs and passed an independent local-HTTP behavioral oracle.
+Historical run `36676553417` is non-authoritative because status-quo actions were semantically aliased with ABSTAIN in three cells.
 
-CIL-C1 authority is therefore extended to:
+### P5 result
 
-`CIL_C1_REAL_IMPLEMENTATION_TRANSPORT__FIVE_REAL_MERGES__LOCAL_HTTP_ORACLE`
+The strong cross-model hypothesis that named SOLID-style principles systematically push LLM advice toward unsupported principle-congruent actions is **not supported** by the frozen three-interface pilot.
 
-Production Indigo-service contact remains untested.
+- Gemini 3.5 Flash Lite: 100% precommitted alignment in all three arms.
+- GPT-OSS 120B: named-principle alignment 100%; unsupported named-maxim rate on non-APPLY cells 0%.
+- GPT-OSS 20B: named-principle alignment 91.7%; unsupported named-maxim rate 16.7%, concentrated in DIP/OCP reversal cells.
 
-### Home Assistant abstention boundary
+This supports a narrower and more useful distinction:
 
-Two independent new integrations—my-PV and Greencell—were examined in a different ecosystem.
+**principle recognition / nomination ≠ principle authority**.
 
-Both use a local component/manifest boundary. Central changes are generated indices plus non-runtime governance/dependency surfaces; no repeated handwritten central runtime membership registry is required.
+A familiar principle can be a useful compressed generator for a structural rival. Whether that rival deserves action must be decided from moderators, predicted outcome channels, falsifiers, world contact and update/revocation.
 
-Therefore the law action is:
+### Generalized candidate
 
-`PREEXISTING_BOUNDARY_COLLAPSES_MEMBERSHIP_SURFACE_DIFFERENCE → ABSTAIN`
+`L = (X, A, Y, M, F, Π, U)`
 
-This is a support-domain boundary, not a negative treatment result.
+- `X`: observable context / moderators
+- `A`: genuine rival structural interventions + semantically distinct `ABSTAIN`
+- `Y`: non-collapsed lifecycle outcome vector
+- `M`: bounded mechanism predictions
+- `F`: falsifiers / reversal / applicability boundaries
+- `Π`: prospective partial decision policy
+- `U`: empirical authority-update / revocation rule
 
-### Program direction
+SOLID is not rejected. SRP/OCP/ISP/DIP become candidate intervention generators; LSP is primarily an admissibility/substitutability constraint.
 
-EvoNOMOS has two coupled ambitions:
+This candidate deliberately absorbs prior work on information hiding, ATAM/CBAM, real-options modularity, architectural tactics/ADD, fitness functions, technical-debt economics and evidence-based architecture. Any novelty claim weaker than the **joint operational authority loop** is withheld.
 
-1. test whether named principles such as SOLID are over-axiomatized, including in LLM-mediated engineering;
-2. replace universal maxims with empirical conditional laws that can recommend, reverse, or abstain.
-
-P4 materially advances ambition 2. Ambition 1 is now world-contacted but still underdeveloped. The next stage must directly test principle-prior versus evidence-conditioned design choice rather than running another favorable CIL world.
-
-Canonical validation:
-
-- GitHub Actions run: `36671521917`
-- execution head: `4bb14a6ce39dba94dad44ca1140d40fdacad07e0`
-- artifact: `11078606029`
-- artifact digest: `sha256:de4d752fa8d9e9d9c6f7febf71b1df2a4299d79d53f8c2e7ecd448c1e49e7528`
-
-No scalar winner, universal centralization rule, SOLID verdict, CBL update, production external-API equivalence, or LLM-causation claim is authorized.
+No SOLID true/false verdict, LLM-population claim, universal replacement claim or scalar architecture winner is authorized.
 
 ## Repository workflow
 
-`main` is canonical. Current scientific surfaces live under `active/`; sealed immediate dependencies remain there when needed for reproducible authority checks.
+`main` is canonical. Current scientific surfaces live under `active/`; failed/reconstituted executions remain append-preserved as scientific provenance.
