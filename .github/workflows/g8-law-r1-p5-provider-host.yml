@@ -1,0 +1,43 @@
+name: G8 LAW-R1-P5 provider execution host
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install groq google-genai
+      - name: Frozen preflight
+        run: |
+          python -m py_compile tools/law-r1-p5-provider-host.py
+          python - <<'PY'
+          import pathlib
+          s=pathlib.Path("tools/law-r1-p5-provider-host.py").read_text()
+          assert 'SCIENCE_SHA="378cb1cfe3a9506d2f7aefa5ea5eb2effd7a7d45"' in s
+          assert '"openai/gpt-oss-20b"' in s
+          assert '"openai/gpt-oss-120b"' in s
+          assert '"gemini-3.5-flash-lite"' in s
+          assert '"replicates":3' in s
+          assert '"host_repo":"WhoSia/EvoNOMOS"' in s
+          print("EVONOMOS_P5_HOST_PREFLIGHT=PASS")
+          PY
+      - name: Run frozen EvoNOMOS P5 model field
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python tools/law-r1-p5-provider-host.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: evonomos-p5-maxim-prior-field
+          path: receipts/evonomos_p5/
+          retention-days: 14
