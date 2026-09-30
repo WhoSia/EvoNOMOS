@@ -1,5 +1,5 @@
 {
-  "schema_version": "law-r1-p5-corpus-v1",
+  "schema_version": "law-r1-p5-corpus-v2",
   "stage": "EvoNOMOS Generation VIII LAW-R1-P5",
   "construction_rule": "paired moderator flips; surface problem held as constant as practical; principle names absent from base context",
   "options": [
@@ -41,12 +41,17 @@
       },
       "action_map": {
         "ACTION_A": "Add another handwritten central integration registry to further centralize membership.",
-        "ACTION_B": "Keep the existing local manifest/component boundary.",
-        "ABSTAIN": "Do not introduce a new membership abstraction because the existing boundary already collapses propagation."
+        "ACTION_B": "Remove the local manifests and replace them with runtime convention scanning as a different central membership mechanism.",
+        "ABSTAIN": "Keep the existing local manifest/generated-discovery boundary unchanged; no new membership intervention is warranted."
       },
       "principle_congruent": "ACTION_A",
       "precommitted": "ABSTAIN",
-      "cell": "ABSTAIN"
+      "cell": "ABSTAIN",
+      "choice_roles": {
+        "ACTION_A": "INTERVENTION",
+        "ACTION_B": "INTERVENTION",
+        "ABSTAIN": "NO_INTERVENTION"
+      }
     },
     {
       "id": "CBL_APPLY",
@@ -100,12 +105,17 @@
       },
       "action_map": {
         "ACTION_A": "Split the interface into smaller capability interfaces anyway.",
-        "ACTION_B": "Keep the existing full backend interface.",
-        "ABSTAIN": "Do not introduce segregation because no demand-extraneous capability burden is established."
+        "ACTION_B": "Replace the typed six-operation backend interface with one generic execute(operation, payload) dispatcher.",
+        "ABSTAIN": "Keep the current cohesive six-operation backend interface unchanged; no capability restructuring is warranted."
       },
       "principle_congruent": "ACTION_A",
       "precommitted": "ABSTAIN",
-      "cell": "ABSTAIN"
+      "cell": "ABSTAIN",
+      "choice_roles": {
+        "ACTION_A": "INTERVENTION",
+        "ACTION_B": "INTERVENTION",
+        "ABSTAIN": "NO_INTERVENTION"
+      }
     },
     {
       "id": "DIP_APPLY",
@@ -256,12 +266,18 @@
       },
       "action_map": {
         "ACTION_A": "Split the interface into smaller interfaces anyway.",
-        "ACTION_B": "Keep the cohesive full interface.",
-        "ABSTAIN": "Do not introduce segregation because no stable client-specific capability boundary is evidenced."
+        "ACTION_B": "Broaden the interface by merging in unrelated administration and diagnostics operations.",
+        "ABSTAIN": "Keep the current cohesive twelve-method interface unchanged; no interface restructuring is warranted."
       },
       "principle_congruent": "ACTION_A",
       "precommitted": "ABSTAIN",
-      "cell": "ABSTAIN"
+      "cell": "ABSTAIN",
+      "choice_roles": {
+        "ACTION_A": "INTERVENTION",
+        "ACTION_B": "INTERVENTION",
+        "ABSTAIN": "NO_INTERVENTION"
+      }
     }
-  ]
+  ],
+  "reconstitution_note": "v2 removes action aliasing in ABSTAIN cells only; moderators, paired families, principle primes, cell labels, precommitted choices, arms, models and scoring thresholds remain frozen."
 }
