@@ -13,14 +13,28 @@ async function invoke(root,name,msg,status){
   const p=new P();
   return JSON.parse(await p.send({type:name},msg,{name:"M"},status===null?null:{status}));
 }
+function phase0MembershipIsolation(root){
+  const future=["NetGSM","Mutlucell","Verimor","IletiMerkezi"];
+  const files=[
+    path.join(root,"server/notification.js"),
+    path.join(root,"src/components/notifications/index.js"),
+    path.join(root,"src/components/NotificationDialog.vue"),
+    path.join(root,"server/notification-providers/law-r1-p2-membership-registry.js"),
+    path.join(root,"src/components/notifications/law-r1-p2-membership-registry.js")
+  ].filter(fs.existsSync);
+  const joined=files.map(f=>fs.readFileSync(f,"utf8")).join("\n");
+  for(const n of future) assert(!joined.includes(n),"future phase1 membership leaked into phase0: "+n);
+  return true;
+}
 async function checkPhase0(root){
+  phase0MembershipIsolation(root);
   const down=await invoke(root,"IssueTracker","service unavailable",0);
   const up=await invoke(root,"IssueTracker","service recovered",1);
   const test=await invoke(root,"IssueTracker","test notification",null);
   assert(down.transport==="issue_tracker"&&down.action==="open","phase0 down");
   assert(up.transport==="issue_tracker"&&up.action==="close","phase0 up");
   assert(test.transport==="issue_tracker"&&test.action==="test","phase0 test");
-  return {issue_tracker:true,cases:3};
+  return {issue_tracker:true,future_membership_absent:true,cases:3};
 }
 async function checkPhase1(root){
   const regression=await checkPhase0(root);
