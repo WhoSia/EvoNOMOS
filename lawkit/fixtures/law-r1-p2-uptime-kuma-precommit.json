@@ -1,0 +1,26 @@
+{
+  "schema_version": "law-r1-p2-precommit-v1",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P2",
+  "source": {
+    "repository": "louislam/uptime-kuma",
+    "commit": "398482d590daaac0d44e288c9be3bc6f6667f8b8",
+    "tree": "235565c06703a99d759c93778f4c1ef152024cb6",
+    "authority_blobs": {
+      "server_notification": "b1a42d003a92e3760f6d33a4be59784a9cb4dbf2",
+      "base_provider": "42079176c01cd2e6d46160bb6f6408d4ba263fd7",
+      "frontend_registry": "07da96fde077e7f21d2c611da037ac20398f773c",
+      "notification_dialog": "1db32b8da7dceac93348be2d06903635823cca5b"
+    },
+    "expected_existing_provider_count": 92
+  },
+  "demands": [
+    {"phase":0,"issue":7316,"created_at":"2026-04-26T16:05:18Z","family":"issue-tracker-notification","providers":["IssueTracker"]},
+    {"phase":1,"issue":7559,"created_at":"2026-07-01T21:22:15Z","family":"turkiye-sms-notification","providers":["NetGSM","Mutlucell","Verimor","IletiMerkezi"]}
+  ],
+  "frozen_rivals": {
+    "A": "DISPERSED_MEMBERSHIP_EXTENSION",
+    "B": "DUAL_RUNTIME_MEMBERSHIP_REGISTRY"
+  },
+  "treatment_invariant": "Provider implementation and form bytes must be identical across arms; only membership-authority topology may differ.",
+  "forbidden_pre_reveal": ["S","L","C","A","Q","LOC","churn","scalar winner","architecture recommendation","CIL-C1 empirical support update"]
+}
