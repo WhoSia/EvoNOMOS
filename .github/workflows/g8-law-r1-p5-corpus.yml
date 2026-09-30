@@ -1,0 +1,73 @@
+name: G8 LAW-R1-P5 Corpus Constitution
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lawkit/protocol/v0.9/**'
+      - 'lawkit/fixtures/law-r1-p5-blinded-design-contexts.json'
+      - 'tools/law-r1-p5-render.py'
+      - 'tools/law-r1-p5-score.py'
+      - 'active/g8-law-r1-p5/**'
+      - '.github/workflows/g8-law-r1-p5-corpus.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render frozen prompt packet
+        run: |
+          mkdir -p out
+          python3 tools/law-r1-p5-render.py             --corpus lawkit/fixtures/law-r1-p5-blinded-design-contexts.json             --out out/prompt_packet.json             --replicates 3
+      - name: Audit blinding and position balance
+        run: |
+          python3 - <<'PY'
+          import json,re,collections
+          p=json.load(open("out/prompt_packet.json"))
+          assert len(p["rows"])==108
+          terms=re.compile(r"\b(SOLID|Single Responsibility|Open[- ]Closed|Liskov|Interface Segregation|Dependency Inversion|\bSRP\b|\bOCP\b|\bLSP\b|\bISP\b|\bDIP\b)",re.I)
+          for r in p["rows"]:
+              if r["arm"]!="NAMED_PRINCIPLE_PRIME":
+                  assert not terms.search(r["prompt"]), (r["case_id"],r["arm"])
+              else:
+                  assert terms.search(r["prompt"]), (r["case_id"],r["arm"])
+          pos=collections.Counter()
+          for r in p["rows"]:
+              for option,semantic in r["option_to_semantic"].items():
+                  pos[(semantic,option)]+=1
+          for semantic in ("ACTION_A","ACTION_B","ABSTAIN"):
+              seen=[pos[(semantic,f"Option {i}")] for i in (1,2,3)]
+              assert min(seen)>0, (semantic,seen)
+          print("LAW_R1_P5_BLINDING=PASS",dict(pos))
+          PY
+      - name: Scorer exact-answer canary
+        run: |
+          python3 - <<'PY'
+          import json
+          p=json.load(open("out/prompt_packet.json"))
+          rows=[]
+          for r in p["rows"]:
+              choice=next(k for k,v in r["option_to_semantic"].items() if v==r["precommitted"])
+              rows.append({"case_id":r["case_id"],"arm":r["arm"],"replicate":r["replicate"],
+                           "response":{"choice":choice,"confidence":1.0,"reason":"canary"}})
+          json.dump({"model":"CANARY","rows":rows},open("out/canary_responses.json","w"))
+          PY
+          python3 tools/law-r1-p5-score.py             --packet out/prompt_packet.json             --responses out/canary_responses.json             --out out/canary_score.json
+          python3 - <<'PY'
+          import json
+          s=json.load(open("out/canary_score.json"))
+          assert all(abs(v["alignment_rate"]-1.0)<1e-12 for v in s["summary"].values())
+          assert s["solid_verdict"]=="WITHHELD"
+          assert s["llm_population_claim"]=="FORBIDDEN"
+          print("LAW_R1_P5_SCORER_CANARY=PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p5-corpus-constitution
+          path: out/
+          retention-days: 30
