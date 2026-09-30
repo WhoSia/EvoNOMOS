@@ -1,0 +1,59 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P4",
+  "global_start": 9049,
+  "program_ambition": {
+    "axis_1": "Test whether named software-design principles, including SOLID-family maxims, are over-axiomatized beyond their observed conditional validity, especially when LLM-mediated engineering reproduces them as defaults.",
+    "axis_2": "Construct an empirical alternative: context-conditional, rival-explicit, vector-valued, falsifier-preserving design laws that may recommend, reverse, or abstain."
+  },
+  "directionality_gate": "P4 must strengthen or bound the alternative law program in real engineering worlds; additional metrology alone is not mainline progress.",
+  "p3_anchor": {
+    "canonical_run": 36670337111,
+    "canonical_head": "6223c73e44cf75bcd813c6c7bfda9d6f54fdff5b",
+    "artifact": 11077736960,
+    "cil_authority": "CIL_C1_SUPPORT_EXTENDED__BOUNDARY_SCOPE_REFINED__TWO_REAL_DEMANDS__BOUNDED_NO_NETWORK"
+  },
+  "lane_A_real_implementation_transport": {
+    "repository": "louislam/uptime-kuma",
+    "purpose": "Replace synthetic provider semantics with real merged provider implementations while testing whether the five-site handwritten membership path recurs.",
+    "merge_census": [
+      {"name":"Plivo","commit":"62a2d01d3f2eb6df47e1c987b7819bead6a91e2e","parent":"919f080184f584efe270473f2970aaa1f374e3ae"},
+      {"name":"Ooredoo","commit":"8854e00a9283bdd81f3353c3fe55626dbee79c69","parent":"ffa791da8b7567d540251343edbfdf1e2e0329e5"},
+      {"name":"SMSGateway","commit":"a808c63fe93b7ce1f835f3c51ae25e3bf567e930","parent":"7598afbef8403ca5b02bfbe66efa4c219d82c051"},
+      {"name":"AmootSMS","commit":"e4821321e559c887b14e37d9979e604b221a8945","parent":"b92b74e13e2fa643f0737ae05410391d1a372023"},
+      {"name":"Indigo","commit":"e62702d868a0b072c6e1870e5278762319637f04","parent":"5998570a3564afa82e540b660dae4b3b2178f58c","llm_coauthored":true}
+    ],
+    "membership_sites": [
+      "backend_provider_import",
+      "backend_provider_instance_registry",
+      "frontend_provider_import",
+      "frontend_form_registry",
+      "ui_category_registry"
+    ],
+    "real_semantics_probe": {
+      "provider": "Indigo",
+      "reason": "Merged implementation includes an upstream local-HTTP behavioral test and explicit Claude Opus 5 co-authorship.",
+      "authority_ceiling": "MERGED_REAL_IMPLEMENTATION_PLUS_LOCAL_HTTP_ORACLE",
+      "production_indigo_service": "UNTESTED"
+    },
+    "transport_success": "Actual merged additions repeatedly realize the five-site path, and the real Indigo implementation remains behaviorally valid when membership declarations are hypothetically localized to the frozen two-registry boundary without changing provider/form bytes."
+  },
+  "lane_B_support_domain_boundary": {
+    "repository": "home-assistant/core",
+    "purpose": "Test whether CIL abstains in an independent ecosystem where integration membership is already localized behind a sufficient component/manifest boundary.",
+    "worlds": [
+      {"name":"my_pv","commit":"87da2fb0da59e36b38bc5cb45b538a925a4bc569","parent":"2b385bb0d77842d04d9708635b4c7c253fa19a67"},
+      {"name":"greencell","commit":"d63bb480409fc6b9068ed03bda6f2e87b36a36a5","parent":"b71b155ffba7694dd95d94b825c746313127be89"}
+    ],
+    "boundary_test": "Handwritten runtime membership must be local to homeassistant/components/<domain>/manifest.json and component files. Central changes may be generated indices or non-runtime governance/dependency files, but no repeated handwritten central runtime registry should be required.",
+    "success": "PREEXISTING_BOUNDARY_COLLAPSES_MEMBERSHIP_SURFACE_DIFFERENCE => CIL treatment ABSTAIN."
+  },
+  "forbidden": [
+    "scalar winner",
+    "SOLID is false",
+    "SOLID is true",
+    "universal centralization recommendation",
+    "production external-API equivalence from local mocks",
+    "LLM causation claim from one co-authored commit",
+    "CBL authority update"
+  ]
+}
