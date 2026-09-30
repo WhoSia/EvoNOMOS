@@ -1,0 +1,95 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P6",
+  "verdict": "PASS_ROLE_DIFFERENTIATED_CROSS_PRINCIPLE_ATLAS__LSP_ADMISSIBILITY_LAYER__PRINCIPLE_AUTHORITY_REVOCABLE__NOVELTY_NOT_YET_ESTABLISHED",
+  "canonical": {
+    "run": 36679311879,
+    "head": "4c20b1b986dbfd8204452236ae84e213830852f5",
+    "artifact": 11081690418,
+    "artifact_digest": "sha256:f1a99aa29a6fcaa206fe89b2627aeda4c39006ded1c6be4868f1b59ddbe53b1f"
+  },
+  "noncanonical_runs": [
+    {
+      "run": 36679193610,
+      "classification": "HARNESS_ONLY_FAILURE",
+      "cause": "Agnes body phrase gate mismatch"
+    },
+    {
+      "run": 36679249474,
+      "classification": "HARNESS_ONLY_FAILURE",
+      "cause": "Markdown-sensitive pyrust body phrase gate"
+    }
+  ],
+  "kernel": {
+    "tuple": "L=(X,A,Y,M,F,Pi,U)",
+    "result": "ROLE_DIFFERENTIATED_CROSS_PRINCIPLE_ATLAS_SUPPORTED",
+    "llm_role": "LOCAL_PROBE_ONLY",
+    "principle_authority": "REVOCABLE_AND_ROLE_DEPENDENT",
+    "abstain": "NO_AUTHORIZED_STRUCTURAL_INTERVENTION",
+    "revoke": "PREVIOUS_STRUCTURAL_EXTENSION_OR_ABSTRACTION_AUTHORITY_WITHDRAWN",
+    "unresolved": "BOUNDARY_CELL_MAY_REMAIN_UNRESOLVED"
+  },
+  "roles": {
+    "SRP": {
+      "role": "CONDITIONAL_INTERVENTION_GENERATOR",
+      "fresh_worlds": [
+        "shinycake/quill#194",
+        "kirodotdev/KiroCrew#15153"
+      ],
+      "surface": "APPLY + LOCAL_ABSTAIN_ON_FURTHER_SPLIT",
+      "authority": "STRUCTURAL_WORLD_WITNESS"
+    },
+    "OCP": {
+      "role": "CONDITIONAL_INTERVENTION_GENERATOR",
+      "fresh_worlds": [
+        "backstage/backstage#31225",
+        "AgnesAI-Labs/agnes-harness#42"
+      ],
+      "surface": "APPLY + REVOKE",
+      "authority": "STRUCTURAL_WORLD_WITNESS"
+    },
+    "LSP": {
+      "role": "ADMISSIBILITY_CONSTRAINT",
+      "fresh_worlds": [
+        "ChanyaVRC/pyrust#2388",
+        "brendankowitz/ignixa-fhir#275"
+      ],
+      "surface": "SUBSTITUTABILITY_REPAIR + INCOMPATIBLE_BASE_REJECT",
+      "authority": "STRUCTURAL_PLUS_BEHAVIORAL_WITNESS"
+    },
+    "ISP": {
+      "role": "CONDITIONAL_INTERVENTION_GENERATOR",
+      "source": [
+        "LAW-R1-P11 TrueForge Exa→Tavily",
+        "P12 Restic"
+      ],
+      "surface": "LIFECYCLE APPLY + UNRESOLVED FULL-COREQUIREMENT BOUNDARY",
+      "authority": "P11_LIFECYCLE_SUPPORT_PLUS_P12_NONRESULT"
+    },
+    "DIP": {
+      "role": "CONDITIONAL_INTERVENTION_GENERATOR",
+      "source": [
+        "pre-ORIGIN Kodo/homebridge world contacts"
+      ],
+      "surface": "INITIAL_VS_FOLLOWUP_TRADEOFF",
+      "authority": "LIFECYCLE_VECTOR_WORLD_CONTACT"
+    }
+  },
+  "novelty": {
+    "status": "JOINT_OPERATIONAL_CONJUNCTION_ONLY__NOT_YET_ESTABLISHED_AS_NOVEL",
+    "killed": [
+      "generic context sensitivity",
+      "multi-quality architecture tradeoffs",
+      "architecture alternatives and decision rules",
+      "SOLID decisions revised by later evidence",
+      "generic context-action-effect-policy-update loop"
+    ],
+    "surviving_candidate": "cross-principle empirical authority layer over real maintenance worlds with role-differentiated principle generators/constraints, lifecycle vectors, reversal, ABSTAIN, REVOKE and empirical authority update"
+  },
+  "forbidden": [
+    "SOLID true/false verdict",
+    "universal replacement claim",
+    "scalar architecture winner",
+    "LLM-population claim",
+    "treating Restic P12 as an abstain result"
+  ]
+}
