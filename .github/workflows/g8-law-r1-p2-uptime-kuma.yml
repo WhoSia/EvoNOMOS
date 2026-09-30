@@ -1,0 +1,89 @@
+name: G8 LAW-R1-P2 Uptime Kuma Pre-Reveal
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lawkit/fixtures/law-r1-p2-uptime-kuma-precommit.json'
+      - 'tools/law-r1-p2-materialize.py'
+      - 'tools/law-r1-p2-oracle.cjs'
+      - '.github/workflows/g8-law-r1-p2-uptime-kuma.yml'
+
+concurrency:
+  group: g8-law-r1-p2-uptime-kuma
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  pre_reveal:
+    name: Exact birth-state dual-rival comparability
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout EvoNOMOS authority
+        uses: actions/checkout@v4
+
+      - name: Checkout exact Uptime Kuma birth state
+        uses: actions/checkout@v4
+        with:
+          repository: louislam/uptime-kuma
+          ref: 398482d590daaac0d44e288c9be3bc6f6667f8b8
+          path: world
+          fetch-depth: 1
+
+      - name: Verify exact source identity
+        run: |
+          set -euo pipefail
+          test "$(git -C world rev-parse HEAD)" = "398482d590daaac0d44e288c9be3bc6f6667f8b8"
+          test "$(git -C world rev-parse HEAD^{tree})" = "235565c06703a99d759c93778f4c1ef152024cb6"
+          echo LAW_R1_P2_SOURCE_IDENTITY=PASS
+
+      - name: Materialize frozen rivals without outcome measurement
+        run: |
+          set -euo pipefail
+          mkdir -p out treatments
+          python3 tools/law-r1-p2-materialize.py             --source world             --out treatments             --receipt out/materialization-custody.json
+
+      - name: Syntax gate treatment surfaces
+        run: |
+          set -euo pipefail
+          for arm in dispersed dual_registry; do
+            node --check treatments/$arm/server/notification.js
+            node --check treatments/$arm/src/components/notifications/index.js
+            find treatments/$arm/server/notification-providers -maxdepth 1 -type f -name '*.js' | grep -E '(law-r1-p2|issue-tracker|net-g-s-m|mutlucell|verimor|ileti-merkezi)' | while read -r f; do
+              node --check "$f"
+            done
+          done
+          echo LAW_R1_P2_SYNTAX=PASS
+
+      - name: Replay both real-demand contracts under mocked no-network oracle
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p2-oracle.cjs             treatments/dispersed             treatments/dual_registry             out/pre-reveal-comparability.json
+
+      - name: Enforce outcome firewall
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("out/pre-reveal-comparability.json").read_text())
+          assert r["verdict"] == "PASS_PRE_REVEAL_COMPARABILITY"
+          forbidden=set(r["forbidden_not_computed"])
+          assert {"S","L","C","A","Q","LOC","churn","scalar winner"}.issubset(forbidden)
+          print("LAW_R1_P2_OUTCOME_FIREWALL=PASS")
+          PY
+
+      - name: Seal custody without lifecycle-coordinate disclosure
+        run: |
+          set -euo pipefail
+          sha256sum             lawkit/fixtures/law-r1-p2-uptime-kuma-precommit.json             tools/law-r1-p2-materialize.py             tools/law-r1-p2-oracle.cjs             out/materialization-custody.json             out/pre-reveal-comparability.json             > out/p2-custody-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p2-pre-reveal
+          path: out/
+          retention-days: 30
