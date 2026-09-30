@@ -1,0 +1,36 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P7",
+  "precommit": "OUT_OF_STREAM_CHALLENGE_1",
+  "frozen_after_discovery_commit": "9e3800476033af3a7beefb0a14e2cc115c35dcd5",
+  "world": {
+    "repo": "crewAIInc/crewAI",
+    "issue": 7304,
+    "created_at": "2026-09-07T05:56:48Z",
+    "closed_at": "2026-09-29T07:08:01Z",
+    "observed_before_solution_readout": [
+      "context-window sizes are hardcoded in six places",
+      "copies have already drifted",
+      "lookup rules disagree across paths",
+      "specific native-vs-LiteLLM/model-family mismatches are documented"
+    ]
+  },
+  "prediction": {
+    "motif": "AUTHORITY_PATH_CONVERGENCE_MOTIF",
+    "causal_claim": "maintenance burden and wrong context-window behavior are materially caused by multiple independently editable semantic-authority maps and inconsistent resolver semantics",
+    "intervention_prediction": "a successful repair should reduce independently editable raw-window-size authorities and route provider/fallback resolution through shared behavioral lookup semantics while preserving genuinely provider-specific prefixes/defaults",
+    "expected_observable": [
+      "raw window-size ownership becomes fewer than the six prior full maps",
+      "native and fallback paths share resolver semantics or mechanically derived data",
+      "documented parity failures receive regression tests",
+      "provider-specific differences that represent real semantics remain explicit rather than being erased"
+    ],
+    "falsifiers": [
+      "merged repair leaves independent full maps and still closes all documented drift through another mechanism",
+      "convergence introduces new semantic ambiguity or forces distinct provider behavior into a false common rule",
+      "documented failures were not caused by duplicated authority",
+      "the issue closes without a code intervention that tests the motif"
+    ]
+  },
+  "authority_ceiling": "ONE_FRESH_HOLDOUT_ONLY__NO_GENERAL_LAW",
+  "next_action": "only after this commit inspect linked PR/merge/diff and test prediction"
+}
