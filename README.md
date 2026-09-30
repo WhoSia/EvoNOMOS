@@ -4,31 +4,35 @@ Canonical repository for executable conditional software-design law research.
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII LAW-R1-P0 — Cross-World Conditional Design-Law Consolidation, Moderator-Surface Identification, Falsifier-Preserving Principle Compression & Prospective Design-Decision Constitution**
+**EvoNOMOS Generation VIII LAW-R1-P3 — Uptime-Kuma Lifecycle-Vector Exposure, Membership-Propagation Surface Measurement, Oracle-Strength Boundary, Phase-0↔Phase-1 Structural Effect Adjudication & CIL-C1 Update Court**
 
-Current status: **SEALED / PASS**
+Current status: **CLOSED / PASS**
 
-LAW-R1 is the forward conditional-law lineage after ORIGIN closure.
+Uptime Kuma exact source: `398482d590daaac0d44e288c9be3bc6f6667f8b8`.
 
-P0 consolidates prior world contact without manufacturing a new lifecycle outcome:
-- P10: bounded CIL-C1 exploratory mechanism evidence — S reversal without L reversal.
-- P11: narrow CBL-C1 mechanism support — L reversal without S discrimination, with truthful C-burden removal.
-- P12: terminal non-result — the full-corequirement falsifier cell remains unresolved.
+The sealed P2 rivals were measured without treatment mutation. Vector order is `S/L/C/A/Q`:
 
-LawKit v0.6 compiles pre-treatment moderator context into rival tests, abstention reasons and preserved falsifiers. It does not issue an architecture winner.
+- DISPERSED: phase0 `(5,22,0,0,1)` → phase1 `(5,80,0,0,1)`
+- DUAL: phase0 `(2,36,0,3,1)` → phase1 `(2,75,0,0,1)`
 
-Canonical v0.6 validation:
-- GitHub Actions run: `36392207102`
-- execution head: `4de16aba3e27288884c5b8a2b6b13ef263a98507`
-- Rust quality gates: PASS
-- v0.1/v0.2/v0.3 regression: PASS
-- Rust↔Python v0.6 concordance: PASS
-- Node authority verifier: PASS
-- artifact: `10957026657`
-- artifact digest: `sha256:23d81ddf2a646f5052cd371c70a3b6e12699a90932e2f04839a39dc50a04627f`
+DUAL − DISPERSED:
+- phase0: `S=-3, L=+14, C=0, A=+3`
+- phase1: `S=-3, L=-5, C=0, A=0`
 
-No new project treatment, scalar winner, SOLID verdict or P12 retroactive outcome is created by P0.
+This extends CIL-C1 only as a bounded membership-propagation mechanism claim: a sufficient membership boundary reduced actual per-demand membership-surface edits in both observed demands, while paying an architecture/churn birth tax. `L` remains an independent coordinate and is not promised by CIL-C1.
+
+CBL-C1 is not applicable here because the mandatory provider contract is singleton `send`; `C=0` in both arms.
+
+Canonical validation:
+- GitHub Actions run: `36670337111`
+- execution head: `6223c73e44cf75bcd813c6c7bfda9d6f54fdff5b`
+- artifact: `11077736960`
+- artifact digest: `sha256:3dd3e281230a72d09c0d2759f5800a92ce08203d4193089e15a9bb6ba1e658e5`
+- oracle strength: `BOUNDED_NO_NETWORK`
+- production external-API equivalence: **UNESTABLISHED**
+
+No scalar winner, architecture recommendation, universal SOLID/DIP/OCP validation, or CBL update is authorized.
 
 ## Repository workflow
 
-`main` is canonical. Only the current scientific lineage remains under `active/`; retired stages remain recoverable in Git history and Research OS.
+`main` is canonical. The current scientific lineage is under `active/`; sealed immediate dependencies may remain there when required for reproducible authority checks.
