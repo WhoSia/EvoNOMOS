@@ -43,9 +43,9 @@
         "existing-authority"
       ],
       [
-        "ABSTAIN",
+        "UNRESOLVED_COREQUIREMENT_BOUNDARY",
         "Restic full-backend P12",
-        "existing-boundary"
+        "terminal-non-result"
       ]
     ],
     "DIP": [
