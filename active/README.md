@@ -2,29 +2,39 @@
 
 Current scientific surface:
 
-- `active/g8-law-r1-p5/`
+- `active/g8-law-r1-p6/`
 - status: `CLOSED / PASS`
-- repaired corpus authority: `378cb1cfe3a9506d2f7aefa5ea5eb2effd7a7d45`
-- corpus CI: `36677116768` — SUCCESS
-- canonical model field: EPISTEME-hosted run `36677191280` — SUCCESS
-- artifact: `11080830212`
-- artifact digest: `sha256:59cd0b5fd11146dabe9ddb50a8d7af9bf637235a5e156e5f6dbed436c81ccc6b`
+- canonical run: `36679311879`
+- execution head: `4c20b1b986dbfd8204452236ae84e213830852f5`
+- artifact: `11081690418`
+- artifact digest: `sha256:f1a99aa29a6fcaa206fe89b2627aeda4c39006ded1c6be4868f1b59ddbe53b1f`
 
-Scientific result:
+P6 result:
 
-- strong cross-model LLM maxim-prior hypothesis: **NOT SUPPORTED**
-- model-conditional prime effect: **SUPPORTED AS BOUNDED SIGNAL**
-- Gemini 3.5 Flash Lite: 100% alignment in all frozen arms
-- GPT-OSS 120B: named-principle arm 100%; no unsupported named-maxim choices
-- GPT-OSS 20B: modest named-principle pull on non-APPLY cells, concentrated in DIP/OCP reversal cases
-- evidence-conditioned framing: useful in many cells but **not uniformly superior**
+- generalized kernel `L=(X,A,Y,M,F,Π,U)` survives as a bounded operational candidate
+- SOLID-family items occupy **different logical roles**
+- SRP / OCP / ISP / DIP = conditional intervention generators
+- LSP = admissibility/substitutability constraint
+- principle authority is revocable and role-dependent
+- terminal law states are not binary: APPLY/TEST, ABSTAIN, REVOKE, UNRESOLVED
+- LLM/provider calls are local probes only; real repository maintenance histories remain primary evidence
 
-The current generalized candidate is a partial empirical design-law kernel:
+Fresh external atlas:
 
-`L=(X,A,Y,M,F,Π,U)`
+- SRP APPLY: `shinycake/quill#194`
+- SRP local abstain-on-further-split: `kirodotdev/KiroCrew#15153`
+- OCP APPLY: `backstage/backstage#31225`
+- OCP REVOKE: `AgnesAI-Labs/agnes-harness#42`
+- LSP substitutability repair: `ChanyaVRC/pyrust#2388`
+- LSP incompatible-shared-base reject: `brendankowitz/ignixa-fhir#275`
 
-Named principles such as SRP/OCP/LSP/ISP/DIP are candidate intervention generators or constraints. They are not default authorities. Authority comes from moderators, rivals, lifecycle outcome vectors, falsifiers, world contact and subsequent update/revocation.
+Existing lifecycle authority retained:
 
-`ABSTAIN` means no structural intervention has earned authority and must be semantically disjoint from every intervention rival.
+- ISP: P11 TrueForge APPLY support; P12 Restic remains **TERMINAL NON-RESULT**, not an abstain result
+- DIP: prior Kodo/homebridge world contacts retain initial-vs-follow-up tradeoff authority
 
-No SOLID true/false verdict, LLM-population claim, universal replacement claim or scalar architecture winner is authorized.
+Novelty status:
+
+`JOINT_OPERATIONAL_CONJUNCTION_ONLY__NOT_YET_ESTABLISHED_AS_NOVEL`
+
+No SOLID true/false verdict, universal replacement claim or scalar architecture winner is authorized.
