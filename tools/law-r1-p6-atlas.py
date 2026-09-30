@@ -31,7 +31,7 @@ PRS = [
   {
     "id":"LSP_REPAIR_PYRUST","repo":"ChanyaVRC/pyrust","number":2388,
     "merge":"161fe6e5607f5a489143435b0cc6fda6b93746d6",
-    "must":["substitutability boundary","62-case sweep","fails 0"],
+    "must":["substitutability boundary","62-case sweep","substitutability cases"],
     "role":"LSP","cell":"ADMISSIBILITY_FAILURE_REPAIR","ceiling":"STRUCTURAL_PLUS_BEHAVIORAL_TEST_WITNESS"
   },
   {
