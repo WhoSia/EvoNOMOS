@@ -5,7 +5,7 @@ from pathlib import Path
 
 PRS=[
  {"id":"KYVERNO_17769","repo":"kyverno/kyverno","pr":17769,"merge":"c51c8f6fd10824a2560819553b78ac0d4f80a652","must":["root cause of drift","single source of truth"],"role":"DISCOVERY"},
- {"id":"COMFY_18700","repo":"Comfy-Org/ComfyUI_frontend","pr":18700,"merge":"888e079ea9999bbde7aadb0e58eb9c848c84590d","must":["delete every reconciliation layer","graph api"],"role":"DISCOVERY"},
+ {"id":"COMFY_18700","repo":"Comfy-Org/ComfyUI_frontend","pr":18700,"merge":"888e079ea9999bbde7aadb0e58eb9c848c84590d","must":["delete every reconciliation layer","remote ops apply through"],"role":"DISCOVERY"},
  {"id":"TER_48","repo":"lgriffin/TER","pr":48,"merge":"983f0aa2af5cd188f342d5a6daf08cb46f470806","must":["pure ter 4 domain","price_book.json"],"role":"DISCOVERY"},
  {"id":"CREWAI_7796","repo":"crewAIInc/crewAI","pr":7796,"merge":"a6e6d0f9d85a72dd03bc041b8ea4648f211b6d9e","must":["centralize context-window lookup","parity"],"role":"HOLDOUT"}
 ]
