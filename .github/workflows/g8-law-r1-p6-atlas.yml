@@ -1,0 +1,66 @@
+name: G8 LAW-R1-P6 Cross-Principle Atlas
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lawkit/protocol/v0.10/**'
+      - 'tools/law-r1-p6-*'
+      - 'active/g8-law-r1-p6/**'
+      - '.github/workflows/g8-law-r1-p6-atlas.yml'
+
+concurrency:
+  group: g8-law-r1-p6-atlas
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  atlas:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify P5 predecessor authority
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open("active/g8-law-r1-p5/P5_TERMINAL_SEAL.json"))
+          assert x["stage"]=="EvoNOMOS Generation VIII LAW-R1-P5"
+          assert x["adjudication"]["strong_llm_wide_maxim_prior"]=="NOT_SUPPORTED_BY_THIS_PILOT"
+          assert x["generalized_kernel"]["tuple"]=="L=(X,A,Y,M,F,Pi,U)"
+          print("LAW_R1_P6_P5_AUTHORITY=PASS")
+          PY
+
+      - name: Live cross-principle repository atlas
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p6-atlas.py
+
+      - name: Adjudicate role-differentiated kernel
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p6-court.mjs out/p6-atlas.json out/p6-court.json
+          python3 - <<'PY'
+          import json
+          c=json.load(open("out/p6-court.json"))
+          assert c["generalized_kernel"]["scalarization"] is False
+          assert c["principle_roles"]["LSP"]["role"]=="ADMISSIBILITY_CONSTRAINT"
+          assert c["generalized_kernel"]["universal_solid_verdict"]=="WITHHELD"
+          assert c["generalized_kernel"]["novelty_status"]=="JOINT_OPERATIONAL_CONJUNCTION_ONLY__NOT_YET_ESTABLISHED_AS_NOVEL"
+          print("LAW_R1_P6_AUTHORITY_FIREWALL=PASS")
+          PY
+
+      - name: Seal custody
+        run: |
+          sha256sum             lawkit/protocol/v0.10/LAW_R1_P6_GENERALIZED_KERNEL_CONSTITUTION.json             active/g8-law-r1-p6/PRIOR_ART_CONVERGENCE_KILL.md             tools/law-r1-p6-atlas.py             tools/law-r1-p6-court.mjs             out/p6-atlas.json             out/p6-court.json             > out/p6-custody-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p6-cross-principle-atlas
+          path: out/
+          retention-days: 30
