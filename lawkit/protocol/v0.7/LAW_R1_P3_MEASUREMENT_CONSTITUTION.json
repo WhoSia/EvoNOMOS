@@ -1,0 +1,68 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P3",
+  "protocol": "uptime-kuma-membership-lifecycle-v0.7",
+  "parent_authority": {
+    "p2_treatment_head": "0c40eac7a825780f7907a311cf670421f6aea13b",
+    "p2_run": 36658508000,
+    "p2_artifact": 11073560580,
+    "source_commit": "398482d590daaac0d44e288c9be3bc6f6667f8b8"
+  },
+  "arms": ["DISPERSED_MEMBERSHIP_EXTENSION", "DUAL_RUNTIME_MEMBERSHIP_REGISTRY"],
+  "phases": {
+    "phase0": {"issue": 7316, "providers": ["IssueTracker"]},
+    "phase1": {"issue": 7559, "providers": ["NetGSM", "Mutlucell", "Verimor", "IletiMerkezi"]}
+  },
+  "S": {
+    "definition": "number of distinct per-provider membership-authority semantic sites actually edited by the phase demand",
+    "dispersed_sites": [
+      "backend_provider_import",
+      "backend_provider_instance_registry",
+      "frontend_provider_import",
+      "frontend_form_registry",
+      "ui_category_registry"
+    ],
+    "dual_sites": [
+      "backend_membership_registry",
+      "frontend_membership_registry"
+    ],
+    "anti_leak": "The constitutionally known 5-to-2 topology is not itself an outcome. S is counted only when a phase diff actually adds/removes that phase's provider membership declarations at the named semantic site."
+  },
+  "L": {
+    "definition": "additions plus deletions in handwritten product source caused by the phase",
+    "eligible": [
+      "server/notification.js",
+      "server/notification-providers/*.js",
+      "src/components/NotificationDialog.vue",
+      "src/components/notifications/*.js",
+      "src/components/notifications/*.vue"
+    ],
+    "includes": "provider implementation and form churn because those bytes are identical across arms and therefore remain a common lifecycle cost",
+    "excludes": ["experiment harness", "docs", "lockfiles", "generated artifacts"]
+  },
+  "C": {
+    "definition": "demand-extraneous mandatory runtime capabilities imposed by the treatment contract",
+    "expected_domain": "singleton mandatory send contract",
+    "rule": "C=0 only if the base provider contract analysis finds send as the sole mandatory override and each frozen demand requires send only; otherwise HOLD"
+  },
+  "A": {
+    "definition": "shared architecture integration machinery changed outside per-provider membership declarations",
+    "dispersed": "0 unless new shared boundary machinery is introduced",
+    "dual_phase0_sites": ["server_registry_hook", "frontend_form_registry_hook", "ui_category_registry_hook"],
+    "dual_phase1_expectation": "0 if the installed boundary absorbs later membership without further integration wiring"
+  },
+  "Q": {
+    "definition": "functional validity under the sealed oracle domain",
+    "scope": "BOUNDED_NO_NETWORK",
+    "phase0": "1 only if #7316 IssueTracker replay passes in both arms",
+    "phase1": "1 only if all four #7559 SMS provider replays pass in both arms",
+    "production_external_api_authority": false
+  },
+  "precommitted_interpretation": {
+    "cil_support_pattern": "DUAL S lower than DISPERSED in phase1; phase0 may show either S birth tax or immediate S saving, but any boundary-installation cost must remain visible in A/L",
+    "l_saving_required": false,
+    "cbl_applicable": false,
+    "scalarization": false,
+    "winner": "FORBIDDEN",
+    "solid_dip_ocp_validation": "FORBIDDEN"
+  }
+}
