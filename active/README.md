@@ -2,16 +2,20 @@
 
 Current scientific surface:
 
-- `active/g8-law-r1-p3/`
+- `active/g8-law-r1-p4/`
 - status: `CLOSED / PASS`
-- canonical run: `36670337111`
-- coordinate order: `S/L/C/A/Q`
-- DISPERSED: phase0 `(5,22,0,0,1)`, phase1 `(5,80,0,0,1)`
-- DUAL: phase0 `(2,36,0,3,1)`, phase1 `(2,75,0,0,1)`
-- CIL-C1: bounded support extended for membership-authority propagation under two real demands and a bounded no-network oracle
-- CBL-C1: not applicable in this singleton mandatory-`send` world
+- canonical run: `36671521917`
+- CIL-C1: real-implementation transport established across five real Uptime Kuma merges, plus a Home Assistant abstention boundary
+- axis 1 (axiomization / LLM principle prior): **UNDERDEVELOPED_BUT_WORLD_CONTACTED**
+- axis 2 (conditional-law replacement): **ADVANCED**
 - architecture winner: none
 - scalarization: forbidden
+- SOLID verdict: withheld
 - production external-API equivalence: unestablished
 
-`active/g8-law-r1-p2/` remains as the immediate sealed treatment/comparability dependency. Earlier LAW-R1 stages remain recoverable in Git history and Research OS.
+Immediate sealed dependencies:
+
+- `active/g8-law-r1-p3/` — canonical lifecycle-vector result
+- `active/g8-law-r1-p2/` — treatment/comparability authority
+
+The next scientific obligation is no longer another favorable CIL replay. It is a direct axis-1 experiment: blinded principle-prior advice versus evidence-conditioned rival choice, with enough world contact to test whether LLM-mediated software design over-reproduces named maxims relative to conditional evidence.
