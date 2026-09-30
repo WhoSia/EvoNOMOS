@@ -1,0 +1,50 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P4",
+  "verdict": "PASS_REAL_IMPLEMENTATION_TRANSPORT__ABSTENTION_BOUNDARY_ESTABLISHED__AXIS1_UNDERDEVELOPED",
+  "canonical_head": "4bb14a6ce39dba94dad44ca1140d40fdacad07e0",
+  "canonical_run": 36671521917,
+  "artifact": {
+    "id": 11078606029,
+    "name": "g8-law-r1-p4-transport-court",
+    "digest": "sha256:de4d752fa8d9e9d9c6f7febf71b1df2a4299d79d53f8c2e7ecd448c1e49e7528"
+  },
+  "axis_1_axiomization_audit": {
+    "status": "UNDERDEVELOPED_BUT_WORLD_CONTACTED",
+    "llm_witness": "Uptime Kuma Indigo merged commit e62702d868a0b072c6e1870e5278762319637f04 records Claude Opus 5 co-authorship while following the existing five-site membership path.",
+    "authority_limit": "DESCRIPTIVE_WITNESS_ONLY__NO_LLM_CAUSATION__NO_SOLID_VERDICT",
+    "next_required": "DIRECT_BLINDED_PRINCIPLE_PRIOR_VS_EVIDENCE_CONDITIONED_RIVAL_CHOICE"
+  },
+  "axis_2_conditional_law_replacement": {
+    "status": "ADVANCED",
+    "positive_surface": {
+      "world": "Uptime Kuma notification providers",
+      "real_merged_provider_count": 5,
+      "providers": ["Plivo","Ooredoo","SMSGateway","AmootSMS","Indigo"],
+      "all_observed_S": 5,
+      "real_implementation_target": "Indigo",
+      "real_implementation_provider_blob": "2e759ce97eabf733374f4f317afab7d57094b147",
+      "real_implementation_form_blob": "4c6c99cbc6f5dddd2b7e3e0dd25d41e2b6dbb368",
+      "oracle": "LOCAL_HTTP_SERVER__REAL_MERGED_IMPLEMENTATION_BYTES",
+      "production_indigo_service_contact": false
+    },
+    "abstention_surface": {
+      "world": "Home Assistant integrations",
+      "independent_worlds": ["my_pv","greencell"],
+      "classification": "PREEXISTING_BOUNDARY_COLLAPSES_MEMBERSHIP_SURFACE_DIFFERENCE",
+      "action": "ABSTAIN",
+      "central_runtime_candidates": 0
+    }
+  },
+  "cil_c1": {
+    "prior_authority": "CIL_C1_SUPPORT_EXTENDED__BOUNDARY_SCOPE_REFINED__TWO_REAL_DEMANDS__BOUNDED_NO_NETWORK",
+    "new_authority": "CIL_C1_REAL_IMPLEMENTATION_TRANSPORT__FIVE_REAL_MERGES__LOCAL_HTTP_ORACLE__ABSTENTION_BOUNDARY_ESTABLISHED",
+    "production_external_api_equivalence": "UNESTABLISHED",
+    "universal_rule": "WITHHELD"
+  },
+  "cbl_c1": {
+    "authority_change": "NONE"
+  },
+  "scalarization": false,
+  "winner": null,
+  "solid_verdict": "WITHHELD"
+}
