@@ -22,16 +22,13 @@ def load_p2(path:Path):
 def sanitize_phase0(dst:Path,arm:str):
     future=["NetGSM","Mutlucell","Verimor","IletiMerkezi"]
     if arm=="DISPERSED_MEMBERSHIP_EXTENSION":
-        p=dst/"src/components/NotificationDialog.vue"
-        s=p.read_text(encoding="utf-8")
-        for n in future:
-            s=s.replace(f'                {n}: "{n}",\\n',"")
-        p.write_text(s,encoding="utf-8")
+        targets=[dst/"src/components/NotificationDialog.vue"]
     else:
-        p=dst/"src/components/notifications/law-r1-p2-membership-registry.js"
-        s=p.read_text(encoding="utf-8")
-        s=s.replace('    smsServices: { NetGSM: "NetGSM", Mutlucell: "Mutlucell", Verimor: "Verimor", IletiMerkezi: "IletiMerkezi" }','    smsServices: {}')
-        p.write_text(s,encoding="utf-8")
+        targets=[dst/"src/components/notifications/law-r1-p2-membership-registry.js"]
+    for p in targets:
+        lines=p.read_text(encoding="utf-8").splitlines(keepends=True)
+        kept=[line for line in lines if not any(name in line for name in future)]
+        p.write_text("".join(kept),encoding="utf-8")
 
 def materialize(mod,src:Path,dst:Path,arm:str,providers,phase0:bool=False):
     mod.PROVIDERS=list(providers)
