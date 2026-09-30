@@ -43,7 +43,14 @@ jobs:
           for semantic in ("ACTION_A","ACTION_B","ABSTAIN"):
               seen=[pos[(semantic,f"Option {i}")] for i in (1,2,3)]
               assert min(seen)>0, (semantic,seen)
-          print("LAW_R1_P5_BLINDING=PASS",dict(pos))
+          corpus=json.load(open("lawkit/fixtures/law-r1-p5-blinded-design-contexts.json"))
+          for case in corpus["cases"]:
+              if case["cell"]=="ABSTAIN":
+                  roles=case.get("choice_roles")
+                  assert roles=={"ACTION_A":"INTERVENTION","ACTION_B":"INTERVENTION","ABSTAIN":"NO_INTERVENTION"}, case["id"]
+                  assert case["action_map"]["ACTION_A"] != case["action_map"]["ABSTAIN"]
+                  assert case["action_map"]["ACTION_B"] != case["action_map"]["ABSTAIN"]
+          print("LAW_R1_P5_BLINDING_AND_NONALIASING=PASS",dict(pos))
           PY
       - name: Scorer exact-answer canary
         run: |
