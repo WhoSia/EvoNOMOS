@@ -1,0 +1,65 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P5",
+  "status": "PRECOMMITTED_BEFORE_MODEL_OUTCOMES",
+  "global_start": 9087,
+  "evonomos_science_head": "08d2111e03cc9e3cb727d0fe3cf7ea5cab70f09d",
+  "corpus": "lawkit/fixtures/law-r1-p5-blinded-design-contexts.json",
+  "renderer": "tools/law-r1-p5-render.py",
+  "scorer": "tools/law-r1-p5-score.py",
+  "novelty_kill": "active/g8-law-r1-p5/PRIOR_ART_NOVELTY_KILL.md",
+  "models": [
+    {
+      "key": "gptoss20",
+      "provider": "groq",
+      "family": "gpt-oss",
+      "model": "openai/gpt-oss-20b"
+    },
+    {
+      "key": "gptoss120",
+      "provider": "groq",
+      "family": "gpt-oss",
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "key": "gemini",
+      "provider": "gemini",
+      "family": "gemini",
+      "model": "gemini-3.5-flash-lite"
+    }
+  ],
+  "execution_host": {
+    "repo": "WhoSia/EPISTEME",
+    "role": "SECRET_AND_PROVIDER_EXECUTION_ONLY",
+    "repository_writeback_from_actions": false,
+    "result_authority": "EvoNOMOS only after artifact custody and rescoring"
+  },
+  "design": {
+    "cases": 12,
+    "arms": [
+      "CONTEXT_ONLY",
+      "NAMED_PRINCIPLE_PRIME",
+      "EVIDENCE_CONDITIONED"
+    ],
+    "replicates": 3,
+    "calls_per_model": 108,
+    "total_calls": 324,
+    "replicate_meaning": "deterministic option-position perturbation, not stochastic Monte Carlo",
+    "decoding": "temperature=0 where provider supports it; strict JSON/object contract calibrated before scientific calls"
+  },
+  "primary_contrast": "NAMED_PRINCIPLE_PRIME versus EVIDENCE_CONDITIONED on REVERSE/ABSTAIN cells",
+  "descriptive_pilot_thresholds": {
+    "maxim_prior_signal": "named principle pull on non-APPLY >= +0.15 AND evidence-conditioning reduction >= +0.15",
+    "reverse_prime_signal": "named principle pull <= -0.15",
+    "otherwise": "INCONCLUSIVE"
+  },
+  "authority_ceiling": {
+    "cross_model_if_all_three_run": "THREE_INTERFACE_DESCRIPTIVE_PILOT",
+    "population_llm_claim": false,
+    "solid_true_false_verdict": false,
+    "universal_replacement_claim": false
+  },
+  "failed_external_lane": {
+    "hugging_face_jobs": "402_PAYMENT_REQUIRED",
+    "policy": "do not spend new money merely to complete P5; reuse already-provisioned EPISTEME provider secrets"
+  }
+}
