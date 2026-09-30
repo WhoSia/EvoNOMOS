@@ -1,0 +1,81 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P5",
+  "verdict": "PASS_GENERALIZED_DESIGN_LAW_CANDIDATE__STRONG_CROSS_MODEL_MAXIM_PRIOR_NOT_SUPPORTED__MODEL_CONDITIONAL_PRIME_EFFECT__PRINCIPLES_DEMOTED_TO_GENERATORS",
+  "canonical": {
+    "corpus_head": "378cb1cfe3a9506d2f7aefa5ea5eb2effd7a7d45",
+    "corpus_ci_run": 36677116768,
+    "provider_host_repo": "WhoSia/EPISTEME",
+    "provider_host_run": 36677191280,
+    "provider_host_head": "f9f61ad94af5e2543bf4ef1e829eca8d36043ad5",
+    "artifact_id": 11080830212,
+    "artifact_digest": "sha256:59cd0b5fd11146dabe9ddb50a8d7af9bf637235a5e156e5f6dbed436c81ccc6b"
+  },
+  "invalidated_history": [
+    {
+      "run": 36676553417,
+      "artifact": 11080685170,
+      "verdict": "NONAUTHORITATIVE_ACTION_ALIASING_BUG",
+      "reason": "ACTION_B and ABSTAIN were semantically aliased in three ABSTAIN cells."
+    },
+    {
+      "run": 36677159816,
+      "verdict": "NONSCIENTIFIC_PREFLIGHT_FAILURE",
+      "reason": "Execution-host literal science SHA was stale; scientific calls did not open."
+    }
+  ],
+  "models": {
+    "gemini-3.5-flash-lite": {
+      "context_alignment": 1,
+      "named_alignment": 1,
+      "evidence_alignment": 1,
+      "named_unsupported_nonapply": 0,
+      "evidence_unsupported_nonapply": 0,
+      "evidence_pair_reversal": 1,
+      "option_permutation_stability": 1
+    },
+    "openai/gpt-oss-120b": {
+      "context_alignment": 0.9166666666666666,
+      "named_alignment": 1,
+      "evidence_alignment": 0.9722222222222222,
+      "named_unsupported_nonapply": 0,
+      "evidence_unsupported_nonapply": 0.05555555555555555,
+      "evidence_pair_reversal": 0.9444444444444444,
+      "option_permutation_stability": {
+        "context": 1,
+        "named": 1,
+        "evidence": 0.9166666666666666
+      }
+    },
+    "openai/gpt-oss-20b": {
+      "context_alignment": 0.9722222222222222,
+      "named_alignment": 0.9166666666666666,
+      "evidence_alignment": 0.9444444444444444,
+      "named_unsupported_nonapply": 0.16666666666666666,
+      "evidence_unsupported_nonapply": 0.1111111111111111,
+      "evidence_pair_reversal": 0.8888888888888888,
+      "option_permutation_stability": {
+        "context": 0.9166666666666666,
+        "named": 0.8333333333333334,
+        "evidence": 0.9166666666666666
+      },
+      "named_prime_failures": [
+        "DIP_REVERSE 2/3",
+        "OCP_REVERSE 1/3"
+      ]
+    }
+  },
+  "adjudication": {
+    "strong_llm_wide_maxim_prior": "NOT_SUPPORTED_BY_THIS_PILOT",
+    "named_principles": "USEFUL_CANDIDATE_ACTION_GENERATORS_WITH_MODEL_CONDITIONAL_PRIMING_RISK",
+    "evidence_conditioned_frame": "NOT_UNIFORMLY_SUPERIOR_IN_THIS_PILOT",
+    "generalized_structure": "PROMOTE_AS_CANDIDATE_KERNEL_NOT_UNIVERSAL_LAW",
+    "solid_true_false": "WITHHELD",
+    "population_llm_claim": "WITHHELD"
+  },
+  "generalized_kernel": {
+    "tuple": "L=(X,A,Y,M,F,Pi,U)",
+    "principle_role": "candidate intervention generator / admissibility constraint, never default authority",
+    "abstain_rule": "ABSTAIN means no authorized structural intervention and must be semantically disjoint from every rival intervention",
+    "prior_art_relation": "absorbs Parnas volatility sensitivity, ATAM/CBAM tradeoff/economics, real-options modularity, architectural tactics/ADD and evidence-based architecture rather than claiming them as novelty"
+  }
+}
