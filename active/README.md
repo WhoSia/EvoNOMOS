@@ -2,47 +2,56 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P18
-- formal suffix: Stress
+- active stage: G8 LAW-R1-P19
+- formal suffix: Protocol
 - status: CLOSED / PASS
-- canonical run: 36972584671
-- canonical head: 0100be490757c713a5dbd9a7c67d5de3057f8af9
-- canonical job: 110729497835
-- artifact: 11212053545
-- digest: sha256:7347dd8ee3982ce782f5b3e20586ca32378f00a109b3aed988a65dc0aa3ae20a
+- canonical run: 36974722368
+- canonical head: 372b8b07a99b12e60c20eda46d1206ed58b2c8ca
+- canonical job: 110735953073
+- artifact: 11212621938
+- digest: sha256:ee8580e1c5c1586530ad95e0bf9d23d80de702595b14434467c5ebe16ae74510
 
-P18 authority:
+P19 authority:
 
-- the P16 four-primitive operational basis remains intact
-- the P17 partial interaction graph remains intact
-- one exact non-bot interaction family is established in etcd distributed runtime version-skew logic
-- etcd exhibits a complete 2x2 LIFECYCLE_PHASE x VERSION_GEOMETRY XNOR reversal
-- Java reconstruction gives difference-in-differences = 2 and rejects a context-independent main-effect-only account
-- non-bot domain escape is ACHIEVED_BOUNDED_ONE_DOMAIN
-- a second mechanistically independent transport family was not found
-- COMPATIBILITY_OBLIGATION x COEXISTENCE_REQUIREMENT remains UNDERIDENTIFIED_NO_COMPLETE_NONBOT_2X2
-- genuine higher-order X interactions remain UNDERIDENTIFIED
-- Kafka remains an exact coexistence discriminator, not a compatibility x coexistence factorial
-- Grafana migration modes couple coexistence and sync lifecycle and do not provide a clean 2x2 under fixed semantics
-- Kubernetes storage-version migration remains strong support with incomplete factorial separation
-- same normalized (X,G,E) conflicting action was not observed
+- P16 four-primitive basis remains intact
+- P17 partial interaction graph remains intact
+- P18 bounded non-bot domain-escape authority remains intact
+- one fresh exact non-migration family is established in Rust compiler/library method resolution
+- the exact interaction is COMPATIBILITY_OBLIGATION x CALL_GEOMETRY
+- pre-2021 compatibility preserves borrowed semantics only for explicit .into_iter() method dispatch; explicit trait invocation remains by-value
+- the resulting 2x2 has difference-in-differences = 1
+- X-only, G-only, and exact additive main-effect reconstructions fail
+- typed pairwise interaction fits
+- a generic low-complexity conjunction also fits exactly
+- representation identity is therefore NON_UNIQUE
+- Axios library API and Node module-loader behavior provide independent grammar-level support for geometry-selective policy
+- only one fresh exact typed XxG family exists, so strong cross-mechanism macro-law authority is not granted
+- Principle-as-Projection survives current falsification but remains UNDERIDENTIFIED
+- SOLID as a special case remains NOT_DERIVED
 - LAW-R2 remains NOT_AUTHORIZED
 
-Literature and Harvest:
+Harvest and theory:
 
-- three user-supplied papers were deduplicated, canonicalized, moved from 00_INTAKE to 10_PAPERS, and full-text read
-- LR-20261002-W is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
-- generic feature-interaction, higher-order interaction, pairwise combinatorial-testing, input x configuration, and generic context-dependence claims are treated as prior art rather than EvoNOMOS novelty
-- Principle-as-Projection Hypothesis remains HARVEST_ONLY
-- SOLID as a special case remains a long-horizon hypothesis and has not been derived
+- LR-20261002-X is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
+- Policy-Surface Equivalence-Class Hypothesis is HARVEST_ONLY
+- Named Maxim as Regional Compression is HARVEST_ONLY
+- a future named-maxim mapping must be prospectively frozen before fresh outcomes
 - manuscript drafting remains NOT_AUTHORIZED
 
-Implementation:
+Cross-repository hygiene:
 
-- Java factorial reconstruction: PASS
-- CSharp boundary audit: PASS_PARTIAL_DOMAIN_ESCAPE
-- JavaScript stress aggregation: PASS
-- new Python files: 0
-- canonical hosted run passed on the first attempt
+- CUBE-REV research/current head audited at 5921ca980b7214e7ad915747c39435168f4547e3
+- recent P2 cleanup commits are directionally correct
+- six stale/dead workflow residues were identified
+- 103 historical/predecessor candidate paths remain for reverse-reference audit
+- CUBE-REV was not modified from P19
+- no scientific contamination into EvoNOMOS authority was observed
 
-Global next: 9718, still within LAW-R1.
+Implementation and hosted evidence:
+
+- rival representation competition: PASS
+- cross-mechanism protocol: PASS
+- artifact directly inspected
+- canonical hosted run succeeded on the first attempt
+
+Global next: 9775, still within LAW-R1.
