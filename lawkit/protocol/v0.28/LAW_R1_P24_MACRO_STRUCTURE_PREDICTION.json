@@ -1,0 +1,153 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "formal_title": "Prospective Transport-Algebra Orientation Prediction, Left-Zero↔Right-Zero↔Larger-Monoid Fresh Classification, Minimal Faithful-State Precommit, Strong Property-Indexed Shared-Boundary Replication, Frozen Action-Sufficient Quotient, Prospective AND-Bridge Held-Out Transport, Decomposition-Uniqueness Stress & Macro-Structure Prediction",
+  "suffix": "Prediction",
+  "global_start": 10063,
+  "predecessor": {
+    "stage": "LAW-R1-P23",
+    "terminal_seal": "5dc4cc153f446ae3e4706566b92e0235c30307bf",
+    "active_lineage": "38539bdb65d438555c6b5ba5e6107c1f196e3a8a",
+    "canonical_run": 37008014852,
+    "canonical_head": "deac4afa691a019e3a651d905247befcc71cedec"
+  },
+  "runtime_preflight": "e542c1461fea5ee702ab18f786aac1ac09748b62",
+  "prospective_program": {
+    "lane_A_transport_algebra": {
+      "target": "Fresh source-defined pair of idempotent semantic transformations D,R with both compositions executable.",
+      "classifier": [
+        {
+          "id": "A0_LEFT_ZERO_IDENTITY",
+          "condition": "D∘R=D and R∘D=R, with I identity and D,R distinct idempotents",
+          "predicted_min_faithful_degree": 2
+        },
+        {
+          "id": "A1_RIGHT_ZERO_IDENTITY",
+          "condition": "D∘R=R and R∘D=D, with I identity and D,R distinct idempotents",
+          "predicted_min_faithful_degree": 3
+        },
+        {
+          "id": "A2_COMMUTATIVE_IDEMPOTENT",
+          "condition": "D∘R=R∘D and D,R idempotent",
+          "predicted_min_faithful_degree": "AT_LEAST_3_IF_I,D,R_ARE_DISTINCT"
+        },
+        {
+          "id": "A3_LARGER_OR_NONBAND",
+          "condition": "closure has >3 transformations or a generator/composite is non-idempotent",
+          "predicted_min_faithful_degree": "ENUMERATE_FROM_FROZEN_TRANSITION_TABLE_ONLY"
+        }
+      ],
+      "orientation_prediction_rule": [
+        "If D and R both overwrite the same semantic coordinate unconditionally to distinct constants, classify LEFT_ZERO.",
+        "If D and R are state-conditional projections that each preserve the other's already-canonical fixed points while acting differently on a third legacy/source state, classify RIGHT_ZERO.",
+        "If both transformations commute on every predeclared state, classify COMMUTATIVE_IDEMPOTENT.",
+        "Otherwise classify LARGER_OR_NONBAND; do not force a band orientation."
+      ],
+      "strong_pass": "Exact source-level transition table and hosted intervention agree with the preselected orientation class and minimum faithful degree."
+    },
+    "lane_B_property_index": {
+      "predeclared_properties": [
+        "KNOWN_CURRENT_FIELD_OR_CAPABILITY",
+        "UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY",
+        "TYPE_OR_SCHEMA_IDENTITY",
+        "CLIENT_VISIBLE_COMPATIBILITY_BEHAVIOR"
+      ],
+      "requirement": "Same physical boundary/transformation acts differently on at least two predeclared properties, in one source/test packet.",
+      "strong_pass": "Property identities fixed before source outcome inspection; shared boundary yields distinct transport maps and hosted reproduction."
+    },
+    "lane_C_bridge": {
+      "Q": "Binary action-sufficient visible state q∈{0,1}; q=1 iff arrived semantic property is action-sufficiently PRESENT/AVAILABLE under the frozen packet.",
+      "G": "Binary local gate g∈{0,1}; g=1 iff local geometry/authority allows the action independent of transport presence.",
+      "D_loc": "y = q AND g",
+      "no_free_parameters": true,
+      "held_out_requirement": "Fresh mechanism must expose a 2×2 q×g packet or equivalent four matched cells without mechanism ID.",
+      "strong_pass": "All four held-out cells match AND: 00→0, 01→0, 10→0, 11→1."
+    }
+  },
+  "mathematical_targets": [
+    {
+      "id": "M1_DEGREE_CLASSIFIER_CORRECTNESS",
+      "statement": "Exhaustively verify degree-2 impossibility for right-zero identity and degree-3 witness; verify left-zero degree 2."
+    },
+    {
+      "id": "M2_BOOLEAN_QUOTIENT_ORIENTATION_ERASURE",
+      "statement": "Any quotient identifying D~R collapses left-zero and right-zero orientations to the same two-element idempotent monoid."
+    },
+    {
+      "id": "M3_AND_BRIDGE_UNIQUENESS_ON_BOOLEAN_2X2",
+      "statement": "If a held-out 2×2 packet has exactly one positive cell at q=g=1 and zero elsewhere, AND is the unique Boolean function compatible with the packet."
+    },
+    {
+      "id": "M4_DECOMPOSITION_IDENTIFIABILITY",
+      "statement": "Prospective U0 bridge authority requires a fresh held-out packet; retrospective fit cannot distinguish U0 from U1."
+    }
+  ],
+  "decomposition_rivals": [
+    {
+      "id": "U0_SINGLE_TWO_LEVEL_BRIDGE",
+      "claim": "Path transport and surface-selection are linked by frozen binary Q and shared AND decision grammar."
+    },
+    {
+      "id": "U1_TWO_FAMILY_WITH_INTERFACE",
+      "claim": "Families remain distinct, but binary Q is a stable interface; AND bridge may hold only on a bounded subclass."
+    },
+    {
+      "id": "U2_TWO_FAMILY_DISCONNECTED",
+      "claim": "Fresh held-out bridge fails despite valid family-local laws."
+    },
+    {
+      "id": "U3_THREE_PLUS_FAMILY",
+      "claim": "Repairable/schema transport requires a separate family beyond simple carrier transport."
+    }
+  ],
+  "anti_rationalization": {
+    "fresh_search_before_constitution": false,
+    "orientation_rule_change_after_source": false,
+    "property_name_change_after_source": false,
+    "faithful_degree_change_after_outcome": false,
+    "Q_change_after_outcome": false,
+    "gate_definition_change_after_outcome": false,
+    "AND_to_other_boolean_function_after_outcome": "COUNTS_AS_BRIDGE_FAILURE",
+    "mechanism_id_feature": "FORBIDDEN",
+    "new_X_for_P24_strong_claim": "FORBIDDEN",
+    "new_G_for_P24_strong_claim": "FORBIDDEN"
+  },
+  "implementation": {
+    "new_python": "FORBIDDEN",
+    "preferred": [
+      "Haskell",
+      "Rust",
+      "Go",
+      "Java",
+      "C++",
+      "JavaScript",
+      "OCaml"
+    ],
+    "github_actions": "READ_ONLY_COMPUTE_ONLY",
+    "workflow_contents_permission": "read"
+  },
+  "notion_requirement": {
+    "record_all": [
+      "entry-document preflight",
+      "zero-bot audit",
+      "constitution",
+      "preseal",
+      "mathematical derivations",
+      "fresh candidate genealogy including rejected candidates",
+      "source custody",
+      "hosted outputs",
+      "claim/authority ledger",
+      "RAVEL",
+      "Decision",
+      "Harvest"
+    ]
+  },
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED",
+  "terminal_verdict_family": [
+    "PASS_ORIENTATION_PREDICTION__FAITHFUL_DEGREE_MATCH__PROPERTY_INDEX_REPLICATION__AND_BRIDGE_HELD_OUT_PASS__MACRO_STRUCTURE_ADVANCES",
+    "PASS_ORIENTATION_PREDICTION__PROPERTY_INDEX_REPLICATION__AND_BRIDGE_FAILS__TWO_FAMILY_INTERFACE_ONLY",
+    "PASS_ORIENTATION_PREDICTION__BRIDGE_PASS__PROPERTY_INDEX_STRONG_REPLICATION_HOLD",
+    "FAIL_ORIENTATION_CLASSIFICATION__P23_RECONSTRUCTION_DOES_NOT_TRANSPORT",
+    "FAIL_AND_BRIDGE_HELD_OUT__TWO_FAMILY_DECOMPOSITION_STRENGTHENED"
+  ]
+}
