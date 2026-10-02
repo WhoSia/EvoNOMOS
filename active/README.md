@@ -2,97 +2,130 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P23
-- formal suffix: Reconstruction
-- status: CLOSED / SCIENTIFIC FALSIFICATION
-- execution status: PASS_SCIENTIFIC_FALSIFICATION
-- scientific verdict: FAIL_REPAIR_LOSS_ORDER_PREDICTION__MONOID_MAPPING_REJECTED
-- canonical run: 37008014852
-- canonical head: deac4afa691a019e3a651d905247befcc71cedec
-- canonical job: 110840784451
-- artifact: 11227215175
-- digest: sha256:62b4fcb2d8721ea10ab707c8023825817a990269c9f78fbcb0507ca0fbd97b2c
+- active stage: G8 LAW-R1-P24
+- formal suffix: Prediction
+- status: CLOSED / PASS
+- verdict: PASS_ORIENTATION_PREDICTION__FAITHFUL_DEGREE_MATCH__PROPERTY_INDEX_REPLICATION__AND_BRIDGE_HELD_OUT_PASS__MACRO_STRUCTURE_ADVANCES
+- canonical run: 37017513558
+- canonical head: 74a1f0656b0d4428e04bd4e135a107484ebd3635
+- canonical job: 110871915750
+- artifact: 11230402825
+- digest: sha256:5db642cd424fef04c0b158aeeadbb4187c599e789339d926981ff24cc08152aa
+- terminal seal: b8d5130c6afe96a914fc407a2d2bf3006e5a05bb
 
-P23 prospective authority:
+Runtime and repository governance:
 
-- the pre-fresh carrier-repair model M_CR is the identity-adjoined two-element left-zero band
-- its abstract mathematics remains valid: normal form PASS, unique proper congruence D~R PASS, minimal faithful degree 2, observation theorem PASS
-- the coarsest action-sufficient observation quotient Q_min remains mathematically valid
-- Kubernetes CRD conversion/pruning provides an exact fresh empirical order-reversal witness
-- empirical noncommutativity is PROMOTED
-- precommitted loss→repair=+ is falsified; observed loss→repair=-
-- precommitted repair→loss=- is falsified; observed repair→loss=+
-- the Kubernetes abstraction map into pre-fresh M_CR is REJECTED by exact 2/2 reversal
-- no sign edit, operation relabel, or retroactive state redefinition is admitted
+- CURRENT Research OS bootstrap reloaded before P24 work
+- BOT_CONTRIBUTION_ZERO remains binding
+- preflight reachable github-actions[bot] author count = 0
+- preflight reachable github-actions[bot] committer count = 0
+- close-time reachable github-actions[bot] author count = 0
+- close-time reachable github-actions[bot] committer count = 0
+- P24 workflow contents permission = read
+- GitHub Actions performed compute/read/artifact upload only; no repository-history authorship
 
-P23 post-fresh reconstruction:
+P24 execution boundary:
 
-- Kubernetes is reconstructed development-only as an identity-adjoined two-element right-zero band on LEGACY/CANONICAL/ABSENT
-- left-zero and right-zero monoids are opposite but non-isomorphic
-- left-zero minimal faithful degree = 2
-- right-zero minimal faithful degree = 3
-- the Boolean D~R quotient erases temporal orientation
-- Kubernetes semantic-presence observation still detects order reversal without being injective on the full orbit
-- all of these are POST_FRESH_DEVELOPMENT_ONLY and carry no P23 prospective promotion
+- run 37017112611 failed at Go verifier compilation before any scientific output
+- QUIC and P24 adjudicator did not execute in that run
+- run 37017112611 is IMPLEMENTATION_FAILURE_NOT_SCIENTIFIC_EVIDENCE
+- verifier state projection was repaired at 74a1f0656b0d4428e04bd4e135a107484ebd3635
+- the repair changed no frozen hypothesis, operation identity, orientation prediction, property name or bridge rule
+- run 37017513558 is the first complete verdict-producing science run and remains canonical
+- later receipt/alternate-triggered workflow successes are redundant and noncanonical
 
-Restricted bridge:
+P24 mathematical authority:
 
-- Q_min cardinality is 2 on Rust/Ruby/Go/Flink exact packets
-- retrospective candidate D_loc(q,g)=q AND g fits the existing packet
-- bridge status: RETROSPECTIVE_RESTRICTED_BRIDGE_EXISTS__PROSPECTIVE_AUTHORITY_ABSENT
-- decomposition uniqueness remains UNDERIDENTIFIED_NO_PROSPECTIVE_BRIDGE_TEST
+- left-zero identity monoid minimum faithful transformation degree = 2
+- right-zero identity monoid minimum faithful transformation degree = 3
+- quotient D~R erases left/right temporal orientation
+- complete Boolean truth table 0001 uniquely identifies AND
+- mathematical certificate PASS
 
-Current law-family authority:
+Prospective transport-algebra prediction:
 
-- SURFACE_SELECTION: Rust
-- PATH_CARRIER_TRANSPORT: Ruby, Go, Flink
-- single two-level bridge: retrospective only
-- two-family decomposition: REMAINS_CURRENT_AUTHORITY
-- three-plus-family decomposition: not required by current exact data
-- mechanism-local-only: rejected for carrier family
-- uniqueness: NOT_AUTHORIZED
+- fresh family: PROTOBUF_GO_UNKNOWN_FIELD_TRANSPORT
+- exact upstream commit: dcb66ef29d5e2a9420273f86407f493298804ec3
+- exact module version: v1.36.13-0.20260916225941-dcb66ef29d5e
+- source-semantic prediction: LEFT_ZERO_IDENTITY
+- hosted observation: LEFT_ZERO_IDENTITY
+- orientation prediction: PASS
+- predicted minimum faithful degree = 2
+- faithful-degree match: PASS
+- D and R idempotent
+- D∘R yields UNKNOWN_ABSENT
+- R∘D yields UNKNOWN_PRESENT
 
-Property-indexed transport:
+Strong property-indexed shared-boundary replication:
 
-- Kubernetes gives support-only evidence for metadata vs schema-governed payload behavior
-- strong second property-indexed shared-boundary replication is NOT_ACHIEVED
+- shared boundary: protobuf binary unmarshal
+- KNOWN_CURRENT_FIELD_OR_CAPABILITY remains value 7 under default and DiscardUnknown decode
+- UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY is present by default and absent under DiscardUnknown
+- strong second property-indexed replication: PASS
+- universal property-index primitive: NOT_AUTHORIZED
+
+Prospective held-out AND bridge:
+
+- fresh family: QUIC_GO_DATAGRAM_MUTUAL_NEGOTIATION
+- exact upstream commit: 7c3a98eeb4144e77876ba77c9292da9b5b27a0e1
+- exact upstream TestDatagramNegotiation: PASS on all four local/remote enable combinations
+- q = remote peer Datagram support
+- g = local EnableDatagrams
+- frozen rule = q AND g
+- held-out packet: 00→0, 01→0, 10→0, 11→1
+- mechanism-local parameters = 0
+- bridge result: PASS_HELD_OUT
+
+Law-family / macro-structure authority:
+
+- U0 SINGLE_TWO_LEVEL_BRIDGE = PROSPECTIVELY_SUPPORTED_ON_ONE_FRESH_HELD_OUT_FAMILY
+- U1 TWO_FAMILY_WITH_INTERFACE = REMAINS_OBSERVATIONALLY_COMPATIBLE
+- U2 TWO_FAMILY_DISCONNECTED = NOT_SUPPORTED_ON_P24
+- U3 THREE_PLUS_FAMILY = NOT_REQUIRED_BY_P24_PACKET
+- decomposition uniqueness = UNDERIDENTIFIED_ONE_PROSPECTIVE_BRIDGE_FAMILY
+- candidate typed architecture:
+  rich transport algebra → action-sufficient quotient q → independent local gate g → action
+- macro structure = ADVANCES_NOT_AUTHORIZED
+- macro law = NOT_AUTHORIZED
+
+Artifact custody:
+
+- all seven canonical artifact files directly inspected
+- p24-math.json
+- p24-protobuf.json
+- p24-protobuf-module.json
+- p24-quic-bridge.json
+- p24-quic-upstream.json
+- p24-quic-upstream.txt
+- p24-prediction.json
+
+Late alternate discovery boundary:
+
+- later Reset×ClearUnknown / EtcdRangeStream exploration occurred after authoritative Protobuf/QUIC lineage and canonical run
+- P24_FRESH_DUAL_FAMILY_CUSTODY.json at a61dabbc4718976da66cf6d0066aaec89cddb555 is NONAUTHORITATIVE_ALTERNATE_DISCOVERY
+- EtcdRangeStream probe at 33a82968b31281fdf262e045a0c7fb42554bac5d is FUTURE_FALSIFIER_BANK only
+- alternate discovery changes no P24 verdict or authority
 
 Research OS / Harvest:
 
-- RAVEL: 9988–10036
-- Decision: 10037–10062
-- Run page: 3edef561-cf92-819a-9fce-c7c0190887e4
-- Decision page: 3edef561-cf92-8120-88fc-c4f054c011a9
-- Mathematical dossier: 3edef561-cf92-8104-a32d-ece5466b8c96
-- Abstraction-map ledger: 3edef561-cf92-8169-bf1c-d3760bc6fd42
-- LR-20261002-AB mathematical literature boundary: 3edef561-cf92-81c4-be49-da95c8f7791c
-- LR-20261002-AC theory harvest: 3edef561-cf92-811d-8c39-eb07b4f1031e
-- Harvest genealogy receipt: 3edef561-cf92-8100-916b-dfcde2965b5e
-
-Hosted support:
-
-- canonical pre-fresh/fresh science run 37008014852: SUCCESS
-- post-fresh support run 37010281839: SUCCESS
-- post-fresh support artifact 11227552075
-- post-fresh support digest sha256:d3cc811d879547c24fda08f0aab6e0e23b905bb1655d8e29f5f4a018cbc90304
-- post-fresh opposite-band checker: PASS
-- new Python files: 0
+- RAVEL: 10063–10108
+- Decision: 10109–10134
+- Run page: 3edef561-cf92-81c5-9908-c03f1ba06b1c
+- Decision page: 3edef561-cf92-81f6-b988-d1861aae8396
+- Entry & Governance Ledger: 3edef561-cf92-81e0-8ae6-ff1d44012a28
+- Mathematical Dossier: 3edef561-cf92-816a-bae7-ce8a9264c3ed
+- Fresh-Candidate Genealogy: 3edef561-cf92-815f-8537-fb02f6c765ef
+- Prediction & Authority Ledger: 3edef561-cf92-8151-a02e-f57a8c49118e
+- Harvest LR-20261003-AD: 3edef561-cf92-818f-b57c-eb056adc14d3
+- Harvest genealogy: 3edef561-cf92-818a-b4c2-d8af6cbec80d
 
 Paper-readiness boundary:
 
 - manuscript remains NOT_AUTHORIZED
-- theorem correctness, abstraction-map validity, and empirical prediction are separate authority layers
-- recommended supporting math context if absent from Drive:
-  - Cameron et al. 2023, DOI 10.5070/C63362799
-  - Margolis & Steinberg 2023, DOI 10.1016/j.jalgebra.2023.06.032
-
-Macro-law boundary:
-
-- right-zero reconstruction is not prospectively promoted
-- restricted bridge is not prospectively promoted
-- strong property-index replication remains open
-- macro structure remains NOT_AUTHORIZED
+- prospective orientation and bridge authority are bounded claims
+- decomposition uniqueness requires more than one prospective bridge family
+- whole transport→quotient→decision composition lacks cross-domain replication
 - SOLID remains NOT_DERIVED
 - LAW-R2 remains NOT_AUTHORIZED
 
-Global next: 10063, still within LAW-R1.
+Global next: 10135, still within LAW-R1.
