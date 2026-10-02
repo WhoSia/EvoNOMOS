@@ -1,0 +1,70 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P18",
+  "status": "CANONICALIZED_AND_DEEP_READ",
+  "constitution_commit": "b9cdbb6c3f2df34e7af13647633c9f0e4ef2cc5d",
+  "preseal_commit": "d909ed1258a4e96d55ce08a107918fcf2087154d",
+  "source_folder": {
+    "name": "00_INTAKE — Literature Radar",
+    "id": "1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16"
+  },
+  "canonical_folder": {
+    "name": "10_PAPERS — Canonical Literature Commons",
+    "id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP"
+  },
+  "duplicate_check": "EXACT_DOI_OR_ARXIV_SEARCH_NO_DUPLICATE_IN_10_PAPERS",
+  "papers": [
+    {
+      "file_id": "1tKXaDpBXo_ow2vypad50yT5qmau46v6k",
+      "canonical_name": "Soares, Schobbens, Machado & Almeida (2018) — Feature Interaction in Software Product Line Engineering - A Systematic Mapping Study — DOI 10.1016_j.infsof.2018.01.016.pdf",
+      "doi": "10.1016/j.infsof.2018.01.016",
+      "full_text_read": true,
+      "role": ["GENERIC_INTERACTION_PRIOR_ART","HIGHER_ORDER_COMPLEXITY","DOMAIN_TRANSFER_WARNING","EMPIRICAL_VALIDATION_GAP"],
+      "authority_transfer": "NONE"
+    },
+    {
+      "file_id": "1XvljIkLi_x0_pNcLAualwbrOX0XX7cqB",
+      "canonical_name": "Agh, Azamnouri & Wagner (2024) — Software Product Line Testing - A Systematic Literature Review — DOI 10.1007_s10664-024-10516-x.pdf",
+      "doi": "10.1007/s10664-024-10516-x",
+      "full_text_read": true,
+      "role": ["CONFIGURATION_AWARE_TESTING_PRIOR_ART","PAIRWISE_CIT_NOVELTY_KILL","LIFECYCLE_TESTING_DONOR","INDUSTRIAL_VALIDATION_GAP"],
+      "authority_transfer": "NONE"
+    },
+    {
+      "file_id": "1p1YI3PuO5Q-rp5dczoU-HFE73dFTvlie",
+      "canonical_name": "Lesoil, Acher, Blouin & Jezequel (2023) — Input Sensitivity on the Performance of Configurable Systems - An Empirical Study — arXiv 2112.07279v2.pdf",
+      "arxiv": "2112.07279v2",
+      "full_text_read": true,
+      "role": ["INPUT_X_CONFIGURATION_NONSEPARABILITY","NONMONOTONIC_REVERSAL","GEOMETRY_ENVIRONMENT_MODERATOR_DONOR","CROSS_DOMAIN_GENERALIZATION_WARNING"],
+      "authority_transfer": "NONE"
+    }
+  ],
+  "novelty_kills": [
+    "GENERIC_FEATURE_INTERACTION",
+    "GENERIC_HIGHER_ORDER_FEATURE_INTERACTION",
+    "GENERIC_PAIRWISE_OR_COMBINATORIAL_INTERACTION_TESTING",
+    "GENERIC_INPUT_X_CONFIGURATION_INTERACTION",
+    "GENERIC_CLAIM_THAT_CONFIGURATION_EFFECTS_ARE_CONTEXT_DEPENDENT"
+  ],
+  "p18_imports": [
+    "HIGHER_ORDER_SUPPORT_REQUIRES_OBSERVED_OR_LOGICALLY_COMPLETE_CELLS",
+    "DOMAIN_TRANSFER_REQUIRES_EXPLICIT_TRANSPORT_EVIDENCE",
+    "G_AND_E_MUST_REMAIN_FIRST_CLASS_BECAUSE_EFFECT_RANKINGS_CAN_REVERSE_WITH_INPUT",
+    "BOT_OR_TOY_VALIDATION_CANNOT_SUBSTITUTE_FOR_NONBOT_DOMAIN_ESCAPE"
+  ],
+  "paper_readiness": {
+    "status": "PREPARATION_ONLY",
+    "manuscript_drafting": "FORBIDDEN_IN_P18",
+    "strongest_residue": "Typed context primitives + prospective intervention grammar + cross-domain repository-native interaction transport",
+    "blocker": "Need broader non-bot software-design transport before a macro-law manuscript is credible."
+  },
+  "principle_as_projection_hypothesis": {
+    "status": "HARVEST_ONLY",
+    "statement": "A named design principle may be a low-description-length local projection of a richer interaction-conditioned policy Pi(X,G,E), not a primitive law.",
+    "solid_role": "POTENTIAL_SPECIAL_CASE_ONLY",
+    "falsifiers": [
+      "Named principles remain stable across broad states without interaction-conditioned qualification.",
+      "The four primitive/context geometry fails to predict non-bot design actions beyond migration/workflow mechanisms.",
+      "A simpler rival representation predicts action and reversals with equal or better cross-domain transport."
+    ]
+  }
+}
