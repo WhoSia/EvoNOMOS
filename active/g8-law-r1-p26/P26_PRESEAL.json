@@ -1,0 +1,71 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P26",
+  "status": "PRESEALED",
+  "suffix": "Experiment",
+  "global_start": 10207,
+  "constitution": "5e3323f7ec4369f7f43cb83e8944eb8648a5e1ba",
+  "mathematical_note": "a17aa2b0996f5b6910d6779929cbc5b3f8767a4f",
+  "mathematical_checker": "73ec63e7d28fccd8f9bb5ad0fbc4d7f74969b941",
+  "frozen_before_fresh_search": true,
+  "architecture_rivals": {
+    "U0_UNIFIED_RESTRICTED": {
+      "shared_q_semantics": true,
+      "shared_and": true,
+      "typed_intervention_naturality": true,
+      "upstream_only_gate_invariance": true,
+      "complete_mediation_through_q": true
+    },
+    "U1_SHARED_INTERFACE_SUPERCLASS": {
+      "shared_q_semantics": true,
+      "shared_and": true,
+      "typed_intervention_naturality": "NOT_REQUIRED",
+      "upstream_only_gate_invariance": "NOT_REQUIRED_GLOBALLY",
+      "common_latent_transport": "NOT_REQUIRED"
+    }
+  },
+  "typed_interventions": {
+    "DROP_NECESSARY_UPSTREAM_STATE": {
+      "q_effect": "1_TO_0",
+      "gate_effect": "UNCHANGED",
+      "action_effect_at_g0": "NO_CHANGE_0",
+      "action_effect_at_g1": "1_TO_0"
+    },
+    "RESTORE_NECESSARY_UPSTREAM_STATE": {
+      "q_effect": "0_TO_1",
+      "gate_effect": "UNCHANGED",
+      "action_effect_at_g0": "NO_CHANGE_0",
+      "action_effect_at_g1": "0_TO_1"
+    }
+  },
+  "exact_packet": {
+    "baseline_q1_g0": 0,
+    "baseline_q1_g1": 1,
+    "drop_q0_g0": 0,
+    "drop_q0_g1": 0,
+    "restore_q1_g0": 0,
+    "restore_q1_g1": 1
+  },
+  "strong_cross_mechanism_test": "At least two mechanistically distinct domains must realize the same typed intervention with the same induced quotient action to claim naturality transport.",
+  "identifiability_ceiling": "Positive survival cannot identify U0 uniquely over unrestricted U1 because U0 is nested in U1.",
+  "failure_rules": [
+    "typed upstream-only intervention changes gate",
+    "same typed intervention requires mechanism-specific quotient action",
+    "action changes without q or gate change",
+    "q changes at g=1 without corresponding AND action change",
+    "mechanism ID is needed to rescue the model"
+  ],
+  "anti_rationalization": {
+    "intervention_retyping_after_outcome": "FORBIDDEN",
+    "Q_redefinition_after_outcome": "FORBIDDEN",
+    "gate_redefinition_after_outcome": "FORBIDDEN",
+    "mechanism_specific_tau_Q": "COUNTS_AS_U0_FAILURE",
+    "claim_unique_U0_from_survival": "FORBIDDEN"
+  },
+  "implementation": {
+    "new_python": "FORBIDDEN",
+    "actions": "READ_COMPUTE_ARTIFACT_ONLY",
+    "bot_contribution_zero": true
+  },
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
