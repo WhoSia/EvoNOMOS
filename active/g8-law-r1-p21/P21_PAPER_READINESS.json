@@ -1,0 +1,62 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P21",
+  "status": "PAPER_READINESS_LEDGER_NOT_MANUSCRIPT",
+  "authorized_claims": [
+    {
+      "claim": "A +/−/+ boundary-transport action-sign rule was frozen before fresh third-family selection and reproduced exactly in Go net/http ResponseController.",
+      "grade": "PROSPECTIVE_HOSTED_EXACT"
+    },
+    {
+      "claim": "Go ResponseController is a third mechanistically distinct exact family with direct source/test custody and hosted executable reproduction.",
+      "grade": "HOSTED_EXACT"
+    },
+    {
+      "claim": "Wrapper-only and path-length-only rivals fail on the unwrapping-wrapper cell, while carrier-sensitive rivals fit.",
+      "grade": "RICH_RIVAL_ADJUDICATION"
+    },
+    {
+      "claim": "Carrier structure replicates across Ruby and Go at the structural level.",
+      "grade": "BOUNDED_CROSS_MECHANISM_REPLICATION"
+    },
+    {
+      "claim": "Leave-two-out exposes an insufficient shared grammar across Rust/Ruby/Go.",
+      "grade": "NEGATIVE_GENERALIZATION_RESULT"
+    }
+  ],
+  "forbidden_or_unready_claims": [
+    {
+      "claim": "Boundary-Carrying Obligation is established as a LAW-R1 primitive.",
+      "reason": "Go transports HTTP capability, not a historical compatibility obligation."
+    },
+    {
+      "claim": "The frozen compatibility principle survived P21.",
+      "reason": "Go family was pre-ruled out of scope for direct principle survival."
+    },
+    {
+      "claim": "Typed boundary transport is uniquely identified.",
+      "reason": "All-edges-carry and carrier-gap one-split tree remain observationally equivalent on P21."
+    },
+    {
+      "claim": "A general macro law has been identified.",
+      "reason": "Leave-two-out shared grammar is underidentified and principle survival is untested."
+    },
+    {
+      "claim": "SOLID is derived as a special case.",
+      "reason": "No prospective SOLID mapping has been tested."
+    }
+  ],
+  "figure_candidates": [
+    "P20 Ruby and P21 Go: same +/−/+ carrier pattern across distinct mechanisms.",
+    "Go direct vs opaque-wrapper vs unwrapping-wrapper: wrapper/path-length rivals fail while carrier-sensitive rivals fit.",
+    "Exact-family grammar map showing Rust interaction family vs Ruby/Go carrier family and leave-two-out gap."
+  ],
+  "missing_evidence": [
+    "Fourth exact family that separates all-edges-carry from carrier-gap depth-1 tree.",
+    "A shared grammar spanning Rust surface interaction and Ruby/Go carrier transport.",
+    "A true compatibility-obligation carrier replication outside Ruby.",
+    "A frozen named principle that is in-scope and survives prospectively.",
+    "Leave-two-out prediction with nonempty carrier training for every held-out carrier pair."
+  ],
+  "additional_literature_required_to_close_P21": false,
+  "manuscript": "NOT_AUTHORIZED"
+}
