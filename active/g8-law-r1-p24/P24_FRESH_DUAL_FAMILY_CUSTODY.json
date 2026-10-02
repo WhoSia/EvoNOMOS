@@ -1,0 +1,94 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "admission": "POST_PRESEAL_FRESH_DUAL_FAMILY_CUSTODY",
+  "frozen_before_hosted_outcome": true,
+  "lane_A_B": {
+    "id": "PROTOBUF_GO_RESET_X_UNKNOWN_CLEAR",
+    "repository": "protocolbuffers/protobuf-go",
+    "commit": "dcb66ef29d5e2a9420273f86407f493298804ec3",
+    "domain": "PROTOBUF_MESSAGE_STATE_AND_UNKNOWN_FIELD_COMPATIBILITY",
+    "source_paths": {
+      "reset": "proto/reset.go",
+      "reset_test": "proto/reset_test.go",
+      "unknown_clear_example": "reflect/protorange/example_test.go"
+    },
+    "source_blobs": {
+      "reset": "3d7f894362f5cd65f5b78db8d2ae14c68fcdd844",
+      "reset_test": "0048b566f70a321dc968bb23b689a82d0f77f29b",
+      "unknown_clear_example": "90ceec6c2de8df2351cd434901f1937a315c46f8"
+    },
+    "operations": {
+      "D_CLEAR_UNKNOWN": {
+        "semantics": "SetUnknown(nil): remove unknown/future-field raw bytes while preserving known declared fields.",
+        "idempotent_prediction": true
+      },
+      "R_RESET": {
+        "semantics": "proto.Reset: clear every field, including unknown fields.",
+        "idempotent_prediction": true
+      }
+    },
+    "source_derived_classifier": {
+      "class": "COMMUTATIVE_IDEMPOTENT",
+      "equations": [
+        "D∘R=R",
+        "R∘D=R",
+        "D∘R=R∘D"
+      ],
+      "closure": [
+        "I",
+        "D",
+        "R"
+      ],
+      "predicted_min_faithful_degree": 3,
+      "rationale": "I,D,R are distinct commuting idempotents. Degree 2 cannot host three distinct commuting idempotents; three semantic states BOTH/KNOWN_ONLY/EMPTY provide a faithful witness."
+    },
+    "property_indexed_prediction": {
+      "shared_boundary": "D_CLEAR_UNKNOWN",
+      "property_1": "KNOWN_CURRENT_FIELD_OR_CAPABILITY",
+      "prediction_1": "PRESERVED",
+      "property_2": "UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY",
+      "prediction_2": "REMOVED",
+      "strength": "STRONG_SHARED_BOUNDARY_IF_HOSTED"
+    }
+  },
+  "lane_C": {
+    "id": "KUBERNETES_ETCD_RANGE_STREAM_AND_GATE",
+    "repository": "kubernetes/kubernetes",
+    "commit": "a491c80dc10bc39cb89a7f6c12432179d18698f7",
+    "domain": "ETCD_RANGE_STREAM_SELECTION",
+    "source_paths": {
+      "store": "staging/src/k8s.io/apiserver/pkg/storage/etcd3/store.go",
+      "watcher": "staging/src/k8s.io/apiserver/pkg/storage/etcd3/watcher.go",
+      "watcher_test": "staging/src/k8s.io/apiserver/pkg/storage/etcd3/watcher_test.go"
+    },
+    "source_blobs": {
+      "store": "bc7d15abc48274c1131c0224b821d43a4f281331",
+      "watcher": "19508be0e0953bc99e74da0ad8a3ed04ce2933b9",
+      "watcher_test": "c31ff872191f214b31bba5dd641b7d50e662288c"
+    },
+    "fixed_context": {
+      "recursive": true,
+      "interpretation": "Hold recursive eligibility true so only q=support and g=feature gate vary."
+    },
+    "bridge_mapping": {
+      "q": "DefaultFeatureSupportChecker.Supports(storage.RangeStream)",
+      "g": "DefaultFeatureGate.Enabled(features.EtcdRangeStream)",
+      "y": "select RangeStream path",
+      "predicted_rule": "y=q AND g",
+      "truth_table": {
+        "q0_g0": 0,
+        "q0_g1": 0,
+        "q1_g0": 0,
+        "q1_g1": 1
+      }
+    },
+    "test_support": "watcher_test includes explicit feature-gate enablement and an unimplemented RangeStream fallback that marks support false."
+  },
+  "anti_rationalization": {
+    "orientation_changed_after_source": false,
+    "degree_changed_after_source": false,
+    "property_names_changed_after_source": false,
+    "bridge_function_changed_after_source": false,
+    "mechanism_id_feature": false
+  }
+}
