@@ -1,0 +1,46 @@
+name: G8 LAW-R1-P21 Predictive Calibration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p21/**'
+      - 'lawkit/protocol/v0.25/**'
+      - 'tools/law-r1-p21-*'
+      - '.github/workflows/g8-law-r1-p21-predictive-calibration.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  calibration:
+    name: P21 Predictive Calibration
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+
+      - name: Prepare P21 Output
+        run: mkdir -p out-p21
+
+      - name: Run Go Capability-Transport Sign Probe
+        run: go run tools/law-r1-p21-responsecontroller.go
+
+      - name: Run Rich Rival Calibration
+        run: |
+          node tools/law-r1-p21-calibration.mjs \
+            out-p21/p21-go.json \
+            out-p21/p21-calibration.json
+
+      - name: Upload P21 Predictive-Calibration Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p21-predictive-calibration
+          path: out-p21/
+          retention-days: 30
