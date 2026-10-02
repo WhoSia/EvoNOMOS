@@ -1,0 +1,70 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P22",
+  "status": "PAPER_READINESS_LEDGER_NOT_MANUSCRIPT",
+  "authorized_claims": [
+    {
+      "claim": "P21 ALL_EDGES_MUST_CARRY and NO_CARRIER_GAP rivals are logically equivalent under the Boolean carrier definition.",
+      "grade": "THEOREM_LEVEL"
+    },
+    {
+      "claim": "A presealed repairable-transport model predicts the Flink backward-compatibility reconstitution pattern direct + / raw mismatch − / targeted repair +.",
+      "grade": "HOSTED_EXACT"
+    },
+    {
+      "claim": "The irreversible absorbing-loss model is falsified by the Flink repair cell.",
+      "grade": "PROSPECTIVE_MODEL_FALSIFICATION"
+    },
+    {
+      "claim": "A property-independent repair model is falsified by the non-target UID mismatch control; targeted property/class-indexed repair fits.",
+      "grade": "HOSTED_CONTROLLED"
+    },
+    {
+      "claim": "Ruby/Go/Flink carrier families recover the frozen +/−/+ pattern under all three leave-two-out splits.",
+      "grade": "BOUNDED_CROSS_MECHANISM_GENERALIZATION"
+    },
+    {
+      "claim": "Current evidence supports a two-family decomposition—surface-selection vs path/carrier-transport—over a forced single transport law.",
+      "grade": "CURRENTLY_MINIMAL_MODEL_SELECTION"
+    }
+  ],
+  "forbidden_or_unready_claims": [
+    {
+      "claim": "The abstract noncommutativity theorem has been empirically demonstrated in software.",
+      "reason": "Flink provides gap→repair but no natural repair→gap cell."
+    },
+    {
+      "claim": "A single universal category-theoretic law unifies Rust/Ruby/Go/Flink.",
+      "reason": "No restricted mechanism-independent abstraction map has been precommitted and validated."
+    },
+    {
+      "claim": "The two-family decomposition is unique or final.",
+      "reason": "A higher-level restricted bridge may still exist."
+    },
+    {
+      "claim": "Property-indexed boundary semantics is a new LAW-R1 primitive.",
+      "reason": "One targeted empirical control is insufficient for ontology promotion."
+    },
+    {
+      "claim": "SOLID is a special case of the discovered law.",
+      "reason": "No prospective SOLID mapping has survived."
+    },
+    {
+      "claim": "A general macro law is authorized.",
+      "reason": "Bridge, order-sensitive empirical closure, and named-principle survival remain open."
+    }
+  ],
+  "figure_candidates": [
+    "Boolean rival collapse: ALL_EDGES_CARRY ≡ NO_GAP, then repair breaks the quotient.",
+    "Flink compatibility chain: current + / old raw − / targeted reconstitution + / non-target −.",
+    "Law-family map: Rust surface-selection vs Ruby/Go/Flink path-carrier family.",
+    "Math-to-empirical ladder separating theorem, finite countermodel, source evidence, hosted reproduction."
+  ],
+  "missing_evidence": [
+    "Empirical repair→gap order-reversal cell.",
+    "A fourth/fifth mechanism replicating property-indexed repair beyond Flink.",
+    "Restricted bridge grammar connecting surface-selection and path-carrier families.",
+    "Prospective named principle/SOLID projection survival."
+  ],
+  "additional_literature_required_to_close_P22": false,
+  "manuscript": "NOT_AUTHORIZED"
+}
