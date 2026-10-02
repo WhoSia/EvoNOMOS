@@ -1,0 +1,98 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P18",
+  "constitution_commit": "b9cdbb6c3f2df34e7af13647633c9f0e4ef2cc5d",
+  "preseal_commit": "d909ed1258a4e96d55ce08a107918fcf2087154d",
+  "admission": "POST_PRESEAL_NONBOT_DOMAIN_ESCAPE",
+  "exact_nonbot_families": [
+    {
+      "id": "ETCD_DOWNGRADE_VERSION_GEOMETRY",
+      "repository": "etcd-io/etcd",
+      "commit": "64f26db45f5feb2c491a9eb82768a2f41fc857df",
+      "domain": "DISTRIBUTED_RUNTIME_VERSION_SKEW",
+      "source_paths": [
+        "server/etcdserver/cluster_util.go",
+        "server/etcdserver/cluster_util_test.go",
+        "tests/e2e/cluster_downgrade_test.go",
+        "tests/framework/e2e/downgrade.go"
+      ],
+      "source_blobs": {
+        "cluster_util.go": "5b8be94f4e2959d49e165f9415c613b114f5605e",
+        "cluster_util_test.go": "9cae4afc349887c3fd3e90000b816e8616a4ef5a",
+        "cluster_downgrade_test.go": "5188b5c22cbee5ac7492af05c05414a3f0fd531a"
+      },
+      "variables": {
+        "X_L": "LIFECYCLE_PHASE__DOWNGRADE_ENABLED",
+        "G_V": "VERSION_GEOMETRY__REMOTE_CLUSTER_AT_NEXT_MINOR_HIGHER_VS_LOCAL_OR_OLDER_RANGE"
+      },
+      "fixed": {
+        "COMPATIBILITY_OBLIGATION": "ETCD_CLUSTER_JOIN_COMPATIBILITY_RULE",
+        "COEXISTENCE_REQUIREMENT": "SAME_CLUSTER_MEMBERSHIP_MECHANISM",
+        "RELEASE_AUTHORITY": "SAME_ETCD_SERVER_CODEPATH",
+        "E": "KNOWN_REMOTE_MEMBER_VERSIONS_AND_REACHABLE_VERSION_ENDPOINTS"
+      },
+      "source_law": {
+        "downgrade_disabled": "allowed version range = [MinClusterVersion, localVersion]",
+        "downgrade_enabled": "allowed version range = [oneMinorHigher, oneMinorHigher]",
+        "compatibility": "all known remote cluster versions must fall within the mode-selected range, with at least one known compatible peer"
+      },
+      "factorial_cells": [
+        {"L":0,"G":"LOCAL_OR_SUPPORTED_OLDER","Y_COMPATIBLE":1},
+        {"L":0,"G":"ONE_MINOR_HIGHER","Y_COMPATIBLE":0},
+        {"L":1,"G":"LOCAL_OR_SUPPORTED_OLDER","Y_COMPATIBLE":0},
+        {"L":1,"G":"ONE_MINOR_HIGHER","Y_COMPATIBLE":1}
+      ],
+      "interaction": "XNOR_REVERSAL",
+      "grade": "EXACT_SOURCE_COMPOSITION_WITH_UNIT_AND_E2E_SUPPORT",
+      "interpretation": "The lifecycle mode reverses which version geometry is admissible; neither lifecycle nor version geometry has a context-independent main effect.",
+      "scope_guard": "This is an X×G interaction, not compatibility×coexistence and not a new X primitive."
+    }
+  ],
+  "negative_or_support_only_candidates": [
+    {
+      "id": "KAFKA_CONNECT",
+      "source": "apache/kafka@d12941eb5af08aff6a0712a10b85ed04f4211d9d",
+      "status": "EXACT_COEXISTENCE_DISCRIMINATOR_NOT_INTERACTION_FACTORIAL",
+      "reason": "Compatibility mode is held fixed while group composition varies coexistence; no independent compatibility toggle creates a 2x2."
+    },
+    {
+      "id": "GRAFANA_UNIFIED_STORAGE",
+      "source": "grafana/grafana@f89103a8dac3e24563d0ce43f83fd085676a92d6",
+      "status": "COEXISTENCE_LIFECYCLE_COUPLED_NOT_CLEAN_2X2",
+      "reason": "Mode 3 dual-active and Mode 4 unified-only both require sync completion; Mode 5 bypasses sync using distinct semantics. Reusing these as an interaction factorial would relax geometry/lifecycle matching."
+    },
+    {
+      "id": "KUBERNETES_STORAGE_VERSION_MIGRATION",
+      "source": "kubernetes/kubernetes@b1dc9d16763d2546b8464a09307471f3411ab391",
+      "status": "STRONG_COMPATIBILITY_LIFECYCLE_SUPPORT_INCOMPLETE_FACTORIAL",
+      "reason": "Old stored versions must remain until migration removes old persisted objects, but compatibility obligation and migration completion are not independently varied in a matched 2x2."
+    },
+    {
+      "id": "PGANALYZE_DUAL_WRITE_RELEASE_PATH",
+      "source": "pganalyze/pganalyze-docs@5768f0082ce65f30d964bb8528062c9aa1947048",
+      "status": "DOCS_LEVEL_SUPPORT_ONLY",
+      "reason": "Dual-write then new-format-only lifecycle is explicit, but executable source/test custody was not established."
+    },
+    {
+      "id": "ETCD_STORAGE_VERSION_KEP",
+      "source": "kubernetes/enhancements@883e9d16b18d7c4c0b435d89ac64b352abf85ffe",
+      "status": "MECHANISM_DONOR_NOT_INDEPENDENT_DOMAIN",
+      "reason": "Explains mixed-version protocol downgrade and storage backward compatibility, but is design evidence for the same etcd mechanism rather than an independent transport domain."
+    }
+  ],
+  "primary_target_readout": {
+    "COMPATIBILITY_X_COEXISTENCE": "UNDERIDENTIFIED_NO_COMPLETE_NONBOT_2X2",
+    "reason": "Kafka/Grafana provide orthogonal single-coordinate evidence but no prospectively matched independent variation of both coordinates."
+  },
+  "domain_escape_readout": {
+    "bot_workflow_basin_escaped": true,
+    "exact_nonbot_family_count": 1,
+    "second_semantic_transport_family": false,
+    "interaction_type": "LIFECYCLE_PHASE_X_VERSION_GEOMETRY",
+    "domain": "DISTRIBUTED_RUNTIME_VERSION_SKEW"
+  },
+  "higher_order_X": "UNDERIDENTIFIED",
+  "same_normalized_X_G_E_conflicting_action_observed": false,
+  "post_hoc_X_additions": [],
+  "post_hoc_interaction_subsets_added": [],
+  "law_r2": "NOT_AUTHORIZED"
+}
