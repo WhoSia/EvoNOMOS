@@ -1,0 +1,36 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P18",
+  "status": "PRESEALED",
+  "constitution_commit": "b9cdbb6c3f2df34e7af13647633c9f0e4ef2cc5d",
+  "opened_from": "ea973c9439875d7f3c9e2592a8ee0bd36c7b726f",
+  "global_start": 9662,
+  "frozen_before_fresh_nonbot_outcomes": true,
+  "suffix": "Stress",
+  "primary_target": ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT"],
+  "reference_edge": ["RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+  "preferred_nonbot_domains": [
+    "STORAGE_MIGRATION",
+    "WIRE_PROTOCOL",
+    "API_EVOLUTION",
+    "LIBRARY_COMPATIBILITY",
+    "RUNTIME_UPGRADE",
+    "DATABASE_SCHEMA_MIGRATION",
+    "DISTRIBUTED_REBALANCE",
+    "COMPILER_OR_TOOLCHAIN",
+    "CONFIGURATION_SYSTEM"
+  ],
+  "exact_pairwise_rule": "Complete 2x2 or intervention-equivalent matched family under fixed material G,E, with joint action rejecting every main-effect-only reconstruction.",
+  "higher_order_rule": "No 3X/4X claim without enough prospectively frozen lower-order cells to reject every lower-order reconstruction.",
+  "geometry_rule": "Same-X varied-G controls are mandatory for any claimed geometry-conditioned generalization.",
+  "domain_escape_rule": "Bot/workflow-only evidence cannot satisfy P18. At least one exact non-bot family is required for any PASS_DOMAIN_ESCAPE verdict; two semantic transport families are required for replicated edge authority.",
+  "negative_custody_rule": "Failed candidates, one-domain interactions, confounded families and incomplete factorials must be materialized rather than silently dropped.",
+  "solid_rule": "SOLID-as-special-case remains a long-horizon hypothesis only; P18 cannot use SOLID terminology to define or rescue a primitive or interaction.",
+  "paper_rule": "Track paper readiness and novelty, but do not draft or freeze a manuscript thesis.",
+  "harvest_rule": "Harvest remains non-sovereign and may generate tests, kill novelty, or donate fragments across Labs; it cannot promote a P18 scientific claim.",
+  "language_rule": {
+    "new_python_default": "DISCOURAGED",
+    "at_least_three_non_python_lanes_if_executable": true,
+    "at_least_one_language_new_relative_to_p17": true
+  },
+  "law_r2_gate": "Only a fresh materially normalized same-(X,G,E) conflicting action surviving full interaction/geometry/provenance reconstruction may reopen LAW-R2."
+}
