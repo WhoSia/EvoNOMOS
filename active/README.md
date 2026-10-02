@@ -2,27 +2,26 @@
 
 Current scientific surface:
 
-- `active/g8-law-r1-p13/`
+- `active/g8-law-r1-p14/`
 - status: `CLOSED / PASS`
-- canonical run: `36958108004`
-- canonical head: `119a1819f905fba02d91437836c16f77f52290e2`
-- canonical job: `110685533668`
-- artifact: `11206592288`
-- digest: `sha256:3577bfe1b3276decc9dad2156012ef6b9ce819a532c8b922875ccd088fc06b56`
+- canonical run: `36958716210`
+- canonical head: `6a4f6eb79043dd641fa23a48951c37ce7b14a18b`
+- canonical job: `110687385433`
+- artifact: `11206931585`
+- digest: `sha256:df8c15c7affed940284f991e495d34eed8f306ccc334930cd8b88983268f22ce`
 
-P13 ruling:
+P14 ruling:
 
-- no new X coordinate reaches the presealed two-domain exact-replication threshold for stable primitive status
-- `COMPATIBILITY_OBLIGATION` is identified at bounded one-domain exact authority from the ext-apps discriminator family
-- `COEXISTENCE_REQUIREMENT` has near-matched support but remains entangled with compatibility obligation
-- `RELEASE_AUTHORITY` remains unresolved because current evidence changes together with lifecycle phase
-- `LIFECYCLE_PHASE` retains its P12 identified status
-- dependency candidates are preserved without forcing a primitive decomposition
-- representation invariance and anti-rationalization both pass
-- state ontology `(X,G,E)` survives the current attack
+- `COMPATIBILITY_OBLIGATION` is promoted to the first stable X primitive under the frozen two-domain exact-replication threshold
+- the two exact compatibility domains are P13 ext-apps handler compatibility and P14 Axios HTTP-status alias compatibility
+- `COEXISTENCE_REQUIREMENT` is identified at bounded one-domain exact authority in Kafka Connect, with compatibility mode held fixed
+- `RELEASE_AUTHORITY` is identified at bounded one-domain exact authority in Apache Arrow with PR lifecycle held fixed
+- the P13 compatibility→coexistence dependency is confirmed non-deterministic
+- the P13 lifecycle↔authority confound is broken at bounded authority
+- Kubernetes old-client omission vs explicit-clear remains support-only because wire evidence differs and therefore does not count toward exact primitive promotion
+- representation invariance and anti-rationalization pass
+- state ontology `(X,G,E)` survives
 - `Pi(X,G,E)` remains interaction-bearing
 - LAW-R2 is not authorized
 
-The failed multistage run `36958060478` is noncanonical: its P13 job passed, while the overall run failed only because the legacy P8 job failed. P13 canonical authority is the isolated successful run above.
-
-Global next: `9490`, still within LAW-R1.
+Global next: `9527`, still within LAW-R1.
