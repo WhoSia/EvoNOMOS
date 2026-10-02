@@ -2,21 +2,24 @@
 
 Current scientific surface:
 
-- `active/g8-law-r1-p10/`
+- `active/g8-law-r1-p11/`
 - status: `CLOSED / PASS`
-- canonical run: `36954213256`
-- canonical head: `fcd963ab9a26db666e13792af1eacc41d4c2c090`
-- artifact: `11205386179`
-- digest: `sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4`
+- canonical run: `36956757728`
+- canonical head: `ecb0e71bd89053f9e539772711f5b5e4980bcf01`
+- canonical job: `110681311199`
+- artifact: `11205619033`
+- digest: `sha256:8ec61358af756f33790b2bbce4fcd59861571c6c2133af3f0196de5bef7c561b`
 
-P10 ruling:
+P11 ruling:
 
-- state factorization `(X,G,E)` survives under current evidence
-- policy separability is rejected
-- `Pi(X,G,E)` must allow interaction-bearing rules
-- no same-`(X,G,E)` conflicting-action witness was observed
+- interaction-bearing `Pi(X,G,E)` transports across the tested fresh ecosystems at bounded authority
+- matched-geometry context effects and matched-context geometry discrimination both survive the fresh attack
+- representation-only re-encoding does not change the Court result
+- apparent same-state action conflicts dissolve after material normalization and existing `X` refinement
+- no fresh materially identical `(X,G,E)` with conflicting action was observed
+- state ontology `(X,G,E)` survives the current attack
 - missing coordinate is not reopened
 - LAW-R2 is not authorized
-- generalized kernel remains not falsified
+- policy separability remains rejected
 
-Global next: `9396`.
+Global next: `9424`, still within LAW-R1.
