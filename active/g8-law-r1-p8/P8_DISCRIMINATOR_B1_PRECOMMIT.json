@@ -1,0 +1,29 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P8",
+  "precommit": "OUT_OF_STREAM_DISCRIMINATOR_B1",
+  "constitution_head": "840cb5dde9340df6398d4d9a5f2fcacaa0b0c5e2",
+  "world": {
+    "repo": "stacksjs/stacks",
+    "issue": 1876,
+    "observed_problem": [
+      "Stripe-side success can outlive failed local persistence",
+      "audit writes can fail after model state is durable",
+      "some same-database parent/child operations can leave inconsistent durable states"
+    ],
+    "contamination_note": "Issue text itself suggests transactions, idempotency, rollback and reconciliation; therefore this is a weakly blinded implementation discriminator, not a clean discovery holdout."
+  },
+  "prediction": {
+    "motif_slot": "B",
+    "core_invariant": "durable state that is semantically invalid without a companion fact/effect needs closure across failure",
+    "moderator": "whether all required effects share one transactional substrate",
+    "if_shared_transaction_available": "expect one atomic commit/rollback boundary for invariant-coupled durable facts",
+    "if_remote_or_nontransactional_effect_exists": "expect idempotency plus compensation/reconciliation/outbox-like recovery rather than pretending one local DB transaction can atomically cover the remote effect",
+    "negative_scope": "notifications/analytics/other recoverable side effects that are not part of the validity invariant should remain outside the atomic closure"
+  },
+  "falsifiers": [
+    "actual repair leaves invariant-coupled partial failures unaddressed and fixes the bug by an unrelated mechanism",
+    "remote+local effects are made genuinely atomic without compensation/idempotency/reconciliation",
+    "auxiliary non-invariant effects are unnecessarily pulled into the same closure and this is required for correctness"
+  ],
+  "authority_ceiling": "WEAKLY_BLINDED_IMPLEMENTATION_DISCRIMINATOR_ONLY"
+}
