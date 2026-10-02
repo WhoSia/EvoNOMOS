@@ -1,0 +1,105 @@
+name: G8 LAW-R1-P26 Macro-Architecture Separation Experiment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p26/**'
+      - 'lawkit/protocol/v0.30/**'
+      - 'tools/law-r1-p26-*'
+      - '.github/workflows/g8-law-r1-p26-architecture-separation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  experiment:
+    name: P26 Macro-Architecture Separation Experiment
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Haskell
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.8.4'
+
+      - name: Set Up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.x'
+
+      - name: Set Up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+
+      - name: Prepare P26 Output
+        run: mkdir -p out-p26
+
+      - name: Run Interventional Identifiability Mathematics
+        run: |
+          ghc -O2 tools/law-r1-p26-math-check.hs -o out-p26/p26-math-check
+          out-p26/p26-math-check | tee out-p26/p26-math.txt
+
+      - name: Materialize Exact OpenTelemetry Go
+        run: |
+          git clone --quiet https://github.com/open-telemetry/opentelemetry-go.git out-p26/otel-go
+          git -C out-p26/otel-go checkout --quiet 66cfc9520e205b7d450183532772401bc2b6674c
+          test "$(git -C out-p26/otel-go rev-parse HEAD)" = "66cfc9520e205b7d450183532772401bc2b6674c"
+          cp tools/law-r1-p26-otel-go_test.go out-p26/otel-go/sdk/trace/p26_naturality_test.go
+
+      - name: Run Upstream Go SimpleSpanProcessor Controls
+        run: |
+          cd out-p26/otel-go/sdk
+          go test ./trace -run 'TestSimpleSpanProcessor(OnEnd|Shutdown)' -count=1
+
+      - name: Run Go OTel Intervention Packet
+        env:
+          P26_OUT_GO: ${{ github.workspace }}/out-p26/p26-otel-go.json
+        run: |
+          cd out-p26/otel-go/sdk
+          go test ./trace -run TestP26Naturality -count=1 -v
+
+      - name: Materialize Exact OpenTelemetry PHP
+        run: |
+          git clone --quiet https://github.com/open-telemetry/opentelemetry-php.git out-p26/otel-php
+          git -C out-p26/otel-php checkout --quiet 674bf34edc6cb7d2acfeea5ccd72ce8cd46f994c
+          test "$(git -C out-p26/otel-php rev-parse HEAD)" = "674bf34edc6cb7d2acfeea5ccd72ce8cd46f994c"
+          cp tools/law-r1-p26-otel-php.php out-p26/otel-php/p26_probe.php
+
+      - name: Install PHP Development Dependencies
+        run: |
+          cd out-p26/otel-php
+          composer install --no-interaction --no-progress --prefer-dist --ignore-platform-req=ext-grpc
+
+      - name: Run Upstream PHP SimpleSpanProcessor Controls
+        run: |
+          cd out-p26/otel-php
+          vendor/bin/phpunit tests/Unit/SDK/Trace/SpanProcessor/SimpleSpanProcessorTest.php             --filter 'test_on_end_after_shutdown|test_on_end_sampled_span|test_on_end_non_sampled_span'
+
+      - name: Run PHP OTel Intervention Packet
+        env:
+          P26_OUT_PHP: ${{ github.workspace }}/out-p26/p26-otel-php.json
+        run: |
+          cd out-p26/otel-php
+          php p26_probe.php
+
+      - name: Run Architecture Separation Adjudicator
+        run: |
+          node tools/law-r1-p26-experiment.mjs             out-p26/p26-otel-go.json             out-p26/p26-otel-php.json             out-p26/p26-experiment.json
+
+      - name: Upload P26 Architecture-Separation Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p26-architecture-separation
+          path: |
+            out-p26/p26-math.txt
+            out-p26/p26-otel-go.json
+            out-p26/p26-otel-php.json
+            out-p26/p26-experiment.json
+          retention-days: 30
