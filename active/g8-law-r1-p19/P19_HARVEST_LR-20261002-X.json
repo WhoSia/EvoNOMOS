@@ -1,0 +1,45 @@
+{
+  "harvest_id": "LR-20261002-X",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P19",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "notion_page": "3edef561-cf92-81ce-b633-d44e92096be9",
+  "source_basis": [
+    "P19 Rust exact factorial",
+    "P14 Axios compatibility support",
+    "Node module loader grammar-level support",
+    "P19 rival representation competition",
+    "P19 CUBE-REV hygiene audit"
+  ],
+  "theory_candidates": [
+    {
+      "name": "POLICY_SURFACE_EQUIVALENCE_CLASS",
+      "status": "HARVEST_ONLY",
+      "statement": "Scientific policy identity may be an equivalence class of representations preserving action partitions and admissible failure/transport boundaries, rather than a unique syntax."
+    },
+    {
+      "name": "NAMED_MAXIM_AS_REGIONAL_COMPRESSION",
+      "status": "HARVEST_ONLY",
+      "statement": "A named design maxim may be a human-legible regional compression of a policy-surface equivalence class."
+    }
+  ],
+  "new_falsifiers": [
+    "Distinguish typed interaction from generic conjunction under leave-one-mechanism-out transport.",
+    "Freeze a named-maxim mapping before observing a fresh mechanism family.",
+    "Test whether representations with identical current cell fit diverge on intervention or transport boundaries.",
+    "Reject projection if exceptions remain ad hoc rather than boundary-aligned."
+  ],
+  "repo_hygiene_fragment": "Active repository lineage is itself an executable scientific claim; live-tree overstatement of current authority is epistemically ambiguous even when history is preserved.",
+  "paper_readiness": {
+    "manuscript": "NOT_AUTHORIZED",
+    "future_structure": [
+      "primitive/context identification",
+      "exact intervention families",
+      "interaction necessity",
+      "representation competition",
+      "cross-mechanism transport",
+      "boundary-preserving compression",
+      "named-principle projection"
+    ]
+  }
+}
