@@ -1,0 +1,31 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P14",
+  "status": "PRESEALED",
+  "constitution_commit": "5099abfe8bfdc5353db7ddb39ad542d8a26667c7",
+  "opened_from": "8d761fa9eba73241458b09eec2978c5777aec040",
+  "global_start": 9490,
+  "frozen_before_fresh_world_result_inspection": true,
+  "targets": [
+    "COMPATIBILITY_OBLIGATION_SECOND_EXACT_DOMAIN",
+    "COEXISTENCE_REQUIREMENT_ORTHOGONALIZATION",
+    "RELEASE_AUTHORITY_LIFECYCLE_DECOUPLING"
+  ],
+  "discriminator_order": [
+    "NORMALIZE_G",
+    "NORMALIZE_E",
+    "HOLD_LIFECYCLE",
+    "HOLD_NON_TARGET_CONTEXT",
+    "VARY_ONE_TARGET_COORDINATE",
+    "VERIFY_ACTION_DISCRIMINATION",
+    "NEGATIVE_CONTROL",
+    "SECOND_DOMAIN_REPLICATION",
+    "ORIENT_DEPENDENCY_EDGE"
+  ],
+  "promotion_threshold": "Two exact cross-domain discriminator families are required for stable primitive promotion.",
+  "coexistence_rule": "Compatibility obligation must be held fixed across the decisive coexistence contrast.",
+  "authority_rule": "Lifecycle phase must be held fixed across the decisive authority contrast.",
+  "anti_rationalization": "No new primitive X coordinate may be added after observing a failed P14 discriminator.",
+  "representation_rule": "Alternate encoding may not change discriminator class, dependency edge, or Court outcome.",
+  "law_r2_gate": "Only fresh normalized same-(X,G,E) conflicting action may reopen R2.",
+  "human_facing_naming": "CAPITALIZED_SCIENTIFIC_COMMIT_STYLE_AND_TITLE_CASE_ACTIONS"
+}
