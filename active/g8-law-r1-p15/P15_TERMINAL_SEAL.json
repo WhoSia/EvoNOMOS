@@ -1,0 +1,92 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P15",
+  "verdict": "PASS_PARTIAL_CONTEXT_BASIS__SECOND_DOMAIN_COEXISTENCE_AND_AUTHORITY_REPLICATIONS_EARNED__LIFECYCLE_TRANSPORT_GAP_RETAINED__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36963926567,
+    "head": "6fbe0c6a994071d3bb2aa4f991442a05c1221d6d",
+    "job": 110703415605,
+    "artifact": 11209022691,
+    "digest": "sha256:c7660da214f0cc25f7ed2747825abd95287c9fd153307276641ad3a55e8dd145"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "basis_custody": "PASS",
+    "court": "PASS",
+    "representation_invariance": "PASS",
+    "anti_rationalization": "PASS",
+    "artifact_direct_inspection": "PASS"
+  },
+  "scientific_readout": {
+    "stable_X_primitives": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY"
+    ],
+    "identified_single_domain": [
+      "LIFECYCLE_PHASE"
+    ],
+    "coexistence_second_domain": {
+      "status": "PASS",
+      "prior_domain": "KAFKA_CONNECT_DISTRIBUTED_REBALANCE_PROTOCOL",
+      "fresh_domain": "GRAFANA_UNIFIED_STORAGE_DUAL_WRITER",
+      "guard": "POST_SYNC_CUTOVER_READY"
+    },
+    "authority_second_domain": {
+      "status": "PASS",
+      "prior_domain": "APACHE_ARROW_PR_AUTOMATION",
+      "fresh_domain": "KUBERNETES_PROW_PRESUBMIT_TRIGGER"
+    },
+    "minimal_reproducible_basis": "NOT_AUTHORIZED",
+    "minimal_basis_blocker": "LIFECYCLE_PHASE_LACKS_SECOND_EXACT_CROSS_DOMAIN_REPLICATION",
+    "same_normalized_X_G_E_conflicting_action": "NOT_OBSERVED"
+  },
+  "basis_attacks": {
+    "compatibility_plus_coexistence_merge": "REJECTED",
+    "lifecycle_plus_authority_merge": "REJECTED",
+    "coordinate_splits": "NO_PROSPECTIVE_SPLIT_JUSTIFIED",
+    "coordinate_deletions": "ALL_RETAINED_COORDINATES_HAVE_AT_LEAST_BOUNDED_DELETION_WITNESS"
+  },
+  "literature_data_custody": {
+    "drive_confirmed_state_abstraction_foundations": [
+      "Givan_Dean_Greig_2003",
+      "Li_Walsh_Littman_2006",
+      "Ferns_Panangaden_Precup_2004"
+    ],
+    "used_but_drive_missing": [
+      "Ma_et_al_2026_Sequential_Knockoffs_DOI_10.1080_01621459.2026.2658863"
+    ],
+    "new_high_value_missing_donor": [
+      "Dig_Johnson_2006_How_Do_APIs_Evolve_DOI_10.1002_smr.328"
+    ],
+    "previously_documented_open_exact_pdf_custody": [
+      "Wedyan_Abufakher_2020",
+      "Diaz_Pace_Trubiani_Garlan_2025",
+      "ADEPT_2026"
+    ],
+    "primary_p15_data": "PINNED_PUBLIC_REPOSITORY_SOURCE",
+    "separate_dataset_required": false
+  },
+  "ruling": {
+    "state": "(X,G,E)_SURVIVES_CURRENT_EVIDENCE",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "context_basis": "PARTIAL_REPRODUCIBLE_BASIS__THREE_STABLE_PLUS_ONE_SINGLE_DOMAIN",
+    "paper_story_override": "FORBIDDEN_AND_NOT_USED",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "provenance": {
+    "constitution": "34f0cf46909171a91cd9e887eeaff422803b8c1e",
+    "preseal": "2832fa53680246a34172defcad972d5ae7b75750",
+    "basis_custody": "323521642c4c960d398d23e071e54fe623c9e467",
+    "literature_data_custody": "decd4ef81ba83ad3b92624b3bd75237ee9a682b5",
+    "verifier": "ffa1f2f74e173ac1fd75f43f0a732a5202dd4a45",
+    "court": "89bdd87d3e766be9062f32c6d36cc79d00e499bf",
+    "workflow": "6fbe0c6a994071d3bb2aa4f991442a05c1221d6d"
+  },
+  "closure": {
+    "ravel": "9527–9552",
+    "decision": "9553–9570",
+    "global_next": 9571
+  }
+}
