@@ -1,0 +1,74 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P11",
+  "verdict": "PASS_BOUNDED_TRANSPORT__ALIAS_CANDIDATES_DISSOLVED_UNDER_RECONSTITUTION__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36956757728,
+    "head": "ecb0e71bd89053f9e539772711f5b5e4980bcf01",
+    "job": 110681311199,
+    "artifact": 11205619033,
+    "digest": "sha256:8ec61358af756f33790b2bbce4fcd59861571c6c2133af3f0196de5bef7c561b"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "world_custody": "PASS",
+    "court": "PASS",
+    "representation_invariance": "PASS",
+    "same_material_X_G_E_conflicting_action": "NOT_OBSERVED"
+  },
+  "scientific_readout": {
+    "cross_ecosystem_transport": "SUPPORTED_BOUNDED",
+    "matched_geometry_context_effect": "SUPPORTED_BOUNDED",
+    "matched_context_geometry_discrimination": "SUPPORTED_BOUNDED",
+    "alias_candidates": "DISSOLVED_UNDER_EXISTING_X_G_E",
+    "hidden_coordinate_reconstruction": "EXISTING_X_REFINEMENT_SUFFICIENT_FOR_TESTED_ALIASES",
+    "state_ontology": "SURVIVES_CURRENT_ATTACK",
+    "policy": "INTERACTION_BEARING"
+  },
+  "ruling": {
+    "state": "(X,G,E)_SURVIVES_CURRENT_EVIDENCE",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "policy_separability": "REMAINS_REJECTED_AS_GENERAL_ASSUMPTION",
+    "missing_coordinate": "NOT_REOPENED",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "fresh_authority": [
+    {
+      "source": "linuxarena/control-tower#1401",
+      "merge": "43e92f2528acd0591c8921282b06c7880de625d6"
+    },
+    {
+      "source": "NVIDIA/Model-Optimizer#2569",
+      "merge": "e3c903c4d14e460b44b42b46fb56f6f76edbc5c6"
+    },
+    {
+      "source": "pydantic/pydantic-ai#9384",
+      "merge": "c7cf7239b7f623f49f88577a88b9898e9c3feadb"
+    },
+    {
+      "source": "sveltejs/kit#16740",
+      "merge": "1742811562358caf6042bed33c60ce6427a3e831"
+    }
+  ],
+  "development_only": [
+    {
+      "source": "sourceblender/musubi#847",
+      "head": "8647f709a4b57e603884214da7f81c391b6059a0",
+      "authority": "NONAUTHORITATIVE_CLOSED_UNMERGED_DRAFT"
+    }
+  ],
+  "provenance": {
+    "constitution": "37aa56ae87f8231c9ebf0a2c3253a80d279d6070",
+    "preseal": "b2f83c9cf552f0259d92f98747f2ae7581ee35d1",
+    "world_custody": "0cc6fa0c612b32f2011ee78f7ca06202845d4929",
+    "verifier": "76cb2fdb885bdacbacc503326a989bee170f2717",
+    "court": "e2d1d58db61bb86cd5b6f8efd36e016fe99a2eab",
+    "workflow": "ecb0e71bd89053f9e539772711f5b5e4980bcf01"
+  },
+  "closure": {
+    "ravel": "9396–9411",
+    "decision": "9412–9423",
+    "global_next": 9424
+  }
+}
