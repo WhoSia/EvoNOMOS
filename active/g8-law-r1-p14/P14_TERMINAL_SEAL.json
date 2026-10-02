@@ -1,0 +1,59 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P14",
+  "verdict": "PASS_STABLE_COMPATIBILITY_PRIMITIVE_REPLICATED__COEXISTENCE_AND_AUTHORITY_ORTHOGONALIZED_BOUNDED__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36958716210,
+    "head": "6a4f6eb79043dd641fa23a48951c37ce7b14a18b",
+    "job": 110687385433,
+    "artifact": 11206931585,
+    "digest": "sha256:df8c15c7affed940284f991e495d34eed8f306ccc334930cd8b88983268f22ce"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "intervention_custody": "PASS",
+    "court": "PASS",
+    "representation_invariance": "PASS",
+    "anti_rationalization": "PASS",
+    "artifact_direct_inspection": "PASS"
+  },
+  "scientific_readout": {
+    "stable_X_primitives": ["COMPATIBILITY_OBLIGATION"],
+    "bounded_X_coordinates": ["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+    "lifecycle_phase": "RETAINS_P12_IDENTIFIED_STATUS",
+    "compatibility_obligation": "STABLE_PRIMITIVE_TWO_DOMAIN_EXACT_REPLICATION",
+    "coexistence_requirement": "IDENTIFIED_BOUNDED_ONE_DOMAIN_EXACT",
+    "release_authority": "IDENTIFIED_BOUNDED_ONE_DOMAIN_EXACT_LIFECYCLE_DECOUPLED",
+    "dependency_orientation": {
+      "COMPATIBILITY_TO_COEXISTENCE": "NONDETERMINISTIC_SUPPORTED",
+      "LIFECYCLE_TO_AUTHORITY": "CONFOUND_BROKEN_BOUNDED"
+    },
+    "same_normalized_X_G_E_conflicting_action": "NOT_OBSERVED"
+  },
+  "ruling": {
+    "state": "(X,G,E)_SURVIVES_CURRENT_EVIDENCE",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "stable_primitive_structure": "PARTIAL__COMPATIBILITY_ONLY",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "fresh_authority": [
+    {"source":"axios/axios#11082","merge":"39955a6ebed53217a524a3c8c7e5568fc0faa4bd"},
+    {"source":"kubernetes/kubernetes#139876","merge":"df2facd2c99ece18ded0e0ce7c0f80652b2cf2cb","authority":"SUPPORT_ONLY_NOT_EXACT"},
+    {"source":"apache/kafka@d12941eb5af08aff6a0712a10b85ed04f4211d9d","origin_pr":"apache/kafka#6363"},
+    {"source":"apache/arrow@46e09d339d84c589b3ce12913bb0c0fe8bc667c9"}
+  ],
+  "provenance": {
+    "constitution": "5099abfe8bfdc5353db7ddb39ad542d8a26667c7",
+    "preseal": "af39fa32c7a394e7d359108597247e5f6055a63f",
+    "intervention_custody": "6516635e711769b39a40be4283e76464a8ecde08",
+    "verifier": "f252c025bf0a8202c71cdca3a43ac2320fe2f1d0",
+    "court": "2170ed3b80ee0069c3cb844e7fca02c39eb54cae",
+    "workflow": "6a4f6eb79043dd641fa23a48951c37ce7b14a18b"
+  },
+  "closure": {
+    "ravel": "9490–9510",
+    "decision": "9511–9526",
+    "global_next": 9527
+  }
+}
