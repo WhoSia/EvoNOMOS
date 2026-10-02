@@ -98,21 +98,21 @@ func main() {
 	a := newState(md, raw)
 	R(a)
 	R(a)
-	rIdem := abstract(a) == "UNKNOWN_PRESENT"
+	rIdem := abstract(a.msg) == "UNKNOWN_PRESENT"
 	D(a)
 	D(a)
-	dIdem := abstract(a) == "UNKNOWN_ABSENT"
+	dIdem := abstract(a.msg) == "UNKNOWN_ABSENT"
 
 	dr := newState(md, raw)
 	R(dr)
 	D(dr) // D∘R
-	drState := abstract(dr)
+	drState := abstract(dr.msg)
 	drKnown := knownValue(dr.msg, known)
 
 	rd := newState(md, raw)
 	D(rd)
 	R(rd) // R∘D
-	rdState := abstract(rd)
+	rdState := abstract(rd.msg)
 	rdKnown := knownValue(rd.msg, known)
 
 	leftZero := rIdem && dIdem &&
