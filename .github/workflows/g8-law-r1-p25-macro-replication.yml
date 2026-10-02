@@ -1,0 +1,69 @@
+name: G8 LAW-R1-P25 Macro-Structure Replication
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p25/**'
+      - 'lawkit/protocol/v0.29/**'
+      - 'tools/law-r1-p25-*'
+      - '.github/workflows/g8-law-r1-p25-macro-replication.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  replication:
+    name: P25 Macro-Structure Replication
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Haskell
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.8'
+
+      - name: Set Up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv6m-none-eabi
+
+      - name: Set Up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.x'
+
+      - name: Prepare P25 Output
+        run: mkdir -p out-p25
+
+      - name: Run Boolean Rival Mathematics
+        run: runghc tools/law-r1-p25-math-check.hs | tee out-p25/p25-math.txt
+
+      - name: Materialize Exact rust-lang/log
+        run: |
+          git clone --quiet https://github.com/rust-lang/log.git out-p25/log-upstream
+          git -C out-p25/log-upstream checkout --quiet 27e3cf7a021dab43430a70cb2909c06ca8141f79
+          test "$(git -C out-p25/log-upstream rev-parse HEAD)" = "27e3cf7a021dab43430a70cb2909c06ca8141f79"
+
+      - name: Run Rust Log Compile-Time Bridge Matrix
+        run: go run tools/law-r1-p25-log-matrix.go
+
+      - name: Run TLS ALPN End-to-End Bridge Probe
+        run: go run tools/law-r1-p25-tls-alpn.go
+
+      - name: Run Cross-Mechanism Replication Adjudicator
+        run: node tools/law-r1-p25-replication.mjs
+
+      - name: Upload P25 Macro-Replication Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p25-macro-replication
+          path: |
+            out-p25/p25-math.txt
+            out-p25/p25-rust-log.json
+            out-p25/p25-tls-alpn.json
+            out-p25/p25-replication.json
+          retention-days: 30
