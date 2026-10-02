@@ -1,0 +1,28 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P23",
+  "status": "PRE_HOSTED_ALGEBRA_CLASSIFIER",
+  "frozen_before_hosted_outcome": true,
+  "classification_rules": [
+    {
+      "id": "LEFT_ZERO_IDENTITY",
+      "condition": "D∘R=D and R∘D=R, with I identity and D,R idempotent",
+      "interpretation": "last executed nonidentity reset dominates under temporal execution"
+    },
+    {
+      "id": "RIGHT_ZERO_IDENTITY",
+      "condition": "D∘R=R and R∘D=D, with I identity and D,R idempotent",
+      "interpretation": "earlier representational commitment survives later compatible projection; dual orientation"
+    },
+    {
+      "id": "COMMUTATIVE_IDEMPOTENT",
+      "condition": "D∘R=R∘D and all generators idempotent",
+      "interpretation": "semilattice-like/order-insensitive candidate"
+    },
+    {
+      "id": "LARGER_OR_NONBAND",
+      "condition": "generated closure contains >3 transformations or some generator/composite is non-idempotent",
+      "interpretation": "M_CR family insufficient; compute generated transformation monoid explicitly"
+    }
+  ],
+  "no_posthoc_relabel": true
+}
