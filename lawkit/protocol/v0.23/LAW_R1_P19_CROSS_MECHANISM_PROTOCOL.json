@@ -1,0 +1,143 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P19",
+  "formal_title": "Cross-Mechanism Interaction Transport, Design-Maxim Projection Falsification, API/Library/Compiler Structural Intervention Families, Sign-Reversal Geometry, Policy-Surface Compression, Rival Representation Competition, Harvest-to-Falsifier Backflow & Macro-Law Transport Protocol",
+  "suffix": "Protocol",
+  "global_start": 9718,
+  "predecessor": {
+    "stage": "LAW-R1-P18",
+    "terminal_seal": "f65f4affee15aea7ecb2636e1e7c86919376381e",
+    "active_lineage": "d17324e93e714aecf223582deb151ab5a82d6c57",
+    "canonical_run": 36972584671,
+    "artifact": 11212053545,
+    "verdict": "PASS_PARTIAL_DOMAIN_ESCAPE__ONE_NONBOT_EXACT_FAMILY__SECOND_TRANSPORT_MISSING__R2_NOT_AUTHORIZED"
+  },
+  "macro_goal": "Determine whether interaction-conditioned design/change policy transports across mechanisms sufficiently different that named design maxims may be tested as local projections rather than premises.",
+  "frozen_prior_authority": {
+    "X_basis": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY",
+      "LIFECYCLE_PHASE"
+    ],
+    "P17_partial_interaction_graph": "RETAINED",
+    "P18_nonbot_family": "ETCD_LIFECYCLE_PHASE_X_VERSION_GEOMETRY",
+    "macro_law": "NOT_AUTHORIZED",
+    "solid_special_case": "NOT_DERIVED"
+  },
+  "mechanism_escape": {
+    "exclude_as_primary_replication": [
+      "BOT_OR_PR_WORKFLOW",
+      "ROLLING_UPGRADE_ONLY",
+      "VERSION_SKEW_ONLY",
+      "DUAL_WRITE_MIGRATION_ONLY"
+    ],
+    "preferred_families": [
+      "API_EVOLUTION",
+      "LIBRARY_INTERFACE_CHANGE",
+      "COMPILER_TRANSFORMATION",
+      "DEPENDENCY_RESTRUCTURING",
+      "PERSISTENCE_OWNERSHIP",
+      "RESOURCE_POLICY",
+      "TYPE_OR_SCHEMA_EVOLUTION",
+      "RUNTIME_CAPABILITY_NEGOTIATION"
+    ],
+    "promotion_threshold": "At least two mechanistically distinct non-bot families whose action reversal is expressible with the same typed interaction grammar without adding post-hoc X coordinates."
+  },
+  "projection_falsification": {
+    "hypothesis_name": "PRINCIPLE_AS_PROJECTION",
+    "status_at_open": "HARVEST_ONLY",
+    "named_maxims_are": "DOWNSTREAM_CANDIDATES",
+    "forbidden": [
+      "DEFINE_STATE_USING_SOLID_LABELS",
+      "SELECT_CASES_BECAUSE_THEY_LOOK_LIKE_SOLID",
+      "CALL_A_MAXIM_DERIVED_FROM_ONE_CASE",
+      "USE_PRINCIPLE_LANGUAGE_TO_RESCUE_FAILED_TRANSPORT"
+    ],
+    "test": "A named maxim earns projection status only if a low-complexity rule over a pre-existing region of the interaction surface predicts actions and exceptions better than at least one rival representation.",
+    "required_falsifiers": [
+      "RIVAL_REPRESENTATION_WITH_EQUAL_OR_LOWER_COMPLEXITY",
+      "OUT_OF_REGION_EXCEPTION_TEST",
+      "SIGN_REVERSAL_OR_BOUNDARY_TEST",
+      "LEAVE_ONE_MECHANISM_OUT_TRANSPORT"
+    ]
+  },
+  "rival_representations": [
+    "MAIN_EFFECT_ONLY",
+    "X_ONLY_RULE",
+    "G_E_ONLY_RULE",
+    "PAIRWISE_INTERACTION_POLICY",
+    "UNTYPED_RULE_LIST",
+    "NAMED_PRINCIPLE_RULE",
+    "LOW_COMPLEXITY_DECISION_SURFACE"
+  ],
+  "compression_rule": {
+    "goal": "Compress policy without erasing failure boundaries.",
+    "metric_family": [
+      "DESCRIPTION_LENGTH",
+      "CELL_ERROR",
+      "TRANSPORT_ERROR",
+      "REVERSAL_PRESERVATION",
+      "EXCEPTION_COUNT"
+    ],
+    "no_scalar_universal_score": true
+  },
+  "harvest_backflow": {
+    "authority": "NON_SOVEREIGN",
+    "allowed": [
+      "RIVAL_GENERATION",
+      "NOVELTY_KILL",
+      "MISSING_MECHANISM_DISCOVERY",
+      "NEGATIVE_RESULT_REUSE",
+      "CROSS_LAB_FALSIFIER_IMPORT"
+    ],
+    "forbidden": [
+      "PROMOTE_LAW_FROM_CONSENSUS",
+      "CHANGE_PRESEALED_THRESHOLDS"
+    ]
+  },
+  "paper_readiness": {
+    "allowed": [
+      "CLAIM_LEDGER",
+      "FIGURE_LEDGER",
+      "RELATED_WORK_BOUNDARY",
+      "FALSIFIER_LEDGER",
+      "MISSING_EVIDENCE_MATRIX"
+    ],
+    "forbidden": [
+      "SUBMISSION_MANUSCRIPT_DRAFT",
+      "FREEZE_MACRO_LAW_THESIS"
+    ]
+  },
+  "anti_rationalization": {
+    "new_X_after_fresh_outcome": "FORBIDDEN",
+    "new_interaction_subset_after_fresh_outcome": "FORBIDDEN",
+    "mechanism_relabel_to_rescue_transport": "FORBIDDEN",
+    "maxim_relabel_to_rescue_projection": "FORBIDDEN",
+    "missing_cells": "UNDERIDENTIFIED"
+  },
+  "repo_hygiene_side_audit": {
+    "scope": "EvoNOMOS plus installed WhoSia research repositories, with specific attention to CUBE-REV",
+    "purpose": "Detect active-looking residue, orphaned current-stage commits, stale active pointers, or unsealed work that could contaminate lineage reasoning.",
+    "authority": "OPERATIONS_HYGIENE_ONLY"
+  },
+  "r2_gate": "Unchanged from P18.",
+  "terminal_verdict_family": [
+    "PASS_CROSS_MECHANISM_INTERACTION_TRANSPORT__PROJECTION_HYPOTHESIS_SURVIVES_RIVAL_COMPETITION__MACRO_LAW_NOT_YET_AUTHORIZED",
+    "PASS_PARTIAL_CROSS_MECHANISM_TRANSPORT__ONE_NEW_MECHANISM_FAMILY__PROJECTION_UNDERIDENTIFIED__MACRO_LAW_NOT_AUTHORIZED",
+    "HOLD_CROSS_MECHANISM_TRANSPORT_INSUFFICIENT__PROJECTION_TEST_UNDERPOWERED",
+    "FAIL_INTERACTION_GRAMMAR_DOES_NOT_TRANSPORT__RIVAL_REPRESENTATION_DOMINATES",
+    "FAIL_PRINCIPLE_AS_PROJECTION__NAMED_MAXIM_OR_SIMPLER_RIVAL_TRANSPORTS_BETTER"
+  ],
+  "close_requires": [
+    "PRESEAL_BEFORE_FRESH_P19_OUTCOMES",
+    "AT_LEAST_ONE_NON_MIGRATION_NON_WORKFLOW_MECHANISM_FAMILY_ATTEMPT",
+    "RIVAL_REPRESENTATION_COMPETITION",
+    "SIGN_REVERSAL_OR_EXPLICIT_BOUNDARY_TEST",
+    "NEGATIVE_CUSTODY",
+    "HARVEST_BACKFLOW_EVALUATION",
+    "REPO_HYGIENE_AUDIT",
+    "HOSTED_EXECUTION_IF_IMPLEMENTED",
+    "RESEARCH_OS_RUN_AND_DECISION",
+    "TERMINAL_SEAL"
+  ]
+}
