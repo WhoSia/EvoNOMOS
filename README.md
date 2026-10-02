@@ -4,12 +4,24 @@ Canonical repository for executable research on context-conditional software des
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII LAW-R1-P9 — Three-Axis Authority Geometry Falsification, Missing-Coordinate Discovery, Cross-Axis Causal Coupling, Representation Aliasing, Hidden-Moderator Reversal & Fresh-World Ontology Expansion Court**
+**EvoNOMOS Generation VIII LAW-R1-P10 — Prospective Context×Geometry Factorization Stress Test, Matched-Geometry Moderator Reversal, Matched-Context Structural Intervention Discrimination, Interaction-Induced Nonseparability, Transport Failure, Missing-Coordinate Reopening & Conditional Design-Law State-Sufficiency Court**
 
 Status: **CLOSED / PASS**.
 
-Canonical authority: run `36950465227`, head `f4ed593d75ebb3987ba1abd04af0e0b50414aae6`, artifact `11204415152`, digest `sha256:498a1746c3c54ffdda1ab92d80e273be540248ce192dc49b141062316dcfc8d6`.
+Canonical authority:
+- run `36954213256`
+- head `fcd963ab9a26db666e13792af1eacc41d4c2c090`
+- artifact `11205386179`
+- digest `sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4`
 
-P9 ruling: `G=(S,P,F)` survives as bounded structural geometry but is not a sufficient policy state. Decision context `X` expands with temporal/evolution moderators; current policy representation is `Pi(X,G,E)`. No fourth structural axis is promoted. Generalized kernel remains not falsified.
+P10 rejects a separable policy decomposition over context and structural geometry.
 
-Global next: **9340**.
+Retained state:
+`(X,G,E)`
+
+Promoted policy:
+`Pi(X,G,E)`
+
+The policy may require interaction-bearing rules over the joint state. No fresh world showed the same materially specified `(X,G,E)` requiring incompatible actions, so LAW-R1 state ontology survives and LAW-R2 is not authorized.
+
+Global next: **9396**.
