@@ -1,0 +1,44 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P19",
+  "status": "PRESEALED",
+  "constitution_commit": "de455ce14fb0218c80ddfaaa037bab6e8fe86c75",
+  "opened_from": "d17324e93e714aecf223582deb151ab5a82d6c57",
+  "global_start": 9718,
+  "suffix": "Protocol",
+  "frozen_before_fresh_outcomes": true,
+  "primary_question": "Can the interaction-conditioned policy grammar transport across mechanisms outside workflow/migration/version-skew basins?",
+  "preferred_mechanisms": [
+    "API_EVOLUTION",
+    "LIBRARY_INTERFACE_CHANGE",
+    "COMPILER_TRANSFORMATION",
+    "DEPENDENCY_RESTRUCTURING",
+    "PERSISTENCE_OWNERSHIP",
+    "RESOURCE_POLICY"
+  ],
+  "projection_test": {
+    "principle_as_projection": "HARVEST_ONLY_AT_OPEN",
+    "requires_rival_competition": true,
+    "requires_leave_one_mechanism_out": true,
+    "requires_boundary_or_reversal_preservation": true
+  },
+  "rivals": [
+    "MAIN_EFFECT_ONLY",
+    "X_ONLY_RULE",
+    "G_E_ONLY_RULE",
+    "PAIRWISE_INTERACTION_POLICY",
+    "UNTYPED_RULE_LIST",
+    "NAMED_PRINCIPLE_RULE",
+    "LOW_COMPLEXITY_DECISION_SURFACE"
+  ],
+  "promotion": {
+    "cross_mechanism": "At least one fresh non-migration/non-workflow exact or intervention-equivalent family plus independent semantic transport support.",
+    "macro_law": "Not authorized from a single new family.",
+    "named_maxim_projection": "Not authorized unless it survives rival comparison and leave-one-mechanism-out transport."
+  },
+  "negative_custody": "MANDATORY",
+  "repo_hygiene_audit": "MANDATORY_OPERATIONS_SIDE_AUDIT",
+  "post_hoc_X": "FORBIDDEN",
+  "post_hoc_interaction_subset": "FORBIDDEN",
+  "paper_thesis_freeze": "FORBIDDEN",
+  "law_r2_gate": "UNCHANGED"
+}
