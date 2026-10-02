@@ -15,7 +15,7 @@ const rustClass=classify(rust);
 const tlsClass=classify(tls);
 const secondBridge = rust.status==='PASS' && rustClass.length===1 && rustClass[0]==='AND';
 const endToEnd = tls.status==='PASS' && tlsClass.length===1 && tlsClass[0]==='AND'
-  && tls.cells.every(c=>c.ClientHandshakeOK && c.ServerHandshakeOK);
+  && tls.cells.every(c=>c.client_handshake_ok && c.server_handshake_ok);
 
 const p24Quic='AND'; // sealed predecessor authority
 const crossMechanism=secondBridge && endToEnd && p24Quic==='AND';
