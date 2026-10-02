@@ -1,0 +1,106 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P11",
+  "title": "Interaction-Surface Transport, Prospective Same-State Aliasing Search, Context×Geometry Policy Reconstruction, Cross-Ecosystem Action Reversal, Representation-Invariance Audit, Hidden-Coordinate Falsification & the Boundary of (X,G,E) State Sufficiency",
+  "global_start": 9396,
+  "predecessor": {
+    "stage": "LAW-R1-P10",
+    "terminal_seal": "f4149ebc7327f8f9c9d96e244bae625a52314c1a",
+    "active_lineage": "90c05b3a7f18eeaea5e45b18a590aecf1abf89c9",
+    "root_at_open": "72d0ac0b50d1bbf3987dda7a6999243f8b6c29c7",
+    "canonical_run": 36954213256,
+    "canonical_artifact": 11205386179,
+    "verdict": "PASS_INTERACTION_REQUIRED__STATE_FACTORIZATION_SURVIVES__POLICY_SEPARABILITY_REJECTED__R2_NOT_AUTHORIZED"
+  },
+  "frozen_state": {
+    "state": "(X,G,E)",
+    "context": "X",
+    "structural_geometry": "G",
+    "world_evidence": "E",
+    "action": "A",
+    "policy": "Pi(X,G,E)",
+    "policy_form": "INTERACTION_BEARING"
+  },
+  "target": "STATE_SUFFICIENCY_UNDER_FRESH_TRANSPORT_AND_ALIAS_ATTACK",
+  "claim_not_made": [
+    "INTERACTION_IS_NOVEL",
+    "X_G_E_IS_UNIVERSALLY_COMPLETE",
+    "LAW_R2_IS_ALREADY_JUSTIFIED"
+  ],
+  "material_equivalence": {
+    "purpose": "Prevent representation-only differences from masquerading as state differences or aliases.",
+    "quotient_out": [
+      "project/repository names",
+      "identifier spelling",
+      "path spelling when semantic reachability is unchanged",
+      "language/runtime syntax when behaviorally equivalent",
+      "incidental issue/PR metadata",
+      "purely representational schema labels"
+    ],
+    "must_preserve": [
+      "consumer coexistence obligations",
+      "compatibility and migration obligations",
+      "runtime/toolchain provenance that changes reachable behavior",
+      "dependency ownership and installation provenance",
+      "structural exposure/encapsulation boundaries",
+      "lifecycle phase and supported-world constraints",
+      "evidence quality and unresolved uncertainty",
+      "action-relevant side effects"
+    ],
+    "equivalence_rule": "Two worlds may count as materially same (X,G,E) only after normalization when no preserved action-relevant coordinate differs.",
+    "burden": "SAME_STATE requires explicit field-by-field custody; superficial similarity is insufficient."
+  },
+  "prospective_program": {
+    "fresh_transport": "Test the P10 interaction-bearing policy on projects/ecosystems not used to establish P10.",
+    "matched_context": "Approximately hold X fixed while varying G; require action-family discrimination.",
+    "matched_geometry": "Approximately hold G fixed while varying X; require context-conditioned action reversal or discrimination.",
+    "same_state_alias_search": "Search prospectively for normalized same (X,G,E) with distinct actions.",
+    "representation_invariance": "Re-encode the same world under alternate naming/schema projections and require the Court verdict to remain unchanged.",
+    "hidden_coordinate_falsification": "For every alias candidate, attempt reconstruction inside X, G, or E before declaring missing ontology."
+  },
+  "alias_ruling_order": [
+    "NORMALIZE_REPRESENTATION",
+    "ESTABLISH_MATERIAL_EQUIVALENCE",
+    "VERIFY_ACTION_DIVERGENCE",
+    "ATTEMPT_X_REFINEMENT",
+    "ATTEMPT_G_REFINEMENT",
+    "ATTEMPT_E_REFINEMENT",
+    "ONLY_THEN_CONSIDER_MISSING_COORDINATE"
+  ],
+  "fatal_r2_gate": {
+    "criterion": "A fresh prospectively admitted pair remains materially identical in (X,G,E) after normalization and hidden-coordinate reconstruction, yet requires conflicting actions under comparable authority.",
+    "required": [
+      "FRESHNESS",
+      "PROSPECTIVE_ADMISSION",
+      "FIELD_BY_FIELD_SAME_STATE_CUSTODY",
+      "ACTION_DIVERGENCE",
+      "REPRESENTATION_INVARIANCE",
+      "HIDDEN_COORDINATE_RECONSTRUCTION_FAILURE",
+      "HOSTED_REPRODUCTION"
+    ],
+    "effect": "Only this authorizes LAW-R2 reopening."
+  },
+  "nonfatal_outcomes": [
+    "TRANSPORT_SUPPORTED",
+    "INTERACTION_SURFACE_REQUIRES_REFINEMENT_WITHIN_X_G_E",
+    "ALIAS_CANDIDATE_DISSOLVES_AFTER_NORMALIZATION",
+    "ALIAS_CANDIDATE_DISSOLVES_AFTER_HIDDEN_COORDINATE_RECONSTRUCTION",
+    "INSUFFICIENT_EQUIVALENCE_CUSTODY",
+    "UNRESOLVED"
+  ],
+  "candidate_terminal_verdicts": [
+    "PASS_INTERACTION_TRANSPORTS__STATE_SUFFICIENCY_SURVIVES__R2_NOT_AUTHORIZED",
+    "PASS_BOUNDED_TRANSPORT__ALIAS_CANDIDATES_DISSOLVED_UNDER_RECONSTITUTION__R2_NOT_AUTHORIZED",
+    "HOLD_STATE_ALIASING_CANDIDATE__MATERIAL_EQUIVALENCE_NOT_ESTABLISHED",
+    "FAIL_STATE_SUFFICIENCY__FRESH_SAME_STATE_ACTION_DIVERGENCE__LAW_R2_AUTHORIZED"
+  ],
+  "intake": "OUTCOME_BLIND_WHERE_POSSIBLE__FRESH_PROJECTS__NO_DESIRED_VERDICT_AS_SELECTOR",
+  "llm_role": "DISCOVERY_AND_LOCAL_RECONSTRUCTION_ONLY",
+  "close_requires": [
+    "FROZEN_PRESEAL_BEFORE_RESULT_INSPECTION",
+    "FRESH_CROSS_ECOSYSTEM_WORLD_CUSTODY",
+    "REPRESENTATION_INVARIANCE_AUDIT",
+    "HOSTED_EVONOMOS_COURT",
+    "ARTIFACT_CUSTODY",
+    "TERMINAL_SEAL"
+  ]
+}
