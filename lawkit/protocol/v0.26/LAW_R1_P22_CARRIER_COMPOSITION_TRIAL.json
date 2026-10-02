@@ -1,0 +1,148 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P22",
+  "formal_title":"Carrier-Rule Separating Intervention, Property-Specific Edge Semantics, Multi-Hop Transport Composition, All-Edges-Carry↔Single-Gap Rival Divergence, Fourth-Mechanism Compatibility-Obligation Replication, Surface-Interaction↔Path-Transport Grammar Bridge, Leave-Two-Out Recovery & Macro-Law Family Decomposition Trial",
+  "suffix":"Trial",
+  "global_start":9915,
+  "predecessor":{
+    "stage":"LAW-R1-P21",
+    "terminal_seal":"3d1e75b010108ffad82be3e8a3f2356269879d7f",
+    "active_lineage":"5ecdad16dfecb3f2faeb7843bfc04eebf3ba0272",
+    "canonical_run":36999787317,
+    "artifact":11223630758,
+    "verdict":"PASS_PROSPECTIVE_SIGN_PREDICTION__THIRD_EXACT_FAMILY__CARRIER_STRUCTURE_REPLICATED__RICH_RIVALS_ADJUDICATED__MACRO_LAW_NOT_AUTHORIZED"
+  },
+  "mathematical_preseal":{
+    "object":"Property-indexed boundary transport over a directed path/category.",
+    "base_structure":{
+      "software_graph":"Directed multigraph G or its free path category Path(G).",
+      "properties":"A family O of transported semantic properties/capabilities/obligations.",
+      "edge_semantics":"For each edge e and property o, a transport map T_e^o on property state; Boolean carrier is the special case c_e(o) in {0,1}.",
+      "path_semantics":"T_p^o = T_{e_n}^o ∘ ... ∘ T_{e_1}^o."
+    },
+    "theorem_0_fake_rival_equivalence":{
+      "statement":"For Boolean carrier status c_e(o)∈{0,1}, ALL_EDGES_CARRY(p,o)=1 iff there exists no carrier gap on p.",
+      "formal":"(AND_{e∈p} c_e(o)=1) <=> NOT(EXISTS e∈p: c_e(o)=0).",
+      "status":"PROVED_BY_BOOLEAN_DUALITY_BEFORE_FRESH_P22_OUTCOME",
+      "consequence":"P21 R4_ALL_EDGES_MUST_CARRY and R5 carrier_gap? are not empirically separable if R5 means existence of any gap. Treating them as independent rivals is invalid.",
+      "authority":"METHODOLOGICAL_CORRECTION"
+    },
+    "new_separable_rivals":[
+      {
+        "id":"M0_ABSORBING_LOSS",
+        "state_space":["PRESENT","LOST"],
+        "rule":"Any non-carrying edge sends PRESENT→LOST and LOST is absorbing under all later edges.",
+        "algebra":"Boolean meet monoid / zero-absorbing action."
+      },
+      {
+        "id":"M1_REPAIRABLE_TRANSPORT",
+        "state_space":["PRESENT","LOST"],
+        "rule":"A later explicit repair/reconstitution edge may send LOST→PRESENT.",
+        "algebra":"Transformation monoid containing a nontrivial reset/reconstitution map."
+      },
+      {
+        "id":"M2_ORDER_INVARIANT_CARRIER_COUNT",
+        "rule":"Outcome depends only on multiset/count of carrier and gap edges, not order."
+      },
+      {
+        "id":"M3_ORDER_SENSITIVE_COMPOSITION",
+        "rule":"T_b∘T_a may differ from T_a∘T_b; boundary order matters."
+      },
+      {
+        "id":"M4_PROPERTY_INDEPENDENT_EDGE",
+        "rule":"Each edge has one carrier status shared by all semantic properties."
+      },
+      {
+        "id":"M5_PROPERTY_INDEXED_EDGE",
+        "rule":"The same edge may carry one property while dropping or transforming another."
+      }
+    ],
+    "prospective_theorem_targets":[
+      {
+        "id":"THM1_PATH_FUNCTORIALITY",
+        "statement":"If boundary semantics compose associatively and identity boundaries act identically, property transport defines a functor from Path(G) into a transformation category on property states.",
+        "status":"TO_PROVE_OR_KILL_IN_P22"
+      },
+      {
+        "id":"THM2_BOOLEAN_COLLAPSE",
+        "statement":"Under Boolean, irreversible carrier semantics, every path quotient collapses to whether any gap exists; path order and gap multiplicity become unidentifiable.",
+        "status":"TO_FORMALIZE_AND_VERIFY"
+      },
+      {
+        "id":"THM3_REPAIR_BREAKS_BOOLEAN_QUOTIENT",
+        "statement":"If a repair edge r satisfies r(LOST)=PRESENT, then paths gap;r and gap are distinguishable, so the Boolean all-edges-carry quotient is not sufficient.",
+        "status":"TO_TEST_PROSPECTIVELY"
+      },
+      {
+        "id":"THM4_NONCOMMUTATIVE_WITNESS",
+        "statement":"If there exist edges a,b and property state o with T_b(T_a(o))≠T_a(T_b(o)), then carrier semantics is not representable by any order-invariant edge-count statistic.",
+        "status":"TO_TEST_PROSPECTIVELY"
+      }
+    ]
+  },
+  "fourth_mechanism_target":{
+    "required_domain":"Fresh and mechanistically distinct from Rust method resolution, Ruby keyword forwarding, and Go ResponseController.",
+    "preferred":"A genuine compatibility obligation with multi-hop adaptation or explicit reconstitution, not merely capability traversal.",
+    "strong_family_shape":[
+      "direct preservation",
+      "gap/drop",
+      "gap followed by explicit repair/reconstitution",
+      "optional reordered repair/gap contrast if naturally available"
+    ],
+    "goal":"Separate irreversible Boolean loss from repairable/order-sensitive transport.",
+    "support_only_if":"Only direct/gap cells exist or compatibility semantics is inferred rather than source/test explicit."
+  },
+  "surface_path_bridge":{
+    "candidate_common_grammar":"A policy surface is a quotient of compositional transport states observed at a decision boundary.",
+    "Rust_mapping_candidate":"call geometry selects which transport/action morphism is exposed at a local surface.",
+    "Ruby_Go_mapping_candidate":"path composition determines which semantic state arrives at the decision boundary.",
+    "precommit":"Do not force a single grammar if a typed law-family decomposition fits with lower assumptions."
+  },
+  "law_family_decomposition_rivals":[
+    {
+      "id":"F0_SINGLE_TRANSPORT_LAW",
+      "claim":"Rust/Ruby/Go/fourth family are projections of one compositional property-transport law."
+    },
+    {
+      "id":"F1_TWO_FAMILY_DECOMPOSITION",
+      "claim":"Surface-selection interactions and path-transport interactions are distinct law families linked only by a higher-level decision interface."
+    },
+    {
+      "id":"F2_MECHANISM_LOCAL_ONLY",
+      "claim":"No stable cross-mechanism law family survives beyond descriptive analogy."
+    }
+  ],
+  "leave_two_out_recovery":{
+    "goal":"After fourth exact family, require at least one carrier exact family to remain in training when Ruby+Go-like mechanisms are held out; otherwise no recovery claim.",
+    "no_mechanism_specific_parameter_tuning":true
+  },
+  "pure_math_lane":{
+    "authority":"MATHEMATICAL_DERIVATION_INDEPENDENT_OF_EMPIRICAL_PROMOTION",
+    "allowed":["definitions","lemmas","theorems","counterexamples","quotients","monoid/category representations","finite model checking"],
+    "forbidden":["calling an empirical software pattern a theorem without explicit abstraction map","promoting category-theoretic vocabulary merely because it sounds elegant"],
+    "deliverable":"A small formal note plus executable finite-model witness/countermodel."
+  },
+  "anti_rationalization":{
+    "fresh_outcome_before_new_rival":"FORBIDDEN",
+    "posthoc_repair_definition":"FORBIDDEN",
+    "posthoc_property_reindexing":"FORBIDDEN",
+    "force_single_family_after_failed_bridge":"FORBIDDEN",
+    "R4_vs_R5_as_independent_rivals":"RETIRED_BY_THEOREM_0"
+  },
+  "implementation":{
+    "new_python":"FORBIDDEN",
+    "preferred":["Rust","Haskell","OCaml","C++","Go","JavaScript"],
+    "math_checker_preference":"Haskell_or_Rust_finite_model_checker_plus_optional_Lean_if_existing_toolchain_available"
+  },
+  "paper_readiness":{
+    "manuscript":"NOT_AUTHORIZED",
+    "allowed":["formal lemma ledger","empirical claim ledger","abstraction map","countermodel bank","figure candidates"]
+  },
+  "law_r2_gate":"UNCHANGED",
+  "terminal_verdict_family":[
+    "PASS_BOOLEAN_RIVAL_COLLAPSE__REPAIRABLE_TRANSPORT_WITNESS__FOURTH_EXACT_COMPATIBILITY_FAMILY__LAW_FAMILY_BRIDGE_ADVANCES__MACRO_LAW_NOT_YET_AUTHORIZED",
+    "PASS_BOOLEAN_RIVAL_COLLAPSE__FOURTH_FAMILY_SUPPORT_ONLY__REPAIRABILITY_UNDERIDENTIFIED",
+    "PASS_LAW_FAMILY_DECOMPOSITION__SINGLE_GRAMMAR_REJECTED__TWO_FAMILY_STRUCTURE_SUPPORTED",
+    "HOLD_NO_FOURTH_EXACT_FAMILY__MATHEMATICAL_LANE_ONLY",
+    "FAIL_COMPOSITIONAL_TRANSPORT_PREDICTION__MECHANISM_LOCAL_RIVAL_DOMINATES"
+  ]
+}
