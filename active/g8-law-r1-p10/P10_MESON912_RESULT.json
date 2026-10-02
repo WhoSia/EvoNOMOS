@@ -1,0 +1,22 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P10",
+  "holdout": "mesonbuild/meson-python#912",
+  "precommit": "1de10661787a6e433da6855948ebbbe3531732e2",
+  "resolution": {
+    "pr": 914,
+    "merge_commit": "49a633f0cac62bf2fe21ea6c15d00450a22bd5e2",
+    "result": "BRANCH_A_SUPPORTED",
+    "observed": [
+      "external dependency absolute build RPATH entries are preserved for installed binaries",
+      "build-tree-relative or build-directory-only entries are removed",
+      "the system-compiler conda use case is made to work rather than declared unsupported"
+    ]
+  },
+  "adjudication": {
+    "matched_geometry_context_effect": "SUPPORTED",
+    "interaction": "SUPPORTED_BOUNDED",
+    "state_aliasing": "NOT_OBSERVED_ONCE_X_IS_INCLUDED",
+    "implication": "G alone is insufficient, but (X,G,E) remains sufficient in this holdout.",
+    "r2": "NOT_AUTHORIZED"
+  }
+}
