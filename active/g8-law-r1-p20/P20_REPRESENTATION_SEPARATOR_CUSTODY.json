@@ -1,0 +1,145 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P20",
+  "constitution_commit":"2b9d1d6cfd4c7492be11dd29ede12065cba33b30",
+  "preseal_commit":"3f8ab7ca166f38da2bead9a1f836dd413070f3b1",
+  "trigger_projection_preseal":"cd62b9e3467c1078d13fbd02d023bbccce4bd311",
+  "admission":"POST_PRESEAL_REPRESENTATION_SEPARATOR",
+  "second_exact_nonmigration_family":{
+    "id":"RUBY_KEYWORD_FORWARDING_COMPATIBILITY",
+    "repository":"ruby/ruby",
+    "commit":"2192dca2007ff501eb33e87c0ae404579524a7eb",
+    "domain":"LANGUAGE_CALL_SEMANTICS_AND_DELEGATION",
+    "source_paths":[
+      "spec/ruby/language/keyword_arguments_spec.rb",
+      "test/ruby/test_keyword.rb",
+      "vm_method.c",
+      "proc.c",
+      "doc/NEWS/NEWS-3.2.0.md"
+    ],
+    "source_blobs":{
+      "keyword_spec":"38edc24414d7840c2c7d3bd62d01e12386065f7c",
+      "keyword_test":"cfc3dc11da511f9137fec2eda4b249f1d387299e",
+      "vm_method":"903c32194c458febb64f17bf847b9c0b70e4bcf8",
+      "proc":"7e20f3872887f7154d22b1abe354f12adb207b2f",
+      "news_3_2":"3a48c1964d04de8bd65b293fb1a5b73b22dfe706"
+    },
+    "X":{
+      "coordinate":"COMPATIBILITY_OBLIGATION",
+      "operational_state":"PRESERVE_PRE_RUBY3_KEYWORD_DELEGATION_BEHAVIOR",
+      "mechanism":"ruby2_keywords marks legacy *args forwarding so the final Hash is reinterpreted as keywords at the next eligible call."
+    },
+    "G_states":[
+      {
+        "id":"EXPLICIT_RESOLUTION",
+        "presealed_class":"EXPLICIT_TRAIT_OR_FULLY_QUALIFIED_RESOLUTION",
+        "ruby_surface":"explicit *args, **kwargs or (...) delegation",
+        "coarse_generic_trigger":0,
+        "observed_action":"PRESERVE_KEYWORD_INTENT_BY_EXPLICIT_CHANNEL",
+        "preservation":1
+      },
+      {
+        "id":"IMPLICIT_DIRECT",
+        "presealed_class":"SUGAR_METHOD_OR_IMPLICIT_RESOLUTION",
+        "ruby_surface":"legacy *args direct forwarding with ruby2_keywords",
+        "coarse_generic_trigger":1,
+        "observed_action":"PRESERVE_KEYWORD_INTENT_BY_COMPATIBILITY_FLAG",
+        "preservation":1
+      },
+      {
+        "id":"WRAPPER_MEDIATED_GAP",
+        "presealed_class":"WRAPPER_OR_DEREF_MEDIATED_RESOLUTION",
+        "ruby_surface":"outer ruby2_keywords method forwards through an intermediate *args method lacking ruby2_keywords",
+        "coarse_generic_trigger":1,
+        "observed_action":"KEYWORD_INTENT_LOST_AT_UNMARKED_INTERMEDIATE_BOUNDARY",
+        "preservation":0
+      }
+    ],
+    "control":{
+      "id":"UNMARKED_IMPLICIT_DIRECT",
+      "X":"COMPATIBILITY_MECHANISM_ABSENT",
+      "G":"IMPLICIT_DIRECT",
+      "observed_action":"KEYWORDS_BECOME_POSITIONAL_HASH",
+      "preservation":0
+    },
+    "exactness":"SOURCE_AND_SPEC_SUPPORTED_MULTI_GEOMETRY_INTERVENTION_FAMILY_WITH_EXECUTABLE_CONTROL",
+    "source_facts":[
+      "Ruby source documents ruby2_keywords as a backwards-compatibility mechanism for pre-3.0 keyword delegation.",
+      "Ruby spec proves explicit *args, **kwargs delegation preserves keywords.",
+      "Ruby spec proves ruby2_keywords direct legacy forwarding preserves keywords.",
+      "Ruby spec proves plain *args delegation does not preserve keywords.",
+      "Ruby spec explicitly proves an outer ruby2_keywords path fails when an intermediate forwarding method lacks ruby2_keywords."
+    ]
+  },
+  "representation_separator":{
+    "generic_conjunction":{
+      "presealed_projection":"Y = I(X_active) AND I(G_trigger)",
+      "prediction_for_X1_G1":"same action/preservation for IMPLICIT_DIRECT and WRAPPER_MEDIATED_GAP",
+      "observed":"IMPLICIT_DIRECT preserves; WRAPPER_MEDIATED_GAP loses keyword intent",
+      "verdict":"FALSIFIED_ON_HELD_OUT_RUBY_BOUNDARY"
+    },
+    "typed_interaction":{
+      "presealed_geometry_states_distinct":true,
+      "observed_boundary_representable_without_new_coordinate":true,
+      "verdict":"SURVIVES_REPRESENTATION_SEPARATOR",
+      "limitation":"Exact sign/action for the wrapper boundary was not precommitted; survival is structural, not a unique predictive-law victory."
+    },
+    "untyped_lookup":{
+      "verdict":"LOCAL_FIT_POSSIBLE_NO_HELD_OUT_PREDICTION"
+    }
+  },
+  "frozen_maxim_test":{
+    "maxim_id":"COMPATIBILITY_SHOULD_PRESERVE_EXISTING_CLIENT_BEHAVIOR",
+    "prediction":"Compatibility-active forwarding should preserve existing client-observable keyword behavior independent of surface geometry unless qualification was frozen.",
+    "ruby_result":"FAIL",
+    "failure_witness":"WRAPPER_MEDIATED_GAP",
+    "posthoc_rescue":"Would require an UNLESS clause about every intermediate forwarding boundary carrying the compatibility marker.",
+    "ruling":"PROJECTION_FAILS_FOR_THIS_FAMILY_UNDER_P20_PRESEAL"
+  },
+  "leave_one_mechanism_out":{
+    "held_out":"RUBY_KEYWORD_FORWARDING_COMPATIBILITY",
+    "training_authority":[
+      "P19_RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+      "P14_AXIOS_HTTP_STATUS_LOOKUP_GEOMETRY_SUPPORT",
+      "P19_NODE_MODULE_FORMAT_SCOPE_GEOMETRY_SUPPORT"
+    ],
+    "binary_conjunction":"FAILS_HELD_OUT_EQUALITY_PREDICTION",
+    "typed_geometry":"SURVIVES_HELD_OUT_BOUNDARY_CLASSIFICATION",
+    "typed_exact_sign_prediction":"UNDERIDENTIFIED_NOT_PRECOMMITTED",
+    "named_maxim":"FAILS_HELD_OUT_WRAPPER_BOUNDARY",
+    "untyped_lookup":"NO_TRANSPORT_PREDICTION"
+  },
+  "support_and_negative_candidates":[
+    {
+      "id":"GLIBC_MEMCPY_SYMBOL_VERSIONING",
+      "domain":"BINARY_ABI_COMPATIBILITY",
+      "status":"STRONG_REPRESENTATION_SEPARATOR_SUPPORT_NOT_EXACT_P20_FACTORIAL",
+      "facts":[
+        "Current x86-64 glibc versions the new memcpy symbol at GLIBC_2.14.",
+        "Historical compatibility lineage maps older memcpy behavior through compatibility symbol versioning.",
+        "Source/new-link and old-binary compatibility surfaces are intentionally distinct."
+      ],
+      "reason_not_promoted":"Compatibility obligation and ABI binding are naturally coupled; treating them as an orthogonal P20 factorial would overstate independence."
+    },
+    {
+      "id":"PROTOBUF_UNKNOWN_FIELD_BINARY_JSON",
+      "domain":"SCHEMA_EVOLUTION_AND_SERIALIZATION",
+      "status":"SUPPORT_ONLY_PRESEAL_GEOMETRY_MISMATCH",
+      "reason_not_promoted":"Binary/JSON unknown-field behavior is strong compatibility evidence but does not map cleanly to the frozen source/binary/escape geometry without relabeling."
+    }
+  ],
+  "macro_law_readout":{
+    "exact_nonmigration_families_now":[
+      "P19_RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+      "P20_RUBY_KEYWORD_FORWARDING_COMPATIBILITY"
+    ],
+    "representation_tie":"BROKEN_AGAINST_BINARY_GENERIC_CONJUNCTION",
+    "typed_representation_unique":"NO",
+    "reason":"Typed geometry survives the separator, but other non-binary low-complexity rivals remain possible and exact action sign was not prospectively predicted.",
+    "macro_law":"NOT_AUTHORIZED"
+  },
+  "same_normalized_X_G_E_conflicting_action_observed":false,
+  "post_hoc_X_additions":[],
+  "post_hoc_G_additions":[],
+  "trigger_rebinning":false,
+  "law_r2":"NOT_AUTHORIZED"
+}
