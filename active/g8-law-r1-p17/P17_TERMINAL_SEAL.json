@@ -1,0 +1,97 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P17",
+  "formal_title": "Primitive-Interaction Hypergraph Reconstruction, Pairwise↔Higher-Order Policy Synergy, Context×Geometry Cross-Term Identifiability, Sparse Interaction Decomposition, Prospective Combination Knockout, Cross-Domain Composition Transport & Reproducible Interaction-Law Reconstruction",
+  "suffix": "Reconstruction",
+  "verdict": "PASS_PARTIAL_INTERACTION_GRAPH__PAIRWISE_EDGES_IDENTIFIED__HIGHER_ORDER_TERMS_UNDERIDENTIFIED",
+  "canonical": {
+    "run": 36970725135,
+    "head": "c2dc1a18fec45409841a75a24f300114fcef89a5",
+    "job": 110723940858,
+    "artifact": 11211656155,
+    "digest": "sha256:3479b5bc2daee6c3a930a98b5be205f712353d6edbc10b22887962c85610fe23"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact_direct_inspection": "PASS",
+    "rust": "PASS",
+    "go": "PASS",
+    "cpp": "PASS",
+    "ruby": "PASS",
+    "javascript": "PASS",
+    "new_python_files": 0
+  },
+  "implementation_history": {
+    "first_run": 36970606889,
+    "first_job": 110723591201,
+    "status": "IMPLEMENTATION_ONLY_GO_OUTPUT_ENCODING_FAILURE__NO_SCIENTIFIC_THRESHOLD_CHANGE",
+    "repair_commit": "c2dc1a18fec45409841a75a24f300114fcef89a5"
+  },
+  "scientific_readout": {
+    "four_primitive_basis": "RETAINS_P16_AUTHORITY",
+    "transported_x_edge": {
+      "vertices": ["RELEASE_AUTHORITY", "LIFECYCLE_PHASE"],
+      "conditional_on": "G.IS_PULL_REQUEST=1",
+      "domains": ["KUBERNETES_PROW", "HUGGINGFACE_SERGE"],
+      "status": "EXACT_TWO_DOMAIN"
+    },
+    "transported_context_geometry_hyperedge": {
+      "vertices": ["RELEASE_AUTHORITY", "LIFECYCLE_PHASE", "G.IS_PULL_REQUEST"],
+      "algebra": "BOOLEAN_CONJUNCTION",
+      "mobius_order3": 1,
+      "knockout": "PASS",
+      "domains": ["KUBERNETES_PROW", "HUGGINGFACE_SERGE"],
+      "status": "EXACT_TWO_DOMAIN"
+    },
+    "genuine_three_or_four_X_hyperedges": "UNDERIDENTIFIED",
+    "other_pairwise_X_edges": "UNDERIDENTIFIED_OR_ONE_DOMAIN_ONLY",
+    "sparse_law_scope": "BOT_AND_WORKFLOW_COMMENT_TRIGGER_GEOMETRY_ONLY",
+    "same_normalized_X_G_E_conflicting_action": "NOT_OBSERVED"
+  },
+  "harvest": {
+    "id": "LR-20261002-V",
+    "notion_page": "3edef561-cf92-81a9-969a-f4e75d10cf29",
+    "genealogy_receipt": "3edef561-cf92-81fc-8075-ce7206f9f8df",
+    "authority": "NONE",
+    "status": "PASS_HARVEST_NON_SOVEREIGN",
+    "paper_seeds": {
+      "PAPER_A": "PROMISING_NOT_AUTHORIZED",
+      "PAPER_B": "METHODS_SEED",
+      "PAPER_C": "RESEARCH_OS_SEED"
+    }
+  },
+  "prior_art_boundary": {
+    "generic_feature_interaction_novelty": "KILLED",
+    "generic_pairwise_combinatorial_testing_novelty": "KILLED",
+    "generic_feature_interaction_graph_novelty": "KILLED",
+    "context_independent_configuration_effect_assumption": "KILLED",
+    "evonomos_candidate_residue": "PROSPECTIVE_TYPED_PRIMITIVES_PLUS_REPOSITORY_NATIVE_MATCHED_INTERVENTIONS_PLUS_CROSS_DOMAIN_INTERACTION_TRANSPORT"
+  },
+  "ruling": {
+    "interaction_law": "PARTIAL_REPRODUCIBLE_SPARSE_STRUCTURE",
+    "higher_order_X_law": "NOT_AUTHORIZED",
+    "context_geometry_cross_term": "AUTHORIZED_NARROW_TWO_DOMAIN",
+    "paper_story_override": "FORBIDDEN_AND_NOT_USED",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "provenance": {
+    "constitution": "0e90d09e650eb4487c6972217f265bc751b83246",
+    "preseal": "247a92543d08a9b471e2fefdd4ec98db25645382",
+    "interaction_custody": "9ce35a9b6acf6d2279a79a4fb9301df3dcfe0150",
+    "matrix": "57bca9c8cd59374ee5631a103a4b0bb1c48ea32b",
+    "harvest_manifest": "ad6b3d5b0411d1822f0946381c2eadd89ebad946",
+    "rust": "8c5d703522d2e666fce1d0e791970a6a053cdfcd",
+    "go_initial": "af12bf0bf500c12f35263a4b87714a88447679c0",
+    "go_fix": "c2dc1a18fec45409841a75a24f300114fcef89a5",
+    "cpp": "0ca4743857237e5ffabf221f37f5b56da3b8a8ae",
+    "ruby": "f4f51c6365eb9cbdcc2631b75365a26951945975",
+    "javascript": "cdd70dcf4f3852c2b428519aa08a51fdb0918b69",
+    "workflow": "acb8835e925c56b786421bdce66db80a405a2ba9"
+  },
+  "closure": {
+    "ravel": "9615–9643",
+    "decision": "9644–9661",
+    "global_next": 9662
+  }
+}
