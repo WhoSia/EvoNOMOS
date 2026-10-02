@@ -1,0 +1,169 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P11",
+  "constitution_commit": "37aa56ae87f8231c9ebf0a2c3253a80d279d6070",
+  "preseal_commit": "b2f83c9cf552f0259d92f98747f2ae7581ee35d1",
+  "admission": "POST_PRESEAL_INSPECTION__FRESH_TO_P11",
+  "worlds": [
+    {
+      "id": "CONTROL_TOWER_1401",
+      "source": "linuxarena/control-tower#1401",
+      "url": "https://github.com/linuxarena/control-tower/pull/1401",
+      "authority": {
+        "merged": true,
+        "merged_at": "2026-09-02T04:50:22Z",
+        "merge_commit": "43e92f2528acd0591c8921282b06c7880de625d6",
+        "head": "70a68c285a02ec4988629dba6f78b3df3d7cee61"
+      },
+      "X": {
+        "public_compatibility_obligation": "LOWER",
+        "release_window": "EXPLICIT_BREAKING_REWRITE",
+        "consumer_transition": "COORDINATED_INTERNAL_CONFIG_MIGRATION",
+        "authority_mode": "BREAKING_REFACTOR"
+      },
+      "G": {
+        "family": "CANONICAL_REPRESENTATION_MIGRATION",
+        "old_surface": "PYTHON_MONITOR_ABSTRACTIONS_REGISTRIES_AND_PER_MONITOR_CLI",
+        "new_surface": "PROMPT_ASSETS_PLUS_EVAL_LEVEL_TRUSTED_MODEL",
+        "ownership_move": "MONITOR_POLICY_TO_ASSET_AND_EVAL_LEVEL"
+      },
+      "E": {
+        "resolution_quality": "MERGED",
+        "behavioral_parity": "25_OF_25_PROMPT_CONFIGURATIONS_BYTE_IDENTICAL_FOR_SUPPORTED_SET",
+        "explicit_dropped_surface": true
+      },
+      "A": "HARD_REMOVE_OLD_CONFIG_SURFACE__PORT_SUPPORTED_BEHAVIOR"
+    },
+    {
+      "id": "MODELOPT_2569",
+      "source": "NVIDIA/Model-Optimizer#2569",
+      "url": "https://github.com/NVIDIA/Model-Optimizer/pull/2569",
+      "authority": {
+        "merged": true,
+        "merged_at": "2026-10-02T01:12:12Z",
+        "merge_commit": "e3c903c4d14e460b44b42b46fb56f6f76edbc5c6",
+        "head": "abf6d48afdd73fd498819c0ff881bec68af0c228"
+      },
+      "X": {
+        "public_compatibility_obligation": "HIGH",
+        "release_window": "DEPRECATION_BEFORE_SCHEDULED_REMOVAL",
+        "consumer_transition": "PUBLISHED_LIBRARY_CALLERS_MAY_USE_OLD_NAMES",
+        "authority_mode": "DEPRECATION_REFACTOR"
+      },
+      "G": {
+        "family": "CANONICAL_REPRESENTATION_MIGRATION",
+        "old_surface": "TENSORRT_LLM_DERIVED_MODEL_TYPE_NAMES",
+        "new_surface": "HUGGING_FACE_ROOT_MODEL_TYPE",
+        "ownership_move": "MODEL_IDENTITY_TO_STABLE_ROOT_CONFIG"
+      },
+      "E": {
+        "resolution_quality": "MERGED",
+        "scheduled_removal": "0.49.0",
+        "fallback_behavior": "GENERIC_DECODER_EXPORT_WITH_WARNING"
+      },
+      "A": "MOVE_CANONICAL_REPRESENTATION__KEEP_DEPRECATED_COMPATIBILITY_SURFACE"
+    },
+    {
+      "id": "PYDANTIC_AI_9384",
+      "source": "pydantic/pydantic-ai#9384",
+      "url": "https://github.com/pydantic/pydantic-ai/pull/9384",
+      "authority": {
+        "merged": true,
+        "merged_at": "2026-10-01T23:30:55Z",
+        "merge_commit": "c7cf7239b7f623f49f88577a88b9898e9c3feadb",
+        "head": "9d0abcad3134fece2cc4d83f5214bd17f523fa82"
+      },
+      "X": {
+        "public_compatibility_obligation": "HIGH",
+        "release_window": "MINOR_RELEASE_COMPATIBILITY_IMPACT",
+        "consumer_transition": "EXISTING_IMPORTS_AND_EXPLICIT_OVERRIDES_PRESERVED",
+        "authority_mode": "BUG_FIX_WITH_MIGRATION_PATH"
+      },
+      "G": {
+        "family": "POLICY_OWNERSHIP_RELOCATION",
+        "old_surface": "ORCHESTRATOR_FORCED_MINIMUM_THINKING",
+        "new_surface": "CALLER_OR_MODEL_OWNED_EFFORT_POLICY",
+        "ownership_move": "POLICY_FROM_CAPABILITY_LAYER_TO_APPLICATION_CALLER"
+      },
+      "E": {
+        "resolution_quality": "MERGED",
+        "deprecated_exports_preserved": true,
+        "explicit_migration": "AgentOverride(effort='low')"
+      },
+      "A": "REMOVE_FORCED_POLICY__KEEP_DEPRECATED_EXPORTS_AND_EXPLICIT_COMPATIBILITY_PATH"
+    },
+    {
+      "id": "SVELTEKIT_16740",
+      "source": "sveltejs/kit#16740",
+      "url": "https://github.com/sveltejs/kit/pull/16740",
+      "authority": {
+        "merged": true,
+        "merged_at": "2026-08-11T18:46:30Z",
+        "merge_commit": "1742811562358caf6042bed33c60ce6427a3e831",
+        "head": "715be9b7598205ddbfe5c3cf5e664036d11a261c"
+      },
+      "X": {
+        "public_compatibility_obligation": "MAJOR_VERSION_BOUNDARY",
+        "release_window": "EXPLICIT_BREAKING_MAJOR",
+        "consumer_transition": "CHANGESET_AND_MAJOR_MIGRATION",
+        "authority_mode": "BREAKING_PUBLIC_API_MOVE"
+      },
+      "G": {
+        "family": "PUBLIC_SYMBOL_OWNERSHIP_MOVE",
+        "old_surface": "REMOTE_FUNCTION_TYPES_AT_OLD_MODULE_LOCATION",
+        "new_surface": "REMOTE_FUNCTION_TYPES_AT_APP_SERVER",
+        "ownership_move": "TYPE_OWNERSHIP_TO_SERVER_MODULE"
+      },
+      "E": {
+        "resolution_quality": "MERGED",
+        "breaking_marked": true,
+        "changeset_present": true
+      },
+      "A": "MOVE_PUBLIC_SYMBOLS_WITH_BREAKING_CHANGE"
+    }
+  ],
+  "alias_candidates": [
+    {
+      "id": "ALIAS_A_CONTROL_VS_MODELOPT",
+      "left": "CONTROL_TOWER_1401",
+      "right": "MODELOPT_2569",
+      "surface_similarity": "BOTH_REPLACE_OLD_CANONICAL_REPRESENTATION_WITH_NEW_OWNER",
+      "action_conflict": "HARD_REMOVE_VS_KEEP_DEPRECATED_SURFACE",
+      "material_equivalence": "FAILS",
+      "dissolves_in": "X",
+      "reason": "PUBLIC_COMPATIBILITY_AND_RELEASE_WINDOW_DIFFER"
+    },
+    {
+      "id": "ALIAS_B_MODELOPT_VS_SVELTEKIT",
+      "left": "MODELOPT_2569",
+      "right": "SVELTEKIT_16740",
+      "surface_similarity": "BOTH_MOVE_PUBLIC_IDENTITY_OR_TYPE_SURFACE_TO_NEW_CANONICAL_OWNER",
+      "action_conflict": "DEPRECATION_BRIDGE_VS_BREAKING_MOVE",
+      "material_equivalence": "FAILS",
+      "dissolves_in": "X",
+      "reason": "DEPRECATION_WINDOW_VS_MAJOR_BREAKING_AUTHORITY_DIFFER"
+    }
+  ],
+  "matched_tests": {
+    "matched_geometry": {
+      "pair": ["CONTROL_TOWER_1401", "MODELOPT_2569"],
+      "approximately_held": "CANONICAL_REPRESENTATION_MIGRATION",
+      "varied": "X_COMPATIBILITY_RELEASE_OBLIGATION",
+      "observed": "ACTION_DISCRIMINATION"
+    },
+    "matched_context": {
+      "pair": ["MODELOPT_2569", "PYDANTIC_AI_9384"],
+      "approximately_held": "PUBLIC_LIBRARY_COMPATIBILITY_WITH_MIGRATION_PATH",
+      "varied": "G_CANONICAL_IDENTITY_MIGRATION_VS_POLICY_OWNERSHIP_RELOCATION",
+      "observed": "DISTINCT_INTERVENTION_FAMILY"
+    }
+  },
+  "development_only": [
+    {
+      "source": "sourceblender/musubi#847",
+      "head": "8647f709a4b57e603884214da7f81c391b6059a0",
+      "status": "CLOSED_UNMERGED_DRAFT",
+      "use": "NONAUTHORITATIVE_TRANSITION_DONOR_ONLY",
+      "note": "Forwarding modules were proposed while standalone SDK publication and plugin readiness remained gating."
+    }
+  ]
+}
