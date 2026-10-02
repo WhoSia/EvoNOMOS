@@ -2,77 +2,97 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P22
-- formal suffix: Trial
-- status: CLOSED / PASS
-- canonical run: 37001185413
-- canonical head: 35aa0300fbad3c7929b57b6f49e1fbf78e3dba0d
-- canonical job: 110819011535
-- artifact: 11223962349
-- digest: sha256:18cba3f38ccf83ecb1dc7cadfcdbc695d42cde38fdac94016e275d0e83a5553f
+- active stage: G8 LAW-R1-P23
+- formal suffix: Reconstruction
+- status: CLOSED / SCIENTIFIC FALSIFICATION
+- execution status: PASS_SCIENTIFIC_FALSIFICATION
+- scientific verdict: FAIL_REPAIR_LOSS_ORDER_PREDICTION__MONOID_MAPPING_REJECTED
+- canonical run: 37008014852
+- canonical head: deac4afa691a019e3a651d905247befcc71cedec
+- canonical job: 110840784451
+- artifact: 11227215175
+- digest: sha256:62b4fcb2d8721ea10ab707c8023825817a990269c9f78fbcb0507ca0fbd97b2c
 
-P22 mathematical authority:
+P23 prospective authority:
 
-- P21 R4 ALL_EDGES_MUST_CARRY and R5 NO_CARRIER_GAP are now recognized as the same Boolean classifier, not independent empirical rivals
-- irreversible Boolean carrier semantics collapses path information to no-gap vs at-least-one-gap
-- an explicit repair map breaks that quotient in the abstract model
-- Drop and Repair are noncommutative in the abstract two-state model
-- property-indexed transport is mathematically substantive in the abstract model
-- category/path functoriality is valid for the compositional abstraction, but does not by itself establish empirical universality
-- unrestricted mechanism-local category encodings are treated as non-falsifying and cannot authorize a single law
+- the pre-fresh carrier-repair model M_CR is the identity-adjoined two-element left-zero band
+- its abstract mathematics remains valid: normal form PASS, unique proper congruence D~R PASS, minimal faithful degree 2, observation theorem PASS
+- the coarsest action-sufficient observation quotient Q_min remains mathematically valid
+- Kubernetes CRD conversion/pruning provides an exact fresh empirical order-reversal witness
+- empirical noncommutativity is PROMOTED
+- precommitted loss→repair=+ is falsified; observed loss→repair=-
+- precommitted repair→loss=- is falsified; observed repair→loss=+
+- the Kubernetes abstraction map into pre-fresh M_CR is REJECTED by exact 2/2 reversal
+- no sign edit, operation relabel, or retroactive state redefinition is admitted
 
-P22 empirical authority:
+P23 post-fresh reconstruction:
 
-- Flink AvroSerializer backward-compatibility reconstitution is the fourth exact mechanistically distinct family
-- source authority: apache/flink commit 479ebd59872160cb2060605b08dcd0d86c3cb78e
-- direct current descriptor/layout = +
-- old UID through ordinary Java deserialization = -
-- old UID through targeted descriptor substitution + manual layout reconstruction = +
-- non-target UID mismatch under the same tolerant reader = -
-- M0 absorbing-loss model FAILS
-- M1 repairable-transport model FITS
-- property-independent repair FAILS
-- property-indexed repair FITS
-- empirical repair-vs-gap order sensitivity remains UNDERIDENTIFIED because no natural repair-then-gap software cell was admitted
+- Kubernetes is reconstructed development-only as an identity-adjoined two-element right-zero band on LEGACY/CANONICAL/ABSENT
+- left-zero and right-zero monoids are opposite but non-isomorphic
+- left-zero minimal faithful degree = 2
+- right-zero minimal faithful degree = 3
+- the Boolean D~R quotient erases temporal orientation
+- Kubernetes semantic-presence observation still detects order reversal without being injective on the full orbit
+- all of these are POST_FRESH_DEVELOPMENT_ONLY and carry no P23 prospective promotion
 
-Cross-mechanism carrier family:
+Restricted bridge:
 
-- Ruby, Go and Flink all satisfy the frozen direct + / gap - / explicit-reconstitution + pattern
-- all three carrier leave-two-out splits PASS with one exact carrier family remaining in training
-- mechanism-local-only explanation is rejected for the carrier family
+- Q_min cardinality is 2 on Rust/Ruby/Go/Flink exact packets
+- retrospective candidate D_loc(q,g)=q AND g fits the existing packet
+- bridge status: RETROSPECTIVE_RESTRICTED_BRIDGE_EXISTS__PROSPECTIVE_AUTHORITY_ABSENT
+- decomposition uniqueness remains UNDERIDENTIFIED_NO_PROSPECTIVE_BRIDGE_TEST
 
-Current law-family structure:
+Current law-family authority:
 
-- SURFACE_SELECTION family: Rust
-- PATH_CARRIER_TRANSPORT family: Ruby, Go, Flink
-- F0 single transport law = UNDERIDENTIFIED_RESTRICTED_ABSTRACTION_MAP_MISSING
-- F1 two-family decomposition = SUPPORTED_CURRENTLY_MINIMAL
-- F2 mechanism-local-only = REJECTED_BY_CROSS_MECHANISM_CARRIER_REPLICATION
-- two-family decomposition is not claimed unique or final
-- a higher-level restricted bridge may still exist
+- SURFACE_SELECTION: Rust
+- PATH_CARRIER_TRANSPORT: Ruby, Go, Flink
+- single two-level bridge: retrospective only
+- two-family decomposition: REMAINS_CURRENT_AUTHORITY
+- three-plus-family decomposition: not required by current exact data
+- mechanism-local-only: rejected for carrier family
+- uniqueness: NOT_AUTHORIZED
 
-Harvest and paper readiness:
+Property-indexed transport:
 
-- LR-20261002-AA is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
-- repairable transport algebra, property-indexed boundary semantics and restricted higher-level bridge remain theory fragments
-- P22 paper ledger separates theorem-level statements, empirical witness claims and unready macro-law claims
-- manuscript drafting remains NOT_AUTHORIZED
-- no additional literature was required to close P22
+- Kubernetes gives support-only evidence for metadata vs schema-governed payload behavior
+- strong second property-indexed shared-boundary replication is NOT_ACHIEVED
 
-Hosted implementation:
+Research OS / Harvest:
 
-- Rust 1.99 finite mathematical checker: PASS
-- Java 21 targeted UID repair reproduction: PASS
-- JavaScript law-family trial: PASS
-- artifact directly inspected
-- canonical run succeeded on the first attempt
+- RAVEL: 9988–10036
+- Decision: 10037–10062
+- Run page: 3edef561-cf92-819a-9fce-c7c0190887e4
+- Decision page: 3edef561-cf92-8120-88fc-c4f054c011a9
+- Mathematical dossier: 3edef561-cf92-8104-a32d-ece5466b8c96
+- Abstraction-map ledger: 3edef561-cf92-8169-bf1c-d3760bc6fd42
+- LR-20261002-AB mathematical literature boundary: 3edef561-cf92-81c4-be49-da95c8f7791c
+- LR-20261002-AC theory harvest: 3edef561-cf92-811d-8c39-eb07b4f1031e
+- Harvest genealogy receipt: 3edef561-cf92-8100-916b-dfcde2965b5e
+
+Hosted support:
+
+- canonical pre-fresh/fresh science run 37008014852: SUCCESS
+- post-fresh support run 37010281839: SUCCESS
+- post-fresh support artifact 11227552075
+- post-fresh support digest sha256:d3cc811d879547c24fda08f0aab6e0e23b905bb1655d8e29f5f4a018cbc90304
+- post-fresh opposite-band checker: PASS
 - new Python files: 0
+
+Paper-readiness boundary:
+
+- manuscript remains NOT_AUTHORIZED
+- theorem correctness, abstraction-map validity, and empirical prediction are separate authority layers
+- recommended supporting math context if absent from Drive:
+  - Cameron et al. 2023, DOI 10.5070/C63362799
+  - Margolis & Steinberg 2023, DOI 10.1016/j.jalgebra.2023.06.032
 
 Macro-law boundary:
 
-- single universal transport law remains NOT_AUTHORIZED
-- empirical noncommutativity remains NOT_CLOSED
+- right-zero reconstruction is not prospectively promoted
+- restricted bridge is not prospectively promoted
+- strong property-index replication remains open
+- macro structure remains NOT_AUTHORIZED
 - SOLID remains NOT_DERIVED
 - LAW-R2 remains NOT_AUTHORIZED
 
-Global next: 9988, still within LAW-R1.
+Global next: 10063, still within LAW-R1.
