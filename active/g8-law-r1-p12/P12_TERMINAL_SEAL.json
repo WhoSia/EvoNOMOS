@@ -1,0 +1,92 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P12",
+  "verdict": "PASS_CONTEXT_COMPRESSION_SUPPORTED__LIFECYCLE_IDENTIFIED__OTHER_COORDINATES_UNDERIDENTIFIED__POST_HOC_EXPANSION_BLOCKED__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36957594816,
+    "head": "d9c55773a6a222afc7b768b4ab9147e04b2ffc60",
+    "job": 110683928801,
+    "artifact": 11205794621,
+    "digest": "sha256:fc9104b9f29dd9be0070026ba65869bd524edfbd1093fb3f125de1d9fb5d34c4"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "world_custody": "PASS",
+    "court": "PASS",
+    "representation_invariance": "PASS",
+    "anti_rationalization": "PASS"
+  },
+  "scientific_readout": {
+    "fresh_sources": 4,
+    "contrast_worlds": 7,
+    "cleanly_identified_X_coordinates": [
+      "LIFECYCLE_PHASE"
+    ],
+    "underidentified_X_coordinates": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY",
+      "CONSUMER_MIGRATION_WINDOW",
+      "RUNTIME_OR_TOOLCHAIN_PROVENANCE",
+      "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY"
+    ],
+    "sample_minimal_cardinality": 1,
+    "sample_minimal_subset": [
+      "LIFECYCLE_PHASE"
+    ],
+    "sample_minimality_authority": "NOT_PROMOTED_TO_UNIVERSAL_X_MIN",
+    "reason": "MATCHED_G_E_COVERAGE_SPARSE",
+    "runtime_or_toolchain_provenance": "REASSIGN_TOWARD_E",
+    "ownership_or_responsibility_boundary": "NOT_ESTABLISHED_AS_INDEPENDENT_X_PRIMITIVE",
+    "consumer_migration_window": "NOT_ESTABLISHED_AS_INDEPENDENT_PRIMITIVE",
+    "post_hoc_coordinate_additions": 0
+  },
+  "ruling": {
+    "X": "COMPRESSIBLE_BUT_NOT_FULLY_IDENTIFIED",
+    "state": "(X,G,E)_SURVIVES_CURRENT_EVIDENCE",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "anti_rationalization": "ENFORCED",
+    "universal_X_min": "NOT_CLAIMED",
+    "missing_coordinate": "NOT_REOPENED",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "fresh_authority": [
+    {
+      "source": "modelcontextprotocol/ext-apps#770",
+      "merge": "12aa50b62320f016616d2dc065f3d7dfb64ffad8"
+    },
+    {
+      "source": "isaac-sim/IsaacLab#8170",
+      "merge": "b7c022547288c5c51850d92296e34e0df6562066"
+    },
+    {
+      "source": "GatherPress/gatherpress#2322",
+      "merge": "cdf7e9fe1bd7e0d68a472357f784a5ef1a499c19"
+    },
+    {
+      "source": "agent-grounds/grund#386",
+      "merge": "16fa32b4c087583254f757e52480fda966da0621"
+    }
+  ],
+  "prior_art": {
+    "generic_minimal_state_novelty": "KILLED",
+    "feature_deletion_ablation_novelty": "KILLED",
+    "state_abstraction_bisimulation_novelty": "KILLED",
+    "evonomos_scope": "LOCAL_ANTI_RATIONALIZATION_AND_SOFTWARE_CONTEXT_OPERATIONALIZATION_ONLY"
+  },
+  "provenance": {
+    "constitution": "9b72d0daea4054723288ba5041453b16ce9e05dc",
+    "preseal": "fc189d8e1178ff707eaecc73ed3d4d6ffe2a4588",
+    "world_custody": "bc2a46017e58471a202fbc0c6190e9ad89383b7d",
+    "prior_art_boundary": "d6808b3ea1046c84beb4bd2941cfa42d8c3b9408",
+    "verifier": "49f288aad8a5eb969e02886be1ad39d0faf1dd76",
+    "court": "cb33aeb82967dbe26bdf87520f05041568555b3d",
+    "workflow": "d9c55773a6a222afc7b768b4ab9147e04b2ffc60"
+  },
+  "closure": {
+    "ravel": "9424–9442",
+    "decision": "9443–9456",
+    "global_next": 9457
+  }
+}
