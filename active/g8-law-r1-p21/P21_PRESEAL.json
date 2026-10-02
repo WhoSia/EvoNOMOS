@@ -1,0 +1,36 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P21",
+  "status":"PRESEALED",
+  "suffix":"Calibration",
+  "constitution_commit":"081fe5f70d63a8d2f7ed6ed4fd526dc40d83c153",
+  "opened_from":"44652d06153b780fde4a0b2f8ab21c1d418880a0",
+  "global_start":9840,
+  "frozen_before_fresh_third_family":true,
+  "action_sign_rule":{
+    "DIRECT_PRESERVING_BOUNDARY":"+",
+    "NONPRESERVING_INTERMEDIATE_BOUNDARY":"-",
+    "EXPLICIT_END_TO_END_CHANNEL":"+"
+  },
+  "required_pattern":"+/-/+",
+  "rivals":[
+    "R0_TYPED_BOUNDARY_TRANSPORT",
+    "R1_BINARY_TRIGGER",
+    "R2_WRAPPER_PENALTY",
+    "R3_PATH_LENGTH_THRESHOLD",
+    "R4_ALL_EDGES_MUST_CARRY",
+    "R5_ONE_SPLIT_DECISION_TREE",
+    "R6_UNTYPED_LOOKUP"
+  ],
+  "R5_selected_split":"carrier_gap?",
+  "principle":"Preserve existing client-observable intent across a compatibility path only while each semantically relevant boundary preserves the required carrier; an explicit end-to-end channel may preserve intent without legacy propagation.",
+  "third_family":"MUST_BE_FRESH_AND_MECHANISTICALLY_DISTINCT",
+  "strong_pass_requires_all_three_states":true,
+  "boundary_carrying_obligation":"HARVEST_ONLY_PENDING_REPLICATION",
+  "new_X":"FORBIDDEN",
+  "new_G":"FORBIDDEN_FOR_SIGN_CLAIM",
+  "sign_edit_after_outcome":"FAILURE",
+  "rival_edit_after_outcome":"FAILURE",
+  "principle_qualifier_after_outcome":"FAILURE",
+  "paper_manuscript":"NOT_AUTHORIZED",
+  "law_r2_gate":"UNCHANGED"
+}
