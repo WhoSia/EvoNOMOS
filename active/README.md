@@ -2,133 +2,139 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P24
-- formal suffix: Prediction
+- active stage: G8 LAW-R1-P25
+- formal suffix: Replication
 - status: CLOSED / PASS
-- verdict: PASS_ORIENTATION_PREDICTION__FAITHFUL_DEGREE_MATCH__PROPERTY_INDEX_REPLICATION__AND_BRIDGE_HELD_OUT_PASS__MACRO_STRUCTURE_ADVANCES
-- canonical run: 37017513558
-- canonical head: 74a1f0656b0d4428e04bd4e135a107484ebd3635
-- canonical job: 110871915750
-- artifact: 11230402825
-- digest: sha256:5db642cd424fef04c0b158aeeadbb4187c599e789339d926981ff24cc08152aa
-- terminal seal: b8d5130c6afe96a914fc407a2d2bf3006e5a05bb
+- verdict: PASS_SECOND_BRIDGE_REPLICATION__END_TO_END_COMPOSITION_PASS__AND_CROSS_MECHANISM_TRANSPORT__MACRO_STRUCTURE_REPLICATED
+- canonical run: 37037884755
+- canonical head: 1b7a8d0a4ba009bf01d364bb6df1a878170c509a
+- canonical job: 110940482532
+- artifact: 11241252030
+- digest: sha256:0f776c4f95f9594017a8454e4c290552a43565e4d877a27d0dc86a1eb0b315c7
+- terminal seal: be0c8ba67a36c2bd5b9c38a5bc363f0d06f700c3
 
 Runtime and repository governance:
 
-- CURRENT Research OS bootstrap reloaded before P24 work
 - BOT_CONTRIBUTION_ZERO remains binding
-- preflight reachable github-actions[bot] author count = 0
-- preflight reachable github-actions[bot] committer count = 0
 - close-time reachable github-actions[bot] author count = 0
 - close-time reachable github-actions[bot] committer count = 0
-- P24 workflow contents permission = read
-- GitHub Actions performed compute/read/artifact upload only; no repository-history authorship
+- P25 workflow contents permission = read
+- GitHub Actions performed read/compute/artifact only; no repository-history authorship
 
-P24 execution boundary:
+P25 precommit authority:
 
-- run 37017112611 failed at Go verifier compilation before any scientific output
-- QUIC and P24 adjudicator did not execute in that run
-- run 37017112611 is IMPLEMENTATION_FAILURE_NOT_SCIENTIFIC_EVIDENCE
-- verifier state projection was repaired at 74a1f0656b0d4428e04bd4e135a107484ebd3635
-- the repair changed no frozen hypothesis, operation identity, orientation prediction, property name or bridge rule
-- run 37017513558 is the first complete verdict-producing science run and remains canonical
-- later receipt/alternate-triggered workflow successes are redundant and noncanonical
+- constitution: ff829bcdcdad43d52263e271661cbafd4a1fdbc5
+- preseal: 0a0793a244a7b0e97149502733a599599133c5bc
+- frozen local rule: y = q AND g
+- frozen truth table: 00→0, 01→0, 10→0, 11→1
+- q = necessary transported/environmental action-sufficient state
+- g = independent local enable/permission gate
+- mechanism ID and post-outcome Boolean-function replacement forbidden
 
-P24 mathematical authority:
+Second-domain prospective bridge:
 
-- left-zero identity monoid minimum faithful transformation degree = 2
-- right-zero identity monoid minimum faithful transformation degree = 3
-- quotient D~R erases left/right temporal orientation
-- complete Boolean truth table 0001 uniquely identifies AND
-- mathematical certificate PASS
+- family: RUST_LOG_BOXED_LOGGER_CAPABILITY_GATE
+- upstream: rust-lang/log
+- exact commit: 27e3cf7a021dab43430a70cb2909c06ca8141f79
+- q = target_has_atomic="ptr"
+- g = Cargo alloc feature
+- y = downstream set_boxed_logger API availability
+- exact source cfg: feature alloc AND target_has_atomic ptr
+- hosted control crate PASS in all four cells
+- hosted probe packet: 00→0, 01→0, 10→0, 11→1
+- frozen rival match: AND only
+- result: PASS_SECOND_DOMAIN_AND
 
-Prospective transport-algebra prediction:
+Fresh end-to-end composition:
 
-- fresh family: PROTOBUF_GO_UNKNOWN_FIELD_TRANSPORT
-- exact upstream commit: dcb66ef29d5e2a9420273f86407f493298804ec3
-- exact module version: v1.36.13-0.20260916225941-dcb66ef29d5e
-- source-semantic prediction: LEFT_ZERO_IDENTITY
-- hosted observation: LEFT_ZERO_IDENTITY
-- orientation prediction: PASS
-- predicted minimum faithful degree = 2
-- faithful-degree match: PASS
-- D and R idempotent
-- D∘R yields UNKNOWN_ABSENT
-- R∘D yields UNKNOWN_PRESENT
+- family: GO_TLS_ALPN_TARGET_PROTOCOL_NEGOTIATION
+- upstream: golang/go
+- exact source commit: 47cf464896de41e404e0efeca4fa2cc1e321872c
+- hosted Go runtime: go1.26.8
+- source chain:
+  ClientHello ALPN list
+  → TLS serialization/parsing
+  → q(target proto1 present)
+  → server NextProtos gate g
+  → NegotiatedProtocol
+- all four live handshakes PASS
+- hosted packet: 00→0, 01→0, 10→0, 11→1
+- exact-source reference agrees with live selection in all four cells
+- result: PASS_T_Q_GATE_ACTION
 
-Strong property-indexed shared-boundary replication:
+Cross-mechanism bridge authority:
 
-- shared boundary: protobuf binary unmarshal
-- KNOWN_CURRENT_FIELD_OR_CAPABILITY remains value 7 under default and DiscardUnknown decode
-- UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY is present by default and absent under DiscardUnknown
-- strong second property-indexed replication: PASS
-- universal property-index primitive: NOT_AUTHORIZED
+- P24 QUIC Datagram mutual negotiation = AND
+- P25 rust-lang/log compile-time capability×feature = AND
+- P25 TLS ALPN live negotiation = AND
+- bridge result = REPLICATED_ACROSS_NETWORK_AND_COMPILETIME_MECHANISMS
+- network-negotiation-only explanation is weakened by the Rust compile-time packet
 
-Prospective held-out AND bridge:
+Architecture / decomposition authority:
 
-- fresh family: QUIC_GO_DATAGRAM_MUTUAL_NEGOTIATION
-- exact upstream commit: 7c3a98eeb4144e77876ba77c9292da9b5b27a0e1
-- exact upstream TestDatagramNegotiation: PASS on all four local/remote enable combinations
-- q = remote peer Datagram support
-- g = local EnableDatagrams
-- frozen rule = q AND g
-- held-out packet: 00→0, 01→0, 10→0, 11→1
-- mechanism-local parameters = 0
-- bridge result: PASS_HELD_OUT
+- U0 SINGLE_UNIFIED_ARCHITECTURE = SUPPORTED_AS_TYPED_META_ARCHITECTURE_BUT_NOT_UNIQUE
+- U1 TWO_FAMILY_WITH_SHARED_INTERFACE = REMAINS_OBSERVATIONALLY_EQUIVALENT
+- U2 BRIDGE_SUBCLASS_ONLY = WEAKENED_BY_COMPILETIME_RUST_REPLICATION
+- U3 DISCONNECTED = REJECTED
+- decomposition uniqueness = UNDERIDENTIFIED_INTERFACE_VS_UNIFIED_ARCHITECTURE
 
-Law-family / macro-structure authority:
+Central mathematical boundary:
 
-- U0 SINGLE_TWO_LEVEL_BRIDGE = PROSPECTIVELY_SUPPORTED_ON_ONE_FRESH_HELD_OUT_FAMILY
-- U1 TWO_FAMILY_WITH_INTERFACE = REMAINS_OBSERVATIONALLY_COMPATIBLE
-- U2 TWO_FAMILY_DISCONNECTED = NOT_SUPPORTED_ON_P24
-- U3 THREE_PLUS_FAMILY = NOT_REQUIRED_BY_P24_PACKET
-- decomposition uniqueness = UNDERIDENTIFIED_ONE_PROSPECTIVE_BRIDGE_FAMILY
-- candidate typed architecture:
-  rich transport algebra → action-sufficient quotient q → independent local gate g → action
-- macro structure = ADVANCES_NOT_AUTHORIZED
-- macro law = NOT_AUTHORIZED
+- a complete 2×2 Boolean packet identifies its local Boolean function extensionally
+- repeated q×g AND behavior does not identify whether upstream q generators share one architecture
+- one fresh end-to-end T→Q→gate→action realization supports the proposed architecture but does not make it unique over a shared-interface decomposition
+
+Property-index boundary:
+
+- P24 strong property-index authority remains intact
+- P25 adds no new strong shared-boundary property-index replication
+- no new property-index primitive is promoted
+
+Implementation-failure boundary:
+
+- noncanonical runs 37037410152, 37037761616, 37037789629 all produced successful Rust and TLS science probes
+- each failed only in the aggregation step because TLS snake_case JSON fields were read with incorrect casing
+- fix commit 1b7a8d0a4ba009bf01d364bb6df1a878170c509a changes only artifact field access
+- q/g/Q semantics, source candidates and frozen AND rule were unchanged
+- canonical run 37037884755 is the first complete artifact-producing verdict run
 
 Artifact custody:
 
-- all seven canonical artifact files directly inspected
-- p24-math.json
-- p24-protobuf.json
-- p24-protobuf-module.json
-- p24-quic-bridge.json
-- p24-quic-upstream.json
-- p24-quic-upstream.txt
-- p24-prediction.json
-
-Late alternate discovery boundary:
-
-- later Reset×ClearUnknown / EtcdRangeStream exploration occurred after authoritative Protobuf/QUIC lineage and canonical run
-- P24_FRESH_DUAL_FAMILY_CUSTODY.json at a61dabbc4718976da66cf6d0066aaec89cddb555 is NONAUTHORITATIVE_ALTERNATE_DISCOVERY
-- EtcdRangeStream probe at 33a82968b31281fdf262e045a0c7fb42554bac5d is FUTURE_FALSIFIER_BANK only
-- post-closure protobuf/go-logr comparison custody bf03f8e88dc6cc8e94d9ea84f4c98321450d5869 is NONAUTHORITATIVE
-- post-closure pinned protobuf/go-logr probe 3094d0feb2c2743532393bb7ecd43a10c219139d is NONAUTHORITATIVE and was not used for P24 closure
-- post-closure alternate boundary receipt: 277906309e68cfbb513a703ca905d2f1fbcbaf9f
-- alternate discovery changes no P24 verdict or authority
+- p25-math.txt directly inspected
+- p25-rust-log.json directly inspected
+- p25-tls-alpn.json directly inspected
+- p25-replication.json directly inspected
 
 Research OS / Harvest:
 
-- RAVEL: 10063–10108
-- Decision: 10109–10134
-- Run page: 3edef561-cf92-81c5-9908-c03f1ba06b1c
-- Decision page: 3edef561-cf92-81f6-b988-d1861aae8396
-- Entry & Governance Ledger: 3edef561-cf92-81e0-8ae6-ff1d44012a28
-- Mathematical Dossier: 3edef561-cf92-816a-bae7-ce8a9264c3ed
-- Fresh-Candidate Genealogy: 3edef561-cf92-815f-8537-fb02f6c765ef
-- Prediction & Authority Ledger: 3edef561-cf92-8151-a02e-f57a8c49118e
-- Harvest LR-20261003-AD: 3edef561-cf92-818f-b57c-eb056adc14d3
-- Harvest genealogy: 3edef561-cf92-818a-b4c2-d8af6cbec80d
+- RAVEL: 10135–10180
+- Decision: 10181–10206
+- Run page: 3edef561-cf92-81b3-9229-f7117c1d088c
+- Decision page: 3edef561-cf92-8181-8ba5-c229ff5ecab3
+- Mathematical Dossier: 3edef561-cf92-81dc-817d-f8a5c143b2c4
+- Fresh-Candidate Genealogy: 3edef561-cf92-817a-a2fc-d4b898e818cb
+- Prediction & Authority Ledger: 3edef561-cf92-8140-9814-d52195ed0d5b
+- Harvest LR-20261003-AE: 3edef561-cf92-817f-a0a2-d9de1ba9747f
+- Harvest genealogy: 3edef561-cf92-81b1-a71a-cb926f7cc2f4
 
 Paper-readiness boundary:
 
 - manuscript remains NOT_AUTHORIZED
-- prospective orientation and bridge authority are bounded claims
-- decomposition uniqueness requires more than one prospective bridge family
-- whole transport→quotient→decision composition lacks cross-domain replication
+- prospective AND authority is bounded to typed necessary-state × independent-gate semantics
+- universal AND law remains NOT_AUTHORIZED
+- shared upstream transport algebra remains NOT_IDENTIFIED
+- architecture uniqueness requires a fresh U0-vs-U1 separating packet
 - SOLID remains NOT_DERIVED
 - LAW-R2 remains NOT_AUTHORIZED
 
-Global next: 10135, still within LAW-R1.
+Macro-structure boundary:
+
+- result: REPLICATED_BOUNDED_NOT_UNIQUELY_IDENTIFIED
+- candidate architecture:
+  transport/capability source
+  → binary action-sufficient quotient q
+  → independent local gate g
+  → AND action
+- macro law: NOT_AUTHORIZED
+
+Global next: 10207, still within LAW-R1.
