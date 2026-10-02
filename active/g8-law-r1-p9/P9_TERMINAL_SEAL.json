@@ -1,0 +1,30 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P9",
+  "verdict": "PASS_GEOMETRY_SURVIVES__POLICY_STATE_INSUFFICIENT__CONTEXT_EXPANDED__AXIS_EXPANSION_WITHHELD",
+  "canonical": {
+    "run": 36950465227,
+    "head": "f4ed593d75ebb3987ba1abd04af0e0b50414aae6",
+    "artifact": 11204415152,
+    "digest": "sha256:498a1746c3c54ffdda1ab92d80e273be540248ce192dc49b141062316dcfc8d6"
+  },
+  "geometry": "G=(S,P,F)__SURVIVES_AS_BOUNDED_STRUCTURAL_PROJECTION",
+  "context": "X__TEMPORAL_EVOLUTION_MODERATORS_REQUIRED",
+  "policy": "Pi(X,G,E)__PROMOTED",
+  "attacks": {
+    "missing": "NO_NEW_STRUCTURAL_COORDINATE_REQUIRED",
+    "aliasing": "G_ALONE_INSUFFICIENT",
+    "reversal": "TEMPORAL_CONTEXT_SUPPORTED",
+    "coupling": "NOT_ESTABLISHED"
+  },
+  "ontology": {
+    "fourth_axis": null,
+    "expansion": "CONTEXT_ONLY"
+  },
+  "novelty": "WITHHELD",
+  "kernel": "NOT_FALSIFIED_BY_P9",
+  "closure": {
+    "ravel": "9289–9325",
+    "decision": "9326–9339",
+    "next": 9340
+  }
+}
