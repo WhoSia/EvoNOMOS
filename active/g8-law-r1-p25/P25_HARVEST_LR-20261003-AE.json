@@ -1,0 +1,51 @@
+{
+  "harvest_id": "LR-20261003-AE",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P25",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "fragments": [
+    {
+      "id": "AE-F01",
+      "name": "Cross-Mechanism AND Bridge Replication",
+      "status": "BOUNDED_THEORY_FRAGMENT"
+    },
+    {
+      "id": "AE-F02",
+      "name": "Compile-Time and Runtime Gate Isomorphism",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AE-F03",
+      "name": "Interface Equivalence Does Not Identify Upstream Architecture",
+      "status": "PRE_FRESH_THEOREM_CONFIRMED"
+    },
+    {
+      "id": "AE-F04",
+      "name": "End-to-End T-Q-Gate Realization",
+      "status": "BOUNDED_THEORY_FRAGMENT"
+    },
+    {
+      "id": "AE-F05",
+      "name": "Necessary-State × Independent-Gate Decision Grammar",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AE-F06",
+      "name": "Universal-AND Boundary",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AE-F07",
+      "name": "Property-Index Coupling Remains Open",
+      "status": "NEGATIVE_CAPITAL"
+    }
+  ],
+  "strongest_result": "The frozen AND bridge now survives P24 QUIC negotiation, P25 Rust compile-time target-capability×feature gating, and P25 TLS ALPN end-to-end negotiation.",
+  "architecture_boundary": {
+    "U0": "SUPPORTED_AS_META_ARCHITECTURE_BUT_NOT_UNIQUE",
+    "U1": "OBSERVATIONALLY_EQUIVALENT",
+    "uniqueness": "UNDERIDENTIFIED_INTERFACE_VS_UNIFIED_ARCHITECTURE"
+  },
+  "paper_readiness": "PREPARATION_ONLY",
+  "manuscript": "NOT_AUTHORIZED"
+}
