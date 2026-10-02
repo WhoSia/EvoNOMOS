@@ -21,11 +21,6 @@ jobs:
       - name: Checkout EvoNOMOS
         uses: actions/checkout@v4
 
-      - name: Set Up Haskell
-        uses: haskell-actions/setup@v2
-        with:
-          ghc-version: '9.8'
-
       - name: Set Up Rust
         uses: dtolnay/rust-toolchain@stable
         with:
@@ -40,7 +35,9 @@ jobs:
         run: mkdir -p out-p25
 
       - name: Run Boolean Rival Mathematics
-        run: runghc tools/law-r1-p25-math-check.hs | tee out-p25/p25-math.txt
+        run: |
+          rustc tools/law-r1-p25-math-check.rs -O -o out-p25/p25-math-check
+          out-p25/p25-math-check | tee out-p25/p25-math.txt
 
       - name: Materialize Exact rust-lang/log
         run: |
