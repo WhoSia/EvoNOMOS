@@ -1,4 +1,4 @@
-name: G8 LAW-R1-P8-P12 Courts
+name: G8 LAW-R1-P8-P13 Courts
 
 on:
   workflow_dispatch:
@@ -20,6 +20,9 @@ on:
       - 'tools/law-r1-p12-*'
       - 'active/g8-law-r1-p12/**'
       - 'lawkit/protocol/v0.16/**'
+      - 'tools/law-r1-p13-*'
+      - 'active/g8-law-r1-p13/**'
+      - 'lawkit/protocol/v0.17/**'
       - '.github/workflows/g8-law-r1-p8-ecology.yml'
 
 permissions:
@@ -119,4 +122,23 @@ jobs:
         with:
           name: g8-law-r1-p12-context-minimality
           path: out-p12/
+          retention-days: 30
+
+  context-primitives:
+    name: P13 Context-Primitive Court
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P13 Output
+        run: mkdir -p out-p13
+      - name: Verify P13 Discriminator Ecology
+        run: python3 tools/law-r1-p13-discriminators.py
+      - name: Run P13 Context-Primitive Court
+        run: node tools/law-r1-p13-court.mjs out-p13/p13-discriminators.json out-p13/p13-court.json
+      - name: Upload P13 Context-Primitive Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p13-context-primitives
+          path: out-p13/
           retention-days: 30
