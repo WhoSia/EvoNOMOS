@@ -1,0 +1,108 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P19",
+  "constitution_commit": "de455ce14fb0218c80ddfaaa037bab6e8fe86c75",
+  "preseal_commit": "dc258cc86de7d927f2565526e49359d6572e894f",
+  "admission": "POST_PRESEAL_CROSS_MECHANISM_EVIDENCE",
+  "fresh_exact_families": [
+    {
+      "id": "RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+      "repository": "rust-lang/rust",
+      "commit": "a5c10c39125788787370a1ab11c954b9dff37859",
+      "domain": "COMPILER_METHOD_RESOLUTION_AND_LIBRARY_API_EVOLUTION",
+      "paths": [
+        "library/core/src/array/iter.rs",
+        "compiler/rustc_hir_typeck/src/method/probe.rs",
+        "tests/ui/iterators/into-iter-on-arrays-2018.rs",
+        "tests/ui/iterators/into-iter-on-arrays-2021.rs"
+      ],
+      "source_blobs": {
+        "array_iter": "1129e8b6ceb2b0f21efbdabf13b21019dbb785e7",
+        "probe": "c74047590331caafe8ad1080a44a534ed5eb7ded",
+        "test_2018": "2999d085c8738eda1faf5fccafdef45dcc6ff257"
+      },
+      "variables": {
+        "X": "COMPATIBILITY_OBLIGATION",
+        "G": "CALL_GEOMETRY__METHOD_DISPATCH_VS_EXPLICIT_TRAIT_CALL"
+      },
+      "fixed": {
+        "COEXISTENCE_REQUIREMENT": 0,
+        "RELEASE_AUTHORITY": "RUST_LANGUAGE_AND_STDLIB_MAINTAINER",
+        "E": "ARRAY_HAS_BY_VALUE_INTOITERATOR_IMPL"
+      },
+      "operationalization": {
+        "X_1": "pre-2021 edition compatibility obligation for explicit .into_iter() method dispatch",
+        "X_0": "2021+ method dispatch no longer hides the array IntoIterator implementation",
+        "G_1": "explicit method syntax array.into_iter()",
+        "G_0": "explicit trait invocation IntoIterator::into_iter(array)",
+        "Y_1": "preserve legacy borrowed/slice iterator behavior",
+        "Y_0": "use by-value array IntoIterator"
+      },
+      "factorial_cells": [
+        {"X":1,"G":1,"Y_preserve_legacy":1},
+        {"X":1,"G":0,"Y_preserve_legacy":0},
+        {"X":0,"G":1,"Y_preserve_legacy":0},
+        {"X":0,"G":0,"Y_preserve_legacy":0}
+      ],
+      "grade": "EXACT_SOURCE_AND_TEST_SUPPORTED_2X2",
+      "interaction": "CONTEXT_SELECTIVE_COMPATIBILITY",
+      "scope_guard": "The result identifies geometry-conditioned compatibility. It does not imply that all compatibility policy has this form."
+    }
+  ],
+  "independent_transport_support": [
+    {
+      "id": "AXIOS_HTTP_STATUS_LOOKUP_GEOMETRY",
+      "source": "axios/axios#11082 / P14 sealed authority",
+      "domain": "LIBRARY_SYMBOL_API",
+      "status": "INDEPENDENT_SEMANTIC_SUPPORT_INCOMPLETE_FACTORIAL",
+      "fact": "Within v1.x, forward lookup exposes new RFC names while deprecated aliases remain and numeric reverse lookup deliberately retains legacy names for backward compatibility.",
+      "transported_grammar": "Compatibility preservation is geometry-selective rather than globally applied.",
+      "limitation": "No prospectively matched compatibility-off major-release cell is observed."
+    },
+    {
+      "id": "NODE_MODULE_FORMAT_SCOPE_GEOMETRY",
+      "source": "nodejs/node current source and tests",
+      "domain": "RUNTIME_MODULE_LOADER",
+      "status": "INDEPENDENT_CONTEXT_X_GEOMETRY_SUPPORT_NOT_X_BASIS_REPLICATION",
+      "fact": "For .js files, package scope type controls module format; explicit .mjs/.cjs markers override package-scope ambiguity. Node tests cover package type and extension combinations.",
+      "transported_grammar": "Context policy acts strongly on ambiguous geometry while explicit geometry can dominate.",
+      "limitation": "Package type is not one of the frozen LAW-R1 X primitives, so this is grammar-level support only."
+    }
+  ],
+  "negative_custody": [
+    {
+      "id": "RUST_MAIN_EFFECT_UNIQUENESS",
+      "status": "REJECTED_AS_STRONG_CLAIM",
+      "reason": "Exact additive main effects cannot reproduce the 0,0,0,1 table, but a low-complexity conjunction X&&G can. Therefore the typed pairwise representation is not uniquely selected by the Rust family."
+    },
+    {
+      "id": "PRINCIPLE_AS_PROJECTION",
+      "status": "UNDERIDENTIFIED",
+      "reason": "No named design maxim-to-surface mapping was prospectively frozen before the fresh Rust outcome. P19 may test generic rival classes but may not retroactively choose a maxim that fits the observed family."
+    },
+    {
+      "id": "SOLID_SPECIAL_CASE",
+      "status": "NOT_TESTED_AS_DERIVATION",
+      "reason": "None of the fresh mechanisms provides a lawful precommitted mapping from SOLID predicates to the observed action surface."
+    }
+  ],
+  "cross_mechanism_readout": {
+    "fresh_non_migration_exact_family_count": 1,
+    "fresh_exact_family": "RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+    "independent_support_domains": [
+      "LIBRARY_SYMBOL_API",
+      "RUNTIME_MODULE_LOADER"
+    ],
+    "same_exact_typed_XxG_replication_count": 1,
+    "grammar_level_transport": "SUPPORTED",
+    "strong_macro_law_transport": "NOT_AUTHORIZED"
+  },
+  "projection_readout": {
+    "principle_as_projection": "SURVIVES_FALSIFICATION_BUT_REMAINS_UNDERIDENTIFIED",
+    "named_maxim_projection_authority": "NONE",
+    "reason": "Interaction-conditioned policy outperforms X-only and G-only exact reconstructions on the Rust family, but a generic low-complexity conjunction rival ties the exact cells and no named-maxim mapping was frozen."
+  },
+  "same_normalized_X_G_E_conflicting_action_observed": false,
+  "post_hoc_X_additions": [],
+  "post_hoc_interaction_subsets_added": [],
+  "law_r2": "NOT_AUTHORIZED"
+}
