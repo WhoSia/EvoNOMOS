@@ -1,0 +1,72 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P13",
+  "title": "Prospective Context-Coordinate Discriminator Construction, Exact Matched-(G,E) Compatibility/Coexistence/Authority Separation, Orthogonal Context Intervention, Coordinate Dependency Graph Recovery, Minimal-Context Equivalence-Class Replication, Cross-Domain Identifiability Transport & the Court of Whether X Has Stable Primitive Structure",
+  "global_start": 9457,
+  "predecessor": {
+    "stage": "LAW-R1-P12",
+    "terminal_seal": "e6961fdadb56317e4dc862d77c6626c5d9fc528b",
+    "active_lineage": "fe8df5de48432bddb5645f8a9452201bfab28d45",
+    "canonical_run": 36957594816,
+    "canonical_artifact": 11205794621,
+    "verdict": "PASS_CONTEXT_COMPRESSION_SUPPORTED__LIFECYCLE_IDENTIFIED__OTHER_COORDINATES_UNDERIDENTIFIED__POST_HOC_EXPANSION_BLOCKED__R2_NOT_AUTHORIZED"
+  },
+  "frozen_state": {
+    "state": "(X,G,E)",
+    "policy": "Pi(X,G,E)",
+    "policy_form": "INTERACTION_BEARING",
+    "identified_X": ["LIFECYCLE_PHASE"],
+    "underidentified_X": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY"
+    ],
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "target": "STABLE_PRIMITIVE_STRUCTURE_OF_X",
+  "prospective_discriminator_rules": {
+    "exact_matched_GE": "Primary identification requires pairs or small sets with materially equivalent G and E under frozen normalization.",
+    "orthogonality": "A candidate coordinate is promoted only when its variation is not bundled with another candidate coordinate across the decisive contrast.",
+    "replication": "At least two distinct domains must reproduce the same coordinate-to-action discrimination before stable primitive status.",
+    "negative_control": "At least one matched case must show that changing a non-target coordinate alone does not spuriously reproduce the target effect.",
+    "representation_invariance": "Coordinate discrimination must survive alternate encoding and naming.",
+    "anti_rationalization": "No new primitive X coordinate may be introduced after a failed discriminator inside the same Court."
+  },
+  "coordinate_hypotheses": {
+    "COMPATIBILITY_OBLIGATION": {
+      "status": "UNDER_TEST",
+      "predicted_discriminator": "Same G,E and lifecycle/authority/coexistence, differing obligation to preserve old consumer behavior changes bridge/removal action."
+    },
+    "COEXISTENCE_REQUIREMENT": {
+      "status": "UNDER_TEST",
+      "predicted_discriminator": "Same G,E and compatibility/authority/lifecycle, differing simultaneous old/new operation changes coexistence-vs-replacement action."
+    },
+    "RELEASE_AUTHORITY": {
+      "status": "UNDER_TEST",
+      "predicted_discriminator": "Same G,E and compatibility/coexistence/lifecycle, differing actor or release authority changes what mutation is permissible."
+    }
+  },
+  "dependency_graph_rules": {
+    "edge_A_to_B": "A -> B only if A operationally constrains or deterministically derives B under frozen rules.",
+    "merge": "Coordinates with reciprocal derivability or inseparability across all admitted discriminator families merge into one equivalence class.",
+    "primitive": "A primitive coordinate must have at least one discriminator that survives conditioning on other retained coordinates.",
+    "nonprimitive": "A coordinate is nonprimitive if derivable, always bundled, or relocatable to G/E without information loss."
+  },
+  "candidate_terminal_verdicts": [
+    "PASS_STABLE_X_PRIMITIVES_REPLICATED__COMPATIBILITY_COEXISTENCE_AUTHORITY_SEPARATED__R2_NOT_AUTHORIZED",
+    "PASS_PARTIAL_PRIMITIVE_STRUCTURE__DEPENDENCIES_RECOVERED__RESIDUAL_UNDERIDENTIFICATION_RETAINED__R2_NOT_AUTHORIZED",
+    "HOLD_DISCRIMINATOR_ECOLOGY_INSUFFICIENT__NO_POST_HOC_EXPANSION",
+    "FAIL_STABLE_X_PRIMITIVE_STRUCTURE__CONTEXT_REPRESENTATION_REQUIRES_RECONSTITUTION"
+  ],
+  "r2_gate": "LAW-R2 remains unauthorized unless fresh normalized same-(X,G,E) conflicting action survives all P13 discriminator/dependency reconstruction.",
+  "close_requires": [
+    "FROZEN_CONSTITUTION_BEFORE_FRESH_RESULT_INSPECTION",
+    "FROZEN_DISCRIMINATOR_PRESEAL",
+    "FRESH_EXACT_MATCHED_GE_CUSTODY",
+    "COORDINATE_DEPENDENCY_GRAPH_AUDIT",
+    "CROSS_DOMAIN_REPLICATION",
+    "REPRESENTATION_INVARIANCE",
+    "HOSTED_EVONOMOS_COURT",
+    "ARTIFACT_CUSTODY",
+    "TERMINAL_SEAL"
+  ]
+}
