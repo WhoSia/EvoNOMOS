@@ -1,0 +1,63 @@
+name: G8 LAW-R1-P17 Primitive-Interaction Reconstruction
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p17-*'
+      - 'active/g8-law-r1-p17/**'
+      - 'lawkit/protocol/v0.21/**'
+      - '.github/workflows/g8-law-r1-p17-interaction-reconstruction.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  interaction-reconstruction:
+    name: P17 Multilingual Primitive-Interaction Reconstruction
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Verify P17 Language Budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(find tools active/g8-law-r1-p17 -type f -name 'law-r1-p17-*.py' -o -path 'active/g8-law-r1-p17/*.py' 2>/dev/null)"
+          rustc --version
+          go version
+          g++ --version | head -n 1
+          ruby --version
+          node --version
+
+      - name: Prepare P17 Output
+        run: mkdir -p out-p17
+
+      - name: Run Rust Interaction Decomposition
+        run: |
+          rustc tools/law-r1-p17-interactions.rs -O -o /tmp/p17-rust
+          /tmp/p17-rust active/g8-law-r1-p17/P17_INTERACTION_MATRIX.tsv out-p17/rust-interactions.json
+
+      - name: Run Go Cross-Domain Transport
+        run: go run tools/law-r1-p17-transport.go active/g8-law-r1-p17/P17_INTERACTION_MATRIX.tsv out-p17/go-transport.json
+
+      - name: Run C++ Combination Knockout
+        run: |
+          g++ -std=c++20 -O2 tools/law-r1-p17-knockout.cpp -o /tmp/p17-cpp
+          /tmp/p17-cpp active/g8-law-r1-p17/P17_INTERACTION_MATRIX.tsv out-p17/cpp-knockout.json
+
+      - name: Run Ruby Harvest Provenance
+        run: ruby tools/law-r1-p17-harvest.rb active/g8-law-r1-p17/P17_HARVEST_LR-20261002-V.json out-p17/ruby-harvest.json
+
+      - name: Run JavaScript Interaction Reconstruction
+        run: |
+          node tools/law-r1-p17-reconstruction.mjs             out-p17/rust-interactions.json             out-p17/go-transport.json             out-p17/cpp-knockout.json             out-p17/ruby-harvest.json             out-p17/p17-reconstruction.json
+
+      - name: Upload P17 Interaction Reconstruction Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p17-interaction-reconstruction
+          path: out-p17/
+          retention-days: 30
