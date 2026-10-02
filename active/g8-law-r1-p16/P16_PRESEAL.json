@@ -1,0 +1,42 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P16",
+  "status": "PRESEALED",
+  "constitution_commit": "7826ff1cc6d68e9b6955409d17056366b65b9604",
+  "opened_from": "d1c3338e51f1c4b3f11f65dba50277294980fb43",
+  "global_start": 9571,
+  "frozen_before_fresh_lifecycle_result_inspection": true,
+  "lifecycle_replication": {
+    "prior_exact_domain": "P12_GATHERPRESS_EVENT_LIFECYCLE",
+    "fresh_domain_required": true,
+    "second_domain_must_be_mechanistically_distinct": true,
+    "held_fixed": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY",
+      "material_G",
+      "material_E"
+    ],
+    "action_difference_required": true
+  },
+  "basis_attack_order": [
+    "ADJUDICATE_LIFECYCLE_SECOND_DOMAIN",
+    "REPLAY_FOUR_COORDINATE_DELETIONS",
+    "TEST_ALL_SIX_PAIRWISE_QUOTIENTS",
+    "TEST_ALL_FOUR_TRIPLE_COLLAPSES",
+    "TEST_FULL_FOUR_COORDINATE_COLLAPSE",
+    "ATTEMPT_PROSPECTIVE_SPLITS",
+    "TEST_CROSS_DOMAIN_RECOVERABILITY_AND_TRANSPORT",
+    "ONLY_THEN_CONSIDER_MINIMAL_BASIS_CLOSURE"
+  ],
+  "minimality_rule": "Every retained coordinate must be two-domain exact, action-blindly recoverable, deletion-necessary, and non-mergeable under all lower-order quotient attacks.",
+  "negative_rule": "A failed quotient attack is evidence for distinctness; a successful quotient attack removes or reconstitutes the coordinate rather than being patched with a new X field.",
+  "literature_rule": "Drive-first novelty and custody work is downstream evidence hygiene and cannot change scientific thresholds.",
+  "user_reported_custody": {
+    "Diaz-Pace_2025": "EXACT_PDF_UNAVAILABLE",
+    "ADEPT_2026": "EXACT_PDF_UNAVAILABLE",
+    "other_P15_missing_items": "REPORTED_ADDED_TO_DRIVE__VERIFY_BY_READBACK"
+  },
+  "paper_rule": "Paper-readiness may shape documentation quality but cannot select or reinterpret scientific outcomes.",
+  "human_facing_naming": "CAPITALIZED_SCIENTIFIC_COMMIT_STYLE_AND_TITLE_CASE_ACTIONS",
+  "law_r2_gate": "Only normalized same-(X,G,E) conflicting action surviving the complete frozen basis court may reopen R2."
+}
