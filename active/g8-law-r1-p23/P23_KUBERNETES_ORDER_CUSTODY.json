@@ -1,0 +1,84 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P23",
+  "admission": "POST_PRESEAL_FRESH_NONCOMMUTATIVE_FALSIFIER",
+  "candidate": {
+    "id": "KUBERNETES_CRD_CONVERSION_PRUNING_ORDER",
+    "repository": "kubernetes/kubernetes",
+    "commit": "b9582829b419ae1abb1e715493eddbc38904cd4e",
+    "domain": "CRD_VERSION_CONVERSION_AND_STRUCTURAL_SCHEMA_PRUNING",
+    "source_paths": [
+      "staging/src/k8s.io/apiextensions-apiserver/test/integration/conversion/conversion_test.go",
+      "staging/src/k8s.io/apiextensions-apiserver/pkg/apiserver/customresource_handler.go",
+      "staging/src/k8s.io/apiextensions-apiserver/pkg/apiserver/schema/pruning/algorithm.go"
+    ],
+    "source_blobs": {
+      "conversion_test": "3a0b1c4408d0c7a5598769c32ee901bf76b2fc0c",
+      "customresource_handler": "cafe25eaf30e23508c3b4748729f896a8145c4e0",
+      "pruning_algorithm": "a929e52522c53ccee9fb6abbf58628449ab93c7d"
+    }
+  },
+  "source_defined_operations": {
+    "R_CONVERT": {
+      "source": "nontrivialConverter",
+      "action": "v1beta2 contentv2/numv2 -> v1beta1 content/num, then delete v2 field names"
+    },
+    "D_STORAGE_PRUNE": {
+      "source": "unstructuredSchemaCoercer.apply -> structuralpruning.PruneWithOptions",
+      "action": "remove fields not specified by the object's current structural schema"
+    }
+  },
+  "source_order": {
+    "implementation": "schemaCoercingConverter first calls delegate.Convert/ConvertToVersion, then validator.apply on output",
+    "execution": "R_CONVERT_THEN_D_STORAGE_PRUNE",
+    "expected_from_source_fixture": "+"
+  },
+  "source_fixture": {
+    "input_version": "v1beta2",
+    "input_fields": [
+      "contentv2",
+      "numv2"
+    ],
+    "storage_version": "v1beta1",
+    "storage_fields": [
+      "content",
+      "num"
+    ],
+    "preserve_unknown_fields": false
+  },
+  "precommitted_P23_prediction": {
+    "model": "M_CR_CONSTANT_RESET_LEFT_ZERO",
+    "LOSS_THEN_REPAIR": "+",
+    "REPAIR_THEN_LOSS": "-"
+  },
+  "fresh_candidate_mapping": {
+    "LOSS": "D_STORAGE_PRUNE",
+    "REPAIR": "R_CONVERT",
+    "source_implied_order_signs": {
+      "LOSS_THEN_REPAIR": "-",
+      "REPAIR_THEN_LOSS": "+"
+    },
+    "relationship_to_precommit": "EXACT_REVERSAL_EXPECTED_FROM_SOURCE_SEMANTICS"
+  },
+  "hosted_intervention_required": [
+    "IDENTITY_BASELINE",
+    "LOSS_ONLY",
+    "REPAIR_ONLY",
+    "LOSS_THEN_REPAIR",
+    "REPAIR_THEN_LOSS"
+  ],
+  "empirical_interpretation_if_reproduced": {
+    "noncommutativity": "PASS",
+    "P23_M_CR_mapping": "FAIL",
+    "richer_state_space_required": true,
+    "post_outcome_reconstruction_status": "DEVELOPMENT_ONLY_UNTIL_SEPARATELY_ADJUDICATED"
+  },
+  "property_index_note": {
+    "kubernetes_metadata_vs_payload_behavior": "SUPPORT_ONLY_NOT_STRONG_REPLICATION",
+    "reason": "Property identities were not predeclared specifically enough before fresh candidate inspection."
+  },
+  "anti_rationalization": {
+    "operation_redefinition": false,
+    "sign_edit": false,
+    "posthoc_property_promotion": false
+  }
+}
