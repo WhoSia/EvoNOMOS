@@ -1,0 +1,30 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P20",
+  "status":"PRESEALED_TRIGGER_PROJECTION",
+  "parent_preseal":"3f8ab7ca166f38da2bead9a1f836dd413070f3b1",
+  "frozen_before_fresh_candidate_inspection":true,
+  "binary_trigger_projection":{
+    "API_OR_LIBRARY_SURFACE":{
+      "G0":"DIRECT_CALL_OR_CANONICAL_SURFACE",
+      "G1":["LEGACY_ALIAS_OR_REVERSE_SURFACE","EXPLICIT_ESCAPE_OR_LOW_LEVEL_SURFACE"],
+      "rationale":"Generic conjunction receives only a coarse distinction between canonical surface and compatibility-relevant noncanonical surfaces."
+    },
+    "COMPILER_OR_LANGUAGE_RESOLUTION":{
+      "G0":"EXPLICIT_TRAIT_OR_FULLY_QUALIFIED_RESOLUTION",
+      "G1":["SUGAR_METHOD_OR_IMPLICIT_RESOLUTION","WRAPPER_OR_DEREF_MEDIATED_RESOLUTION"],
+      "rationale":"Generic conjunction treats implicit/sugar-mediated resolution geometries as one trigger class."
+    },
+    "RUNTIME_LOADING_OR_CAPABILITY":{
+      "G0":"EXPLICIT_MARKER",
+      "G1":["AMBIGUOUS_DEFAULT","OVERRIDE_OR_NEGOTIATED_PATH"],
+      "rationale":"Generic conjunction treats non-explicit-marker loading paths as one trigger class."
+    },
+    "DEPENDENCY_OR_TYPE_EVOLUTION":{
+      "G0":"EXPLICIT_MIGRATION_OR_ESCAPE_SURFACE",
+      "G1":["SOURCE_COMPAT_SURFACE","BINARY_OR_ABI_SURFACE"],
+      "rationale":"Generic conjunction treats compatibility-facing source/binary surfaces as one trigger class."
+    }
+  },
+  "separator_rule":"If two distinct G1 states under the same frozen semantic X and E require different actions, the binary generic conjunction fails while the typed geometry representation survives if it predicted/encoded that distinction prospectively.",
+  "no_rebinning_after_outcome":true
+}
