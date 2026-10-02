@@ -1,0 +1,70 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "status": "PRESEALED",
+  "suffix": "Prediction",
+  "global_start": 10063,
+  "runtime_preflight": "e542c1461fea5ee702ab18f786aac1ac09748b62",
+  "constitution": "3f8b5c86f561767d1d74ce99e2ad659ff5f4439d",
+  "math_note": "3b25c372eb0f4b3b9835761758d37c86f609a16c",
+  "math_checker": "224ff46b04cde8c82149b183abeedbc00ff05d06",
+  "frozen_before_fresh_search": true,
+  "orientation_classifier": {
+    "LEFT_ZERO_IDENTITY": {
+      "criterion": "D∘R=D and R∘D=R with distinct idempotent D,R",
+      "min_faithful_degree": 2
+    },
+    "RIGHT_ZERO_IDENTITY": {
+      "criterion": "D∘R=R and R∘D=D with distinct idempotent D,R",
+      "min_faithful_degree": 3
+    },
+    "COMMUTATIVE_IDEMPOTENT": {
+      "criterion": "D∘R=R∘D and D,R idempotent",
+      "min_faithful_degree": "AT_LEAST_3_IF_I,D,R_DISTINCT"
+    },
+    "LARGER_OR_NONBAND": {
+      "criterion": "closure >3 or idempotence failure",
+      "min_faithful_degree": "EXHAUSTIVE_ENUMERATION_FROM_FROZEN_TRANSITION_TABLE"
+    }
+  },
+  "source_semantic_orientation_rule": {
+    "unconditional_distinct_overwrites": "LEFT_ZERO_IDENTITY",
+    "state_conditional_legacy_projection_preserving_other_fixed_points": "RIGHT_ZERO_IDENTITY",
+    "commute_everywhere": "COMMUTATIVE_IDEMPOTENT",
+    "otherwise": "LARGER_OR_NONBAND"
+  },
+  "bridge": {
+    "Q": "binary action-sufficient arrived state q",
+    "G": "binary independent local gate g",
+    "D_loc": "q AND g",
+    "truth_table": {
+      "10": 0,
+      "11": 1,
+      "00": 0,
+      "01": 0
+    },
+    "alternative_boolean_function_after_outcome": "FORBIDDEN"
+  },
+  "property_index": {
+    "predeclared": [
+      "KNOWN_CURRENT_FIELD_OR_CAPABILITY",
+      "UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY",
+      "TYPE_OR_SCHEMA_IDENTITY",
+      "CLIENT_VISIBLE_COMPATIBILITY_BEHAVIOR"
+    ],
+    "names_frozen": true
+  },
+  "bot_zero": {
+    "author_count": 0,
+    "committer_count": 0,
+    "status": "PASS"
+  },
+  "strong_failure_conditions": [
+    "source-derived orientation class disagrees with hosted transition closure",
+    "minimum faithful degree differs from frozen class prediction",
+    "held-out complete 2x2 bridge packet differs from AND",
+    "property names must be changed after fresh inspection",
+    "mechanism ID required to rescue bridge"
+  ],
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
