@@ -49,6 +49,12 @@ jobs:
             out-p23/p23-kubernetes.json \
             out-p23/p23-reconstruction.json
 
+      - name: Run Post-Fresh Opposite-Band Mathematics
+        run: |
+          mkdir -p out-p23-post
+          ghc -O2 tools/law-r1-p23-post-math-check.hs -o out-p23-post/p23-post-math-check
+          out-p23-post/p23-post-math-check
+
       - name: Upload P23 Reconstruction Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -57,4 +63,5 @@ jobs:
             out-p23/p23-math.json
             out-p23/p23-kubernetes.json
             out-p23/p23-reconstruction.json
+            out-p23-post/p23-post-math.json
           retention-days: 30
