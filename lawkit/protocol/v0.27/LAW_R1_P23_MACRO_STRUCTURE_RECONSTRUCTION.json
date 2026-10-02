@@ -1,0 +1,170 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P23",
+  "formal_title":"Empirical Noncommutative Transport, Repair↔Loss Order-Reversal Intervention, Transformation-Monoid Identification, Property-Indexed Carrier Replication, Restricted Observation-Functor Construction, Surface-Selection↔Path-Transport Two-Level Composition, Law-Family Decomposition Uniqueness & Macro-Structure Reconstruction",
+  "suffix":"Reconstruction",
+  "global_start":9988,
+  "predecessor":{
+    "stage":"LAW-R1-P22",
+    "terminal_seal":"5d34609863145198fcf655fb92593cc8a4f9c5a6",
+    "active_lineage":"860ad26e5ead430a308a3dffaf6b1b11eaa34d1e",
+    "canonical_run":37001185413,
+    "artifact":11223962349,
+    "verdict":"PASS_BOOLEAN_RIVAL_COLLAPSE__REPAIRABLE_TRANSPORT_WITNESS__FOURTH_EXACT_COMPATIBILITY_FAMILY__TWO_FAMILY_DECOMPOSITION_SUPPORTED__MACRO_LAW_NOT_AUTHORIZED"
+  },
+  "mathematical_lane":{
+    "state_space":["PRESENT","LOST"],
+    "generators":{
+      "I":{"PRESENT":"PRESENT","LOST":"LOST"},
+      "D":{"PRESENT":"LOST","LOST":"LOST"},
+      "R":{"PRESENT":"PRESENT","LOST":"PRESENT"}
+    },
+    "monoid_hypothesis":{
+      "carrier_repair_monoid":"M_CR={I,D,R}",
+      "composition_convention":"(f∘g)(x)=f(g(x))",
+      "frozen_table":{
+        "I∘I":"I","I∘D":"D","I∘R":"R",
+        "D∘I":"D","D∘D":"D","D∘R":"D",
+        "R∘I":"R","R∘D":"R","R∘R":"R"
+      },
+      "properties_frozen_before_fresh_outcome":[
+        "I is identity",
+        "D and R are idempotent",
+        "D∘R=D while R∘D=R, hence noncommutative",
+        "{D,R} is a left-zero semigroup under composition",
+        "M_CR is a three-element monoid consisting of identity plus two constants",
+        "M_CR is a proper submonoid of the full transformation monoid T_2"
+      ]
+    },
+    "theorem_targets":[
+      {
+        "id":"THM1_NORMAL_FORM",
+        "statement":"Every word over {I,D,R} evaluates to I if it contains no D/R; otherwise it equals the leftmost non-identity generator under the chosen composition notation, equivalently the last-applied constant in execution order.",
+        "status":"TO_PROVE_FORMALLY_AND_CHECK"
+      },
+      {
+        "id":"THM2_MINIMAL_FAITHFUL_STATE_SIZE",
+        "statement":"No one-state action can represent M_CR faithfully; a two-state action is faithful and therefore minimal.",
+        "status":"TO_PROVE"
+      },
+      {
+        "id":"THM3_BOOLEAN_QUOTIENT_NONCONGRUENCE_UNDER_REPAIR",
+        "statement":"The quotient that identifies all paths containing D as failure is not a congruence once R is admitted.",
+        "status":"TO_PROVE"
+      },
+      {
+        "id":"THM4_OBSERVATION_COLLAPSE_CONDITION",
+        "statement":"An observation map Q can erase noncommutativity only if Q∘D=Q∘R on the reachable state set; otherwise order remains observable.",
+        "status":"TO_PROVE_OR_REFINE"
+      },
+      {
+        "id":"THM5_PROPERTY_PRODUCT_ACTION",
+        "statement":"For independent properties o1,o2, boundary transport acts on a product state S_o1×S_o2; property-independent scalar edge labels are faithful only under a diagonal-action restriction.",
+        "status":"TO_PROVE_OR_KILL"
+      }
+    ],
+    "representation_program":{
+      "base_category":"Free path category Path(G)",
+      "fiber":"Finite property-state sets S_o",
+      "transport":"Functor-like assignment of path morphisms to transformations T_p^o",
+      "observation":"Restricted quotient Q_o from arrived property state to decision-visible state",
+      "decision":"Restricted local action map D_loc(Q_o(T_p^o(s)),X,G,E)",
+      "anti_triviality":"Q_o and D_loc may not be arbitrary mechanism-local lookup tables."
+    }
+  },
+  "empirical_noncommutativity":{
+    "strong_witness_requirement":"A fresh mechanism must expose two source-defined operations L(loss/filter/prune/drop) and R(repair/alias/convert/reconstitute) applicable to materially matched input such that execution order L→R and R→L yields different client-observable outcomes.",
+    "required_cells":[
+      "BASELINE_OR_IDENTITY",
+      "LOSS_ONLY",
+      "REPAIR_ONLY",
+      "LOSS_THEN_REPAIR",
+      "REPAIR_THEN_LOSS"
+    ],
+    "strong_prediction":{
+      "LOSS_THEN_REPAIR":"PRESENT_OR_ACCEPTED",
+      "REPAIR_THEN_LOSS":"LOST_OR_REJECTED"
+    },
+    "posthoc_operation_redefinition":"FORBIDDEN"
+  },
+  "preferred_fresh_mechanism_domains":[
+    "CONFIG_OR_SCHEMA_ALIAS_NORMALIZATION_VS_UNKNOWN_FIELD_PRUNING",
+    "API_VERSION_CONVERSION_VS_FIELD_PRUNING",
+    "SERIALIZATION_MIGRATION_VS_VALIDATION_FILTER",
+    "COMPILER_OR_LOADER_COMPATIBILITY_REWRITE_VS_REJECTION",
+    "DATABASE_OR_STATE_MIGRATION_REPAIR_VS_SCHEMA_DROP"
+  ],
+  "property_indexed_replication":{
+    "requirement":"A second mechanistically distinct source must show the same boundary/operation transports one property but not another, without posthoc property naming.",
+    "strong_pass":"Two properties share the same physical boundary while requiring distinct transport maps.",
+    "support_only":"Different classes/routes use different handlers but no shared boundary comparison."
+  },
+  "restricted_bridge":{
+    "goal":"Connect PATH_CARRIER_TRANSPORT to SURFACE_SELECTION without arbitrary mechanism-local maps.",
+    "frozen_grammar":{
+      "Q":{
+        "allowed_forms":[
+          "IDENTITY_ON_BINARY_STATE",
+          "FORGET_PROPERTY_ID_KEEP_PRESENT_LOST",
+          "FINITE_FIXED_PARTITION_PREDECLARED_BEFORE_FRESH_BRIDGE_TEST"
+        ],
+        "forbidden":"mechanism-specific lookup learned after outcome"
+      },
+      "D_loc":{
+        "allowed_forms":[
+          "choose action from arrived visible state plus existing frozen X,G,E using a depth-1 or depth-2 decision grammar",
+          "no mechanism ID feature"
+        ],
+        "forbidden":"per-mechanism action table"
+      }
+    },
+    "bridge_success":"A single frozen Q form and D_loc grammar maps at least one exact surface-selection family and at least two exact path-transport families without mechanism ID and with held-out prediction.",
+    "bridge_failure":"Rust requires a mechanism-specific observation/action clause unavailable to carrier families."
+  },
+  "decomposition_uniqueness":{
+    "rivals":[
+      "U0_SINGLE_TWO_LEVEL_BRIDGE",
+      "U1_TWO_FAMILY_DECOMPOSITION",
+      "U2_THREE_OR_MORE_FAMILY_DECOMPOSITION",
+      "U3_MECHANISM_LOCAL"
+    ],
+    "criterion":"Prefer the coarsest partition that preserves held-out predictive distinctions under the restricted grammar; ties remain non-unique.",
+    "no_complexity_score_tuning_after_outcome":true
+  },
+  "notion_requirement":{
+    "record_all":[
+      "definitions",
+      "lemmas",
+      "proof sketches",
+      "countermodels",
+      "fresh-source custody",
+      "negative candidates",
+      "hosted results",
+      "authority boundaries",
+      "next falsifiers"
+    ]
+  },
+  "implementation":{
+    "new_python":"FORBIDDEN",
+    "preferred":["Rust","Haskell","OCaml","C++","Java","Go","JavaScript"],
+    "formalization":"Lean optional only if an existing pinned workflow/toolchain is available; otherwise proof note + finite exhaustive checker."
+  },
+  "paper_readiness":{
+    "manuscript":"NOT_AUTHORIZED",
+    "allowed":["formal proposition ledger","abstraction-map ledger","empirical claim ledger","negative-candidate bank","figure ledger"]
+  },
+  "anti_rationalization":{
+    "operation_identity_after_outcome":"FORBIDDEN",
+    "property_names_after_outcome":"FORBIDDEN_FOR_STRONG_REPLICATION",
+    "arbitrary_Q":"FORBIDDEN",
+    "mechanism_id_in_D_loc":"FORBIDDEN",
+    "force_bridge_after_failure":"FORBIDDEN"
+  },
+  "law_r2_gate":"UNCHANGED",
+  "terminal_verdict_family":[
+    "PASS_EMPIRICAL_NONCOMMUTATIVITY__TRANSFORMATION_MONOID_IDENTIFIED__PROPERTY_INDEXED_REPLICATION__RESTRICTED_BRIDGE_SUPPORTED__MACRO_STRUCTURE_ADVANCES",
+    "PASS_EMPIRICAL_NONCOMMUTATIVITY__TRANSFORMATION_MONOID_IDENTIFIED__TWO_FAMILY_DECOMPOSITION_REMAINS_MINIMAL",
+    "PASS_MATHEMATICAL_RECONSTRUCTION__EMPIRICAL_ORDER_REVERSAL_UNDERIDENTIFIED",
+    "HOLD_NO_FRESH_NONCOMMUTATIVE_WITNESS__MATHEMATICAL_LANE_ONLY",
+    "FAIL_REPAIR_LOSS_ORDER_PREDICTION__MONOID_MAPPING_REJECTED"
+  ]
+}
