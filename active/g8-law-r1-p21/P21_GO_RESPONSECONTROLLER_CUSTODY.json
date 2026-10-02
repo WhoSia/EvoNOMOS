@@ -1,0 +1,109 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P21",
+  "constitution":"081fe5f70d63a8d2f7ed6ed4fd526dc40d83c153",
+  "preseal":"d77cad485759c3606fd8880dce8766cfcce1066f",
+  "admission":"POST_PRESEAL_FRESH_THIRD_FAMILY",
+  "third_family":{
+    "id":"GO_HTTP_RESPONSECONTROLLER_CAPABILITY_TRANSPORT",
+    "repository":"golang/go",
+    "commit":"67c1d421161d3d1ae9f5fd005e84c29fd0d9f896",
+    "domain":"HTTP_WRAPPER_CAPABILITY_PROPAGATION",
+    "mechanistically_distinct_from":[
+      "P19_RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+      "P20_RUBY_KEYWORD_FORWARDING_COMPATIBILITY"
+    ],
+    "source_paths":[
+      "src/net/http/responsecontroller.go",
+      "src/net/http/responsecontroller_test.go"
+    ],
+    "source_blobs":{
+      "responsecontroller_go":"785fa21d17d45dba04411272fd05a4bc5490397b",
+      "responsecontroller_test_go":"308e272958e791646c070984d2fe2ba82aac5547"
+    },
+    "source_contract":[
+      "NewResponseController requires the original ResponseWriter or a wrapper with Unwrap() returning the original ResponseWriter.",
+      "Capability methods are called directly when found.",
+      "Otherwise ResponseController repeatedly traverses rwUnwrapper boundaries.",
+      "If neither capability nor Unwrap is available, ErrNotSupported is returned.",
+      "The standard library test TestWrappedResponseController verifies capability survival through wrapWriter.Unwrap()."
+    ],
+    "presealed_state_mapping":[
+      {
+        "case":"DIRECT_CAPABILITY",
+        "state":"DIRECT_PRESERVING_BOUNDARY",
+        "predicted_sign":"+",
+        "construction":"ResponseWriter directly implements Flusher.",
+        "path_length":0,
+        "wrapper":false,
+        "carrier_gap":false
+      },
+      {
+        "case":"OPAQUE_WRAPPER",
+        "state":"NONPRESERVING_INTERMEDIATE_BOUNDARY",
+        "predicted_sign":"-",
+        "construction":"Wrapper embeds a capable ResponseWriter but exposes neither Flusher nor Unwrap.",
+        "path_length":1,
+        "wrapper":true,
+        "carrier_gap":true
+      },
+      {
+        "case":"UNWRAP_WRAPPER",
+        "state":"EXPLICIT_END_TO_END_CHANNEL",
+        "predicted_sign":"+",
+        "construction":"Wrapper embeds the same capable ResponseWriter and explicitly implements Unwrap() ResponseWriter.",
+        "path_length":1,
+        "wrapper":true,
+        "carrier_gap":false
+      }
+    ],
+    "strong_family_requirement":"All three cells must reproduce the precommitted +/−/+ pattern."
+  },
+  "scope_ruling":{
+    "boundary_carrier_structure":"IN_SCOPE",
+    "boundary_carrying_obligation":"PARTIAL_ANALOG_ONLY",
+    "compatibility_principle":"NOT_DIRECTLY_APPLICABLE",
+    "reason":"ResponseController transports an HTTP capability across wrappers, not a historical compatibility obligation. Therefore this family can test the carrier-gap sign law but cannot by itself promote the compatibility principle or Boundary-Carrying Obligation as an ontology primitive."
+  },
+  "rival_predictions":{
+    "R0_TYPED_BOUNDARY_TRANSPORT":{
+      "DIRECT_CAPABILITY":"+",
+      "OPAQUE_WRAPPER":"-",
+      "UNWRAP_WRAPPER":"+"
+    },
+    "R1_BINARY_TRIGGER":{
+      "DIRECT_CAPABILITY":"+",
+      "OPAQUE_WRAPPER":"+",
+      "UNWRAP_WRAPPER":"+"
+    },
+    "R2_WRAPPER_PENALTY":{
+      "DIRECT_CAPABILITY":"+",
+      "OPAQUE_WRAPPER":"-",
+      "UNWRAP_WRAPPER":"-"
+    },
+    "R3_PATH_LENGTH_THRESHOLD":{
+      "DIRECT_CAPABILITY":"+",
+      "OPAQUE_WRAPPER":"-",
+      "UNWRAP_WRAPPER":"-"
+    },
+    "R4_ALL_EDGES_MUST_CARRY":{
+      "DIRECT_CAPABILITY":"+",
+      "OPAQUE_WRAPPER":"-",
+      "UNWRAP_WRAPPER":"+"
+    },
+    "R5_ONE_SPLIT_DECISION_TREE":{
+      "split":"carrier_gap?",
+      "DIRECT_CAPABILITY":"+",
+      "OPAQUE_WRAPPER":"-",
+      "UNWRAP_WRAPPER":"+"
+    },
+    "R6_UNTYPED_LOOKUP":"NO_FRESH_PREDICTION"
+  },
+  "frozen_principle_applicability":{
+    "PRINCIPLE_V2_PROPAGATION_QUALIFIED_COMPATIBILITY":"OUT_OF_SCOPE_FOR_DIRECT_SURVIVAL_TEST",
+    "posthoc_scope_expansion":"FORBIDDEN"
+  },
+  "post_hoc_X_additions":[],
+  "post_hoc_G_additions":[],
+  "sign_edits":[],
+  "rival_edits":[]
+}
