@@ -1,0 +1,91 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P22",
+  "admission": "POST_PRESEAL_FRESH_FOURTH_FAMILY",
+  "fourth_family": {
+    "id": "FLINK_AVROSERIALIZER_BACKWARD_COMPAT_RECONSTITUTION",
+    "repository": "apache/flink",
+    "commit": "479ebd59872160cb2060605b08dcd0d86c3cb78e",
+    "commit_message": "[FLINK-11436] [avro] Manually Java-deserialize AvroSerializer for backwards compatibility",
+    "domain": "STREAM_PROCESSOR_SERIALIZER_EVOLUTION_AND_JAVA_SERIALIZATION_COMPATIBILITY",
+    "mechanistically_distinct_from": [
+      "P19_RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+      "P20_RUBY_KEYWORD_FORWARDING_COMPATIBILITY",
+      "P21_GO_HTTP_RESPONSECONTROLLER_CAPABILITY_TRANSPORT"
+    ],
+    "source_paths": [
+      "flink-core/src/main/java/org/apache/flink/util/InstantiationUtil.java",
+      "flink-formats/flink-avro/src/main/java/org/apache/flink/formats/avro/typeutils/AvroSerializer.java",
+      "flink-formats/flink-avro/src/test/java/org/apache/flink/formats/avro/typeutils/AvroSerializerMigrationTest.java"
+    ],
+    "source_blobs": {
+      "instantiation_util": "f4600a281222870bc1b767aa87a6958d3ec990a2",
+      "avro_serializer": "da51117984d95920468b346dcaa69d378af5c667",
+      "migration_test": "a162aa35ea92a66d333c5b284a404af96f8b822f"
+    },
+    "source_facts": [
+      "Flink 1.7 changed AvroSerializer serialVersionUID from 1L to 2L.",
+      "Some composite serializers remained Java-serialized, so nested old AvroSerializer instances could fail with serialVersionUID mismatch.",
+      "FailureTolerantObjectInputStream detects the old AvroSerializer name + UID=1 and substitutes the local class descriptor.",
+      "AvroSerializer.readObject manually distinguishes 1.5, 1.6 and current field layouts and reconstructs current fields.",
+      "Migration tests contain serialized 1.5/1.6/1.7 payloads and assert successful deserialization into current AvroSerializer state."
+    ],
+    "presealed_cells": [
+      {
+        "id": "DIRECT_CURRENT",
+        "model_state": "DIRECT_PRESERVE",
+        "predicted": "+",
+        "semantics": "Current descriptor/layout deserializes normally."
+      },
+      {
+        "id": "OLD_RAW_MISMATCH",
+        "model_state": "GAP_DROP",
+        "predicted": "-",
+        "semantics": "Old UID descriptor read by ordinary Java deserializer fails compatibility."
+      },
+      {
+        "id": "OLD_WITH_EXPLICIT_REPAIR",
+        "model_state": "GAP_THEN_REPAIR",
+        "predicted": "+",
+        "semantics": "Failure-tolerant descriptor substitution plus manual layout reconstruction restores a current object."
+      }
+    ],
+    "property_index_control": {
+      "id": "NON_TARGET_UID_MISMATCH_WITH_TOLERANT_READER",
+      "prediction": "-",
+      "semantics": "The repair predicate is targeted to old AvroSerializer identity/UID rather than being a property-independent generic bypass."
+    }
+  },
+  "mathematical_mapping": {
+    "M0_ABSORBING_LOSS": {
+      "prediction": {
+        "DIRECT_CURRENT": "+",
+        "OLD_RAW_MISMATCH": "-",
+        "OLD_WITH_EXPLICIT_REPAIR": "-"
+      }
+    },
+    "M1_REPAIRABLE_TRANSPORT": {
+      "prediction": {
+        "DIRECT_CURRENT": "+",
+        "OLD_RAW_MISMATCH": "-",
+        "OLD_WITH_EXPLICIT_REPAIR": "+"
+      }
+    },
+    "M4_PROPERTY_INDEPENDENT_EDGE": {
+      "prediction": "If tolerant repair is generic, target and non-target UID mismatches should be repaired alike."
+    },
+    "M5_PROPERTY_INDEXED_EDGE": {
+      "prediction": "Target old Avro identity may be repaired while non-target UID mismatch remains rejected."
+    }
+  },
+  "scope": {
+    "compatibility_obligation": "EXPLICIT",
+    "repair_definition": "PRESEALED_AS_EXPLICIT_ADAPTER_RECONSTITUTION",
+    "order_sensitive_claim": "NOT_YET_AUTHORIZED_WITHOUT_REPAIR_THEN_GAP_CELL"
+  },
+  "anti_rationalization": {
+    "posthoc_repair_definition": false,
+    "new_X": [],
+    "new_G": [],
+    "property_reindex_after_outcome": false
+  }
+}
