@@ -1,0 +1,93 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P16",
+  "title": "Second-Domain Lifecycle Replication, Four-Coordinate Context-Basis Closure, Cross-Domain Deletion Completeness, Pairwise & Higher-Order Quotient Exhaustion, Primitive Independence Reconstitution, Minimal-Sufficiency Transport, Literature-Novelty Boundary Consolidation & the Court of Whether (X,G,E) Contains a Reproducible Minimal Context Basis",
+  "global_start": 9571,
+  "predecessor": {
+    "stage": "LAW-R1-P15",
+    "terminal_seal": "417c7a18d8c8b6fc9568de29009ab68dffb54f17",
+    "active_lineage": "d1c3338e51f1c4b3f11f65dba50277294980fb43",
+    "canonical_run": 36963926567,
+    "canonical_artifact": 11209022691,
+    "verdict": "PASS_PARTIAL_CONTEXT_BASIS__SECOND_DOMAIN_COEXISTENCE_AND_AUTHORITY_REPLICATIONS_EARNED__LIFECYCLE_TRANSPORT_GAP_RETAINED__R2_NOT_AUTHORIZED"
+  },
+  "frozen_candidate_basis": [
+    "COMPATIBILITY_OBLIGATION",
+    "COEXISTENCE_REQUIREMENT",
+    "RELEASE_AUTHORITY",
+    "LIFECYCLE_PHASE"
+  ],
+  "authority_before_p16": {
+    "COMPATIBILITY_OBLIGATION": "STABLE_TWO_DOMAIN",
+    "COEXISTENCE_REQUIREMENT": "STABLE_TWO_DOMAIN",
+    "RELEASE_AUTHORITY": "STABLE_TWO_DOMAIN",
+    "LIFECYCLE_PHASE": "IDENTIFIED_SINGLE_DOMAIN"
+  },
+  "primary_scientific_question": "Does LIFECYCLE_PHASE replicate as an exact discriminator in a genuinely second software domain, and if so does the four-coordinate X basis survive exhaustive deletion and quotient attacks without post-hoc coordinate expansion?",
+  "lifecycle_exactness_rule": {
+    "target": "LIFECYCLE_PHASE",
+    "required_fixed_fields": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY",
+      "material_G",
+      "material_E"
+    ],
+    "intervention": "Vary only lifecycle phase under the same operational object, authority, compatibility/coexistence obligations, geometry, and material evidence envelope.",
+    "required_action_difference": true,
+    "second_domain": "Must not reuse the P12 GatherPress event-lifecycle mechanism as the only authority."
+  },
+  "four_coordinate_basis_court": {
+    "deletion": "Delete each coordinate independently; every retained coordinate must destroy at least one exact replicated action distinction.",
+    "pairwise_quotients": "Test all six pairwise merges among the four coordinates. A merge survives only if no exact witness requires the two coordinates separately.",
+    "higher_order_quotients": "Test all four three-into-one collapse families and the full four-into-one collapse as semantic quotients, not merely label concatenation.",
+    "recoverability": "A retained primitive must be operationally recoverable without observing the target action.",
+    "transport": "Every coordinate in a claimed reproducible minimal basis requires exact support in at least two genuinely distinct software domains.",
+    "minimality": "Minimal-basis authority requires transport + deletion necessity + pairwise quotient failure + no justified finer prospective split."
+  },
+  "independence_stress": {
+    "cross_coordinate": "Seek interventions where exactly one coordinate changes while the remaining three and G,E are materially fixed.",
+    "dependency_graph": "Allow directional dependencies, but reject any claim that one coordinate is primitive if it is deterministically derivable from the others across all exact worlds.",
+    "negative_controls": "Each promotion family must preserve at least one nearby non-discriminating or confound-breaking control when available."
+  },
+  "anti_rationalization": {
+    "new_X_coordinate_after_outcomes": "FORBIDDEN",
+    "coordinate_redefinition_after_failed_test": "FORBIDDEN",
+    "threshold_mutation_after_results": "FORBIDDEN",
+    "paper_story_override": "FORBIDDEN",
+    "failed_replication": "RETAIN_AS_FAILURE_OR_HOLD"
+  },
+  "literature_and_data": {
+    "role": "NOVELTY_KILL_METHOD_DONOR_AND_CUSTODY_ONLY",
+    "drive_first": true,
+    "user_custody_update": {
+      "unavailable_exact_pdfs": [
+        "Diaz-Pace, Trubiani & Garlan (2025) DOI 10.1007/978-3-032-02138-0_18",
+        "Diaz-Pace, Trubiani & Garlan (2026) DOI 10.1016/j.jss.2026.113006"
+      ],
+      "remaining_p15_missing_items_reported_added": true
+    },
+    "rule": "Literature or custody findings cannot alter P16 scientific thresholds after preseal."
+  },
+  "terminal_verdict_family": [
+    "PASS_REPRODUCIBLE_MINIMAL_CONTEXT_BASIS__FOUR_PRIMITIVES_TWO_DOMAIN_REPLICATED__DELETION_AND_QUOTIENT_EXHAUSTION_SURVIVE__R2_NOT_AUTHORIZED",
+    "PASS_CONTEXT_BASIS_RECONSTITUTED__REDUNDANT_OR_MERGEABLE_COORDINATE_REMOVED__R2_NOT_AUTHORIZED",
+    "PASS_LIFECYCLE_SECOND_DOMAIN_REPLICATION__FULL_MINIMALITY_NOT_EARNED__R2_NOT_AUTHORIZED",
+    "HOLD_LIFECYCLE_SECOND_DOMAIN_REPLICATION_INSUFFICIENT__FULL_BASIS_CLOSURE_NOT_AUTHORIZED",
+    "FAIL_CURRENT_CONTEXT_BASIS__QUOTIENT_OR_DELETION_ATTACK_DEFEATS_PRIMITIVE_STRUCTURE"
+  ],
+  "r2_gate": "LAW-R2 remains unauthorized unless fresh normalized same-(X,G,E) conflicting action survives all permitted basis reconstruction and hosted replay.",
+  "close_requires": [
+    "CONSTITUTION_AND_PRESEAL_BEFORE_FRESH_LIFECYCLE_RESULT_INSPECTION",
+    "SECOND_EXACT_LIFECYCLE_DOMAIN_ATTEMPT",
+    "FOUR_COORDINATE_DELETION_REPLAY",
+    "ALL_SIX_PAIRWISE_QUOTIENT_TESTS",
+    "HIGHER_ORDER_QUOTIENT_TESTS",
+    "REPRESENTATION_INVARIANCE",
+    "ANTI_RATIONALIZATION",
+    "DRIVE_CUSTODY_READBACK",
+    "DEDICATED_HOSTED_COURT",
+    "ARTIFACT_DIRECT_INSPECTION",
+    "RESEARCH_OS_RAVEL_AND_DECISION",
+    "TERMINAL_SEAL"
+  ]
+}
