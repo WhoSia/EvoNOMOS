@@ -1,0 +1,80 @@
+name: G8 LAW-R1-P18 Non-Bot Interaction-Law Stress
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/LawR1P18*'
+      - 'tools/law-r1-p18-*'
+      - 'active/g8-law-r1-p18/**'
+      - 'lawkit/protocol/v0.22/**'
+      - '.github/workflows/g8-law-r1-p18-domain-escape.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  domain-escape-stress:
+    name: P18 Non-Bot Domain-Escape Stress
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Verify P18 Language Budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(find tools active/g8-law-r1-p18 -type f \( -name 'law-r1-p18-*.py' -o -name 'LawR1P18*.py' \) 2>/dev/null)"
+          node --version
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set Up Dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Prepare P18 Output
+        run: mkdir -p out-p18 /tmp/p18-csharp
+
+      - name: Run Java Etcd Factorial Reconstruction
+        run: |
+          javac -d /tmp tools/LawR1P18Etcd.java
+          java -cp /tmp LawR1P18Etcd             active/g8-law-r1-p18/P18_ETCD_FACTORIAL.tsv             out-p18/java-etcd.json
+
+      - name: Build CSharp Boundary Audit
+        shell: bash
+        run: |
+          cat > /tmp/p18-csharp/P18Boundary.csproj <<'EOF'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <OutputType>Exe</OutputType>
+              <TargetFramework>net8.0</TargetFramework>
+              <ImplicitUsings>enable</ImplicitUsings>
+              <Nullable>enable</Nullable>
+            </PropertyGroup>
+          </Project>
+          EOF
+          cp tools/LawR1P18Boundary.cs /tmp/p18-csharp/Program.cs
+          dotnet build /tmp/p18-csharp/P18Boundary.csproj -c Release --nologo
+
+      - name: Run CSharp Domain-Escape Boundary
+        run: |
+          dotnet /tmp/p18-csharp/bin/Release/net8.0/P18Boundary.dll             active/g8-law-r1-p18/P18_NONBOT_INTERACTION_CUSTODY.json             out-p18/csharp-boundary.json
+
+      - name: Run JavaScript Interaction-Law Stress
+        run: |
+          node tools/law-r1-p18-stress.mjs             out-p18/java-etcd.json             out-p18/csharp-boundary.json             out-p18/p18-stress.json
+
+      - name: Upload P18 Domain-Escape Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p18-domain-escape-stress
+          path: out-p18/
+          retention-days: 30
