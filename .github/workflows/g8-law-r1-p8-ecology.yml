@@ -1,4 +1,4 @@
-name: G8 LAW-R1-P8-P9 Courts
+name: G8 LAW-R1-P8-P10 Courts
 
 on:
   workflow_dispatch:
@@ -11,6 +11,9 @@ on:
       - 'tools/law-r1-p9-*'
       - 'active/g8-law-r1-p9/**'
       - 'lawkit/protocol/v0.13/**'
+      - 'tools/law-r1-p10-*'
+      - 'active/g8-law-r1-p10/**'
+      - 'lawkit/protocol/v0.14/**'
       - '.github/workflows/g8-law-r1-p8-ecology.yml'
 
 permissions:
@@ -41,4 +44,17 @@ jobs:
         with:
           name: g8-law-r1-p9-geometry
           path: out-p9/
+          retention-days: 30
+
+  factorization:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p out-p10
+      - run: python3 tools/law-r1-p10-worlds.py
+      - run: node tools/law-r1-p10-court.mjs out-p10/p10-worlds.json out-p10/p10-court.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p10-factorization
+          path: out-p10/
           retention-days: 30
