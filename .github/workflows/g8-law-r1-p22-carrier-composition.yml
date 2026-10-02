@@ -1,0 +1,59 @@
+name: G8 LAW-R1-P22 Carrier Composition Trial
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p22/**'
+      - 'lawkit/protocol/v0.26/**'
+      - 'tools/law-r1-p22-*'
+      - 'tools/P22FlinkRepair.java'
+      - '.github/workflows/g8-law-r1-p22-carrier-composition.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  trial:
+    name: P22 Carrier Composition Trial
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Prepare P22 Output
+        run: mkdir -p out-p22/classes
+
+      - name: Run Mathematical Countermodel Checker
+        run: |
+          rustc tools/law-r1-p22-math-check.rs -O -o out-p22/p22-math-check
+          out-p22/p22-math-check
+
+      - name: Run Flink Compatibility Repair Reproduction
+        run: |
+          javac -d out-p22/classes tools/P22FlinkRepair.java
+          java -cp out-p22/classes P22FlinkRepair
+
+      - name: Run Carrier Composition Trial
+        run: |
+          node tools/law-r1-p22-trial.mjs             out-p22/p22-math.json             out-p22/p22-java.json             out-p22/p22-trial.json
+
+      - name: Upload P22 Carrier-Composition Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p22-carrier-composition
+          path: |
+            out-p22/p22-math.json
+            out-p22/p22-java.json
+            out-p22/p22-trial.json
+          retention-days: 30
