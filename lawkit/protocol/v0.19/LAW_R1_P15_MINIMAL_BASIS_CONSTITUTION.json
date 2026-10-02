@@ -1,0 +1,69 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P15",
+  "title": "Second-Domain Coexistence & Authority Replication, Stable Context-Basis Completion, Cross-Coordinate Independence Stress, Dependency-Graph Intervention, Primitive Merge/Split Falsification, Context-Basis Transport & the Court of Whether X Admits a Reproducible Minimal Primitive Basis",
+  "global_start": 9527,
+  "predecessor": {
+    "stage": "LAW-R1-P14",
+    "terminal_seal": "aaff7f876fbb2c6d95749bfa174767d0fbfab63b",
+    "active_lineage": "d34146e63c3d9eef459c98b6eb0cc4641b283c74",
+    "canonical_run": 36958716210,
+    "canonical_artifact": 11206931585,
+    "verdict": "PASS_STABLE_COMPATIBILITY_PRIMITIVE_REPLICATED__COEXISTENCE_AND_AUTHORITY_ORTHOGONALIZED_BOUNDED__R2_NOT_AUTHORIZED"
+  },
+  "frozen_basis": {
+    "stable": ["COMPATIBILITY_OBLIGATION"],
+    "identified": ["LIFECYCLE_PHASE"],
+    "bounded": ["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+    "state": "(X,G,E)",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "primary_targets": {
+    "COEXISTENCE_REQUIREMENT": "Obtain a second exact cross-domain discriminator with compatibility obligation held fixed.",
+    "RELEASE_AUTHORITY": "Obtain a second exact cross-domain discriminator with lifecycle phase held fixed."
+  },
+  "basis_falsification": {
+    "independence": "For each retained coordinate, require at least one intervention under which it varies while all other retained coordinates and material G,E are fixed.",
+    "merge_attack": "Attempt to replace any pair of coordinates by one quotient variable; reject the merge only if separate interventions yield different actions under matched residual state.",
+    "split_attack": "Attempt to split each candidate primitive into finer subcoordinates; permit a split only if the subcoordinates are prospectively identifiable and each carries independent action discrimination.",
+    "deletion_attack": "Delete each coordinate from the reconstructed basis and test whether action distinctions collapse.",
+    "transport": "A stable basis claim requires reproduction in at least two software domains for every stable primitive and no domain-specific coordinate added after outcomes."
+  },
+  "promotion_rule": {
+    "stable_primitive": "Two exact cross-domain discriminator families plus representation-invariant replay, one negative control, and survival of merge/deletion attack.",
+    "minimal_basis": "Every retained coordinate must survive deletion; every pairwise merge must lose at least one independently replicated action distinction; no redundant coordinate may remain.",
+    "bounded_only": "One exact domain remains bounded and cannot count toward basis completion."
+  },
+  "literature_and_data_custody": {
+    "role": "NOVELTY_KILL_AND_METHOD_DONOR_ONLY",
+    "drive_first": true,
+    "audit": "Identify literature/data already used by EvoNOMOS that is absent from Drive, distinguish repository/web mentions from actual retained files, and provide DOI or stable links for genuinely missing high-value sources.",
+    "no_result_dependence": "Literature findings may narrow novelty claims or suggest later tests but may not retroactively alter P15 promotion criteria."
+  },
+  "anti_rationalization": {
+    "new_X_after_outcomes": "FORBIDDEN",
+    "coordinate_redefinition_after_failed_test": "FORBIDDEN",
+    "paper_story_override": "FORBIDDEN",
+    "failed_replication": "RETAIN_AS_FAILURE_OR_HOLD"
+  },
+  "candidate_terminal_verdicts": [
+    "PASS_REPRODUCIBLE_MINIMAL_CONTEXT_BASIS__COEXISTENCE_AND_AUTHORITY_STABLE__MERGE_SPLIT_ATTACKS_SURVIVE__R2_NOT_AUTHORIZED",
+    "PASS_PARTIAL_CONTEXT_BASIS__ONE_SECOND_DOMAIN_REPLICATION_EARNED__RESIDUAL_BOUNDEDNESS_RETAINED__R2_NOT_AUTHORIZED",
+    "PASS_BASIS_RECONSTITUTED__REDUNDANT_OR_MERGED_COORDINATE_REMOVED__R2_NOT_AUTHORIZED",
+    "HOLD_SECOND_DOMAIN_REPLICATION_INSUFFICIENT__BASIS_COMPLETION_NOT_AUTHORIZED",
+    "FAIL_CONTEXT_BASIS_STABILITY__MERGE_OR_DELETION_ATTACK_DEFEATS_CURRENT_X"
+  ],
+  "r2_gate": "LAW-R2 remains unauthorized unless fresh normalized same-(X,G,E) conflicting action survives all permitted basis reconstruction.",
+  "close_requires": [
+    "FROZEN_CONSTITUTION_BEFORE_FRESH_RESULT_INSPECTION",
+    "FROZEN_REPLICATION_AND_BASIS_PRESEAL",
+    "SECOND_DOMAIN_COEXISTENCE_ATTEMPT",
+    "SECOND_DOMAIN_AUTHORITY_ATTEMPT",
+    "MERGE_SPLIT_DELETION_COURT",
+    "DRIVE_FIRST_LITERATURE_DATA_CUSTODY_AUDIT",
+    "REPRESENTATION_INVARIANCE",
+    "DEDICATED_HOSTED_EVONOMOS_COURT",
+    "ARTIFACT_CUSTODY",
+    "TERMINAL_SEAL"
+  ]
+}
