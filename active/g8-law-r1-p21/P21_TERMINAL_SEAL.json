@@ -1,0 +1,107 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P21",
+  "formal_title": "Prospective Action-Sign Prediction, Third-Mechanism Boundary Transport, Rich Low-Complexity Rival Ecology, Boundary-Carrying Obligation Replication, Path-Semantic Intervention, Leave-Two-Mechanisms-Out Generalization, Frozen Principle Survival Test & Macro-Law Predictive Calibration",
+  "suffix": "Calibration",
+  "verdict": "PASS_PROSPECTIVE_SIGN_PREDICTION__THIRD_EXACT_FAMILY__CARRIER_STRUCTURE_REPLICATED__RICH_RIVALS_ADJUDICATED__MACRO_LAW_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36999787317,
+    "head": "93d87b78d1b4ac56d63b692d72acecc7ddf948a9",
+    "job": 110814608532,
+    "artifact": 11223630758,
+    "digest": "sha256:f1ba0b95c8fbaac4ec58235c759cf9e7a5a59ea142117e4032636b2d53022579"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact_direct_inspection": "PASS",
+    "go_version": "1.25.14",
+    "sign_probe": "PASS",
+    "rival_calibration": "PASS",
+    "first_attempt": "SUCCESS"
+  },
+  "scientific_readout": {
+    "third_exact_family": {
+      "id": "GO_HTTP_RESPONSECONTROLLER_CAPABILITY_TRANSPORT",
+      "domain": "HTTP_WRAPPER_CAPABILITY_PROPAGATION",
+      "source_commit": "67c1d421161d3d1ae9f5fd005e84c29fd0d9f896",
+      "cells": {
+        "DIRECT_CAPABILITY": "+",
+        "OPAQUE_WRAPPER": "-",
+        "UNWRAP_WRAPPER": "+"
+      },
+      "required_pattern": "+/-/+",
+      "prospective_sign_prediction": "PASS"
+    },
+    "exact_families_total": 3,
+    "rival_ecology": {
+      "R0_TYPED_BOUNDARY_TRANSPORT": "FIT",
+      "R1_BINARY_TRIGGER": "FAIL",
+      "R2_WRAPPER_PENALTY": "FAIL",
+      "R3_PATH_LENGTH_THRESHOLD": "FAIL",
+      "R4_ALL_EDGES_MUST_CARRY": "FIT",
+      "R5_ONE_SPLIT_DECISION_TREE_CARRIER_GAP": "FIT",
+      "R6_UNTYPED_LOOKUP": "NO_TRANSPORT_PREDICTION"
+    },
+    "carrier_specificity": "PASS",
+    "boundary_carrying_hypothesis": "STRUCTURAL_CARRIER_REPLICATION_PASS__OBLIGATION_SEMANTICS_UNDERIDENTIFIED",
+    "frozen_principle": {
+      "id": "PRINCIPLE_V2_PROPAGATION_QUALIFIED_COMPATIBILITY",
+      "result": "OUT_OF_SCOPE_FOR_DIRECT_SURVIVAL_TEST",
+      "scope_expansion": "NOT_ADMITTED"
+    },
+    "leave_two_mechanisms_out": {
+      "result": "UNDERIDENTIFIED_INSUFFICIENT_SHARED_GRAMMAR",
+      "admissible_partial_splits": 6,
+      "underidentified_no_carrier_training": 1,
+      "critical_split": [
+        "P20_RUBY_EXACT",
+        "P21_GO_EXACT"
+      ]
+    },
+    "macro_law": {
+      "result": "NOT_AUTHORIZED",
+      "blockers": [
+        "FROZEN_COMPATIBILITY_PRINCIPLE_NOT_DIRECTLY_TESTED",
+        "LEAVE_TWO_OUT_SHARED_GRAMMAR_UNDERIDENTIFIED",
+        "CARRIER_RULE_AND_ONE_SPLIT_TREE_REMAIN_OBSERVATIONALLY_EQUIVALENT_ON_P21"
+      ]
+    },
+    "solid_special_case": "NOT_DERIVED",
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "anti_rationalization": {
+    "new_X_after_outcome": 0,
+    "new_G_after_outcome": 0,
+    "sign_edits": 0,
+    "rival_edits": 0,
+    "scope_expansion": false,
+    "posthoc_principle_qualification": "NOT_ADMITTED"
+  },
+  "harvest": {
+    "id": "LR-20261002-Z",
+    "notion_page": "3edef561-cf92-81b9-8f84-fdfafcdd2410",
+    "repo_manifest": "d281739580942bd93cb11675f48168612e58eb34",
+    "status": "PASS_HARVEST_NON_SOVEREIGN",
+    "authority": "NONE"
+  },
+  "paper_readiness": {
+    "ledger": "d0e5b6ac9e547f50bb96b72049ab0203f3d25a8b",
+    "manuscript": "NOT_AUTHORIZED",
+    "additional_literature_required_to_close_P21": false
+  },
+  "provenance": {
+    "constitution": "081fe5f70d63a8d2f7ed6ed4fd526dc40d83c153",
+    "preseal": "d77cad485759c3606fd8880dce8766cfcce1066f",
+    "third_family_custody": "478667be4a7022431eb1b76bea7357deef2f5c12",
+    "go_probe": "d663486753d063032ea6ada9e11444d40f9ccc2a",
+    "calibration": "d9729e07213d1c799d5cbf0b55d700d27c91b14a",
+    "workflow": "93d87b78d1b4ac56d63b692d72acecc7ddf948a9",
+    "harvest_manifest": "d281739580942bd93cb11675f48168612e58eb34",
+    "paper_ledger": "d0e5b6ac9e547f50bb96b72049ab0203f3d25a8b"
+  },
+  "closure": {
+    "ravel": "9840–9887",
+    "decision": "9888–9914",
+    "global_next": 9915
+  }
+}
