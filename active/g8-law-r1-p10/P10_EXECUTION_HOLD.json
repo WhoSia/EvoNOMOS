@@ -1,0 +1,28 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P10",
+  "status": "SCIENTIFIC_READOUT_COMPLETE__HOSTED_EXECUTION_QUEUED",
+  "frozen_science": {
+    "constitution": "8f650bdd4e169eb51d93f6f9e10d3b4b279fc5ee",
+    "fresh_precommit": "1de10661787a6e433da6855948ebbbe3531732e2",
+    "fresh_result": "4814088aa8c2aee74d924a3ea2caf3d26a32f2c4",
+    "prior_art": "2c961ed5fc35646b7015625eb5c208e6c01bd7ca",
+    "verifier": "2c3a46568883577b8bbd3a69829ef5907ce48554",
+    "court": "b433d1547ade2f7ff433c854da0d498ff8bc17aa",
+    "workflow": "e02e589975aaf071d01d2d15393138d0ae113322"
+  },
+  "provisional_readout": {
+    "fresh_interaction": "SUPPORTED_BOUNDED",
+    "matched_context_discrimination": "SUPPORTED_DEVELOPMENT",
+    "same_X_G_E_aliasing": "NOT_OBSERVED",
+    "state_factorization": "SURVIVES_UNDER_CURRENT_EVIDENCE",
+    "policy_separability": "REJECTED_AS_GENERAL_ASSUMPTION",
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "hosted_gate": {
+    "candidate_run": 36952496916,
+    "status": "QUEUED",
+    "artifact": null,
+    "authority": "NONE_UNTIL_JOB_COMPLETES"
+  },
+  "rule": "Do not mutate scientific inputs while the frozen hosted gate is pending."
+}
