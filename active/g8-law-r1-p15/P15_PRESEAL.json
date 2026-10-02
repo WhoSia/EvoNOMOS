@@ -1,0 +1,29 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P15",
+  "status": "PRESEALED",
+  "constitution_commit": "34f0cf46909171a91cd9e887eeaff422803b8c1e",
+  "opened_from": "d34146e63c3d9eef459c98b6eb0cc4641b283c74",
+  "global_start": 9527,
+  "frozen_before_fresh_world_result_inspection": true,
+  "replication_targets": [
+    "COEXISTENCE_REQUIREMENT_SECOND_EXACT_DOMAIN",
+    "RELEASE_AUTHORITY_SECOND_EXACT_DOMAIN"
+  ],
+  "coexistence_rule": "Hold COMPATIBILITY_OBLIGATION, LIFECYCLE_PHASE, RELEASE_AUTHORITY, G and E materially fixed; vary only simultaneous old/new operation requirement.",
+  "authority_rule": "Hold LIFECYCLE_PHASE, COMPATIBILITY_OBLIGATION, COEXISTENCE_REQUIREMENT, G and E materially fixed; vary only actor/permission/release authority.",
+  "basis_attack_order": [
+    "VERIFY_SECOND_DOMAIN_REPLICATIONS",
+    "RUN_COORDINATE_DELETIONS",
+    "RUN_PAIRWISE_MERGES",
+    "ATTEMPT_PROSPECTIVE_SPLITS",
+    "TEST_CROSS_DOMAIN_TRANSPORT",
+    "ONLY_THEN_CONSIDER_BASIS_COMPLETION"
+  ],
+  "stable_threshold": "Two exact cross-domain discriminator families plus negative control and representation invariance.",
+  "minimality_rule": "A basis may be called minimal only when every retained coordinate survives deletion and every pairwise merge destroys at least one independently replicated distinction.",
+  "literature_rule": "Drive-first custody audit is method/novelty support only and cannot change scientific verdict criteria after preseal.",
+  "paper_rule": "Do not optimize the science to a prospective paper narrative; manuscript structure may follow the evidence, never the reverse.",
+  "anti_rationalization": "No new X coordinate, relabeling, or threshold change after outcomes.",
+  "law_r2_gate": "Only normalized same-(X,G,E) conflicting action may reopen R2.",
+  "human_facing_naming": "CAPITALIZED_SCIENTIFIC_COMMIT_STYLE_AND_TITLE_CASE_ACTIONS"
+}
