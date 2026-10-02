@@ -1,0 +1,94 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P25",
+  "preseal": "0a0793a244a7b0e97149502733a599599133c5bc",
+  "admission": "POST_PRESEAL_FRESH_FAMILIES",
+  "lane_A_second_bridge": {
+    "id": "RUST_LOG_BOXED_LOGGER_CAPABILITY_GATE",
+    "repository": "rust-lang/log",
+    "commit": "27e3cf7a021dab43430a70cb2909c06ca8141f79",
+    "source_paths": [
+      "src/lib.rs",
+      "Cargo.toml"
+    ],
+    "source_blobs": {
+      "lib_rs": "a1ddbec701b464159a3e19d4f86cd191bcdc1fb4",
+      "cargo_toml": "1cbac32c827abd89647cb9be96ff9393b49d6be7"
+    },
+    "q": {
+      "meaning": "TARGET_HAS_POINTER_ATOMICS",
+      "source": "rustc target_has_atomic=\"ptr\" cfg",
+      "q0_target": "thumbv6m-none-eabi",
+      "q1_target": "x86_64-unknown-linux-gnu"
+    },
+    "g": {
+      "meaning": "LOG_ALLOC_FEATURE_ENABLED",
+      "g0": "default-features=false; alloc absent",
+      "g1": "default-features=false; alloc enabled"
+    },
+    "y": {
+      "meaning": "DOWNSTREAM_set_boxed_logger_API_AVAILABLE",
+      "probe": "A downstream crate attempts `pub use log::set_boxed_logger`; cargo check success=1, cfg-gated missing-item failure=0."
+    },
+    "exact_source_contract": "#[cfg(all(feature = \"alloc\", target_has_atomic = \"ptr\"))] pub fn set_boxed_logger(...)",
+    "frozen_prediction": {
+      "q0_g0": 0,
+      "q0_g1": 0,
+      "q1_g0": 0,
+      "q1_g1": 1
+    },
+    "mechanism_class": "COMPILE_TIME_TARGET_CAPABILITY_X_CARGO_FEATURE",
+    "relation_to_P24_quic": "MECHANISTICALLY_DISTINCT"
+  },
+  "lane_B_end_to_end": {
+    "id": "GO_TLS_ALPN_TARGET_PROTOCOL_NEGOTIATION",
+    "repository": "golang/go",
+    "commit": "47cf464896de41e404e0efeca4fa2cc1e321872c",
+    "source_paths": [
+      "src/crypto/tls/handshake_server.go",
+      "src/crypto/tls/common.go",
+      "src/crypto/tls/handshake_server_test.go"
+    ],
+    "source_blobs": {
+      "handshake_server_go": "3991f212c1f8a169343aa1801dafe826c81bf9ac",
+      "common_go": "5f08beae07f129e8d83a0fa7aa089efefb156a27",
+      "handshake_server_test_go": "be35924bee5dd2c4473f4c2ff0b3008baa6739b8"
+    },
+    "chain": {
+      "source_state": "CLIENT_HELLO_ALPN_PROTOCOL_LIST",
+      "T": "TLS ClientHello serialization/parsing transports the ALPN list to hs.clientHello.alpnProtocols",
+      "Q": "q=1 iff target protocol proto1 is present in the transported client list",
+      "g": "g=1 iff server Config.NextProtos contains target proto1",
+      "D": "target selected iff q AND g under the one-target matched packet",
+      "y": "ConnectionState.NegotiatedProtocol == proto1"
+    },
+    "source_contract": [
+      "negotiateALPN picks a shared ALPN protocol that both sides support.",
+      "If either side has no ALPN list, it returns empty protocol and no error for non-QUIC TLS.",
+      "For matching proto1/proto1 it returns proto1."
+    ],
+    "upstream_tests": [
+      "TestHandshakeServerALPN",
+      "TestHandshakeServerALPNNoMatch",
+      "TestHandshakeServerALPNNotConfigured"
+    ],
+    "frozen_prediction": {
+      "q0_g0": 0,
+      "q0_g1": 0,
+      "q1_g0": 0,
+      "q1_g1": 1
+    },
+    "end_to_end_status_before_hosted": "SOURCE_SUPPORTED_PENDING_HOSTED"
+  },
+  "decomposition_pre_readout": {
+    "if_lane_A_passes": "Second mechanistically distinct bridge replication achieved.",
+    "if_lane_B_passes": "A real T->Q->g->y realization achieved.",
+    "U0_over_U1": "NOT_UNIQUE_EVEN_IF_BOTH_PASS unless a packet constrains shared upstream T/Q grammar across families.",
+    "likely_authority_if_both_pass": "MACRO_STRUCTURE_REPLICATED_BOUNDED__DECOMPOSITION_UNIQUENESS_UNDERIDENTIFIED"
+  },
+  "anti_rationalization": {
+    "q_edits": 0,
+    "g_edits": 0,
+    "boolean_function_edits": 0,
+    "mechanism_id": false
+  }
+}
