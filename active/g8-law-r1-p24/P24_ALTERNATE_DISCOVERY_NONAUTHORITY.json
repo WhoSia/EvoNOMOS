@@ -1,0 +1,28 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "status": "NONAUTHORITATIVE_ALTERNATE_DISCOVERY",
+  "authority": "NONE_FOR_P24",
+  "reason": "Authoritative fresh Protobuf and QUIC candidates were already materialized and executed before this later alternate lane was added.",
+  "authoritative_lineage": {
+    "protobuf_custody": "c61a2c20f9f6c6bdcfc78f9500d47248ce26050f",
+    "quic_custody": "8954a2d1f0284a6f3cac7942f0ba00d8f1e51d25",
+    "workflow": "f550a2a70931685f56c9224dccd9117153759fc8",
+    "implementation_repair": "74a1f0656b0d4428e04bd4e135a107484ebd3635",
+    "canonical_run": 37017513558
+  },
+  "alternate_files": [
+    {
+      "commit": "a61dabbc4718976da66cf6d0066aaec89cddb555",
+      "path": "active/g8-law-r1-p24/P24_FRESH_DUAL_FAMILY_CUSTODY.json",
+      "candidate": "Reset×ClearUnknown / EtcdRangeStream",
+      "disposition": "DEVELOPMENT_ONLY_FUTURE_FALSIFIER_BANK"
+    },
+    {
+      "commit": "33a82968b31281fdf262e045a0c7fb42554bac5d",
+      "path": "tools/law-r1-p24-bridge.go",
+      "candidate": "EtcdRangeStream AND probe",
+      "disposition": "DEVELOPMENT_ONLY_FUTURE_FALSIFIER_BANK"
+    }
+  ],
+  "anti_rationalization": "Alternate candidates do not modify P24 orientation, bridge, property-index, canonical run, or verdict."
+}
