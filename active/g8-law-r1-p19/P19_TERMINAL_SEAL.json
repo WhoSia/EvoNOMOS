@@ -1,0 +1,98 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P19",
+  "formal_title": "Cross-Mechanism Interaction Transport, Design-Maxim Projection Falsification, API/Library/Compiler Structural Intervention Families, Sign-Reversal Geometry, Policy-Surface Compression, Rival Representation Competition, Harvest-to-Falsifier Backflow & Macro-Law Transport Protocol",
+  "suffix": "Protocol",
+  "verdict": "PASS_PARTIAL_CROSS_MECHANISM_TRANSPORT__ONE_NEW_MECHANISM_FAMILY__PROJECTION_UNDERIDENTIFIED__MACRO_LAW_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36974722368,
+    "head": "372b8b07a99b12e60c20eda46d1206ed58b2c8ca",
+    "job": 110735953073,
+    "artifact": 11212621938,
+    "digest": "sha256:ee8580e1c5c1586530ad95e0bf9d23d80de702595b14434467c5ebe16ae74510"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact_direct_inspection": "PASS",
+    "rival_competition": "PASS",
+    "protocol": "PASS"
+  },
+  "scientific_readout": {
+    "fresh_exact_family": {
+      "id": "RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY",
+      "domain": "COMPILER_METHOD_RESOLUTION_AND_LIBRARY_API_EVOLUTION",
+      "interaction": "COMPATIBILITY_OBLIGATION_X_CALL_GEOMETRY",
+      "factorial": "COMPLETE_2X2",
+      "difference_in_differences": 1
+    },
+    "independent_semantic_support": [
+      "AXIOS_HTTP_STATUS_LOOKUP_GEOMETRY",
+      "NODE_MODULE_FORMAT_SCOPE_GEOMETRY"
+    ],
+    "grammar_level_transport": "SUPPORTED",
+    "same_exact_typed_replication_count": 1,
+    "projection": "SURVIVES_FALSIFICATION_BUT_REMAINS_UNDERIDENTIFIED",
+    "representation_unique": false,
+    "macro_law": "NOT_AUTHORIZED",
+    "solid_special_case": "NOT_DERIVED",
+    "same_normalized_X_G_E_conflicting_action": "NOT_OBSERVED",
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "rival_competition": {
+    "X_ONLY": "FAIL_MIN_1_CELL_ERROR",
+    "G_ONLY": "FAIL_MIN_1_CELL_ERROR",
+    "ADDITIVE_MAIN_EFFECTS": "FAIL",
+    "PAIRWISE_INTERACTION": "FIT",
+    "LOW_COMPLEXITY_CONJUNCTION": "FIT",
+    "UNTYPED_CELL_LOOKUP": "FIT_BUT_LESS_COMPRESSED",
+    "NAMED_PRINCIPLE_RULE": "INADMISSIBLE_NO_PRECOMMITTED_MAPPING",
+    "winner": "NON_UNIQUE"
+  },
+  "harvest": {
+    "id": "LR-20261002-X",
+    "notion_page": "3edef561-cf92-81ce-b633-d44e92096be9",
+    "repo_manifest": "fc0549da5b5d6fef341c9c3d40459e8ac880a389",
+    "status": "PASS_HARVEST_NON_SOVEREIGN",
+    "authority": "NONE",
+    "policy_surface_equivalence_class": "HARVEST_ONLY",
+    "named_maxim_as_regional_compression": "HARVEST_ONLY"
+  },
+  "cross_repo_hygiene": {
+    "cube_rev_audit": "71488704678f6c4920f48be4e6cc267105548449",
+    "cube_rev_head": "5921ca980b7214e7ad915747c39435168f4547e3",
+    "recent_cleanup": "DIRECTIONALLY_CORRECT",
+    "clear_stale_or_dead_workflows": 6,
+    "historical_candidate_paths": 103,
+    "action_taken_on_cube_rev": "NONE",
+    "scientific_contamination": "NONE_OBSERVED"
+  },
+  "paper_readiness": {
+    "manuscript": "NOT_AUTHORIZED",
+    "claim_ledger": "AUTHORIZED",
+    "figure_ledger": "AUTHORIZED",
+    "falsifier_ledger": "AUTHORIZED",
+    "missing_evidence_matrix": "AUTHORIZED",
+    "next_missing_evidence": [
+      "second exact non-migration typed XxG family",
+      "leave-one-mechanism-out transport",
+      "prospectively frozen named-maxim mapping",
+      "boundary test separating typed interaction from generic conjunction"
+    ]
+  },
+  "provenance": {
+    "constitution": "de455ce14fb0218c80ddfaaa037bab6e8fe86c75",
+    "preseal": "dc258cc86de7d927f2565526e49359d6572e894f",
+    "hygiene_audit": "71488704678f6c4920f48be4e6cc267105548449",
+    "cross_mechanism_custody": "e787d6995290434dcdaa98ba7ed1152775f6dcc7",
+    "rust_factorial": "8f82895d92c93c320406310d5c6c3efe9a0ea90e",
+    "rival_verifier": "1c7ed7b83af376112259409eb88c3444a9d09378",
+    "protocol_adjudicator": "abffd492dd267a9e4b74de98b5c300a6d060d49c",
+    "workflow": "372b8b07a99b12e60c20eda46d1206ed58b2c8ca",
+    "harvest_manifest": "fc0549da5b5d6fef341c9c3d40459e8ac880a389"
+  },
+  "closure": {
+    "ravel": "9718–9754",
+    "decision": "9755–9774",
+    "global_next": 9775
+  }
+}
