@@ -1,0 +1,62 @@
+{
+  "harvest_id": "LR-20261003-AF",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P26",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "fragments": [
+    {
+      "id": "AF-F01",
+      "name": "Nested-Model Nonidentifiability",
+      "status": "PRE_FRESH_THEOREM"
+    },
+    {
+      "id": "AF-F02",
+      "name": "Interventional Architecture Equivalence Class",
+      "status": "THEORY_FRAGMENT"
+    },
+    {
+      "id": "AF-F03",
+      "name": "Cross-Domain Quotient Naturality",
+      "status": "BOUNDED_EMPIRICAL_THEORY"
+    },
+    {
+      "id": "AF-F04",
+      "name": "Gate-Invariant Complete Mediation",
+      "status": "BOUNDED_EMPIRICAL_THEORY"
+    },
+    {
+      "id": "AF-F05",
+      "name": "Positive Survival Is Not Architecture Uniqueness",
+      "status": "METHOD_THEOREM"
+    },
+    {
+      "id": "AF-F06",
+      "name": "Runtime↔Compile-Time Necessary-State Intervention Transport",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AF-F07",
+      "name": "Architecture Identification Requires Non-Nested Rivals",
+      "status": "NEXT_FALSIFIER"
+    },
+    {
+      "id": "AF-F08",
+      "name": "Intervention Basis Rather Than Example Count",
+      "status": "HARVEST_ONLY"
+    }
+  ],
+  "empirical_capital": {
+    "mechanisms": [
+      "OTEL_GO_SIMPLE_SPAN_PROCESSOR",
+      "OTEL_PHP_SIMPLE_SPAN_PROCESSOR",
+      "FUTURES_RS_ABORTABLE_CAPABILITY_GATE"
+    ],
+    "shared_signature": "baseline/0:10|baseline/1:11|drop/0:00|drop/1:00|restore/0:10|restore/1:11",
+    "quotient_drop": "1_TO_0",
+    "quotient_restore": "0_TO_1",
+    "gate_invariance": "PASS_ALL_THREE",
+    "mediation": "PASS_ALL_THREE"
+  },
+  "methodological_ruling": "The identified object is an interventional equivalence class under the frozen intervention basis, not a unique hidden architecture.",
+  "manuscript": "NOT_AUTHORIZED"
+}
