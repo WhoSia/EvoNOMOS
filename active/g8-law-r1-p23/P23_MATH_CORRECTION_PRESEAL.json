@@ -1,0 +1,16 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P23",
+  "status": "PRE_FRESH_MATHEMATICAL_CORRECTION",
+  "parent_preseal": "dba663c5f40caaf54924b25541c2ca3d5c945cef",
+  "correction": {
+    "withdrawn_wording": "BOOLEAN_FAILURE_QUOTIENT_NOT_CONGRUENT_ON_PATH_STATES_UNDER_REPAIR",
+    "corrected_target": "CONTAINS_D_QUOTIENT_CAN_BE_A_SYNTACTIC_MONOID_CONGRUENCE_BUT_IS_NOT_SEMANTICALLY_SUFFICIENT_FOR_FINAL_STATE_ONCE_REPAIR_EXISTS",
+    "reason": "The predicate 'contains D' is compositional under concatenation via OR, but it identifies D and D;R even though their transported final states differ."
+  },
+  "theorem_targets_added": [
+    "UNIQUE_NONTRIVIAL_PROPER_CONGRUENCE_OF_M_CR_IS_D_EQ_R",
+    "BOOLEAN_TWO_ELEMENT_MONOID_IS_M_CR_QUOTIENT_BY_D_EQ_R",
+    "SEMANTIC_SUFFICIENCY_FAILS_FOR_CONTAINS_D_PATH_QUOTIENT_UNDER_REPAIR"
+  ],
+  "frozen_before_fresh_empirical_search": true
+}
