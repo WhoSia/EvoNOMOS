@@ -1,0 +1,28 @@
+name: G8 LAW-R1-P8 Ecology
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p8-*'
+      - 'active/g8-law-r1-p8/**'
+      - 'lawkit/protocol/v0.12/**'
+      - '.github/workflows/g8-law-r1-p8-ecology.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  ecology:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p out
+      - run: python3 tools/law-r1-p8-ecology.py
+      - run: node tools/law-r1-p8-court.mjs out/p8-ecology.json out/p8-court.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p8-ecology
+          path: out/
+          retention-days: 30
