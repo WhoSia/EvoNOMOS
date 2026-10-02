@@ -1,0 +1,72 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P26",
+  "fresh_after_preseal": true,
+  "id": "FUTURES_RS_ABORTABLE_CAPABILITY_GATE",
+  "repository": "rust-lang/futures-rs",
+  "exact_commit": "706e29bce353e3e72655b99a4a6411291cd4762a",
+  "source_paths": [
+    "futures-util/src/lib.rs",
+    "futures-util/src/future/mod.rs",
+    "futures-util/src/abortable.rs",
+    "futures-util/Cargo.toml"
+  ],
+  "source_blobs": {
+    "futures_util_lib": "5cf65309844a97a43aff7239e976f55767df4f4b",
+    "future_mod": "PENDING_RECORDED_FROM_FETCH",
+    "abortable": "315df04a458d5f534131a056e2da30037eeb75b7",
+    "cargo_toml": "e87832614cec843fa0d304a41c7d35d55a90ea36"
+  },
+  "typed_semantics": {
+    "q": "TARGET_HAS_POINTER_ATOMICS",
+    "g": "ALLOC_FEATURE_ENABLED",
+    "y": "futures_util::future::abortable API typechecks",
+    "baseline": "host target q=1",
+    "drop": "thumbv6m-none-eabi q=0 with identical feature selection",
+    "restore": "host target q=1 restored with identical feature selection"
+  },
+  "source_contract": [
+    "futures-util abortable module is compiled only under target_has_atomic=ptr.",
+    "The same abortable module is compiled only when feature alloc is enabled.",
+    "future::abortable and AbortHandle/Abortable re-exports are protected by both conditions."
+  ],
+  "frozen_packet": [
+    {
+      "intervention": "baseline",
+      "q": 1,
+      "g": 0,
+      "y": 0
+    },
+    {
+      "intervention": "baseline",
+      "q": 1,
+      "g": 1,
+      "y": 1
+    },
+    {
+      "intervention": "drop",
+      "q": 0,
+      "g": 0,
+      "y": 0
+    },
+    {
+      "intervention": "drop",
+      "q": 0,
+      "g": 1,
+      "y": 0
+    },
+    {
+      "intervention": "restore",
+      "q": 1,
+      "g": 0,
+      "y": 0
+    },
+    {
+      "intervention": "restore",
+      "q": 1,
+      "g": 1,
+      "y": 1
+    }
+  ],
+  "role": "CROSS_DOMAIN_NATURALITY_STRESS",
+  "authority_rule": "Strong P26 naturality transport requires this compile-time packet to agree with the OTel runtime packets under the generic DROP/RESTORE intervention typing."
+}
