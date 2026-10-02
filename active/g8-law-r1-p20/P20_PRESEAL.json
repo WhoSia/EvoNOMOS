@@ -1,0 +1,33 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P20",
+  "status": "PRESEALED",
+  "constitution_commit": "2b9d1d6cfd4c7492be11dd29ede12065cba33b30",
+  "opened_from": "e78664f09595df9b051caf6e023c469e90aaf497",
+  "global_start": 9775,
+  "suffix": "Experiment",
+  "frozen_before_fresh_outcomes": true,
+  "separator": {
+    "typed_interaction": "Allows semantically distinct trigger-positive geometry states to carry different actions when the distinction was frozen before outcome.",
+    "generic_conjunction": "All trigger-positive G states collapse to one action after frozen binarization.",
+    "separator_success": "At least two trigger-positive G states differ in action along a pre-frozen geometry distinction.",
+    "tie": "No admitted fresh state separates them."
+  },
+  "candidate_geometry_families": [
+    "API_OR_LIBRARY_SURFACE",
+    "COMPILER_OR_LANGUAGE_RESOLUTION",
+    "RUNTIME_LOADING_OR_CAPABILITY",
+    "DEPENDENCY_OR_TYPE_EVOLUTION"
+  ],
+  "named_maxim": {
+    "id": "COMPATIBILITY_SHOULD_PRESERVE_EXISTING_CLIENT_BEHAVIOR",
+    "prediction": "Compatibility-active states preserve existing client-observable behavior independent of surface geometry unless qualification was pre-frozen.",
+    "posthoc_unless": "FAILURE"
+  },
+  "leave_one_mechanism_out": "MANDATORY",
+  "second_exact_nonmigration_family": "MANDATORY_FOR_PASS_EXACT_FAMILY",
+  "new_X": "FORBIDDEN",
+  "new_G_state": "FORBIDDEN_FOR_SEPARATOR_CLAIM",
+  "change_binary_trigger": "FORBIDDEN",
+  "paper_manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
