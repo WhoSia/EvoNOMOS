@@ -1,4 +1,4 @@
-name: G8 LAW-R1-P8-P11 Courts
+name: G8 LAW-R1-P8-P12 Courts
 
 on:
   workflow_dispatch:
@@ -17,6 +17,9 @@ on:
       - 'tools/law-r1-p11-*'
       - 'active/g8-law-r1-p11/**'
       - 'lawkit/protocol/v0.15/**'
+      - 'tools/law-r1-p12-*'
+      - 'active/g8-law-r1-p12/**'
+      - 'lawkit/protocol/v0.16/**'
       - '.github/workflows/g8-law-r1-p8-ecology.yml'
 
 permissions:
@@ -24,53 +27,96 @@ permissions:
 
 jobs:
   ecology:
+    name: P8 Ecology Court
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p out
-      - run: python3 tools/law-r1-p8-ecology.py
-      - run: node tools/law-r1-p8-court.mjs out/p8-ecology.json out/p8-court.json
-      - uses: actions/upload-artifact@v4
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P8 Output
+        run: mkdir -p out
+      - name: Verify P8 Ecology
+        run: python3 tools/law-r1-p8-ecology.py
+      - name: Run P8 Court
+        run: node tools/law-r1-p8-court.mjs out/p8-ecology.json out/p8-court.json
+      - name: Upload P8 Ecology Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: g8-law-r1-p8-ecology
           path: out/
           retention-days: 30
 
   geometry:
+    name: P9 Geometry Court
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p out-p9
-      - run: python3 tools/law-r1-p9-worlds.py
-      - run: node tools/law-r1-p9-court.mjs out-p9/p9-worlds.json out-p9/p9-court.json
-      - uses: actions/upload-artifact@v4
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P9 Output
+        run: mkdir -p out-p9
+      - name: Verify P9 Worlds
+        run: python3 tools/law-r1-p9-worlds.py
+      - name: Run P9 Court
+        run: node tools/law-r1-p9-court.mjs out-p9/p9-worlds.json out-p9/p9-court.json
+      - name: Upload P9 Geometry Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: g8-law-r1-p9-geometry
           path: out-p9/
           retention-days: 30
 
   factorization:
+    name: P10 Factorization Court
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p out-p10
-      - run: python3 tools/law-r1-p10-worlds.py
-      - run: node tools/law-r1-p10-court.mjs out-p10/p10-worlds.json out-p10/p10-court.json
-      - uses: actions/upload-artifact@v4
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P10 Output
+        run: mkdir -p out-p10
+      - name: Verify P10 Worlds
+        run: python3 tools/law-r1-p10-worlds.py
+      - name: Run P10 Court
+        run: node tools/law-r1-p10-court.mjs out-p10/p10-worlds.json out-p10/p10-court.json
+      - name: Upload P10 Factorization Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: g8-law-r1-p10-factorization
           path: out-p10/
           retention-days: 30
 
   state-sufficiency:
+    name: P11 State-Sufficiency Court
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p out-p11
-      - run: python3 tools/law-r1-p11-worlds.py
-      - run: node tools/law-r1-p11-court.mjs out-p11/p11-worlds.json out-p11/p11-court.json
-      - uses: actions/upload-artifact@v4
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P11 Output
+        run: mkdir -p out-p11
+      - name: Verify P11 Worlds
+        run: python3 tools/law-r1-p11-worlds.py
+      - name: Run P11 Court
+        run: node tools/law-r1-p11-court.mjs out-p11/p11-worlds.json out-p11/p11-court.json
+      - name: Upload P11 State-Sufficiency Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: g8-law-r1-p11-state-sufficiency
           path: out-p11/
+          retention-days: 30
+
+  context-minimality:
+    name: P12 Context-Minimality Court
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P12 Output
+        run: mkdir -p out-p12
+      - name: Verify P12 Coordinate Deletions
+        run: python3 tools/law-r1-p12-worlds.py
+      - name: Run P12 Context-Minimality Court
+        run: node tools/law-r1-p12-court.mjs out-p12/p12-worlds.json out-p12/p12-court.json
+      - name: Upload P12 Context-Minimality Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p12-context-minimality
+          path: out-p12/
           retention-days: 30
