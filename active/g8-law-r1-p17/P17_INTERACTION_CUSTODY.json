@@ -1,0 +1,125 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P17",
+  "formal_suffix": "Reconstruction",
+  "constitution_commit": "0e90d09e650eb4487c6972217f265bc751b83246",
+  "preseal_commit": "247a92543d08a9b471e2fefdd4ec98db25645382",
+  "admission": "POST_PRESEAL_FRESH_INTERACTION_ECOLOGY",
+  "exact_families": [
+    {
+      "id": "PROW_AUTHORITY_LIFECYCLE_PR_GATE",
+      "repository": "kubernetes-sigs/prow",
+      "commit": "6844e439e237641e025f0e094833768c6928bc00",
+      "source_path": "pkg/plugins/trigger/generic-comment.go",
+      "source_blob": "6bc72c0cd6b679df6ae65243bdb9ad8675410d27",
+      "test_path": "pkg/plugins/trigger/generic-comment_test.go",
+      "test_blob": "6c85cabe7d72a5eac079bf7497e4fe0e49146319",
+      "domain": "CI_PRESUBMIT_COMMENT_TRIGGER",
+      "fixed": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "COMMENT_ACTION": "CREATED",
+        "COMMAND_CLASS": "OK_TO_TEST_OR_TEST_TRIGGER",
+        "E": "NORMALIZED_TRIGGERING_COMMENT"
+      },
+      "variables": {
+        "A": "RELEASE_AUTHORITY_TRUSTED_COMMENTER",
+        "L": "LIFECYCLE_PHASE_OPEN_PR",
+        "G": "GEOMETRY_IS_PULL_REQUEST"
+      },
+      "law": "TRIGGER = A AND L AND G",
+      "cells": [
+        {"A":0,"L":0,"G":0,"Y":0,"authority":"SOURCE_SEMANTICS"},
+        {"A":0,"L":0,"G":1,"Y":0,"authority":"SOURCE_SEMANTICS"},
+        {"A":0,"L":1,"G":0,"Y":0,"authority":"SOURCE_SEMANTICS"},
+        {"A":0,"L":1,"G":1,"Y":0,"authority":"SOURCE_PLUS_UNTRUSTED_OPEN_TEST"},
+        {"A":1,"L":0,"G":0,"Y":0,"authority":"SOURCE_SEMANTICS"},
+        {"A":1,"L":0,"G":1,"Y":0,"authority":"SOURCE_PLUS_CLOSED_PR_TEST"},
+        {"A":1,"L":1,"G":0,"Y":0,"authority":"SOURCE_PLUS_NOT_A_PR_TEST"},
+        {"A":1,"L":1,"G":1,"Y":1,"authority":"SOURCE_PLUS_TRUSTED_OPEN_PR_TEST"}
+      ],
+      "geometry_negative_control": "Trusted open non-PR /ok-to-test remains no-op.",
+      "lifecycle_negative_control": "Trusted closed PR /ok-to-test remains no-op.",
+      "authority_negative_control": "Untrusted open PR /ok-to-test remains no-op."
+    },
+    {
+      "id": "SERGE_AUTHORITY_LIFECYCLE_PR_GATE",
+      "repository": "huggingface/serge",
+      "commit": "02333f42fb9d77ce53c75dcc7511aac6b2280580",
+      "source_path": ".github/workflows/ai-review.yml",
+      "source_blob": "1ef0f44bd93e34ee5340f4f7071c96350ef26901",
+      "domain": "AI_REVIEW_COMMENT_RELAY",
+      "fixed": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "EVENT_NAME": "issue_comment",
+        "COMMAND_CLASS": "@askserge",
+        "E": "NORMALIZED_TRIGGERING_COMMENT"
+      },
+      "variables": {
+        "A": "RELEASE_AUTHORITY_MEMBER_OWNER_COLLABORATOR",
+        "L": "LIFECYCLE_PHASE_OPEN_PR",
+        "G": "GEOMETRY_IS_PULL_REQUEST"
+      },
+      "law": "FORWARD_TO_APP = A AND L AND G",
+      "cells": [
+        {"A":0,"L":0,"G":0,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":0,"L":0,"G":1,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":0,"L":1,"G":0,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":0,"L":1,"G":1,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":1,"L":0,"G":0,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":1,"L":0,"G":1,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":1,"L":1,"G":0,"Y":0,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"},
+        {"A":1,"L":1,"G":1,"Y":1,"authority":"WORKFLOW_BOOLEAN_SEMANTICS"}
+      ],
+      "scope_guard": "Only the issue_comment branch is used. The pull_request_review_comment branch has different geometry and is not pooled into this family."
+    }
+  ],
+  "support_only_families": [
+    {
+      "id": "RUST_TRIAGEBOT_CLOSED_PR_ASSIGNMENT",
+      "repository": "rust-lang/triagebot",
+      "commit": "d21a5ed91042d707fed4e26712767a2a83c0151a",
+      "path": "src/handlers/assign.rs",
+      "status": "LIFECYCLE_SUPPORT_ONLY",
+      "reason": "Closed-PR assignment gate is explicit, but PR-path command-author authority does not form the same matched 2x2 interaction."
+    },
+    {
+      "id": "ARROW_COMMENT_BOT_AUTHORITY",
+      "repository": "apache/arrow",
+      "commit": "46e09d339d84c589b3ce12913bb0c0fe8bc667c9",
+      "path": "dev/archery/archery/bot.py",
+      "status": "AUTHORITY_SUPPORT_ONLY",
+      "reason": "Authority discriminator exists, but no same-path open/closed lifecycle gate was found."
+    },
+    {
+      "id": "KAFKA_COMPATIBILITY_COEXISTENCE",
+      "repository": "apache/kafka",
+      "commit": "d12941eb5af08aff6a0712a10b85ed04f4211d9d",
+      "status": "ONE_DOMAIN_PAIRWISE_CANDIDATE",
+      "reason": "Compatible mode and group topology plausibly form a compatibility×coexistence interaction, but P17 did not obtain a second exact domain under the frozen transport rule."
+    }
+  ],
+  "interaction_readout": {
+    "transported_pairwise_X_edge": {
+      "vertices": ["RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+      "conditional_on": "G.IS_PULL_REQUEST=1",
+      "domains": ["CI_PRESUBMIT_COMMENT_TRIGGER","AI_REVIEW_COMMENT_RELAY"],
+      "status": "EXACT_TWO_DOMAIN"
+    },
+    "transported_context_geometry_hyperedge": {
+      "vertices": ["RELEASE_AUTHORITY","LIFECYCLE_PHASE","G.IS_PULL_REQUEST"],
+      "domains": ["CI_PRESUBMIT_COMMENT_TRIGGER","AI_REVIEW_COMMENT_RELAY"],
+      "status": "EXACT_TWO_DOMAIN_CONJUNCTIVE_GATE"
+    },
+    "higher_order_X_terms": {
+      "status": "UNDERIDENTIFIED",
+      "reason": "No complete matched factorial family for any three or four X primitives was observed."
+    },
+    "other_pairwise_X_edges": {
+      "status": "UNDERIDENTIFIED_OR_ONE_DOMAIN_ONLY"
+    },
+    "same_normalized_X_G_E_conflicting_action_observed": false
+  },
+  "post_hoc_interaction_subsets_added": [],
+  "new_python_files": 0
+}
