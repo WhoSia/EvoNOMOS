@@ -1,0 +1,110 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P20",
+  "formal_title": "Representation-Separating Transport, Prospective Policy-Surface Equivalence Challenge, Second Exact Non-Migration Interaction Family, Typed-Interaction↔Generic-Conjunction Divergence, Leave-One-Mechanism-Out Prediction, Frozen Design-Maxim Mapping, Boundary-Preserving Compression Failure & Macro-Law Identifiability Experiment",
+  "suffix": "Experiment",
+  "global_start": 9775,
+  "predecessor": {
+    "stage": "LAW-R1-P19",
+    "terminal_seal": "ea08656f05e6fee4a630169f107e9fcfa69639df",
+    "active_lineage": "e78664f09595df9b051caf6e023c469e90aaf497",
+    "canonical_run": 36974722368,
+    "artifact": 11212621938,
+    "verdict": "PASS_PARTIAL_CROSS_MECHANISM_TRANSPORT__ONE_NEW_MECHANISM_FAMILY__PROJECTION_UNDERIDENTIFIED__MACRO_LAW_NOT_AUTHORIZED"
+  },
+  "scientific_target": "Force currently tied compact representations to make different fresh predictions and test whether any representation class transports across a second exact non-migration mechanism.",
+  "frozen_representations": {
+    "TYPED_INTERACTION": {
+      "class": "Typed conditional policy over semantic coordinates X,G,E",
+      "p19_fit": "EXACT",
+      "transport_prediction": "A semantic coordinate may have different action effects across at least three material geometry states; transport is evaluated by preservation of typed boundaries, not Boolean co-presence alone."
+    },
+    "GENERIC_CONJUNCTION": {
+      "class": "Binary low-complexity rule Y = I(X_active) AND I(G_trigger)",
+      "p19_fit": "EXACT",
+      "transport_prediction": "After binarizing X and G according to pre-frozen trigger predicates, all trigger-positive geometries must share the same action; no further geometry-conditioned split is allowed."
+    },
+    "UNTYPED_LOOKUP": {
+      "class": "Mechanism-local cell table",
+      "transport_prediction": "No cross-mechanism prediction without new entries; perfect local fit does not count as transport."
+    }
+  },
+  "representation_separating_condition": {
+    "preferred_test": "Find a fresh family with one semantic X coordinate and at least three pre-frozen material G states where two G states are both generic-conjunction trigger-positive but typed semantics predicts different actions or boundaries.",
+    "binary_fallback": "A fresh 2x2 may count only as second exact interaction family, not as representation separator.",
+    "success_for_typed_over_binary_conjunction": "Observed trigger-positive G states differ in action exactly along a pre-frozen semantic geometry distinction.",
+    "success_for_binary_conjunction": "All trigger-positive G states collapse to one action and typed extra distinction adds no transport or boundary value.",
+    "tie": "If both representations remain observationally equivalent on all admitted fresh states, representation identity remains underidentified."
+  },
+  "candidate_geometry_families_frozen_before_search": [
+    {
+      "family": "API_OR_LIBRARY_SURFACE",
+      "G_states": ["DIRECT_CALL_OR_CANONICAL_SURFACE","LEGACY_ALIAS_OR_REVERSE_SURFACE","EXPLICIT_ESCAPE_OR_LOW_LEVEL_SURFACE"]
+    },
+    {
+      "family": "COMPILER_OR_LANGUAGE_RESOLUTION",
+      "G_states": ["SUGAR_METHOD_OR_IMPLICIT_RESOLUTION","EXPLICIT_TRAIT_OR_FULLY_QUALIFIED_RESOLUTION","WRAPPER_OR_DEREF_MEDIATED_RESOLUTION"]
+    },
+    {
+      "family": "RUNTIME_LOADING_OR_CAPABILITY",
+      "G_states": ["AMBIGUOUS_DEFAULT","EXPLICIT_MARKER","OVERRIDE_OR_NEGOTIATED_PATH"]
+    },
+    {
+      "family": "DEPENDENCY_OR_TYPE_EVOLUTION",
+      "G_states": ["SOURCE_COMPAT_SURFACE","BINARY_OR_ABI_SURFACE","EXPLICIT_MIGRATION_OR_ESCAPE_SURFACE"]
+    }
+  ],
+  "leave_one_mechanism_out": {
+    "training_mechanisms": ["P19_RUST","P14_AXIOS_SUPPORT","P19_NODE_SUPPORT"],
+    "requirement": "Fit representation family without one mechanism and predict the held-out mechanism using only frozen semantic mappings.",
+    "no_posthoc_mapping": true
+  },
+  "frozen_named_maxim_mapping": {
+    "maxim_id": "COMPATIBILITY_SHOULD_PRESERVE_EXISTING_CLIENT_BEHAVIOR",
+    "status": "PRECOMMITTED_GENERIC_MAXIM_NOT_SOLID_SPECIFIC",
+    "text": "When compatibility obligations are active, preserve existing client-observable behavior.",
+    "prediction": "Compatibility-active states should default to preservation independent of surface geometry unless the maxim is explicitly qualified.",
+    "falsifier": "A fresh compatibility-active mechanism lawfully changes behavior on one geometry while preserving another, with the difference supported by source/tests and not by a new post-hoc coordinate.",
+    "scope": "This mapping tests the projection idea generically; it is not a SOLID derivation."
+  },
+  "projection_test": {
+    "question": "Does the frozen generic compatibility maxim compress the fresh action surface without losing the boundary?",
+    "promotion_threshold": "At least one fresh exact family plus one held-out transport in which the maxim predicts all admitted actions/boundaries with no ad hoc exception.",
+    "failure": "If preserving the observed boundary requires adding an UNLESS clause after outcome, maxim projection fails for that family."
+  },
+  "macro_law_identifiability": {
+    "required_for_any_promotion": [
+      "SECOND_EXACT_NON_MIGRATION_FAMILY",
+      "REPRESENTATION_SEPARATOR_OR_EXPLICIT_TIE",
+      "LEAVE_ONE_MECHANISM_OUT_RESULT",
+      "FROZEN_MAXIM_RESULT",
+      "NEGATIVE_CUSTODY"
+    ],
+    "strong_macro_law_requires": "At least two exact mechanistically distinct families plus a representation class that predicts held-out boundaries better than simpler rivals.",
+    "single_family_cannot_authorize": true
+  },
+  "anti_rationalization": {
+    "new_X_after_outcome": "FORBIDDEN",
+    "new_G_state_after_outcome": "FORBIDDEN_FOR_SEPARATOR_CLAIM",
+    "change_conjunction_trigger_after_outcome": "FORBIDDEN",
+    "add_unless_to_maxim_after_outcome": "COUNTS_AS_PROJECTION_FAILURE",
+    "mechanism_relabel": "FORBIDDEN",
+    "missing_cells": "UNDERIDENTIFIED"
+  },
+  "implementation": {
+    "new_python_default": "DISCOURAGED",
+    "prefer_new_languages_if_useful": ["Kotlin","Swift","Haskell","OCaml","Elixir","Scala"],
+    "legacy_code": "UNCHANGED"
+  },
+  "paper_readiness": {
+    "allowed": ["CLAIM_LEDGER","FIGURE_LEDGER","RIVAL_TABLE","MISSING_EVIDENCE_MATRIX"],
+    "manuscript": "NOT_AUTHORIZED"
+  },
+  "law_r2_gate": "UNCHANGED",
+  "terminal_verdict_family": [
+    "PASS_REPRESENTATION_SEPARATION__SECOND_EXACT_NONMIGRATION_FAMILY__TYPED_BOUNDARY_TRANSPORTS__GENERIC_CONJUNCTION_FAILS__MACRO_LAW_NOT_YET_AUTHORIZED",
+    "PASS_SECOND_EXACT_NONMIGRATION_FAMILY__REPRESENTATION_TIE_PERSISTS__MAXIM_PROJECTION_FAILS__MACRO_LAW_NOT_AUTHORIZED",
+    "PASS_SECOND_EXACT_NONMIGRATION_FAMILY__GENERIC_CONJUNCTION_TRANSPORTS_EQUIVALENTLY__TYPED_UNIQUENESS_REJECTED__MACRO_LAW_NOT_AUTHORIZED",
+    "HOLD_SECOND_EXACT_FAMILY_NOT_FOUND__REPRESENTATION_SEPARATOR_UNDERPOWERED",
+    "FAIL_TYPED_INTERACTION_TRANSPORT__SIMPLER_RIVAL_DOMINATES"
+  ]
+}
