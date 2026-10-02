@@ -22,7 +22,26 @@
       "path": "tools/law-r1-p24-bridge.go",
       "candidate": "EtcdRangeStream AND probe",
       "disposition": "DEVELOPMENT_ONLY_FUTURE_FALSIFIER_BANK"
+    },
+    {
+      "commit": "bf03f8e88dc6cc8e94d9ea84f4c98321450d5869",
+      "path": "active/g8-law-r1-p24/P24_FRESH_FAMILY_CUSTODY.json",
+      "candidate": "Post-closure Protobuf re-analysis / go-logr AND bridge",
+      "disposition": "POST_CLOSURE_NONAUTHORITY_FUTURE_COMPARISON_BANK"
+    },
+    {
+      "commit": "3094d0feb2c2743532393bb7ecd43a10c219139d",
+      "path": "tools/law-r1-p24-fresh.go",
+      "candidate": "Post-closure pinned Protobuf + go-logr runtime probe",
+      "disposition": "POST_CLOSURE_NONAUTHORITY_NOT_EXECUTION_AUTHORITY"
     }
   ],
-  "anti_rationalization": "Alternate candidates do not modify P24 orientation, bridge, property-index, canonical run, or verdict."
+  "anti_rationalization": "Alternate candidates do not modify P24 orientation, bridge, property-index, canonical run, or verdict.",
+  "post_closure_addendum": {
+    "bot_author_reachable_count": 0,
+    "bot_committer_reachable_count": 0,
+    "canonical_run_unchanged": 37017513558,
+    "canonical_verdict_unchanged": true,
+    "note": "These files were created after P24 terminal seal and active-lineage promotion while recovering hidden chronology. They cannot modify P24 authority."
+  }
 }
