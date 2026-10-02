@@ -1,0 +1,63 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P10",
+  "verdict": "PASS_INTERACTION_REQUIRED__STATE_FACTORIZATION_SURVIVES__POLICY_SEPARABILITY_REJECTED__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36954213256,
+    "head": "fcd963ab9a26db666e13792af1eacc41d4c2c090",
+    "job": 110673461623,
+    "artifact": 11205386179,
+    "digest": "sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4"
+  },
+  "evidence": {
+    "world_custody": "PASS_P10_WORLD_CUSTODY",
+    "fresh_holdout": "MATCHED_GEOMETRY_CONTEXT_EFFECT_SUPPORTED",
+    "matched_geometry_reversal": "SUPPORTED_BOUNDED",
+    "matched_context_discrimination": "SUPPORTED_DEVELOPMENT",
+    "interaction_nonseparability": "SUPPORTED_BOUNDED",
+    "same_X_G_E_distinct_action": "NOT_OBSERVED",
+    "transport": "BOUNDED_MULTI_PROJECT"
+  },
+  "ruling": {
+    "state": "X_G_E_SUFFICIENT_UNDER_CURRENT_EVIDENCE",
+    "policy": "INTERACTION_BEARING",
+    "policy_separability": "REJECTED_AS_GENERAL_ASSUMPTION",
+    "missing_coordinate": "NOT_REOPENED",
+    "law_r2": "NOT_AUTHORIZED",
+    "kernel": "NOT_FALSIFIED"
+  },
+  "provenance": {
+    "noncanonical_runs": [
+      {
+        "run": 36952496916,
+        "classification": "HARNESS_ONLY_PHRASE_GATE_FAILURE",
+        "gate": "OPENPENCIL"
+      },
+      {
+        "run": 36953101212,
+        "classification": "HARNESS_ONLY_PHRASE_GATE_FAILURE",
+        "gate": "OPENPENCIL"
+      },
+      {
+        "run": 36954090009,
+        "classification": "HARNESS_ONLY_PHRASE_GATE_FAILURE",
+        "gate": "S7"
+      }
+    ],
+    "redundant_confirmation": {
+      "run": 36954483760,
+      "head": "c69f6800296ac8b766efee1cf11ce27610b141d9",
+      "status": "SUCCESS",
+      "authority": "NONCANONICAL_RUNNER_LABEL_CONFIRMATION"
+    },
+    "phrase_repairs": [
+      "c41c4406908a05f1f0d6787ee0193115e828ee77",
+      "fcd963ab9a26db666e13792af1eacc41d4c2c090"
+    ]
+  },
+  "closure": {
+    "prior_ravel": "9340–9367",
+    "closure_ravel": "9368–9381",
+    "decision": "9382–9395",
+    "global_next": 9396
+  }
+}
