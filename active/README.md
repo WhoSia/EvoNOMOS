@@ -2,55 +2,51 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P20
-- formal suffix: Experiment
+- active stage: G8 LAW-R1-P21
+- formal suffix: Calibration
 - status: CLOSED / PASS
-- canonical run: 36983200957
-- canonical head: c9199b703b57cb7b08e0e6dade6fa4197e88f3a6
-- canonical job: 110762216404
-- artifact: 11216616543
-- digest: sha256:54738d9992ff09e519be8d00ec6befa96a6e17153fc64161fa8bfaf06294ce10
+- canonical run: 36999787317
+- canonical head: 93d87b78d1b4ac56d63b692d72acecc7ddf948a9
+- canonical job: 110814608532
+- artifact: 11223630758
+- digest: sha256:f1ba0b95c8fbaac4ec58235c759cf9e7a5a59ea142117e4032636b2d53022579
 
-P20 authority:
+P21 authority:
 
 - P16 four-primitive context basis remains intact
 - P17 partial interaction graph remains intact
-- P18 bounded non-bot domain-escape authority remains intact
-- P19 Rust compiler/library interaction remains the first exact non-migration family
-- P20 Ruby keyword-forwarding compatibility is the second exact non-migration family
-- Ruby hosted cells are 0/1/0/1 for unmarked implicit, marked direct, marked wrapper-gap, explicit kwargs
-- presealed binary generic conjunction is falsified on the Ruby held-out family
-- the decisive same-coarse-trigger split is MARKED_IMPLICIT_DIRECT=1 vs MARKED_WRAPPER_GAP=0 with frozen X=1 and G_binary=1
-- the generic conjunction also misses EXPLICIT_KWARGS under its frozen G0 projection
-- the pre-frozen typed geometry partition survives structurally without adding X or G coordinates
-- the exact action sign at the wrapper boundary was not precommitted; typed predictive-law victory is therefore NOT_AUTHORIZED
-- richer low-complexity rivals remain open
-- the frozen generic compatibility maxim fails on the wrapper-mediated boundary
-- post-outcome UNLESS rescue is not admitted
-- policy-surface equivalence class is narrowed but remains non-unique
+- P19 Rust remains the first exact non-migration interaction family
+- P20 Ruby remains the second exact non-migration family and first representation separator
+- P21 Go net/http ResponseController is the third exact mechanistically distinct family
+- P21 prospectively froze the action-sign pattern +/−/+ before fresh third-family selection
+- hosted Go result reproduced DIRECT_CAPABILITY=+, OPAQUE_WRAPPER=−, UNWRAP_WRAPPER=+
+- prospective action-sign prediction therefore PASSED
+- binary-trigger, wrapper-only, and path-length-only rivals failed
+- carrier-sensitive all-edges-carry and preselected carrier-gap depth-1 tree both fit
+- typed boundary transport also fits, but is not uniquely identified
+- structural carrier behavior replicates across Ruby and Go
+- Boundary-Carrying Obligation remains semantically UNDERIDENTIFIED because Go transports an HTTP capability, not a historical compatibility obligation
+- the frozen propagation-qualified compatibility principle was pre-ruled OUT_OF_SCOPE for direct Go survival testing and was not post-hoc broadened
+- leave-two-mechanisms-out remains UNDERIDENTIFIED_INSUFFICIENT_SHARED_GRAMMAR
+- the critical held-out pair is Ruby+Go: training contains no exact carrier family
 - macro law remains NOT_AUTHORIZED
 - SOLID remains NOT_DERIVED
 - LAW-R2 remains NOT_AUTHORIZED
 
-Support / negative custody:
+Harvest and paper readiness:
 
-- glibc memcpy symbol-versioning remains strong separator support but not an exact P20 factorial
-- Protocol Buffers unknown-field binary/JSON behavior remains support-only because it does not map cleanly to the presealed P20 geometry
-
-Harvest and theory:
-
-- LR-20261002-Y is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
-- Boundary-Carrying Obligation Hypothesis is HARVEST_ONLY
-- compatibility may require propagation/boundary semantics, but no new LAW-R1 primitive is admitted
+- LR-20261002-Z is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
+- property-indexed boundary semantics and compositional edge transport remain HARVEST_ONLY
+- paper ledger authorizes the bounded prospective-sign claim but not a unique typed law
 - manuscript drafting remains NOT_AUTHORIZED
-- P20 paper-readiness ledger separates structural transport from prospective sign prediction
+- no additional literature was required to close P21
 
 Hosted implementation:
 
-- Ruby 3.4.11 separator: PASS
-- JavaScript representation experiment: PASS
+- Go 1.25.14 sign probe: PASS
+- JavaScript rich-rival calibration: PASS
 - artifact directly inspected
 - canonical run succeeded on the first attempt
 - new Python files: 0
 
-Global next: 9840, still within LAW-R1.
+Global next: 9915, still within LAW-R1.
