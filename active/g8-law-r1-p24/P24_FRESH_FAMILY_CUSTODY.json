@@ -1,0 +1,75 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "admission": "POST_PRESEAL_FRESH_FAMILIES",
+  "frozen_predictions": {
+    "lane_A_B": {
+      "family_id": "PROTOBUF_GO_UNKNOWN_FIELD_PARSE_MODES",
+      "repository": "protocolbuffers/protobuf-go",
+      "commit": "dcb66ef29d5e2a9420273f86407f493298804ec3",
+      "source_blobs": {
+        "proto/decode.go": "889d8511d2759cf186944bc4362d117ce79b7bde",
+        "internal/impl/decode.go": "1228b5c8c271f2f04ca5f7af543c6cc613eb3928"
+      },
+      "source_semantics": [
+        "UnmarshalOptions exposes DiscardUnknown.",
+        "DiscardUnknown ignores unknown fields.",
+        "Default Unmarshal preserves unknown wire data.",
+        "Unmarshal without Merge resets the destination message before parsing."
+      ],
+      "operations": {
+        "D": "Unmarshal fixed canonical wire bytes with DiscardUnknown=true",
+        "R": "Unmarshal the same fixed canonical wire bytes with DiscardUnknown=false"
+      },
+      "source_derived_orientation": "LEFT_ZERO_IDENTITY",
+      "predicted_compositions": {
+        "D∘R": "D",
+        "R∘D": "R"
+      },
+      "predicted_min_faithful_degree": 2,
+      "property_index_prediction": {
+        "KNOWN_CURRENT_FIELD_OR_CAPABILITY": "PRESERVED_BY_D_AND_R",
+        "UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY": "PRESERVED_BY_R_DROPPED_BY_D",
+        "TYPE_OR_SCHEMA_IDENTITY": "PRESERVED_BY_D_AND_R",
+        "CLIENT_VISIBLE_COMPATIBILITY_BEHAVIOR": "FORWARD_UNKNOWN_ROUNDTRIP_ONLY_UNDER_R"
+      },
+      "strong_property_index_expected": true
+    },
+    "lane_C": {
+      "family_id": "GO_LOGR_ENABLED_AND_BRIDGE",
+      "repository": "go-logr/logr",
+      "commit": "e99cde667024c0da5e20141f88fb7952e5f4e582",
+      "source_blob": "b4428e105b484991fbe5bf43ae29aa61f635e9c2",
+      "source_semantics": "Logger.Enabled returns l.sink != nil && l.sink.Enabled(l.level)",
+      "q": "sink present",
+      "g": "sink local Enabled(level) gate",
+      "y": "Logger.Enabled()",
+      "predicted_truth_table": {
+        "q0_g0": 0,
+        "q0_g1": 0,
+        "q1_g0": 0,
+        "q1_g1": 1
+      },
+      "predicted_boolean_function": "AND",
+      "mechanism_id_feature": false
+    }
+  },
+  "rejected_or_support_candidates": [
+    {
+      "id": "KUBERNETES_CRD_REUSE",
+      "status": "REJECTED_AS_NOT_FRESH_FOR_P24",
+      "reason": "P23 mechanism cannot satisfy held-out fresh transport requirement."
+    },
+    {
+      "id": "GENERIC_FEATURE_ENABLED_SUPPORTED_SEARCH",
+      "status": "REJECTED_NOISE",
+      "reason": "Documentation-level or non-factorial examples lacked exact independent q×g custody."
+    }
+  ],
+  "anti_rationalization": {
+    "orientation_selected_before_hosted_execution": true,
+    "faithful_degree_selected_before_hosted_execution": true,
+    "property_names_predeclared": true,
+    "AND_truth_table_frozen": true,
+    "posthosted_relabel_forbidden": true
+  }
+}
