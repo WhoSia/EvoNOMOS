@@ -1,0 +1,66 @@
+{
+  "harvest_id": "LR-20261002-AA",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P22",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "notion_page": "3edef561-cf92-81b3-bf16-f4d16b36eaf1",
+  "fragments": [
+    {
+      "id": "AA-F01",
+      "name": "Fake Rival Elimination by Theorem",
+      "status": "METHOD_THEOREM"
+    },
+    {
+      "id": "AA-F02",
+      "name": "Repairable Transport Strictly Extends Absorbing Carrier Algebra",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AA-F03",
+      "name": "Property-Indexed Boundary Semantics",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AA-F04",
+      "name": "Cross-Mechanism Path-Transport Family",
+      "status": "BOUNDED_THEORY_FRAGMENT"
+    },
+    {
+      "id": "AA-F05",
+      "name": "Two-Family Decomposition",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AA-F06",
+      "name": "Restricted Higher-Level Bridge Candidate",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AA-F07",
+      "name": "Pure-Math Lane Boundary",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AA-F08",
+      "name": "Future Representation-Invariant Mathematics Program",
+      "status": "HARVEST_ONLY"
+    }
+  ],
+  "mathematical_results": {
+    "boolean_r4_r5_equivalence": "PROVED",
+    "irreversible_boolean_quotient": "PROVED",
+    "repair_breaks_quotient": "PROVED",
+    "noncommutativity": "PROVED_IN_ABSTRACT_MODEL_ONLY",
+    "property_indexed_witness": "PROVED_IN_MODEL"
+  },
+  "empirical_results": {
+    "flink_repairable_transport": "PASS",
+    "absorbing_loss": "FALSIFIED",
+    "property_independent_repair": "FALSIFIED",
+    "property_indexed_repair": "SUPPORTED",
+    "carrier_leave_two_out": "PASS_FIXED_PATTERN_RECOVERY",
+    "law_family_decomposition": "TWO_FAMILY_CURRENTLY_MINIMAL"
+  },
+  "paper_readiness": "PREPARATION_ONLY",
+  "manuscript": "NOT_AUTHORIZED"
+}
