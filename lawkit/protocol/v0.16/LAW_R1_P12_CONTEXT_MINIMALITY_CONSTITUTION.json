@@ -1,0 +1,87 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P12",
+  "title": "Context-Coordinate Identifiability, Minimal Sufficient State Reconstruction, Anti-Rationalization Constraint, Counterfactual Coordinate Deletion, Prospective Context Compression, Cross-Domain Equivalence-Class Transport, Irreducible Interaction Tests & the Boundary between Legitimate X Refinement and Post-Hoc State Expansion",
+  "global_start": 9424,
+  "predecessor": {
+    "stage": "LAW-R1-P11",
+    "terminal_seal": "e58ac42409e5702ae7473233836ff4e7131a9942",
+    "active_lineage": "746f8e8ca06ac8f63551e29d4f0a25a186547b57",
+    "canonical_run": 36956757728,
+    "canonical_artifact": 11205619033,
+    "verdict": "PASS_BOUNDED_TRANSPORT__ALIAS_CANDIDATES_DISSOLVED_UNDER_RECONSTITUTION__R2_NOT_AUTHORIZED"
+  },
+  "frozen_state": {
+    "state": "(X,G,E)",
+    "policy": "Pi(X,G,E)",
+    "policy_form": "INTERACTION_BEARING",
+    "r2": "NOT_AUTHORIZED"
+  },
+  "target": "MINIMAL_IDENTIFIABLE_CONTEXT_REPRESENTATION",
+  "coordinate_admission": {
+    "required": [
+      "OPERATIONAL_DEFINITION_INDEPENDENT_OF_TARGET_RESULT",
+      "PROSPECTIVE_DISCRIMINATOR",
+      "REPRESENTATION_INVARIANT_RECOVERY",
+      "COUNTERFACTUAL_DELETION_FAILURE",
+      "NONREDUNDANCY_UNDER_MERGE_OR_DERIVATION"
+    ],
+    "forbidden": [
+      "POST_HOC_NAMING_ONLY",
+      "RESULT_DEPENDENT_COORDINATE_SPLIT",
+      "UNBOUNDED_CATCH_ALL_CONTEXT",
+      "SEMANTIC_DUPLICATION_ACROSS_COORDINATES"
+    ]
+  },
+  "candidate_X_coordinates": [
+    "COMPATIBILITY_OBLIGATION",
+    "RELEASE_AUTHORITY",
+    "COEXISTENCE_REQUIREMENT",
+    "LIFECYCLE_PHASE",
+    "CONSUMER_MIGRATION_WINDOW",
+    "RUNTIME_OR_TOOLCHAIN_PROVENANCE",
+    "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY"
+  ],
+  "compression_program": {
+    "delete": "Remove one coordinate at a time and test whether admitted action structure changes.",
+    "merge": "Merge coordinates when one is derivable from or observationally inseparable from another over the admitted worlds.",
+    "derive": "Prefer deterministic derivation to primitive promotion.",
+    "quotient": "Collapse representation-only variants before minimality claims.",
+    "minimality": "X_min is an equivalence class of context representations that preserves the admitted action partition with no admissible primitive coordinate removable under the frozen tests."
+  },
+  "prospective_tests": {
+    "leave_one_coordinate_out": "For each admitted primitive coordinate, delete it and recompute action-equivalence classes.",
+    "pairwise_merge": "Merge candidate coordinates and test whether action structure is preserved.",
+    "cross_domain_transport": "Apply the frozen compressed representation to fresh software domains not used to motivate the coordinate grammar.",
+    "irreducible_interaction": "Require at least one fresh action reversal/discrimination that survives under X_min × G and disappears under a strictly smaller context representation.",
+    "anti_rationalization": "Any coordinate introduced after an observed failure is development-only until independently re-precommitted and prospectively discriminated."
+  },
+  "fatal_outcomes": [
+    "X_MIN_IDENTIFIED_BOUNDED",
+    "X_COMPRESSION_SUPPORTED_BUT_NONUNIQUE",
+    "COORDINATE_SET_UNDERIDENTIFIED",
+    "POST_HOC_EXPANSION_REQUIRED",
+    "STATE_SUFFICIENCY_FAILURE_R2_CANDIDATE",
+    "UNRESOLVED"
+  ],
+  "r2_gate": "LAW-R2 remains unauthorized unless fresh prospectively admitted worlds are materially identical in (X_min,G,E) yet require conflicting actions after representation normalization and all admissible coordinate reconstruction attempts.",
+  "novelty_ceiling": [
+    "MINIMAL_SUFFICIENT_STATISTICS",
+    "FEATURE_SELECTION",
+    "CAUSAL_ADJUSTMENT_SETS",
+    "ABLATION_ANALYSIS",
+    "MODEL_SELECTION",
+    "STATE_ABSTRACTION",
+    "BISIMULATION_AND_QUOTIENT_STATE_REPRESENTATIONS"
+  ],
+  "llm_role": "DISCOVERY_AND_LOCAL_RECONSTRUCTION_ONLY",
+  "close_requires": [
+    "FROZEN_CONSTITUTION_BEFORE_WORLD_RESULT_INSPECTION",
+    "FROZEN_ANTI_RATIONALIZATION_PRESEAL",
+    "FRESH_CROSS_DOMAIN_WORLD_CUSTODY",
+    "COORDINATE_DELETION_AND_MERGE_AUDIT",
+    "REPRESENTATION_INVARIANCE",
+    "HOSTED_EVONOMOS_COURT",
+    "ARTIFACT_CUSTODY",
+    "TERMINAL_SEAL"
+  ]
+}
