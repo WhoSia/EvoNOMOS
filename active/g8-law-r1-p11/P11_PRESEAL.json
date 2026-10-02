@@ -1,0 +1,31 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P11",
+  "status": "PRESEALED",
+  "constitution_commit": "37aa56ae87f8231c9ebf0a2c3253a80d279d6070",
+  "opened_from": "72d0ac0b50d1bbf3987dda7a6999243f8b6c29c7",
+  "global_start": 9396,
+  "frozen_before_world_result_inspection": true,
+  "search_frame": {
+    "fresh_ecosystems": true,
+    "no_P10_donor_reuse_as_confirmation": true,
+    "prefer_public_issue_PR_pairs_with_exact_resolution_custody": true,
+    "prospective_holdout_if_unresolved_candidate_available": true
+  },
+  "tests": [
+    "CROSS_ECOSYSTEM_INTERACTION_TRANSPORT",
+    "MATCHED_X_DIFFERENT_G_ACTION_DISCRIMINATION",
+    "MATCHED_G_DIFFERENT_X_ACTION_DISCRIMINATION",
+    "PROSPECTIVE_SAME_STATE_ALIAS_SEARCH",
+    "REPRESENTATION_INVARIANCE",
+    "HIDDEN_COORDINATE_RECONSTRUCTION"
+  ],
+  "same_state_burden": "Normalized equality of all action-relevant X, G, E fields; near-same is not same.",
+  "r2_gate": "Do not reopen LAW-R2 unless a fresh, prospectively admitted, hosted-reproduced same-state conflicting-action witness survives representation normalization and X/G/E refinement attempts.",
+  "forbidden_shortcuts": [
+    "COUNT_NEAR_SAME_AS_SAME",
+    "COUNT_NAMING_DIFFERENCE_AS_COORDINATE",
+    "USE_POST_HOC_FIELD_ADDITION_WITHOUT_PROVENANCE",
+    "PROMOTE_HARNESS_FAILURE_TO_SCIENTIFIC_FAILURE",
+    "OPEN_P12_OR_R2_BEFORE_P11_TERMINAL_RULING"
+  ]
+}
