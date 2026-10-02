@@ -12,7 +12,7 @@
   ],
   "source_blobs": {
     "futures_util_lib": "5cf65309844a97a43aff7239e976f55767df4f4b",
-    "future_mod": "PENDING_RECORDED_FROM_FETCH",
+    "future_mod": "a9153dce15e692547cdd2d02bbcdbf0f85cb2d2d",
     "abortable": "315df04a458d5f534131a056e2da30037eeb75b7",
     "cargo_toml": "e87832614cec843fa0d304a41c7d35d55a90ea36"
   },
