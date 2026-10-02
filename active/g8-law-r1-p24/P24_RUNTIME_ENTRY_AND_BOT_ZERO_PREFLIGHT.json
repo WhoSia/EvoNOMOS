@@ -1,0 +1,25 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "runtime_entry": {
+    "operating_surface": "01. Research OS — Scientific Operating Surface — START HERE",
+    "runtime_bootstrap": "Research OS Runtime Bootstrap — CURRENT — Mandatory Lab / Chat / Work Entry Contract",
+    "bot_rule": "BOT_CONTRIBUTION_ZERO remains binding in CURRENT bootstrap",
+    "user_state_update": "Repository bot contributions were reported removed; all other runtime doctrine unchanged."
+  },
+  "github_preflight": {
+    "repository": "WhoSia/EvoNOMOS",
+    "default_branch": "main",
+    "github_actions_bot_author_reachable_count": 0,
+    "github_actions_bot_committer_reachable_count": 0,
+    "verdict": "PASS_BOT_CONTRIBUTION_ZERO"
+  },
+  "predecessor": {
+    "stage": "LAW-R1-P23",
+    "terminal_seal": "5dc4cc153f446ae3e4706566b92e0235c30307bf",
+    "active_lineage": "38539bdb65d438555c6b5ba5e6107c1f196e3a8a",
+    "canonical_run": 37008014852,
+    "canonical_head": "deac4afa691a019e3a651d905247befcc71cedec",
+    "scientific_verdict": "FAIL_REPAIR_LOSS_ORDER_PREDICTION__MONOID_MAPPING_REJECTED"
+  },
+  "global_start": 10063
+}
