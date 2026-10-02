@@ -1,0 +1,139 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P22",
+  "formal_title": "Carrier-Rule Separating Intervention, Property-Specific Edge Semantics, Multi-Hop Transport Composition, All-Edges-Carry↔Single-Gap Rival Divergence, Fourth-Mechanism Compatibility-Obligation Replication, Surface-Interaction↔Path-Transport Grammar Bridge, Leave-Two-Out Recovery & Macro-Law Family Decomposition Trial",
+  "suffix": "Trial",
+  "verdict": "PASS_BOOLEAN_RIVAL_COLLAPSE__REPAIRABLE_TRANSPORT_WITNESS__FOURTH_EXACT_COMPATIBILITY_FAMILY__TWO_FAMILY_DECOMPOSITION_SUPPORTED__MACRO_LAW_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 37001185413,
+    "head": "35aa0300fbad3c7929b57b6f49e1fbf78e3dba0d",
+    "job": 110819011535,
+    "artifact": 11223962349,
+    "digest": "sha256:18cba3f38ccf83ecb1dc7cadfcdbc695d42cde38fdac94016e275d0e83a5553f"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact_direct_inspection": "PASS",
+    "rust_version": "1.99.0",
+    "java_version": "21.0.12+1",
+    "mathematical_checker": "PASS",
+    "flink_repair_reproduction": "PASS",
+    "law_family_trial": "PASS",
+    "first_attempt": "SUCCESS"
+  },
+  "mathematical_authority": {
+    "theorem0_boolean_rival_equivalence": {
+      "status": "PROVED",
+      "statement": "Under Boolean carrier semantics, ALL_EDGES_CARRY and NO_CARRIER_GAP are logically equivalent classifiers.",
+      "consequence": "P21 R4/R5 was a representational identity, not an empirical rival tie."
+    },
+    "irreversible_boolean_quotient": "PROVED_IN_ABSTRACT_MODEL",
+    "repair_breaks_boolean_quotient": "PROVED_IN_ABSTRACT_MODEL",
+    "noncommutative_drop_repair_witness": "PROVED_IN_ABSTRACT_MODEL_ONLY",
+    "property_indexed_countermodel": "PROVED_IN_ABSTRACT_MODEL"
+  },
+  "empirical_authority": {
+    "fourth_exact_family": {
+      "id": "FLINK_AVROSERIALIZER_BACKWARD_COMPAT_RECONSTITUTION",
+      "source_commit": "479ebd59872160cb2060605b08dcd0d86c3cb78e",
+      "compatibility_obligation": "EXPLICIT",
+      "observed": {
+        "DIRECT_CURRENT": "+",
+        "OLD_RAW_MISMATCH": "-",
+        "OLD_WITH_EXPLICIT_REPAIR": "+",
+        "NON_TARGET_UID_MISMATCH_WITH_TOLERANT_READER": "-"
+      }
+    },
+    "model_competition": {
+      "M0_ABSORBING_LOSS": "FAIL",
+      "M1_REPAIRABLE_TRANSPORT": "FIT",
+      "M4_PROPERTY_INDEPENDENT_REPAIR": "FAIL",
+      "M5_PROPERTY_INDEXED_REPAIR": "FIT"
+    },
+    "rulings": {
+      "BOOLEAN_ABSORBING_QUOTIENT": "FALSIFIED_ON_FLINK_REPAIR",
+      "REPAIRABLE_TRANSPORT": "SUPPORTED_ON_FLINK",
+      "PROPERTY_INDEPENDENT_REPAIR": "FALSIFIED_BY_NON_TARGET_CONTROL",
+      "PROPERTY_INDEXED_REPAIR": "SUPPORTED",
+      "ORDER_SENSITIVITY": "UNDERIDENTIFIED_NO_REPAIR_THEN_GAP_SOFTWARE_CELL"
+    }
+  },
+  "leave_two_out": {
+    "families": [
+      "RUBY",
+      "GO",
+      "FLINK"
+    ],
+    "result": "PASS_FIXED_PATTERN_RECOVERY",
+    "splits": 3,
+    "all_splits_pass": true
+  },
+  "law_family_structure": {
+    "F0_SINGLE_TRANSPORT_LAW": "UNDERIDENTIFIED_RESTRICTED_ABSTRACTION_MAP_MISSING",
+    "F1_TWO_FAMILY_DECOMPOSITION": "SUPPORTED_CURRENTLY_MINIMAL",
+    "F2_MECHANISM_LOCAL_ONLY": "REJECTED_BY_CROSS_MECHANISM_CARRIER_REPLICATION",
+    "current_families": {
+      "SURFACE_SELECTION": [
+        "RUST"
+      ],
+      "PATH_CARRIER_TRANSPORT": [
+        "RUBY",
+        "GO",
+        "FLINK"
+      ]
+    },
+    "uniqueness": "NOT_AUTHORIZED"
+  },
+  "pure_math_vs_empirical_boundary": {
+    "noncommutativity": "PROVED_IN_MODEL_NOT_YET_EMPIRICALLY_REPLICATED",
+    "category_functoriality": "VALID_FOR_THE_ABSTRACT_COMPOSITIONAL_MODEL_NOT_EMPIRICAL_UNIVERSALITY",
+    "unrestricted_category_encoding": "REJECTED_AS_NONFALSIFYING_IF_USED_WITH_ARBITRARY_MECHANISM_LOCAL_MAPS"
+  },
+  "anti_rationalization": {
+    "posthoc_repair_definition": false,
+    "posthoc_property_reindexing": false,
+    "forced_single_grammar": false,
+    "new_X_after_outcome": 0,
+    "new_G_after_outcome": 0
+  },
+  "harvest": {
+    "id": "LR-20261002-AA",
+    "notion_page": "3edef561-cf92-81b3-bf16-f4d16b36eaf1",
+    "repo_manifest": "2105f2b97ef16d6414e3d406d3a117a9bb5168c2",
+    "authority": "NONE"
+  },
+  "paper_readiness": {
+    "ledger": "1caf7a3b0c31d42222cad66cdeb308d5183045fd",
+    "manuscript": "NOT_AUTHORIZED",
+    "additional_literature_required_to_close_P22": false
+  },
+  "macro_law": {
+    "result": "NOT_AUTHORIZED",
+    "blockers": [
+      "SINGLE_TRANSPORT_LAW_RESTRICTED_ABSTRACTION_MAP_MISSING",
+      "REPAIR_VS_GAP_ORDER_NOT_EMPIRICALLY_CLOSED",
+      "TWO_FAMILY_DECOMPOSITION_SUPPORTED_BUT_HIGHER_LEVEL_BRIDGE_UNDERIDENTIFIED",
+      "SOLID_SPECIAL_CASE_NOT_DERIVED"
+    ]
+  },
+  "solid_special_case": "NOT_DERIVED",
+  "law_r2": "NOT_AUTHORIZED",
+  "provenance": {
+    "constitution": "8af9a1cc7ed36374d5f1d758d1448b19c56fa3bf",
+    "preseal": "2c800adb87bbc75585b74ada5e1d0d9717a65619",
+    "math_note": "a0f7f5b49ff1ef35b8eb63bbc4c2d90592756e18",
+    "math_checker_initial": "d7da36e550dbc6cf08db66e145cdb4af1ee7f2c1",
+    "math_checker_artifact_update": "ce3216ce49ca0d01f8005cd72ca5b02277262aed",
+    "flink_custody": "a32015f61f3c478cbd0c0cf146baec5440e06127",
+    "java_reproduction": "3f1fe687e526ea1ad678fee5d625abbbffc7d83a",
+    "trial_evaluator": "d2c03ed7a77c38269bebb7c3eecbb10711ad857f",
+    "workflow": "35aa0300fbad3c7929b57b6f49e1fbf78e3dba0d",
+    "harvest_manifest": "2105f2b97ef16d6414e3d406d3a117a9bb5168c2",
+    "paper_ledger": "1caf7a3b0c31d42222cad66cdeb308d5183045fd"
+  },
+  "closure": {
+    "ravel": "9915–9961",
+    "decision": "9962–9987",
+    "global_next": 9988
+  }
+}
