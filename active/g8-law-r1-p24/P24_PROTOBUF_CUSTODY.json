@@ -1,0 +1,63 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "admission": "POST_PRESEAL_FRESH_LANE_A_B",
+  "candidate": {
+    "id": "PROTOBUF_GO_UNKNOWN_FIELD_TRANSPORT",
+    "repository": "protocolbuffers/protobuf-go",
+    "commit": "dcb66ef29d5e2a9420273f86407f493298804ec3",
+    "domain": "PROTOBUF_BINARY_DECODE_UNKNOWN_FIELD_COMPATIBILITY",
+    "source_paths": [
+      "proto/decode.go",
+      "reflect/protoreflect/value.go",
+      "types/dynamicpb/dynamic.go",
+      "proto/merge.go"
+    ],
+    "source_blobs": {
+      "decode": "889d8511d2759cf186944bc4362d117ce79b7bde",
+      "protoreflect_value": "a4b78acef68806e95e07510f0d18b880fbced6bc",
+      "dynamicpb": "1ba1dfa5ad8297520655d10ffa5e931504187f1c",
+      "merge": "ef55b97dded7c33e2e0131f76f249b103f956ab6"
+    }
+  },
+  "source_facts": [
+    "Binary decode looks up a field descriptor by field number.",
+    "For unknown fields, bytes are appended to message unknown storage iff DiscardUnknown is false.",
+    "protoreflect.Message.SetUnknown accepts empty RawFields to clear unknown fields.",
+    "dynamicpb exposes mutable SetUnknown/GetUnknown storage.",
+    "Known fields and unknown raw fields occupy distinct message channels."
+  ],
+  "prospective_mapping_before_hosted_execution": {
+    "state_model": "IMMUTABLE_RAW_WIRE + MUTABLE_DECODED_MESSAGE",
+    "R_REDECODE_PRESERVE": "Default proto.Unmarshal from fixed raw wire restores known field and unknown raw bytes.",
+    "D_DROP_UNKNOWN": "ProtoReflect.SetUnknown(nil) clears unknown raw bytes without changing known field.",
+    "source_orientation_rule": "Both R and D overwrite the same UNKNOWN_OR_FUTURE_FIELD availability coordinate to distinct fixed values while raw wire is held fixed.",
+    "predicted_algebra": "LEFT_ZERO_IDENTITY",
+    "predicted_min_faithful_degree": 2,
+    "predicted_compositions": {
+      "D∘R": "D",
+      "R∘D": "R"
+    }
+  },
+  "property_indexed_prediction": {
+    "shared_boundary": "PROTOBUF_BINARY_UNMARSHAL",
+    "KNOWN_CURRENT_FIELD_OR_CAPABILITY": "PRESERVED under default and DiscardUnknown decode",
+    "UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY": "PRESERVED when DiscardUnknown=false; DROPPED when true",
+    "TYPE_OR_SCHEMA_IDENTITY": "PRESERVED",
+    "strong_replication_prediction": "PASS"
+  },
+  "hosted_required": [
+    "construct dynamic proto3 message with known field #1",
+    "wire payload contains known #1 and unknown #2",
+    "default unmarshal preserves #1 and stores #2 as unknown",
+    "DiscardUnknown unmarshal preserves #1 but drops #2",
+    "R and D idempotent",
+    "D∘R=D and R∘D=R",
+    "orientation LEFT_ZERO matches pre-hosted classification"
+  ],
+  "anti_rationalization": {
+    "operation_relabel_after_execution": false,
+    "property_relabel_after_execution": false,
+    "orientation_edit_after_execution": false,
+    "faithful_degree_edit_after_execution": false
+  }
+}
