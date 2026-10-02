@@ -1,0 +1,119 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P17",
+  "formal_title": "Primitive-Interaction Hypergraph Reconstruction, Pairwise↔Higher-Order Policy Synergy, Context×Geometry Cross-Term Identifiability, Sparse Interaction Decomposition, Prospective Combination Knockout, Cross-Domain Composition Transport & Reproducible Interaction-Law Reconstruction",
+  "suffix_doctrine": {
+    "suffix": "Reconstruction",
+    "court_suffix": false,
+    "reason": "Primary function is reconstruction and stress of interaction structure, not a standalone rival-adjudication stage."
+  },
+  "global_start": 9615,
+  "predecessor": {
+    "stage": "LAW-R1-P16",
+    "terminal_seal": "6989ded6c4bd6bcfee55a1a07fb8cdd83f809395",
+    "active_lineage": "bbf1183eb2c885dc094e5e8652dc8c6f4ecdf05e",
+    "canonical_run": 36966774833,
+    "artifact": 11210367139,
+    "verdict": "PASS_REPRODUCIBLE_MINIMAL_CONTEXT_BASIS__FOUR_PRIMITIVES_TWO_DOMAIN_REPLICATED__DELETION_AND_QUOTIENT_EXHAUSTION_SURVIVE__R2_NOT_AUTHORIZED"
+  },
+  "frozen_primitives": [
+    "COMPATIBILITY_OBLIGATION",
+    "COEXISTENCE_REQUIREMENT",
+    "RELEASE_AUTHORITY",
+    "LIFECYCLE_PHASE"
+  ],
+  "primary_question": "Does the four-primitive basis support a sparse, cross-domain, action-relevant interaction law whose genuine higher-order terms survive prospective combination knockouts and cannot be reduced to lower-order context effects or geometry/evidence confounds?",
+  "interaction_grammar": {
+    "unit": "A matched family with fixed material G and E and prospectively defined primitive combinations.",
+    "main_effect": "Action changes when one primitive changes with all other primitives, G, and E fixed.",
+    "pairwise_interaction": "The joint action effect of two primitives cannot be reconstructed from their separately identified single-coordinate effects under the same matched family.",
+    "three_way_hyperedge": "A three-coordinate joint effect survives every one-coordinate knockout and every pairwise reconstruction under the same matched family.",
+    "four_way_residue": "A four-coordinate joint effect survives all single, pairwise, and triple reconstructions under the same matched family.",
+    "nonidentifiable": "If factorial support is incomplete or G/E/context changes with the combination, classify the edge as bounded/support-only rather than infer a synergy term."
+  },
+  "sparse_decomposition": {
+    "authorized": true,
+    "method": "Boolean Möbius / inclusion-exclusion style decomposition over prospectively matched primitive subsets, interpreted only for action classes within one operational family.",
+    "zero_assumption": "Absent support does not imply zero interaction.",
+    "sparsity_claim": "May be claimed only if supported subsets are complete enough to eliminate all lower-order reconstructions and at least one cross-domain transport witness exists."
+  },
+  "prospective_combination_knockout": {
+    "order": [
+      "FULL_COMBINATION",
+      "ONE_COORDINATE_KNOCKOUTS",
+      "PAIRWISE_RECONSTRUCTIONS",
+      "TRIPLE_RECONSTRUCTIONS",
+      "CROSS_DOMAIN_TRANSPORT"
+    ],
+    "rule": "Interaction authority is earned only by outcome-blindly frozen combination families; no new subset may be added after observing the target action."
+  },
+  "context_geometry_cross_terms": {
+    "target": "Test whether primitive interactions change only because G or E changed.",
+    "required_control": "At least one same-X / varied-G or same-X / varied-E control whenever a context×geometry interaction is claimed.",
+    "guard": "Do not call a context interaction primitive if geometry or evidence alone explains the action change."
+  },
+  "language_plan": {
+    "new_python_files": 0,
+    "rust": "Primary interaction verifier and Möbius decomposition.",
+    "go": "Cross-domain transport and matched-family normalizer.",
+    "cpp": "Sparse subset enumeration and knockout completeness checker.",
+    "ruby": "Harvest lineage, source-to-fragment provenance, and cross-lab backflow manifest.",
+    "javascript": "Final reconstruction aggregator and hosted result emitter.",
+    "legacy_python": "Existing P8-P16 code remains untouched; no language rewrite for aesthetics."
+  },
+  "harvest_parallel_lineage": {
+    "authority": "NON_SOVEREIGN",
+    "principle": "PAPER_TO_FRAGMENT_NOT_PAPER_TO_DOCTRINE",
+    "purpose": [
+      "IDEA_VALIDATION",
+      "IDEA_DEEPENING",
+      "NOVELTY_KILL",
+      "METHOD_DONOR",
+      "CROSS_LAB_BACKFLOW",
+      "REUSABLE_RESIDUE_IF_P17_IS_REJECTED"
+    ],
+    "requirements": [
+      "SOURCE_BOUND_CLAIMS",
+      "DIRECT_LINK_TO_DRIVE_OR_EXTERNAL_SOURCE",
+      "SEPARATE_FROM_LAW_R1_SCIENTIFIC_AUTHORITY",
+      "REUSABLE_TAGS_FOR_OTHER_LABS"
+    ]
+  },
+  "paper_scouting": {
+    "mode": "PAPER_READY_SCIENCE_NOT_PAPER_DRIVEN_SCIENCE",
+    "candidate_story_families": [
+      "Operational primitive context basis and replicated software-design interaction laws",
+      "Prospective anti-rationalization methodology for mining repository interventions",
+      "Cross-domain software policy interaction hypergraphs",
+      "Research OS as executable provenance and reusable fragment ecology"
+    ],
+    "rule": "Candidate paper stories may be tracked in Harvest but may not modify interaction thresholds."
+  },
+  "anti_rationalization": {
+    "new_primitive_after_outcomes": "FORBIDDEN",
+    "new_interaction_subset_after_outcomes": "FORBIDDEN",
+    "interaction_relabeling_after_failed_knockout": "FORBIDDEN",
+    "missing_factorial_cells_as_zero": "FORBIDDEN",
+    "paper_story_override": "FORBIDDEN"
+  },
+  "terminal_verdict_family": [
+    "PASS_REPRODUCIBLE_SPARSE_INTERACTION_LAW__PAIRWISE_STRUCTURE_TRANSPORTS__NO_HIGHER_ORDER_TERM_REQUIRED",
+    "PASS_REPRODUCIBLE_HIGHER_ORDER_INTERACTION_LAW__GENUINE_HYPEREDGE_TRANSPORTS_ACROSS_DOMAINS",
+    "PASS_PARTIAL_INTERACTION_GRAPH__PAIRWISE_EDGES_IDENTIFIED__HIGHER_ORDER_TERMS_UNDERIDENTIFIED",
+    "HOLD_FACTORIAL_SUPPORT_INSUFFICIENT__INTERACTION_LAW_NOT_IDENTIFIED",
+    "FAIL_INTERACTION_RECONSTRUCTION__G_OR_E_CONFOUND_EXPLAINS_APPARENT_SYNERGY"
+  ],
+  "law_r2_gate": "LAW-R2 remains unauthorized unless a fresh normalized same-(X,G,E) conflicting action survives all interaction reconstruction and representation controls.",
+  "close_requires": [
+    "CONSTITUTION_AND_PRESEAL_BEFORE_FRESH_INTERACTION_RESULTS",
+    "HARVEST_PARALLEL_LINEAGE_MATERIALIZED",
+    "MULTILINGUAL_NEW_IMPLEMENTATION_WITH_ZERO_NEW_PYTHON",
+    "AT_LEAST_ONE_EXACT_COMBINATION_FAMILY_ATTEMPT",
+    "COMBINATION_KNOCKOUT_REPLAY",
+    "CONTEXT_X_GEOMETRY_CONFOUND_CONTROL",
+    "CROSS_DOMAIN_TRANSPORT_ATTEMPT",
+    "HOSTED_RECONSTRUCTION_RUN",
+    "ARTIFACT_DIRECT_INSPECTION",
+    "RESEARCH_OS_RUN_DECISION_AND_HARVEST_READBACK",
+    "TERMINAL_SEAL"
+  ]
+}
