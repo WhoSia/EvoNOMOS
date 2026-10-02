@@ -1,0 +1,100 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P8",
+  "global_start": 9233,
+  "title": "Multi-Motif Discovery Ecology, Independent Generator Competition, Moderator Separation, Negative-World Search & Cross-Motif Law-Composition Court",
+  "predecessor": {
+    "p7": "Decision 9219–9232",
+    "kernel": "L=(X,A,Y,M,F,Pi,U)",
+    "discovery_rule": "WORLD_FIRST__NAME_LATER",
+    "llm_role": "LOCAL_PROBE_ONLY"
+  },
+  "repository_boundary": "ALL_EXECUTION_IN_WhoSia/EvoNOMOS",
+  "intake_firewall": {
+    "forbidden": [
+      "SOLID labels as selectors",
+      "desired new-principle names",
+      "LLM-generated laws as evidence",
+      "choosing worlds because they fit one motif"
+    ],
+    "required": [
+      "raw problem statement",
+      "before/after structural path",
+      "failure or burden",
+      "explicit non-goals/retained exceptions",
+      "verification evidence"
+    ]
+  },
+  "motif_slots": {
+    "A": {
+      "status": "UNNAMED_DISCOVERY_SLOT",
+      "seed_worlds": [
+        [
+          "kyverno/kyverno",
+          17769,
+          "c51c8f6fd10824a2560819553b78ac0d4f80a652"
+        ],
+        [
+          "Comfy-Org/ComfyUI_frontend",
+          18700,
+          "888e079ea9999bbde7aadb0e58eb9c848c84590d"
+        ],
+        [
+          "lgriffin/TER",
+          48,
+          "983f0aa2af5cd188f342d5a6daf08cb46f470806"
+        ]
+      ],
+      "prior_status": "P7 absorbed generic family; P8 may use it only as one competitor, not as new novelty"
+    },
+    "B": {
+      "status": "UNNAMED_DISCOVERY_SLOT",
+      "seed_worlds": [
+        [
+          "G9MaGiC/park",
+          34,
+          "4b2f73846372dd4f3eeeec6dd22f42e802333e69"
+        ],
+        [
+          "Jcrad006/pharmacy1os",
+          38,
+          "cd5a9ecfaf687815792c3d782307a9acdb11a2e9"
+        ]
+      ],
+      "raw_shape": "some state changes are invalid unless a required companion fact/artifact becomes durable with them; other adjacent follow-up actions are intentionally outside the closure boundary"
+    },
+    "C": {
+      "status": "UNNAMED_DISCOVERY_SLOT",
+      "seed_worlds": [
+        [
+          "linuxarena/control-tower",
+          2006,
+          "cebca3e0732f9ad84b49f821b544e366f1d18f9a"
+        ]
+      ],
+      "raw_shape": "shared authority or credentials can widen failure/security blast radius; some resources are scoped to an instance/fleet while genuinely shared resources remain shared"
+    }
+  },
+  "negative_world_requirements": {
+    "A": "find a case where duplicated/parallel representations are intentionally distinct or mechanically derived so convergence would be wrong",
+    "B": "find a case where adjacent operations are intentionally outside one atomic closure because they do not share the invariant or atomic substrate is unavailable",
+    "C": "find a case where sharing authority/resources is intentionally retained because the semantics or operational domain is genuinely shared"
+  },
+  "competition_questions": [
+    "When does convergence of authority conflict with partitioning of exposure?",
+    "When does joint atomic closure conflict with failure-domain isolation?",
+    "Can one system centralize semantic truth while partitioning execution authority?",
+    "Does substrate availability (transactional vs external) change intervention type without changing the underlying invariant?"
+  ],
+  "compression_rule": "No generator name/rule is promoted until positive and negative worlds jointly identify moderators.",
+  "holdout_rule": "Each surviving motif should receive a fresh out-of-stream challenge where practical; at minimum one fresh holdout must discriminate between competing motifs.",
+  "success_states": [
+    "PROMOTE",
+    "ABSORB",
+    "NARROW",
+    "SPLIT",
+    "REJECT",
+    "UNRESOLVED"
+  ],
+  "no_scalar_winner": true,
+  "novelty_withheld": true
+}
