@@ -4,58 +4,53 @@ Canonical repository for executable research on context-conditional software des
 
 ## Current scientific head
 
-**EvoNOMOS Generation VIII LAW-R1-P7 — Principle-Generator Discovery beyond SOLID, Cross-World Intervention Motif Mining, Conditional Rule Compression, Out-of-Stream Predictive Challenge & Generalized Kernel Falsification Court**
+**EvoNOMOS Generation VIII LAW-R1-P8 — Multi-Motif Discovery Ecology, Independent Generator Competition, Moderator Separation, Negative-World Search & Cross-Motif Law-Composition Court**
 
 Current status: **CLOSED / PASS**.
 
 ### Canonical authority
 
-- run: `36681684652`
-- execution head: `d09b0900ea3056fc7c39e5dcaf4ca22a81ab88c6`
-- artifact: `11082216240`
-- digest: `sha256:bdcf69fb7b122d1feba67f077ec3a059ba3cb70d36ab83f03c0f26e89999ed15`
+- run: `36948635539`
+- execution head: `2234752a4b18ca2409d144daf672c95c33c1e3c0`
+- artifact: `11203186981`
+- digest: `sha256:22be98c877d03b2e8043cb2e6ba51b06c9dad4a62731516d79eeefa8bbfcdb4e`
 
-## What P7 changed
+## What P8 changed
 
-P7 stopped starting from named design principles. It entered real maintenance worlds first, extracted a recurring structural motif, froze a fresh prediction, then opened the holdout.
+P8 moved from one discovered motif to a multi-motif ecology. Candidate motifs were typed by the structural coordinate they alter before being treated as rivals or composed.
 
-Discovery worlds:
+The Court separates three coordinates:
 
-- Kyverno #17769
-- ComfyUI_frontend #18700
-- TER #48
+- **S — semantic-authority cardinality**
+- **P — operational-authority scope**
+- **F — invariant/failure closure**
 
-Fresh holdout:
+This dissolves a false one-dimensional opposition such as “centralize versus partition.” A system can centralize semantic truth, partition operational authority, and choose an invariant-closure mechanism independently according to substrate.
 
-- CrewAI #7304 → merged repair #7796
+### Component generator status
 
-The first motif was a semantic-authority convergence pattern: independently editable paths that encode the same semantic decision can drift or require reconciliation.
+- `SEMANTIC_AUTHORITY_CONVERGENCE` → `ABSORB_EXISTING_FAMILY__CONDITIONAL_SCOPE_REFINED`
+- `INVARIANT_CLOSURE_BY_SUBSTRATE` → `ABSORB_EXISTING_FAMILY__SUBSTRATE_MODERATOR_EXPLICIT`
+- `OPERATIONAL_AUTHORITY_SCOPE_PARTITIONING` → `ABSORB_EXISTING_FAMILY__FAILURE_DOMAIN_MODERATOR_EXPLICIT`
 
-The CrewAI holdout supported that prediction, but prior-art contact killed any claim that this is a new general principle.
+Generic novelty for all three component families is retired.
 
-### Absorbed conditional generator
+### Composition result
 
-`SEMANTIC_AUTHORITY_CONVERGENCE`
+`THREE_AXIS_AUTHORITY_GEOMETRY`
 
-Use only when multiple paths truly share one semantic authority and duplicated edit authority is implicated in drift/reconciliation. Do not collapse distinct semantics, intentional independent evolution, or mechanically derived/read-only representations.
+Status:
 
-Status: `ABSORB_EXISTING_FAMILY__CONDITIONAL_SCOPE_REFINED`.
+`SUPPORTED_AS_BOUNDED_COMPOSITION_REPRESENTATION__NOT_A_NEW_UNIVERSAL_PRINCIPLE`
+
+Composition novelty remains **WITHHELD**.
 
 ## Generalized kernel
 
 `L = (X, A, Y, M, F, Π, U)`
 
-P7 does not falsify the kernel. Instead it strengthens the authority-update interpretation: discovery success may mean rediscovery, absorption, narrowing, splitting, rejection or novelty-kill. Invention is not required.
+P8 does not falsify the kernel. It adds a new discipline: **motif-axis typing precedes generator competition or composition**.
 
-## Repository boundary repair
+LLM/provider execution remains a local probe. World Contact remains primary.
 
-`WhoSia/EPISTEME/main` has been restored to its pre-contamination head `e2fa965f726baab1b0641961680645508dfe9084`.
-
-The P5 provider host is now owned by EvoNOMOS under:
-
-- `tools/law-r1-p5-provider-host.py`
-- `.github/workflows/g8-law-r1-p5-provider-host.yml`
-
-Historical EPISTEME-hosted P5 runs remain provenance only; their cross-repository placement is classified as a repository-boundary mistake and is not a precedent.
-
-LLM/provider execution remains a local measurement instrument, not the primary scientific object.
+Global next: **9289**.
