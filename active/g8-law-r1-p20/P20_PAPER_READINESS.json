@@ -1,0 +1,58 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P20",
+  "status":"PAPER_READINESS_LEDGER_NOT_MANUSCRIPT",
+  "authorized_claims":[
+    {
+      "claim":"P19 binary generic conjunction is prospectively falsified on the held-out Ruby family under the P20 frozen trigger projection.",
+      "grade":"HOSTED_EXACT"
+    },
+    {
+      "claim":"Ruby keyword forwarding is a second exact non-migration interaction family with source/spec and executable support.",
+      "grade":"HOSTED_EXACT"
+    },
+    {
+      "claim":"The pre-frozen typed geometry partition can represent the Ruby direct-vs-wrapper boundary without adding X/G coordinates.",
+      "grade":"STRUCTURAL_TRANSPORT"
+    },
+    {
+      "claim":"The frozen global compatibility maxim fails on the Ruby wrapper-mediated boundary.",
+      "grade":"PROSPECTIVE_FALSIFICATION"
+    },
+    {
+      "claim":"The policy-surface equivalence class is narrowed: the binary conjunction member is removed.",
+      "grade":"BOUNDED_THEORY_CONSEQUENCE"
+    }
+  ],
+  "forbidden_or_unready_claims":[
+    {
+      "claim":"The current typed interaction syntax is the unique true macro law.",
+      "reason":"Exact wrapper-boundary action sign was not precommitted and richer low-complexity rivals remain open."
+    },
+    {
+      "claim":"SOLID has been derived as a special case.",
+      "reason":"No SOLID mapping has passed a prospective fresh-family test."
+    },
+    {
+      "claim":"Boundary-carrying obligation is a new LAW-R1 primitive.",
+      "reason":"It is Harvest-only and P20 forbids post-outcome coordinate expansion."
+    },
+    {
+      "claim":"A general macro law of software design has been identified.",
+      "reason":"Two exact non-migration families and one eliminated rival are insufficient for macro-law uniqueness."
+    }
+  ],
+  "figure_candidates":[
+    "P19 Rust tie vs P20 Ruby separator: same rival class, held-out divergence.",
+    "Ruby propagation path: marked direct edge preserves metadata; unmarked intermediate boundary drops it.",
+    "Claim lattice from primitive basis to interaction to representation separation."
+  ],
+  "missing_evidence":[
+    "Third mechanistically distinct exact family with prospectively predicted action sign.",
+    "Richer low-complexity rival family that can encode multi-state geometry without typed semantics.",
+    "Replication of path/boundary-carrying obligation outside Ruby.",
+    "A prospectively frozen named design principle that survives rather than fails.",
+    "Leave-one-family-out quantitative transport over more than two exact families."
+  ],
+  "additional_literature_required_to_close_P20":false,
+  "manuscript":"NOT_AUTHORIZED"
+}
