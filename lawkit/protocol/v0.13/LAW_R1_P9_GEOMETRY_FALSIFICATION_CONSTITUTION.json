@@ -1,0 +1,65 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P9",
+  "global_start": 9289,
+  "predecessor": "P8 Decision 9275–9288",
+  "representation": {
+    "status": "UNDER_FALSIFICATION",
+    "axes": [
+      "SEMANTIC_AUTHORITY_CARDINALITY",
+      "OPERATIONAL_SCOPE",
+      "FAILURE_CLOSURE"
+    ]
+  },
+  "intake": "FRESH_WORLD_FIRST__NO_AXIS_LABELS_AS_SELECTORS",
+  "development_donors": [
+    [
+      "farming-labs/farm.js#1625",
+      "7ec4502d0261967b0ee1e4cab81f03b16e41a1e4"
+    ],
+    [
+      "linuxarena/control-tower#1924",
+      "67dcf28e64f7abd4aee06d4cd16f08d1bde1bbdc"
+    ],
+    [
+      "openclaw/openclaw#163087",
+      "0976a9abff56c55785cc8926311efd796652ac24"
+    ],
+    [
+      "vanyastaff/nebula#1136",
+      "7fabc0c1c3e4740f512bd7995b1cdd6d55de4622"
+    ]
+  ],
+  "attacks": [
+    "MISSING_STATE_VARIABLE",
+    "SAME_REPRESENTATION_DIFFERENT_ACTION",
+    "AXIS_NONSEPARABILITY",
+    "HIDDEN_MODERATOR_REVERSAL"
+  ],
+  "candidate_moderators": [
+    "release_coupling",
+    "version_coexistence_horizon",
+    "mixed_version_overlap",
+    "event_order_contract"
+  ],
+  "prior_art_ceiling": [
+    "API_EVOLUTION",
+    "COMPONENT_COMPATIBILITY",
+    "MICROSERVICE_API_EVOLUTION",
+    "VERSION_SKEW",
+    "TEMPORAL_RULES"
+  ],
+  "success_states": [
+    "THREE_AXIS_SURVIVES_BOUNDED_FALSIFICATION",
+    "THREE_AXIS_INSUFFICIENT__HIDDEN_MODERATOR_ONLY",
+    "THREE_AXIS_INSUFFICIENT__AXIS_COUPLING",
+    "THREE_AXIS_INSUFFICIENT__ONTOLOGY_EXPANSION_REQUIRED",
+    "UNRESOLVED"
+  ],
+  "llm_role": "LOCAL_PROBE_ONLY",
+  "no_new_axis_without_fresh_world_necessity": true,
+  "close_requires": [
+    "FRESH_HOLDOUT_PRECOMMIT",
+    "HOSTED_EVONOMOS_EXECUTION",
+    "ARTIFACT_CUSTODY"
+  ]
+}
