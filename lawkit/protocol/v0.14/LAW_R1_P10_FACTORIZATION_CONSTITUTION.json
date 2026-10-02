@@ -1,0 +1,56 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P10",
+  "global_start": 9340,
+  "predecessor": "P9 Decision 9326–9339",
+  "current_state": {
+    "geometry": "G=(S,P,F)",
+    "context": "X",
+    "evidence": "E",
+    "policy": "Pi(X,G,E)"
+  },
+  "target": "CONTEXT_GEOMETRY_FACTORIZATION",
+  "intake": "FRESH_WORLD_FIRST__NO_DESIRED_THEORY_LABELS_AS_SELECTORS",
+  "development_donors": {
+    "matched_geometry": [
+      [
+        "sarthax/FFXI-Mission-Toolkit#269",
+        "MIGRATE_IMPL__PRESERVE_COMPATIBILITY_SHIM"
+      ],
+      [
+        "chian/OpenChia#10",
+        "MIGRATE_NAMESPACE__HARD_BREAK_NO_SHIM"
+      ]
+    ],
+    "note": "These donors motivate the test only; they are not prospective evidence."
+  },
+  "prospective_tests": {
+    "matched_geometry_reversal": "Hold structural migration geometry approximately fixed; vary consumer/coexistence context; predict preserve-vs-retire compatibility action.",
+    "matched_context_discrimination": "Hold deployment/maintenance context approximately fixed; vary structural coordinate; predict different intervention family.",
+    "interaction_nonseparability": "Test whether action requires an X×G interaction term rather than independent lookup of X and G.",
+    "transport": "Test the frozen rule on a fresh project/topology.",
+    "missing_coordinate_reopen": "Only reopen if materially identical (X,G,E) still maps to distinct actions."
+  },
+  "fatal_outcomes": [
+    "FACTORIZATION_TRANSPORTED",
+    "INTERACTION_REQUIRED_BUT_STATE_SUFFICIENT",
+    "STATE_REPRESENTATION_INSUFFICIENT__R2_CANDIDATE",
+    "UNRESOLVED"
+  ],
+  "r2_gate": "R2 only if same (X,G,E) aliases distinct actions or if nonseparability cannot be represented inside Pi without changing LAW-R1 state ontology.",
+  "prior_art_ceiling": [
+    "SOFTWARE_PRODUCT_LINES",
+    "CONFIGURABLE_SYSTEMS",
+    "CONTEXT_AWARE_ADAPTATION",
+    "EFFECT_MODIFICATION",
+    "INTERACTION_EFFECTS",
+    "CONFIGURATION_PERFORMANCE_MODELS",
+    "ARCHITECTURE_DECISION_MODELS"
+  ],
+  "llm_role": "LOCAL_PROBE_ONLY",
+  "no_scalar_winner": true,
+  "close_requires": [
+    "FRESH_PRECOMMIT",
+    "HOSTED_EVONOMOS_EXECUTION",
+    "ARTIFACT_CUSTODY"
+  ]
+}
