@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use std::fs;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 enum S { Present, Lost }
@@ -29,7 +30,6 @@ fn enumerate_binary(n: usize, prefix: &mut Vec<bool>, out: &mut Vec<Vec<bool>>) 
 }
 
 fn main() {
-    // Proposition 0 finite exhaustive sanity check for path lengths 0..=10.
     for n in 0..=10 {
         let mut rows=Vec::new();
         enumerate_binary(n,&mut Vec::new(),&mut rows);
@@ -38,7 +38,6 @@ fn main() {
         }
     }
 
-    // Proposition 2: irreversible {Carry,Drop} quotient depends only on presence of Drop.
     for n in 0..=8 {
         let mut rows=Vec::new();
         enumerate_binary(n,&mut Vec::new(),&mut rows);
@@ -49,23 +48,37 @@ fn main() {
         }
     }
 
-    // Proposition 3: repair breaks the quotient and composition is noncommutative.
     let gap_then_repair = run(&[Edge::Drop,Edge::Repair], S::Present);
     let repair_then_gap = run(&[Edge::Repair,Edge::Drop], S::Present);
     assert_eq!(gap_then_repair,S::Present);
     assert_eq!(repair_then_gap,S::Lost);
     assert_ne!(gap_then_repair,repair_then_gap);
 
-    // Demonstrate that same "contains a gap" quotient now has two outputs.
     let mut outputs=HashSet::new();
     outputs.insert(run(&[Edge::Drop],S::Present));
     outputs.insert(run(&[Edge::Drop,Edge::Repair],S::Present));
     assert_eq!(outputs.len(),2);
 
-    // Proposition 4 finite witness: one edge can carry property A and drop property B.
     let prop_a = run(&[Edge::Carry], S::Present);
     let prop_b = run(&[Edge::Drop], S::Present);
     assert_ne!(prop_a,prop_b);
+
+    fs::create_dir_all("out-p22").unwrap();
+    fs::write(
+        "out-p22/p22-math.json",
+        r#"{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P22",
+  "status":"PASS",
+  "BOOLEAN_R4_R5_EQUIVALENCE":"PASS",
+  "IRREVERSIBLE_BOOLEAN_QUOTIENT":"PASS",
+  "REPAIR_BREAKS_QUOTIENT":"PASS",
+  "NONCOMMUTATIVE_WITNESS":"PASS",
+  "PROPERTY_INDEXED_WITNESS":"PASS",
+  "GAP_THEN_REPAIR":"PRESENT",
+  "REPAIR_THEN_GAP":"LOST"
+}
+"#,
+    ).unwrap();
 
     println!("P22_MATH_CHECK=PASS");
     println!("BOOLEAN_R4_R5_EQUIVALENCE=PASS");
