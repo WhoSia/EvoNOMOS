@@ -2,24 +2,24 @@
 
 Current scientific surface:
 
-- `active/g8-law-r1-p11/`
+- `active/g8-law-r1-p12/`
 - status: `CLOSED / PASS`
-- canonical run: `36956757728`
-- canonical head: `ecb0e71bd89053f9e539772711f5b5e4980bcf01`
-- canonical job: `110681311199`
-- artifact: `11205619033`
-- digest: `sha256:8ec61358af756f33790b2bbce4fcd59861571c6c2133af3f0196de5bef7c561b`
+- canonical run: `36957594816`
+- canonical head: `d9c55773a6a222afc7b768b4ab9147e04b2ffc60`
+- canonical job: `110683928801`
+- artifact: `11205794621`
+- digest: `sha256:fc9104b9f29dd9be0070026ba65869bd524edfbd1093fb3f125de1d9fb5d34c4`
 
-P11 ruling:
+P12 ruling:
 
-- interaction-bearing `Pi(X,G,E)` transports across the tested fresh ecosystems at bounded authority
-- matched-geometry context effects and matched-context geometry discrimination both survive the fresh attack
-- representation-only re-encoding does not change the Court result
-- apparent same-state action conflicts dissolve after material normalization and existing `X` refinement
-- no fresh materially identical `(X,G,E)` with conflicting action was observed
+- context compression is supported, but a universal `X_min` is not identified
+- `LIFECYCLE_PHASE` is the strongest cleanly identified context coordinate under exact matched `(G,E)` deletion
+- the one-coordinate sample-minimal subset is not promoted because matched-`(G,E)` coverage is sparse
+- compatibility, coexistence, release authority, migration-window and ownership coordinates remain underidentified in the current corpus
+- runtime/toolchain provenance is better treated toward `E` than as a primitive `X` coordinate under the current representation
+- no post-hoc coordinate was admitted to rescue the Court
 - state ontology `(X,G,E)` survives the current attack
-- missing coordinate is not reopened
+- `Pi(X,G,E)` remains interaction-bearing
 - LAW-R2 is not authorized
-- policy separability remains rejected
 
-Global next: `9424`, still within LAW-R1.
+Global next: `9457`, still within LAW-R1.
