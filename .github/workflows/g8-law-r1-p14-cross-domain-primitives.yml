@@ -1,0 +1,34 @@
+name: G8 LAW-R1-P14 Cross-Domain Primitive Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p14-*'
+      - 'active/g8-law-r1-p14/**'
+      - 'lawkit/protocol/v0.18/**'
+      - '.github/workflows/g8-law-r1-p14-cross-domain-primitives.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  cross-domain-primitives:
+    name: P14 Cross-Domain Primitive Court
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P14 Output
+        run: mkdir -p out-p14
+      - name: Verify P14 Intervention Matrix
+        run: python3 tools/law-r1-p14-interventions.py
+      - name: Run P14 Cross-Domain Primitive Court
+        run: node tools/law-r1-p14-court.mjs out-p14/p14-interventions.json out-p14/p14-court.json
+      - name: Upload P14 Cross-Domain Primitive Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p14-cross-domain-primitives
+          path: out-p14/
+          retention-days: 30
