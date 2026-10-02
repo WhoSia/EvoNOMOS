@@ -2,51 +2,77 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P21
-- formal suffix: Calibration
+- active stage: G8 LAW-R1-P22
+- formal suffix: Trial
 - status: CLOSED / PASS
-- canonical run: 36999787317
-- canonical head: 93d87b78d1b4ac56d63b692d72acecc7ddf948a9
-- canonical job: 110814608532
-- artifact: 11223630758
-- digest: sha256:f1ba0b95c8fbaac4ec58235c759cf9e7a5a59ea142117e4032636b2d53022579
+- canonical run: 37001185413
+- canonical head: 35aa0300fbad3c7929b57b6f49e1fbf78e3dba0d
+- canonical job: 110819011535
+- artifact: 11223962349
+- digest: sha256:18cba3f38ccf83ecb1dc7cadfcdbc695d42cde38fdac94016e275d0e83a5553f
 
-P21 authority:
+P22 mathematical authority:
 
-- P16 four-primitive context basis remains intact
-- P17 partial interaction graph remains intact
-- P19 Rust remains the first exact non-migration interaction family
-- P20 Ruby remains the second exact non-migration family and first representation separator
-- P21 Go net/http ResponseController is the third exact mechanistically distinct family
-- P21 prospectively froze the action-sign pattern +/−/+ before fresh third-family selection
-- hosted Go result reproduced DIRECT_CAPABILITY=+, OPAQUE_WRAPPER=−, UNWRAP_WRAPPER=+
-- prospective action-sign prediction therefore PASSED
-- binary-trigger, wrapper-only, and path-length-only rivals failed
-- carrier-sensitive all-edges-carry and preselected carrier-gap depth-1 tree both fit
-- typed boundary transport also fits, but is not uniquely identified
-- structural carrier behavior replicates across Ruby and Go
-- Boundary-Carrying Obligation remains semantically UNDERIDENTIFIED because Go transports an HTTP capability, not a historical compatibility obligation
-- the frozen propagation-qualified compatibility principle was pre-ruled OUT_OF_SCOPE for direct Go survival testing and was not post-hoc broadened
-- leave-two-mechanisms-out remains UNDERIDENTIFIED_INSUFFICIENT_SHARED_GRAMMAR
-- the critical held-out pair is Ruby+Go: training contains no exact carrier family
-- macro law remains NOT_AUTHORIZED
-- SOLID remains NOT_DERIVED
-- LAW-R2 remains NOT_AUTHORIZED
+- P21 R4 ALL_EDGES_MUST_CARRY and R5 NO_CARRIER_GAP are now recognized as the same Boolean classifier, not independent empirical rivals
+- irreversible Boolean carrier semantics collapses path information to no-gap vs at-least-one-gap
+- an explicit repair map breaks that quotient in the abstract model
+- Drop and Repair are noncommutative in the abstract two-state model
+- property-indexed transport is mathematically substantive in the abstract model
+- category/path functoriality is valid for the compositional abstraction, but does not by itself establish empirical universality
+- unrestricted mechanism-local category encodings are treated as non-falsifying and cannot authorize a single law
+
+P22 empirical authority:
+
+- Flink AvroSerializer backward-compatibility reconstitution is the fourth exact mechanistically distinct family
+- source authority: apache/flink commit 479ebd59872160cb2060605b08dcd0d86c3cb78e
+- direct current descriptor/layout = +
+- old UID through ordinary Java deserialization = -
+- old UID through targeted descriptor substitution + manual layout reconstruction = +
+- non-target UID mismatch under the same tolerant reader = -
+- M0 absorbing-loss model FAILS
+- M1 repairable-transport model FITS
+- property-independent repair FAILS
+- property-indexed repair FITS
+- empirical repair-vs-gap order sensitivity remains UNDERIDENTIFIED because no natural repair-then-gap software cell was admitted
+
+Cross-mechanism carrier family:
+
+- Ruby, Go and Flink all satisfy the frozen direct + / gap - / explicit-reconstitution + pattern
+- all three carrier leave-two-out splits PASS with one exact carrier family remaining in training
+- mechanism-local-only explanation is rejected for the carrier family
+
+Current law-family structure:
+
+- SURFACE_SELECTION family: Rust
+- PATH_CARRIER_TRANSPORT family: Ruby, Go, Flink
+- F0 single transport law = UNDERIDENTIFIED_RESTRICTED_ABSTRACTION_MAP_MISSING
+- F1 two-family decomposition = SUPPORTED_CURRENTLY_MINIMAL
+- F2 mechanism-local-only = REJECTED_BY_CROSS_MECHANISM_CARRIER_REPLICATION
+- two-family decomposition is not claimed unique or final
+- a higher-level restricted bridge may still exist
 
 Harvest and paper readiness:
 
-- LR-20261002-Z is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
-- property-indexed boundary semantics and compositional edge transport remain HARVEST_ONLY
-- paper ledger authorizes the bounded prospective-sign claim but not a unique typed law
+- LR-20261002-AA is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
+- repairable transport algebra, property-indexed boundary semantics and restricted higher-level bridge remain theory fragments
+- P22 paper ledger separates theorem-level statements, empirical witness claims and unready macro-law claims
 - manuscript drafting remains NOT_AUTHORIZED
-- no additional literature was required to close P21
+- no additional literature was required to close P22
 
 Hosted implementation:
 
-- Go 1.25.14 sign probe: PASS
-- JavaScript rich-rival calibration: PASS
+- Rust 1.99 finite mathematical checker: PASS
+- Java 21 targeted UID repair reproduction: PASS
+- JavaScript law-family trial: PASS
 - artifact directly inspected
 - canonical run succeeded on the first attempt
 - new Python files: 0
 
-Global next: 9915, still within LAW-R1.
+Macro-law boundary:
+
+- single universal transport law remains NOT_AUTHORIZED
+- empirical noncommutativity remains NOT_CLOSED
+- SOLID remains NOT_DERIVED
+- LAW-R2 remains NOT_AUTHORIZED
+
+Global next: 9988, still within LAW-R1.
