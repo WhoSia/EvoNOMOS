@@ -1,0 +1,157 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P14",
+  "constitution_commit": "5099abfe8bfdc5353db7ddb39ad542d8a26667c7",
+  "preseal_commit": "af39fa32c7a394e7d359108597247e5f6055a63f",
+  "admission": "POST_PRESEAL_FRESH_INTERVENTION_MATRIX",
+  "prior_exact_family": {
+    "id": "P13_EXT_APPS_COMPATIBILITY",
+    "source": "modelcontextprotocol/ext-apps#769/#770",
+    "domain": "PROTOCOL_HANDLER_API",
+    "target": "COMPATIBILITY_OBLIGATION",
+    "authority": "SEALED_P13_EXACT_ONE_DOMAIN"
+  },
+  "fresh_sources": [
+    {
+      "id": "AXIOS_11082",
+      "source": "axios/axios#11082",
+      "merged": true,
+      "merge_commit": "39955a6ebed53217a524a3c8c7e5568fc0faa4bd",
+      "head": "a76fa42194f0541d9b88eddccadc08227e39255c",
+      "domain": "HTTP_STATUS_SYMBOL_API",
+      "role": "SECOND_EXACT_COMPATIBILITY_DOMAIN",
+      "fact": "RFC 9110 names ContentTooLarge=413 and UnprocessableContent=422 were added while PayloadTooLarge and UnprocessableEntity remain backward-compatible deprecated aliases; runtime numeric semantics remain identical and reverse lookup remains stable for v1.x."
+    },
+    {
+      "id": "KUBERNETES_139876",
+      "source": "kubernetes/kubernetes#139876",
+      "merged": true,
+      "merge_commit": "df2facd2c99ece18ded0e0ce7c0f80652b2cf2cb",
+      "head": "edb3aa2fa9126f022382be5f028e62dc78c6edf4",
+      "domain": "API_STATE_PRESERVATION",
+      "role": "COMPATIBILITY_NEGATIVE_CONTROL_SUPPORT",
+      "fact": "Old-client omission of DRA status fields is preserved while explicit non-nil empty slices remain intentional clears; feature-gate lifecycle is explicitly orthogonal."
+    },
+    {
+      "id": "KAFKA_CONNECT_COMPATIBILITY",
+      "source": "apache/kafka@d12941eb5af08aff6a0712a10b85ed04f4211d9d",
+      "origin_pr": "apache/kafka#6363",
+      "origin_merge": "ce584a01fff4e73afa96d38c9a7508fcd67e3e46",
+      "domain": "DISTRIBUTED_REBALANCE_PROTOCOL",
+      "role": "COEXISTENCE_ORTHOGONAL_DISCRIMINATOR",
+      "fact": "ConnectProtocolCompatibility.COMPATIBLE explicitly supports both eager and incremental cooperative protocols; metadata advertises two protocols and the broker coordinator elects the protocol used by the group. The worker keeps the same compatibility mode while the group composition determines whether old/new protocol coexistence is required."
+    },
+    {
+      "id": "ARROW_COMMENT_BOT",
+      "source": "apache/arrow@46e09d339d84c589b3ce12913bb0c0fe8bc667c9",
+      "domain": "PR_AUTOMATION_AUTHORITY",
+      "role": "AUTHORITY_LIFECYCLE_DECOUPLED_DISCRIMINATOR",
+      "fact": "On the same PR comment path, identical bot commands are executed only for OWNER/MEMBER/COLLABORATOR author associations; unauthorized commenters receive an error and negative reaction. Tests explicitly cover both authorized command execution and unauthorized rejection."
+    }
+  ],
+  "intervention_families": [
+    {
+      "id": "I_COMPAT_AXIOS",
+      "target": "COMPATIBILITY_OBLIGATION",
+      "grade": "EXACT_CROSS_DOMAIN_REPLICATION",
+      "domain": "HTTP_STATUS_SYMBOL_API",
+      "G": "HTTP_STATUS_CODE_ENUM_AND_REVERSE_LOOKUP",
+      "E": "SAME_NUMERIC_STATUS_SEMANTICS_413_422",
+      "held_context": {
+        "LIFECYCLE_PHASE": "V1_X_ACTIVE_MINOR_RELEASE",
+        "COEXISTENCE_REQUIREMENT": "OLD_AND_NEW_NAMES_MAY_BOTH_BE_REFERENCED",
+        "RELEASE_AUTHORITY": "LIBRARY_MAINTAINER"
+      },
+      "worlds": [
+        {
+          "id": "NEW_CANONICAL_NAMES",
+          "COMPATIBILITY_OBLIGATION": 0,
+          "A": "EXPOSE_RFC_9110_CANONICAL_NAMES"
+        },
+        {
+          "id": "LEGACY_NAMES_STILL_OBLIGATORY",
+          "COMPATIBILITY_OBLIGATION": 1,
+          "A": "EXPOSE_SAME_NUMERIC_VALUES_AS_DEPRECATED_ALIASES_AND_PRESERVE_REVERSE_LOOKUP"
+        }
+      ],
+      "exactness": "UNDERLYING_NUMERIC_BEHAVIOR_IDENTICAL; ONLY_COMPATIBILITY_SURFACE_DIFFERS",
+      "replicates": "P13_EXT_APPS_COMPATIBILITY"
+    },
+    {
+      "id": "I_COEXIST_KAFKA",
+      "target": "COEXISTENCE_REQUIREMENT",
+      "grade": "EXACT_SOURCE_INTERNAL_BOUNDED",
+      "domain": "DISTRIBUTED_REBALANCE_PROTOCOL",
+      "G": "SAME_CONNECT_WORKER_COORDINATION_AND_ASSIGNMENT_WORKLOAD",
+      "E": "SAME_CONFIG_STATE_AND_WORKER_CAPABILITY",
+      "held_context": {
+        "COMPATIBILITY_OBLIGATION": "COMPATIBLE_MODE_SUPPORTS_EAGER_AND_COOPERATIVE",
+        "LIFECYCLE_PHASE": "ACTIVE_CLUSTER_OPERATION",
+        "RELEASE_AUTHORITY": "BROKER_GROUP_COORDINATOR"
+      },
+      "worlds": [
+        {
+          "id": "HOMOGENEOUS_COOPERATIVE_CAPABLE_GROUP",
+          "COEXISTENCE_REQUIREMENT": 0,
+          "A": "ELECT_INCREMENTAL_COOPERATIVE_PROTOCOL"
+        },
+        {
+          "id": "MIXED_OR_OLD_CAPABILITY_GROUP",
+          "COEXISTENCE_REQUIREMENT": 1,
+          "A": "ELECT_COMMON_EAGER_COMPATIBLE_PROTOCOL_WHILE_SAME_WORKER_ADVERTISES_BOTH"
+        }
+      ],
+      "custody": "COMPATIBLE metadata advertises two protocols; source enum says worker supports both and coordinator elects the version.",
+      "replication_status": "ONE_DOMAIN_EXACT_BOUNDED"
+    },
+    {
+      "id": "I_AUTHORITY_ARROW",
+      "target": "RELEASE_AUTHORITY",
+      "grade": "EXACT_SOURCE_INTERNAL_BOUNDED",
+      "domain": "PR_AUTOMATION_AUTHORITY",
+      "G": "SAME_PULL_REQUEST_COMMENT_COMMAND_PATH",
+      "E": "SAME_COMMAND_TEXT_AND_SAME_PR_STATE",
+      "held_context": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "LIFECYCLE_PHASE": "OPEN_PULL_REQUEST"
+      },
+      "worlds": [
+        {
+          "id": "AUTHORIZED_COMMENTER",
+          "RELEASE_AUTHORITY": "OWNER_MEMBER_OR_COLLABORATOR",
+          "A": "EXECUTE_BOT_COMMAND_AND_REACT_POSITIVE"
+        },
+        {
+          "id": "UNAUTHORIZED_COMMENTER",
+          "RELEASE_AUTHORITY": "OUTSIDE_ALLOWED_ROLES",
+          "A": "REFUSE_COMMAND_AND_REACT_NEGATIVE"
+        }
+      ],
+      "custody": "CommentBot.handle_issue_comment checks author_association before handler invocation; tests cover unauthorized rejection and authorized execution.",
+      "replication_status": "ONE_DOMAIN_EXACT_BOUNDED"
+    }
+  ],
+  "dependency_orientation": [
+    {
+      "edge": "COMPATIBILITY_OBLIGATION->COEXISTENCE_REQUIREMENT",
+      "p13_status": "CANDIDATE_NOT_DETERMINISTIC",
+      "p14_status": "NONDETERMINISTIC_SUPPORTED",
+      "reason": "Axios shows compatibility surfaces can coexist as aliases without distributed mixed-version coexistence; Kafka shows coexistence can alter protocol election while compatibility mode remains fixed."
+    },
+    {
+      "edge": "LIFECYCLE_PHASE->RELEASE_AUTHORITY",
+      "p13_status": "CANDIDATE_CONFOUNDING_EDGE",
+      "p14_status": "CONFOUND_BROKEN_BOUNDED",
+      "reason": "Arrow holds lifecycle at open PR and varies commenter authority only."
+    }
+  ],
+  "negative_controls": [
+    {
+      "id": "KUBE_OMISSION_VS_EXPLICIT_CLEAR",
+      "target": "COMPATIBILITY_OBLIGATION",
+      "status": "SUPPORT_ONLY_NOT_EXACT",
+      "reason": "Wire evidence differs (omission vs explicit empty), so it is not used for exact primitive promotion."
+    }
+  ],
+  "post_hoc_coordinate_additions": []
+}
