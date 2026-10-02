@@ -1,0 +1,109 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P16",
+  "verdict": "PASS_REPRODUCIBLE_MINIMAL_CONTEXT_BASIS__FOUR_PRIMITIVES_TWO_DOMAIN_REPLICATED__DELETION_AND_QUOTIENT_EXHAUSTION_SURVIVE__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36966774833,
+    "head": "c7288ffd609891ec84ab6908e391fb332c163e25",
+    "job": 110712124534,
+    "artifact": 11210367139,
+    "digest": "sha256:782084556ea4d858a1ccdbf0accac18e2b7d8eda643c9771c501d2f47530b077"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "lifecycle_custody": "PASS",
+    "court": "PASS",
+    "representation_invariance": "PASS",
+    "anti_rationalization": "PASS",
+    "artifact_direct_inspection": "PASS"
+  },
+  "scientific_readout": {
+    "stable_X_primitives": [
+      "COMPATIBILITY_OBLIGATION",
+      "COEXISTENCE_REQUIREMENT",
+      "RELEASE_AUTHORITY",
+      "LIFECYCLE_PHASE"
+    ],
+    "two_domain_transport": {
+      "COMPATIBILITY_OBLIGATION": [
+        "PROTOCOL_HANDLER_API",
+        "HTTP_STATUS_SYMBOL_API"
+      ],
+      "COEXISTENCE_REQUIREMENT": [
+        "DISTRIBUTED_REBALANCE_PROTOCOL",
+        "STORAGE_MIGRATION_DUAL_WRITER"
+      ],
+      "RELEASE_AUTHORITY": [
+        "PR_AUTOMATION_AUTHORITY_APACHE_ARROW",
+        "PRESUBMIT_TRIGGER_AUTHORITY_PROW"
+      ],
+      "LIFECYCLE_PHASE": [
+        "EVENT_DATA_LIFECYCLE_GATHERPRESS",
+        "PULL_REQUEST_CI_LIFECYCLE_PROW"
+      ]
+    },
+    "lifecycle_second_domain": "PASS",
+    "orthogonal_single_coordinate_interventions": "PASS",
+    "deletion_completeness": "PASS",
+    "pairwise_quotient_exhaustion": "PASS_6_OF_6",
+    "higher_order_quotient_exhaustion": "PASS_4_TRIPLES_PLUS_FULL_COLLAPSE",
+    "prospective_split_attack": "PASS_NO_FINER_SPLIT_JUSTIFIED",
+    "operational_minimal_basis": "PASS",
+    "same_normalized_X_G_E_conflicting_action": "NOT_OBSERVED"
+  },
+  "scope_boundary": {
+    "authorized": "REPRODUCIBLE_OPERATIONAL_MINIMAL_PRIMITIVE_BASIS_UNDER_FROZEN_COORDINATE_GRAMMAR",
+    "universal_coordinate_cardinality": "NOT_CLAIMED",
+    "unique_latent_factorization": "NOT_CLAIMED",
+    "domain_complete_software_ontology": "NOT_CLAIMED",
+    "arbitrary_bijective_tuple_packing": "REPRESENTATION_CHANGE_NOT_PRIMITIVE_REDUCTION"
+  },
+  "literature_data_custody": {
+    "canonicalized_in_p16": [
+      "Ma_et_al_2026_Sequential_Knockoffs",
+      "Dig_Johnson_2006_API_Evolution",
+      "Wedyan_Abufakher_2020_Design_Patterns_SLR"
+    ],
+    "exact_pdf_unavailable_after_user_attempt": [
+      "Diaz_Pace_Trubiani_Garlan_2025_DOI_10.1007_978-3-032-02138-0_18",
+      "ADEPT_2026_DOI_10.1016_j.jss.2026.113006"
+    ],
+    "representation_boundary_donors_already_present": [
+      "Scholkopf_et_al_2021",
+      "Geiger_et_al_2025",
+      "Sutter_et_al_2025",
+      "Li_Walsh_Littman_2006"
+    ],
+    "new_external_acquisition_required": false
+  },
+  "supplemental_support_not_counted_toward_threshold": [
+    {
+      "source": "rust-lang/triagebot@d21a5ed91042d707fed4e26712767a2a83c0151a",
+      "path": "src/handlers/assign.rs",
+      "fact": "Assignment commands are explicitly rejected on closed PRs; useful independent lifecycle support, not needed for P16 promotion."
+    }
+  ],
+  "ruling": {
+    "state": "(X,G,E)_SURVIVES_CURRENT_EVIDENCE",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "context_basis": "REPRODUCIBLE_OPERATIONAL_MINIMAL_BASIS_ESTABLISHED",
+    "paper_story_override": "FORBIDDEN_AND_NOT_USED",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "provenance": {
+    "constitution": "7826ff1cc6d68e9b6955409d17056366b65b9604",
+    "preseal": "8fe66536099d90e13496f3e3aa99ca6e56d4eb11",
+    "lifecycle_and_basis_custody": "330fc09de00f3217c574c2e5549fb148cb2d97ad",
+    "literature_novelty_custody": "937a43e958d86f9cbebeba53c9878275ceec3898",
+    "representation_boundary": "fc0616e173525a06a9b76e5501e009c27102eba0",
+    "verifier": "de49672434be1b5576543afd13e62493e2ecd966",
+    "court": "a0ef5c598155b0814d268211671d29608e4e4f10",
+    "workflow": "c7288ffd609891ec84ab6908e391fb332c163e25"
+  },
+  "closure": {
+    "ravel": "9571–9596",
+    "decision": "9597–9614",
+    "global_next": 9615
+  }
+}
