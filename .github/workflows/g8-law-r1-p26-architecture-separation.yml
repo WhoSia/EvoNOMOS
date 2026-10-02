@@ -31,6 +31,11 @@ jobs:
         with:
           go-version: '1.26.x'
 
+      - name: Set Up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv6m-none-eabi
+
       - name: Set Up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -101,5 +106,6 @@ jobs:
             out-p26/p26-math.txt
             out-p26/p26-otel-go.json
             out-p26/p26-otel-php.json
+            out-p26/p26-futures.json
             out-p26/p26-experiment.json
           retention-days: 30
