@@ -1,0 +1,59 @@
+{
+  "harvest_id":"LR-20261002-Y",
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P20",
+  "status":"PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred":"NONE",
+  "notion_page":"3edef561-cf92-8120-a82d-cf2c13ea0f8b",
+  "fragments":[
+    {
+      "id":"Y-F01",
+      "name":"Compatibility Is Not Necessarily Node-Local",
+      "status":"HARVEST_ONLY"
+    },
+    {
+      "id":"Y-F02",
+      "name":"Boundary-Carrying Obligation Hypothesis",
+      "status":"HARVEST_ONLY",
+      "candidate_form":"o_{i+1}=T_e(o_i)"
+    },
+    {
+      "id":"Y-F03",
+      "name":"Policy-Surface Equivalence Class Narrowing",
+      "status":"HARVEST_ONLY",
+      "result":"Binary conjunction member eliminated by Ruby transport; richer rivals remain open."
+    },
+    {
+      "id":"Y-F04",
+      "name":"Structural Survival Is Weaker Than Sign Prediction",
+      "status":"METHOD_FRAGMENT"
+    },
+    {
+      "id":"Y-F05",
+      "name":"Frozen Global Compatibility Maxim Failure",
+      "status":"HARVEST_ONLY"
+    },
+    {
+      "id":"Y-F06",
+      "name":"Design Principles May Require Propagation Semantics",
+      "status":"HARVEST_ONLY"
+    }
+  ],
+  "support_negative_capital":[
+    {
+      "id":"GLIBC_MEMCPY_SYMBOL_VERSIONING",
+      "status":"STRONG_SEPARATOR_SUPPORT_NOT_EXACT_FACTORIAL"
+    },
+    {
+      "id":"PROTOBUF_UNKNOWN_FIELD_BINARY_JSON",
+      "status":"SUPPORT_ONLY_PRESEAL_GEOMETRY_MISMATCH"
+    }
+  ],
+  "cross_lab_backflow":{
+    "MQR":["representation identity vs observational equivalence","underidentification after rival elimination"],
+    "NOMOS":["authority/obligation propagation across institutional boundaries"],
+    "C3X":["path-local mediation and held-out boundary transport"],
+    "KSGT":["representation-equivalence classes and transport-preserving quotient"]
+  },
+  "paper_readiness":"PREPARATION_ONLY",
+  "manuscript":"NOT_AUTHORIZED"
+}
