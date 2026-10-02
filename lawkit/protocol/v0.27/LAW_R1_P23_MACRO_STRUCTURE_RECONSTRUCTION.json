@@ -12,67 +12,129 @@
     "verdict":"PASS_BOOLEAN_RIVAL_COLLAPSE__REPAIRABLE_TRANSPORT_WITNESS__FOURTH_EXACT_COMPATIBILITY_FAMILY__TWO_FAMILY_DECOMPOSITION_SUPPORTED__MACRO_LAW_NOT_AUTHORIZED"
   },
   "mathematical_lane":{
-    "state_space":["PRESENT","LOST"],
-    "generators":{
-      "I":{"PRESENT":"PRESENT","LOST":"LOST"},
-      "D":{"PRESENT":"LOST","LOST":"LOST"},
-      "R":{"PRESENT":"PRESENT","LOST":"PRESENT"}
+    "base":{
+      "software_graph":"Directed multigraph G with free path category Path(G)",
+      "properties":"o∈O",
+      "state_fibers":"S_o",
+      "edge_maps":"T_e^o:S_o→S_o",
+      "path_action":"T_p^o=T_{e_n}^o∘...∘T_{e_1}^o",
+      "generated_structure":"M_o=<T_e^o>⊆End(S_o)"
     },
-    "monoid_hypothesis":{
-      "carrier_repair_monoid":"M_CR={I,D,R}",
+    "carrier_repair_monoid":{
+      "state_space":["PRESENT","LOST"],
+      "generators":{
+        "I":{"PRESENT":"PRESENT","LOST":"LOST"},
+        "D":{"PRESENT":"LOST","LOST":"LOST"},
+        "R":{"PRESENT":"PRESENT","LOST":"PRESENT"}
+      },
       "composition_convention":"(f∘g)(x)=f(g(x))",
       "frozen_table":{
         "I∘I":"I","I∘D":"D","I∘R":"R",
         "D∘I":"D","D∘D":"D","D∘R":"D",
         "R∘I":"R","R∘D":"R","R∘R":"R"
       },
-      "properties_frozen_before_fresh_outcome":[
+      "structural_claims_frozen_before_fresh_outcome":[
         "I is identity",
         "D and R are idempotent",
-        "D∘R=D while R∘D=R, hence noncommutative",
+        "D∘R=D while R∘D=R",
         "{D,R} is a left-zero semigroup under composition",
-        "M_CR is a three-element monoid consisting of identity plus two constants",
+        "M_CR={I,D,R} is a three-element noncommutative monoid",
         "M_CR is a proper submonoid of the full transformation monoid T_2"
       ]
     },
+    "definitions":[
+      {
+        "id":"DEF1_ALGEBRAIC_NONCOMMUTATIVITY",
+        "statement":"R and D are algebraically noncommutative on property o iff ∃s∈S_o such that R(D(s))≠D(R(s))."
+      },
+      {
+        "id":"DEF2_OBSERVABLE_NONCOMMUTATIVITY",
+        "statement":"Given frozen observation Q_o:S_o→Y_o, R and D are observably noncommutative iff ∃s such that Q_o(R(D(s)))≠Q_o(D(R(s)))."
+      },
+      {
+        "id":"DEF3_OBSERVATION_CONGRUENCE",
+        "statement":"s~_Q t iff Q(s)=Q(t). The quotient is transport-stable for generator family M iff s~_Q t implies T(s)~_Q T(t) for every T∈M."
+      },
+      {
+        "id":"DEF4_PREDICTIVE_QUOTIENT",
+        "statement":"A quotient is prediction-sufficient only if its kernel is a congruence for admitted transport generators and preserves all action-relevant distinctions."
+      },
+      {
+        "id":"DEF5_RESTRICTED_TWO_LEVEL_FACTOR",
+        "statement":"A=D_loc(Q(T_p^o(s)),X,G,E), with Q and D_loc drawn from predeclared mechanism-independent grammar classes."
+      }
+    ],
     "theorem_targets":[
       {
         "id":"THM1_NORMAL_FORM",
-        "statement":"Every word over {I,D,R} evaluates to I if it contains no D/R; otherwise it equals the leftmost non-identity generator under the chosen composition notation, equivalently the last-applied constant in execution order.",
-        "status":"TO_PROVE_FORMALLY_AND_CHECK"
+        "statement":"Every word over {I,D,R} evaluates to I if it contains no D/R; otherwise it equals the leftmost non-identity generator in composition notation, equivalently the last-applied constant in execution order.",
+        "status":"TO_PROVE_AND_EXHAUSTIVELY_CHECK_PRE_FRESH"
       },
       {
         "id":"THM2_MINIMAL_FAITHFUL_STATE_SIZE",
-        "statement":"No one-state action can represent M_CR faithfully; a two-state action is faithful and therefore minimal.",
-        "status":"TO_PROVE"
+        "statement":"No one-state action represents M_CR faithfully; the two-state action is faithful and minimal.",
+        "status":"TO_PROVE_PRE_FRESH"
       },
       {
         "id":"THM3_BOOLEAN_QUOTIENT_NONCONGRUENCE_UNDER_REPAIR",
-        "statement":"The quotient that identifies all paths containing D as failure is not a congruence once R is admitted.",
-        "status":"TO_PROVE"
+        "statement":"The path quotient 'contains any D ⇒ failure' is not a congruence once R is admitted.",
+        "status":"TO_PROVE_PRE_FRESH"
       },
       {
-        "id":"THM4_OBSERVATION_COLLAPSE_CONDITION",
-        "statement":"An observation map Q can erase noncommutativity only if Q∘D=Q∘R on the reachable state set; otherwise order remains observable.",
-        "status":"TO_PROVE_OR_REFINE"
+        "id":"THM4_OBSERVATION_CAN_HIDE_NONCOMMUTATIVITY",
+        "statement":"Algebraic noncommutativity does not imply observable noncommutativity: a non-injective Q may identify R(D(s)) and D(R(s)).",
+        "status":"TO_PROVE_PRE_FRESH"
       },
       {
-        "id":"THM5_PROPERTY_PRODUCT_ACTION",
-        "statement":"For independent properties o1,o2, boundary transport acts on a product state S_o1×S_o2; property-independent scalar edge labels are faithful only under a diagonal-action restriction.",
-        "status":"TO_PROVE_OR_KILL"
+        "id":"THM5_FAITHFUL_OBSERVATION_SUFFICES",
+        "statement":"If Q is injective on the orbit Orb_<R,D>(s), algebraic noncommutativity at s implies observable noncommutativity.",
+        "status":"TO_PROVE_PRE_FRESH"
+      },
+      {
+        "id":"THM6_PROPERTY_PRODUCT_ACTION",
+        "statement":"For properties o1,o2 the joint transport acts on S_o1×S_o2. A property-independent scalar edge label can be faithful only if the induced edge actions factor through the same scalar partition for both properties.",
+        "status":"TO_PROVE_OR_COUNTERMODEL_PRE_FRESH"
+      },
+      {
+        "id":"THM7_VACUOUS_TWO_LEVEL_FACTORIZATION",
+        "statement":"For every finite mechanism table there exist arbitrary Q and D_loc realizing A=D_loc(Q(state),X,G,E); therefore existence of a factorization alone has zero empirical content.",
+        "status":"TO_PROVE_BY_CONSTRUCTION_PRE_FRESH"
+      },
+      {
+        "id":"THM8_RESTRICTED_FACTOR_IDENTIFIABILITY",
+        "statement":"Any nontrivial bridge claim must be relative to frozen finite grammar classes for Q and D_loc and is unique only up to observationally equivalent relabelings/isomorphisms.",
+        "status":"METHOD_THEOREM_TARGET"
       }
     ],
-    "representation_program":{
-      "base_category":"Free path category Path(G)",
-      "fiber":"Finite property-state sets S_o",
-      "transport":"Functor-like assignment of path morphisms to transformations T_p^o",
-      "observation":"Restricted quotient Q_o from arrived property state to decision-visible state",
-      "decision":"Restricted local action map D_loc(Q_o(T_p^o(s)),X,G,E)",
-      "anti_triviality":"Q_o and D_loc may not be arbitrary mechanism-local lookup tables."
+    "restricted_bridge_class":{
+      "Q":{
+        "allowed_forms":[
+          "IDENTITY_ON_BINARY_PRESENT_LOST",
+          "FOUR_STATE_FIXED_QUOTIENT_{PRESENT,LOST,REPAIRED,TRANSFORMED}",
+          "FORGET_PROPERTY_ID_KEEP_TRANSPORT_STATE",
+          "PREDECLARED_FIXED_PARTITION_SHARED_ACROSS_MECHANISMS"
+        ],
+        "forbidden":[
+          "mechanism ID",
+          "repository/language ID",
+          "action label",
+          "per-mechanism lookup",
+          "injective encoding of whole local state"
+        ]
+      },
+      "D_loc":{
+        "allowed":"One shared bounded depth≤2 decision grammar over Q-state plus already-authorized X,G,E coordinates.",
+        "forbidden":[
+          "mechanism ID feature",
+          "per-mechanism action table",
+          "post-outcome depth increase"
+        ]
+      },
+      "promotion_rule":"U0 single bridge survives only if one frozen Q-form and one frozen bounded D_loc grammar classify at least one exact surface-selection family and at least two exact path-transport families with held-out prediction and no mechanism-local exception."
     }
   },
   "empirical_noncommutativity":{
-    "strong_witness_requirement":"A fresh mechanism must expose two source-defined operations L(loss/filter/prune/drop) and R(repair/alias/convert/reconstitute) applicable to materially matched input such that execution order L→R and R→L yields different client-observable outcomes.",
+    "strong_witness_requirement":"A fresh mechanism must expose source-defined operations L(loss/filter/prune/drop) and R(repair/alias/convert/reconstitute) on materially matched inputs such that L→R and R→L are both executable and differ under a frozen client-observable Q.",
     "required_cells":[
       "BASELINE_OR_IDENTITY",
       "LOSS_ONLY",
@@ -84,69 +146,78 @@
       "LOSS_THEN_REPAIR":"PRESENT_OR_ACCEPTED",
       "REPAIR_THEN_LOSS":"LOST_OR_REJECTED"
     },
-    "posthoc_operation_redefinition":"FORBIDDEN"
+    "repair_definition":"Explicit reconstruction/promotion/adapter operation that restores a semantic property from information still present before the lossy transform.",
+    "loss_definition":"Transformation that irreversibly removes or quotients information required for later repair.",
+    "posthoc_operation_redefinition":"FORBIDDEN",
+    "observation_map":"Must be frozen before outcome and directly client-observable or test-asserted."
   },
   "preferred_fresh_mechanism_domains":[
-    "CONFIG_OR_SCHEMA_ALIAS_NORMALIZATION_VS_UNKNOWN_FIELD_PRUNING",
+    "SCHEMA_EVOLUTION_UNKNOWN_FIELD_PRESERVATION_VS_LOSSY_TEXT_OR_PRUNING",
     "API_VERSION_CONVERSION_VS_FIELD_PRUNING",
-    "SERIALIZATION_MIGRATION_VS_VALIDATION_FILTER",
-    "COMPILER_OR_LOADER_COMPATIBILITY_REWRITE_VS_REJECTION",
+    "SERIALIZATION_MIGRATION_VS_VALIDATION_OR_FILTERING",
+    "COMPILER_OR_LOADER_COMPATIBILITY_REWRITE_VS_METADATA_DROP",
     "DATABASE_OR_STATE_MIGRATION_REPAIR_VS_SCHEMA_DROP"
   ],
   "property_indexed_replication":{
-    "requirement":"A second mechanistically distinct source must show the same boundary/operation transports one property but not another, without posthoc property naming.",
-    "strong_pass":"Two properties share the same physical boundary while requiring distinct transport maps.",
-    "support_only":"Different classes/routes use different handlers but no shared boundary comparison."
-  },
-  "restricted_bridge":{
-    "goal":"Connect PATH_CARRIER_TRANSPORT to SURFACE_SELECTION without arbitrary mechanism-local maps.",
-    "frozen_grammar":{
-      "Q":{
-        "allowed_forms":[
-          "IDENTITY_ON_BINARY_STATE",
-          "FORGET_PROPERTY_ID_KEEP_PRESENT_LOST",
-          "FINITE_FIXED_PARTITION_PREDECLARED_BEFORE_FRESH_BRIDGE_TEST"
-        ],
-        "forbidden":"mechanism-specific lookup learned after outcome"
-      },
-      "D_loc":{
-        "allowed_forms":[
-          "choose action from arrived visible state plus existing frozen X,G,E using a depth-1 or depth-2 decision grammar",
-          "no mechanism ID feature"
-        ],
-        "forbidden":"per-mechanism action table"
-      }
-    },
-    "bridge_success":"A single frozen Q form and D_loc grammar maps at least one exact surface-selection family and at least two exact path-transport families without mechanism ID and with held-out prediction.",
-    "bridge_failure":"Rust requires a mechanism-specific observation/action clause unavailable to carrier families."
-  },
-  "decomposition_uniqueness":{
-    "rivals":[
-      "U0_SINGLE_TWO_LEVEL_BRIDGE",
-      "U1_TWO_FAMILY_DECOMPOSITION",
-      "U2_THREE_OR_MORE_FAMILY_DECOMPOSITION",
-      "U3_MECHANISM_LOCAL"
+    "predeclared_properties":[
+      "UNKNOWN_OR_FUTURE_FIELD_INFORMATION",
+      "KNOWN_CURRENT_FIELD_INFORMATION",
+      "TYPE_OR_SCHEMA_IDENTITY",
+      "CLIENT_OBSERVABLE_COMPATIBILITY_BEHAVIOR"
     ],
-    "criterion":"Prefer the coarsest partition that preserves held-out predictive distinctions under the restricted grammar; ties remain non-unique.",
-    "no_complexity_score_tuning_after_outcome":true
+    "requirement":"A second mechanism beyond Flink must show the same physical transformation/boundary acts differently on at least two predeclared properties.",
+    "strong_pass":"Two properties share the same boundary and source/test packet while requiring distinct transport maps.",
+    "support_only":"Different classes/routes use different handlers without a shared-boundary comparison."
+  },
+  "law_family_uniqueness":{
+    "rivals":[
+      {
+        "id":"U0_SINGLE_RESTRICTED_BRIDGE",
+        "claim":"One restricted Q,D_loc grammar spans surface-selection and path-transport families."
+      },
+      {
+        "id":"U1_TWO_FAMILY_WITH_INTERFACE",
+        "claim":"Surface-selection and path-transport remain distinct but share a stable typed Q-interface."
+      },
+      {
+        "id":"U2_TWO_FAMILY_DISCONNECTED",
+        "claim":"No stable restricted interface survives."
+      },
+      {
+        "id":"U3_THREE_OR_MORE_FAMILIES",
+        "claim":"Repairable/schema transport separates from simple carrier transport enough to require another law family."
+      },
+      {
+        "id":"U4_MECHANISM_LOCAL",
+        "claim":"No stable family-level structure survives."
+      }
+    ],
+    "selection_principle":"Prefer the coarsest decomposition preserving held-out predictive distinctions under the frozen restricted grammar; never minimize family count by hiding lookup in Q or D_loc.",
+    "uniqueness":"Only up to relabeling/isomorphism of latent Q states and equality of induced action partitions/congruences.",
+    "tie_rule":"If non-isomorphic restricted decompositions induce identical predictions on all admitted packets, uniqueness remains NOT_AUTHORIZED."
   },
   "notion_requirement":{
     "record_all":[
-      "definitions",
-      "lemmas",
-      "proof sketches",
+      "full definitions",
+      "lemma/theorem statements",
+      "proof sketches and formal finite certificates",
       "countermodels",
+      "abstraction-map ledger",
       "fresh-source custody",
       "negative candidates",
       "hosted results",
       "authority boundaries",
-      "next falsifiers"
-    ]
+      "next falsifiers",
+      "RAVEL",
+      "Decision",
+      "Harvest genealogy"
+    ],
+    "summary_only":"FORBIDDEN_FOR_CORE_MATH"
   },
   "implementation":{
     "new_python":"FORBIDDEN",
     "preferred":["Rust","Haskell","OCaml","C++","Java","Go","JavaScript"],
-    "formalization":"Lean optional only if an existing pinned workflow/toolchain is available; otherwise proof note + finite exhaustive checker."
+    "formalization":"Rust exhaustive checker plus human-readable theorem note; Lean only if an existing pinned toolchain is already available and its result is reproducible."
   },
   "paper_readiness":{
     "manuscript":"NOT_AUTHORIZED",
@@ -155,14 +226,18 @@
   "anti_rationalization":{
     "operation_identity_after_outcome":"FORBIDDEN",
     "property_names_after_outcome":"FORBIDDEN_FOR_STRONG_REPLICATION",
+    "change_Q_after_outcome":"FAILURE",
+    "change_D_grammar_after_outcome":"FAILURE",
     "arbitrary_Q":"FORBIDDEN",
     "mechanism_id_in_D_loc":"FORBIDDEN",
-    "force_bridge_after_failure":"FORBIDDEN"
+    "force_bridge_after_failure":"FORBIDDEN",
+    "unrestricted_category_encoding":"NO_AUTHORITY"
   },
   "law_r2_gate":"UNCHANGED",
   "terminal_verdict_family":[
     "PASS_EMPIRICAL_NONCOMMUTATIVITY__TRANSFORMATION_MONOID_IDENTIFIED__PROPERTY_INDEXED_REPLICATION__RESTRICTED_BRIDGE_SUPPORTED__MACRO_STRUCTURE_ADVANCES",
-    "PASS_EMPIRICAL_NONCOMMUTATIVITY__TRANSFORMATION_MONOID_IDENTIFIED__TWO_FAMILY_DECOMPOSITION_REMAINS_MINIMAL",
+    "PASS_EMPIRICAL_NONCOMMUTATIVITY__TRANSFORMATION_MONOID_IDENTIFIED__TWO_FAMILY_INTERFACE_SUPPORTED__SINGLE_BRIDGE_REJECTED",
+    "PASS_EMPIRICAL_NONCOMMUTATIVITY__PROPERTY_INDEXED_REPLICATION__TWO_FAMILY_DECOMPOSITION_REMAINS_MINIMAL",
     "PASS_MATHEMATICAL_RECONSTRUCTION__EMPIRICAL_ORDER_REVERSAL_UNDERIDENTIFIED",
     "HOLD_NO_FRESH_NONCOMMUTATIVE_WITNESS__MATHEMATICAL_LANE_ONLY",
     "FAIL_REPAIR_LOSS_ORDER_PREDICTION__MONOID_MAPPING_REJECTED"
