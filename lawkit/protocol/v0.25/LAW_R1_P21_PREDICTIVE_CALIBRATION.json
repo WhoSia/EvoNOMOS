@@ -1,0 +1,162 @@
+{
+  "stage":"EvoNOMOS Generation VIII LAW-R1-P21",
+  "formal_title":"Prospective Action-Sign Prediction, Third-Mechanism Boundary Transport, Rich Low-Complexity Rival Ecology, Boundary-Carrying Obligation Replication, Path-Semantic Intervention, Leave-Two-Mechanisms-Out Generalization, Frozen Principle Survival Test & Macro-Law Predictive Calibration",
+  "suffix":"Calibration",
+  "global_start":9840,
+  "predecessor":{
+    "stage":"LAW-R1-P20",
+    "terminal_seal":"7c65240334c992c750b3a81538943e115ed2789e",
+    "active_lineage":"44652d06153b780fde4a0b2f8ab21c1d418880a0",
+    "canonical_run":36983200957,
+    "artifact":11216616543,
+    "verdict":"PASS_REPRESENTATION_SEPARATION__SECOND_EXACT_NONMIGRATION_FAMILY__TYPED_BOUNDARY_TRANSPORTS__GENERIC_CONJUNCTION_FAILS__MACRO_LAW_NOT_YET_AUTHORIZED"
+  },
+  "scientific_target":"Move from retrospective structural accommodation to prospectively correct action-sign prediction on a third mechanistically distinct family, while competing against richer low-complexity rivals.",
+  "prospective_sign_rule":{
+    "id":"BOUNDARY_TRANSPORT_SIGN_V1",
+    "status":"FROZEN_BEFORE_FRESH_THIRD_FAMILY",
+    "states":[
+      {
+        "id":"DIRECT_PRESERVING_BOUNDARY",
+        "prediction":"+",
+        "meaning":"A direct path whose relevant boundary carries the semantic obligation/metadata preserves the client-observable intent."
+      },
+      {
+        "id":"NONPRESERVING_INTERMEDIATE_BOUNDARY",
+        "prediction":"-",
+        "meaning":"At least one relevant intermediate boundary that does not carry/forward the semantic obligation causes the downstream intent to be lost or normalized away."
+      },
+      {
+        "id":"EXPLICIT_END_TO_END_CHANNEL",
+        "prediction":"+",
+        "meaning":"An explicit semantic channel bypasses the need for legacy/implicit compatibility propagation and preserves the intended distinction end-to-end."
+      }
+    ],
+    "required_pattern":"+/-/+",
+    "failure_rule":"Any admitted exact third-family cell whose sign disagrees with its pre-frozen state classification falsifies BOUNDARY_TRANSPORT_SIGN_V1 for that family."
+  },
+  "candidate_family_grammar":[
+    {
+      "family":"WRAPPER_CAPABILITY_OR_METADATA_PROPAGATION",
+      "required_surfaces":["DIRECT_PRESERVING_BOUNDARY","NONPRESERVING_INTERMEDIATE_BOUNDARY","EXPLICIT_END_TO_END_CHANNEL"]
+    },
+    {
+      "family":"RUNTIME_OR_MODULE_INTEROP_PROPAGATION",
+      "required_surfaces":["DIRECT_PRESERVING_BOUNDARY","NONPRESERVING_INTERMEDIATE_BOUNDARY","EXPLICIT_END_TO_END_CHANNEL"]
+    },
+    {
+      "family":"SCHEMA_OR_SERIALIZATION_SEMANTIC_PROPAGATION",
+      "required_surfaces":["DIRECT_PRESERVING_BOUNDARY","NONPRESERVING_INTERMEDIATE_BOUNDARY","EXPLICIT_END_TO_END_CHANNEL"]
+    },
+    {
+      "family":"API_ADAPTER_OR_ALIAS_CHAIN_PROPAGATION",
+      "required_surfaces":["DIRECT_PRESERVING_BOUNDARY","NONPRESERVING_INTERMEDIATE_BOUNDARY","EXPLICIT_END_TO_END_CHANNEL"]
+    }
+  ],
+  "third_family_admission":{
+    "fresh_after_preseal":true,
+    "mechanistically_distinct_from":["P19_RUST_ARRAY_INTO_ITER_EDITION_GEOMETRY","P20_RUBY_KEYWORD_FORWARDING_COMPATIBILITY"],
+    "exact_source_or_spec_evidence":true,
+    "executable_reproduction_preferred":true,
+    "all_three_sign_states_required_for_strong_pass":true,
+    "two_state_partial_family":"SUPPORT_ONLY",
+    "posthoc_reclassification":"FORBIDDEN"
+  },
+  "rich_rival_ecology":{
+    "R0_TYPED_BOUNDARY_TRANSPORT":{
+      "prediction_rule":"Use the three pre-frozen semantic states and their +/−/+ signs.",
+      "complexity":"3 named states / 2 action signs"
+    },
+    "R1_BINARY_TRIGGER":{
+      "prediction_rule":"Any compatibility/propagation-active non-explicit surface receives the same sign.",
+      "complexity":"1 binary split"
+    },
+    "R2_WRAPPER_PENALTY":{
+      "prediction_rule":"Any wrapper-mediated path is negative; direct and explicit paths positive.",
+      "complexity":"1 wrapper predicate"
+    },
+    "R3_PATH_LENGTH_THRESHOLD":{
+      "prediction_rule":"Paths of length <=1 positive; paths of length >=2 negative; explicit channel positive regardless of path length.",
+      "complexity":"1 integer threshold + explicit override"
+    },
+    "R4_ALL_EDGES_MUST_CARRY":{
+      "prediction_rule":"Positive iff every relevant traversed boundary carries the semantic marker/capability; explicit end-to-end channel is positive.",
+      "complexity":"universal edge predicate"
+    },
+    "R5_ONE_SPLIT_DECISION_TREE":{
+      "prediction_rule":"Choose exactly one of {explicit?, wrapper?, path_length>1?, carrier_gap?} using only P19/P20 development evidence; split identity must be frozen before fresh third-family outcome.",
+      "complexity":"depth-1 tree"
+    },
+    "R6_UNTYPED_LOOKUP":{
+      "prediction_rule":"No prediction for unseen mechanism-local states.",
+      "complexity":"cell table",
+      "transport_authority":"NONE"
+    }
+  },
+  "rival_preselection":{
+    "R5_selected_split":"carrier_gap?",
+    "reason":"P20 direct-vs-wrapper result points to missing propagation at an intermediate boundary rather than wrapper-ness or path length alone.",
+    "frozen_before_fresh_outcome":true
+  },
+  "boundary_carrying_obligation":{
+    "status":"HARVEST_ONLY_UNTIL_REPLICATION",
+    "replication_success":"A mechanistically distinct family exhibits +/−/+ under the pre-frozen carrier-preserving / carrier-gap / explicit-channel classification.",
+    "replication_failure":"The third family sign pattern is explained by wrapper/path length but not carrier status, or the carrier-gap cell remains positive.",
+    "no_new_LAW_primitive_in_P21":true
+  },
+  "frozen_principle_test":{
+    "id":"PRINCIPLE_V2_PROPAGATION_QUALIFIED_COMPATIBILITY",
+    "text":"Preserve existing client-observable intent across a compatibility path only while each semantically relevant boundary preserves the required carrier; an explicit end-to-end channel may preserve intent without legacy propagation.",
+    "prediction_pattern":"+/-/+",
+    "posthoc_clause":"FORBIDDEN",
+    "survival_requires":"All admitted third-family cells match without adding a qualifier after outcome."
+  },
+  "leave_two_mechanisms_out":{
+    "mechanism_pool":[
+      "P19_RUST_EXACT",
+      "P20_RUBY_EXACT",
+      "P14_AXIOS_SUPPORT",
+      "P19_NODE_SUPPORT",
+      "P21_THIRD_EXACT"
+    ],
+    "protocol":"After P21 third-family admission, evaluate every admissible train-on-rest / hold-out-two split for representations that define predictions without mechanism-local lookup. Report support-only mechanisms separately from exact mechanisms.",
+    "no_weight_tuning_after_outcome":true
+  },
+  "macro_law_predictive_gate":{
+    "promotion_requires":[
+      "THIRD_EXACT_MECHANISTICALLY_DISTINCT_FAMILY",
+      "PROSPECTIVE_SIGN_MATCH",
+      "RICH_RIVAL_COMPARISON",
+      "LEAVE_TWO_OUT_READOUT",
+      "FROZEN_PRINCIPLE_RESULT",
+      "NEGATIVE_CUSTODY"
+    ],
+    "macro_law_authorized_if":"A pre-frozen representation wins prospectively on the third exact family and retains boundary predictions under leave-two-out better than all strictly simpler admissible rivals, with no post-hoc coordinates or sign edits.",
+    "otherwise":"NOT_AUTHORIZED"
+  },
+  "anti_rationalization":{
+    "new_X_after_outcome":"FORBIDDEN",
+    "new_G_after_outcome":"FORBIDDEN_FOR_P21_SIGN_CLAIM",
+    "change_sign_rule_after_outcome":"FAILURE",
+    "change_R5_split_after_outcome":"FAILURE",
+    "relabel_carrier_gap_after_outcome":"FAILURE",
+    "add_principle_qualifier_after_outcome":"FAILURE",
+    "support_only_to_exact_promotion_without_required_cells":"FORBIDDEN"
+  },
+  "implementation":{
+    "new_python_default":"FORBIDDEN_UNLESS_NO_REASONABLE_ALTERNATIVE",
+    "preferred":["Go","Rust","JavaScript","Ruby","C++","Kotlin","Swift","Haskell","OCaml","Elixir","Scala"],
+    "legacy_code":"UNCHANGED"
+  },
+  "paper_readiness":{
+    "allowed":["CLAIM_LEDGER","FIGURE_LEDGER","RIVAL_TABLE","NEGATIVE_CUSTODY","MISSING_EVIDENCE_MATRIX"],
+    "manuscript":"NOT_AUTHORIZED"
+  },
+  "law_r2_gate":"UNCHANGED",
+  "terminal_verdict_family":[
+    "PASS_PROSPECTIVE_SIGN_PREDICTION__THIRD_EXACT_FAMILY__BOUNDARY_CARRYING_REPLICATED__RICH_RIVAL_ECOLOGY_ADJUDICATED__MACRO_LAW_CALIBRATION_ADVANCES",
+    "PASS_THIRD_EXACT_FAMILY__SIGN_PREDICTION_PARTIAL__RICH_RIVALS_NONUNIQUE__MACRO_LAW_NOT_AUTHORIZED",
+    "HOLD_THIRD_EXACT_FAMILY_NOT_FOUND__SIGN_CALIBRATION_UNDERPOWERED",
+    "FAIL_PROSPECTIVE_SIGN_RULE__THIRD_FAMILY_REVERSES_PRECOMMITTED_BOUNDARY_PREDICTION"
+  ]
+}
