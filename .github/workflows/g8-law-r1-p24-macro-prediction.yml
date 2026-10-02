@@ -1,0 +1,100 @@
+name: G8 LAW-R1-P24 Macro-Structure Prediction
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p24/**'
+      - 'lawkit/protocol/v0.28/**'
+      - 'tools/law-r1-p24-*'
+      - '.github/workflows/g8-law-r1-p24-macro-prediction.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  prediction:
+    name: P24 Macro-Structure Prediction
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Haskell
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.8.4'
+
+      - name: Set Up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+
+      - name: Prepare P24 Output
+        run: mkdir -p out-p24
+
+      - name: Run Prospective Mathematics
+        run: |
+          ghc -O2 tools/law-r1-p24-math-check.hs -o out-p24/p24-math-check
+          out-p24/p24-math-check
+
+      - name: Run Exact Protobuf Transport Probe
+        run: |
+          rm -rf /tmp/p24-protobuf
+          mkdir -p /tmp/p24-protobuf
+          cp tools/law-r1-p24-protobuf.go /tmp/p24-protobuf/main.go
+          pushd /tmp/p24-protobuf
+          go mod init p24probe
+          go get google.golang.org/protobuf@dcb66ef29d5e2a9420273f86407f493298804ec3
+          go list -m -json google.golang.org/protobuf > "$GITHUB_WORKSPACE/out-p24/p24-protobuf-module.json"
+          go run .
+          cp out-p24/p24-protobuf.json "$GITHUB_WORKSPACE/out-p24/p24-protobuf.json"
+          popd
+
+      - name: Run Exact QUIC Datagram Negotiation Test
+        run: |
+          rm -rf /tmp/p24-quic-go
+          git init /tmp/p24-quic-go
+          git -C /tmp/p24-quic-go remote add origin https://github.com/quic-go/quic-go.git
+          git -C /tmp/p24-quic-go fetch --depth 1 origin 7c3a98eeb4144e77876ba77c9292da9b5b27a0e1
+          git -C /tmp/p24-quic-go checkout --detach FETCH_HEAD
+          head_sha="$(git -C /tmp/p24-quic-go rev-parse HEAD)"
+          test "$head_sha" = "7c3a98eeb4144e77876ba77c9292da9b5b27a0e1"
+          set -o pipefail
+          (cd /tmp/p24-quic-go && go test ./integrationtests/self -run '^TestDatagramNegotiation$' -count=1 -v) | tee out-p24/p24-quic-upstream.txt
+          cat > out-p24/p24-quic-upstream.json <<EOF
+          {
+            "status": "PASS",
+            "head": "$head_sha",
+            "test": "TestDatagramNegotiation",
+            "repository": "quic-go/quic-go"
+          }
+          EOF
+
+      - name: Materialize Frozen QUIC AND Packet
+        run: go run tools/law-r1-p24-quic-bridge.go
+
+      - name: Run P24 Prediction Adjudicator
+        run: |
+          node tools/law-r1-p24-prediction.mjs \
+            out-p24/p24-math.json \
+            out-p24/p24-protobuf.json \
+            out-p24/p24-quic-bridge.json \
+            out-p24/p24-quic-upstream.json \
+            out-p24/p24-protobuf-module.json \
+            out-p24/p24-prediction.json
+
+      - name: Upload P24 Prediction Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p24-macro-prediction
+          path: |
+            out-p24/p24-math.json
+            out-p24/p24-protobuf.json
+            out-p24/p24-protobuf-module.json
+            out-p24/p24-quic-bridge.json
+            out-p24/p24-quic-upstream.json
+            out-p24/p24-quic-upstream.txt
+            out-p24/p24-prediction.json
+          retention-days: 30
