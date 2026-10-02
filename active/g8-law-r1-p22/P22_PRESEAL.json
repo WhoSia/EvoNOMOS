@@ -1,0 +1,46 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P22",
+  "status": "PRESEALED",
+  "suffix": "Trial",
+  "constitution_commit": "8af9a1cc7ed36374d5f1d758d1448b19c56fa3bf",
+  "opened_from": "5ecdad16dfecb3f2faeb7843bfc04eebf3ba0272",
+  "global_start": 9915,
+  "frozen_before_fresh_fourth_family": true,
+  "theorem_0": {
+    "status": "PROVED_PRE_FRESH",
+    "statement": "ALL_EDGES_CARRY and NO_CARRIER_GAP are Boolean dual formulations of the same classifier.",
+    "consequence": "R4/R5 P21 tie was representational identity, not empirical underidentification."
+  },
+  "prospective_models": {
+    "M0_ABSORBING_LOSS": "gap sends PRESENT to LOST and LOST remains LOST",
+    "M1_REPAIRABLE_TRANSPORT": "later repair may send LOST back to PRESENT",
+    "M2_ORDER_INVARIANT": "edge multiset/count sufficient",
+    "M3_ORDER_SENSITIVE": "composition order may change output",
+    "M4_PROPERTY_INDEPENDENT": "edge has one status for all properties",
+    "M5_PROPERTY_INDEXED": "edge transport depends on property"
+  },
+  "prospective_fourth_family": {
+    "must_be_fresh": true,
+    "must_be_mechanistically_distinct": true,
+    "preferred_semantics": "explicit backward/compatibility obligation",
+    "target_cells": [
+      "DIRECT_PRESERVE",
+      "GAP_DROP",
+      "GAP_THEN_REPAIR"
+    ],
+    "optional_strong_cell": "REPAIR_THEN_GAP",
+    "repair_must_be_defined_before_outcome_as": "explicit adapter/reconstitution/conversion that reconstructs the transported client-observable property after an admitted lossy boundary"
+  },
+  "bridge_rivals": [
+    "F0_SINGLE_TRANSPORT_LAW",
+    "F1_TWO_FAMILY_DECOMPOSITION",
+    "F2_MECHANISM_LOCAL_ONLY"
+  ],
+  "posthoc_repair_definition": "FORBIDDEN",
+  "force_single_grammar": "FORBIDDEN",
+  "new_X": "FORBIDDEN_FOR_P22_EMPIRICAL_CLAIM",
+  "new_G": "FORBIDDEN_FOR_P22_EMPIRICAL_CLAIM",
+  "mathematical_lane": "INDEPENDENT_AND_NON_SOVEREIGN_OVER_EMPIRICAL_FACTS",
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
