@@ -1,0 +1,42 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P8",
+  "verdict": "PASS_MULTI_MOTIF_ECOLOGY__ORTHOGONAL_AXIS_COMPOSITION_SUPPORTED__COMPONENT_NOVELTY_KILLED__KERNEL_NOT_FALSIFIED",
+  "canonical": {
+    "run": 36948635539,
+    "head": "2234752a4b18ca2409d144daf672c95c33c1e3c0",
+    "artifact": 11203186981,
+    "artifact_digest": "sha256:22be98c877d03b2e8043cb2e6ba51b06c9dad4a62731516d79eeefa8bbfcdb4e"
+  },
+  "scientific_authority": {
+    "competition": "NOT_TRUE_RIVALS_WHEN_AXES_ARE_SEPARATED",
+    "scalar_winner": null,
+    "composition": {
+      "representation": "THREE_AXIS_AUTHORITY_GEOMETRY",
+      "status": "SUPPORTED_AS_BOUNDED_COMPOSITION_REPRESENTATION__NOT_A_NEW_UNIVERSAL_PRINCIPLE",
+      "axes": {
+        "S": "semantic-authority cardinality",
+        "P": "operational-authority scope",
+        "F": "invariant/failure closure"
+      }
+    },
+    "motif_statuses": {
+      "A": "ABSORB_EXISTING_FAMILY__CONDITIONAL_SCOPE_REFINED",
+      "B": "ABSORB_EXISTING_FAMILY__SUBSTRATE_MODERATOR_EXPLICIT",
+      "C": "ABSORB_EXISTING_FAMILY__FAILURE_DOMAIN_MODERATOR_EXPLICIT"
+    },
+    "novelty": {
+      "A": "RETIRED_GENERIC_SSOT",
+      "B": "RETIRED_ACID_OUTBOX_SAGA_IDEMPOTENCY_FAMILY",
+      "C": "RETIRED_LEAST_PRIVILEGE_BULKHEAD_FAMILY",
+      "composition": "NOVELTY_WITHHELD"
+    },
+    "generalized_kernel": "NOT_FALSIFIED_BY_P8",
+    "llm_role": "LOCAL_PROBE_ONLY",
+    "world_contact": "PRIMARY"
+  },
+  "closure": {
+    "ravel": "9233–9274",
+    "decision": "9275–9288",
+    "global_next": 9289
+  }
+}
