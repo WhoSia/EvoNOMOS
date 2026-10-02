@@ -1,11 +1,22 @@
 # Active lineage
 
-Current scientific surface: `active/g8-law-r1-p9/`
+Current scientific surface:
 
-Status: **CLOSED / PASS**
+- `active/g8-law-r1-p10/`
+- status: `CLOSED / PASS`
+- canonical run: `36954213256`
+- canonical head: `fcd963ab9a26db666e13792af1eacc41d4c2c090`
+- artifact: `11205386179`
+- digest: `sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4`
 
-Canonical run `36950465227`, head `f4ed593d75ebb3987ba1abd04af0e0b50414aae6`, artifact `11204415152`, digest `sha256:498a1746c3c54ffdda1ab92d80e273be540248ce192dc49b141062316dcfc8d6`.
+P10 ruling:
 
-P9 retains `G=(S,P,F)` as bounded structural geometry, rejects geometry alone as a sufficient policy state, promotes `Pi(X,G,E)`, and withholds a fourth structural axis.
+- state factorization `(X,G,E)` survives under current evidence
+- policy separability is rejected
+- `Pi(X,G,E)` must allow interaction-bearing rules
+- no same-`(X,G,E)` conflicting-action witness was observed
+- missing coordinate is not reopened
+- LAW-R2 is not authorized
+- generalized kernel remains not falsified
 
-Global next: `9340`.
+Global next: `9396`.
