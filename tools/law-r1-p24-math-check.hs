@@ -1,4 +1,5 @@
 import Data.List (nub)
+import System.Directory (createDirectoryIfMissing)
 
 type F=[Int]
 
@@ -44,9 +45,24 @@ main=do
       rdeg=faithfulDegree rightZero
       quotientSame=True
       pass=ldeg==2 && rdeg==3 && andUnique && quotientSame
+  createDirectoryIfMissing True "out-p24"
+  writeFile "out-p24/p24-math.json" $ unlines
+    [ "{"
+    , "  \"stage\": \"EvoNOMOS Generation VIII LAW-R1-P24\","
+    , "  \"status\": \"" ++ (if pass then "PASS" else "FAIL") ++ "\","
+    , "  \"left_zero_min_faithful_degree\": " ++ show ldeg ++ ","
+    , "  \"right_zero_min_faithful_degree\": " ++ show rdeg ++ ","
+    , "  \"boolean_quotient_orientation_erasure\": " ++ map toLowerBool (show quotientSame) ++ ","
+    , "  \"and_unique_on_complete_2x2\": " ++ map toLowerBool (show andUnique)
+    , "}"
+    ]
   putStrLn $ "P24_MATH=" ++ if pass then "PASS" else "FAIL"
   putStrLn $ "LEFT_ZERO_MIN_DEGREE=" ++ show ldeg
   putStrLn $ "RIGHT_ZERO_MIN_DEGREE=" ++ show rdeg
   putStrLn $ "BOOLEAN_QUOTIENT_ORIENTATION_ERASURE=" ++ show quotientSame
   putStrLn $ "AND_UNIQUE_ON_2X2=" ++ show andUnique
   if pass then pure () else error "P24 math failed"
+  where
+    toLowerBool 'T' = 't'
+    toLowerBool 'F' = 'f'
+    toLowerBool x = x
