@@ -1,0 +1,68 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P13",
+  "verdict": "PASS_PARTIAL_PRIMITIVE_STRUCTURE__DEPENDENCIES_RECOVERED__RESIDUAL_UNDERIDENTIFICATION_RETAINED__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36958108004,
+    "head": "119a1819f905fba02d91437836c16f77f52290e2",
+    "job": 110685533668,
+    "artifact": 11206592288,
+    "digest": "sha256:3577bfe1b3276decc9dad2156012ef6b9ce819a532c8b922875ccd088fc06b56"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "discriminator_custody": "PASS",
+    "court": "PASS",
+    "representation_invariance": "PASS",
+    "anti_rationalization": "PASS"
+  },
+  "scientific_readout": {
+    "stable_primitives": [],
+    "bounded_identified": ["COMPATIBILITY_OBLIGATION"],
+    "coexistence_requirement": "SUPPORTED_NEAR_MATCHED_BUT_NOT_ORTHOGONAL",
+    "release_authority": "UNRESOLVED_CONFOUNDED_WITH_LIFECYCLE",
+    "lifecycle_phase": "RETAINS_P12_IDENTIFIED_STATUS",
+    "dependency_graph": {
+      "COMPATIBILITY_OBLIGATION_TO_COEXISTENCE_REQUIREMENT": "CANDIDATE_NOT_DETERMINISTIC",
+      "LIFECYCLE_PHASE_TO_RELEASE_AUTHORITY": "CANDIDATE_CONFOUNDING_EDGE"
+    },
+    "stable_primitive_structure_of_X": "NOT_YET_ESTABLISHED"
+  },
+  "ruling": {
+    "state": "(X,G,E)_SURVIVES_CURRENT_EVIDENCE",
+    "policy": "Pi(X,G,E)_INTERACTION_BEARING",
+    "compatibility_obligation": "RETAIN_AS_BOUNDED_IDENTIFIED_CANDIDATE",
+    "coexistence_requirement": "DO_NOT_PROMOTE_INDEPENDENT_PRIMITIVE_YET",
+    "release_authority": "DO_NOT_PROMOTE__LIFECYCLE_CONFOUND_REMAINS",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "fresh_authority": [
+    {"source":"modelcontextprotocol/ext-apps#769","merge":"218aef167edd94dd822cecbde8fb2ecb6dbe0ca5"},
+    {"source":"modelcontextprotocol/ext-apps#770","merge":"12aa50b62320f016616d2dc065f3d7dfb64ffad8"},
+    {"source":"isaac-sim/IsaacLab#8169","merge":"02b779f79d49aab41daa2f25531d9860173f666f"},
+    {"source":"isaac-sim/IsaacLab#8170","merge":"b7c022547288c5c51850d92296e34e0df6562066"},
+    {"source":"agent-grounds/grund#386","merge":"16fa32b4c087583254f757e52480fda966da0621"}
+  ],
+  "harness_note": {
+    "noncanonical_multistage_run": 36958060478,
+    "p13_job_in_noncanonical_run": 110685382031,
+    "p13_job_result": "SUCCESS",
+    "overall_run_result": "FAILURE_DUE_TO_LEGACY_P8_JOB",
+    "classification": "HARNESS_COUPLING_ONLY__NO_P13_SCIENCE_FAILURE"
+  },
+  "provenance": {
+    "constitution": "2e1ea58f751f429000f6f33c2d6f109b1856f663",
+    "preseal": "b87a4f0921f433f89743411e851bd8e3ad1ab89d",
+    "discriminator_custody": "6cabfc6684cdc2824f6d2eca8bc6bfa6c212648d",
+    "verifier": "3d9fc11272d6171de95f246d490c2ae4d7667c0a",
+    "court": "683d05db9930d1dac938e649ff38c23690f88da6",
+    "multistage_workflow": "045544f402e7609872bc6ecec5eb1f5730cfd6d4",
+    "dedicated_workflow": "119a1819f905fba02d91437836c16f77f52290e2"
+  },
+  "closure": {
+    "ravel": "9457–9475",
+    "decision": "9476–9489",
+    "global_next": 9490
+  }
+}
