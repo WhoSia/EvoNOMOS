@@ -1,0 +1,78 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P23",
+  "status": "PRESEALED",
+  "suffix": "Reconstruction",
+  "constitution_commit": "6b30f58a1b22542b08bc9b0d8aae112ffc826a25",
+  "opened_from": "860ad26e5ead430a308a3dffaf6b1b11eaa34d1e",
+  "global_start": 9988,
+  "frozen_before_fresh_p23_outcome": true,
+  "monoid": {
+    "name": "M_CR",
+    "elements": [
+      "I",
+      "D",
+      "R"
+    ],
+    "table": {
+      "I": {
+        "I": "I",
+        "D": "D",
+        "R": "R"
+      },
+      "D": {
+        "I": "D",
+        "D": "D",
+        "R": "D"
+      },
+      "R": {
+        "I": "R",
+        "D": "R",
+        "R": "R"
+      }
+    },
+    "interpretation": {
+      "I": "identity/carry",
+      "D": "loss/drop constant",
+      "R": "repair/reconstitute constant"
+    }
+  },
+  "theorem_targets": [
+    "NORMAL_FORM",
+    "MINIMAL_FAITHFUL_STATE_SIZE_TWO",
+    "BOOLEAN_FAILURE_QUOTIENT_NOT_CONGRUENT_ON_PATH_STATES_UNDER_REPAIR",
+    "OBSERVATION_COLLAPSE_CONDITION",
+    "PROPERTY_PRODUCT_ACTION",
+    "UNIQUE_NONTRIVIAL_PROPER_MONOID_CONGRUENCE_D_EQ_R",
+    "BOOLEAN_MONOID_AS_QUOTIENT_M_CR_MOD_D_EQ_R"
+  ],
+  "empirical_order_prediction": {
+    "loss_then_repair": "+",
+    "repair_then_loss": "-",
+    "baseline": "+",
+    "loss_only": "-",
+    "repair_only": "+"
+  },
+  "restricted_bridge": {
+    "Q_forms": [
+      "IDENTITY_ON_BINARY_STATE",
+      "FORGET_PROPERTY_ID_KEEP_PRESENT_LOST",
+      "PRESEALED_FIXED_PARTITION"
+    ],
+    "D_loc_max_depth": 2,
+    "mechanism_id_feature": false
+  },
+  "decomposition_rivals": [
+    "U0_SINGLE_TWO_LEVEL_BRIDGE",
+    "U1_TWO_FAMILY",
+    "U2_THREE_PLUS_FAMILY",
+    "U3_MECHANISM_LOCAL"
+  ],
+  "property_indexed_replication": "SECOND_DISTINCT_SHARED_BOUNDARY_WITNESS_REQUIRED_FOR_STRONG_PROMOTION",
+  "new_X": "FORBIDDEN",
+  "new_G": "FORBIDDEN_FOR_P23_STRONG_CLAIMS",
+  "posthoc_operation_identity": "FORBIDDEN",
+  "arbitrary_Q": "FORBIDDEN",
+  "mechanism_id_in_Dloc": "FORBIDDEN",
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
