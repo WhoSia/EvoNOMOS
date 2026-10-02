@@ -1,0 +1,143 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P13",
+  "constitution_commit": "2e1ea58f751f429000f6f33c2d6f109b1856f663",
+  "preseal_commit": "b87a4f0921f433f89743411e851bd8e3ad1ab89d",
+  "admission": "POST_PRESEAL_FRESH_DISCRIMINATOR_ECOLOGY",
+  "sources": [
+    {
+      "id": "EXT_APPS_769",
+      "source": "modelcontextprotocol/ext-apps#769",
+      "merged": true,
+      "merge_commit": "218aef167edd94dd822cecbde8fb2ecb6dbe0ca5",
+      "role": "COMPATIBILITY_EXACT_INTERNAL_DISCRIMINATOR",
+      "fact": "Two 1.x handler registration forms were restored as deprecated overloads in the 2.x line because they were cheap to preserve; 2.x native forms remain the canonical implementation and both forms type-check side by side."
+    },
+    {
+      "id": "EXT_APPS_770",
+      "source": "modelcontextprotocol/ext-apps#770",
+      "merged": true,
+      "merge_commit": "12aa50b62320f016616d2dc065f3d7dfb64ffad8",
+      "role": "COMPATIBILITY_NEGATIVE_CONTROL_AND_REAL_OLD_CONSUMER_CUSTODY",
+      "fact": "Published 1.7.5 and current 2.x are exercised in both cross-version directions; same-version tests miss coordinated wire drift that the cross-version pairing catches."
+    },
+    {
+      "id": "ISAACLAB_8169",
+      "source": "isaac-sim/IsaacLab#8169",
+      "merged": true,
+      "merge_commit": "02b779f79d49aab41daa2f25531d9860173f666f",
+      "role": "COEXISTENCE_BOUNDED_DISCRIMINATOR",
+      "fact": "New flat Franka configs become the main surface while original settings remain under explicit LEGACY configs; imports of main names break, but old-contract consumers can coexist by selecting legacy configs."
+    },
+    {
+      "id": "ISAACLAB_8170",
+      "source": "isaac-sim/IsaacLab#8170",
+      "merged": true,
+      "merge_commit": "b7c022547288c5c51850d92296e34e0df6562066",
+      "role": "COEXISTENCE_REPLICATION_SUPPORT",
+      "fact": "Maintained tasks migrate to the shared asset while legacy compatibility configs remain available for old checkpoints or old contracts."
+    },
+    {
+      "id": "GRUND_386",
+      "source": "agent-grounds/grund#386",
+      "merged": true,
+      "merge_commit": "16fa32b4c087583254f757e52480fda966da0621",
+      "role": "AUTHORITY_DEPENDENCY_CANDIDATE",
+      "fact": "Ordinary pull requests create independent pending-entry files; the release process later stamps, collects, publishes and deletes them."
+    }
+  ],
+  "discriminator_families": [
+    {
+      "id": "D_COMPAT_EXT_APPS",
+      "target": "COMPATIBILITY_OBLIGATION",
+      "domain": "PROTOCOL_HANDLER_API",
+      "grade": "EXACT_INTERNAL",
+      "G": "SAME_2_X_HANDLER_REGISTRATION_IMPLEMENTATION_AND_METHOD_DISPATCH",
+      "E": "SAME_2_X_RUNTIME_BEHAVIOR_AND_TESTED_HANDLER_SEMANTICS",
+      "held_context": {
+        "LIFECYCLE_PHASE": "2_X_ACTIVE_TRANSITION",
+        "COEXISTENCE_REQUIREMENT": "SIDE_BY_SIDE_FOR_TEST",
+        "RELEASE_AUTHORITY": "2_X_LIBRARY_MAINTAINER"
+      },
+      "worlds": [
+        {
+          "id": "NATIVE_2_X_ONLY_CONTRACT",
+          "COMPATIBILITY_OBLIGATION": 0,
+          "A": "EXPOSE_2_X_NATIVE_HANDLER_FORMS"
+        },
+        {
+          "id": "LEGACY_1_X_CONSUMER_CONTRACT",
+          "COMPATIBILITY_OBLIGATION": 1,
+          "A": "EXPOSE_2_X_NATIVE_FORMS_PLUS_DEPRECATED_1_X_OVERLOADS"
+        }
+      ],
+      "negative_control": "Same-version suite remains green under coordinated 2.x wire rename while published-1.x cross-version pairing detects the drift.",
+      "replication_status": "ONE_DOMAIN_EXACT_PLUS_ONE_REAL_OLD_CONSUMER_CONTROL"
+    },
+    {
+      "id": "D_COEXIST_ISAAC",
+      "target": "COEXISTENCE_REQUIREMENT",
+      "domain": "ROBOTICS_ASSET_CONFIG",
+      "grade": "NEAR_MATCHED",
+      "G": "SAME_FRANKA_CONFIGURATION_MIGRATION_FAMILY",
+      "E": "OLD_CONTRACT_REQUIREMENT_DIFFERS_FOR_LEGACY_CONSUMERS",
+      "held_context": {
+        "LIFECYCLE_PHASE": "BREAKING_MIGRATION",
+        "RELEASE_AUTHORITY": "PACKAGE_MAINTAINER"
+      },
+      "worlds": [
+        {
+          "id": "MAINTAINED_TASK",
+          "COEXISTENCE_REQUIREMENT": 0,
+          "COMPATIBILITY_OBLIGATION": 0,
+          "A": "USE_NEW_MAIN_SHARED_ASSET"
+        },
+        {
+          "id": "OLD_CONTRACT_CONSUMER",
+          "COEXISTENCE_REQUIREMENT": 1,
+          "COMPATIBILITY_OBLIGATION": 1,
+          "A": "KEEP_AND_EXPLICITLY_SELECT_LEGACY_CONFIG"
+        }
+      ],
+      "replication_status": "SUPPORTED_ACROSS_8169_AND_8170_BUT_COMPATIBILITY_CO_VARIES"
+    },
+    {
+      "id": "D_AUTHORITY_GRUND",
+      "target": "RELEASE_AUTHORITY",
+      "domain": "CHANGELOG_RELEASE_PROCESS",
+      "grade": "CONFOUNDED",
+      "G": "SAME_PENDING_ENTRY_REPRESENTATION",
+      "E": "PENDING_CHANGE_SET",
+      "worlds": [
+        {
+          "id": "ORDINARY_PR",
+          "RELEASE_AUTHORITY": "CHANGE_AUTHOR",
+          "LIFECYCLE_PHASE": "UNRELEASED_CHANGE",
+          "A": "WRITE_ONE_INDEPENDENT_ENTRY_FILE"
+        },
+        {
+          "id": "RELEASE_PROCESS",
+          "RELEASE_AUTHORITY": "RELEASE_AUTOMATION",
+          "LIFECYCLE_PHASE": "RELEASE_CUT",
+          "A": "STAMP_COLLECT_PUBLISH_DELETE"
+        }
+      ],
+      "confound": "LIFECYCLE_PHASE_CHANGES_WITH_AUTHORITY",
+      "replication_status": "NOT_IDENTIFIED"
+    }
+  ],
+  "dependency_hypotheses": [
+    {
+      "from": "COMPATIBILITY_OBLIGATION",
+      "to": "COEXISTENCE_REQUIREMENT",
+      "status": "CANDIDATE_NOT_DETERMINISTIC",
+      "reason": "Compatibility preservation often induces side-by-side surfaces, but ext-apps wire interoperability can be preserved without duplicating all API surfaces."
+    },
+    {
+      "from": "LIFECYCLE_PHASE",
+      "to": "RELEASE_AUTHORITY",
+      "status": "CANDIDATE_CONFOUNDING_EDGE",
+      "reason": "Current authority evidence changes together with release lifecycle; independent variation has not been observed."
+    }
+  ],
+  "post_hoc_coordinate_additions": []
+}
