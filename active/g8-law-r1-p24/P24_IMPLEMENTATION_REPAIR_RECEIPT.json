@@ -1,0 +1,27 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "status": "IMPLEMENTATION_REPAIR_NOT_SCIENTIFIC_EVIDENCE",
+  "failed_run": {
+    "run": 37017112611,
+    "head": "f550a2a70931685f56c9224dccd9117153759fc8",
+    "job": 110870587417,
+    "failure_step": "Run Exact Protobuf Transport Probe",
+    "failure": "Go compile-time type mismatch: *State passed where *dynamicpb.Message was required.",
+    "scientific_output_opened": false,
+    "quic_executed": false,
+    "adjudicator_executed": false
+  },
+  "repair": {
+    "commit": "74a1f0656b0d4428e04bd4e135a107484ebd3635",
+    "message": "Fix(G8-LAW-R1-P24): Repair Protobuf State Projection",
+    "semantic_change_to_frozen_hypothesis": false,
+    "operation_identity_change": false,
+    "orientation_prediction_change": false,
+    "property_names_change": false
+  },
+  "canonical_after_repair": {
+    "run": 37017513558,
+    "head": "74a1f0656b0d4428e04bd4e135a107484ebd3635",
+    "result": "SUCCESS"
+  }
+}
