@@ -1,5 +1,4 @@
 import Data.List (nub, permutations)
-import qualified Data.Map.Strict as M
 import System.Directory (createDirectoryIfMissing)
 
 type F = [Int]
@@ -41,7 +40,8 @@ mulL 0 x = x
 mulL x _ = x
 
 mulR :: Int -> Int -> Int
-mulR 0 x = x
+mulR 0 y = y
+mulR x 0 = x
 mulR _ y = y
 
 isIso :: (Int -> Int -> Int) -> (Int -> Int -> Int) -> Bool
@@ -66,8 +66,11 @@ rK = [1,1,2]
 
 main :: IO ()
 main = do
-  let leftMin = head [n | n <- [1..4], faithfulExists n leftZeroPair]
-  let rightMin = head [n | n <- [1..4], faithfulExists n rightZeroPair]
+  let findMin xs = case xs of
+        (x:_) -> x
+        [] -> error "no faithful degree found in bounded search"
+  let leftMin = findMin [n | n <- [1..4], faithfulExists n leftZeroPair]
+  let rightMin = findMin [n | n <- [1..4], faithfulExists n rightZeroPair]
   let nonIso = not (isIso mulL mulR)
   let opposite = and [mulL x y == mulR y x | x <- [0,1,2], y <- [0,1,2]]
   let kubeRight = rightZeroPair dK rK
