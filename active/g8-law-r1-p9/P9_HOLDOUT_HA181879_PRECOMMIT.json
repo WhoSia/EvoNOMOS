@@ -1,0 +1,27 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P9",
+  "precommit": "FRESH_HOLDOUT_HA_UNIFIPROTECT_181879",
+  "constitution_commit": "25c257be636e96f1a66bbbe2e40ed18625d33e3e",
+  "world": {
+    "repo": "home-assistant/core",
+    "issue": 181879,
+    "observed_only": [
+      "Home Assistant 2026.9 rejects UniFi Protect below 7.2.105",
+      "affected hardware offers 7.1.60 as its current available version",
+      "authentication and several API requests succeed before the minimum-version gate aborts setup",
+      "Home Assistant 2026.8.3 was the last working release"
+    ]
+  },
+  "frozen_prediction": {
+    "representation_test": "S/P/F alone is insufficient if the correct action depends on version availability or capability support across a coexistence horizon.",
+    "branch_A": "If required behavior is actually available on 7.1.60, expect the repair to lower/remove the hard version gate or replace it with a more capability-sensitive condition.",
+    "branch_B": "If a required behavior is genuinely absent on 7.1.60, expect the incompatibility gate to remain and the issue to resolve by availability/rollout rather than structural refactoring.",
+    "decisive_moderators": [
+      "required capability availability",
+      "reachable upgrade/version set for affected hardware",
+      "supported coexistence horizon"
+    ],
+    "falsifier": "If the merged resolution is fully explained by changing S, P or F with no dependence on version/capability state, the missing-state-variable hypothesis is weakened."
+  },
+  "authority_ceiling": "ONE_FRESH_WORLD__REPRESENTATION_SUFFICIENCY_TEST"
+}
