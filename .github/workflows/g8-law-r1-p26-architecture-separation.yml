@@ -85,7 +85,8 @@ jobs:
       - name: Run Upstream PHP SimpleSpanProcessor Controls
         run: |
           cd out-p26/otel-php
-          vendor/bin/phpunit tests/Unit/SDK/Trace/SpanProcessor/SimpleSpanProcessorTest.php             --filter 'test_on_end_after_shutdown|test_on_end_sampled_span|test_on_end_non_sampled_span'
+          vendor/bin/phpunit tests/Unit/SDK/Trace/SpanProcessor/SimpleSpanProcessorTest.php \
+            --filter 'test_on_end_after_shutdown|test_on_end_sampled_span|test_on_end_non_sampled_span'
 
       - name: Run PHP OTel Intervention Packet
         env:
@@ -94,9 +95,25 @@ jobs:
           cd out-p26/otel-php
           php p26_probe.php
 
+      - name: Materialize Exact futures-rs
+        run: |
+          git clone --quiet https://github.com/rust-lang/futures-rs.git out-p26/futures-rs
+          git -C out-p26/futures-rs checkout --quiet 706e29bce353e3e72655b99a4a6411291cd4762a
+          test "$(git -C out-p26/futures-rs rev-parse HEAD)" = "706e29bce353e3e72655b99a4a6411291cd4762a"
+
+      - name: Run Rust futures-rs Cross-Domain Naturality Matrix
+        env:
+          P26_FUTURES_UTIL: ${{ github.workspace }}/out-p26/futures-rs/futures-util
+          P26_OUT_FUTURES: ${{ github.workspace }}/out-p26/p26-futures.json
+        run: go run tools/law-r1-p26-futures-matrix.go
+
       - name: Run Architecture Separation Adjudicator
         run: |
-          node tools/law-r1-p26-experiment.mjs             out-p26/p26-otel-go.json             out-p26/p26-otel-php.json             out-p26/p26-experiment.json
+          node tools/law-r1-p26-experiment.mjs \
+            out-p26/p26-otel-go.json \
+            out-p26/p26-otel-php.json \
+            out-p26/p26-futures.json \
+            out-p26/p26-experiment.json
 
       - name: Upload P26 Architecture-Separation Artifact
         uses: actions/upload-artifact@v4
