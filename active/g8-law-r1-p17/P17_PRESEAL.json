@@ -1,0 +1,42 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P17",
+  "status": "PRESEALED",
+  "constitution_commit": "0e90d09e650eb4487c6972217f265bc751b83246",
+  "opened_from": "bbf1183eb2c885dc094e5e8652dc8c6f4ecdf05e",
+  "global_start": 9615,
+  "frozen_before_fresh_interaction_result_inspection": true,
+  "suffix": "Reconstruction",
+  "candidate_edges": [
+    ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT"],
+    ["COMPATIBILITY_OBLIGATION","RELEASE_AUTHORITY"],
+    ["COMPATIBILITY_OBLIGATION","LIFECYCLE_PHASE"],
+    ["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+    ["COEXISTENCE_REQUIREMENT","LIFECYCLE_PHASE"],
+    ["RELEASE_AUTHORITY","LIFECYCLE_PHASE"]
+  ],
+  "candidate_higher_order_terms": [
+    ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","LIFECYCLE_PHASE"],
+    ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+    ["COMPATIBILITY_OBLIGATION","RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+    ["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+    ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY","LIFECYCLE_PHASE"]
+  ],
+  "pairwise_identification": "Require a complete 2x2 matched subset family or equivalent intervention set that eliminates both single-coordinate reconstructions under fixed G,E.",
+  "three_way_identification": "Require all single knockouts and enough pairwise cells to reject every pairwise reconstruction under fixed G,E.",
+  "four_way_identification": "Require enough cells to reject all lower-order models; incomplete support is HOLD/UNDERIDENTIFIED, never zero.",
+  "context_geometry_rule": "Any claimed XxG or XxE term requires an orthogonal same-X control with G or E varied alone.",
+  "cross_domain_rule": "A reproducible interaction law requires at least two mechanistically distinct software domains supporting the same edge or hyperedge semantics.",
+  "sparsity_rule": "Do not infer sparsity from absent evidence. Sparsity authority requires identified zero lower-order terms inside a supported family.",
+  "language_budget": {
+    "python_new_files": 0,
+    "rust_required": true,
+    "go_required": true,
+    "cpp_required": true,
+    "ruby_required": true,
+    "javascript_required": true
+  },
+  "harvest_rule": "Harvest is non-sovereign and parallel. Literature or cross-lab fragments may kill novelty, seed tests, or survive a P17 rejection, but may not rescue a failed scientific interaction claim.",
+  "paper_rule": "Maintain paper-candidate hypotheses in Harvest only; scientific thresholds remain fixed.",
+  "anti_rationalization": "No new primitive, interaction subset, matched-family tolerance, or action class after fresh outcomes.",
+  "law_r2_gate": "Only same-(X,G,E) conflicting action surviving complete interaction reconstruction may reopen LAW-R2."
+}
