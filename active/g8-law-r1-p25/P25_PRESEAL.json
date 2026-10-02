@@ -1,0 +1,72 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P25",
+  "status": "PRESEALED",
+  "suffix": "Replication",
+  "global_start": 10135,
+  "constitution": "ff829bcdcdad43d52263e271661cbafd4a1fdbc5",
+  "math_note": "7facf76bdbe2e67f1dce654df514ad6bc51048ec",
+  "math_checker": "e319e30b779b27776365dbdf4b3616c2d7c6c92e",
+  "frozen_before_fresh_search": true,
+  "lane_A_second_bridge": {
+    "mechanism_distinct_from": "QUIC_GO_DATAGRAM_MUTUAL_NEGOTIATION",
+    "q": "binary transported/action-sufficient remote or upstream capability state",
+    "g": "binary independent local gate",
+    "function": "AND",
+    "packet": {
+      "q0_g0": 0,
+      "q0_g1": 0,
+      "q1_g0": 0,
+      "q1_g1": 1
+    }
+  },
+  "lane_B_end_to_end": {
+    "required_chain": "source_state -> T -> Q -> q -> AND(q,g) -> action",
+    "source_states_must_generate_both_q_values": true,
+    "g_crossed_with_both_q_values": true,
+    "q_injected_directly": "SUPPORT_ONLY"
+  },
+  "boolean_rivals": {
+    "AND": "0001",
+    "OR": "0111",
+    "XOR": "0110",
+    "Q_ONLY": "0011",
+    "G_ONLY": "0101",
+    "NOR": "1000",
+    "NAND": "1110",
+    "XNOR": "1001"
+  },
+  "decomposition": {
+    "U0": "single unified T-Q-AND architecture",
+    "U1": "distinct upstream families with shared q interface and AND",
+    "U2": "AND valid only in bounded bridge subclass",
+    "U3": "second bridge fails / disconnected"
+  },
+  "U0_promotion_requires": [
+    "second-domain prospective AND packet",
+    "fresh end-to-end T->Q->g->y packet",
+    "same binary q semantics up to predeclared isomorphism",
+    "no mechanism-local feature",
+    "no quotient change after outcome"
+  ],
+  "uniqueness": "NOT_AUTHORIZED_UNLESS_FRESH_PACKET_SEPARATES_U0_FROM_U1",
+  "property_names": [
+    "KNOWN_CURRENT_FIELD_OR_CAPABILITY",
+    "UNKNOWN_OR_FUTURE_FIELD_OR_CAPABILITY",
+    "TYPE_OR_SCHEMA_IDENTITY",
+    "CLIENT_VISIBLE_COMPATIBILITY_BEHAVIOR"
+  ],
+  "runtime_governance": {
+    "bot_author_count": 0,
+    "bot_committer_count": 0,
+    "github_actions_repo_writeback": false
+  },
+  "failure_conditions": [
+    "any second bridge cell disagrees with AND",
+    "end-to-end q must be redefined after outcome",
+    "mechanism ID required",
+    "U0 requires per-family transport lookup",
+    "posthoc Boolean function replacement"
+  ],
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
