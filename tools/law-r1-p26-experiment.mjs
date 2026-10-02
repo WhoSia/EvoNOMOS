@@ -2,6 +2,7 @@ import fs from 'node:fs';
 
 const go = JSON.parse(fs.readFileSync(process.argv[2] ?? 'out-p26/p26-otel-go.json','utf8'));
 const php = JSON.parse(fs.readFileSync(process.argv[3] ?? 'out-p26/p26-otel-php.json','utf8'));
+const futures = JSON.parse(fs.readFileSync(process.argv[4] ?? 'out-p26/p26-futures.json','utf8'));
 
 const expected = [
   ['baseline',1,0,0],
@@ -42,15 +43,16 @@ function analyze(packet){
 
 const ga = analyze(go);
 const pa = analyze(php);
+const fa = analyze(futures);
 
 const sameInducedActions =
-  ga.drop_q === 0 && pa.drop_q === 0 &&
-  ga.restore_q === 1 && pa.restore_q === 1;
+  ga.drop_q === 0 && pa.drop_q === 0 && fa.drop_q === 0 &&
+  ga.restore_q === 1 && pa.restore_q === 1 && fa.restore_q === 1;
 
-const exactPackets = ga.errors.length === 0 && pa.errors.length === 0;
+const exactPackets = ga.errors.length === 0 && pa.errors.length === 0 && fa.errors.length === 0;
 const naturality = exactPackets && sameInducedActions;
-const gateInvariant = ga.gate_invariance && pa.gate_invariance;
-const mediation = ga.mediation && pa.mediation;
+const gateInvariant = ga.gate_invariance && pa.gate_invariance && fa.gate_invariance;
+const mediation = ga.mediation && pa.mediation && fa.mediation;
 const u0Survives = naturality && gateInvariant && mediation;
 
 const result = {
@@ -58,14 +60,15 @@ const result = {
   suffix:'Experiment',
   status:u0Survives ? 'PASS' : 'FAIL',
   scientific_verdict:u0Survives
-    ? 'PASS_U0_INTERVENTIONAL_SURVIVAL__CROSS_LANGUAGE_NATURALITY_AND_MEDIATION_PASS__UNIQUENESS_NOT_AUTHORIZED'
+    ? 'PASS_U0_INTERVENTIONAL_SURVIVAL__CROSS_DOMAIN_NATURALITY_AND_MEDIATION_PASS__UNIQUENESS_NOT_AUTHORIZED'
     : 'FAIL_U0_INTERVENTIONAL_INVARIANT__SHARED_INTERFACE_RETAINS_AUTHORITY',
-  mechanisms:{go:ga,php:pa},
+  mechanisms:{go:ga,php:pa,futures:fa},
   typed_intervention:{
-    family:'TRACE_SAMPLED_STATE_DROP_RESTORE',
+    family:'GENERIC_NECESSARY_UPSTREAM_STATE_DROP_RESTORE',
     quotient_drop:'1_TO_0',
     quotient_restore:'0_TO_1',
-    mechanism_independent:naturality
+    mechanism_independent:naturality,
+    admitted_domains:['RUNTIME_TELEMETRY_GO','RUNTIME_TELEMETRY_PHP','COMPILE_TIME_CAPABILITY_RUST']
   },
   u0_invariants:{
     quotient_naturality:naturality ? 'PASS' : 'FAIL',
@@ -87,11 +90,12 @@ const result = {
   law_r2:'NOT_AUTHORIZED'
 };
 
-fs.writeFileSync(process.argv[4] ?? 'out-p26/p26-experiment.json',JSON.stringify(result,null,2)+'\n');
+fs.writeFileSync(process.argv[5] ?? 'out-p26/p26-experiment.json',JSON.stringify(result,null,2)+'\n');
 console.log('P26_EXPERIMENT=' + result.status);
 console.log('VERDICT=' + result.scientific_verdict);
 console.log('NATURALITY=' + result.u0_invariants.quotient_naturality);
 console.log('GATE_INVARIANCE=' + result.u0_invariants.gate_invariance);
 console.log('MEDIATION=' + result.u0_invariants.complete_mediation);
+console.log('CROSS_DOMAIN=GO_OTEL__PHP_OTEL__RUST_FUTURES');
 console.log('UNIQUENESS=NOT_AUTHORIZED_BY_NESTED_MODEL_THEOREM');
 if(result.status !== 'PASS') process.exit(3);
