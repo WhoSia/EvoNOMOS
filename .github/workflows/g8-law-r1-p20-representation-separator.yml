@@ -1,0 +1,47 @@
+name: G8 LAW-R1-P20 Representation-Separating Experiment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p20/**'
+      - 'lawkit/protocol/v0.24/**'
+      - 'tools/law-r1-p20-*'
+      - '.github/workflows/g8-law-r1-p20-representation-separator.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  experiment:
+    name: P20 Representation-Separating Experiment
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Prepare P20 Output
+        run: mkdir -p out-p20
+
+      - name: Run Ruby Keyword-Forwarding Separator
+        run: ruby tools/law-r1-p20-ruby-separator.rb out-p20/p20-ruby.json
+
+      - name: Run Rival Representation Experiment
+        run: |
+          node tools/law-r1-p20-experiment.mjs \
+            active/g8-law-r1-p20/P20_RUBY_SEPARATOR.tsv \
+            out-p20/p20-ruby.json \
+            out-p20/p20-experiment.json
+
+      - name: Upload P20 Representation-Separation Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p20-representation-separation
+          path: out-p20/
+          retention-days: 30
