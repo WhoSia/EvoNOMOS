@@ -1,0 +1,187 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P12",
+  "constitution_commit": "9b72d0daea4054723288ba5041453b16ce9e05dc",
+  "preseal_commit": "fc189d8e1178ff707eaecc73ed3d4d6ffe2a4588",
+  "admission": "POST_PRESEAL_FRESH_CROSS_DOMAIN",
+  "sources": [
+    {
+      "id": "MCP_EXT_APPS_770",
+      "source": "modelcontextprotocol/ext-apps#770",
+      "url": "https://github.com/modelcontextprotocol/ext-apps/pull/770",
+      "merged": true,
+      "merge_commit": "12aa50b62320f016616d2dc065f3d7dfb64ffad8",
+      "head": "5f6346ef8662c17b25f6edec1c9719b19413fd77",
+      "domain": "PROTOCOL_INTEROPERABILITY",
+      "observed_rule": "Published 1.x and current 2.x are exercised in both cross-version pairings because same-version tests cannot detect coordinated wire drift.",
+      "coordinate_evidence": [
+        "COMPATIBILITY_OBLIGATION",
+        "COEXISTENCE_REQUIREMENT"
+      ]
+    },
+    {
+      "id": "ISAACLAB_8170",
+      "source": "isaac-sim/IsaacLab#8170",
+      "url": "https://github.com/isaac-sim/IsaacLab/pull/8170",
+      "merged": true,
+      "merge_commit": "b7c022547288c5c51850d92296e34e0df6562066",
+      "head": "6e9075a987aa53ee5d7ead16f828b74f30d2e9f8",
+      "domain": "ROBOTICS_ASSET_MIGRATION",
+      "observed_rule": "Maintained tasks migrate to the shared asset while explicit legacy configs remain for consumers needing the old dynamics contract.",
+      "coordinate_evidence": [
+        "COMPATIBILITY_OBLIGATION",
+        "CONSUMER_MIGRATION_WINDOW"
+      ]
+    },
+    {
+      "id": "GATHERPRESS_2322",
+      "source": "GatherPress/gatherpress#2322",
+      "url": "https://github.com/GatherPress/gatherpress/pull/2322",
+      "merged": true,
+      "merge_commit": "cdf7e9fe1bd7e0d68a472357f784a5ef1a499c19",
+      "head": "6566cf51c751e2c9a2b83e9e2dbc05a920683bf8",
+      "domain": "EVENT_DATA_LIFECYCLE",
+      "observed_rule": "Upcoming events lazily refresh venue geodata when read; past events are not retroactively rewritten because their location is historical state.",
+      "coordinate_evidence": [
+        "LIFECYCLE_PHASE"
+      ]
+    },
+    {
+      "id": "GRUND_386",
+      "source": "agent-grounds/grund#386",
+      "url": "https://github.com/agent-grounds/grund/pull/386",
+      "merged": true,
+      "merge_commit": "16fa32b4c087583254f757e52480fda966da0621",
+      "head": "6f9830681132ec13529e08b8e350055dd2d63132",
+      "domain": "RELEASE_PROCESS_CONCURRENCY",
+      "observed_rule": "Ordinary pull requests write independent pending-entry files to avoid merge conflicts; the release authority later collects, numbers, publishes and deletes them.",
+      "coordinate_evidence": [
+        "COEXISTENCE_REQUIREMENT",
+        "RELEASE_AUTHORITY"
+      ]
+    }
+  ],
+  "contrast_worlds": [
+    {
+      "id": "MCP_CROSS_VERSION_REQUIRED",
+      "source": "MCP_EXT_APPS_770",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 1,
+        "COEXISTENCE_REQUIREMENT": 1,
+        "LIFECYCLE_PHASE": "ACTIVE_TRANSITION",
+        "RELEASE_AUTHORITY": "LIBRARY_TEST_GATE",
+        "CONSUMER_MIGRATION_WINDOW": 1,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "PUBLISHED_1_7_5_VS_CURRENT_2_X",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "WIRE_PROTOCOL"
+      },
+      "G": "SAME_WIRE_PROTOCOL_ACROSS_MAJOR_LIBRARY_IMPLEMENTATIONS",
+      "E": "REAL_PUBLISHED_1_7_5_AND_CURRENT_2_X_PAIRINGS",
+      "A": "REQUIRE_CROSS_VERSION_INTEROP_GATE"
+    },
+    {
+      "id": "ISAAC_MAINTAINED_TASK",
+      "source": "ISAACLAB_8170",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 1,
+        "LIFECYCLE_PHASE": "MAINTAINED_CURRENT",
+        "RELEASE_AUTHORITY": "BREAKING_MIGRATION",
+        "CONSUMER_MIGRATION_WINDOW": 1,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "CURRENT_SHARED_ASSET",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "MAINTAINED_TASK"
+      },
+      "G": "FRANKA_ASSET_CONFIGURATION_SELECTION",
+      "E": "CURRENT_MAINTAINED_TASK_SET",
+      "A": "MIGRATE_TO_SHARED_ASSET"
+    },
+    {
+      "id": "ISAAC_LEGACY_CONSUMER",
+      "source": "ISAACLAB_8170",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 1,
+        "COEXISTENCE_REQUIREMENT": 1,
+        "LIFECYCLE_PHASE": "LEGACY_SUPPORTED",
+        "RELEASE_AUTHORITY": "BREAKING_MIGRATION",
+        "CONSUMER_MIGRATION_WINDOW": 1,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "OLD_DYNAMICS_CONTRACT",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "LEGACY_CONSUMER"
+      },
+      "G": "FRANKA_ASSET_CONFIGURATION_SELECTION",
+      "E": "EXISTING_CHECKPOINT_OR_OLD_CONTRACT_REQUIREMENT",
+      "A": "PRESERVE_EXPLICIT_LEGACY_CONFIG"
+    },
+    {
+      "id": "GATHER_UPCOMING_EVENT",
+      "source": "GATHERPRESS_2322",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "LIFECYCLE_PHASE": "UPCOMING",
+        "RELEASE_AUTHORITY": "RUNTIME_READ",
+        "CONSUMER_MIGRATION_WINDOW": 0,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "CURRENT_LINKED_VENUE",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "EVENT_VIEW"
+      },
+      "G": "EVENT_TO_LINKED_VENUE_GEODATA",
+      "E": "CURRENT_VENUE_GEODATA_AVAILABLE",
+      "A": "LAZY_REFRESH_ON_READ"
+    },
+    {
+      "id": "GATHER_PAST_EVENT",
+      "source": "GATHERPRESS_2322",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "LIFECYCLE_PHASE": "PAST",
+        "RELEASE_AUTHORITY": "RUNTIME_READ",
+        "CONSUMER_MIGRATION_WINDOW": 0,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "CURRENT_LINKED_VENUE",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "EVENT_VIEW"
+      },
+      "G": "EVENT_TO_LINKED_VENUE_GEODATA",
+      "E": "CURRENT_VENUE_GEODATA_AVAILABLE",
+      "A": "PRESERVE_HISTORICAL_STATE_NO_REFRESH"
+    },
+    {
+      "id": "GRUND_PULL_REQUEST",
+      "source": "GRUND_386",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 1,
+        "LIFECYCLE_PHASE": "UNRELEASED",
+        "RELEASE_AUTHORITY": "ORDINARY_PULL_REQUEST",
+        "CONSUMER_MIGRATION_WINDOW": 0,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "GIT_BRANCH",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "CHANGE_AUTHOR"
+      },
+      "G": "CHANGELOG_PENDING_ENTRY_REPRESENTATION",
+      "E": "MULTIPLE_PARALLEL_CHANGES",
+      "A": "WRITE_ONE_INDEPENDENT_ENTRY_FILE"
+    },
+    {
+      "id": "GRUND_RELEASE",
+      "source": "GRUND_386",
+      "X": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "LIFECYCLE_PHASE": "RELEASE_CUT",
+        "RELEASE_AUTHORITY": "RELEASE_PROCESS",
+        "CONSUMER_MIGRATION_WINDOW": 0,
+        "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "RELEASE_TREE",
+        "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "RELEASE_OWNER"
+      },
+      "G": "CHANGELOG_PENDING_ENTRY_REPRESENTATION",
+      "E": "PENDING_ENTRY_SET_READY",
+      "A": "COLLECT_NUMBER_PUBLISH_AND_DELETE_ENTRIES"
+    }
+  ],
+  "precommitted_coordinate_status_hypotheses": {
+    "COMPATIBILITY_OBLIGATION": "RETAIN_PRIMITIVE_CANDIDATE",
+    "COEXISTENCE_REQUIREMENT": "RETAIN_PRIMITIVE_CANDIDATE",
+    "LIFECYCLE_PHASE": "RETAIN_PRIMITIVE_CANDIDATE",
+    "RELEASE_AUTHORITY": "RETAIN_PRIMITIVE_CANDIDATE",
+    "CONSUMER_MIGRATION_WINDOW": "DERIVED_OR_REDUNDANT_CANDIDATE",
+    "RUNTIME_OR_TOOLCHAIN_PROVENANCE": "E_OR_G_REASSIGNMENT_CANDIDATE",
+    "OWNERSHIP_OR_RESPONSIBILITY_BOUNDARY": "G_OR_AUTHORITY_MERGE_CANDIDATE"
+  },
+  "post_hoc_coordinate_additions": []
+}
