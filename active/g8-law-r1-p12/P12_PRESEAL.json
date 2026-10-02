@@ -1,0 +1,36 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P12",
+  "status": "PRESEALED",
+  "constitution_commit": "9b72d0daea4054723288ba5041453b16ce9e05dc",
+  "opened_from": "746f8e8ca06ac8f63551e29d4f0a25a186547b57",
+  "global_start": 9424,
+  "frozen_before_fresh_world_result_inspection": true,
+  "coordinate_rules": {
+    "primitive_admission": [
+      "OPERATIONAL_DEFINITION_PRECEDES_RESULT",
+      "PROSPECTIVE_DISCRIMINATION_REQUIRED",
+      "DELETION_FAILURE_REQUIRED",
+      "REPRESENTATION_INVARIANCE_REQUIRED"
+    ],
+    "compression_order": [
+      "DELETE",
+      "DERIVE",
+      "MERGE",
+      "QUOTIENT",
+      "ONLY_THEN_RETAIN_AS_PRIMITIVE"
+    ],
+    "post_hoc_rule": "Coordinates named only after seeing an unexplained action divergence are development-only and cannot rescue the same Court."
+  },
+  "minimality_definition": "A bounded minimal sufficient X representation preserves the admitted action partition under fresh transport while no retained primitive coordinate can be deleted or merged under the frozen tests.",
+  "nonuniqueness_rule": "Equivalent minimal encodings are allowed; claim equivalence class, not a privileged syntax.",
+  "anti_rationalization_fatal": "If P12 can preserve sufficiency only by introducing result-dependent coordinates that were not precommitted and prospectively discriminated, classify POST_HOC_EXPANSION_REQUIRED rather than PASS.",
+  "law_r2_gate": "Only fresh normalized same-(X_min,G,E) conflicting actions surviving all frozen reconstruction attempts authorize R2.",
+  "human_facing_naming": "CAPITALIZED_SCIENTIFIC_COMMIT_STYLE_AND_TITLE_CASE_ACTIONS",
+  "forbidden_shortcuts": [
+    "COUNT_RELEASE_LABEL_AS_CAUSAL_WITHOUT_OPERATIONAL_ROLE",
+    "COUNT_REPOSITORY_NAME_AS_CONTEXT",
+    "PROMOTE_CORRELATED_COORDINATES_AS_INDEPENDENT_PRIMITIVES",
+    "RETROFIT_X_AFTER_OUTCOME_WITHOUT_NEW_PROSPECTIVE_TEST",
+    "OPEN_P13_OR_R2_BEFORE_P12_TERMINAL_RULING"
+  ]
+}
