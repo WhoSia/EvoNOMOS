@@ -1,0 +1,25 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P10",
+  "precommit": "MATCHED_GEOMETRY_CONTEXT_HOLDOUT_MESONPY_912",
+  "constitution_commit": "8f650bdd4e169eb51d93f6f9e10d3b4b279fc5ee",
+  "world": {
+    "repo": "mesonbuild/meson-python",
+    "issue": 912,
+    "observed_only": [
+      "same source package and GEOS dependency build successfully in both environments",
+      "system compiler path yields no RUNPATH and runtime import failure",
+      "conda compiler path yields conda-lib RUNPATH and runtime success",
+      "older meson-python worked in the system-compiler case"
+    ]
+  },
+  "frozen_prediction": {
+    "test": "MATCHED_GEOMETRY_DIFFERENT_CONTEXT",
+    "geometry_assumption": "packaging/source dependency structure is materially unchanged across the two reported environments",
+    "context_difference": "compiler/toolchain provenance and environment ownership",
+    "branch_A": "If both contexts are intended to satisfy the same packaging contract, resolution should restore runtime dependency discovery independent of compiler provenance.",
+    "branch_B": "If the system-compiler context is intentionally unsupported, resolution should make that context boundary explicit rather than silently producing a build that fails only at runtime.",
+    "interaction_claim": "A correct policy cannot be selected from G alone; X changes whether the same structural build should be repaired or rejected.",
+    "falsifier": "If the final resolution is entirely explained by a structural G change shared across both contexts, without context-dependent support semantics, the matched-geometry reversal claim weakens."
+  },
+  "authority_ceiling": "ONE_FRESH_HOLDOUT__NO_FACTORABILITY_VERDICT"
+}
