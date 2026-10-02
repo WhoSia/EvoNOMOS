@@ -1,0 +1,107 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P19",
+  "audit": "Cross-Repository Active-Lineage Hygiene",
+  "authority": "OPERATIONS_HYGIENE_ONLY",
+  "repository": "WhoSia/CUBE-REV",
+  "audited_branch": "research/current",
+  "head": "5921ca980b7214e7ad915747c39435168f4547e3",
+  "repository_policy": {
+    "active_branch": "research/current",
+    "allowed_live_classes": [
+      "ACTIVE_CORE",
+      "ACTIVE_PHASE",
+      "ACTIVE_DATA_AUTHORITY"
+    ],
+    "current_phase": "Generation VII G7-P7"
+  },
+  "recent_cleanup": {
+    "status": "ACTIVE_AND_DIRECTIONALLY_CORRECT",
+    "latest_commits": [
+      "5921ca980b7214e7ad915747c39435168f4547e3",
+      "60898bca9260bb18a6431564f253c6d67bd19b09",
+      "4846f13f831a0e840a091590538555116bbe9805",
+      "3868d0cbdb469af639624729223d8e5aeda31615"
+    ],
+    "message": "Archive closed G7-P2 artifact from P7 active branch",
+    "removed_examples": [
+      "g7/p2/reco-index-census-policy.json",
+      "g7/p2/probes/reco-bounded-materialize-trigger.txt",
+      "g7/p2/probes/reco-index-census-trigger.txt",
+      "g7/p2/probes/reco-live-probe-trigger.txt"
+    ]
+  },
+  "current_tree": {
+    "tracked_paths": 328,
+    "historical_or_predecessor_candidate_paths": 103,
+    "note": "Candidate count is heuristic; reusable core and current data authority are excluded from deletion until reverse-reference audit."
+  },
+  "clearly_active": [
+    "g7/p7/**",
+    "scripts/g7-p7/**",
+    "core/reco/**",
+    "scripts/cube/**",
+    "crates/cuberev-core/**",
+    "crates/search-geometry-core/**",
+    ".github/workflows/g7-p7-reco-selection.yml",
+    ".github/workflows/g7-p7-reco-batch1.yml",
+    ".github/workflows/p7-repo-active-set-audit.yml"
+  ],
+  "clear_stale_or_dead_workflow_residue": [
+    {
+      "path": ".github/workflows/g3-cog-chromium.yml",
+      "reason": "Targets retired branch g3-p10-r1-cognitive-runtime, absent from current remote branch set."
+    },
+    {
+      "path": ".github/workflows/g3-cog-r2-e1.yml",
+      "reason": "Targets retired branch g3-p10-r1-cognitive-runtime, absent from current remote branch set."
+    },
+    {
+      "path": ".github/workflows/g3-p11-nav.yml",
+      "reason": "Targets retired branch g3-p11-rstp-navigation, absent from current remote branch set."
+    },
+    {
+      "path": ".github/workflows/p14-r1-wca.yml",
+      "reason": "Manual-only closed P14 acquisition workflow; current README says only P7/immediate-successor workflows should remain."
+    },
+    {
+      "path": ".github/workflows/p14-r1-wca-raw-split.yml",
+      "reason": "Closed P14 raw-transfer workflow remains dispatchable and is not part of P7 campaign."
+    },
+    {
+      "path": ".github/workflows/validate-static.yml",
+      "reason": "Legacy 0.7.12/static calibration validator excludes research/current from push trigger and is non-applicable when root index.html is absent."
+    }
+  ],
+  "likely_stale_phase_trees_requiring_reverse_reference_check": [
+    "g7/p1/**",
+    "g7/p2/**",
+    "g7/p3/**",
+    "g7/p4/**",
+    "g7/p5/**",
+    "g7/p6/**",
+    "research/0.7.12/**",
+    "data_frontier/wca/**",
+    "data_frontier/aalto136m/**",
+    "r128-shadow/**",
+    "calibration/**",
+    "annotation/**",
+    "instrument/**"
+  ],
+  "package_surface_warning": {
+    "package_json_version": "0.0.0-r3-r3",
+    "description": "Active-lineage synthetic instrument toolchain; no human collection authority.",
+    "assessment": "Likely stale root package identity relative to G7-P7; preserve until scripts importing the TypeScript toolchain are reverse-audited."
+  },
+  "branch_hygiene": {
+    "branches": [
+      "main",
+      "research/current",
+      "archive/pre-p7-active-prune-20261002",
+      "paper1-m1.1-public-repro-rc"
+    ],
+    "assessment": "Consistent with repository policy if archive and paper release branch remain intentionally justified."
+  },
+  "recommended_action": "Do not bulk-delete from P19. Continue the existing CUBE-REV cleanup by reverse-reference auditing each candidate tree, then remove only paths not needed for P7 reproduction, interpretation, or immediate successor work.",
+  "scientific_contamination": "NONE_OBSERVED",
+  "p19_authority_transfer": "NONE"
+}
