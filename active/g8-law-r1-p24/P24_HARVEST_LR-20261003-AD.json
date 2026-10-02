@@ -1,0 +1,51 @@
+{
+  "harvest_id": "LR-20261003-AD",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "notion_page": "3edef561-cf92-818f-b57c-eb056adc14d3",
+  "fragments": [
+    {
+      "id": "AD-F01",
+      "name": "Prospective Abstraction-Map Repair",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AD-F02",
+      "name": "Strong Shared-Boundary Property Index Replication",
+      "status": "BOUNDED_THEORY_FRAGMENT"
+    },
+    {
+      "id": "AD-F03",
+      "name": "Retrospective-to-Prospective AND Bridge",
+      "status": "BOUNDED_PREDICTIVE_FRAGMENT"
+    },
+    {
+      "id": "AD-F04",
+      "name": "Bridge Existence versus Decomposition Uniqueness",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AD-F05",
+      "name": "Transport Algebra→Sufficient Quotient→Local Gate Macro Architecture",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AD-F06",
+      "name": "Orientation-Erasing Boolean Quotient Warning",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AD-F07",
+      "name": "Pre-Outcome Harness Failure Taxonomy",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AD-F08",
+      "name": "Second-Domain Prospective Bridge Falsifier",
+      "status": "NEXT_FALSIFIER"
+    }
+  ],
+  "key_result": "A retrospective AND bridge becomes prospectively supported on one fresh held-out QUIC family while algebra orientation and property-index predictions also pass on independent protobuf evidence.",
+  "manuscript": "NOT_AUTHORIZED"
+}
