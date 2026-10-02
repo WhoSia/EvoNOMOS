@@ -1,0 +1,73 @@
+{
+  "harvest_id": "LR-20261002-Z",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P21",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "notion_page": "3edef561-cf92-81b9-8f84-fdfafcdd2410",
+  "fragments": [
+    {
+      "id": "Z-F01",
+      "name": "Carrier Status Beats Wrapper-ness and Path Length",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "Z-F02",
+      "name": "Transport Law as Compositional Edge Semantics",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "Z-F03",
+      "name": "Property-Indexed Boundary Semantics",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "Z-F04",
+      "name": "Prospective Sign Prediction Claim Upgrade",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "Z-F05",
+      "name": "Rich-Rival Local Elimination",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "Z-F06",
+      "name": "Leave-Two-Out Common-Grammar Deficit",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "Z-F07",
+      "name": "Boundary-Carrying Obligation Semantic Underidentification",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "Z-F08",
+      "name": "Precommitted Principle Scope as Method Constraint",
+      "status": "METHOD_FRAGMENT"
+    }
+  ],
+  "cross_lab_backflow": {
+    "MQR": [
+      "predictive separability",
+      "representation equivalence",
+      "richer-rival underdetermination"
+    ],
+    "NOMOS": [
+      "boundary transparency",
+      "obligation propagation"
+    ],
+    "C3X": [
+      "path-local mediation",
+      "bridge semantics"
+    ],
+    "KSGT": [
+      "transport-preserving quotient",
+      "property-indexed equivalence"
+    ],
+    "CUBE-REV": [
+      "boundary transport through interface/human planning surfaces"
+    ]
+  },
+  "paper_readiness": "PREPARATION_ONLY",
+  "manuscript": "NOT_AUTHORIZED"
+}
