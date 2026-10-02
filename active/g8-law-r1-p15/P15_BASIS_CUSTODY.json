@@ -1,0 +1,189 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P15",
+  "constitution_commit": "34f0cf46909171a91cd9e887eeaff422803b8c1e",
+  "preseal_commit": "2832fa53680246a34172defcad972d5ae7b75750",
+  "admission": "POST_PRESEAL_SECOND_DOMAIN_AND_BASIS_CUSTODY",
+  "prior_basis": {
+    "COMPATIBILITY_OBLIGATION": {
+      "status": "STABLE_TWO_DOMAIN",
+      "domains": ["PROTOCOL_HANDLER_API","HTTP_STATUS_SYMBOL_API"]
+    },
+    "LIFECYCLE_PHASE": {
+      "status": "IDENTIFIED_SINGLE_DOMAIN",
+      "domains": ["EVENT_LIFECYCLE"]
+    },
+    "COEXISTENCE_REQUIREMENT": {
+      "status": "BOUNDED_ONE_DOMAIN_EXACT",
+      "domains": ["DISTRIBUTED_REBALANCE_PROTOCOL"]
+    },
+    "RELEASE_AUTHORITY": {
+      "status": "BOUNDED_ONE_DOMAIN_EXACT",
+      "domains": ["PR_AUTOMATION_AUTHORITY"]
+    }
+  },
+  "fresh_sources": [
+    {
+      "id": "GRAFANA_UNIFIED_STORAGE",
+      "source": "grafana/grafana@f89103a8dac3e24563d0ce43f83fd085676a92d6",
+      "paths": [
+        "pkg/storage/unified/README.md",
+        "pkg/storage/legacysql/dualwrite/service_test.go",
+        "pkg/storage/unified/federated/stats_test.go"
+      ],
+      "role": "SECOND_DOMAIN_COEXISTENCE_REPLICATION",
+      "fact": "Unified Storage exposes the same resource API through configurable dual-writer modes. Mode 3 reads from unified and writes to both legacy and unified; Mode 4 reads from unified and writes only to unified. Both are available after synchronization prerequisites, allowing a post-sync contrast in whether the legacy backend must remain simultaneously active."
+    },
+    {
+      "id": "PROW_TRIGGER",
+      "source": "kubernetes-sigs/prow@6844e439e237641e025f0e094833768c6928bc00",
+      "paths": [
+        "pkg/plugins/trigger/generic-comment.go",
+        "pkg/plugins/trigger/generic-comment_test.go"
+      ],
+      "role": "SECOND_DOMAIN_AUTHORITY_REPLICATION",
+      "fact": "On the same open PR and same /test command path, trusted commenters can trigger presubmit jobs while an untrusted commenter on an otherwise untrusted PR is refused. Tests explicitly cover both outcomes."
+    },
+    {
+      "id": "DISCOURSE_DUAL_WRITE",
+      "source": "discourse/discourse@0c86723eb20b411a48651bfac3f4faee2e1a8147",
+      "paths": [
+        "plugins/discourse-solved/db/migrate/20260408165014_add_discourse_solved_topic_answers.rb",
+        "plugins/discourse-solved/db/post_migrate/20260408214007_drop_multiple_solutions_dual_write_triggers.rb"
+      ],
+      "role": "COEXISTENCE_ADVERSARIAL_SUPPORT_ONLY",
+      "fact": "Bidirectional old/new storage triggers exist during migration and are later dropped. This is not counted as exact replication because the old-code compatibility obligation may change with the post-deploy phase."
+    }
+  ],
+  "replication_families": [
+    {
+      "id": "R_COEXIST_GRAFANA",
+      "target": "COEXISTENCE_REQUIREMENT",
+      "grade": "EXACT_POST_SYNC_CONFIG_INTERVENTION",
+      "domain": "STORAGE_MIGRATION_DUAL_WRITER",
+      "G": "SAME_GRAFANA_RESOURCE_API_WRITE_AND_UNIFIED_PRIMARY_READ_PATH",
+      "E": "SAME_POST_SYNC_RESOURCE_STATE_AND_REQUEST_PAYLOAD",
+      "held_context": {
+        "COMPATIBILITY_OBLIGATION": "SAME_PUBLIC_RESOURCE_API_CONTRACT",
+        "LIFECYCLE_PHASE": "POST_SYNC_CUTOVER_READY",
+        "RELEASE_AUTHORITY": "SAME_OPERATOR_CONFIGURATION_AUTHORITY"
+      },
+      "worlds": [
+        {
+          "id": "MODE_3_DUAL_ACTIVE",
+          "COEXISTENCE_REQUIREMENT": 1,
+          "A": "READ_UNIFIED__WRITE_UNIFIED_AND_LEGACY"
+        },
+        {
+          "id": "MODE_4_UNIFIED_ONLY",
+          "COEXISTENCE_REQUIREMENT": 0,
+          "A": "READ_UNIFIED__WRITE_UNIFIED_ONLY"
+        }
+      ],
+      "replicates": "P14_KAFKA_CONNECT_COEXISTENCE",
+      "exactness_guard": "Promotion is valid only under the explicitly frozen post-sync state where both modes are administratively available; any interpretation that changes lifecycle invalidates this family."
+    },
+    {
+      "id": "R_AUTHORITY_PROW",
+      "target": "RELEASE_AUTHORITY",
+      "grade": "EXACT_OPEN_PR_TRUST_INTERVENTION",
+      "domain": "PRESUBMIT_TRIGGER_AUTHORITY",
+      "G": "SAME_OPEN_PR_SAME_PRESUBMIT_SAME_TEST_COMMAND",
+      "E": "SAME_UNTRUSTED_PR_STATE_BRANCH_FILES_AND_COMMAND_TEXT",
+      "held_context": {
+        "COMPATIBILITY_OBLIGATION": 0,
+        "COEXISTENCE_REQUIREMENT": 0,
+        "LIFECYCLE_PHASE": "OPEN_PULL_REQUEST"
+      },
+      "worlds": [
+        {
+          "id": "TRUSTED_COMMENTER",
+          "RELEASE_AUTHORITY": "TRUSTED_USER",
+          "A": "TRIGGER_REQUESTED_PRESUBMIT_JOBS"
+        },
+        {
+          "id": "UNTRUSTED_COMMENTER",
+          "RELEASE_AUTHORITY": "UNTRUSTED_USER",
+          "A": "REFUSE_TRIGGER_AND_REQUEST_TRUST_REVIEW"
+        }
+      ],
+      "replicates": "P14_APACHE_ARROW_AUTHORITY",
+      "negative_control": "Prow tests also show non-trusted commenters may trigger once PR trust has independently changed; therefore PR trust is explicitly frozen to untrusted in the decisive authority contrast."
+    }
+  ],
+  "basis_attacks": {
+    "deletion": [
+      {
+        "coordinate": "COMPATIBILITY_OBLIGATION",
+        "status": "FAILS_DELETION",
+        "witnesses": ["P13_EXT_APPS","P14_AXIOS"]
+      },
+      {
+        "coordinate": "COEXISTENCE_REQUIREMENT",
+        "status": "FAILS_DELETION_IF_GRAFANA_EXACTNESS_GUARD_HOLDS",
+        "witnesses": ["P14_KAFKA_CONNECT","P15_GRAFANA"]
+      },
+      {
+        "coordinate": "RELEASE_AUTHORITY",
+        "status": "FAILS_DELETION",
+        "witnesses": ["P14_APACHE_ARROW","P15_PROW"]
+      },
+      {
+        "coordinate": "LIFECYCLE_PHASE",
+        "status": "FAILS_DELETION_BOUNDED_SINGLE_DOMAIN",
+        "witnesses": ["P12_GATHERPRESS"]
+      }
+    ],
+    "pairwise_merge": [
+      {
+        "pair": ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT"],
+        "status": "MERGE_REJECTED",
+        "reason": "Axios varies compatibility while storage/protocol coexistence is absent; Grafana varies coexistence while the public API compatibility contract is held fixed."
+      },
+      {
+        "pair": ["LIFECYCLE_PHASE","RELEASE_AUTHORITY"],
+        "status": "MERGE_REJECTED",
+        "reason": "Prow varies authority at fixed open-PR lifecycle; GatherPress varies lifecycle under fixed review/authority context."
+      },
+      {
+        "pair": ["COMPATIBILITY_OBLIGATION","RELEASE_AUTHORITY"],
+        "status": "NO_DERIVABILITY_OBSERVED",
+        "reason": "Alias preservation and commenter permission interventions are cross-domain independent."
+      },
+      {
+        "pair": ["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+        "status": "NO_DERIVABILITY_OBSERVED",
+        "reason": "Backend coexistence mode and automation trigger authority vary in disjoint intervention families."
+      }
+    ],
+    "split": [
+      {
+        "coordinate": "COMPATIBILITY_OBLIGATION",
+        "status": "NO_PROSPECTIVE_SPLIT_JUSTIFIED"
+      },
+      {
+        "coordinate": "COEXISTENCE_REQUIREMENT",
+        "status": "NO_PROSPECTIVE_SPLIT_JUSTIFIED"
+      },
+      {
+        "coordinate": "RELEASE_AUTHORITY",
+        "status": "NO_PROSPECTIVE_SPLIT_JUSTIFIED"
+      },
+      {
+        "coordinate": "LIFECYCLE_PHASE",
+        "status": "NO_PROSPECTIVE_SPLIT_JUSTIFIED"
+      }
+    ],
+    "transport": {
+      "COMPATIBILITY_OBLIGATION": "TWO_DOMAIN_STABLE",
+      "COEXISTENCE_REQUIREMENT": "TWO_DOMAIN_STABLE_IF_GRAFANA_EXACTNESS_GUARD_HOLDS",
+      "RELEASE_AUTHORITY": "TWO_DOMAIN_STABLE",
+      "LIFECYCLE_PHASE": "SINGLE_DOMAIN_IDENTIFIED_ONLY"
+    }
+  },
+  "minimal_basis_gate": {
+    "status": "NOT_AUTHORIZED",
+    "reason": "LIFECYCLE_PHASE remains only single-domain identified, so a reproducible four-coordinate minimal primitive basis cannot yet be claimed even if coexistence and authority earn second-domain replication."
+  },
+  "post_hoc_coordinate_additions": [],
+  "same_normalized_X_G_E_conflicting_action_observed": false
+}
