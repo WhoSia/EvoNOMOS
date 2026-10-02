@@ -1,0 +1,54 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "admission": "POST_PRESEAL_FRESH_LANE_C",
+  "candidate": {
+    "id": "QUIC_GO_DATAGRAM_MUTUAL_NEGOTIATION",
+    "repository": "quic-go/quic-go",
+    "commit": "7c3a98eeb4144e77876ba77c9292da9b5b27a0e1",
+    "domain": "QUIC_DATAGRAM_CAPABILITY_NEGOTIATION",
+    "source_paths": [
+      "interface.go",
+      "connection.go",
+      "http3/conn.go",
+      "integrationtests/self/datagram_test.go"
+    ],
+    "source_blobs": {
+      "interface": "0e6016acd9126381f743b64687942fa9e2351cb2",
+      "connection": "511a108ea30ff4013e4e0fad1fdf8f0529a90b38",
+      "http3_conn": "039bebf6c4ddbd2f9426827504db54e4fad8111a",
+      "datagram_test": "0ea07bec594d9490e8c36363c8a4cd438a77281b"
+    }
+  },
+  "source_facts": [
+    "ConnectionState.SupportsDatagrams exposes Remote and Local independently.",
+    "Remote is true iff the peer advertised datagram support.",
+    "Local is true iff Config.EnableDatagrams enabled local support.",
+    "The integration test executes all four server/client enable combinations.",
+    "HTTP/3 source states that if datagram support is enabled on our side as well as on the server side, negotiation is expected at both transport and HTTP/3 layers."
+  ],
+  "prospective_bridge_mapping": {
+    "q": "REMOTE_PEER_DATAGRAM_SUPPORT",
+    "g": "LOCAL_ENABLE_DATAGRAMS",
+    "y": "MUTUAL_DATAGRAM_FEATURE_ACTIVE",
+    "frozen_function": "q AND g",
+    "predicted_truth_table": {
+      "q0_g0": 0,
+      "q0_g1": 0,
+      "q1_g0": 0,
+      "q1_g1": 1
+    },
+    "note": "The AND bridge was frozen globally before this candidate was searched. Candidate selection occurred after P24_PRESEAL."
+  },
+  "hosted_required": [
+    "checkout exact quic-go commit read-only",
+    "run upstream TestDatagramNegotiation over all four server/client combinations",
+    "materialize four q×g cells from source-defined Local/Remote semantics",
+    "verify the frozen AND table without mechanism-local parameters"
+  ],
+  "anti_rationalization": {
+    "q_definition_edit_after_test": false,
+    "g_definition_edit_after_test": false,
+    "target_function_edit_after_test": false,
+    "mechanism_id_feature": false
+  }
+}
