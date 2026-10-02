@@ -85,8 +85,8 @@ def main():
       },
       "verdict":"PASS_P9_WORLD_CUSTODY"
     }
-    Path("out").mkdir(exist_ok=True)
-    Path("out/p9-worlds.json").write_text(json.dumps(out,indent=2,sort_keys=True)+"\n")
+    Path("out-p9").mkdir(exist_ok=True)
+    Path("out-p9/p9-worlds.json").write_text(json.dumps(out,indent=2,sort_keys=True)+"\n")
     print("LAW_R1_P9_WORLD_CUSTODY=PASS")
     print(json.dumps({
       "families":sorted(families),
