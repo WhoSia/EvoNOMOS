@@ -1,0 +1,156 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P23",
+  "formal_title": "Empirical Noncommutative Transport, Repair↔Loss Order-Reversal Intervention, Transformation-Monoid Identification, Property-Indexed Carrier Replication, Restricted Observation-Functor Construction, Surface-Selection↔Path-Transport Two-Level Composition, Law-Family Decomposition Uniqueness & Macro-Structure Reconstruction",
+  "suffix": "Reconstruction",
+  "closure_status": "CLOSED_SCIENTIFIC_FALSIFICATION",
+  "execution_status": "PASS_SCIENTIFIC_FALSIFICATION",
+  "scientific_verdict": "FAIL_REPAIR_LOSS_ORDER_PREDICTION__MONOID_MAPPING_REJECTED",
+  "canonical": {
+    "run": 37008014852,
+    "head": "deac4afa691a019e3a651d905247befcc71cedec",
+    "job": 110840784451,
+    "artifact": 11227215175,
+    "digest": "sha256:62b4fcb2d8721ea10ab707c8023825817a990269c9f78fbcb0507ca0fbd97b2c"
+  },
+  "canonical_hosted_readout": {
+    "math": "PASS",
+    "kubernetes_intervention": "PASS",
+    "reconstruction": "PASS_SCIENTIFIC_FALSIFICATION",
+    "empirical_noncommutativity": "PASS",
+    "precommitted_M_CR_mapping": "FALSIFIED_EXACT_REVERSAL",
+    "precommit_error_cases": [
+      "LOSS_THEN_REPAIR",
+      "REPAIR_THEN_LOSS"
+    ],
+    "observed_signs": {
+      "IDENTITY_BASELINE": "+",
+      "LOSS_ONLY": "-",
+      "REPAIR_ONLY": "+",
+      "LOSS_THEN_REPAIR": "-",
+      "REPAIR_THEN_LOSS": "+"
+    }
+  },
+  "pre_fresh_mathematical_authority": {
+    "monoid": "IDENTITY_ADJOINED_TWO_ELEMENT_LEFT_ZERO_BAND",
+    "normal_form": "PASS",
+    "minimal_faithful_degree": 2,
+    "unique_nontrivial_proper_congruence": "D_EQ_R",
+    "canonical_boolean_quotient": "PASS",
+    "observation_theorem": "PASS",
+    "coarsest_action_sufficient_quotient": "PROVED_IN_NOTE",
+    "mathematical_status": "VALID_ABSTRACT_MATH"
+  },
+  "empirical_ruling": {
+    "exact_order_sign_prediction": "FAILED",
+    "abstraction_map_from_kubernetes_to_M_CR": "REJECTED",
+    "empirical_noncommutativity": "PROMOTED",
+    "key_ruling": "A correct abstract monoid can fail as the empirical abstraction map."
+  },
+  "post_fresh_reconstruction": {
+    "authority": "DEVELOPMENT_ONLY",
+    "algebra": "IDENTITY_ADJOINED_TWO_ELEMENT_RIGHT_ZERO_BAND",
+    "relation_to_pre_fresh": "OPPOSITE_MONOID__NONISOMORPHIC",
+    "left_zero_min_faithful_degree": 2,
+    "right_zero_min_faithful_degree": 3,
+    "boolean_quotient_erases_orientation": true,
+    "presence_observation_detects_order": true,
+    "empirical_promotion": "NOT_AUTHORIZED"
+  },
+  "restricted_bridge": {
+    "Q_min_cardinality": {
+      "RUST": 2,
+      "RUBY": 2,
+      "GO": 2,
+      "FLINK": 2
+    },
+    "candidate_D_loc": "AND(arrived_visible_state, local_geometry_gate)",
+    "status": "RETROSPECTIVE_RESTRICTED_BRIDGE_EXISTS__PROSPECTIVE_AUTHORITY_ABSENT",
+    "uniqueness": "UNDERIDENTIFIED_NO_PROSPECTIVE_BRIDGE_TEST"
+  },
+  "property_indexed_replication": {
+    "strong_replication": "NOT_ACHIEVED",
+    "kubernetes_support": "SUPPORT_ONLY",
+    "reason": "Specific property identities were not frozen specifically enough before fresh Kubernetes inspection."
+  },
+  "law_family_authority": {
+    "SURFACE_SELECTION": [
+      "RUST"
+    ],
+    "PATH_CARRIER_TRANSPORT": [
+      "RUBY",
+      "GO",
+      "FLINK"
+    ],
+    "U0_SINGLE_TWO_LEVEL_BRIDGE": "RETROSPECTIVE_ONLY",
+    "U1_TWO_FAMILY_DECOMPOSITION": "REMAINS_CURRENT_AUTHORITY",
+    "U2_THREE_PLUS_FAMILY": "NOT_REQUIRED",
+    "U3_MECHANISM_LOCAL": "REJECTED_FOR_CARRIER_FAMILY",
+    "uniqueness": "NOT_AUTHORIZED"
+  },
+  "post_fresh_support": {
+    "run": 37010281839,
+    "head": "820137ec3bbb9da907b03d8c077e3ebff846ec78",
+    "artifact": 11227552075,
+    "digest": "sha256:d3cc811d879547c24fda08f0aab6e0e23b905bb1655d8e29f5f4a018cbc90304",
+    "status": "SUCCESS",
+    "results": {
+      "P23_POST_MATH": "PASS",
+      "LEFT_ZERO_MIN_DEGREE": 2,
+      "RIGHT_ZERO_MIN_DEGREE": 3,
+      "NONISOMORPHIC": true,
+      "OPPOSITE": true,
+      "ORDER_VISIBLE": true
+    },
+    "authority": "POST_FRESH_DEVELOPMENT_ONLY"
+  },
+  "anti_rationalization": {
+    "sign_edit_after_outcome": false,
+    "operation_relabel_after_outcome": false,
+    "property_promotion_after_outcome": false,
+    "right_zero_reconstruction_promoted_prospectively": false,
+    "retrospective_bridge_promoted_prospectively": false,
+    "canonical_constitution_restored": true
+  },
+  "provenance": {
+    "canonical_pre_fresh_constitution": "6b30f58a1b22542b08bc9b0d8aae112ffc826a25",
+    "canonical_preseal": "dba663c5f40caaf54924b25541c2ca3d5c945cef",
+    "mathematical_correction_preseal": "ad8b0cfde92cff40272f9baf6af748b9b74c8416",
+    "mathematical_note": "7827fd460cf3aa471580e7b6d2cd68c52a301949",
+    "mathematical_checker": "376db44f89bbe0d9a9bbef3bcf3ca645a664abcf",
+    "kubernetes_custody": "c7a21f8194ef9d06b8a7b3cf064e725ef66ccb0f",
+    "kubernetes_intervention": "b3f84f06d39eb46bfffcc660235377109e7d63e7",
+    "reconstruction_evaluator": "c20cb7dd6a02ad1b81fc64c78917563a29ab61a1",
+    "canonical_workflow": "7c2958fa54b6abbf418a1c08100c039dbb6d5c7b",
+    "hosted_algebra_classifier": "deac4afa691a019e3a651d905247befcc71cedec",
+    "post_fresh_appendix": "e1a3cad2acf7a58014bd581c49c4ad607445ddac",
+    "canonical_constitution_restore": "2fa4bce5c4bbe21db958115cbd2b802fe1c48f66",
+    "post_fresh_math_note": "4598eb104688a036af696ed22b4cfe08699d6f2e",
+    "post_fresh_math_checker_fix": "820137ec3bbb9da907b03d8c077e3ebff846ec78",
+    "harvest_manifest": "f15799f4f077ed56785e834b192c70bbb2b4bfb5",
+    "paper_readiness": "5ccefa2948e2d6e921c1132ccff31e5f9e0460ea"
+  },
+  "notion": {
+    "run": "3edef561-cf92-819a-9fce-c7c0190887e4",
+    "mathematical_dossier": "3edef561-cf92-8104-a32d-ece5466b8c96",
+    "abstraction_map_ledger": "3edef561-cf92-8169-bf1c-d3760bc6fd42",
+    "literature_boundary_AB": "3edef561-cf92-81c4-be49-da95c8f7791c",
+    "theory_harvest_AC": "3edef561-cf92-811d-8c39-eb07b4f1031e",
+    "genealogy_receipt": "3edef561-cf92-8100-916b-dfcde2965b5e"
+  },
+  "paper_readiness": {
+    "manuscript": "NOT_AUTHORIZED",
+    "additional_literature_required_to_close_P23": false,
+    "recommended_math_context": [
+      "10.5070/C63362799",
+      "10.1016/j.jalgebra.2023.06.032"
+    ]
+  },
+  "macro_structure": "NOT_AUTHORIZED",
+  "solid_special_case": "NOT_DERIVED",
+  "law_r2": "NOT_AUTHORIZED",
+  "closure": {
+    "ravel": "9988–10036",
+    "decision": "10037–10062",
+    "global_next": 10063
+  }
+}
