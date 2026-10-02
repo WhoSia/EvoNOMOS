@@ -1,0 +1,159 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P16",
+  "constitution_commit": "7826ff1cc6d68e9b6955409d17056366b65b9604",
+  "preseal_commit": "8fe66536099d90e13496f3e3aa99ca6e56d4eb11",
+  "admission": "POST_PRESEAL_LIFECYCLE_REPLICATION_AND_BASIS_CUSTODY",
+  "prior_basis": {
+    "COMPATIBILITY_OBLIGATION": "STABLE_TWO_DOMAIN",
+    "COEXISTENCE_REQUIREMENT": "STABLE_TWO_DOMAIN",
+    "RELEASE_AUTHORITY": "STABLE_TWO_DOMAIN",
+    "LIFECYCLE_PHASE": "IDENTIFIED_SINGLE_DOMAIN"
+  },
+  "fresh_lifecycle_source": {
+    "id": "PROW_GENERIC_COMMENT_LIFECYCLE",
+    "repository": "kubernetes-sigs/prow",
+    "commit": "6844e439e237641e025f0e094833768c6928bc00",
+    "source_path": "pkg/plugins/trigger/generic-comment.go",
+    "source_blob": "6bc72c0cd6b679df6ae65243bdb9ad8675410d27",
+    "test_path": "pkg/plugins/trigger/generic-comment_test.go",
+    "test_blob": "6c85cabe7d72a5eac079bf7497e4fe0e49146319",
+    "domain": "PULL_REQUEST_CI_COMMAND_LIFECYCLE",
+    "mechanism": "handleGenericComment returns without action unless the comment belongs to an open PR; tests include a trusted-member closed-PR /ok-to-test no-op and trusted-member open-PR /ok-to-test action.",
+    "negative_controls": [
+      "OPEN_NON_PR_DOES_NOT_ACT",
+      "OPEN_BOT_COMMENT_DOES_NOT_ACT",
+      "OPEN_UNTRUSTED_COMMENTER_DOES_NOT_ACT_WITHOUT_TRUST",
+      "DECISIVE_LIFECYCLE_PAIR_FIXES_IS_PR_TRUE_AND_TRUSTED_MEMBER_AUTHORITY"
+    ]
+  },
+  "lifecycle_replication_family": {
+    "id": "R_LIFECYCLE_PROW",
+    "target": "LIFECYCLE_PHASE",
+    "grade": "EXACT_OPEN_VS_CLOSED_PR_INTERVENTION",
+    "prior_domain": "GATHERPRESS_EVENT_DATA_LIFECYCLE",
+    "fresh_domain": "PROW_PULL_REQUEST_CI_COMMAND_LIFECYCLE",
+    "G": "SAME_GENERIC_COMMENT_TRIGGER_AND_OK_TO_TEST_COMMAND_PATH",
+    "E": "SAME_NORMALIZED_OK_TO_TEST_COMMAND_AND_PULL_REQUEST_OBJECT_CLASS",
+    "held_context": {
+      "COMPATIBILITY_OBLIGATION": 0,
+      "COEXISTENCE_REQUIREMENT": 0,
+      "RELEASE_AUTHORITY": "TRUSTED_MEMBER",
+      "IS_PULL_REQUEST": true,
+      "COMMENT_ACTION": "CREATED"
+    },
+    "worlds": [
+      {
+        "id": "PROW_OPEN_PR",
+        "LIFECYCLE_PHASE": "OPEN_PULL_REQUEST",
+        "A": "HONOR_OK_TO_TEST__UPDATE_TRUST_LABEL_STATE_AND_TRIGGER_APPLICABLE_PRESUBMITS"
+      },
+      {
+        "id": "PROW_CLOSED_PR",
+        "LIFECYCLE_PHASE": "CLOSED_PULL_REQUEST",
+        "A": "NO_ACTION"
+      }
+    ],
+    "exactness_guard": "Only PR lifecycle state varies in the decisive pair; commenter trust, PR-ness, command semantics, compatibility/coexistence obligations and trigger geometry are fixed.",
+    "replication_status": "SECOND_EXACT_DOMAIN"
+  },
+  "orthogonal_single_coordinate_interventions": [
+    {
+      "coordinate": "COMPATIBILITY_OBLIGATION",
+      "authority": "P14_AXIOS",
+      "other_coordinates_fixed": true,
+      "action_difference": true
+    },
+    {
+      "coordinate": "COEXISTENCE_REQUIREMENT",
+      "authority": "P15_GRAFANA_POST_SYNC",
+      "other_coordinates_fixed": true,
+      "action_difference": true
+    },
+    {
+      "coordinate": "RELEASE_AUTHORITY",
+      "authority": "P15_PROW_TRUST",
+      "other_coordinates_fixed": true,
+      "action_difference": true
+    },
+    {
+      "coordinate": "LIFECYCLE_PHASE",
+      "authority": "P16_PROW_OPEN_VS_CLOSED",
+      "other_coordinates_fixed": true,
+      "action_difference": true
+    }
+  ],
+  "deletion_attacks": [
+    {"coordinate":"COMPATIBILITY_OBLIGATION","status":"FAILS_DELETION","witnesses":["P13_EXT_APPS","P14_AXIOS"]},
+    {"coordinate":"COEXISTENCE_REQUIREMENT","status":"FAILS_DELETION","witnesses":["P14_KAFKA_CONNECT","P15_GRAFANA"]},
+    {"coordinate":"RELEASE_AUTHORITY","status":"FAILS_DELETION","witnesses":["P14_APACHE_ARROW","P15_PROW_TRUST"]},
+    {"coordinate":"LIFECYCLE_PHASE","status":"FAILS_DELETION","witnesses":["P12_GATHERPRESS","P16_PROW_OPEN_VS_CLOSED"]}
+  ],
+  "pairwise_quotient_attacks": [
+    {
+      "pair":["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT"],
+      "status":"SEMANTIC_MERGE_REJECTED",
+      "witness":"Axios varies compatibility at fixed coexistence context; Grafana varies coexistence at fixed compatibility contract."
+    },
+    {
+      "pair":["COMPATIBILITY_OBLIGATION","RELEASE_AUTHORITY"],
+      "status":"SEMANTIC_MERGE_REJECTED",
+      "witness":"Axios varies compatibility under fixed maintainer authority; Prow varies commenter authority while compatibility is zero/fixed."
+    },
+    {
+      "pair":["COMPATIBILITY_OBLIGATION","LIFECYCLE_PHASE"],
+      "status":"SEMANTIC_MERGE_REJECTED",
+      "witness":"Axios varies compatibility at fixed active lifecycle; Prow varies open/closed lifecycle while compatibility is zero/fixed."
+    },
+    {
+      "pair":["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+      "status":"SEMANTIC_MERGE_REJECTED",
+      "witness":"Grafana varies backend coexistence under fixed operator authority; Prow varies commenter authority while coexistence is zero/fixed."
+    },
+    {
+      "pair":["COEXISTENCE_REQUIREMENT","LIFECYCLE_PHASE"],
+      "status":"SEMANTIC_MERGE_REJECTED",
+      "witness":"Grafana varies coexistence at fixed post-sync lifecycle; Prow varies PR lifecycle while coexistence is zero/fixed."
+    },
+    {
+      "pair":["RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+      "status":"SEMANTIC_MERGE_REJECTED",
+      "witness":"Within Prow, trust intervention varies authority at fixed open lifecycle, while open/closed intervention varies lifecycle at fixed trusted-member authority."
+    }
+  ],
+  "higher_order_quotient_attacks": {
+    "admissible_quotient_definition": "A quotient must be a non-injective semantic coarsening that preserves action-blind operational recoverability and intervention semantics. Injective tuple packing, renaming, hashing, or arbitrary bijective recoding is representation change rather than primitive reduction and is not counted as a quotient.",
+    "triple_collapses": [
+      {"collapsed":["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],"status":"REJECTED_BY_SINGLE_COORDINATE_ORTHOGONAL_WITNESSES"},
+      {"collapsed":["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","LIFECYCLE_PHASE"],"status":"REJECTED_BY_SINGLE_COORDINATE_ORTHOGONAL_WITNESSES"},
+      {"collapsed":["COMPATIBILITY_OBLIGATION","RELEASE_AUTHORITY","LIFECYCLE_PHASE"],"status":"REJECTED_BY_SINGLE_COORDINATE_ORTHOGONAL_WITNESSES"},
+      {"collapsed":["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY","LIFECYCLE_PHASE"],"status":"REJECTED_BY_SINGLE_COORDINATE_ORTHOGONAL_WITNESSES"}
+    ],
+    "full_collapse": {
+      "collapsed":["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+      "status":"REJECTED_AS_SEMANTIC_COARSENING",
+      "representation_note":"A lossless bijective encoding of the four-tuple into one symbol is always possible but does not reduce primitive content; therefore universal coordinate-cardinality minimality is not claimed."
+    }
+  },
+  "split_attacks": [
+    {"coordinate":"COMPATIBILITY_OBLIGATION","status":"NO_PROSPECTIVE_FINER_SPLIT_JUSTIFIED"},
+    {"coordinate":"COEXISTENCE_REQUIREMENT","status":"NO_PROSPECTIVE_FINER_SPLIT_JUSTIFIED"},
+    {"coordinate":"RELEASE_AUTHORITY","status":"NO_PROSPECTIVE_FINER_SPLIT_JUSTIFIED"},
+    {"coordinate":"LIFECYCLE_PHASE","status":"NO_PROSPECTIVE_FINER_SPLIT_JUSTIFIED"}
+  ],
+  "transport": {
+    "COMPATIBILITY_OBLIGATION":["PROTOCOL_HANDLER_API","HTTP_STATUS_SYMBOL_API"],
+    "COEXISTENCE_REQUIREMENT":["DISTRIBUTED_REBALANCE_PROTOCOL","STORAGE_MIGRATION_DUAL_WRITER"],
+    "RELEASE_AUTHORITY":["PR_AUTOMATION_AUTHORITY_APACHE_ARROW","PRESUBMIT_TRIGGER_AUTHORITY_PROW"],
+    "LIFECYCLE_PHASE":["EVENT_DATA_LIFECYCLE_GATHERPRESS","PULL_REQUEST_CI_LIFECYCLE_PROW"]
+  },
+  "basis_scope": {
+    "claimable": "REPRODUCIBLE_OPERATIONAL_MINIMAL_PRIMITIVE_BASIS_UNDER_FROZEN_COORDINATE_GRAMMAR",
+    "not_claimable": [
+      "UNIVERSAL_COORDINATE_CARDINALITY_MINIMALITY_UNDER_ARBITRARY_BIJECTIONS",
+      "UNIQUE_LATENT_FACTOR_DECOMPOSITION",
+      "DOMAIN_COMPLETE_SOFTWARE_DESIGN_ONTOLOGY"
+    ]
+  },
+  "post_hoc_coordinate_additions": [],
+  "same_normalized_X_G_E_conflicting_action_observed": false
+}
