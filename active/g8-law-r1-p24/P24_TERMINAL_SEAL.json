@@ -1,0 +1,161 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "formal_title": "Prospective Transport-Algebra Orientation Prediction, Left-Zero↔Right-Zero↔Larger-Monoid Fresh Classification, Minimal Faithful-State Precommit, Strong Property-Indexed Shared-Boundary Replication, Frozen Action-Sufficient Quotient, Prospective AND-Bridge Held-Out Transport, Decomposition-Uniqueness Stress & Macro-Structure Prediction",
+  "suffix": "Prediction",
+  "status": "CLOSED_PASS",
+  "verdict": "PASS_ORIENTATION_PREDICTION__FAITHFUL_DEGREE_MATCH__PROPERTY_INDEX_REPLICATION__AND_BRIDGE_HELD_OUT_PASS__MACRO_STRUCTURE_ADVANCES",
+  "canonical": {
+    "run": 37017513558,
+    "head": "74a1f0656b0d4428e04bd4e135a107484ebd3635",
+    "job": 110871915750,
+    "artifact": 11230402825,
+    "digest": "sha256:5db642cd424fef04c0b158aeeadbb4187c599e789339d926981ff24cc08152aa"
+  },
+  "runtime_governance": {
+    "bot_contribution_zero_preflight": "PASS",
+    "bot_author_reachable_count_at_close": 0,
+    "bot_committer_reachable_count_at_close": 0,
+    "workflow_contents_permission": "read",
+    "repository_writeback_from_actions": false
+  },
+  "implementation_failure_boundary": {
+    "run": 37017112611,
+    "head": "f550a2a70931685f56c9224dccd9117153759fc8",
+    "classification": "IMPLEMENTATION_FAILURE_NOT_SCIENTIFIC_EVIDENCE",
+    "reason": "Compile-time verifier type mismatch before protobuf scientific output; QUIC and adjudicator skipped.",
+    "repair_commit": "74a1f0656b0d4428e04bd4e135a107484ebd3635",
+    "frozen_hypothesis_changed": false
+  },
+  "mathematical_authority": {
+    "left_zero_min_faithful_degree": 2,
+    "right_zero_min_faithful_degree": 3,
+    "boolean_quotient_orientation_erasure": true,
+    "and_unique_on_complete_2x2": true,
+    "status": "PASS"
+  },
+  "lane_A_B_transport_algebra": {
+    "candidate": "PROTOBUF_GO_UNKNOWN_FIELD_TRANSPORT",
+    "repository": "protocolbuffers/protobuf-go",
+    "exact_commit": "dcb66ef29d5e2a9420273f86407f493298804ec3",
+    "module_version": "v1.36.13-0.20260916225941-dcb66ef29d5e",
+    "predicted_orientation": "LEFT_ZERO_IDENTITY",
+    "observed_orientation": "LEFT_ZERO_IDENTITY",
+    "orientation_prediction": "PASS",
+    "predicted_min_faithful_degree": 2,
+    "faithful_degree_status": "PASS",
+    "composition": {
+      "D_o_R": "UNKNOWN_ABSENT",
+      "R_o_D": "UNKNOWN_PRESENT"
+    },
+    "idempotence": {
+      "D": true,
+      "R": true
+    }
+  },
+  "property_indexed_replication": {
+    "shared_boundary": "PROTOBUF_GO_BINARY_UNMARSHAL",
+    "status": "PASS_STRONG_SECOND_REPLICATION",
+    "known_current_field": {
+      "default_value": 7,
+      "discard_unknown_value": 7,
+      "ruling": "PRESERVED"
+    },
+    "unknown_future_field": {
+      "default_present": true,
+      "discard_unknown_present": false,
+      "ruling": "POLICY_CONDITIONAL_PRESERVE_DROP"
+    },
+    "universal_primitive": "NOT_AUTHORIZED"
+  },
+  "lane_C_bridge": {
+    "candidate": "QUIC_GO_DATAGRAM_MUTUAL_NEGOTIATION",
+    "repository": "quic-go/quic-go",
+    "exact_commit": "7c3a98eeb4144e77876ba77c9292da9b5b27a0e1",
+    "exact_upstream_test": "TestDatagramNegotiation",
+    "upstream_test_status": "PASS_ALL_FOUR_COMBINATIONS",
+    "q": "REMOTE_PEER_DATAGRAM_SUPPORT",
+    "g": "LOCAL_ENABLE_DATAGRAMS",
+    "frozen_function": "AND",
+    "observed_truth_table": {
+      "q0_g0": 0,
+      "q0_g1": 0,
+      "q1_g0": 0,
+      "q1_g1": 1
+    },
+    "mechanism_local_parameters": 0,
+    "status": "PASS_HELD_OUT"
+  },
+  "decomposition": {
+    "U0_SINGLE_TWO_LEVEL_BRIDGE": "PROSPECTIVELY_SUPPORTED_ON_ONE_FRESH_HELD_OUT_FAMILY",
+    "U1_TWO_FAMILY_WITH_INTERFACE": "REMAINS_OBSERVATIONALLY_COMPATIBLE",
+    "U2_TWO_FAMILY_DISCONNECTED": "NOT_SUPPORTED_ON_P24",
+    "U3_THREE_PLUS_FAMILY": "NOT_REQUIRED_BY_P24_PACKET",
+    "uniqueness": "UNDERIDENTIFIED_ONE_PROSPECTIVE_BRIDGE_FAMILY"
+  },
+  "macro_structure": {
+    "result": "ADVANCES_NOT_AUTHORIZED",
+    "candidate_architecture": "RICH_TRANSPORT_ALGEBRA -> ACTION_SUFFICIENT_QUOTIENT_Q -> INDEPENDENT_LOCAL_GATE_G -> ACTION",
+    "blockers": [
+      "SECOND_MECHANISTICALLY_DISTINCT_PROSPECTIVE_BRIDGE_FAMILY_MISSING",
+      "WHOLE_COMPOSITION_CROSS_DOMAIN_REPLICATION_MISSING",
+      "DECOMPOSITION_UNIQUENESS_UNRESOLVED",
+      "SOLID_SPECIAL_CASE_NOT_DERIVED"
+    ]
+  },
+  "direct_artifact_inspection": {
+    "status": "PASS",
+    "files": [
+      "p24-math.json",
+      "p24-protobuf.json",
+      "p24-protobuf-module.json",
+      "p24-quic-bridge.json",
+      "p24-quic-upstream.json",
+      "p24-quic-upstream.txt",
+      "p24-prediction.json"
+    ]
+  },
+  "alternate_discovery_boundary": {
+    "status": "NONAUTHORITATIVE_ALTERNATE_DISCOVERY",
+    "receipt": "20d91c7d0a6f3067ea5f8e41c152ccc1046628d0",
+    "late_commits": [
+      "a61dabbc4718976da66cf6d0066aaec89cddb555",
+      "33a82968b31281fdf262e045a0c7fb42554bac5d"
+    ],
+    "effect_on_verdict": "NONE"
+  },
+  "harvest": {
+    "id": "LR-20261003-AD",
+    "repo_manifest": "cacdc3980e74d764660fd47f1edf8d305d2a152b",
+    "notion_page": "3edef561-cf92-818f-b57c-eb056adc14d3",
+    "authority": "NONE"
+  },
+  "paper_readiness": {
+    "ledger": "7f0eed3ec84815ace736cdf25fdc5769990cae2d",
+    "manuscript": "NOT_AUTHORIZED"
+  },
+  "notion": {
+    "entry_governance": "3edef561-cf92-81e0-8ae6-ff1d44012a28",
+    "mathematical_dossier": "3edef561-cf92-816a-bae7-ce8a9264c3ed",
+    "candidate_genealogy": "3edef561-cf92-815f-8537-fb02f6c765ef",
+    "prediction_authority_ledger": "3edef561-cf92-8151-a02e-f57a8c49118e",
+    "harvest": "3edef561-cf92-818f-b57c-eb056adc14d3",
+    "harvest_genealogy": "3edef561-cf92-818a-b4c2-d8af6cbec80d",
+    "run": "3edef561-cf92-81c5-9908-c03f1ba06b1c"
+  },
+  "anti_rationalization": {
+    "orientation_changed_after_outcome": false,
+    "faithful_degree_changed_after_outcome": false,
+    "property_names_changed_after_outcome": false,
+    "bridge_function_changed_after_outcome": false,
+    "mechanism_id_used": false,
+    "late_alternate_used_to_rewrite_authority": false
+  },
+  "macro_law": "NOT_AUTHORIZED",
+  "solid_special_case": "NOT_DERIVED",
+  "law_r2": "NOT_AUTHORIZED",
+  "closure": {
+    "ravel": "10063–10108",
+    "decision": "10109–10134",
+    "global_next": 10135
+  }
+}
