@@ -1,0 +1,162 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P26",
+  "formal_title": "Unified-Architecture↔Shared-Interface Separation, Upstream-Transport Intervention, Action-Sufficient Quotient Perturbation, Gate-Invariance Challenge, Cross-Layer Counterfactual Coupling, Mechanism-Independent Latent-State Transport, Decomposition Equivalence-Class Identification & Macro-Architecture Separation Experiment",
+  "suffix": "Experiment",
+  "status": "CLOSED_PASS_BOUNDED_INTERVENTIONAL_SURVIVAL",
+  "verdict": "PASS_U0_INTERVENTIONAL_SURVIVAL__CROSS_DOMAIN_NATURALITY_AND_MEDIATION_PASS__UNIQUENESS_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 37043582086,
+    "head": "35ee832823671b5152df595d0702e503dea27115",
+    "job": 110959373036,
+    "artifact": 11244011175,
+    "digest": "sha256:3c298cc04de77783230593091a0925e7f71e7092cfd7edfab9ced8332acc92f8"
+  },
+  "mathematical_authority": {
+    "nested_model_theorem": "U0_SUBSET_U1__POSITIVE_U0_SURVIVAL_CANNOT_EXCLUDE_U1",
+    "complete_mediation_signature": "PASS_PRESEALED",
+    "gate_invariance_theorem": "PASS_PRESEALED",
+    "quotient_naturality_condition": "PASS_PRESEALED",
+    "identified_object": "INTERVENTIONAL_EQUIVALENCE_CLASS_UNDER_FROZEN_DROP_RESTORE",
+    "unique_hidden_architecture": "NOT_IDENTIFIABLE_FROM_CURRENT_RIVAL_NESTING"
+  },
+  "typed_intervention": {
+    "family": "GENERIC_NECESSARY_UPSTREAM_STATE_DROP_RESTORE",
+    "DROP": "Q_1_TO_0",
+    "RESTORE": "Q_0_TO_1",
+    "gate_effect": "UNCHANGED",
+    "mechanism_id_required": false
+  },
+  "exact_mechanisms": {
+    "OTEL_GO_SIMPLE_SPAN_PROCESSOR": {
+      "repository": "open-telemetry/opentelemetry-go",
+      "exact_commit": "66cfc9520e205b7d450183532772401bc2b6674c",
+      "domain": "RUNTIME_TELEMETRY_GO",
+      "q": "SPAN_SAMPLED_BIT",
+      "g": "EXPORTER_PRESENT_PROCESSOR_ACTIVE",
+      "y": "EXPORT_SIDE_EFFECT",
+      "status": "PASS"
+    },
+    "OTEL_PHP_SIMPLE_SPAN_PROCESSOR": {
+      "repository": "open-telemetry/opentelemetry-php",
+      "exact_commit": "674bf34edc6cb7d2acfeea5ccd72ce8cd46f994c",
+      "domain": "RUNTIME_TELEMETRY_PHP",
+      "q": "SPAN_SAMPLED_BIT",
+      "g": "PROCESSOR_NOT_CLOSED",
+      "y": "EXPORT_SIDE_EFFECT",
+      "status": "PASS"
+    },
+    "FUTURES_RS_ABORTABLE_CAPABILITY_GATE": {
+      "repository": "rust-lang/futures-rs",
+      "exact_commit": "706e29bce353e3e72655b99a4a6411291cd4762a",
+      "domain": "COMPILE_TIME_CAPABILITY_RUST",
+      "q": "TARGET_HAS_POINTER_ATOMICS",
+      "g": "ALLOC_FEATURE_ENABLED",
+      "y": "ABORTABLE_API_TYPECHECKS",
+      "status": "PASS"
+    }
+  },
+  "hosted_packet": {
+    "shared_signature": "baseline/0:10|baseline/1:11|drop/0:00|drop/1:00|restore/0:10|restore/1:11",
+    "go": "PASS",
+    "php": "PASS",
+    "futures": "PASS",
+    "quotient_naturality": "PASS",
+    "gate_invariance": "PASS",
+    "complete_mediation": "PASS",
+    "shared_and": "PASS"
+  },
+  "architecture_ruling": {
+    "U0_UNIFIED_RESTRICTED": "SURVIVES_FROZEN_INTERVENTIONS",
+    "U1_SHARED_INTERFACE_SUPERCLASS": "REMAINS_COMPATIBLE",
+    "separation_result": "NO_UNIQUE_SELECTION_POSSIBLE_FROM_POSITIVE_SURVIVAL_UNDER_NESTED_RIVALS",
+    "current_authority": "INTERVENTIONAL_EQUIVALENCE_CLASS",
+    "macro_architecture_uniqueness": "NOT_AUTHORIZED"
+  },
+  "noncanonical_run_boundary": {
+    "telemetry_only_run": {
+      "run": 37042545472,
+      "head": "8e89806a9d1cc9b191fc21bc1adf13ef8347e579",
+      "artifact": 11243295794,
+      "digest": "sha256:f89f4d4082df1a6323c864505e9a13762faba6a03b28e9a4ba0ae07cdbea8deb",
+      "result": "SUCCESS_DEVELOPMENT_ONLY",
+      "reason": "Predates fresh futures-rs cross-domain stress."
+    },
+    "intermediate_heads": [
+      "40622c553c80b97398697007dac978a28095e85a",
+      "878ab5452a477347e31e5a30a2ad119e638043f3",
+      "cda09eeb8605eadbf63e5346e6764bb20bbe7160",
+      "50037c9391fee036d3102c63ce6099bbf3833984",
+      "470a8594ea0373209deed89dd37549d771ef772d"
+    ],
+    "ruling": "PROTOCOL_BUILDING_OR_INCOMPLETE_WORKFLOW__NO_CANONICAL_AUTHORITY"
+  },
+  "governance": {
+    "bot_author_reachable_count_at_close": 0,
+    "bot_committer_reachable_count_at_close": 0,
+    "workflow_contents_permission": "read",
+    "repository_writeback_from_actions": false
+  },
+  "direct_artifact_inspection": {
+    "status": "PASS",
+    "files": [
+      "p26-math.txt",
+      "p26-otel-go.json",
+      "p26-otel-php.json",
+      "p26-futures.json",
+      "p26-experiment.json"
+    ]
+  },
+  "harvest": {
+    "id": "LR-20261003-AF",
+    "repo_manifest": "24e259623cb577751622789290da4286f34fb7e7",
+    "notion_page": "3edef561-cf92-814a-88f5-df2b241a1d7f",
+    "notion_genealogy": "3edef561-cf92-8155-95d5-e2e4b541237e",
+    "authority": "NONE"
+  },
+  "paper_readiness": {
+    "repo_ledger": "2e01bd210c64904ec149b86ff228339dadacae4f",
+    "notion_ledger": "3edef561-cf92-81df-b43e-df2f45cefabb",
+    "manuscript": "NOT_AUTHORIZED"
+  },
+  "notion": {
+    "mathematical_dossier": "3edef561-cf92-813f-8c51-cf9658a00e21",
+    "candidate_genealogy": "3edef561-cf92-811d-9c40-e8af0c4116e6"
+  },
+  "anti_rationalization": {
+    "intervention_retyped_after_outcome": false,
+    "Q_redefined_after_outcome": false,
+    "gate_redefined_after_outcome": false,
+    "mechanism_specific_quotient_action": false,
+    "mechanism_id_feature": false,
+    "U0_uniqueness_claimed_from_survival": false
+  },
+  "provenance": {
+    "constitution_initial": "5e3323f7ec4369f7f43cb83e8944eb8648a5e1ba",
+    "constitution_v030_canonical": "55ca9682faf5aabc5448d6c803c1b459ac33b5b7",
+    "mathematical_note": "a17aa2b0996f5b6910d6779929cbc5b3f8767a4f",
+    "mathematical_checker": "73ec63e7d28fccd8f9bb5ad0fbc4d7f74969b941",
+    "preseal": "687f8e82c2b79268e1d8222b77e44e30743be69b",
+    "otel_custody": "6899d95b3e1f27b93f92fc717732e8122bf2fd50",
+    "go_verifier": "9a3f3823734019dfc5716cd60e120d803f962890",
+    "php_verifier": "37fab054cb1c81a286210e32971765378188d4c1",
+    "adjudicator_initial": "6edf4907cb4bd5736ad483cb68ec47fcec680867",
+    "futures_custody": "40622c553c80b97398697007dac978a28095e85a",
+    "futures_custody_complete": "878ab5452a477347e31e5a30a2ad119e638043f3",
+    "futures_matrix": "cda09eeb8605eadbf63e5346e6764bb20bbe7160",
+    "adjudicator_cross_domain": "50037c9391fee036d3102c63ce6099bbf3833984",
+    "canonical_workflow": "35ee832823671b5152df595d0702e503dea27115",
+    "harvest_manifest": "24e259623cb577751622789290da4286f34fb7e7",
+    "paper_ledger": "2e01bd210c64904ec149b86ff228339dadacae4f"
+  },
+  "macro_structure": {
+    "result": "BOUNDED_INTERVENTIONAL_SURVIVAL_NOT_UNIQUE",
+    "macro_law": "NOT_AUTHORIZED"
+  },
+  "solid_special_case": "NOT_DERIVED",
+  "law_r2": "NOT_AUTHORIZED",
+  "closure": {
+    "ravel": "10207–10254",
+    "decision": "10255–10280",
+    "global_next": 10281
+  }
+}
