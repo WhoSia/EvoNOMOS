@@ -1,0 +1,153 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P18",
+  "formal_title": "Interaction-Law Domain Escape, Non-Bot Software Transport, Compatibility×Coexistence Factorial Replication, Higher-Order Support Acquisition, Geometry-Conditioned Policy Generalization, Harvest Backflow Evaluation & Interaction-Law Stress",
+  "suffix": "Stress",
+  "global_start": 9662,
+  "predecessor": {
+    "stage": "LAW-R1-P17",
+    "terminal_seal": "ebd2e1009eaf9e17c8d4289d4f29d16c85cd7069",
+    "active_lineage": "ea973c9439875d7f3c9e2592a8ee0bd36c7b726f",
+    "canonical_run": 36970725135,
+    "artifact": 11211656155,
+    "verdict": "PASS_PARTIAL_INTERACTION_GRAPH__PAIRWISE_EDGES_IDENTIFIED__HIGHER_ORDER_TERMS_UNDERIDENTIFIED"
+  },
+  "research_program": {
+    "macro_goal": "Recover a representation-stable, cross-domain law of software design and change in which familiar design doctrines such as SOLID may eventually appear as local special cases rather than primitives.",
+    "solid_status": "LONG_HORIZON_HYPOTHESIS_ONLY",
+    "forbidden_in_p18": [
+      "CLAIM_SOLID_IS_ALREADY_DERIVED",
+      "RETROFIT_PRIMITIVES_TO_MATCH_SOLID",
+      "USE_PAPER_STORY_TO_CHANGE_THRESHOLDS"
+    ],
+    "p18_role": "Attack the current bot/workflow concentration and determine whether interaction structure survives in non-bot software mechanisms."
+  },
+  "frozen_X_primitives": [
+    "COMPATIBILITY_OBLIGATION",
+    "COEXISTENCE_REQUIREMENT",
+    "RELEASE_AUTHORITY",
+    "LIFECYCLE_PHASE"
+  ],
+  "primary_targets": [
+    {
+      "interaction": ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT"],
+      "priority": 1,
+      "reason": "P17 left this as the strongest one-domain non-bot candidate."
+    },
+    {
+      "interaction": ["COMPATIBILITY_OBLIGATION","LIFECYCLE_PHASE"],
+      "priority": 2
+    },
+    {
+      "interaction": ["COEXISTENCE_REQUIREMENT","LIFECYCLE_PHASE"],
+      "priority": 3
+    },
+    {
+      "interaction": ["RELEASE_AUTHORITY","LIFECYCLE_PHASE"],
+      "priority": 4,
+      "role": "P17 transported reference edge; not the main novelty target."
+    }
+  ],
+  "domain_escape_requirement": {
+    "bot_or_workflow_only": "INSUFFICIENT_FOR_P18_PROMOTION",
+    "preferred_domains": [
+      "STORAGE_MIGRATION",
+      "WIRE_PROTOCOL",
+      "API_EVOLUTION",
+      "LIBRARY_COMPATIBILITY",
+      "RUNTIME_UPGRADE",
+      "DATABASE_SCHEMA_MIGRATION",
+      "DISTRIBUTED_REBALANCE",
+      "COMPILER_OR_TOOLCHAIN",
+      "CONFIGURATION_SYSTEM"
+    ],
+    "promotion_threshold": "At least one exact matched non-bot factorial family plus an independent second family transporting the same semantic interaction."
+  },
+  "factorial_identification": {
+    "pairwise": "Complete or intervention-equivalent 2x2 family under fixed material G and E. Joint action must reject every main-effect-only reconstruction.",
+    "three_way_X": "Require all lower-order cells needed to reject every pairwise model under fixed G,E.",
+    "four_way_X": "Require all lower-order reconstructions to fail under a complete or logically complete intervention family.",
+    "missing_cell_rule": "UNDERIDENTIFIED_NOT_ZERO",
+    "natural_boolean_gate_rule": "Source-level guards may instantiate factorial cells only when each branch has stable operational semantics and is not inferred post hoc."
+  },
+  "geometry_conditioned_generalization": {
+    "question": "Does an interaction survive when G changes but semantic primitive coordinates remain fixed?",
+    "required": [
+      "SAME_X_VARIED_G_CONTROL",
+      "SAME_X_SAME_G_CROSS_DOMAIN_TRANSPORT_WHERE_POSSIBLE",
+      "NO_GEOMETRY_COLLAPSE_INTO_X"
+    ]
+  },
+  "higher_order_support": {
+    "goal": "Actively seek but do not force genuine three- or four-X support.",
+    "promotion": "Only prospectively frozen complete support may authorize a higher-order X term.",
+    "negative_result": "Failure to find complete support is a valid scientific result and Harvest donor."
+  },
+  "harvest_parallel_lineage": {
+    "authority": "NON_SOVEREIGN",
+    "roles": [
+      "IDEA_GENERATION",
+      "NOVELTY_KILL",
+      "PRIOR_ART_BOUNDARY",
+      "METHOD_DONOR",
+      "CROSS_LAB_BACKFLOW",
+      "FAILED_THEORY_RESIDUE",
+      "PAPER_READINESS_TRACKING"
+    ],
+    "paper_rule": "Prepare paper-readiness evidence, figures, claims and related-work structure, but do not draft a submission manuscript or freeze a paper thesis in P18."
+  },
+  "literature_intake": {
+    "user_supplied_three_papers": "NORMALIZE_AND_MOVE_00_INTAKE_TO_10_PAPERS_BEFORE_DEEP_READ",
+    "exact_metadata_required": true,
+    "duplicates_checked": true,
+    "harvest_after_canonicalization": true
+  },
+  "language_plan": {
+    "principle": "Continue reducing Python as default implementation language; choose language by mechanism rather than aesthetics.",
+    "legacy_python": "UNCHANGED",
+    "new_python_default": "DISCOURAGED",
+    "candidate_languages": [
+      "Rust",
+      "Go",
+      "C++",
+      "JavaScript",
+      "Ruby",
+      "Java",
+      "Kotlin",
+      "C#",
+      "Haskell",
+      "OCaml"
+    ],
+    "requirement": "At least three non-Python executable lanes, with at least one language not used by P17 if implementation proceeds."
+  },
+  "anti_rationalization": {
+    "new_X_primitive_after_fresh_outcome": "FORBIDDEN",
+    "new_interaction_subset_after_fresh_outcome": "FORBIDDEN",
+    "matching_tolerance_relaxation_after_outcome": "FORBIDDEN",
+    "missing_factorial_cell_as_zero": "FORBIDDEN",
+    "domain_relabel_to_rescue_transport": "FORBIDDEN",
+    "solid_story_override": "FORBIDDEN",
+    "paper_story_override": "FORBIDDEN"
+  },
+  "r2_gate": "LAW-R2 may reopen only if a fresh materially normalized same-(X,G,E) action conflict survives all admissible interaction, geometry, representation, and provenance reconstruction.",
+  "terminal_verdict_family": [
+    "PASS_NONBOT_INTERACTION_TRANSPORT__COMPATIBILITY_COEXISTENCE_REPLICATED__DOMAIN_ESCAPE_ACHIEVED__R2_NOT_AUTHORIZED",
+    "PASS_NONBOT_DOMAIN_ESCAPE__DIFFERENT_INTERACTION_EDGE_TRANSPORTS__COMPATIBILITY_COEXISTENCE_REMAINS_UNDERIDENTIFIED__R2_NOT_AUTHORIZED",
+    "PASS_PARTIAL_DOMAIN_ESCAPE__ONE_NONBOT_EXACT_FAMILY__SECOND_TRANSPORT_MISSING__R2_NOT_AUTHORIZED",
+    "HOLD_NONBOT_FACTORIAL_SUPPORT_INSUFFICIENT__BOT_WORKFLOW_CONCENTRATION_NOT_ESCAPED",
+    "FAIL_APPARENT_INTERACTION_COLLAPSES_TO_GEOMETRY_OR_EVIDENCE_CONFOUND"
+  ],
+  "close_requires": [
+    "PRESEAL_BEFORE_FRESH_NONBOT_OUTCOMES",
+    "THREE_USER_PAPERS_CANONICALIZED_AND_MOVED",
+    "HARVEST_DEEP_READ_OR_EXPLICIT_READ_LIMIT",
+    "NONBOT_SEARCH_WITH_NEGATIVE_CUSTODY",
+    "AT_LEAST_ONE_EXACT_NONBOT_FACTORIAL_ATTEMPT",
+    "CROSS_DOMAIN_TRANSPORT_ATTEMPT",
+    "GEOMETRY_CONTROL",
+    "MULTILINGUAL_EXECUTABLE_STRESS_IF_DATA_SUFFICIENT",
+    "HOSTED_RUN_IF_EXECUTABLE",
+    "ARTIFACT_DIRECT_INSPECTION_IF_HOSTED",
+    "RESEARCH_OS_RUN_DECISION_HARVEST_READBACK",
+    "TERMINAL_SEAL"
+  ]
+}
