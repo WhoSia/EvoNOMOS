@@ -104,6 +104,9 @@ Late alternate discovery boundary:
 - later Reset×ClearUnknown / EtcdRangeStream exploration occurred after authoritative Protobuf/QUIC lineage and canonical run
 - P24_FRESH_DUAL_FAMILY_CUSTODY.json at a61dabbc4718976da66cf6d0066aaec89cddb555 is NONAUTHORITATIVE_ALTERNATE_DISCOVERY
 - EtcdRangeStream probe at 33a82968b31281fdf262e045a0c7fb42554bac5d is FUTURE_FALSIFIER_BANK only
+- post-closure protobuf/go-logr comparison custody bf03f8e88dc6cc8e94d9ea84f4c98321450d5869 is NONAUTHORITATIVE
+- post-closure pinned protobuf/go-logr probe 3094d0feb2c2743532393bb7ecd43a10c219139d is NONAUTHORITATIVE and was not used for P24 closure
+- post-closure alternate boundary receipt: 277906309e68cfbb513a703ca905d2f1fbcbaf9f
 - alternate discovery changes no P24 verdict or authority
 
 Research OS / Harvest:
