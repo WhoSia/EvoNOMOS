@@ -2,56 +2,55 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P19
-- formal suffix: Protocol
+- active stage: G8 LAW-R1-P20
+- formal suffix: Experiment
 - status: CLOSED / PASS
-- canonical run: 36974722368
-- canonical head: 372b8b07a99b12e60c20eda46d1206ed58b2c8ca
-- canonical job: 110735953073
-- artifact: 11212621938
-- digest: sha256:ee8580e1c5c1586530ad95e0bf9d23d80de702595b14434467c5ebe16ae74510
+- canonical run: 36983200957
+- canonical head: c9199b703b57cb7b08e0e6dade6fa4197e88f3a6
+- canonical job: 110762216404
+- artifact: 11216616543
+- digest: sha256:54738d9992ff09e519be8d00ec6befa96a6e17153fc64161fa8bfaf06294ce10
 
-P19 authority:
+P20 authority:
 
-- P16 four-primitive basis remains intact
+- P16 four-primitive context basis remains intact
 - P17 partial interaction graph remains intact
 - P18 bounded non-bot domain-escape authority remains intact
-- one fresh exact non-migration family is established in Rust compiler/library method resolution
-- the exact interaction is COMPATIBILITY_OBLIGATION x CALL_GEOMETRY
-- pre-2021 compatibility preserves borrowed semantics only for explicit .into_iter() method dispatch; explicit trait invocation remains by-value
-- the resulting 2x2 has difference-in-differences = 1
-- X-only, G-only, and exact additive main-effect reconstructions fail
-- typed pairwise interaction fits
-- a generic low-complexity conjunction also fits exactly
-- representation identity is therefore NON_UNIQUE
-- Axios library API and Node module-loader behavior provide independent grammar-level support for geometry-selective policy
-- only one fresh exact typed XxG family exists, so strong cross-mechanism macro-law authority is not granted
-- Principle-as-Projection survives current falsification but remains UNDERIDENTIFIED
-- SOLID as a special case remains NOT_DERIVED
+- P19 Rust compiler/library interaction remains the first exact non-migration family
+- P20 Ruby keyword-forwarding compatibility is the second exact non-migration family
+- Ruby hosted cells are 0/1/0/1 for unmarked implicit, marked direct, marked wrapper-gap, explicit kwargs
+- presealed binary generic conjunction is falsified on the Ruby held-out family
+- the decisive same-coarse-trigger split is MARKED_IMPLICIT_DIRECT=1 vs MARKED_WRAPPER_GAP=0 with frozen X=1 and G_binary=1
+- the generic conjunction also misses EXPLICIT_KWARGS under its frozen G0 projection
+- the pre-frozen typed geometry partition survives structurally without adding X or G coordinates
+- the exact action sign at the wrapper boundary was not precommitted; typed predictive-law victory is therefore NOT_AUTHORIZED
+- richer low-complexity rivals remain open
+- the frozen generic compatibility maxim fails on the wrapper-mediated boundary
+- post-outcome UNLESS rescue is not admitted
+- policy-surface equivalence class is narrowed but remains non-unique
+- macro law remains NOT_AUTHORIZED
+- SOLID remains NOT_DERIVED
 - LAW-R2 remains NOT_AUTHORIZED
+
+Support / negative custody:
+
+- glibc memcpy symbol-versioning remains strong separator support but not an exact P20 factorial
+- Protocol Buffers unknown-field binary/JSON behavior remains support-only because it does not map cleanly to the presealed P20 geometry
 
 Harvest and theory:
 
-- LR-20261002-X is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
-- Policy-Surface Equivalence-Class Hypothesis is HARVEST_ONLY
-- Named Maxim as Regional Compression is HARVEST_ONLY
-- a future named-maxim mapping must be prospectively frozen before fresh outcomes
+- LR-20261002-Y is PASS_HARVEST_NON_SOVEREIGN; authority transferred = NONE
+- Boundary-Carrying Obligation Hypothesis is HARVEST_ONLY
+- compatibility may require propagation/boundary semantics, but no new LAW-R1 primitive is admitted
 - manuscript drafting remains NOT_AUTHORIZED
+- P20 paper-readiness ledger separates structural transport from prospective sign prediction
 
-Cross-repository hygiene:
+Hosted implementation:
 
-- CUBE-REV research/current head audited at 5921ca980b7214e7ad915747c39435168f4547e3
-- recent P2 cleanup commits are directionally correct
-- six stale/dead workflow residues were identified
-- 103 historical/predecessor candidate paths remain for reverse-reference audit
-- CUBE-REV was not modified from P19
-- no scientific contamination into EvoNOMOS authority was observed
-
-Implementation and hosted evidence:
-
-- rival representation competition: PASS
-- cross-mechanism protocol: PASS
+- Ruby 3.4.11 separator: PASS
+- JavaScript representation experiment: PASS
 - artifact directly inspected
-- canonical hosted run succeeded on the first attempt
+- canonical run succeeded on the first attempt
+- new Python files: 0
 
-Global next: 9775, still within LAW-R1.
+Global next: 9840, still within LAW-R1.
