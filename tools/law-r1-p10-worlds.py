@@ -8,7 +8,7 @@ PRS=[
  {"id":"FFXI_SHIM","repo":"sarthax/FFXI-Mission-Toolkit","pr":269,"merge":"7d313401524a8dc003d6c1d061b3d3e664aff41e","must":["compatibility cli/import shim"],"role":"DEVELOPMENT"},
  {"id":"OPENCHIA_BREAK","repo":"chian/OpenChia","pr":10,"merge":"4adb2a1b2de8d9b5c2bc133c32fa47e150ad7647","must":["intentional hard namespace break"],"role":"DEVELOPMENT"},
  {"id":"OPENPENCIL_EXPORT","repo":"open-pencil/open-pencil","pr":612,"merge":"5689eccc0ca4556ea6f17fddc22933f3d9c06792","must":["package export target"],"role":"DEVELOPMENT"},
- {"id":"S7_ALIAS","repo":"RConsortium/S7","pr":734,"merge":"245aaf46355a48403ad580b366b817a9c4191851","must":["new_external_class() now resolves aliases"],"role":"DEVELOPMENT"}
+ {"id":"S7_ALIAS","repo":"RConsortium/S7","pr":734,"merge":"245aaf46355a48403ad580b366b817a9c4191851","must":["silently treated as the replacement"],"role":"DEVELOPMENT"}
 ]
 COMMIT={"repo":"open-pencil/open-pencil","sha":"88c1077071328b8df68f282543f16e20e97930b4"}
 
