@@ -1,0 +1,69 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P14",
+  "title": "Cross-Domain Exact Compatibility Replication, Coexistence Orthogonalization, Authority-Lifecycle Decoupling, Intervention-Matrix Construction, Dependency-Edge Orientation, Primitive-Promotion Replication & the Court of Whether Context Coordinates Admit Stable Independent Structure",
+  "global_start": 9490,
+  "predecessor": {
+    "stage": "LAW-R1-P13",
+    "terminal_seal": "90fd3bf38df28d1523f733a6f3ba12a0c72d38c0",
+    "active_lineage": "8d761fa9eba73241458b09eec2978c5777aec040",
+    "canonical_run": 36958108004,
+    "canonical_artifact": 11206592288,
+    "verdict": "PASS_PARTIAL_PRIMITIVE_STRUCTURE__DEPENDENCIES_RECOVERED__RESIDUAL_UNDERIDENTIFICATION_RETAINED__R2_NOT_AUTHORIZED"
+  },
+  "frozen_state": {
+    "state": "(X,G,E)",
+    "policy": "Pi(X,G,E)",
+    "identified": ["LIFECYCLE_PHASE"],
+    "bounded_identified": ["COMPATIBILITY_OBLIGATION"],
+    "underidentified": ["COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "targets": {
+    "COMPATIBILITY_OBLIGATION": "Obtain a second exact discriminator in a distinct software domain.",
+    "COEXISTENCE_REQUIREMENT": "Hold compatibility obligation fixed while varying simultaneous old/new operation requirement.",
+    "RELEASE_AUTHORITY": "Hold lifecycle phase fixed while varying who may perform the mutation or release action."
+  },
+  "promotion_rule": {
+    "stable_primitive": "At least two exact cross-domain discriminator families, representation-invariant replay, negative control, and no unresolved dependency collapse.",
+    "bounded_only": "One exact domain or multiple near-matched domains remain bounded and may not be promoted.",
+    "merge_rule": "If target variation cannot be isolated from another coordinate under admitted interventions, retain dependency/merge candidate rather than primitive status."
+  },
+  "intervention_matrix": {
+    "rows": ["COMPATIBILITY_OBLIGATION","COEXISTENCE_REQUIREMENT","RELEASE_AUTHORITY"],
+    "columns": ["TARGET_ON","TARGET_OFF","NEGATIVE_CONTROL","SECOND_DOMAIN_REPLICATION"],
+    "requirement": "Each promoted primitive must have action discrimination with all non-target action-relevant state held materially equivalent."
+  },
+  "authority_lifecycle_decoupling": {
+    "required": "Same lifecycle phase, same G, materially same E, different actor/permission/release authority, different permissible action.",
+    "forbidden_substitute": "Release-cut vs ordinary-PR contrasts where lifecycle changes together with authority."
+  },
+  "coexistence_orthogonalization": {
+    "required": "Same compatibility obligation and same G,E, differing only whether old and new surfaces must operate simultaneously.",
+    "forbidden_substitute": "Legacy consumer contrasts where compatibility itself changes."
+  },
+  "anti_rationalization": {
+    "new_X_coordinates": "FORBIDDEN_WITHIN_P14_AFTER_RESULT_INSPECTION",
+    "result_dependent_relabeling": "FORBIDDEN",
+    "failed_discriminator": "MAY_BECOME_LATER_STAGE_DEVELOPMENT_ONLY_CANDIDATE"
+  },
+  "candidate_terminal_verdicts": [
+    "PASS_STABLE_COMPATIBILITY_PRIMITIVE_REPLICATED__COEXISTENCE_AND_AUTHORITY_PARTIALLY_ORTHOGONALIZED__R2_NOT_AUTHORIZED",
+    "PASS_MULTI_COORDINATE_PRIMITIVE_STRUCTURE__EXACT_REPLICATION_AND_EDGE_ORIENTATION_SURVIVE__R2_NOT_AUTHORIZED",
+    "PASS_COMPATIBILITY_REPLICATION_ONLY__COEXISTENCE_AUTHORITY_UNDERIDENTIFICATION_RETAINED__R2_NOT_AUTHORIZED",
+    "HOLD_INTERVENTION_MATRIX_INSUFFICIENT__NO_POST_HOC_EXPANSION",
+    "FAIL_CONTEXT_PRIMITIVE_MODEL__DEPENDENCY_COLLAPSE_REQUIRES_RECONSTITUTION"
+  ],
+  "r2_gate": "LAW-R2 remains unauthorized unless fresh normalized same-(X,G,E) conflicting action survives P14's intervention and dependency reconstruction.",
+  "close_requires": [
+    "FROZEN_CONSTITUTION_BEFORE_FRESH_RESULT_INSPECTION",
+    "FROZEN_INTERVENTION_PRESEAL",
+    "FRESH_SECOND_DOMAIN_COMPATIBILITY_CUSTODY",
+    "COEXISTENCE_ORTHOGONALIZATION_ATTEMPT",
+    "AUTHORITY_LIFECYCLE_DECOUPLING_ATTEMPT",
+    "DEPENDENCY_EDGE_ORIENTATION",
+    "REPRESENTATION_INVARIANCE",
+    "DEDICATED_HOSTED_EVONOMOS_COURT",
+    "ARTIFACT_CUSTODY",
+    "TERMINAL_SEAL"
+  ]
+}
