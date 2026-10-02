@@ -1,0 +1,83 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P15",
+  "role": "LITERATURE_AND_DATA_CUSTODY_AUDIT",
+  "drive_first": true,
+  "scientific_verdict_independent": true,
+  "drive_confirmed": [
+    {
+      "title": "Givan, Dean & Greig (2003) — Equivalence Notions and Model Minimization in Markov Decision Processes",
+      "drive_id": "1nb1_v9pKOvJMtkwmYfXtowzfYUo3fmg4",
+      "doi": "10.1016/S0004-3702(02)00376-4",
+      "role": "STATE_EQUIVALENCE_AND_MODEL_MINIMIZATION"
+    },
+    {
+      "title": "Li, Walsh & Littman (2006) — Towards a Unified Theory of State Abstraction for MDPs",
+      "drive_id": "1P1HjH1S47t8d3Vq8Npd09eb3hxhYmfSC",
+      "role": "STATE_ABSTRACTION_TAXONOMY"
+    },
+    {
+      "title": "Ferns, Panangaden & Precup (2004) — Metrics for Finite Markov Decision Processes",
+      "drive_id": "1Hu3BKEsHRBXgxVNo0pIqruzNnQmYUKOf",
+      "doi": "10.5555/1036843.1036863",
+      "role": "BISIMULATION_METRIC_AND_APPROXIMATE_EQUIVALENCE"
+    },
+    {
+      "title": "Cai et al. (2019) — Design Rule Spaces",
+      "drive_id": "1DmKHlNjIjOYAYMJfcRZkcxRBiBmsSmzE",
+      "doi": "10.1109/TSE.2018.2797899",
+      "role": "SOFTWARE_ARCHITECTURE_DEPENDENCY_GEOMETRY"
+    },
+    {
+      "title": "Bairi et al. (2024) — CodePlan",
+      "drive_id": "1kg8opPZjsZI6HGpg2CMvdAMcdY0FbOr_",
+      "doi": "10.1145/3643757",
+      "role": "REPOSITORY_LEVEL_CHANGE_PLANNING"
+    }
+  ],
+  "used_but_drive_missing": [
+    {
+      "title": "Ma et al. (2026) — Sequential Knockoffs for Variable Selection in Reinforcement Learning",
+      "doi": "10.1080/01621459.2026.2658863",
+      "arxiv": "2303.14281",
+      "status": "MISSING_EXACT_DRIVE_PDF",
+      "used_in": "LAW-R1-P12 minimal-sufficient-state prior-art boundary",
+      "note": "Drive exact-title, DOI, and arXiv searches did not locate a canonical PDF."
+    }
+  ],
+  "previously_documented_open_custody": [
+    {
+      "title": "Wedyan & Abufakher (2020) — Impact of design patterns on software quality: a systematic literature review",
+      "doi": "10.1049/iet-sen.2018.5446",
+      "status": "EXACT_DRIVE_PDF_CUSTODY_OPEN"
+    },
+    {
+      "title": "Diaz-Pace, Trubiani & Garlan (2025) — Data-driven Understanding of Design Decisions in Pattern-based Microservices Architecture",
+      "doi": "10.1007/978-3-032-02138-0_18",
+      "status": "EXACT_DRIVE_PDF_CUSTODY_OPEN"
+    },
+    {
+      "title": "Diaz-Pace, Trubiani & Garlan (2026) — ADEPT: A framework for automated data-driven understanding of design decisions in pattern-based microservices architectures",
+      "doi": "10.1016/j.jss.2026.113006",
+      "status": "EXACT_DRIVE_PDF_CUSTODY_OPEN"
+    }
+  ],
+  "new_high_value_missing_donor": [
+    {
+      "title": "Dig & Johnson (2006) — How do APIs evolve? A story of refactoring",
+      "doi": "10.1002/smr.328",
+      "status": "NOT_FOUND_AS_EXACT_DRIVE_PDF",
+      "role": "API_EVOLUTION_AND_BACKWARD_COMPATIBILITY_PRIOR_ART"
+    }
+  ],
+  "data_custody": {
+    "p15_primary_world_data": "PUBLIC_REPOSITORY_SOURCE_AT_PINNED_COMMITS",
+    "sources": [
+      "grafana/grafana@f89103a8dac3e24563d0ce43f83fd085676a92d6",
+      "kubernetes-sigs/prow@6844e439e237641e025f0e094833768c6928bc00",
+      "discourse/discourse@0c86723eb20b411a48651bfac3f4faee2e1a8147"
+    ],
+    "separate_dataset_required": false,
+    "software_heritage_graph_dataset_drive_status": "ALREADY_CANONICAL_IN_EVONOMOS_LITERATURE_INDEX"
+  },
+  "custody_ruling": "STATE_ABSTRACTION_FOUNDATIONS_PRESENT_IN_DRIVE__ONE_ACTUALLY_USED_2026_MINIMAL_STATE_PAPER_MISSING__API_EVOLUTION_DONOR_MISSING__THREE_PREVIOUSLY_KNOWN_PATTERN_MICROSERVICE_PDFS_REMAIN_OPEN"
+}
