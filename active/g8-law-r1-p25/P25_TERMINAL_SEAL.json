@@ -1,0 +1,163 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P25",
+  "formal_title": "Second-Domain Prospective Bridge Replication, End-to-End Transport→Quotient→Gate Composition, AND-Law Cross-Mechanism Transport, Interface-vs-Unified-Architecture Discrimination, Property-Indexed Algebra Coupling, Restricted Boolean-Policy Rival Ecology, Decomposition Identifiability & Macro-Structure Replication",
+  "suffix": "Replication",
+  "status": "CLOSED_PASS",
+  "verdict": "PASS_SECOND_BRIDGE_REPLICATION__END_TO_END_COMPOSITION_PASS__AND_CROSS_MECHANISM_TRANSPORT__MACRO_STRUCTURE_REPLICATED",
+  "canonical": {
+    "run": 37037884755,
+    "head": "1b7a8d0a4ba009bf01d364bb6df1a878170c509a",
+    "job": 110940482532,
+    "artifact": 11241252030,
+    "digest": "sha256:0f776c4f95f9594017a8454e4c290552a43565e4d877a27d0dc86a1eb0b315c7"
+  },
+  "mathematical_authority": {
+    "complete_boolean_packet_identifiability": "PASS",
+    "frozen_standard_rival_match": "AND_ONLY",
+    "interface_equivalence_does_not_identify_architecture": "PROVED_METHOD_BOUNDARY",
+    "end_to_end_evidence_condition": "SATISFIED_ON_TLS_ALPN"
+  },
+  "lane_A_second_bridge": {
+    "id": "RUST_LOG_BOXED_LOGGER_CAPABILITY_GATE",
+    "repository": "rust-lang/log",
+    "exact_commit": "27e3cf7a021dab43430a70cb2909c06ca8141f79",
+    "q": "TARGET_HAS_POINTER_ATOMICS",
+    "g": "ALLOC_FEATURE_ENABLED",
+    "output": "set_boxed_logger API available",
+    "truth_table": "0001",
+    "controls_all_compile": true,
+    "result": "PASS_SECOND_DOMAIN_AND",
+    "mechanism_class": "COMPILE_TIME_TARGET_CAPABILITY_X_CARGO_FEATURE"
+  },
+  "lane_B_end_to_end": {
+    "id": "GO_TLS_ALPN_TARGET_PROTOCOL_NEGOTIATION",
+    "repository": "golang/go",
+    "exact_commit": "47cf464896de41e404e0efeca4fa2cc1e321872c",
+    "go_runtime": "go1.26.8",
+    "chain": [
+      "ClientHello NextProtos",
+      "TLS parser -> clientHello.alpnProtocols",
+      "Q(target protocol present)",
+      "server NextProtos gate",
+      "NegotiatedProtocol"
+    ],
+    "truth_table": "0001",
+    "live_handshakes_all_ok": true,
+    "reference_vs_live_match": true,
+    "result": "PASS_T_Q_GATE_ACTION"
+  },
+  "cross_mechanism_bridge": {
+    "predecessor": "P24_QUIC_GO_DATAGRAM_MUTUAL_NEGOTIATION",
+    "p25_second_domain": "RUST_LOG_BOXED_LOGGER_CAPABILITY_GATE",
+    "p25_end_to_end": "GO_TLS_ALPN_TARGET_PROTOCOL_NEGOTIATION",
+    "frozen_rule": "AND",
+    "result": "REPLICATED_ACROSS_NETWORK_AND_COMPILETIME_MECHANISMS"
+  },
+  "property_indexed_algebra_coupling": {
+    "new_strong_replication": "NOT_ACHIEVED",
+    "predecessor_authority": "P24_STRONG_SECOND_PROPERTY_INDEX_REPLICATION_RETAINED",
+    "effect": "NO_DOWNGRADE_NO_NEW_PROMOTION"
+  },
+  "decomposition": {
+    "U0_SINGLE_UNIFIED_ARCHITECTURE": "SUPPORTED_AS_TYPED_META_ARCHITECTURE_BUT_NOT_UNIQUE",
+    "U1_TWO_FAMILY_WITH_SHARED_INTERFACE": "REMAINS_OBSERVATIONALLY_EQUIVALENT",
+    "U2_BRIDGE_SUBCLASS_ONLY": "WEAKENED_BY_COMPILETIME_RUST_REPLICATION",
+    "U3_DISCONNECTED": "REJECTED",
+    "uniqueness": "UNDERIDENTIFIED_INTERFACE_VS_UNIFIED_ARCHITECTURE",
+    "central_ruling": "Shared q-interface plus shared AND decision does not identify a common upstream transport architecture."
+  },
+  "macro_structure": {
+    "result": "REPLICATED_BOUNDED_NOT_UNIQUELY_IDENTIFIED",
+    "candidate_architecture": "TRANSPORT_OR_CAPABILITY_SOURCE -> BINARY_ACTION_SUFFICIENT_Q -> INDEPENDENT_GATE_G -> AND_ACTION",
+    "universal_AND": "NOT_AUTHORIZED",
+    "macro_law": "NOT_AUTHORIZED"
+  },
+  "implementation_failure_boundary": {
+    "runs": [
+      {
+        "run": 37037410152,
+        "head": "0a6e40747e4fcc5c5694caea5c02905737f3ce56",
+        "science_probes": "PASS",
+        "adjudicator": "FAIL_FIELD_CASING"
+      },
+      {
+        "run": 37037761616,
+        "head": "661e42b15f508b6688d21e6e6c547967a085c376",
+        "science_probes": "PASS",
+        "adjudicator": "FAIL_FIELD_CASING"
+      },
+      {
+        "run": 37037789629,
+        "head": "54203464e8df0f60db8f4fb3ced6b11406b83c13",
+        "science_probes": "PASS",
+        "adjudicator": "FAIL_FIELD_CASING"
+      }
+    ],
+    "repair_commit": "1b7a8d0a4ba009bf01d364bb6df1a878170c509a",
+    "repair_scope": "Read snake_case TLS artifact fields correctly.",
+    "frozen_hypothesis_changed": false,
+    "scientific_classification": "POST_SCIENCE_AGGREGATOR_IMPLEMENTATION_FAILURE"
+  },
+  "governance": {
+    "bot_author_reachable_count_at_close": 0,
+    "bot_committer_reachable_count_at_close": 0,
+    "workflow_contents_permission": "read",
+    "repository_writeback_from_actions": false
+  },
+  "direct_artifact_inspection": {
+    "status": "PASS",
+    "files": [
+      "p25-math.txt",
+      "p25-rust-log.json",
+      "p25-tls-alpn.json",
+      "p25-replication.json"
+    ]
+  },
+  "harvest": {
+    "id": "LR-20261003-AE",
+    "repo_manifest_commit": "1ed3cd64032e8386681ac61b2fd7be70e193d686",
+    "notion_page": "3edef561-cf92-817f-a0a2-d9de1ba9747f",
+    "authority": "NONE"
+  },
+  "paper_readiness": {
+    "repo_ledger_commit": "ca0a6276d64d5058252441ab16cd6eb4c4aa368e",
+    "notion_ledger": "3edef561-cf92-8140-9814-d52195ed0d5b",
+    "manuscript": "NOT_AUTHORIZED"
+  },
+  "notion": {
+    "mathematical_dossier": "3edef561-cf92-81dc-817d-f8a5c143b2c4",
+    "candidate_genealogy": "3edef561-cf92-817a-a2fc-d4b898e818cb",
+    "prediction_authority_ledger": "3edef561-cf92-8140-9814-d52195ed0d5b",
+    "harvest": "3edef561-cf92-817f-a0a2-d9de1ba9747f"
+  },
+  "anti_rationalization": {
+    "q_edits": 0,
+    "g_edits": 0,
+    "Q_edits": 0,
+    "boolean_rule_edits": 0,
+    "mechanism_id": false,
+    "failed_run_used_to_change_science": false
+  },
+  "macro_law": "NOT_AUTHORIZED",
+  "solid_special_case": "NOT_DERIVED",
+  "law_r2": "NOT_AUTHORIZED",
+  "closure": {
+    "ravel": "10135–10180",
+    "decision": "10181–10206",
+    "global_next": 10207
+  },
+  "provenance": {
+    "constitution": "ff829bcdcdad43d52263e271661cbafd4a1fdbc5",
+    "math_note": "7facf76bdbe2e67f1dce654df514ad6bc51048ec",
+    "haskell_math_checker": "e319e30b779b27776365dbdf4b3616c2d7c6c92e",
+    "preseal": "0a0793a244a7b0e97149502733a599599133c5bc",
+    "fresh_custody": "a89194e60009ba7508e3afd66a56dd89ca66526f",
+    "rust_log_verifier": "64a3e0309c7aaa2660d596d8778ff6a7326c56f0",
+    "tls_verifier": "868fbdc750d5263cc0a422423f04982d9803bf91",
+    "adjudicator_initial": "f88ffc1562dee31150360bcd8cc272dde9589d9e",
+    "workflow_initial": "0a6e40747e4fcc5c5694caea5c02905737f3ce56",
+    "rust_setup_light_math": "661e42b15f508b6688d21e6e6c547967a085c376",
+    "workflow_setup_light": "54203464e8df0f60db8f4fb3ced6b11406b83c13",
+    "adjudicator_field_fix": "1b7a8d0a4ba009bf01d364bb6df1a878170c509a"
+  }
+}
