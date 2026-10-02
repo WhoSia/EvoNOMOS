@@ -1,0 +1,22 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P9",
+  "holdout": "home-assistant/core#181879",
+  "precommit": "e94f2f017e31fd78df60f782ebd12807008efd58",
+  "result": "BRANCH_B_SUPPORTED",
+  "observed_after_reveal": [
+    "maintainer states Protect 7.2.105 is required for the public API used by the integration",
+    "minimum version remains unchanged",
+    "no degraded mode is planned in this issue",
+    "reporter later confirms a console-specific package-repository problem and updates to Protect 7.3.68, restoring operation"
+  ],
+  "adjudication": {
+    "S_P_F_structural_change": "NONE",
+    "decisive_state": [
+      "required capability availability",
+      "reachable version state on the affected console"
+    ],
+    "implication": "S/P/F do not form a sufficient decision state; version/capability state acts as an external moderator in X.",
+    "ontology_expansion": "NOT_AUTHORIZED",
+    "candidate_status": "THREE_AXIS_INSUFFICIENT__HIDDEN_MODERATOR_ONLY"
+  }
+}
