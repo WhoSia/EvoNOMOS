@@ -1,0 +1,72 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P24",
+  "status": "PAPER_READINESS_LEDGER_NOT_MANUSCRIPT",
+  "canonical": {
+    "run": 37017513558,
+    "head": "74a1f0656b0d4428e04bd4e135a107484ebd3635",
+    "job": 110871915750,
+    "artifact": 11230402825,
+    "digest": "sha256:5db642cd424fef04c0b158aeeadbb4187c599e789339d926981ff24cc08152aa"
+  },
+  "authorized_claims": [
+    {
+      "claim": "A source-semantic classifier prospectively identified protobuf unknown-field transport as LEFT_ZERO_IDENTITY, matching exact hosted execution.",
+      "grade": "PROSPECTIVE_HOSTED_EXACT"
+    },
+    {
+      "claim": "The predicted minimum faithful degree for the left-zero class is 2 and matches the mathematical certificate.",
+      "grade": "PRE_FRESH_THEOREM_PLUS_PREDICTION"
+    },
+    {
+      "claim": "The same protobuf binary-decode boundary preserves a known current field while conditionally preserving/dropping an unknown future field.",
+      "grade": "STRONG_SHARED_BOUNDARY_PROPERTY_INDEX_REPLICATION"
+    },
+    {
+      "claim": "The previously retrospective binary AND bridge was frozen before quic-go candidate selection and passed a fresh complete 2×2 held-out Datagram negotiation packet.",
+      "grade": "PROSPECTIVE_HELD_OUT_BRIDGE"
+    },
+    {
+      "claim": "P24 supplies one prospective cross-family bridge family, so macro structure advances beyond P23 retrospective fit.",
+      "grade": "BOUNDED_MACRO_STRUCTURE_SUPPORT"
+    }
+  ],
+  "implementation_failure": {
+    "run": 37017112611,
+    "classification": "IMPLEMENTATION_FAILURE_NOT_SCIENTIFIC_EVIDENCE",
+    "reason": "Compile-time type mismatch before any protobuf result, QUIC execution, or adjudicator output.",
+    "repair_commit": "74a1f0656b0d4428e04bd4e135a107484ebd3635"
+  },
+  "nonauthoritative_alternates": [
+    "a61dabbc4718976da66cf6d0066aaec89cddb555",
+    "33a82968b31281fdf262e045a0c7fb42554bac5d"
+  ],
+  "forbidden_or_unready_claims": [
+    {
+      "claim": "The single two-level decomposition is uniquely identified.",
+      "reason": "U0 and U1 remain observationally compatible after only one prospective held-out bridge family."
+    },
+    {
+      "claim": "AND is a universal local design law.",
+      "reason": "Only one fresh held-out bridge domain has been tested prospectively."
+    },
+    {
+      "claim": "Property indexing is a universal LAW-R1 primitive.",
+      "reason": "Strong replication is bounded to current shared-boundary families."
+    },
+    {
+      "claim": "A universal macro law is authorized.",
+      "reason": "Cross-domain replication of the whole transport→quotient→decision composition is missing."
+    },
+    {
+      "claim": "SOLID is derived as a special case.",
+      "reason": "No prospective named design-maxim projection has been tested."
+    }
+  ],
+  "next_required": [
+    "Second mechanistically distinct prospective bridge family with complete 2×2 packet.",
+    "Whole-composition replication from rich transport algebra through Q to local action.",
+    "Decomposition-uniqueness adjudication or principled non-uniqueness result.",
+    "Prospective design-maxim/SOLID projection if pursued."
+  ],
+  "manuscript": "NOT_AUTHORIZED"
+}
