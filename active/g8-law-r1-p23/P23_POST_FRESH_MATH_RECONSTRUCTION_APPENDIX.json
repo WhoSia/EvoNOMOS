@@ -1,0 +1,26 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P23",
+  "status": "POST_FRESH_MATHEMATICAL_RECONSTRUCTION_APPENDIX",
+  "authority": "DEVELOPMENT_ONLY_NO_RETROACTIVE_PRESEAL",
+  "fresh_evidence_already_opened_at": "c7a21f8194ef9d06b8a7b3cf064e725ef66ccb0f",
+  "canonical_pre_fresh_constitution": "6b30f58a1b22542b08bc9b0d8aae112ffc826a25",
+  "canonical_preseal": "dba663c5f40caaf54924b25541c2ca3d5c945cef",
+  "source_analysis_commit": "bf8c0cb7e2c2f3057f3c7832fb1993fccbc44b9f",
+  "reconstruction": {
+    "observable_noncommutativity": "Distinguish algebraic R∘D≠D∘R from observable Q∘R∘D≠Q∘D∘R.",
+    "observation_congruence": "Kernel of Q must be stable under admitted transport generators for a quotient to be transport-stable.",
+    "predictive_quotient": "Transport-stable quotient must additionally preserve action-relevant distinctions.",
+    "restricted_factorization": "A=D_loc(Q(T_p^o(s)),X,G,E) has empirical content only relative to predeclared grammar classes for Q and D_loc.",
+    "vacuous_factorization": "With unrestricted Q and D_loc every finite mechanism table can be encoded, so mere factorization existence is non-falsifying.",
+    "uniqueness": "Only up to observational equivalence/isomorphism of latent Q states."
+  },
+  "empirical_update": {
+    "precommitted_M_CR_orientation": "LEFT_ZERO_IDENTITY",
+    "kubernetes_observed_orientation": "RIGHT_ZERO_IDENTITY",
+    "order_sign_prediction": "FALSIFIED_EXACT_REVERSAL",
+    "empirical_noncommutativity": "PASS",
+    "stronger_state_space": "LEGACY/CANONICAL/ABSENT development model",
+    "prospective_authority_for_right_zero": "NONE"
+  },
+  "boundary": "This appendix may generate P24 hypotheses but may not rewrite P23 prospective predictions."
+}
