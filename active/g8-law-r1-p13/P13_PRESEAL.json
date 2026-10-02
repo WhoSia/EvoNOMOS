@@ -1,0 +1,30 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P13",
+  "status": "PRESEALED",
+  "constitution_commit": "2e1ea58f751f429000f6f33c2d6f109b1856f663",
+  "opened_from": "fe8df5de48432bddb5645f8a9452201bfab28d45",
+  "global_start": 9457,
+  "frozen_before_fresh_world_result_inspection": true,
+  "target_coordinates": [
+    "COMPATIBILITY_OBLIGATION",
+    "COEXISTENCE_REQUIREMENT",
+    "RELEASE_AUTHORITY"
+  ],
+  "discriminator_order": [
+    "NORMALIZE_G",
+    "NORMALIZE_E",
+    "HOLD_LIFECYCLE_PHASE",
+    "HOLD_NON_TARGET_CONTEXT",
+    "VARY_ONE_TARGET_COORDINATE",
+    "VERIFY_ACTION_DISCRIMINATION",
+    "REPLICATE_IN_SECOND_DOMAIN",
+    "RUN_NEGATIVE_CONTROL",
+    "RECOVER_DEPENDENCY_GRAPH"
+  ],
+  "promotion_rule": "Stable primitive status requires at least two fresh cross-domain discriminator families plus one negative control and representation-invariant replay.",
+  "partial_rule": "One-domain identification remains bounded and does not establish stable primitive structure.",
+  "dependency_rule": "If a coordinate is deterministically implied by another retained coordinate or cannot be varied independently under admitted worlds, keep it underidentified or merge it rather than promote it.",
+  "anti_rationalization": "No new X coordinate may be added to repair a failed P13 discriminator. Such a candidate may only be logged for a later stage under a new precommit.",
+  "r2_gate": "Same normalized (X,G,E) conflicting action remains the only reopening gate.",
+  "human_facing_naming": "CAPITALIZED_SCIENTIFIC_COMMIT_STYLE_AND_TITLE_CASE_ACTIONS"
+}
