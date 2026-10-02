@@ -1,0 +1,34 @@
+name: G8 LAW-R1-P19 Cross-Mechanism Transport Protocol
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p19/**'
+      - 'tools/law-r1-p19-*.mjs'
+      - 'lawkit/protocol/v0.23/**'
+      - '.github/workflows/g8-law-r1-p19-transport.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  protocol:
+    name: P19 Cross-Mechanism Transport Protocol
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Prepare P19 Output
+        run: mkdir -p out-p19
+      - name: Run Rival Representation Competition
+        run: node tools/law-r1-p19-rivals.mjs active/g8-law-r1-p19/P19_RUST_COMPAT_GEOMETRY.tsv out-p19/p19-rivals.json
+      - name: Run Cross-Mechanism Protocol
+        run: node tools/law-r1-p19-protocol.mjs out-p19/p19-rivals.json out-p19/p19-protocol.json
+      - name: Upload P19 Protocol Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p19-cross-mechanism-protocol
+          path: out-p19/
+          retention-days: 30
