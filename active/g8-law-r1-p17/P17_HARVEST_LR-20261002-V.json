@@ -1,0 +1,167 @@
+{
+  "harvest_id": "LR-20261002-V",
+  "title": "Software Interaction Prior Art, Configuration Nonseparability, Operational Hypergraphs & EvoNOMOS P17 Paper Seeds",
+  "status": "HARVEST_ONLY_NON_SOVEREIGN",
+  "origin": "EvoNOMOS G8 LAW-R1-P17",
+  "authority_transferred_to_p17": "NONE",
+  "boundary": "PAPER_TO_FRAGMENT_NOT_PAPER_TO_DOCTRINE",
+  "external_sources": [
+    {
+      "key": "SOARES_2018",
+      "title": "Feature interaction in software product line engineering: A systematic mapping study",
+      "doi": "10.1016/j.infsof.2018.01.016",
+      "drive_status": "NOT_FOUND_EXACT",
+      "fragment": "Feature interaction is established prior art; interaction order can involve more than two features and exhaustive configuration grows combinatorially.",
+      "kill": "Do not claim novelty for feature-interaction detection, graphs, or the generic exponential interaction problem."
+    },
+    {
+      "key": "SPL_TESTING_SLR_2024",
+      "title": "Software product line testing: a systematic literature review",
+      "doi": "10.1007/s10664-024-10516-x",
+      "drive_status": "NOT_FOUND_EXACT",
+      "fragment": "Combinatorial interaction testing and runtime feature-interaction graphs are established methods; pairwise coverage is common but does not prove absence of higher-order effects.",
+      "kill": "Do not claim novelty for pairwise combinatorial coverage or feature interaction graphs."
+    },
+    {
+      "key": "LESOIL_2021",
+      "title": "The Interaction between Inputs and Configurations fed to Software Systems: an Empirical Study",
+      "arxiv": "2112.07279",
+      "drive_status": "NOT_FOUND_EXACT",
+      "fragment": "Configuration effects can depend non-monotonically on input data; context×geometry or context×evidence terms should therefore be treated as first-class confound/interaction candidates.",
+      "kill": "Do not assume configuration effects transport independently of workload/input."
+    }
+  ],
+  "drive_donors_already_present": [
+    {
+      "title": "Sullivan, Griswold, Cai & Hallen (2001) — The Structure and Value of Modularity in Software Design",
+      "drive_id": "1Gyt45QSE3T0RIiivwVIiw4ofxemxLXfr",
+      "use": "Modularity/dependency donor; interaction law must not collapse into generic modularity value claims."
+    },
+    {
+      "title": "Santos et al. (2021) — A Procedure and Guidelines for Analyzing Groups of Software Engineering Replications",
+      "drive_id": "1Nbt0G_C7duZSoVu4GDGCel5isq0YFaEj",
+      "use": "Cross-study replication and heterogeneity donor."
+    },
+    {
+      "title": "Santos, Gómez & Juristo (2018) — Analyzing Families of Experiments in SE",
+      "drive_id": "1i_SjK6mTklFlwt1F4W8TO74IZDuYySNy",
+      "use": "Replication-family methodology donor."
+    },
+    {
+      "title": "Siebert (2023) — Applications of Statistical Causal Inference in Software Engineering",
+      "drive_id": "1ZBp2_pkArvmjkJ6LPuYWCpsaIi3vF-MM",
+      "use": "Causal-inference caution and intervention interpretation donor."
+    }
+  ],
+  "fragments": [
+    {
+      "id": "V-F01",
+      "fragment": "Interaction existence is generic prior art; EvoNOMOS novelty, if any, must sit in typed operational primitives, prospective freezing, exact matched interventions, and cross-domain transport."
+    },
+    {
+      "id": "V-F02",
+      "fragment": "Pairwise coverage is a search strategy, not evidence that pairwise structure is sufficient."
+    },
+    {
+      "id": "V-F03",
+      "fragment": "A higher-order term needs supported factorial cells; missing cells are underidentification, not zero coefficients."
+    },
+    {
+      "id": "V-F04",
+      "fragment": "Repository-native Boolean gates provide unusually clean natural factorial families when lifecycle, authority, geometry and command semantics are separately encoded."
+    },
+    {
+      "id": "V-F05",
+      "fragment": "Cross-domain replication should transport interaction semantics rather than syntax: Prow Go branching and Serge Actions YAML can instantiate the same authority×lifecycle×PR gate."
+    },
+    {
+      "id": "V-F06",
+      "fragment": "Configuration/input nonseparability literature supports keeping G/E controls explicit rather than treating all action reversal as X×X interaction."
+    },
+    {
+      "id": "V-F07",
+      "fragment": "An interaction hypergraph can be more scientifically useful than a single scalar law because it preserves which primitive combinations are identified, transported, one-domain-only, or underidentified."
+    },
+    {
+      "id": "V-F08",
+      "fragment": "Negative interaction findings are reusable: failure to transport a Kafka compatibility×coexistence candidate narrows the law rather than merely weakening it."
+    }
+  ],
+  "kill_fragments": [
+    {
+      "id": "V-K01",
+      "kill": "GENERIC_FEATURE_INTERACTION_NOVELTY_KILLED"
+    },
+    {
+      "id": "V-K02",
+      "kill": "GENERIC_PAIRWISE_COMBINATORIAL_TESTING_NOVELTY_KILLED"
+    },
+    {
+      "id": "V-K03",
+      "kill": "GENERIC_FEATURE_INTERACTION_GRAPH_NOVELTY_KILLED"
+    },
+    {
+      "id": "V-K04",
+      "kill": "ASSUMPTION_OF_CONTEXT_INDEPENDENT_CONFIGURATION_EFFECTS_KILLED"
+    }
+  ],
+  "paper_seeds": [
+    {
+      "id": "PAPER_A",
+      "working_title": "From Context Primitives to Interaction Laws: Prospective Cross-Repository Reconstruction of Software Policy Gates",
+      "maturity": "PROMISING_NOT_AUTHORIZED",
+      "core": "P12-P17 trajectory: anti-rationalized primitive basis plus prospectively matched, cross-domain interaction transport.",
+      "risk": "Evidence may remain concentrated in bot/workflow decision gates; broader software-design transport is still required."
+    },
+    {
+      "id": "PAPER_B",
+      "working_title": "Anti-Rationalization by Construction: Prospective Intervention Grammar for Repository-Native Software Design Science",
+      "maturity": "METHODS_SEED",
+      "core": "Constitution/preseal, exactness guards, negative controls, held-out repository worlds, hosted executable reconstruction.",
+      "risk": "Could look like workflow formalism unless tied to concrete scientific gains and falsified alternatives."
+    },
+    {
+      "id": "PAPER_C",
+      "working_title": "Harvest Without Authority: Reusable Failure Capital and Non-Sovereign Literature Backflow in a Multi-Lab Research OS",
+      "maturity": "RESEARCH_OS_SEED",
+      "core": "Source→fragment→cross-lab reuse while blocking repeated retrieval from becoming authority.",
+      "risk": "Needs empirical evidence of reuse and downstream benefit, not just architecture description."
+    }
+  ],
+  "cross_lab_backflow": [
+    {
+      "lab": "C3X",
+      "fragment_ids": ["V-F02","V-F03","V-F08"],
+      "reason": "Pairwise-vs-higher-order support and failed-transport semantics map naturally onto mediation/bridge ecology."
+    },
+    {
+      "lab": "MQR",
+      "fragment_ids": ["V-F03","V-F06","V-F08"],
+      "reason": "Underidentification, representation dependence and negative result retention."
+    },
+    {
+      "lab": "NOMOS",
+      "fragment_ids": ["V-F04","V-F05"],
+      "reason": "Authority×lifecycle interaction and process-gated authority semantics may donate rivals without transferring doctrine."
+    },
+    {
+      "lab": "KSGT",
+      "fragment_ids": ["V-F03","V-F07"],
+      "reason": "Higher-order structure, sparse hypergraphs and representation-specific interaction claims."
+    }
+  ],
+  "acquisition_open": [
+    {
+      "title": "Feature interaction in software product line engineering: A systematic mapping study",
+      "doi": "10.1016/j.infsof.2018.01.016"
+    },
+    {
+      "title": "Software product line testing: a systematic literature review",
+      "doi": "10.1007/s10664-024-10516-x"
+    },
+    {
+      "title": "The Interaction between Inputs and Configurations fed to Software Systems: an Empirical Study",
+      "arxiv": "2112.07279"
+    }
+  ]
+}
