@@ -1,0 +1,115 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P18",
+  "formal_title": "Interaction-Law Domain Escape, Non-Bot Software Transport, Compatibility×Coexistence Factorial Replication, Higher-Order Support Acquisition, Geometry-Conditioned Policy Generalization, Harvest Backflow Evaluation & Interaction-Law Stress",
+  "suffix": "Stress",
+  "verdict": "PASS_PARTIAL_DOMAIN_ESCAPE__ONE_NONBOT_EXACT_FAMILY__SECOND_TRANSPORT_MISSING__R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 36972584671,
+    "head": "0100be490757c713a5dbd9a7c67d5de3057f8af9",
+    "job": 110729497835,
+    "artifact": 11212053545,
+    "digest": "sha256:7347dd8ee3982ce782f5b3e20586ca32378f00a109b3aed988a65dc0aa3ae20a"
+  },
+  "hosted": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact_direct_inspection": "PASS",
+    "java_factorial_reconstruction": "PASS",
+    "csharp_boundary_audit": "PASS_PARTIAL_DOMAIN_ESCAPE",
+    "javascript_stress": "PASS",
+    "new_python_files": 0
+  },
+  "scientific_readout": {
+    "four_primitive_basis": "RETAINS_P16_AUTHORITY",
+    "p17_interaction_graph": "RETAINS_P17_AUTHORITY",
+    "nonbot_domain_escape": {
+      "status": "ACHIEVED_BOUNDED_ONE_DOMAIN",
+      "family": "ETCD_DOWNGRADE_VERSION_GEOMETRY",
+      "domain": "DISTRIBUTED_RUNTIME_VERSION_SKEW",
+      "interaction": "LIFECYCLE_PHASE_X_VERSION_GEOMETRY",
+      "algebra": "XNOR_REVERSAL",
+      "difference_in_differences": 2,
+      "factorial": "COMPLETE_2X2"
+    },
+    "second_semantic_transport_family": "NOT_FOUND",
+    "compatibility_x_coexistence": "UNDERIDENTIFIED_NO_COMPLETE_NONBOT_2X2",
+    "higher_order_x": "UNDERIDENTIFIED",
+    "same_normalized_X_G_E_conflicting_action": "NOT_OBSERVED"
+  },
+  "negative_custody": {
+    "KAFKA_CONNECT": "EXACT_COEXISTENCE_DISCRIMINATOR_NOT_INTERACTION_FACTORIAL",
+    "GRAFANA_UNIFIED_STORAGE": "COEXISTENCE_LIFECYCLE_COUPLED_NOT_CLEAN_2X2",
+    "KUBERNETES_STORAGE_VERSION_MIGRATION": "STRONG_COMPATIBILITY_LIFECYCLE_SUPPORT_INCOMPLETE_FACTORIAL",
+    "PGANALYZE_DUAL_WRITE_RELEASE_PATH": "DOCS_LEVEL_SUPPORT_ONLY",
+    "ETCD_STORAGE_VERSION_KEP": "MECHANISM_DONOR_NOT_INDEPENDENT_DOMAIN"
+  },
+  "literature": {
+    "canonicalized_full_text_papers": [
+      {
+        "file_id": "1tKXaDpBXo_ow2vypad50yT5qmau46v6k",
+        "source": "Soares et al. 2018",
+        "doi": "10.1016/j.infsof.2018.01.016"
+      },
+      {
+        "file_id": "1XvljIkLi_x0_pNcLAualwbrOX0XX7cqB",
+        "source": "Agh, Azamnouri & Wagner 2024",
+        "doi": "10.1007/s10664-024-10516-x"
+      },
+      {
+        "file_id": "1p1YI3PuO5Q-rp5dczoU-HFE73dFTvlie",
+        "source": "Lesoil et al. 2023",
+        "arxiv": "2112.07279v2"
+      }
+    ],
+    "drive_target": "10_PAPERS — Canonical Literature Commons",
+    "duplicate_check": "PASS",
+    "full_text_read": "PASS",
+    "authority_transferred": "NONE"
+  },
+  "harvest": {
+    "id": "LR-20261002-W",
+    "notion_page": "3edef561-cf92-81ff-a0fd-fed640e78aee",
+    "genealogy_receipt": "3edef561-cf92-81b4-bbdc-f83993956584",
+    "repo_manifest": "3b9d95ddbadbfabc811b518fac7097f617fe36ed",
+    "status": "PASS_HARVEST_NON_SOVEREIGN",
+    "authority": "NONE",
+    "principle_as_projection_hypothesis": "HARVEST_ONLY",
+    "solid_special_case": "LONG_HORIZON_HYPOTHESIS_ONLY"
+  },
+  "prior_art_boundary": {
+    "generic_feature_interaction": "KILLED",
+    "generic_higher_order_feature_interaction": "KILLED",
+    "generic_pairwise_combinatorial_testing": "KILLED",
+    "generic_input_x_configuration_interaction": "KILLED",
+    "generic_context_dependence_of_configuration_effects": "KILLED",
+    "candidate_evonomos_residue": "TYPED_PRIMITIVES_PLUS_PROSPECTIVE_INTERVENTION_GRAMMAR_PLUS_FAILURE_BOUNDARIES_PLUS_CROSS_DOMAIN_REPOSITORY_NATIVE_TRANSPORT"
+  },
+  "ruling": {
+    "macro_law": "NOT_AUTHORIZED",
+    "principle_as_projection": "HARVEST_HYPOTHESIS_ONLY",
+    "solid_as_special_case": "NOT_DERIVED",
+    "compatibility_x_coexistence": "NOT_AUTHORIZED",
+    "higher_order_x": "NOT_AUTHORIZED",
+    "nonbot_interaction_structure": "BOUNDED_ONE_DOMAIN_AUTHORIZED",
+    "paper_manuscript": "NOT_AUTHORIZED",
+    "law_r2": "NOT_AUTHORIZED",
+    "next_authority": "REMAIN_WITHIN_LAW_R1"
+  },
+  "provenance": {
+    "constitution": "b9cdbb6c3f2df34e7af13647633c9f0e4ef2cc5d",
+    "preseal": "d909ed1258a4e96d55ce08a107918fcf2087154d",
+    "literature_custody": "30027aa7d9c2210ffe6d1a1fb2327247723aa7dc",
+    "nonbot_interaction_custody": "a8ba1ba5828054ea0003407f033152d381488172",
+    "etcd_factorial": "bf30704f207caff2344e1425f44fe9aa42dfd869",
+    "java": "cf6c2f6ba22dabc8ac22689d59271cdfa4811987",
+    "csharp": "f27562fe639cd92fd01cc96b535dc56cb7117869",
+    "javascript": "d16307c51138098a7ec565c797d7f6411375eff9",
+    "workflow": "0100be490757c713a5dbd9a7c67d5de3057f8af9",
+    "harvest_manifest": "3b9d95ddbadbfabc811b518fac7097f617fe36ed"
+  },
+  "closure": {
+    "ravel": "9662–9697",
+    "decision": "9698–9717",
+    "global_next": 9718
+  }
+}
