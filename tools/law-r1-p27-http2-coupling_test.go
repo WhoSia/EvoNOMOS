@@ -1,9 +1,11 @@
-package http2
+package http2_test
 
 import (
   "encoding/json"
   "os"
   "testing"
+
+  . "golang.org/x/net/http2"
 )
 
 type p27Row struct {
@@ -21,14 +23,14 @@ func TestP27CrossCoupledGate(t *testing.T) {
     st.greet()
 
     rows:=[]p27Row{{Name:"BASELINE_111",Intervention:"baseline",Q:1,G:1,Y:1}}
-    if !st.sc.pushEnabled { t.Fatal("baseline pushEnabled=false; want true") }
+    if !st.sc.TestPushEnabled() { t.Fatal("baseline pushEnabled=false; want true") }
 
     if err:=st.fr.WriteSettings(Setting{ID:SettingEnablePush,Val:0});err!=nil{
       t.Fatalf("disable push setting: %v",err)
     }
     st.wantSettingsAck()
     st.sync()
-    if st.sc.pushEnabled { t.Fatal("after DROP pushEnabled=true; want false") }
+    if st.sc.TestPushEnabled() { t.Fatal("after DROP pushEnabled=true; want false") }
     rows=append(rows,p27Row{Name:"UPSTREAM_DROP",Intervention:"drop",Q:0,G:0,Y:0})
 
     if err:=st.fr.WriteSettings(Setting{ID:SettingEnablePush,Val:1});err!=nil{
@@ -36,7 +38,7 @@ func TestP27CrossCoupledGate(t *testing.T) {
     }
     st.wantSettingsAck()
     st.sync()
-    if !st.sc.pushEnabled { t.Fatal("after RESTORE pushEnabled=false; want true") }
+    if !st.sc.TestPushEnabled() { t.Fatal("after RESTORE pushEnabled=false; want true") }
     rows=append(rows,p27Row{Name:"UPSTREAM_RESTORE",Intervention:"restore",Q:1,G:1,Y:1})
 
     out:=os.Getenv("P27_HTTP2_OUT")
