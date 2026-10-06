@@ -84,5 +84,16 @@
     "y_redefined_after_outcome": false,
     "q_g_directly_probeable": true,
     "mechanism_id_feature": false
+  },
+  "hosted_background_environment": {
+    "fixed_feature_across_all_cells": "critical-section",
+    "rationale": "thumbv6m portable-atomic fallback requires a critical-section CAS backend during cargo check; this feature is held constant and is not q, g, or y.",
+    "science_effect": "NONE__Q_TARGET_ATOMIC_PTR_AND_G_ALLOC_REMAIN_THE_ONLY_FROZEN_SEPARATOR_COORDINATES"
+  },
+  "failed_hosted_attempt": {
+    "run": 37418915751,
+    "failure": "portable-atomic CAS unavailable on thumbv6m without critical-section background",
+    "classification": "IMPLEMENTATION_ENVIRONMENT_FAILURE_BEFORE_N0_RESULT",
+    "hypothesis_changed": false
   }
 }
