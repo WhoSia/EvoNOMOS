@@ -1,0 +1,12 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "candidate": "TARPAULIN_PTRACE_BUILD_GATE",
+  "status": "SUPPORT_ONLY_NOT_CANONICAL_N1",
+  "repository": "xd009642/tarpaulin",
+  "exact_commit": "a5a0f9d75c34f7bdfe67bd4ac28af75a1c313e71",
+  "facts": [
+    "build.rs detects target OS/arch and emits ptrace_supported",
+    "TraceEngine::supported and state-machine modules are gated by ptrace_supported"
+  ],
+  "reason_not_promoted": "Excellent N1 source structure, but golang/net HTTP/2 exposes direct runtime q/g measurement and exact upstream action tests with lower hosted-environment confounding."
+}
