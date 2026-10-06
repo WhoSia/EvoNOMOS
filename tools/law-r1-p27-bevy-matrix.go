@@ -30,8 +30,8 @@ func run(dir string, args ...string) (bool,string) {
 func writeProbe(dir, dep, target string, q,g int) (Row,error) {
   if err:=os.RemoveAll(dir);err!=nil{return Row{},err}
   if err:=os.MkdirAll(filepath.Join(dir,"src"),0755);err!=nil{return Row{},err}
-  features:=""
-  if g==1 { features=", features = [\"alloc\"]" }
+  features:=", features = [\"critical-section\"]"
+  if g==1 { features=", features = [\"critical-section\", \"alloc\"]" }
   cargo:=fmt.Sprintf("[package]\nname=\"p27_bevy_probe\"\nversion=\"0.0.0\"\nedition=\"2021\"\n\n[lib]\npath=\"src/lib.rs\"\n\n[dependencies]\nbevy_platform={path=%q,default-features=false%s}\n",filepath.ToSlash(dep),features)
   expected:=q*g
   source:=fmt.Sprintf("#![no_std]\nconst Y: bool = bevy_platform::cfg::arc!();\nconst EXPECTED: bool = %v;\nconst _: () = assert!(Y == EXPECTED);\npub fn p27_native_arc_backend() -> bool { Y }\n", expected==1)
