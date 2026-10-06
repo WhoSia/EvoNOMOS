@@ -1,0 +1,88 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "lane": "N0_LAYER_INDEPENDENT_MEDIATION",
+  "status": "FRESH_SOURCE_CUSTODY",
+  "repository": "bevyengine/bevy",
+  "exact_commit": "6c21ef6884886f32a1bbd3da84522ba42c5f3ddf",
+  "files": {
+    "crates/bevy_platform/src/cfg.rs": "3cedc409b443caa749228fbe9ef5f723621c4d02",
+    "crates/bevy_platform/src/sync/mod.rs": "79ceff7ee82c218309f668b261982ce430afe709",
+    "crates/bevy_platform/Cargo.toml": "c1a84f227b72c5210a80a5d62fa08a24ba1e2e3b"
+  },
+  "measurement": {
+    "q": "target_has_atomic=\"ptr\"",
+    "g": "bevy_platform alloc feature enabled",
+    "y": "bevy_platform cfg::arc!() selects native alloc::sync Arc backend",
+    "caveat": "Arc availability itself is not y because Bevy falls back to portable_atomic_util when q=0."
+  },
+  "source_semantics": [
+    "cfg::arc alias is cfg(all(feature=\"alloc\", target_has_atomic=\"ptr\"))",
+    "sync::Arc remains available under alloc, selecting alloc::sync when cfg::arc is true and portable_atomic_util otherwise",
+    "removing target pointer atomics leaves the alloc Cargo feature unchanged"
+  ],
+  "frozen_interventions": {
+    "baseline_111": {
+      "q": 1,
+      "g": 1,
+      "y": 1
+    },
+    "upstream_drop": {
+      "from": [
+        1,
+        1,
+        1
+      ],
+      "to": [
+        0,
+        1,
+        0
+      ],
+      "delta": [
+        -1,
+        0,
+        -1
+      ]
+    },
+    "local_gate_drop": {
+      "from": [
+        1,
+        1,
+        1
+      ],
+      "to": [
+        1,
+        0,
+        0
+      ],
+      "delta": [
+        0,
+        -1,
+        -1
+      ]
+    },
+    "restore": {
+      "from": [
+        0,
+        1,
+        0
+      ],
+      "to": [
+        1,
+        1,
+        1
+      ],
+      "delta": [
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  "predicted_rival": "N0_LAYER_INDEPENDENT_MEDIATION",
+  "n1_prediction_on_upstream_drop": "[-1,-1,-1]",
+  "anti_rationalization": {
+    "y_redefined_after_outcome": false,
+    "q_g_directly_probeable": true,
+    "mechanism_id_feature": false
+  }
+}
