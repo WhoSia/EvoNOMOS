@@ -81,10 +81,8 @@ func main(){
   }
   os.MkdirAll("out-p27",0755)
   b,_:=json.MarshalIndent(payload,"","  ")
-  os.WriteFile("out-p27/p27-bevy.json",append(b,'
-'),0644)
+  os.WriteFile("out-p27/p27-bevy.json",b,0644)
   fmt.Println("P27_BEVY="+payload["status"].(string))
-  for _,r:=range rows{fmt.Printf("%s q=%d g=%d y=%d atomic=%v
-",r.Name,r.Q,r.G,r.Y,r.CfgHasAtomicPtr)}
+  for _,r:=range rows{fmt.Printf("%s q=%d g=%d y=%d atomic=%v\n",r.Name,r.Q,r.G,r.Y,r.CfgHasAtomicPtr)}
   if !pass{os.Exit(3)}
 }
