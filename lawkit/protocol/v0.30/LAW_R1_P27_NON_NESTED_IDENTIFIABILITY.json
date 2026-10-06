@@ -1,0 +1,150 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "formal_title": "Non-Nested Architecture Rival Construction, Minimal Separating Intervention Basis, Opposed Counterfactual Prediction Design, Interventional Kernel Rank, Architecture Equivalence-Class Refinement, Quotient/Gate Cross-Coupling Stress, Latent-Transport Obstruction Search & Macro-Architecture Identifiability Court",
+  "suffix": "Court",
+  "global_start": 10281,
+  "predecessor": {
+    "stage": "LAW-R1-P26",
+    "terminal_seal": "1dee7deab31121a3f092f0392acd832d263d2f33",
+    "canonical_run": 37043582086,
+    "canonical_head": "35ee832823671b5152df595d0702e503dea27115",
+    "verdict": "PASS_U0_INTERVENTIONAL_SURVIVAL__CROSS_DOMAIN_NATURALITY_AND_MEDIATION_PASS__UNIQUENESS_NOT_AUTHORIZED"
+  },
+  "scientific_target": "Replace nested U0⊂U1 comparison with non-nested architectures that make opposed predictions under a minimal frozen intervention basis, then identify only the interventional equivalence class justified by the measured kernel.",
+  "observables": {
+    "q": "action-sufficient transported quotient state",
+    "g": "local gate state",
+    "y": "client-visible action/effect",
+    "default_decision": "y=q∧g unless a rival explicitly predicts otherwise"
+  },
+  "rival_architectures": {
+    "N0_LAYER_INDEPENDENT_MEDIATION": {
+      "structure": "upstream transport feeds q; local control independently sets g; y=q∧g",
+      "upstream_drop_from_11": {
+        "q_prime": 0,
+        "g_prime": 1,
+        "y_prime": 0,
+        "signature": "(-1,0,-1)"
+      },
+      "upstream_restore_from_01": {
+        "q_prime": 1,
+        "g_prime": 1,
+        "y_prime": 1,
+        "signature": "(+1,0,+1)"
+      },
+      "local_gate_drop_from_11": {
+        "q_prime": 1,
+        "g_prime": 0,
+        "y_prime": 0,
+        "signature": "(0,-1,-1)"
+      }
+    },
+    "N1_CROSS_COUPLED_CONTROL": {
+      "structure": "the admitted upstream transport state also controls/reconfigures the local gate; q and g are not layer-independent",
+      "upstream_drop_from_11": {
+        "q_prime": 0,
+        "g_prime": 0,
+        "y_prime": 0,
+        "signature": "(-1,-1,-1)"
+      },
+      "upstream_restore_from_00": {
+        "q_prime": 1,
+        "g_prime": 1,
+        "y_prime": 1,
+        "signature": "(+1,+1,+1)"
+      },
+      "local_gate_drop_from_11": {
+        "q_prime": 1,
+        "g_prime": 0,
+        "y_prime": 0,
+        "signature": "(0,-1,-1)"
+      }
+    }
+  },
+  "non_nestedness": {
+    "statement": "N0 and N1 are non-nested under the frozen intervention typing because upstream DROP/RESTORE require contradictory gate effects: N0 requires Δg=0, N1 requires Δg=Δq on the separating states.",
+    "positive_packet_can_separate": true
+  },
+  "minimal_separating_basis": {
+    "candidate_basis": [
+      "UPSTREAM_DROP_FROM_Q1_G1",
+      "UPSTREAM_RESTORE_FROM_Q0_G1_OR_Q0_G0",
+      "LOCAL_GATE_DROP_FROM_Q1_G1"
+    ],
+    "theorem_target": "One upstream DROP intervention with direct measurement of q and g separates N0 and N1 if it is validly typed and starts at q=g=1; local-gate DROP is a negative control, not a separator.",
+    "redundancy_test": "Determine whether RESTORE adds rank/information after DROP under the measured kernel."
+  },
+  "interventional_kernel": {
+    "row_vector": "κ(τ)=(Δq,Δg,Δy)",
+    "rank_field": "rational numbers over observed signed effects; GF(2) rank reported only as a parity diagnostic, not primary authority",
+    "rank_target": "rank of the frozen intervention-response matrix across admitted interventions",
+    "interpretation": [
+      "rank 1: one effective latent direction under the frozen observables",
+      "rank 2: quotient and gate perturbations expose two independent observable directions",
+      "rank 3: action contains an additional intervention direction not mediated by measured q/g, challenging the two-layer factorization"
+    ]
+  },
+  "quotient_gate_cross_coupling": {
+    "obstruction_definition": "A typed upstream-only intervention changes g after q/g normalization is frozen.",
+    "N0_prediction": "NO_CROSS_COUPLING",
+    "N1_prediction": "CROSS_COUPLING_REQUIRED_ON_SEPARATOR",
+    "adjudication": "Measured Δg on the frozen separator chooses between N0 and N1 unless intervention typing itself fails prospectively."
+  },
+  "latent_transport_obstruction": {
+    "search_for": [
+      "action change at Δq=0 and Δg=0",
+      "same normalized q,g with different y under matched environment",
+      "mechanism-specific hidden variable required to explain separator",
+      "noncommuting upstream interventions whose effect cannot be represented by the frozen q quotient"
+    ],
+    "consequence": "Any such exact witness blocks both N0 and N1 and reopens the latent-state/quotient design."
+  },
+  "decomposition_equivalence": {
+    "identified_object": "equivalence class of architectures inducing the same frozen interventional kernel K_I",
+    "uniqueness_rule": "claim a unique rival only if N0 and N1 yield distinct kernels on the admitted basis and the measured kernel matches exactly one",
+    "no_claim_if": "intervention typing is ambiguous, q/g cannot be measured independently, or both rivals induce the same measured kernel"
+  },
+  "empirical_strategy": {
+    "lane_A": "Find fresh mechanism with an upstream state change known to independently preserve local gate; expected N0 witness.",
+    "lane_B": "Find fresh mechanism where upstream negotiation/detection explicitly toggles local enablement gate; expected N1 witness.",
+    "strong_court": "At least one exact mechanism for each non-nested rival, plus a shared measurement protocol, so the rival class is not defined from one mechanism after outcome."
+  },
+  "mathematical_targets": [
+    "prove non-nestedness from contradictory Δg constraints",
+    "prove one-intervention separator minimality under direct q/g observation",
+    "derive kernel-rank interpretation and its limits",
+    "show rank 3 falsifies complete mediation by q,g under deterministic y",
+    "characterize equivalence under a finite intervention basis"
+  ],
+  "anti_rationalization": {
+    "change_rival_after_fresh_outcome": "FAILURE",
+    "retype_upstream_intervention_after_outcome": "FAILURE",
+    "change_q_or_g_measurement_after_outcome": "FAILURE",
+    "infer_hidden_gate_from_y_only": "FORBIDDEN",
+    "mechanism_id_in_classifier": "FORBIDDEN",
+    "promote_rank_without_direct_q_g_measurement": "FORBIDDEN"
+  },
+  "implementation": {
+    "new_python": "FORBIDDEN",
+    "preferred": [
+      "Haskell",
+      "Rust",
+      "Go",
+      "Java",
+      "C++",
+      "JavaScript",
+      "OCaml"
+    ],
+    "actions": "READ_COMPUTE_ARTIFACT_ONLY",
+    "bot_contribution_zero": true
+  },
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED",
+  "terminal_verdict_family": [
+    "PASS_NON_NESTED_SEPARATOR__N0_AND_N1_BOTH_EXACTLY_REALIZED__KERNEL_RANK_IDENTIFIED__MACRO_EQUIVALENCE_CLASS_REFINED",
+    "PASS_N0_SEPARATOR__N1_EXACT_WITNESS_NOT_FOUND__NON_NESTED_CLASS_PARTIAL",
+    "PASS_N1_SEPARATOR__N0_EXACT_WITNESS_NOT_FOUND__NON_NESTED_CLASS_PARTIAL",
+    "FAIL_BOTH_RIVALS__LATENT_TRANSPORT_OBSTRUCTION_FOUND",
+    "HOLD_INTERVENTION_TYPING_OR_DIRECT_GATE_MEASUREMENT_INSUFFICIENT"
+  ]
+}
