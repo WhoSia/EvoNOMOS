@@ -1,0 +1,69 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "status": "PRESEALED",
+  "suffix": "Court",
+  "global_start": 10281,
+  "constitution": "57a5bb806305ff60228b7f4bad5ab9791ce48e2b",
+  "mathematical_note": "822b7515be9dfc7f59f9b56b136061afc7557de1",
+  "mathematical_checker": "e8c24b9376fe61c1a2c5abc0fd026780432b7c55",
+  "frozen_before_fresh_search": true,
+  "rival_signatures": {
+    "N0_LAYER_INDEPENDENT": {
+      "upstream_drop_from_111": "(-1,0,-1)",
+      "upstream_restore_from_010": "(+1,0,+1)",
+      "local_gate_drop_from_111": "(0,-1,-1)"
+    },
+    "N1_CROSS_COUPLED": {
+      "upstream_drop_from_111": "(-1,-1,-1)",
+      "upstream_restore_from_000": "(+1,+1,+1)",
+      "local_gate_drop_from_111": "(0,-1,-1)"
+    }
+  },
+  "minimal_separator": {
+    "basis": [
+      "UPSTREAM_DROP_FROM_Q1_G1"
+    ],
+    "required_direct_measurements": [
+      "q",
+      "g",
+      "y"
+    ],
+    "adjudication": {
+      "(-1,0,-1)": "N0_SURVIVES_N1_FAILS",
+      "(-1,-1,-1)": "N1_SURVIVES_N0_FAILS",
+      "OTHER": "BOTH_FAIL_LATENT_OBSTRUCTION"
+    }
+  },
+  "kernel_rank": {
+    "N0_expected_rank_with_drop_and_gate_drop": 2,
+    "N1_expected_rank_with_drop_and_gate_drop": 2,
+    "rank_alone_separates": false,
+    "primary_separator": "orientation of DROP vector in measured q/g coordinates"
+  },
+  "empirical_lanes": {
+    "lane_A_N0": "fresh mechanism with source-defined upstream q perturbation and independently fixed local gate",
+    "lane_B_N1": "fresh mechanism with source-defined upstream perturbation that directly reconfigures measured local gate",
+    "strong_court": "one exact fresh mechanism in each lane under shared measurement protocol"
+  },
+  "obstruction_search": [
+    "delta_y_nonzero_with_delta_q_zero_delta_g_zero",
+    "same normalized q,g but different y",
+    "mechanism-specific hidden state required",
+    "intervention cannot be typed without outcome-dependent relabeling"
+  ],
+  "anti_rationalization": {
+    "rival_change_after_outcome": "FORBIDDEN",
+    "intervention_retyping_after_outcome": "FAILURE",
+    "q_g_measurement_change_after_outcome": "FAILURE",
+    "infer_g_from_y": "FORBIDDEN",
+    "mechanism_id_feature": "FORBIDDEN",
+    "rank_only_architecture_claim": "FORBIDDEN"
+  },
+  "implementation": {
+    "new_python": "FORBIDDEN",
+    "actions": "READ_COMPUTE_ARTIFACT_ONLY",
+    "bot_contribution_zero": true
+  },
+  "manuscript": "NOT_AUTHORIZED",
+  "law_r2_gate": "UNCHANGED"
+}
