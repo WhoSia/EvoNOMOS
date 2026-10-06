@@ -61,6 +61,7 @@ jobs:
           git -C out-p27/golang-net checkout --quiet 28247830e9fb37184c6be718f483a0c7d0949022
           test "$(git -C out-p27/golang-net rev-parse HEAD)" = "28247830e9fb37184c6be718f483a0c7d0949022"
           cp tools/law-r1-p27-http2-coupling_test.go out-p27/golang-net/http2/p27_coupling_test.go
+          cp tools/law-r1-p27-http2-export_test.go out-p27/golang-net/http2/p27_export_test.go
 
       - name: Run Upstream HTTP2 Push Action Controls
         run: |
