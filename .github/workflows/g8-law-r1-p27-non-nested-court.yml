@@ -1,0 +1,94 @@
+name: G8 LAW-R1-P27 Non-Nested Architecture Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p27/**'
+      - 'lawkit/protocol/v0.30/LAW_R1_P27_*'
+      - 'tools/law-r1-p27-*'
+      - '.github/workflows/g8-law-r1-p27-non-nested-court.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  court:
+    name: P27 Non-Nested Architecture Court
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Set Up Haskell
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.8.4'
+
+      - name: Set Up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.x'
+
+      - name: Set Up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv6m-none-eabi
+
+      - name: Prepare P27 Output
+        run: mkdir -p out-p27
+
+      - name: Run Non-Nested Kernel Mathematics
+        run: |
+          ghc -O2 tools/law-r1-p27-math-check.hs -o out-p27/p27-math-check
+          out-p27/p27-math-check | tee out-p27/p27-math.txt
+
+      - name: Materialize Exact Bevy
+        run: |
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/bevyengine/bevy.git out-p27/bevy
+          git -C out-p27/bevy checkout --quiet 6c21ef6884886f32a1bbd3da84522ba42c5f3ddf
+          test "$(git -C out-p27/bevy rev-parse HEAD)" = "6c21ef6884886f32a1bbd3da84522ba42c5f3ddf"
+
+      - name: Run Bevy Independent-Layer Matrix
+        env:
+          P27_BEVY_PLATFORM: ${{ github.workspace }}/out-p27/bevy/crates/bevy_platform
+        run: go run tools/law-r1-p27-bevy-matrix.go
+
+      - name: Materialize Exact golang-net
+        run: |
+          git clone --quiet https://github.com/golang/net.git out-p27/golang-net
+          git -C out-p27/golang-net checkout --quiet 28247830e9fb37184c6be718f483a0c7d0949022
+          test "$(git -C out-p27/golang-net rev-parse HEAD)" = "28247830e9fb37184c6be718f483a0c7d0949022"
+          cp tools/law-r1-p27-http2-coupling_test.go out-p27/golang-net/http2/p27_coupling_test.go
+
+      - name: Run Upstream HTTP2 Push Action Controls
+        run: |
+          cd out-p27/golang-net
+          go test ./http2 -run 'TestServer_Push_(RejectIfDisabled|StateTransitions)$' -count=1 -v | tee "${{ github.workspace }}/out-p27/p27-http2-controls.txt"
+
+      - name: Run HTTP2 Cross-Coupling Intervention
+        env:
+          P27_HTTP2_OUT: ${{ github.workspace }}/out-p27/p27-http2.json
+        run: |
+          cd out-p27/golang-net
+          go test ./http2 -run TestP27CrossCoupledGate -count=1 -v
+
+      - name: Run Non-Nested Architecture Adjudicator
+        run: |
+          node tools/law-r1-p27-court.mjs \
+            out-p27/p27-bevy.json \
+            out-p27/p27-http2.json \
+            out-p27/p27-court.json
+
+      - name: Upload P27 Court Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p27-non-nested-court
+          path: |
+            out-p27/p27-math.txt
+            out-p27/p27-bevy.json
+            out-p27/p27-http2-controls.txt
+            out-p27/p27-http2.json
+            out-p27/p27-court.json
+          retention-days: 30
