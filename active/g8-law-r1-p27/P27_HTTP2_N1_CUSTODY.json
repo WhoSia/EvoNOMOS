@@ -1,0 +1,75 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "lane": "N1_CROSS_COUPLED_CONTROL",
+  "status": "FRESH_SOURCE_CUSTODY",
+  "repository": "golang/net",
+  "exact_commit": "28247830e9fb37184c6be718f483a0c7d0949022",
+  "files": {
+    "http2/server.go": "a7d2053b6c7961cc467d51964390b204b116b6a5",
+    "http2/server_push_test.go": "c96395ae9290341e8e202077919acdcfd0aa9144",
+    "http2/server_common_test.go": "36bd59de7c38c8116854f7ecab304d5e64086a84"
+  },
+  "measurement": {
+    "q": "peer SETTINGS_ENABLE_PUSH semantic state",
+    "g": "serverConn.pushEnabled local gate",
+    "y": "server Push action supported vs http.ErrNotSupported"
+  },
+  "source_semantics": [
+    "server processSetting assigns sc.pushEnabled = s.Val != 0 for SettingEnablePush",
+    "Push path returns http.ErrNotSupported when sc.pushEnabled is false",
+    "upstream TestServer_Push_RejectIfDisabled sends SettingEnablePush=0 and asserts Push returns http.ErrNotSupported",
+    "serverTester exposes exact ServerConn to package-local injected tests for direct gate measurement"
+  ],
+  "frozen_interventions": {
+    "baseline_111": {
+      "q": 1,
+      "g": 1,
+      "y": 1
+    },
+    "upstream_drop": {
+      "from": [
+        1,
+        1,
+        1
+      ],
+      "to": [
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        -1,
+        -1,
+        -1
+      ]
+    },
+    "restore": {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        1,
+        1,
+        1
+      ],
+      "delta": [
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "predicted_rival": "N1_CROSS_COUPLED_CONTROL",
+  "n0_prediction_on_upstream_drop": "[-1,0,-1]",
+  "upstream_controls": [
+    "TestServer_Push_RejectIfDisabled",
+    "TestServer_Push_StateTransitions"
+  ],
+  "anti_rationalization": {
+    "q_and_g_directly_measureable": true,
+    "y_controlled_by_upstream_tests": true,
+    "mechanism_id_feature": false
+  }
+}
