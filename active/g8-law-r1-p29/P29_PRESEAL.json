@@ -1,7 +1,9 @@
 {
   "stage": "EvoNOMOS Generation VIII LAW-R1-P29",
   "status": "PRE_FRESH_SEALED",
-  "constitution_commit": "95ca8255d60f2ec8ab9d3da54b36de6dce4fd723",
+  "constitution_commit": "9298d097faadfb33ec009d45439004fad7bbcf19",
+  "mathematical_note_commit": "94c28c88751096d01a23efccb6814a9189c39821",
+  "checker_commit": "964c9d404254c4fd2b6e50eff579efeb894044e6",
   "parent_authority": {
     "canonical_head": "e10ef90328a7da96d4ee852325057d40b8951875",
     "active_lineage": "3969ad57bb19ba9d4872e100f42ea858c39191ef",
