@@ -1,0 +1,56 @@
+{
+  "stage": "G8 LAW-R1-P28",
+  "status": "PRE_FRESH_SEALED",
+  "constitution_commit": "f2b4ed834e5ed98b371f2dfe7d2b2ef900f87700",
+  "mathematical_note_commit": "62226a3d28967d2182f5637487e938d3454f8ad1",
+  "checker_commit": "1ee21ce6c41407d390906527fc0ebe4f1a3e9aa0",
+  "parent_lineage_head": "a3bb659f5d19409dcc9ce938d4d3558855f4bc09",
+  "frozen_drop_census": {
+    "N0": [-1,0,-1],
+    "N1": [-1,-1,-1],
+    "X0": [-1,0,0],
+    "X1": [-1,-1,0]
+  },
+  "frozen_theorems": [
+    "Under binary scalar q/g/y and typed upstream DROP, exactly four weak-semantic rows exist.",
+    "Under strong q-necessity and g-gate semantics, N0 and N1 are conditionally exhaustive.",
+    "X0/X1 are ontology-obstruction signatures unless a revised semantic model is prospectively justified.",
+    "Same measured (q,g) with different y falsifies deterministic scalar y=f(q,g).",
+    "Rank 3 requires a third admissible direction and cannot be promoted from rank alone.",
+    "For structured gate vector G with dimension >=2, partial upstream coupling yields genuine intermediate support families beyond scalar N0/N1."
+  ],
+  "fresh_search_lanes": [
+    {
+      "lane": "A",
+      "target": "X0_OR_X1_EXACT_OBSTRUCTION",
+      "requirement": "direct q,g,y measurement and non-y upstream intervention; candidate semantics frozen before outcome adjudication"
+    },
+    {
+      "lane": "B",
+      "target": "SAME_QG_ACTION_SPLIT",
+      "requirement": "same measured q,g with different y under admissible non-y state/intervention; exclude measurement mismatch"
+    },
+    {
+      "lane": "C",
+      "target": "STRUCTURED_GATE_PARTIAL_COUPLING",
+      "requirement": "directly measurable G=(g1,...,gm), m>=2, with nonempty proper upstream-coupled support and action mediation preserved"
+    },
+    {
+      "lane": "D",
+      "target": "NEGATIVE_CONTROL_N0_N1_REPLICATION",
+      "requirement": "allowed only as calibration; cannot by itself close exhaustiveness"
+    }
+  ],
+  "selection_rule": "Prefer the strongest exact fresh mechanism that can distinguish ontology extension from mere relabeling. Do not rescue a candidate by redefining q,g,y after observing its signature.",
+  "stop_conditions": [
+    "If no candidate permits direct coordinate measurement, hold rather than infer from prose architecture.",
+    "If the only apparent third family disappears after preserving q as an actually necessary quotient, classify semantic mis-specification rather than novelty.",
+    "If structured G collapses to scalar g without information loss under all admissible interventions, do not claim a new family.",
+    "Do not open LAW-R2 from architecture-taxonomy failure alone."
+  ],
+  "repository_governance": {
+    "authenticated_actor": "WhoSia",
+    "latest_parent_lineage_authored_and_committed_by": "WhoSia",
+    "actions_writeback_forbidden": true
+  }
+}
