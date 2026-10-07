@@ -1,0 +1,69 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "status": "PAPER_READINESS_LEDGER_NOT_MANUSCRIPT",
+  "authorized_claims": [
+    {
+      "claim": "N0 and N1 are non-nested under the frozen upstream-DROP typing because they make contradictory exact predictions for Δg.",
+      "grade": "PRE_FRESH_THEOREM"
+    },
+    {
+      "claim": "A single directly measured upstream DROP from q=g=1 is a minimal separating intervention basis.",
+      "grade": "PRE_FRESH_THEOREM_PLUS_HOSTED_CHECK"
+    },
+    {
+      "claim": "Bevy realizes the N0 independent-layer kernel with DROP (-1,0,-1), RESTORE (+1,0,+1), and gate-DROP (0,-1,-1).",
+      "grade": "HOSTED_EXACT"
+    },
+    {
+      "claim": "golang/net HTTP/2 push realizes the N1 cross-coupled kernel with DROP (-1,-1,-1) and RESTORE (+1,+1,+1).",
+      "grade": "HOSTED_EXACT"
+    },
+    {
+      "claim": "Both kernels have rank 2, so rank alone does not identify the architecture class; kernel orientation relative to typed q/g coordinates does.",
+      "grade": "MATHEMATICAL_PLUS_HOSTED"
+    },
+    {
+      "claim": "At least two non-nested architecture families are empirically required within the current q/g/action framework.",
+      "grade": "BOUNDED_MACRO_STRUCTURE"
+    }
+  ],
+  "forbidden_or_unready_claims": [
+    {
+      "claim": "There are exactly two architecture families.",
+      "reason": "P27 only realizes N0 and N1 and finds no obstruction in its bounded packet."
+    },
+    {
+      "claim": "Kernel rank identifies architecture.",
+      "reason": "N0 and N1 both have rank 2."
+    },
+    {
+      "claim": "q and g may be arbitrarily mixed by a coordinate transformation.",
+      "reason": "Their typed semantics are load-bearing for the separator."
+    },
+    {
+      "claim": "A universal q/g coupling law exists.",
+      "reason": "N0 and N1 make incompatible exact coupling predictions and are both realized."
+    },
+    {
+      "claim": "Rank 3 universally implies one extra latent state.",
+      "reason": "Rank 3 is only an obstruction signal under direct q/g measurement and matched-state assumptions."
+    },
+    {
+      "claim": "Macro law, SOLID special case, or LAW-R2 is authorized.",
+      "reason": "Architecture family branching refines the theory but does not close universal design-law identification."
+    }
+  ],
+  "figure_candidates": [
+    "N0 vs N1 kernel vectors in typed (Δq,Δg,Δy) coordinates.",
+    "Same rank 2, different row orientation.",
+    "Minimal separator: one upstream DROP from common baseline.",
+    "Architecture / ~_I refinement as intervention basis expands."
+  ],
+  "missing_evidence": [
+    "A third non-nested architecture family or an exact latent obstruction outside N0/N1.",
+    "Replication of N0 and N1 in additional mechanism domains under the same separator.",
+    "Prospective rank-3 obstruction with direct q/g measurement.",
+    "A theory for predicting which family a fresh mechanism belongs to before source inspection."
+  ],
+  "manuscript": "NOT_AUTHORIZED"
+}
