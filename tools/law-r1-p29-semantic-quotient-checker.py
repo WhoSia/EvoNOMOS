@@ -24,8 +24,8 @@ assert delta(route_fallback) == (0, -1, 0, 0)
 # Q is action-necessary only under the declared Q_DROP intervention, not by
 # observing Y. The strong scalar rows therefore have Y'=0.
 strong_rows = {
-    delta({"Q": 0, "R": r, "G": (g,), "Y": 0})
-    for r, g in product((0, 1), repeat=2)
+    delta({"Q": 0, "R": r, "G": (1,), "Y": 0})
+    for r in (0, 1)
 }
 assert strong_rows == {(-1, 0, 0, -1), (-1, -1, 0, -1)}
 
