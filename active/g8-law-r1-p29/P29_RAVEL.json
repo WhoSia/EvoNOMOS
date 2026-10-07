@@ -1,0 +1,15 @@
+{
+  "stage": "G8 LAW-R1-P29",
+  "global_next_start": 10404,
+  "status": "SCIENTIFIC_COURT_PASS_ADMINISTRATIVE_HOLD",
+  "entries": [
+    {"ravel": 10404, "event": "CURRENT_DOCTRINE_AND_P28_AUTHORITY_ALIGNED", "authority": "live repo plus supplied P28 closure"},
+    {"ravel": 10405, "event": "P29_CONSTITUTION_COMMITTED", "commit": "9298d097faadfb33ec009d45439004fad7bbcf19"},
+    {"ravel": 10406, "event": "P29_MATHEMATICAL_NOTE_COMMITTED", "commit": "94c28c88751096d01a23efccb6814a9189c39821"},
+    {"ravel": 10407, "event": "P29_PROSPECTIVE_CHECKER_COMMITTED", "commit": "964c9d404254c4fd2b6e50eff579efeb894044e6"},
+    {"ravel": 10408, "event": "P29_PRESEAL_BOUND_TO_EXACT_COMPONENT_HEADS", "commit": "ff28677d32715008458a915a674a7cb0a42cbe3c"},
+    {"ravel": 10409, "event": "LIBDEFLATE_CANDIDATE_PRECOMMITTED", "commit": "b171d1a32e3aaed2775e2ef1abd23a8abbf52c11"},
+    {"ravel": 10410, "event": "HOSTED_P29_COURT_PASS", "run": 37573971642, "job": 112638613750, "artifact": 11461404918},
+    {"ravel": 10411, "event": "NOTION_RUN_DECISION_WRITEBACK_BLOCKED", "status": "HOLD_NOTION_READBACK_REQUIRED"}
+  ]
+}

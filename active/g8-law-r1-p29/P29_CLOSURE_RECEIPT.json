@@ -1,0 +1,38 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P29",
+  "scientific_verdict": "PASS_X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP__REPAIRED_QUOTIENT_VALIDATED__LAW_R2_NOT_AUTHORIZED",
+  "administrative_status": "HOLD_NOTION_READBACK_REQUIRED",
+  "hosted": {
+    "run_id": 37573971642,
+    "head": "e90c70e1c1b2790c4107a0544e4c2387d83068e4",
+    "job_id": 112638613750,
+    "artifact_id": 11461404918,
+    "artifact_digest": "sha256:545a62562b866e03370475ebc4b19a761a12505e3429bc2bcae1738c9956a8d9",
+    "source_revision": "92e6a0db9fa848d742f9eb286c92afc60f2c3dda",
+    "baseline": {"Q": 1, "R": 1, "G": 1, "Y": 1, "features": 2147483935, "compressed_size": 39},
+    "route_drop": {"Q": 1, "R": 0, "G": 1, "Y": 1, "features": 2147483649, "compressed_size": 39},
+    "delta_Q_R_G_Y": [0, -1, 0, 0],
+    "governance": "BOT_CONTRIBUTION_ZERO; Actions compute/test/upload only; human WhoSia commit history"
+  },
+  "failed_harness_genealogy": [
+    {"run_id": 37573694018, "head": "b6be71f61451bb4150be8f8aab10eace47ad2ee3", "status": "NON_SCIENTIFIC_COMPILE_FAILURE"},
+    {"run_id": 37573770271, "head": "cb0076eff98ea575f731438bb86e09efa83c047c", "status": "NON_SCIENTIFIC_COMPILE_FAILURE"},
+    {"run_id": 37573859951, "head": "325213ba34dffd566c00bd24eafbdee6bcb0887d", "status": "NON_SCIENTIFIC_CONTROL_ABORT"}
+  ],
+  "authority_ceiling": [
+    "P28 strong scalar N0/N1 theorem remains conditional and unchanged",
+    "libdeflate transports X1 as route/action separation with fallback-preserved Y",
+    "no same-(Q,R,G), different-Y witness was observed",
+    "no scalar N0/N1 exhaustiveness upgrade, LAW-R2, macro law, SOLID derivation, manuscript authority, or universal latent-state claim"
+  ],
+  "notion": {
+    "run_parent": "3f2ef561-cf92-8165-b6da-ee6028e60c02",
+    "decision_parent": "3f2ef561-cf92-81ea-96d9-d25d77380d85",
+    "writeback": "NOT_PERFORMED",
+    "readback": "UNAVAILABLE_EMPTY_NOTION_SURFACE"
+  },
+  "active_lineage": {
+    "preserved_until_external_closure": "3969ad57bb19ba9d4872e100f42ea858c39191ef",
+    "update": "NOT_PERFORMED"
+  }
+}
