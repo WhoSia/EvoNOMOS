@@ -1,0 +1,91 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P28",
+  "formal_title": "Architecture-Family Exhaustiveness Challenge, Prospective Third-Kernel Construction, Signed Interventional-Kernel Geometry, Rank-3 Latent-Direction Search, Same-(q,g) Action-Splitting Obstruction, Minimal Multi-Family Separating Basis, Kernel-Arrangement Classification, N0<->N1 Boundary Completion & Macro-Architecture Family Census",
+  "suffix": "Census",
+  "status": "CLOSED_PASS",
+  "verdict": "PASS_X1_EXACT_OBSTRUCTION__STRONG_SCALAR_NECESSITY_FAILS_AT_ACTION_GRAIN__N0_N1_CONDITIONAL_EXHAUSTIVENESS_PRESERVED__LAW_R2_NOT_AUTHORIZED",
+  "canonical": {
+    "run": 37572440278,
+    "head": "e10ef90328a7da96d4ee852325057d40b8951875",
+    "job": 112633849354,
+    "artifact": 11461736256,
+    "digest": "sha256:dc6f1d50cf5738c5713117bd732946fbc8dec91dcef3da5304efc105e93c3f71"
+  },
+  "mathematical_authority": {
+    "weak_scalar_drop_signature_count": 4,
+    "weak_scalar_signatures": {
+      "N0": [-1,0,-1],
+      "N1": [-1,-1,-1],
+      "X0": [-1,0,0],
+      "X1": [-1,-1,0]
+    },
+    "strong_scalar_upstream_drop_exhaustiveness": "N0_N1_ONLY",
+    "singleton_separator": "PASS",
+    "rank3_canonical_witness": "PASS",
+    "same_qg_action_split": "OPEN_NOT_REQUIRED_FOR_P28_PASS",
+    "structured_gate_partial_coupling": "OPEN"
+  },
+  "exact_obstruction": {
+    "repository": "BLAKE3-team/BLAKE3",
+    "exact_commit": "f55849f89cd85083c1c9daa2c5de20766f309c00",
+    "q": "AVX2 dispatch admissibility",
+    "g": "actual AVX2 local backend selected/admitted",
+    "y": "public BLAKE3 hash action correctness/success",
+    "baseline": {"q":1,"g":1,"y":1,"simd_degree":8},
+    "drop": {"q":0,"g":0,"y":1,"simd_degree":4},
+    "drop_delta": [-1,-1,0],
+    "digest": "b1089fce67e9ebd2e95f8610718aadc46498c476d08606fc6bcd985b413c793d",
+    "baseline_unit_tests": 46,
+    "baseline_doctests": 13,
+    "drop_unit_tests": 46,
+    "drop_doctests": 13,
+    "classification": "X1_CROSS_COUPLED_BYPASS_OBSTRUCTION",
+    "status": "PASS"
+  },
+  "central_ruling": {
+    "strong_scalar_theorem": "PRESERVED_CONDITIONALLY",
+    "strong_scalar_ontology_for_blake3_action_grain": "OBSTRUCTED",
+    "reason": "q and g fall under the admissible AVX2 DROP while y remains correct through fallback",
+    "third_family_inside_strong_scalar_ontology": false,
+    "semantic_interpretation": "X1 is an ontology/necessity-boundary witness, not a third strong-scalar family"
+  },
+  "anti_rationalization": {
+    "candidate_precommitted_before_hosted_outcome": true,
+    "candidate_precommit": "ffc887b1b22ee4e3f412a392a4e9e5688ee32af2",
+    "q_g_y_redefined_after_outcome": false,
+    "upstream_supported_intervention": true,
+    "direct_y_intervention": false
+  },
+  "provenance": {
+    "constitution": "f2b4ed834e5ed98b371f2dfe7d2b2ef900f87700",
+    "mathematical_note": "62226a3d28967d2182f5637487e938d3454f8ad1",
+    "checker": "1ee21ce6c41407d390906527fc0ebe4f1a3e9aa0",
+    "preseal": "fd9067cb3b4c7101a097a6086ae5be93ed910d90",
+    "candidate_precommit": "ffc887b1b22ee4e3f412a392a4e9e5688ee32af2",
+    "probe": "b55170a260d69574b1a430e72bfd805e0a5a7d4b",
+    "intervention_harness": "2b00a7c1de27b65932b5bf4134b5f0195c654e09",
+    "court": "64c832b6d23098575a429f2e7cd71f3c020e6231",
+    "workflow": "e10ef90328a7da96d4ee852325057d40b8951875"
+  },
+  "governance": {
+    "workflow_contents_permission": "read",
+    "repository_writeback_from_actions": false,
+    "new_p28_commits_authored_by": "WhoSia",
+    "prior_reachable_bot_author_count": 0,
+    "prior_reachable_bot_committer_count": 0,
+    "new_actions_authored_commits": 0
+  },
+  "claim_ceiling": {
+    "exactly_three_universal_families": "NOT_AUTHORIZED",
+    "universal_latent_state_theorem": "NOT_AUTHORIZED",
+    "macro_law": "NOT_AUTHORIZED",
+    "solid_special_case": "NOT_DERIVED",
+    "law_r2": "NOT_AUTHORIZED",
+    "manuscript": "NOT_AUTHORIZED"
+  },
+  "closure": {
+    "ravel": "10355–10383",
+    "decision": "10384–10403",
+    "global_next": 10404
+  }
+}
