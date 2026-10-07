@@ -59,7 +59,7 @@ jobs:
           cmake --build p29-libdeflate/build --parallel 2
           cc -DTEST_SUPPORT__DO_NOT_USE -DARCH_X86_64=1 \
             -Ip29-libdeflate -Ip29-libdeflate/lib -Ip29-libdeflate/lib/x86 \
-            tools/p29-libdeflate-probe.c p29-libdeflate/build/libdeflate_static.a \
+            tools/p29-libdeflate-probe.c p29-libdeflate/build/libdeflate.a \
             -o p29-libdeflate-probe
 
       - name: Execute baseline and route-drop arms
