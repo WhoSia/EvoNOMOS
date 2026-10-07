@@ -1,0 +1,97 @@
+name: G8 LAW-R1-P30 zlib State-Collision Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_ZLIB_DICTIONARY_PRECOMMIT.json'
+      - 'tools/law-r1-p30-zlib-dictionary-probe.c'
+      - 'tools/law-r1-p30-zlib-court.mjs'
+      - '.github/workflows/g8-law-r1-p30-zlib-state-collision.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zlib-state-collision:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout EvoNOMOS exact head
+        uses: actions/checkout@v4
+
+      - name: Audit workflow writeback prohibition
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=".github/workflows/g8-law-r1-p30-zlib-state-collision.yml"
+          if grep -En 'git[[:space:]]+(commit|push|tag)|contents:[[:space:]]*write|github-actions\[bot\]' "$FILE"; then
+            echo "BOT_CONTRIBUTION_RISK"
+            exit 1
+          fi
+          echo "P30_ZLIB_WORKFLOW_READ_ONLY=PASS"
+
+      - name: Checkout exact zlib source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet https://github.com/madler/zlib.git /tmp/zlib-src
+          cd /tmp/zlib-src
+          git checkout --quiet 767c4c947852e143f582c85f14cf573411df1b35
+          test "$(git rev-parse HEAD)" = "767c4c947852e143f582c85f14cf573411df1b35"
+          git status --short
+          echo "P30_ZLIB_SOURCE_HEAD=$(git rev-parse HEAD)"
+
+      - name: Build and test zlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/zlib-src
+          ./configure --static >/tmp/zlib-configure.log
+          make -j2 libz.a
+          make test | tee /tmp/zlib-tests.log
+
+      - name: Build P30 probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          cc -O2 -Wall -Wextra             -I/tmp/zlib-src             tools/law-r1-p30-zlib-dictionary-probe.c             /tmp/zlib-src/libz.a             -o /tmp/p30-zlib-probe
+
+      - name: Run exact state-collision probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          /tmp/p30-zlib-probe | tee out/P30_ZLIB_PROBE.txt
+
+      - name: Adjudicate P30 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-zlib-court.mjs             out/P30_ZLIB_PROBE.txt             out/P30_ZLIB_COURT.json | tee out/P30_ZLIB_COURT_STDOUT.txt
+
+      - name: Emit source and governance receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "P30_EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "P30_ZLIB_SOURCE=madler/zlib"
+            echo "P30_ZLIB_SOURCE_HEAD=767c4c947852e143f582c85f14cf573411df1b35"
+            echo "P30_CANDIDATE_PRECOMMIT=3e04c679f2fa3db3381872f07babe95790fc543e"
+            echo "P30_PROBE_COMMIT=2fb23c7f2061a529ce5a574d1016f9dce420930c"
+            echo "P30_COURT_COMMIT=da924d7b16a3aa5c6c6f2e25164ac7afe21642bc"
+            echo "P30_ACTIONS_REPOSITORY_WRITEBACK=FORBIDDEN"
+          } | tee out/P30_ZLIB_RECEIPT.txt
+          cp /tmp/zlib-tests.log out/P30_ZLIB_TESTS.txt
+
+      - name: Upload P30 zlib Court artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-zlib-state-collision
+          path: |
+            out/P30_ZLIB_PROBE.txt
+            out/P30_ZLIB_COURT.json
+            out/P30_ZLIB_COURT_STDOUT.txt
+            out/P30_ZLIB_RECEIPT.txt
+            out/P30_ZLIB_TESTS.txt
