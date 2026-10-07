@@ -1,0 +1,39 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "phase": "II-B",
+  "status": "FUTURE_CANDIDATES_BOUNDARY_SEALED",
+  "non_retroactivity": "This seal is prospective only for P30 candidate outcomes inspected after this commit. It does not alter the already frozen zlib calibration result.",
+  "authority": {
+    "phase_ii_theorem_supplement": "ff5651bb2c5ebc8bb3fb3b18d928aa6ef2543d98",
+    "phase_ii_checker": "91d2df689eb0ebfe1d927a5bdf4cb1be94765877",
+    "phase_ii_preseal": "75c4cf6dbc7c92c05378cc3a39a60f99fab931f2",
+    "behavioral_quotient_boundary": "6f5f19df55d05529c63e6f240440d6061a035996"
+  },
+  "frozen_domain_boundary": [
+    "In finite deterministic software, full machine state is a finite sufficient state representation.",
+    "Behavioral equivalence under all admissible finite intervention words induces a canonical behaviorally sufficient quotient.",
+    "P30 may falsify a restricted observable/interpretable/transportable ontology class, but may not infer nonexistence of all finite sufficient state representations."
+  ],
+  "revised_primary_target": "Estimate and attack the complexity gap between the scientifically admissible EvoNOMOS ontology class and the minimal behavioral/predictive quotient.",
+  "future_candidate_requirements": [
+    "freeze the ontology class C before candidate Y inspection",
+    "freeze a finite intervention family and horizon or supply a structural finite-convergence theorem",
+    "measure passive and intervention-enriched signatures independently of Y",
+    "predeclare admissible rescue coordinates and their complexity cost",
+    "distinguish local repair, deletion-necessary repair, interventional repair, and transportable repair",
+    "report bounded distinguishing depth when full behavioral equivalence cannot be established"
+  ],
+  "strongest_p30_authorized_pressure": "The prospectively frozen scientifically admissible ontology class fails to realize tested behavioral distinctions under the declared intervention family and independent replication.",
+  "forbidden_interpretation": "No finite state representation exists.",
+  "law_r2": {
+    "authority": "NOT_AUTHORIZED",
+    "maximum_p30_output": "LAW_R2_PRESSURE_ESTABLISHED",
+    "meaning": "restricted observable/transportable ontology failure, not absolute finite-state impossibility"
+  },
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_compute_test_upload_only": true,
+    "actions_may_not_commit_push_tag_or_move_refs": true,
+    "repository_actor": "WhoSia"
+  }
+}
