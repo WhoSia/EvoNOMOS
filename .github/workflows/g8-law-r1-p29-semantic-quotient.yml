@@ -1,0 +1,116 @@
+name: G8 LAW-R1-P29 Semantic Quotient Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p29/**'
+      - 'tools/law-r1-p29-semantic-quotient-checker.py'
+      - 'tools/p29-libdeflate-probe.c'
+      - '.github/workflows/g8-law-r1-p29-semantic-quotient.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  p29-semantic-quotient-court:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact human head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify governance and frozen preseal
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git log -1 --format=%an)" = "WhoSia"
+          test "$(git log -1 --format=%cn)" = "WhoSia"
+          test -z "$(git log --all --format='%an|%cn' | grep -i 'github-actions' || true)"
+          test "$(jq -r .status active/g8-law-r1-p29/P29_PRESEAL.json)" = "PRE_FRESH_SEALED"
+          test "$(jq -r .source.revision active/g8-law-r1-p29/P29_LIBDEFLATE_CANDIDATE.json)" = "92e6a0db9fa848d742f9eb286c92afc60f2c3dda"
+
+      - name: Run prospective kernel census
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p29-semantic-quotient-checker.py | tee p29-kernel-check.txt
+
+      - name: Clone exact libdeflate source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/ebiggers/libdeflate.git p29-libdeflate
+          git -C p29-libdeflate checkout 92e6a0db9fa848d742f9eb286c92afc60f2c3dda
+          test "$(git -C p29-libdeflate rev-parse HEAD)" = "92e6a0db9fa848d742f9eb286c92afc60f2c3dda"
+
+      - name: Build exact source with supported feature-test control
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S p29-libdeflate -B p29-libdeflate/build \
+            -DLIBDEFLATE_BUILD_STATIC_LIB=ON \
+            -DLIBDEFLATE_BUILD_SHARED_LIB=OFF \
+            -DLIBDEFLATE_BUILD_GZIP=OFF \
+            -DLIBDEFLATE_INSTALL=OFF \
+            -DCMAKE_C_FLAGS=-DTEST_SUPPORT__DO_NOT_USE
+          cmake --build p29-libdeflate/build --parallel 2
+          cc -DTEST_SUPPORT__DO_NOT_USE \
+            -Ip29-libdeflate -Ip29-libdeflate/lib -Ip29-libdeflate/lib/x86 \
+            tools/p29-libdeflate-probe.c p29-libdeflate/build/libdeflate_static.a \
+            -o p29-libdeflate-probe
+
+      - name: Execute baseline and route-drop arms
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./p29-libdeflate-probe > p29-baseline.json
+          LIBDEFLATE_DISABLE_CPU_FEATURES='avx,avx2,avx512bw,avx512vl,avx512vnni,avxvnni,bmi2,pclmulqdq,vpclmulqdq' \
+            ./p29-libdeflate-probe > p29-route-drop.json
+          cat p29-baseline.json p29-route-drop.json
+
+      - name: Adjudicate P29 outcome-blind transition
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          b = json.load(open('p29-baseline.json'))
+          d = json.load(open('p29-route-drop.json'))
+          assert (b['Q'], b['R'], b['G'], b['Y']) == (1, 1, 1, 1), b
+          assert (d['Q'], d['R'], d['G'], d['Y']) == (1, 0, 1, 1), d
+          out = {
+              'verdict': 'PASS_X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP',
+              'baseline': b,
+              'route_drop': d,
+              'delta_Q_R_G_Y': [d[k] - b[k] for k in ('Q','R','G','Y')],
+              'source_revision': '92e6a0db9fa848d742f9eb286c92afc60f2c3dda',
+              'intervention': 'LIBDEFLATE_DISABLE_CPU_FEATURES upstream test control',
+              'claim_ceiling': 'cross-mechanism X1 transport only; no Q necessity failure, no same-state split, no LAW-R2'
+          }
+          json.dump(out, open('P29_COURT.json','w'), indent=2, sort_keys=True)
+          print(json.dumps(out, indent=2, sort_keys=True))
+          PY
+
+      - name: Record immutable artifact digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD > p29-head.txt
+          sha256sum p29-baseline.json p29-route-drop.json P29_COURT.json p29-kernel-check.txt > p29-digests.txt
+          cp active/g8-law-r1-p29/P29_PRESEAL.json p29-preseal.json
+
+      - name: Upload P29 raw court artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p29-semantic-quotient-court
+          path: |
+            P29_COURT.json
+            p29-baseline.json
+            p29-route-drop.json
+            p29-kernel-check.txt
+            p29-digests.txt
+            p29-head.txt
+            p29-preseal.json
