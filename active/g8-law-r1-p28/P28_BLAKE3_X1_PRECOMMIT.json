@@ -1,0 +1,38 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P28",
+  "status": "CANDIDATE_PRECOMMITTED",
+  "candidate": {
+    "repository": "BLAKE3-team/BLAKE3",
+    "commit": "f55849f89cd85083c1c9daa2c5de20766f309c00",
+    "lane": "A",
+    "target": "X1_CROSS_COUPLED_BYPASS_OBSTRUCTION"
+  },
+  "frozen_measurement": {
+    "baseline": "(q,g,y)=(1,1,1)",
+    "q": "AVX2 dispatch admissibility at the frozen implementation surface; q=1 when AVX2 dispatch is enabled and runtime-detectable, q=0 in the upstream-supported no_avx2 intervention arm",
+    "g": "actual selected SIMD backend class at runtime, binarized prospectively as AVX2 selected/admitted=1 vs non-AVX2 fallback selected=0",
+    "y": "public BLAKE3 hash action returns the frozen expected digest for the same input; success/correctness=1, failure/mismatch=0"
+  },
+  "intervention": {
+    "name": "UPSTREAM_DROP_AVX2",
+    "baseline_arm": "default dispatch with no_avx512 held constant for environmental stability",
+    "drop_arm": "upstream testing feature no_avx2 with no_avx512 held constant",
+    "direct_y_intervention": false,
+    "upstream_support": [
+      "Cargo.toml describes no_avx2 as a testing feature that simulates different levels of hardware SIMD support",
+      "C dispatch source excludes AVX2 when BLAKE3_NO_AVX2 is defined"
+    ]
+  },
+  "precommitted_prediction": {
+    "expected_baseline": {"q":1,"g":1,"y":1},
+    "expected_drop": {"q":0,"g":0,"y":1},
+    "expected_kernel": [-1,-1,0],
+    "label": "X1_CROSS_COUPLED_BYPASS_OBSTRUCTION"
+  },
+  "adjudication_rule": "If hosted baseline selects AVX2, the no_avx2 arm selects a non-AVX2 fallback, and both produce the same frozen digest, classify X1 exact. If baseline lacks AVX2 or direct backend measurement fails, HOLD rather than reinterpret q/g/y.",
+  "authority_ceiling": [
+    "X1 is an obstruction to strong q-necessity at this action grain, not a third family inside the strong scalar ontology.",
+    "Do not authorize LAW-R2, macro law, SOLID derivation, manuscript claim, or universal architecture taxonomy."
+  ],
+  "parent_preseal": "fd9067cb3b4c7101a097a6086ae5be93ed910d90"
+}
