@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "lib_common.h"
 #include "libdeflate.h"
 #include "x86/cpu_features.h"
 
@@ -18,7 +19,7 @@ int main(void) {
         X86_CPU_FEATURE_AVX512VL | X86_CPU_FEATURE_VPCLMULQDQ |
         X86_CPU_FEATURE_AVX512VNNI | X86_CPU_FEATURE_AVXVNNI;
     uint8_t compressed[256], output[128];
-    size_t compressed_size = sizeof(compressed), output_size = sizeof(output);
+    size_t compressed_size = sizeof(compressed), output_size = 0;
     int q = compressor != NULL && decompressor != NULL;
     size_t produced = q ? libdeflate_zlib_compress(compressor, input, input_size,
                                                     compressed, compressed_size) : 0;
@@ -27,7 +28,7 @@ int main(void) {
     enum libdeflate_result result = LIBDEFLATE_BAD_DATA;
     if (q && g) {
         result = libdeflate_zlib_decompress(decompressor, compressed, produced,
-                                            output, &output_size);
+                                            output, sizeof(output), &output_size);
     }
     int y = result == LIBDEFLATE_SUCCESS && output_size == input_size &&
             memcmp(output, input, input_size) == 0;
