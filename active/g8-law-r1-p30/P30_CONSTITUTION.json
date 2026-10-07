@@ -1,0 +1,99 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "formal_name": "Repaired-State Sufficiency Falsification, Same-(Q,R,G)/Different-Y Witness Construction, Hidden-Coordinate Necessity Search, Prospective State-Collision Design, Structured-Gate Residualization, Cross-Mechanism Quotient Nonuniqueness, Minimal Sufficiency-Separating Intervention Basis, Observational Equivalence Breaking & the Boundary Between Semantic Repair and Genuine State-Ontology Failure",
+  "suffix": "Falsification",
+  "parent_authority": {
+    "stage": "G8 LAW-R1-P29",
+    "status": "CLOSED_PASS",
+    "verdict": "PASS_X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP__REPAIRED_QUOTIENT_VALIDATED__LAW_R2_NOT_AUTHORIZED",
+    "active_lineage": "8be9daa3bbe56c7206f48a811ad862fe274a52e4",
+    "canonical_head": "af8c41448aa4eebfab88d7ecd00b656ebcab89f9",
+    "canonical_run": 37574114260,
+    "canonical_job": 112639065830,
+    "canonical_artifact": 11460954438,
+    "canonical_digest": "sha256:d6e38e812bada788f60a0fa75ebf1b6fa107e8d7471e70dffc3f40643e574ee6",
+    "notion_run": "3f2ef561-cf92-810c-8706-d461aaf2c2ad",
+    "notion_decision": "3f2ef561-cf92-81e9-b997-ee80d80a6f14"
+  },
+  "global_next": 10423,
+  "explanandum": "After prospective repair of action necessity versus implementation route, does the repaired observable state Z=(Q,R,G) actually suffice to determine the public action Y on admissible interventional support, or can two genuinely matched repaired states diverge in Y in a way that cannot be explained by measurement aliasing, gate under-resolution, route misclassification, environment mismatch, or a prospectively admissible hidden coordinate?",
+  "formal_objects": {
+    "Omega": "admissible mechanism-state space under the frozen public action contract",
+    "I": "prospectively declared family of admissible non-Y interventions",
+    "Z": "repaired observable state map Z=(Q,R,G) evaluated directly and independently of Y",
+    "Y": "public action/effect map measured by one frozen common oracle",
+    "fiber": "F_z={s in Omega: Z(s)=z}",
+    "deterministic_sufficiency": "there exists f such that Y=f∘Z on declared interventional support",
+    "collision": "two admissible states s1,s2 with Z(s1)=Z(s2) and Y(s1)≠Y(s2)"
+  },
+  "hard_prohibitions": [
+    "Never define a hidden coordinate H from Y, failure labels, candidate identity, mechanism identity, or post-outcome inspection.",
+    "Never call approximate or unresolved measurements equal merely to manufacture a state collision.",
+    "Never call a collision genuine until route, environment, oracle, timing, nondeterminism, and structured-G under-resolution audits are passed.",
+    "Never repair a collision by adding a coordinate after seeing the collision unless that coordinate came from a prospectively frozen admissible observable family; post-hoc coordinates may generate hypotheses only.",
+    "Never infer LAW-R2 from one collision. A first exact collision falsifies sufficiency only at the frozen grain.",
+    "Never treat syntactically different quotient coordinates across mechanisms as substantively nonunique when they induce the same reachable-state partition up to bijection.",
+    "Never retroactively alter P27, P28, or P29 coordinate semantics or verdicts."
+  ],
+  "prospective_rivals": {
+    "R0_SUFFICIENCY_SURVIVES": "Every admissible matched Z-fiber tested is Y-homogeneous.",
+    "R1_MEASUREMENT_ALIASING": "Apparent Z equality disappears under direct or higher-resolution measurement without changing ontology.",
+    "R2_STRUCTURED_GATE_UNDERRESOLUTION": "Scalar/coarse G hides a prospectively measurable component; vector refinement removes the apparent collision.",
+    "R3_ADMISSIBLE_HIDDEN_COORDINATE": "A predeclared outcome-independent coordinate H refines Z so that (Z,H) is Y-sufficient on tested support.",
+    "R4_GENUINE_REPAIRED_STATE_COLLISION": "Exact matched Z persists with different Y after frozen confound and structured-G audits; deterministic sufficiency of the repaired state is falsified at this grain.",
+    "R5_PERSISTENT_REFINEMENT_FAILURE": "Independent prospective collisions persist after one or more predeclared admissible refinements, establishing pressure against the current finite state ontology but not universal impossibility of all finite repairs."
+  },
+  "collision_admissibility": [
+    "exact source revision and byte custody for both arms or mechanisms",
+    "same frozen public action contract and oracle",
+    "direct Q measurement in both states",
+    "direct R measurement in both states, including fallback/selected backend if relevant",
+    "direct measurement of every prospectively declared relevant G component",
+    "environment and configuration matching at the declared grain",
+    "no direct intervention on Y",
+    "repeatability or explicit stochastic model sufficient to reject transient nondeterminism",
+    "candidate classification rule frozen before Y comparison"
+  ],
+  "hidden_coordinate_admissibility": [
+    "H must be named and operationalized before the candidate Y contrast is inspected",
+    "H must be measurable independently of Y",
+    "H must not be a disguised mechanism identifier or source hash",
+    "H must vary under at least one admissible intervention or across prospectively matched states",
+    "H must have an interpretable causal/structural role connected to the public action contract",
+    "a successful H rescue is state refinement, not evidence for LAW-R2"
+  ],
+  "structured_gate_rule": "If multiple independently relevant gate components exist, G is vector-valued. Scalar compression is admissible only after a prospective proof or experiment shows that the compression preserves all Y-relevant distinctions on the declared support.",
+  "cross_mechanism_equivalence_rule": "Quotients are compared extensionally by the partitions/fibers they induce on reachable states and their intervention responses, not by coordinate names. Quotients inducing isomorphic reachable partitions are treated as equivalent at this grain.",
+  "minimal_intervention_objective": "Find the smallest prospectively admissible intervention subset whose response signatures either produce an exact Y-heterogeneous Z-fiber or separate all predeclared rival explanations for an apparent collision.",
+  "law_r2_pressure_gate": [
+    "at least one exact prospectively frozen same-Z/different-Y witness",
+    "measurement-aliasing audit passed",
+    "route and environment matching passed",
+    "structured-G residualization failed to remove the collision",
+    "no predeclared admissible H explains the collision",
+    "independent replication or a second mechanistically distinct prospective witness before any LAW-R2 entry recommendation",
+    "even then P30 may output LAW_R2_PRESSURE_ESTABLISHED, not LAW-R2 authority itself"
+  ],
+  "verdict_space": [
+    "PASS_REPAIRED_STATE_SUFFICIENCY_SURVIVES_PROSPECTIVE_COLLISION_SEARCH",
+    "PASS_APPARENT_COLLISION_RESOLVED_BY_MEASUREMENT_OR_STRUCTURED_GATE_REFINEMENT__LAW_R2_NOT_AUTHORIZED",
+    "PASS_SAME_REPAIRED_STATE_DIFFERENT_Y__HIDDEN_COORDINATE_REFINEMENT_REQUIRED__LAW_R2_NOT_AUTHORIZED",
+    "PASS_EXACT_REPAIRED_STATE_COLLISION__DETERMINISTIC_SUFFICIENCY_FALSIFIED_AT_FROZEN_GRAIN__LAW_R2_NOT_AUTHORIZED",
+    "PASS_PERSISTENT_REPAIRED_STATE_COLLISION_AFTER_PROSPECTIVE_REFINEMENT__LAW_R2_PRESSURE_ESTABLISHED",
+    "HOLD_NO_ADMISSIBLE_STATE_COLLISION_WITNESS"
+  ],
+  "claim_ceiling": [
+    "P29 route/action separation and repaired quotient validation remain authoritative at their tested grain.",
+    "A single exact collision may falsify deterministic sufficiency of the frozen repaired state at that grain only.",
+    "No finite experiment proves that no possible finite hidden-state refinement exists.",
+    "LAW-R2, macro law, SOLID derivation, manuscript authority, and universal latent-state impossibility remain unauthorized unless a later dedicated authority gate promotes them."
+  ],
+  "freshness_rule": "No P30 fresh candidate outcome may be inspected before constitution, mathematical dossier, prospective checker, and preseal are committed.",
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_compute_test_upload_only": true,
+    "actions_may_not_commit_push_tag_or_move_refs": true,
+    "repository_actor": "WhoSia",
+    "default_branch_bot_author_count_preopen": 0
+  }
+}
