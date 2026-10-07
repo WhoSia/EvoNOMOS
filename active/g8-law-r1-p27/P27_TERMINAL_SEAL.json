@@ -1,0 +1,224 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "formal_title": "Non-Nested Architecture Rival Construction, Minimal Separating Intervention Basis, Opposed Counterfactual Prediction Design, Interventional Kernel Rank, Architecture Equivalence-Class Refinement, Quotient/Gate Cross-Coupling Stress, Latent-Transport Obstruction Search & Macro-Architecture Identifiability Court",
+  "suffix": "Court",
+  "status": "CLOSED_PASS",
+  "verdict": "PASS_NON_NESTED_SEPARATOR__N0_AND_N1_BOTH_EXACTLY_REALIZED__KERNEL_ORIENTATION_IDENTIFIED__MACRO_EQUIVALENCE_CLASS_REFINED",
+  "canonical": {
+    "run": 37419326002,
+    "head": "7e917c9737e083f464ada81daa3dc35475e28955",
+    "job": 112124913221,
+    "artifact": 11392571345,
+    "digest": "sha256:65939e893df48c80936b54ca334ec091dfa9936fd196ec878d13cb9c46a32139"
+  },
+  "mathematical_authority": {
+    "non_nestedness": "PASS",
+    "one_intervention_separator": "PASS",
+    "minimal_separator_cardinality": 1,
+    "separator": "UPSTREAM_DROP_FROM_Q1_G1_WITH_DIRECT_Q_G_MEASUREMENT",
+    "N0_kernel_rank": 2,
+    "N1_kernel_rank": 2,
+    "rank_alone_separates": false,
+    "primary_separator": "KERNEL_ROW_ORIENTATION_RELATIVE_TO_TYPED_Q_G_COORDINATES",
+    "restore_redundant_for_minimal_separation": true,
+    "finite_basis_equivalence": "Architecture/~_I",
+    "rank3_obstruction": "HARVEST_ONLY_CONDITIONAL"
+  },
+  "exact_mechanisms": {
+    "N0_BEVY": {
+      "repository": "bevyengine/bevy",
+      "exact_commit": "6c21ef6884886f32a1bbd3da84522ba42c5f3ddf",
+      "domain": "COMPILE_TIME_BACKEND_SELECTION_RUST",
+      "q": "target_has_atomic=ptr",
+      "g": "bevy_platform alloc feature",
+      "y": "native alloc::sync Arc backend selected",
+      "baseline": [
+        1,
+        1,
+        1
+      ],
+      "drop": [
+        0,
+        1,
+        0
+      ],
+      "drop_delta": [
+        -1,
+        0,
+        -1
+      ],
+      "restore": [
+        1,
+        1,
+        1
+      ],
+      "restore_delta": [
+        1,
+        0,
+        1
+      ],
+      "local_gate_drop": [
+        1,
+        0,
+        0
+      ],
+      "local_gate_drop_delta": [
+        0,
+        -1,
+        -1
+      ],
+      "rival": "N0_LAYER_INDEPENDENT_MEDIATION",
+      "status": "PASS"
+    },
+    "N1_HTTP2": {
+      "repository": "golang/net",
+      "exact_commit": "28247830e9fb37184c6be718f483a0c7d0949022",
+      "domain": "RUNTIME_PROTOCOL_NEGOTIATION_GO",
+      "q": "peer SETTINGS_ENABLE_PUSH semantic state",
+      "g": "serverConn.pushEnabled",
+      "y": "server Push supported vs ErrNotSupported",
+      "baseline": [
+        1,
+        1,
+        1
+      ],
+      "drop": [
+        0,
+        0,
+        0
+      ],
+      "drop_delta": [
+        -1,
+        -1,
+        -1
+      ],
+      "restore": [
+        1,
+        1,
+        1
+      ],
+      "restore_delta": [
+        1,
+        1,
+        1
+      ],
+      "rival": "N1_CROSS_COUPLED_CONTROL",
+      "status": "PASS"
+    }
+  },
+  "separator_ruling": {
+    "bevy": {
+      "N0": "FIT",
+      "N1": "FAIL"
+    },
+    "http2": {
+      "N0": "FAIL",
+      "N1": "FIT"
+    },
+    "conclusion": "NON_NESTED_RIVALS_BOTH_EXACTLY_REALIZED"
+  },
+  "architecture_equivalence": {
+    "same_rank_but_different_orientation": true,
+    "result": "INTERVENTIONAL_KERNEL_DIRECTION_REFINES_EQUIVALENCE_CLASS_BEYOND_RANK",
+    "current_macro_structure": "MULTIPLE_NON_NESTED_ARCHITECTURE_FAMILIES_EXACTLY_REALIZED",
+    "exactly_two_families": "NOT_AUTHORIZED",
+    "universal_q_g_coupling": "REJECTED_WITHIN_CURRENT_DOMAIN"
+  },
+  "obstruction_search": {
+    "delta_y_without_q_or_g_change": false,
+    "same_q_g_different_y": false,
+    "hidden_mechanism_id_required": false,
+    "exact_latent_obstruction": "NONE_IN_P27_PACKET"
+  },
+  "support_only": {
+    "TARPAULIN_PTRACE_BUILD_GATE": {
+      "repository": "xd009642/tarpaulin",
+      "exact_commit": "a5a0f9d75c34f7bdfe67bd4ac28af75a1c313e71",
+      "status": "SUPPORT_ONLY_NOT_CANONICAL_N1"
+    }
+  },
+  "implementation_history": {
+    "failed_runs": [
+      37418440665,
+      37418788196,
+      37418795511,
+      37418815852,
+      37418915751
+    ],
+    "classification": "VERIFIER_HARNESS_OR_HOSTED_ENVIRONMENT_STABILIZATION__NO_SCIENTIFIC_VERDICT",
+    "last_failed_run_detail": "37418915751 portable-atomic CAS unavailable on thumbv6m without fixed critical-section background",
+    "hypothesis_changed": false,
+    "successful_pre_custody_run": 37419296306,
+    "successful_pre_custody_head": "3828a6d02f15093cd82036f32945798503b57655",
+    "canonical_reason": "37419326002 is the first success at final source/environment custody head 7e917c97…"
+  },
+  "governance": {
+    "bot_author_reachable_count_at_close": 0,
+    "bot_committer_reachable_count_at_close": 0,
+    "workflow_contents_permission": "read",
+    "repository_writeback_from_actions": false
+  },
+  "direct_artifact_inspection": {
+    "status": "PASS",
+    "files": [
+      "p27-math.txt",
+      "p27-bevy.json",
+      "p27-http2-controls.txt",
+      "p27-http2.json",
+      "p27-court.json"
+    ]
+  },
+  "harvest": {
+    "id": "LR-20261006-AG",
+    "repo_manifest": "b95df4d48270eed2770bc776b6ac6d49f27cb86e",
+    "notion_page": "3f2ef561-cf92-819f-89df-c8aaf7586bfb",
+    "notion_genealogy": "3f2ef561-cf92-81b7-8246-feff0766992c",
+    "authority": "NONE"
+  },
+  "paper_readiness": {
+    "repo_ledger": "d396185b9cae3ff014ed00de3d22f99ea91adba2",
+    "notion_ledger": "3f2ef561-cf92-819b-abf1-d6629302829c",
+    "manuscript": "NOT_AUTHORIZED"
+  },
+  "notion_existing": {
+    "mathematical_dossier": "3f1ef561-cf92-81d8-affe-c5a2d829b3a1",
+    "candidate_genealogy": "3f1ef561-cf92-81e0-a9f4-e467b1726dda"
+  },
+  "anti_rationalization": {
+    "rival_changed_after_outcome": false,
+    "intervention_retyped_after_outcome": false,
+    "q_g_measurement_changed_after_outcome": false,
+    "inferred_gate_from_y": false,
+    "mechanism_id_feature": false,
+    "rank_only_claim": false
+  },
+  "provenance": {
+    "constitution": "57a5bb806305ff60228b7f4bad5ab9791ce48e2b",
+    "mathematical_note": "822b7515be9dfc7f59f9b56b136061afc7557de1",
+    "mathematical_checker": "e8c24b9376fe61c1a2c5abc0fd026780432b7c55",
+    "preseal": "bb47195ff178d5b96b185db2c01298c1463ca75c",
+    "bevy_custody": "94e1360a23d8ff2cfa252473f0bb06a6e7357684",
+    "http2_custody": "31d8516b211c097869d14058b3b1b333483c8e95",
+    "tarpaulin_support": "532a3f3930465525b2d122e6843c5e0ddfde3ff0",
+    "bevy_verifier": "13026c1907d843b318807865730cda891f69a7a0",
+    "http2_verifier_initial": "2f5aab12e65ae70438381fb67d72ae7875cd7660",
+    "court": "4c2da2e9f5c7968b0dd23ede4f0d4568fcbbe444",
+    "workflow_initial": "c62cc6213ce0a80f5e4d46efa51b7b351ec46b39",
+    "http2_gate_hook": "9c52607e107096678dcf3f0b097d3665a3dfc3c2",
+    "http2_upstream_harness": "70202e5a5f056c7d57a6ff3edc681e5ff9e52c8d",
+    "workflow_gate_hook": "af30ae13a4e0709c1a28e89c8740f3a852e19b10",
+    "bevy_output_fix": "e72f3701558396fee83028df3894344d38f37364",
+    "bevy_fixed_background": "3828a6d02f15093cd82036f32945798503b57655",
+    "final_custody_head": "7e917c9737e083f464ada81daa3dc35475e28955",
+    "harvest_manifest": "b95df4d48270eed2770bc776b6ac6d49f27cb86e",
+    "paper_ledger": "d396185b9cae3ff014ed00de3d22f99ea91adba2"
+  },
+  "macro_law": "NOT_AUTHORIZED",
+  "solid_special_case": "NOT_DERIVED",
+  "law_r2": "NOT_AUTHORIZED",
+  "closure": {
+    "ravel": "10281–10328",
+    "decision": "10329–10354",
+    "global_next": 10355
+  }
+}
