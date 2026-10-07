@@ -1,0 +1,55 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P28",
+  "formal_name": "Architecture-Family Exhaustiveness Challenge, Prospective Third-Kernel Construction, Signed Interventional-Kernel Geometry, Rank-3 Latent-Direction Search, Same-(q,g) Action-Splitting Obstruction, Minimal Multi-Family Separating Basis, Kernel-Arrangement Classification, N0<->N1 Boundary Completion & Macro-Architecture Family Census",
+  "suffix": "Census",
+  "parent_authority": {
+    "stage": "G8 LAW-R1-P27",
+    "lineage_head": "a3bb659f5d19409dcc9ce938d4d3558855f4bc09",
+    "canonical_run": 37419326002,
+    "terminal_seal": "2e4d0a71f37707f303775cf1ba27a8e33a4bfe26",
+    "global_next": 10355
+  },
+  "explanandum": "Do N0 and N1 exhaust the architecture space under the frozen scalar q/g/y measurement, and if not, what exact prospective signatures force a third family or failure of the scalar ontology?",
+  "frozen_baseline": {"q": 1, "g": 1, "y": 1},
+  "frozen_coordinates": {
+    "q": "directly measured transported upstream state",
+    "g": "directly measured local gate state",
+    "y": "directly measured client-visible action/effect"
+  },
+  "intervention_kernel": "kappa(tau)=(Delta q,Delta g,Delta y)",
+  "primary_interventions": [
+    "UPSTREAM_DROP: force q 1->0 without directly intervening on y",
+    "LOCAL_GATE_DROP: force g 1->0 without directly intervening on y",
+    "MATCHED_QG_LATENT_PERTURBATION: alter an admissible non-q/non-g mechanism while holding measured q,g fixed when such an intervention exists"
+  ],
+  "pre_fresh_rivals": {
+    "N0": {"drop": [-1,0,-1], "meaning": "layer-independent mediation"},
+    "N1": {"drop": [-1,-1,-1], "meaning": "cross-coupled control"},
+    "X0": {"drop": [-1,0,0], "meaning": "stable-gate bypass/persistence obstruction"},
+    "X1": {"drop": [-1,-1,0], "meaning": "cross-coupled bypass/persistence obstruction"}
+  },
+  "semantic_tiers": {
+    "strong_scalar_mediation": "q and g are each necessary for y and y is deterministic under measured q,g",
+    "weak_scalar_measurement": "q,g,y are measured but q/g necessity and deterministic sufficiency are not assumed",
+    "structured_gate_extension": "g may require a vector G=(g1,...,gm) rather than one scalar coordinate",
+    "latent_extension": "a hidden or omitted coordinate h may affect y while measured q,g remain fixed"
+  },
+  "falsifiers": [
+    "Any exact fresh UPSTREAM_DROP vector other than N0 or N1 falsifies strong scalar mediation for that mechanism.",
+    "Same measured (q,g) with different y under admissible non-y interventions falsifies deterministic y=f(q,g).",
+    "A third linearly independent observed kernel direction is load-bearing only if direct intervention on y and measurement-confounding explanations are excluded.",
+    "A multi-gate mechanism with partial upstream coupling may falsify scalar-g exhaustiveness without requiring a latent variable outside the gate structure."
+  ],
+  "claim_ceiling": [
+    "No exactly-two-family claim before the scalar-exhaustiveness theorem and fresh obstruction search are both adjudicated.",
+    "No rank-3 latent claim from rank alone.",
+    "No third-family label for X0/X1 unless the violated semantic axiom is explicitly stated.",
+    "No macro law, SOLID derivation, manuscript claim, or LAW-R2 authorization from this stage alone."
+  ],
+  "freshness_rule": "No P28 world candidate may be selected before this constitution and the prospective mathematics are committed.",
+  "governance": {
+    "actions_may_compute_not_author_history": true,
+    "repository_actor": "WhoSia",
+    "candidate_search_outcome_blind_after_preseal": true
+  }
+}
