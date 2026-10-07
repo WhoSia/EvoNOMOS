@@ -1,0 +1,69 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "phase": "II",
+  "status": "FUTURE_CANDIDATES_PRESEALED",
+  "non_retroactivity": "This Phase II authority was created after the first zlib hosted outcome. It may not change the zlib candidate's frozen adjudication and governs only later candidate outcomes.",
+  "phase_i_calibration": {
+    "candidate": "madler/zlib preset dictionary",
+    "canonical_run": 37575821547,
+    "canonical_head": "0339d7256431aa77aa7291bf2496ea7d33b91139",
+    "canonical_job": 112644367551,
+    "canonical_artifact": 11462202815,
+    "canonical_digest": "sha256:8e6a2e9ef8c72bf100b86111e4f3bf7f7b499343539aadb54835457fe610fae7",
+    "frozen_result": "Exact passive same-Z/different-Y collision with prospective H_dict rescue.",
+    "authorized_interpretation": "Calibration-level state insufficiency plus admissible local refinement; not persistent ontology failure and not LAW-R2 pressure."
+  },
+  "phase_ii_math_commit": "ff5651bb2c5ebc8bb3fb3b18d928aa6ef2543d98",
+  "phase_ii_checker_commit": "91d2df689eb0ebfe1d927a5bdf4cb1be94765877",
+  "frozen_objects": {
+    "collision_graph": "Gamma_Z has edges exactly between states sharing frozen Z but differing in Y.",
+    "admissible_observable_family": "A0 is frozen before each later candidate Y contrast is inspected.",
+    "intervention_family": "I0 contains identity plus prospectively declared non-Y interventions.",
+    "interventional_signature": "Phi_{Z,I0}(s) is the tuple of directly measured Z responses under every frozen intervention."
+  },
+  "frozen_theorems_and_algorithms": [
+    "Deterministic sufficiency on finite adjudication support is equivalent to an empty heterogeneous Z-fiber collision graph.",
+    "A subset of prospectively admissible hidden observables repairs finite-support sufficiency iff it separates every collision edge.",
+    "Minimum-cardinality prospective rescue is a minimum set-cover problem over collision edges and is NP-hard in general.",
+    "A coordinate is deletion-necessary on tested support only if removing it from an otherwise sufficient basis reintroduces at least one collision edge.",
+    "Static quotient fiber equivalence is weaker than dynamic quotient equivalence under intervention-response commutation."
+  ],
+  "future_candidate_priority": [
+    "Tier 2: a passive rescue that fails under frozen intervention signatures",
+    "Tier 3: collision graph not coverable by any prospectively frozen admissible observable subset",
+    "Tier 4: independently replicated interventional-indistinguishability/different-Y witness"
+  ],
+  "strong_collision": "Phi_{Z,I0}(s)=Phi_{Z,I0}(t) while Y(s)!=Y(t), with direct measurement, common oracle, matched environment, and stochasticity rules passed.",
+  "rescue_adjudication": [
+    "A one-pair H rescue is local repair only.",
+    "Promote H to deletion-necessary only after a frozen deletion test.",
+    "Promote H toward a transportable ontology coordinate only after an independently justified analogue preserves role and intervention behavior.",
+    "If an apparent H is already a required local gate under the frozen P29/P30 semantics, classify as structured-G residualization rather than new hidden-coordinate ontology."
+  ],
+  "law_r2_pressure_gate": [
+    "at least one strong interventional collision",
+    "measurement, route, environment, oracle, timing, and stochastic audits passed",
+    "prospectively frozen structured-G refinements exhausted or irrelevant",
+    "no subset of prospectively frozen admissible observables repairs the tested collision graph",
+    "independent replication in a second mechanism class or independent state family",
+    "no direct intervention on Y",
+    "maximum output remains LAW_R2_PRESSURE_ESTABLISHED; P30 cannot authorize LAW-R2"
+  ],
+  "forbidden": [
+    "post-outcome addition of confirmatory hidden coordinates",
+    "H=Y, mechanism identity, source hash, arm label, or candidate identity",
+    "retrospective reclassification of the zlib Phase I result",
+    "claiming universal insufficiency from finite support",
+    "closing P30 at Tier 0 merely because a constructed local context coordinate produces and repairs a collision when stronger feasible tiers remain"
+  ],
+  "claim_ceiling": [
+    "Phase II may establish bounded minimum rescue complexity, deletion necessity, interventional sufficiency failure, dynamic quotient nonuniqueness, or replicated LAW-R2 pressure.",
+    "LAW-R2, macro law, SOLID derivation, manuscript authority, and universal finite-state impossibility remain unauthorized."
+  ],
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_compute_test_upload_only": true,
+    "actions_may_not_commit_push_tag_or_move_refs": true,
+    "repository_actor": "WhoSia"
+  }
+}
