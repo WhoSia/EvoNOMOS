@@ -1,0 +1,63 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P29",
+  "status": "PRE_FRESH_SEALED",
+  "constitution_commit": "95ca8255d60f2ec8ab9d3da54b36de6dce4fd723",
+  "parent_authority": {
+    "canonical_head": "e10ef90328a7da96d4ee852325057d40b8951875",
+    "active_lineage": "3969ad57bb19ba9d4872e100f42ea858c39191ef",
+    "global_next": 10404,
+    "verdict": "PASS_X1_EXACT_OBSTRUCTION__STRONG_SCALAR_NECESSITY_FAILS_AT_ACTION_GRAIN__N0_N1_CONDITIONAL_EXHAUSTIVENESS_PRESERVED__LAW_R2_NOT_AUTHORIZED"
+  },
+  "coordinates": {
+    "Q": "prospectively declared public action capability/admissibility, measured without using Y or route selection",
+    "R": "nominated implementation route availability/selection, including predeclared fallback",
+    "G": "directly measured local gate; vector-valued whenever more than one independently relevant component exists",
+    "Y": "public action success against one common oracle"
+  },
+  "required_interventions": [
+    {"name": "BASELINE", "transition": "(Q,R,G,Y)=(1,1,G,1)"},
+    {"name": "Q_DROP", "transition": "Q:1->0 with R and G held by non-Y intervention"},
+    {"name": "ROUTE_DROP", "transition": "R:1->0 with Q=1 and frozen fallback permitted"},
+    {"name": "G_DROP", "transition": "one declared G component 1->0 with Q and R held"},
+    {"name": "MATCHED_REPAIRED_STATE", "transition": "matched directly measured (Q,R,G), then compare Y"}
+  ],
+  "candidate_admissibility": [
+    "exact upstream source revision and byte custody",
+    "upstream-supported feature, dispatch, or fallback control preferred",
+    "direct readout for Q, R, every relevant G component, and Y",
+    "common public oracle for baseline and all intervention arms",
+    "public action must remain measurable; performance-only differences are disqualifying",
+    "route loss cannot be relabeled as Q loss after seeing Y"
+  ],
+  "outcome_independent_rules": [
+    "ROUTE_DROP with Q=1 and Y=1 is fallback-preserving factorization, not action-necessity failure",
+    "valid Q_DROP with Y=1 falsifies the proposed Q necessity semantics or requires HOLD",
+    "same measured (Q,R,G) with different Y is the stronger action-sufficiency falsifier only after confound exclusions",
+    "partial structured G is classified separately from route fallback",
+    "P27 N0/N1 are embedded only through an explicit prospective map; their frozen authority is unchanged"
+  ],
+  "fresh_search_lanes": [
+    "A: independent exact-source cross-mechanism X1 with explicit fallback/dispatch",
+    "B: structured-G partial coupling",
+    "C: same repaired state with different Y",
+    "D: P27/P28 embedding and calibration without retroactive repair"
+  ],
+  "falsifiers": [
+    "same-(Q,R,G), different-Y after measurement, route, direct-Y, and environmental confounds are excluded",
+    "valid Q_DROP with unchanged Y",
+    "unmeasurable or post-hoc Q/R/G labels",
+    "scalar-G claim when independent gate components are observed"
+  ],
+  "claim_ceiling": [
+    "P28 strong scalar N0/N1 theorem remains conditional and intact",
+    "P29 may validate a repaired quotient or record a stronger obstruction only at the declared grain",
+    "no LAW-R2, macro law, SOLID derivation, manuscript authority, or universal latent-state claim"
+  ],
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_compute_test_upload_only": true,
+    "actions_may_not_commit_push_tag_or_move_refs": true,
+    "repository_actor": "WhoSia",
+    "candidate_outcomes_inspected_before_seal": false
+  }
+}
