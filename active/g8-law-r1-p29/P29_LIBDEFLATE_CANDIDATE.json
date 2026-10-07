@@ -1,0 +1,35 @@
+{
+  "candidate": "LIBDEFLATE_X1_CROSS_MECHANISM",
+  "source": {
+    "repository": "https://github.com/ebiggers/libdeflate.git",
+    "revision": "92e6a0db9fa848d742f9eb286c92afc60f2c3dda",
+    "version": "v1.26",
+    "custody": "exact upstream revision cloned in hosted workflow"
+  },
+  "coordinates": {
+    "Q": "public libdeflate compressor/decompressor capability: allocator and bounded public APIs are available, measured before inspecting action output",
+    "R": "x86 dispatch feature mask: baseline has at least one advanced vector/accelerated feature; ROUTE_DROP disables the declared advanced feature set via upstream LIBDEFLATE_DISABLE_CPU_FEATURES while retaining SSE2/scalar fallback",
+    "G": "zlib stream-format gate: CMF/FLG header validity (CM=8 and header checksum divisible by 31), directly measured before decompression",
+    "Y": "public zlib compression/decompression action returns the original fixed payload byte-for-byte against the same payload oracle"
+  },
+  "interventions": {
+    "BASELINE": "unset LIBDEFLATE_DISABLE_CPU_FEATURES",
+    "ROUTE_DROP": "LIBDEFLATE_DISABLE_CPU_FEATURES=avx,avx2,avx512bw,avx512vl,avx512vnni,avxvnni,bmi2,pclmulqdq,vpclmulqdq",
+    "Q_DROP": "not claimed for this route-transport candidate; capability falsifier remains prospective and must not be simulated by malformed input",
+    "G_DROP": "not claimed for this route-transport candidate; stream-format gate is measured and held fixed",
+    "MATCHED_REPAIRED_STATE": "reserved for a later candidate; no post-hoc state matching"
+  },
+  "expected_transition": {
+    "BASELINE": "Q=1,R=1,G=1,Y=1",
+    "ROUTE_DROP": "Q=1,R=0,G=1,Y=1",
+    "classification": "X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP if direct measurements satisfy the transition"
+  },
+  "disqualifiers": [
+    "advanced route remains enabled after the declared feature disable list",
+    "public action fails or differs from the common payload oracle",
+    "Q inferred from Y rather than API capability",
+    "G inferred from route or output",
+    "unknown feature-control behavior, missing exact source, or performance-only evidence"
+  ],
+  "claim_ceiling": "cross-mechanism transport/calibration of X1 route/action separation only; no same-state action split, no scalar exhaustiveness upgrade, no LAW-R2"
+}
