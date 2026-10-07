@@ -1,0 +1,86 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "status": "PRE_FRESH_SEALED",
+  "suffix": "Falsification",
+  "global_next": 10423,
+  "constitution_commit": "b8d2bf8aae090ff41c20667825a26fc9bd8a4f51",
+  "mathematical_dossier_commit": "bd11ca09b724d7e14dfa7f5af3bda3acc18e2d15",
+  "prospective_checker_commit": "993fcf452c7f39b9ff80c21e835b3fe9de076180",
+  "parent_authority": {
+    "stage": "G8 LAW-R1-P29",
+    "active_lineage": "8be9daa3bbe56c7206f48a811ad862fe274a52e4",
+    "verdict": "PASS_X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP__REPAIRED_QUOTIENT_VALIDATED__LAW_R2_NOT_AUTHORIZED",
+    "notion_decision": "3f2ef561-cf92-81e9-b997-ee80d80a6f14"
+  },
+  "frozen_hypothesis": "Y deterministically factors through Z=(Q,R,G) on the declared admissible interventional support iff every directly measured Z-fiber is Y-homogeneous.",
+  "primary_falsifier": "Two prospectively admissible states with exactly matched directly measured Z=(Q,R,G) and different public Y, after frozen aliasing, route, environment, oracle, timing, nondeterminism, and structured-G audits.",
+  "prospective_observable_family_A0": [
+    "direct action-capability measurements independent of Y",
+    "direct route/backend admission and selection measurements",
+    "direct local gate components declared before Y comparison",
+    "predeclared environment/configuration coordinates required by the public action contract",
+    "predeclared history/state coordinates only when source semantics identify them before outcome inspection"
+  ],
+  "forbidden_rescues": [
+    "H=Y or any encoding of Y",
+    "candidate or mechanism identity as H",
+    "source hash or arm label as H",
+    "post-outcome feature invention promoted as confirmatory",
+    "coarsening unequal measurements into equality",
+    "changing the public oracle between arms"
+  ],
+  "fresh_search_lanes": [
+    {
+      "lane": "A",
+      "target": "same-mechanism exact repaired-state collision",
+      "priority": 1,
+      "ideal": "non-Y intervention changes public Y while all frozen Q/R/G and contract/environment coordinates remain exactly matched"
+    },
+    {
+      "lane": "B",
+      "target": "structured-G residualization",
+      "priority": 2,
+      "ideal": "apparent coarse collision is prospectively tested against a vector gate decomposition"
+    },
+    {
+      "lane": "C",
+      "target": "prospectively admissible hidden-coordinate rescue",
+      "priority": 3,
+      "ideal": "a predeclared H separates a collision without using Y or identity"
+    },
+    {
+      "lane": "D",
+      "target": "independent replicated collision after refinement",
+      "priority": 4,
+      "ideal": "second mechanistically distinct witness required before LAW_R2_PRESSURE_ESTABLISHED"
+    }
+  ],
+  "candidate_disqualifiers": [
+    "performance-only difference with identical public Y",
+    "different input/action contract masquerading as same state",
+    "environment mismatch not explicitly frozen or matched",
+    "one-off flaky failure without deterministic or predeclared distributional adjudication",
+    "route/backend difference hidden inside an asserted same R",
+    "unmeasured gate component already visible in source before precommit",
+    "direct manipulation of Y or oracle"
+  ],
+  "outcome_independent_adjudication": [
+    "no collision -> bounded sufficiency survival only",
+    "collision removed by measurement or vector-G refinement -> coarse representation failure",
+    "collision resolved by predeclared H -> admissible state refinement",
+    "exact collision surviving all frozen audits -> deterministic repaired-state sufficiency falsified at frozen grain",
+    "independent collision after prospective refinement -> LAW_R2_PRESSURE_ESTABLISHED at most"
+  ],
+  "claim_ceiling": [
+    "No finite experiment proves universal nonexistence of a sufficient finite ontology.",
+    "P30 cannot itself authorize LAW-R2.",
+    "Macro law, SOLID derivation, manuscript authority, and universal latent-state impossibility remain unauthorized."
+  ],
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_compute_test_upload_only": true,
+    "actions_may_not_commit_push_tag_or_move_refs": true,
+    "repository_actor": "WhoSia",
+    "preopen_default_branch_bot_author_count": 0
+  }
+}
