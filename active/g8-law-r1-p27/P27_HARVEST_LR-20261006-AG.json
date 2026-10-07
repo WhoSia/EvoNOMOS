@@ -1,0 +1,64 @@
+{
+  "harvest_id": "LR-20261006-AG",
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P27",
+  "status": "PASS_HARVEST_NON_SOVEREIGN",
+  "authority_transferred": "NONE",
+  "fragments": [
+    {
+      "id": "AG-F01",
+      "name": "Kernel Orientation Beats Kernel Rank",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AG-F02",
+      "name": "Minimal Separating Intervention Basis of Cardinality One",
+      "status": "PRE_FRESH_THEOREM"
+    },
+    {
+      "id": "AG-F03",
+      "name": "Non-Nested Architecture Family Branching",
+      "status": "BOUNDED_EMPIRICAL_STRUCTURE"
+    },
+    {
+      "id": "AG-F04",
+      "name": "Typed Coordinates Are Not Anonymous Vector Axes",
+      "status": "METHOD_FRAGMENT"
+    },
+    {
+      "id": "AG-F05",
+      "name": "Finite-Intervention Architecture Equivalence Classes",
+      "status": "MATHEMATICAL_FRAGMENT"
+    },
+    {
+      "id": "AG-F06",
+      "name": "Rank-3 Latent-Transport Obstruction Criterion",
+      "status": "HARVEST_ONLY"
+    },
+    {
+      "id": "AG-F07",
+      "name": "Independent-Layer vs Cross-Coupled Gate Semantics",
+      "status": "BOUNDED_THEORY_FRAGMENT"
+    }
+  ],
+  "strongest_result": "Two mechanistically distinct software systems realize opposed non-nested q/g coupling kernels under one frozen measurement protocol; both kernels have rank 2, so orientation rather than rank carries the architecture distinction.",
+  "cross_lab_backflow": {
+    "MQR": [
+      "finite intervention equivalence",
+      "rank vs oriented structure"
+    ],
+    "NOMOS": [
+      "independent authority layer vs cross-coupled authority propagation"
+    ],
+    "C3X": [
+      "kernel direction and mediator-coordinate orientation"
+    ],
+    "KSGT": [
+      "non-nested rival separation under typed coordinates"
+    ],
+    "CUBE-REV": [
+      "finite-basis equivalence-class refinement"
+    ]
+  },
+  "paper_readiness": "PREPARATION_ONLY",
+  "manuscript": "NOT_AUTHORIZED"
+}
