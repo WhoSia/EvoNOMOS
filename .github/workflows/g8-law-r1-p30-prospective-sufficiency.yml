@@ -1,0 +1,60 @@
+name: G8 LAW-R1-P30 Prospective Sufficiency Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/**'
+      - 'tools/law-r1-p30-checker.mjs'
+      - '.github/workflows/g8-law-r1-p30-prospective-sufficiency.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prospective-court:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact head
+        uses: actions/checkout@v4
+
+      - name: Audit workflow writeback prohibition
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=".github/workflows/g8-law-r1-p30-prospective-sufficiency.yml"
+          if grep -En 'git[[:space:]]+(commit|push|tag)|contents:[[:space:]]*write|github-actions\[bot\]' "$FILE"; then
+            echo "BOT_CONTRIBUTION_RISK"
+            exit 1
+          fi
+          echo "P30_WORKFLOW_READ_ONLY=PASS"
+
+      - name: Verify prospective files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f active/g8-law-r1-p30/P30_CONSTITUTION.json
+          test -f active/g8-law-r1-p30/P30_MATHEMATICAL_DOSSIER.md
+          test -f active/g8-law-r1-p30/P30_PRESEAL.json
+          node -e 'JSON.parse(require("fs").readFileSync("active/g8-law-r1-p30/P30_CONSTITUTION.json","utf8")); JSON.parse(require("fs").readFileSync("active/g8-law-r1-p30/P30_PRESEAL.json","utf8")); console.log("P30_PROSPECTIVE_JSON=PASS")'
+
+      - name: Run finite fiber checker
+        run: node tools/law-r1-p30-checker.mjs
+
+      - name: Emit prospective receipt
+        shell: bash
+        run: |
+          mkdir -p out
+          {
+            echo "P30_STATUS=PRE_FRESH_SEALED"
+            echo "P30_HEAD=$GITHUB_SHA"
+            echo "P30_FRESH_OUTCOME_INSPECTED=false"
+            echo "P30_LAW_R2_AUTHORITY=FORBIDDEN"
+          } | tee out/P30_PROSPECTIVE_RECEIPT.txt
+
+      - name: Upload prospective receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-prospective-receipt
+          path: out/P30_PROSPECTIVE_RECEIPT.txt
