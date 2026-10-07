@@ -2,81 +2,85 @@
 
 Current scientific surface:
 
-- active stage: G8 LAW-R1-P28
-- formal suffix: Census
+- active stage: G8 LAW-R1-P29
+- formal suffix: Reconstitution
 - status: CLOSED / PASS
-- verdict: PASS_X1_EXACT_OBSTRUCTION__STRONG_SCALAR_NECESSITY_FAILS_AT_ACTION_GRAIN__N0_N1_CONDITIONAL_EXHAUSTIVENESS_PRESERVED__LAW_R2_NOT_AUTHORIZED
-- canonical run: 37572440278
-- canonical head: e10ef90328a7da96d4ee852325057d40b8951875
-- canonical job: 112633849354
-- artifact: 11461736256
-- digest: sha256:dc6f1d50cf5738c5713117bd732946fbc8dec91dcef3da5304efc105e93c3f71
-- terminal seal commit: 1545fdc690cfcfa84ca06af1a5d91f569dd019ec
+- verdict: PASS_X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP__REPAIRED_QUOTIENT_VALIDATED__LAW_R2_NOT_AUTHORIZED
+- canonical run: 37574114260
+- canonical head: af8c41448aa4eebfab88d7ecd00b656ebcab89f9
+- canonical job: 112639065830
+- artifact: 11460954438
+- digest: sha256:d6e38e812bada788f60a0fa75ebf1b6fa107e8d7471e70dffc3f40643e574ee6
+- terminal seal commit: af8c41448aa4eebfab88d7ecd00b656ebcab89f9
 
-P28 mathematical authority:
+P29 repaired-semantic authority:
 
-- binary scalar upstream DROP has exactly four weak-semantic signatures: N0, N1, X0, X1
-- under strong scalar q-necessity and g-gate semantics, N0/N1 are conditionally exhaustive
-- one directly measured upstream DROP separates the four weak-semantic rows
-- same measured (q,g) with different y remains a direct scalar-sufficiency obstruction
-- rank 3 requires a third admissible direction and is not promoted from rank alone
-- structured gate vector G can support genuine partial-coupling families beyond scalar N0/N1
+- prospectively distinguish action-level necessity from implementation-route availability/selection
+- repaired coordinates are (Q,R,G,Y), with Q carrying the action-sufficient / necessity-bearing quotient at the tested grain
+- route loss is not itself action-capability loss
+- P28 is not retroactively relabeled; its X1 ontology obstruction remains historically authoritative
+- P27/P28 conditional N0/N1 exhaustiveness survives under the original strong scalar premises
+- repaired-state sufficiency is not established universally
 
-Exact P28 obstruction — BLAKE3:
+Exact P29 cross-mechanism witness — libdeflate:
 
-- repository: BLAKE3-team/BLAKE3
-- exact commit: f55849f89cd85083c1c9daa2c5de20766f309c00
-- q = AVX2 dispatch admissibility
-- g = actual AVX2 local backend selected/admitted
-- y = public BLAKE3 hash action correctness/success
-- baseline = (1,1,1), SIMD degree 8
-- upstream AVX2 DROP = (0,0,1), SIMD degree 4
-- kernel = (-1,-1,0)
-- shared digest = b1089fce67e9ebd2e95f8610718aadc46498c476d08606fc6bcd985b413c793d
-- baseline tests = 46 unit + 13 doctests PASS
-- DROP tests = 46 unit + 13 doctests PASS
-- classification = X1_CROSS_COUPLED_BYPASS_OBSTRUCTION
+- exact source commit: 92e6a0db9fa848d742f9eb286c92afc60f2c3dda
+- baseline: (Q,R,G,Y)=(1,1,1,1)
+- route DROP: (Q,R,G,Y)=(1,0,1,1)
+- interventional delta: (0,-1,0,0)
+- interpretation: implementation-route coordinate falls while repaired quotient, local gate, and public action remain fixed
+- classification: X1_CROSS_MECHANISM_FALLBACK_PRESERVING_ROUTE_DROP
+- scientific result: repaired route/action factorization validated at the tested grain
 
 Central ruling:
 
-- N0/N1 conditional exhaustiveness theorem survives
-- BLAKE3 falsifies the strong scalar q-necessity ontology at the chosen action grain
-- X1 is an ontology/necessity-boundary witness, not a third family inside the strong scalar ontology
-- fallback-preserved action requires semantic reconstitution before any stronger family taxonomy
-- same-(q,g) action splitting and structured-G partial coupling remain open successor attacks
+- P29 transports the P28 fallback-preserving phenomenon into an independent exact-source mechanism
+- implementation route is not identical to action necessity
+- the repaired quotient survives the route DROP while public action persists
+- no same-repaired-state/different-Y witness was obtained
+- structured-G partial coupling remains an open successor attack
+- LAW-R2 remains NOT_AUTHORIZED
 
 Provenance:
 
-- constitution: f2b4ed834e5ed98b371f2dfe7d2b2ef900f87700
-- mathematical note: 62226a3d28967d2182f5637487e938d3454f8ad1
-- checker: 1ee21ce6c41407d390906527fc0ebe4f1a3e9aa0
-- preseal: fd9067cb3b4c7101a097a6086ae5be93ed910d90
-- BLAKE3 candidate precommit: ffc887b1b22ee4e3f412a392a4e9e5688ee32af2
-- probe: b55170a260d69574b1a430e72bfd805e0a5a7d4b
-- intervention harness: 2b00a7c1de27b65932b5bf4134b5f0195c654e09
-- Court: 64c832b6d23098575a429f2e7cd71f3c020e6231
-- hosted workflow: e10ef90328a7da96d4ee852325057d40b8951875
-- terminal seal: 1545fdc690cfcfa84ca06af1a5d91f569dd019ec
+- constitution: 9298d097faadfb33ec009d45439004fad7bbcf19
+- mathematical note: 94c28c88751096d01a23efccb6814a9189c39821
+- checker: 964c9d404254c4fd2b6e50eff579efeb894044e6
+- preseal: ff28677d32715008458a915a674a7cb0a42cbe3c
+- candidate: b171d1a32e3aaed2775e2ef1abd23a8abbf52c11
+- terminal seal: af8c41448aa4eebfab88d7ecd00b656ebcab89f9
+
+Administrative closure:
+
+- Notion Run: 3f2ef561-cf92-810c-8706-d461aaf2c2ad
+- Notion Decision: 3f2ef561-cf92-81e9-b997-ee80d80a6f14
+- Notion Run readback: Complete
+- Notion Decision readback: Sealed
+- RAVEL: 10404–10411
+- Decision: 10412–10422
+- Global next: 10423
 
 Governance:
 
 - BOT_CONTRIBUTION_ZERO remains binding
-- prior reachable github-actions[bot] author/committer count = 0
-- all new P28 repository commits were authored/committed by WhoSia
-- workflow permissions: contents read
-- Actions performed compute/artifact only; no repository-history writeback
+- GitHub Actions authority remains compute/test/artifact only
+- no Actions-authored commit, push, tag, ref movement, or repository-history writeback is authorized
+- human repository history only
 
 Claim boundary:
 
-- exactly three universal architecture families = NOT_AUTHORIZED
-- universal latent-state theorem = NOT_AUTHORIZED
+- cross-mechanism X1 fallback-preserving route/action separation = AUTHORIZED
+- repaired quotient validation at the tested grain = AUTHORIZED
+- P27/P28 conditional N0/N1 theorem = PRESERVED
+- same-repaired-state/different-Y insufficiency = NOT_OBSERVED
+- universal repaired-state sufficiency = NOT_AUTHORIZED
 - macro law = NOT_AUTHORIZED
 - SOLID special case = NOT_DERIVED
 - LAW-R2 = NOT_AUTHORIZED
-- manuscript = NOT_AUTHORIZED
+- manuscript authority = NOT_AUTHORIZED
+- universal latent-state theorem = NOT_AUTHORIZED
 
 Research OS:
 
-- RAVEL: 10355–10383
-- Decision: 10384–10403
-- Global next: 10404, still within LAW-R1.
+- P29 is administratively CLOSED / PASS.
+- Global next: 10423, still within LAW-R1 unless a stronger prospective state-ontology insufficiency witness changes authority.
