@@ -67,7 +67,7 @@ jobs:
         run: |
           set -euo pipefail
           ./p29-libdeflate-probe > p29-baseline.json
-          LIBDEFLATE_DISABLE_CPU_FEATURES='avx,avx2,avx512bw,avx512vl,avx512vnni,avxvnni,bmi2,pclmulqdq,vpclmulqdq' \
+          LIBDEFLATE_DISABLE_CPU_FEATURES='avx,avx2,avx512bw,avx512vl,bmi2,pclmulqdq,vpclmulqdq' \
             ./p29-libdeflate-probe > p29-route-drop.json
           cat p29-baseline.json p29-route-drop.json
 
