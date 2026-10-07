@@ -1,0 +1,56 @@
+name: G8 LAW-R1-P30 Phase II Theory Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_PHASE_II_THEOREM_SUPPLEMENT.md'
+      - 'active/g8-law-r1-p30/P30_PHASE_II_PRESEAL.json'
+      - 'active/g8-law-r1-p30/P30_BEHAVIORAL_QUOTIENT_BOUNDARY.md'
+      - 'active/g8-law-r1-p30/P30_PHASE_II_BOUNDARY_SEAL.json'
+      - 'tools/law-r1-p30-phase2-checker.mjs'
+      - '.github/workflows/g8-law-r1-p30-phase2-theory.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  phase2-theory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact EvoNOMOS head
+        uses: actions/checkout@v4
+
+      - name: Audit read-only governance
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=".github/workflows/g8-law-r1-p30-phase2-theory.yml"
+          if grep -En 'git[[:space:]]+(commit|push|tag)|contents:[[:space:]]*write|github-actions\[bot\]' "$FILE"; then
+            echo "BOT_CONTRIBUTION_RISK"
+            exit 1
+          fi
+          echo "P30_PHASE2_WORKFLOW_READ_ONLY=PASS"
+
+      - name: Verify frozen Phase II authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f active/g8-law-r1-p30/P30_PHASE_II_THEOREM_SUPPLEMENT.md
+          test -f active/g8-law-r1-p30/P30_PHASE_II_PRESEAL.json
+          test -f active/g8-law-r1-p30/P30_BEHAVIORAL_QUOTIENT_BOUNDARY.md
+          test -f active/g8-law-r1-p30/P30_PHASE_II_BOUNDARY_SEAL.json
+          test -f tools/law-r1-p30-phase2-checker.mjs
+
+      - name: Run Phase II mathematical checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-phase2-checker.mjs | tee P30_PHASE2_CHECKER.txt
+
+      - name: Upload Phase II theory receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-phase2-theory
+          path: P30_PHASE2_CHECKER.txt
