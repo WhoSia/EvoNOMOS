@@ -1,0 +1,54 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P29",
+  "formal_name": "Necessity-Aware Quotient Reconstitution, Fallback-Preserving Action Factorization, Action-Sufficient Quotient vs Implementation-Route Coordinate Separation, Cross-Mechanism X1 Transport, Structured-Gate Partial-Coupling Discrimination, Same-Action/Different-Route Identifiability, Minimal Repaired Intervention Basis & Semantic-Quotient Validation",
+  "suffix": "Semantic Quotient",
+  "parent_authority": {
+    "stage": "G8 LAW-R1-P28",
+    "verdict": "PASS_X1_EXACT_OBSTRUCTION__STRONG_SCALAR_NECESSITY_FAILS_AT_ACTION_GRAIN__N0_N1_CONDITIONAL_EXHAUSTIVENESS_PRESERVED__LAW_R2_NOT_AUTHORIZED",
+    "lineage_head": "3969ad57bb19ba9d4872e100f42ea858c39191ef",
+    "canonical_head": "e10ef90328a7da96d4ee852325057d40b8951875",
+    "canonical_run": 37572440278,
+    "terminal_seal": "1545fdc690cfcfa84ca06af1a5d91f569dd019ec"
+  },
+  "global_next": 10404,
+  "explanandum": "Can action necessity, implementation-route availability, local gating, and public action be prospectively separated into a valid repaired quotient across independent exact mechanisms without turning route loss into a post-hoc necessity coordinate?",
+  "frozen_state": {
+    "Q": "directly measured action-level capability/admissibility under the public action contract; defined independently of observed Y and independently of route selection",
+    "R": "directly measured implementation-route availability or selected backend, including an explicit fallback route when present",
+    "G": "directly measured local gating structure; scalar only when one gate is frozen, otherwise a vector G=(g1,...,gm) is retained",
+    "Y": "directly measured public action/effect against a common oracle"
+  },
+  "semantic_prohibitions": [
+    "Never define Q as whatever happens to be necessary for Y after observing outcomes.",
+    "Never collapse R into Q merely because route loss changes the selected backend.",
+    "Never collapse structured G into route fallback without a prospective intervention and direct component measurements.",
+    "Never treat same-action/different-route as a necessity failure when Q remains 1 and Y remains correct.",
+    "Never rewrite P27 or P28 q/g/y meanings; repaired coordinates may embed them only through an explicit map."
+  ],
+  "required_interventions": [
+    "BASELINE: Q=1, R=1, G=all required components admitted, Y=1",
+    "Q_DROP: force Q 1->0 without directly intervening on R, G, or Y",
+    "ROUTE_DROP: force R 1->0 while holding Q=1 and permitting a predeclared fallback",
+    "G_DROP: force one declared gate component 1->0 while holding Q and R fixed",
+    "MATCHED_REPAIRED_STATE: compare systems with identical measured (Q,R,G) under admissible non-Y interventions"
+  ],
+  "falsifiers": [
+    "A route drop with Q=1 and Y=1 is not a Q-necessity failure; relabeling it as Q is forbidden.",
+    "A same-(Q,R,G), different-Y witness after confounding and measurement mismatch are excluded falsifies action sufficiency.",
+    "A structured-G partial-coupling witness falsifies scalar-G exhaustiveness but is not automatically a route family.",
+    "A Q_DROP with Y=1 under a valid action-capability intervention falsifies the proposed Q semantics or the necessity claim.",
+    "Any candidate lacking direct Q/R/G/Y measurement is HOLD, not repaired by prose."
+  ],
+  "claim_ceiling": [
+    "P28 strong scalar N0/N1 exhaustiveness remains conditional on action-necessary Q, necessary G, and deterministic sufficiency.",
+    "P28 X1 remains an action-grain semantic obstruction, not N2 or a third strong-scalar family.",
+    "No LAW-R2, macro law, SOLID derivation, manuscript authority, or universal latent-state claim from P29 alone."
+  ],
+  "freshness_rule": "No P29 candidate outcome may be inspected before constitution, mathematical note, checker, and preseal are committed.",
+  "governance": {
+    "actions_may_compute_not_author_history": true,
+    "bot_contribution_zero": true,
+    "repository_actor": "WhoSia",
+    "candidate_search_outcome_blind_after_preseal": true
+  }
+}
