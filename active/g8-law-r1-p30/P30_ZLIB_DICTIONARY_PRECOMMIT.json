@@ -1,0 +1,52 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "candidate": "zlib preset-dictionary state",
+  "status": "CANDIDATE_PRECOMMITTED_BEFORE_HOSTED_OUTCOME",
+  "source": {
+    "repository": "madler/zlib",
+    "ref": "767c4c947852e143f582c85f14cf573411df1b35",
+    "branch_observed": "develop"
+  },
+  "source_semantics_observed_before_outcome": [
+    "zlib.h states that compressor and decompressor must use exactly the same preset dictionary.",
+    "zlib.h exposes inflateSetDictionary and inflateGetDictionary.",
+    "raw inflate permits dictionary installation independently of the public output oracle.",
+    "dictionary state is therefore directly operationalizable before outcome adjudication."
+  ],
+  "public_action_contract": "Decompress one fixed raw-DEFLATE byte stream to one fixed expected plaintext under the same zlib binary, wrapper mode, input bytes, output capacity, and oracle.",
+  "frozen_coordinates": {
+    "Q": "inflate capability/admissibility: inflateInit2 with raw-DEFLATE windowBits succeeds",
+    "R": "raw-DEFLATE decode route selected by the same frozen inflateInit2 mode in both arms",
+    "G": [
+      "stream initialization succeeded",
+      "identical compressed input is available",
+      "identical output capacity is available"
+    ],
+    "H_dict": "preset dictionary content is installed in the decoder state before the decode action; measured independently of Y using the dictionary API/state readout",
+    "Y": "inflate reaches successful completion and decoded bytes exactly equal the frozen expected plaintext"
+  },
+  "classification_boundary": "H_dict is prospectively classified as dynamic history/context state rather than an implementation route or admission gate. If direct source/runtime evidence shows it is inseparable from a predeclared G component, classify the result as structured-G residualization instead of hidden-coordinate rescue.",
+  "intervention": {
+    "name": "DICTIONARY_STATE_DROP",
+    "baseline": "Q=1,R=1,G=all-ones,H_dict=1",
+    "drop": "Q=1,R=1,G=all-ones,H_dict=0",
+    "held_fixed": [
+      "exact zlib source revision",
+      "compiler/build",
+      "raw-DEFLATE mode",
+      "compressed bytes",
+      "expected plaintext",
+      "input/output buffer sizes",
+      "public oracle"
+    ],
+    "direct_Y_intervention": false
+  },
+  "expected_outcomes_frozen_before_hosted_run": {
+    "primary": "same frozen Z=(Q,R,G) but H_dict differs and public Y differs; if exact, deterministic sufficiency of Z is falsified at this grain and the prospectively admitted H_dict rescues the state representation",
+    "fallback_1": "if Z differs under direct measurement, classify as measurement/structured-G resolution, not a genuine collision",
+    "fallback_2": "if Y remains identical, candidate does not separate repaired-state sufficiency and is HOLD/negative evidence",
+    "fallback_3": "if behavior is flaky, deterministic adjudication is invalid and the candidate is HOLD unless a distributional protocol is prospectively added"
+  },
+  "authorized_verdict_if_primary_exact": "PASS_SAME_REPAIRED_STATE_DIFFERENT_Y__HIDDEN_COORDINATE_REFINEMENT_REQUIRED__LAW_R2_NOT_AUTHORIZED",
+  "claim_ceiling": "This candidate can falsify Z=(Q,R,G) sufficiency at the frozen grain and validate one prospective history coordinate H_dict. It cannot establish persistent refinement failure, LAW-R2, universal latent state, macro law, SOLID derivation, or manuscript authority."
+}
