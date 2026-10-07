@@ -1,0 +1,51 @@
+name: G8 LAW-R1-P28 Architecture Exhaustiveness Census
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p28/**'
+      - 'tools/law-r1-p28-*'
+      - '.github/workflows/g8-law-r1-p28-architecture-census.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  census:
+    name: P28 X1 Obstruction Court
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Prepare P28 Output
+        run: mkdir -p out-p28
+
+      - name: Run Frozen Kernel Census
+        run: python3 tools/law-r1-p28-kernel-census.py | tee out-p28/p28-kernel-census.txt
+
+      - name: Materialize Exact BLAKE3
+        run: |
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/BLAKE3-team/BLAKE3.git out-p28/blake3
+          git -C out-p28/blake3 checkout --quiet f55849f89cd85083c1c9daa2c5de20766f309c00
+          test "$(git -C out-p28/blake3 rev-parse HEAD)" = "f55849f89cd85083c1c9daa2c5de20766f309c00"
+
+      - name: Run BLAKE3 X1 Intervention
+        run: bash tools/law-r1-p28-blake3-x1.sh out-p28/blake3 out-p28/p28-blake3-x1.json
+
+      - name: Run P28 Adjudicator
+        run: node tools/law-r1-p28-court.mjs out-p28/p28-blake3-x1.json out-p28/p28-court.json
+
+      - name: Upload P28 Court Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p28-architecture-census
+          path: |
+            out-p28/p28-kernel-census.txt
+            out-p28/p28-blake3-x1.json
+            out-p28/p28-blake3-baseline-tests.txt
+            out-p28/p28-blake3-no-avx2-tests.txt
+            out-p28/p28-court.json
+          retention-days: 30
