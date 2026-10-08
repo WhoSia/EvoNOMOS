@@ -1,0 +1,24 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "SECOND_REAL_WORLD_SOURCE_ADMISSION",
+  "status": "HOSTED_PASS_SOURCE_AND_PROVIDER_TESTS__NO_LIFECYCLE_OR_CROSSWORLD_LAW",
+  "run": 37727868281,
+  "head": "835b6c38e0082f8abcad2a9ccdde366b5806e246",
+  "job": 113150037547,
+  "artifact": 11528149187,
+  "digest": "sha256:ca1393fd59c587b1b9125afb895975d279103581efac51c8539fd18ae0681650",
+  "repo": "theunrepentantgeek/code-visualizer",
+  "issue": 162,
+  "before": "6d48e3b3aa3a21baea44e05b8b0aa8f731fe0fd6",
+  "after": "fb9c0e7e675de70035e556b9ba579d1e8f602da1",
+  "source_court": "PASS_INDEPENDENT_PROVIDER_CAPABILITY_TOPOLOGY_SOURCE_ONLY__LIFECYCLE_EFFECT_NOT_TESTED",
+  "test_result": "go test ./internal/provider passes on each exact historical revision",
+  "source_difference": "Single full provider.Interface carrying metadata and Load becomes MetricDescriptor and Loader; registry pairs descriptor and loader.",
+  "limitations": [
+    "issue itself names ISP and cannot constitute originality",
+    "historical revision includes 13 files of change",
+    "not a controlled independent future requirement",
+    "No S/L/C/A/Q vector on a common independent change, no moderator/sign reversal",
+    "P31 still OPEN; LAW-R2 remains NOT_AUTHORIZED"
+  ]
+}
