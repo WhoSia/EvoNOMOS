@@ -1,0 +1,50 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "title": "EvoNOMOS Generation VIII LAW-R1-P31 — Intervention-Stable Predictive-State Reconstitution, Cross-Mechanism Minimal Sufficient Coordinates, Observable-Class Complexity Barriers, History–Context Transport, State-Aware Structural Policy Discrimination & the Return from Behavioral Quotients to Conditional Software-Design Laws",
+  "status": "OPEN_CONSTITUTION_ONLY",
+  "parent": {
+    "stage": "P30 CLOSED/PASS_BOUNDED_WITH_PROSPECTIVE_REPAIR",
+    "main_head": "5f6c16154dba54665a4502502279d0c7ba661674",
+    "global_next": 10466
+  },
+  "purpose": "Test whether a prospectively observable history coordinate changes a source-grounded engineering action and the correctness-versus-change-burden Pareto frontier on a fixed demand grid.",
+  "mechanism": "SQLite 3.46.1 allocation threshold maintenance calibration, not independent real maintenance demand",
+  "source_sha": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+  "fossil_uuid": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33",
+  "policies": [
+    "Always NOOP",
+    "Always RESERVE",
+    "Use pre-action sequence high-water to choose NOOP or RESERVE"
+  ],
+  "arms": [
+    "NOOP",
+    "RESERVE by inserting and removing a high-water sentinel in one transaction"
+  ],
+  "states": [
+    0,
+    3,
+    7,
+    11
+  ],
+  "thresholds": [
+    5,
+    9
+  ],
+  "repetitions": 3,
+  "grid_size": 48,
+  "observable_W": "visible table, schema and fixed PRAGMA gates",
+  "candidate_H": "pre-action sqlite_sequence.seq measured directly",
+  "environment_E": "minimum next ID threshold",
+  "outcome_vector": [
+    "requirement violation",
+    "visible row integrity",
+    "additional write transactions",
+    "additional mutation statements",
+    "descriptive file size and elapsed runtime"
+  ],
+  "decision_rule": "RESERVE iff seq+1 is smaller than minimum requested next ID",
+  "predeclared_claim_ceiling": "calibration-level source-pinned engineering policy discrimination, not new general law or irreducible ontology failure",
+  "law_r2_authorized": false,
+  "notes": "P30 did not test this structural action pair. P31 policy outcome must be measured prospectively, no synthetic fixture promoted to world evidence.",
+  "ci_permissions": "read only, human commits, no bot writeback"
+}
