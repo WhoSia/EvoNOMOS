@@ -1,0 +1,44 @@
+name: G8 LAW-R1-P31 Demand-Trace Quotient Checker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p31-demand-trace-quotient.mjs'
+      - '.github/workflows/g8-law-r1-p31-demand-trace.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-demand-trace-proof-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check synthetic finite demand-trace quotient and shortest witness
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/law-r1-p31-demand-trace-quotient.mjs | tee out/P31_DEMAND_TRACE_SYNTHETIC_RESULT.json
+          node --input-type=module - <<'NODE'
+          import assert from 'node:assert/strict';
+          import {toy,refine,shortestSeparatingTrace} from './tools/law-r1-p31-demand-trace-quotient.mjs';
+          const q=refine(toy);
+          const seen=[];
+          for(const a of toy.states)for(const b of toy.states){
+            const witness=shortestSeparatingTrace(toy,a,b);
+            assert.equal(witness===null,q.classOf[a]===q.classOf[b]);
+            if(witness)seen.push([a,b,witness.demands.length]);
+          }
+          assert.ok(seen.some(([a,b,k])=>a==='isolated'&&b==='entangled'&&k===2));
+          console.log(JSON.stringify({allPairEquivalenceAgreement:"PASS",statePairsChecked:25,scope:"SYNTHETIC_ONLY",law:"NONE"}));
+          NODE
+      - name: Archive synthetic source checker witness
+        uses: actions/upload-artifact@v4
+        with:
+          name: p31-demand-trace-synthetic-witness
+          path: out/
+          if-no-files-found: error
