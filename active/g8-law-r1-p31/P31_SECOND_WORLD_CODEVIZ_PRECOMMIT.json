@@ -1,0 +1,44 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "INDEPENDENT_OOP_STRUCTURE_REPLICATION_ADMISSION",
+  "status": "EXACT_SOURCE_PRECOMMITTED__CROSS_WORLD_LIFECYCLE_NOT_ADJUDICATED",
+  "world": {
+    "repo": "theunrepentantgeek/code-visualizer",
+    "issue_url": "https://github.com/theunrepentantgeek/code-visualizer/issues/162",
+    "before": "6d48e3b3aa3a21baea44e05b8b0aa8f731fe0fd6",
+    "after": "fb9c0e7e675de70035e556b9ba579d1e8f602da1",
+    "relationship": "direct parent/child",
+    "toolchain": "Go 1.26.1"
+  },
+  "rivals": [
+    "BUNDLED: provider.Interface metadata, dependencies, palette and Load on each provider",
+    "SPLIT: MetricDescriptor static metadata plus Loader execution capability"
+  ],
+  "source_paths": [
+    "internal/provider/provider.go",
+    "internal/provider/registry.go",
+    "cmd/codeviz/help_metrics_cmd.go",
+    "internal/provider/run.go"
+  ],
+  "structural_hypotheses": {
+    "H_obligation": "A metadata-only consumer should not need to receive a Load-capable object. Splitting may lower capability obligations, but introduces registry adaptation cost.",
+    "H_congruence": "Provider execution and metadata may change independently unlike Swamp's co-required field semantics; the effect need not transport from Swamp's shared-conversion improvement.",
+    "H_simple": "A simple interface-method count plus changed-site count may explain any reduction. If so, do NOT elevate a new generative ontology."
+  },
+  "semantic_checks": [
+    "old source has provider.Interface with Load, Name, Kind, Description, Dependencies and DefaultPalette",
+    "new source has MetricDescriptor without Load and Loader with Load",
+    "registry stores descriptor+loader pairs",
+    "source revisions are exact and direct parent/child",
+    "both revisions run Go provider/package tests independently"
+  ],
+  "disqualifiers": [
+    "upstream issue names ISP, thus an ISP confirmation is not novelty",
+    "historic refactor touches 13 files, not a randomized intervention",
+    "test pass does not establish lower lifecycle total cost",
+    "same new functional maintenance requirement not yet executed against both source variants",
+    "Go dependency/toolchain incompatibility causes HOLD rather than fabricated PASS"
+  ],
+  "claim_ceiling": "independent source-grounded architectural mechanism admission only. Need fresh change-sequence test, full S/L/C/A/Q, cross-world conditional prediction and simple baseline competition for any generative OO claim.",
+  "law_r2_authorized": false
+}
