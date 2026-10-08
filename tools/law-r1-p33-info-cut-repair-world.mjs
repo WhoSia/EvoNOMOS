@@ -58,7 +58,7 @@ class FakeLiquid{
 }
 const provider=vm.runInNewContext("({"+address+","+render+"})",{Liquid:FakeLiquid,DOWN:0});
 async function run(arm,monitor){
- const code=arm==="caller"?dispatch:dispatchFix;
+ const code=arm==="dispatcher"?dispatchFix:dispatch;
  const notification=vm.runInNewContext("(class Notification {"+code+"})");
  let observed=null;
  notification.providerList={fixture:{
@@ -82,6 +82,9 @@ for(const o of ordinary.concat(collision)) new URL(o.url);
 const encode=o=>"["+o.name+"]["+o.url+"] TLS certificate CERT will expire in 5 days";
 assert.equal(encode(collision[0]),encode(collision[1]));
 assert.notDeepEqual(collision[0],collision[1]);
+const originalOrdinary=await Promise.all(ordinary.map(o=>run("original",o)));
+assert.ok(originalOrdinary.every(v=>v==="Monitor Name not available|testing.hostname"),
+          "unpatched original should fail ordinary template-context oracle");
 const results={};
 for(const arm of ["caller","dispatcher"]){
  const basic=await Promise.all(ordinary.map(o=>run(arm,o)));
@@ -105,6 +108,7 @@ const report={
  source_issue_seen_before_choice:"https://github.com/louislam/uptime-kuma/issues/7639",
  candidate_edit_grammar:"two bounded JS changes: source caller forwards context vs notification dispatch parses the old message",
  modification_supports_are_disjoint_singletons:true,
+ original_unchanged_ordinary_oracle:"FAIL",
  safe_domain_oracle_both_pass:true,
  extended_collision_oracle_only_caller_passes:true,
  indistinguishable_legacy_message:encode(collision[0]),
