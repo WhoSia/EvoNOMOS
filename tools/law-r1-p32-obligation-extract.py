@@ -21,6 +21,7 @@ PROVIDERS = {
     "phase1": ["NetGSM", "Mutlucell", "Verimor", "IletiMerkezi"],
 }
 KINDS = ("backend_import", "backend_instance", "frontend_import", "frontend_form", "ui_category")
+DIRECTIONS = {"backend_import":"consumer_imports_provider", "backend_instance":"registry_constructs_provider", "frontend_import":"consumer_imports_form", "frontend_form":"registry_maps_form", "ui_category":"catalog_exposes_provider"}
 
 
 class ExtractionError(ValueError):
@@ -71,7 +72,9 @@ def locate(root: Path, arm: str, provider: str, phase: str) -> list[dict]:
         rows.append({
             "phase": phase, "arm": arm, "provider": provider,
             "obligation_type": kind, "owner": rel,
-            "direction": "request_requires_owner_declaration",
+            "direction": DIRECTIONS[kind], "source_vertex": f"module:{rel}",
+            "target_vertex": f"provider:{provider}", "edge_type": kind,
+            "demand": "#7316" if phase == "phase0" else "#7559",
             "source_line": ln, "source_sha256": hashlib.sha256(data).hexdigest(),
             "evidence": content.splitlines()[ln - 1].strip(),
         })
@@ -113,6 +116,8 @@ def extract(snapshots: Path) -> dict:
         "outcome_blind": True,
         "historical_result_used_as_feature": False,
         "observations": entries,
+        "typed_edges": [{"source": e["source_vertex"], "target": e["target_vertex"], "edge_type": e["edge_type"], "demand": e["demand"], "owner": e["owner"], "source_line": e["source_line"]} for e in entries],
+        "direction_warning": "These arrows encode declarations, not demonstrated causal change propagation.",
         "summaries": summaries,
         "rival_judgment": {
             "B0": "The pre-existing site-count baseline already predicts 5 versus 2 under provider additions.",
@@ -175,6 +180,8 @@ def run_self_test(materializer: Path) -> dict:
                         ) + "\n")
         actual = extract(root)
         assert len(actual["observations"]) == 50
+        assert len(actual["typed_edges"]) == 50
+        assert len(set(e["direction"] for e in actual["observations"])) == 5
         assert actual["summaries"]["phase0:DISPERSED"]["physical_owner_files"] == 3
         assert actual["summaries"]["phase1:DUAL"]["physical_owner_files"] == 2
         # Destructive mutation: one removed registration invalidates the grammar.
