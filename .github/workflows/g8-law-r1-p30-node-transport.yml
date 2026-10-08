@@ -1,0 +1,74 @@
+name: G8 LAW-R1-P30 Node Streaming UTF-8 Transport
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_NODE_TEXTDECODER_TRANSPORT_PRECOMMIT.json'
+      - 'tools/law-r1-p30-node-textdecoder-probe.mjs'
+      - 'tools/law-r1-p30-node-transport-court.mjs'
+      - 'tools/law-r1-p30-node-transport-court.test.mjs'
+      - '.github/workflows/g8-law-r1-p30-node-transport.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  node-transport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout candidate inputs
+        uses: actions/checkout@v4
+      - name: Install exact Node runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+          check-latest: false
+      - name: Initialize artifact directory and verify runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node --version | tee out/P30_NODE_VERSION.txt
+          test "$(node -p 'process.versions.node')" = '22.16.0'
+          test -f active/g8-law-r1-p30/P30_NODE_TEXTDECODER_TRANSPORT_PRECOMMIT.json
+      - name: Run adversarial Court regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-node-transport-court.test.mjs | tee out/P30_NODE_TRANSPORT_TESTS.txt
+      - name: Measure prospective full census
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-node-textdecoder-probe.mjs > out/P30_NODE_TRANSPORT_RAW.json
+          sha256sum out/P30_NODE_TRANSPORT_RAW.json | tee out/P30_NODE_TRANSPORT_SHA256.txt
+      - name: Apply independent transport Court
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-node-transport-court.mjs out/P30_NODE_TRANSPORT_RAW.json out/P30_NODE_TRANSPORT_COURT.json | tee out/P30_NODE_TRANSPORT_COURT_STDOUT.txt
+      - name: Record exact source attribution and claim ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "NODE_SOURCE_TAG=v22.16.0"
+            echo "NODE_SOURCE_COMMIT=9774069718d9f80578079d252dddf37ae6fd550d"
+            echo "CANDIDATE_PRECOMMIT=ba394e3e2c3daddab4e5277f5c5ae6a87ab7eb92"
+            echo "PROBE_COMMIT=8f5964da8a3e3f335284e2d0c1f3c253b34cb004"
+            echo "COURT_COMMIT=c09331f94093551b53a06643f1d6961816583d1c"
+            echo "REGRESSION_COMMIT=12d3f76e8459b09ecf909509d360bf34ab5ff6fb"
+            echo "LAW_R2=NOT_AUTHORIZED"
+            echo "GITHUB_ACTIONS_WRITEBACK=FORBIDDEN"
+          } | tee out/P30_NODE_TRANSPORT_RECEIPT.txt
+      - name: Upload success or failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-node-transport
+          path: out/
+          if-no-files-found: warn
