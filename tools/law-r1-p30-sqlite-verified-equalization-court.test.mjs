@@ -20,7 +20,7 @@ try{
  assert.equal(good.status,0,"unmodified measured evidence failed: "+good.stderr);
  const tamper=[
   x=>x.rows[0].future=[{"id":9}],
-  x=>x.rows[1].future=[{"id":1}],
+  x=>x.rows[1].future=[{"id":19}],
   x=>x.rows[0].H_after[0].seq=1,
   x=>x.rows[1].H_after[0].seq=7,
   x=>x.rows[0].H_before=[{"name":"events","seq":1}],
@@ -46,6 +46,7 @@ try{
  let n=0;
  for(const mutation of tamper){
   const copy=structuredClone(base);mutation(copy);
+  assert.notDeepEqual(copy,base,"Adversarial mutation did not alter evidence: "+n);
   const actual=run(copy);
   assert.notEqual(actual.status,0,"tampered outcome accepted: "+n);
   n++;
