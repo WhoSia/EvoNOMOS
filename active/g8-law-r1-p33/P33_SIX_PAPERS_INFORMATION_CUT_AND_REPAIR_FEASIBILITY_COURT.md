@@ -50,3 +50,22 @@ This may justify a thesis/paper only if a new *mechanism-discriminating source-p
 Primary [Harvest LR-20261009-P33](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) integrates these six original PDFs into the P23 mapping-failure → P27 typed orientation → P32 demand-obligation → P33 source-information-cut lineage. **Transfer is a research hypothesis, not scientific-law authority.** No separate nested Harvest created for each paper.
 
 **Verdict:** `P33_SIX_CANONICAL_PAPERS_VERIFIED__FINITE_CUT_CERTIFICATE_HOSTED_PASS__GENERAL_REPAIR_SYNTHESIS_NOT_NOVEL__STRONG_RIVAL_PROSPECTIVE_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+## 5. Audit correction — 64 code-executed pairs versus a manually supplied edit-site label
+
+**Supersedes any implication above that a prior cut certificate automatically discovered a mandatory source site from syntax alone.** The initial `37810762909` checker generated 64 valid colliding state pairs but hardcoded a `crosses_information_cut` flag for three candidate sites. Its singleton hitting set was therefore a conditional result of **a manually supplied edit-location classification**, not a discovery about code ownership. That method PASS was valid for the string-collision constructor but **not** as an independently source-inferred repair-site claim. The frozen third site (template fallback) had never been executed as a repair candidate.
+
+**Repair and new execution.** In `tools/law-r1-p33-info-cut-repair-world.mjs`, now actually execute the pinned original JS methods (via the bounded VM/DB/template stubs) on *each of the 64 parametrized collision pairs* for the two real candidate single-file patches. This is **128 input states per arm**, with result counts:
+- Caller-side structured context forwarding: **64/64 pairs pass** the pairwise exact-context oracle.
+- Dispatcher-side recovery of the old serialized message: **0/64 pairs pass**.
+- Unmodified source: the previously checked ordinary-input negative control fails.
+
+The finite `tools/law-r1-p33-repair-cut-certificate.mjs` now derives the surviving singleton support **retrospectively from these actual execution outcomes**, restricts the admissible comparison to the two executed edits, and explicitly says the chosen candidate grammar, witness generator, and oracle were researcher-defined. The supported conclusion is **within-this-grammar bounded repair option feasibility**, not a general code-inferred minimal necessary site. Independent source analysis that predicts the correct alternative without reading test outcomes remains unsolved.
+
+**New hosted receipt:** [37811536823](https://github.com/WhoSia/EvoNOMOS/actions/runs/37811536823) SUCCESS, artifact `11564134925`, SHA256 `2f65a0e84abe13e5808e58667f3132a7986c53678622dd13e5175b1e3bb4966d`. An intermediate run `37811511112` failed because the test workflow still expected the old verdict string before workflow update; do not conceal this failure, and do not treat it as a failed mathematical counterexample. GitHub Actions remains read-only, human-authored commits only.
+
+### Post-audit adjudication
+`P33_64_PAIR_ACTUAL_SOURCE_METHOD_EXECUTION_PASS__HAND_LABELED_CUT_SITE_CLAIM_WITHDRAWN__PROSPECTIVE_SOURCE_INVARIANT_NOT_YET_FOUND__LAW_R2_NOT_AUTHORIZED`.
+
+### Falsifier required before any novelty promotion
+A useful new information-geometry invariant must be *computed from source and the independently frozen demand* **before** the effect of alternative edits is run, and it must make a forecast whose cell differs from the strongest comparable source dataflow/contract/repair-synthesis rival. A retrospective reconstruction of the chosen repair from pass/fail outcomes, however precise, is not discovery.
