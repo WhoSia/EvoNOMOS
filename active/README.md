@@ -5,7 +5,7 @@
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
 - scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
 - Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10493; next 10494; Decision not opened
+- RAVEL 10466–10493; next 10494 (new P31 hypothesis in GitHub; Notion RAVEL append pending); Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
@@ -69,6 +69,13 @@
 - BUNDLED test fixture requires Name/Kind/Description/Dependencies/DefaultPalette/Load (32 lines); SPLIT fixture uses only a Load implementation plus ordinary descriptor data (30 lines).
 - This confirms a known ISP-type capability-obligation difference **without** novelty, sign reversal, full Git-provider E2E, complete S/L/C/A/Q or a cross-world generative OO structural law. See `P31_CODEVIZ_422_SCOPED_TEST_RECEIPT.json`.
 - Mainline finding: **METHOD/LOCAL SOURCE WITNESS ONLY**; do not add more formalisms or promote on test-count. P31 OPEN / LAW-R2 NOT_AUTHORIZED.
+
+## P31 Paper Candidate — Scientific Hypothesis, Not a New Law
+
+- Candidate: **Demand-Conditioned Obligation Geometry** — clients' co-required changes, explicit noninterference, conformance burden and boundary adaptation costs.
+- New paper-level claim is NOT yet admitted. Simple static coupling (B0) and stronger historical semantic/co-change baseline (B1) must first demonstrably disagree with candidate H on a prospective fully functional OO change.
+- Detailed novelty threat, crossed design, falsifiers and manuscript candidate: `active/g8-law-r1-p31/P31_DEMAND_CONDITIONED_OBLIGATION_GEOMETRY_PAPER_CANDIDATE.md` (commit `86024a741516a77fd27368b2f8d09e0d801d19f7`).
+- No new world contact or empirically verified predictive increment. P31 OPEN, LAW-R2 NOT_AUTHORIZED.
 
 ## Prior closed stage
 
