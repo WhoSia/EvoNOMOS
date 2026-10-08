@@ -39,9 +39,23 @@ function selfTest() {
   assert.deepEqual([coverage(q,unit,["x"]),coverage(q,unit,["y"])],[2,2]);
   assert.equal(mixed(p,unit),-2);
   assert.equal(mixed(q,unit),-1);
+  // Structural policy selection can create a *positive* mixed difference
+  // even when every fixed admissible architecture is modular.
+  const armA = {x:["a"], y:["b"]}, armB = {x:["c"], y:["d"]};
+  const armWeights = {a:1,b:3,c:3,d:1};
+  const envelope = request => Math.min(
+    coverage(armA, armWeights, request),
+    coverage(armB, armWeights, request)
+  );
+  assert.equal(mixed(armA, armWeights), 0);
+  assert.equal(mixed(armB, armWeights), 0);
+  const envelopeMixed = envelope(["x","y"]) - envelope(["x"]) -
+    envelope(["y"]) + envelope([]);
+  assert.equal(envelopeMixed, 2);
   return {
     status:"PASS",
     exhaustive_mask_pairs:tested,
+    policy_envelope_counterexample:{fixed_arm_interactions:[0,0], optimized_envelope_interaction:envelopeMixed, interpretation:"positive interaction can arise from architecture selection without intrinsic within-arm coupling", authority:"synthetic known mathematical possibility"},
     under_theorem_assumptions:"mixed interaction exactly equals negative shared-owner weight",
     same_marginal_count_counterexample:{
       "pair_1":-2, "pair_2":-1,
