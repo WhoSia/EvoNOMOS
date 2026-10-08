@@ -1,0 +1,48 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "STRUCTURAL_RETURN_WC_A0",
+  "status": "HOSTED_SOURCE_PAIR_BASELINE_PASS__PROSPECTIVE_CHANGED_DEMAND_NOT_YET_EXECUTED",
+  "repository": "dklassen/swamp",
+  "issue": "https://github.com/dklassen/swamp/issues/61",
+  "direct_base": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+  "historical_shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee",
+  "hosted": {
+    "run": 37720828504,
+    "job": 113127808604,
+    "artifact": 11525900885,
+    "digest": "sha256:1a8bcc2b5e6041ed986bf03147e0d258cbddd9b03d97058fd1dfc22cf505fae0",
+    "conclusion": "success",
+    "go_packages_passed": [
+      "filter",
+      "sync",
+      "tui"
+    ],
+    "before_and_after": true
+  },
+  "source_court": "PASS_HISTORICAL_DIRECT_SHARED_OOP_SOURCE_TOPOLOGY__SEMANTIC_DOMAIN_CONFOUND_PRESERVED__NO_CAUSAL_LIFECYCLE_CLAIM",
+  "calibration_semantics": {
+    "valid_domain": [
+      "department",
+      "location"
+    ],
+    "outside_valid_domain": "unknown fields had meaningfully different error handling, so no total functional equivalence"
+  },
+  "next_research": {
+    "hypotheses": "shared change authority may reduce modification obligations under high cross-client semantic congruence; divergent clients may impose additional adapter burden",
+    "prospective_trial_executed": false,
+    "context": "actual Team filter and divergent demand need independently frozen complete program/test realization",
+    "plain_baselines": [
+      "coupling",
+      "fanout",
+      "file-count",
+      "change-surface"
+    ]
+  },
+  "authority": {
+    "p31_open": true,
+    "oop_structure_case_admitted": true,
+    "confirmed_signed_lifecycle_effect": false,
+    "independent_demand_transport": false,
+    "law_r2_authorized": false
+  }
+}
