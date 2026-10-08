@@ -1,0 +1,44 @@
+name: G8 LAW-R1-P31 Swamp Source Admission
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p31/P31_REAL_MAINTENANCE_SWAMP_ADMISSION.json'
+      - 'tools/law-r1-p31-swamp-source-audit.mjs'
+      - '.github/workflows/g8-law-r1-p31-swamp-admission.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-admission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+      - name: Freeze upstream revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          test -f active/g8-law-r1-p31/P31_REAL_MAINTENANCE_SWAMP_ADMISSION.json
+          git clone --quiet --filter=blob:none https://github.com/dklassen/swamp.git /tmp/p31-swamp
+          cd /tmp/p31-swamp
+          git checkout --quiet 9fb288e10730ad214cc1e4413c7664903ee4830a
+          test "$(git rev-parse HEAD)" = "9fb288e10730ad214cc1e4413c7664903ee4830a"
+          git rev-parse HEAD > "$GITHUB_WORKSPACE/out/SWAMP_SOURCE.txt"
+      - name: Source-grounded rival audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-swamp-source-audit.mjs /tmp/p31-swamp out/SWAMP_AUDIT.json | tee out/SWAMP_AUDIT_STDOUT.txt
+      - name: Preserve source-only receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p31-swamp-source-admission
+          path: out/
+          if-no-files-found: warn
