@@ -1,0 +1,95 @@
+name: G8 LAW-R1-P31 State-Aware SQLite Structural Policy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p31/P31_SQLITE_POLICY_PRECOMMIT.json'
+      - 'tools/law-r1-p31-sqlite-policy-probe.py'
+      - 'tools/law-r1-p31-sqlite-policy-court.mjs'
+      - 'tools/law-r1-p31-sqlite-policy-court.test.mjs'
+      - '.github/workflows/g8-law-r1-p31-sqlite-policy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  state-aware-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout EvoNOMOS prospectively frozen inputs
+        uses: actions/checkout@v4
+      - name: Initialize evidence directory and provenance check
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          test -f active/g8-law-r1-p31/P31_CONSTITUTION.json
+          test -f active/g8-law-r1-p31/P31_SQLITE_POLICY_PRECOMMIT.json
+          test -f active/g8-law-r1-p31/P31_DECISION_SUFFICIENCY_DOSSIER.md
+          echo "EVONOMOS_EXACT_HEAD=$GITHUB_SHA" | tee out/P31_ORIGIN.txt
+      - name: Test adversarial Court logic without world-evidence promotion
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-sqlite-policy-court.test.mjs | tee out/P31_COURT_ADVERSARIAL_REGRESSION.txt
+      - name: Check out exact SQLite mechanism revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet --filter=blob:none https://github.com/sqlite/sqlite.git /tmp/p31-sqlite
+          cd /tmp/p31-sqlite
+          git checkout --quiet f3d536d37825302e31ed0eddd811c689f38f85a3
+          test "$(git rev-parse HEAD)" = "f3d536d37825302e31ed0eddd811c689f38f85a3"
+          test "$(tr -d '\n' < manifest.uuid)" = "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
+          cp manifest.uuid "$GITHUB_WORKSPACE/out/P31_SOURCE_FOSSIL_UUID.txt"
+          git rev-parse HEAD | tee "$GITHUB_WORKSPACE/out/P31_SOURCE_GIT_COMMIT.txt"
+      - name: Build SQLite from frozen source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/p31-sqlite
+          ./configure >/tmp/p31-sqlite-configure.log
+          make -j2 sqlite3 >/tmp/p31-sqlite-build.log
+          test "$(./sqlite3 ':memory:' 'SELECT sqlite_version();')" = "3.46.1"
+          ./sqlite3 ':memory:' 'SELECT sqlite_version();' | tee "$GITHUB_WORKSPACE/out/P31_SQLITE_VERSION.txt"
+          sha256sum ./sqlite3 | tee "$GITHUB_WORKSPACE/out/P31_SQLITE_BIN_SHA256.txt"
+      - name: Measure all forty-eight independent intervention trajectories
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p31-sqlite-policy-probe.py --sqlite-bin /tmp/p31-sqlite/sqlite3 >out/P31_POLICY_RAW.json
+          sha256sum out/P31_POLICY_RAW.json | tee out/P31_POLICY_RAW_SHA256.txt
+      - name: Independently adjudicate policy choice and outcome vectors
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-sqlite-policy-court.mjs out/P31_POLICY_RAW.json out/P31_POLICY_COURT.json | tee out/P31_POLICY_COURT_STDOUT.txt
+      - name: Preserve source and claim ceilings
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "CONSTITUTION=028c7cae438dd6064a5203ac831a12fd72fbbabf"
+            echo "DOSSIER=107d90c993a6542ac734e012ad729dbd1d62c5b9"
+            echo "POLICY_PRECOMMIT=aa9fcd89569078d9699141412dbd35c08421be64"
+            echo "SOURCE_SQLITE_SHA=f3d536d37825302e31ed0eddd811c689f38f85a3"
+            echo "SOURCE_FOSSIL=c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
+            echo "PROBE=08ab5c87b882e0d6e1d882fd386ac2e4cfc310bc"
+            echo "COURT=1e0f1394472fd9f067a3f9ed7d7750f512070f7f"
+            echo "TEST=2488059302cff8dc754cc2c1023b107165c02cce"
+            echo "P31_CLOSED=NO"
+            echo "REAL_MAINTENANCE_DEMAND=NO"
+            echo "LAW_R2_AUTHORIZED=NO"
+            echo "ACTIONS_COMMIT_PUSH_TAG_WRITEBACK=FORBIDDEN"
+          } | tee out/P31_POLICY_PROVENANCE.txt
+      - name: Upload success or failure audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p31-state-aware-policy
+          path: out/
+          if-no-files-found: warn
