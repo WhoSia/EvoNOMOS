@@ -1,0 +1,47 @@
+{
+  "stage": "G8 LAW-R1-P30",
+  "candidate": "CPython UTF-8 two-byte-prefix predictive collision census",
+  "phase": "II-D",
+  "status": "PROSPECTIVE_SWEEP_PRECOMMITTED_BEFORE_FUTURE_OUTPUT_CENSUS",
+  "source": {
+    "repository": "python/cpython",
+    "tag": "v3.12.12",
+    "peeled_commit": "4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+  },
+  "prior_pair": "C2/C3 plus A9 already observed; this is a NEW prospectively frozen larger census, not an independent replication or a fresh mechanism class.",
+  "population": {
+    "prefix_bytes": "all byte values 0xC2 through 0xDF inclusive, 30 states",
+    "suffix_interventions": "all one-byte values 0x80 through 0xBF inclusive, 64 interventions",
+    "selection_rule": "complete Cartesian product, no outcome-dependent filtering",
+    "nominal_trials": 1920,
+    "state_pair_count_per_intervention": 435,
+    "total_candidate_collision_edges": 27840
+  },
+  "contract": {
+    "decoder": "codecs.getincrementaldecoder('utf-8')(errors='strict') at exact CPython source",
+    "prefix_intervention": "one prefix byte with final=False",
+    "future_intervention": "one matched suffix byte with final=True",
+    "current_output": "Unicode string returned by prefix-only decoding",
+    "future_output": "exact decoded Unicode string or typed failure",
+    "coarse_state_W": ["constructor success Q", "implementation route R", "structured gate G", "undecoded pending byte LENGTH"],
+    "prospective_hidden_observables": ["buffer byte bits b0 through b7 from getstate(), independently measured before future output", "full pending-byte value as 8-bit reference"],
+    "forbidden": ["future Y in state definition", "mechanism ID", "post-outcome coordinate invention"]
+  },
+  "analysis_plan": [
+    "for each fixed suffix intervention build collision edges among distinct prefix states with matched W and different futures",
+    "report observed edge count per intervention and aggregate over 64 interventions",
+    "compute exact minimum-cardinality subset of bits b0..b7 that separates all collision edges by exhaustive search of 256 subsets",
+    "record every minimum basis and informative bit positions",
+    "evaluate deletion necessity for each bit in each minimal basis",
+    "distinguish minimum coordinate count from information-theoretic bit lower bounds",
+    "report deterministic repeat pass by running a second full census with fresh decoder instances",
+    "reject missing, flaky, source-mismatched or untrusted precomputed summary fields"
+  ],
+  "predictions_not_evidence": {
+    "proposed_future_heterogeneity": "within a fixed suffix, all 30 prefix states may give distinguishable future outputs",
+    "candidate_minimal_bit_basis": [0,1,2,3,4],
+    "expected_irrelevant_bits": [5,6,7]
+  },
+  "interpretation_ceiling": "One exact-source mechanism, a bounded deterministic 30-state x 64-intervention census, no independent mechanism transport, no LAW-R2. An exact 5-bit rescue would quantify a local representational burden, not prove irreducible universal ontology complexity.",
+  "governance": {"bot_contribution_zero": true, "actions_compute_test_artifact_only": true, "no_ref_writeback": true, "human_commits_only": true}
+}
