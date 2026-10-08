@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'tools/law-r1-p31-cil-projection.mjs'
+      - 'tools/law-r1-p31-observational-sieve.mjs'
+      - 'active/g8-law-r1-p31/P31_OBSERVATIONAL_SIEVE_SOLID_PROJECTION_THEOREMS.md'
       - '.github/workflows/g8-law-r1-p31-cil-projection.yml'
   workflow_dispatch:
 
@@ -22,5 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           node tools/law-r1-p31-cil-projection.mjs --self-test
+          node tools/law-r1-p31-observational-sieve.mjs --self-test
+          node tools/law-r1-p31-observational-sieve.mjs
           node tools/law-r1-p31-cil-projection.mjs --future-repeat-count 1
           node tools/law-r1-p31-cil-projection.mjs --future-repeat-count 3
