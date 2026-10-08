@@ -1,0 +1,79 @@
+name: G8 LAW-R1-P31 Real Go Team Structural Treatments
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p31-swamp-team-treatment.py'
+      - '.github/workflows/g8-law-r1-p31-team-treatment.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-team-pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Obtain both exact real maintenance sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git clone --quiet --filter=blob:none https://github.com/dklassen/swamp.git /tmp/swamp-shared
+          git -C /tmp/swamp-shared checkout --quiet 775bf53ac4dcf1234121fbe4f827704f58d216ee
+          git -C /tmp/swamp-shared worktree add --detach /tmp/swamp-direct a1f174e425d3c68ac0ef6c9c8307814e5d8b4227
+          test "$(git -C /tmp/swamp-shared rev-parse HEAD)" = 775bf53ac4dcf1234121fbe4f827704f58d216ee
+          test "$(git -C /tmp/swamp-direct rev-parse HEAD)" = a1f174e425d3c68ac0ef6c9c8307814e5d8b4227
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: /tmp/swamp-shared/go.mod
+          cache: false
+      - name: Apply matching Team conversion intervention
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p31-swamp-team-treatment.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_MATERIALIZATION.json
+          git -C /tmp/swamp-direct diff --check
+          git -C /tmp/swamp-shared diff --check
+          git -C /tmp/swamp-direct diff --stat | tee out/P31_DIRECT_DIFF_STAT.txt
+          git -C /tmp/swamp-shared diff --stat | tee out/P31_SHARED_DIFF_STAT.txt
+          git -C /tmp/swamp-direct diff > out/P31_DIRECT_PATCH.diff
+          git -C /tmp/swamp-shared diff > out/P31_SHARED_PATCH.diff
+          sha256sum out/P31_*PATCH.diff | tee out/P31_PATCH_SHA256.txt
+      - name: Test direct architecture under Team requirement
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd /tmp/swamp-direct && go test ./filter ./sync ./tui) 2>&1 | tee out/P31_DIRECT_GO_TEST.txt
+      - name: Test shared architecture under Team requirement
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd /tmp/swamp-shared && go test ./filter ./sync ./tui) 2>&1 | tee out/P31_SHARED_GO_TEST.txt
+      - name: Preserve claim boundaries
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "DIRECT_BASE=a1f174e425d3c68ac0ef6c9c8307814e5d8b4227"
+            echo "SHARED_BASE=775bf53ac4dcf1234121fbe4f827704f58d216ee"
+            echo "TREATMENT_SCOPE=FILTER_ENGINE_AND_CONSUMER_PROJECTIONS_ONLY"
+            echo "SQLITE_SCHEMA_ADMISSION=NOT_DONE"
+            echo "STORE_WRITE_ADMISSION=NOT_DONE"
+            echo "FULL_TUI_TEAM_UI=NOT_DONE"
+            echo "FOLLOWUP_DEMAND=NOT_EXECUTED"
+            echo "LIFECYCLE_LAW_VERDICT=HOLD"
+            echo "P31_CLOSED=NO"
+            echo "LAW_R2_AUTHORIZED=NO"
+            echo "REPOSITORY_WRITEBACK=NONE"
+          } > out/P31_TEAM_SCOPE.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: g8-law-r1-p31-team-structural-treatment
+          path: out/
+          if-no-files-found: warn
