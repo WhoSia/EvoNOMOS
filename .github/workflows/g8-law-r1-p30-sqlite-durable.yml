@@ -1,0 +1,90 @@
+name: G8 LAW-R1-P30 SQLite Durable-History Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_SQLITE_DURABLE_HISTORY_PRECOMMIT.json'
+      - 'tools/law-r1-p30-sqlite-durable-history-probe.py'
+      - 'tools/law-r1-p30-sqlite-history-court.mjs'
+      - 'tools/law-r1-p30-sqlite-history-court.test.mjs'
+      - '.github/workflows/g8-law-r1-p30-sqlite-durable.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sqlite-durable-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout experiment and prospective precommit
+        uses: actions/checkout@v4
+      - name: Initialize immutable receipt area
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          test -f active/g8-law-r1-p30/P30_SQLITE_DURABLE_HISTORY_PRECOMMIT.json
+          node --version | tee out/P30_SQLITE_NODE_VERSION.txt
+      - name: Checkout exact upstream SQLite
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet --filter=blob:none https://github.com/sqlite/sqlite.git /tmp/p30-sqlite
+          cd /tmp/p30-sqlite
+          git checkout --quiet f3d536d37825302e31ed0eddd811c689f38f85a3
+          test "$(git rev-parse HEAD)" = "f3d536d37825302e31ed0eddd811c689f38f85a3"
+          cp manifest.uuid "$GITHUB_WORKSPACE/out/P30_SQLITE_OFFICIAL_FOSSIL_ID.txt"
+          git rev-parse HEAD | tee "$GITHUB_WORKSPACE/out/P30_SQLITE_GIT_SOURCE_ID.txt"
+      - name: Compile exact-source SQLite CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/p30-sqlite
+          ./configure >/tmp/p30-sqlite-configure.log
+          make -j2 sqlite3 >/tmp/p30-sqlite-build.log
+          test -x ./sqlite3
+          test "$(./sqlite3 ':memory:' 'SELECT sqlite_version();')" = "3.46.1"
+          ./sqlite3 ':memory:' 'SELECT sqlite_version();' | tee "$GITHUB_WORKSPACE/out/P30_SQLITE_VERSION.txt"
+          sha256sum ./sqlite3 | tee "$GITHUB_WORKSPACE/out/P30_SQLITE_EXECUTABLE_SHA256.txt"
+      - name: Execute prospective three-round durable history probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p30-sqlite-durable-history-probe.py --sqlite-bin /tmp/p30-sqlite/sqlite3 >out/P30_SQLITE_RAW.json
+          sha256sum out/P30_SQLITE_RAW.json | tee out/P30_SQLITE_RAW_SHA256.txt
+      - name: Apply independent raw-row SQLite Court
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-sqlite-history-court.mjs out/P30_SQLITE_RAW.json out/P30_SQLITE_COURT.json | tee out/P30_SQLITE_COURT_STDOUT.txt
+      - name: Adversarial verification against measured evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-sqlite-history-court.test.mjs out/P30_SQLITE_RAW.json | tee out/P30_SQLITE_TAMPER_TESTS.txt
+      - name: Record non-promotion authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "SQLITE_GIT_TAG=version-3.46.1"
+            echo "SQLITE_EXACT_GIT_SOURCE=f3d536d37825302e31ed0eddd811c689f38f85a3"
+            echo "P30_SQLITE_PRECOMMIT=c113115cad0d2737507c0701f59309f35dfcda49"
+            echo "P30_PROBE=392c0c8405360ce9d68c5bb171cd7926f83d4eba"
+            echo "P30_COURT=913794be45b12715c85c8c8f21703113adae2f3e"
+            echo "P30_TAMPER_TEST=80bb2c23ec5a2dda139fde1155861c9d0fbb1e49"
+            echo "LAW_R2=NOT_AUTHORIZED"
+            echo "P30_CLOSED=NO"
+            echo "GITHUB_ACTIONS_WRITEBACK=FORBIDDEN"
+          } | tee out/P30_SQLITE_PROVENANCE.txt
+      - name: Preserve outcome and failure diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-sqlite-durable-history
+          path: out/
+          if-no-files-found: warn
