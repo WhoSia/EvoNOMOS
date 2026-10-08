@@ -5,7 +5,7 @@
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
 - scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
 - Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10486; next 10487; Decision not opened
+- RAVEL 10466–10488; next 10489; Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
@@ -34,6 +34,15 @@
 - Still missing: complete interactive Team picker, an independent subsequent demand, C/A/Q full lifecycle interpretation, signed effect/Pareto reversal and independent explanatory transport. **NO STRUCTURAL LAW PASS**.
 - P31 mainline structural-law promotion: DIRECTIONALITY HOLD. Literature I–IV novelty downgrades preserved; SOLID-as-conditional-outcome is a research goal, not proved.
 - RAVEL recorded in canonical Notion P31 Run: 10466–10481; next 10482. Decision not opened.
+
+## P31 Follow-up: Independent Display-Only Demand
+
+- Real source request: Swamp #173 (global title and workplace filters must affect *display*, not ingestion). Scoped title-only programmatic treatment precommitted at `P31_FOLLOWUP_DISPLAY_ONLY_173_PRECOMMIT.json`.
+- Both real Go architectures source-tested SUCCESS on run `37723683551`, job `113136867767`, artifact `11527245967`, digest `sha256:bc031d45b0d787c74fc2976718759401711ded635ee2721de2a2cabf7e22c2ea`.
+- Scoped change: title include/exclude whole-word matching, no ingestion-source modification; consumer-specific display policy kept **outside** shared ingestion filter conversion.
+- Team-only tracked Go added/removed lines: DIRECT +30/-3, SHARED +5/-2. With title-only extension: DIRECT +100/-3, SHARED +75/-2. Marginal extension: **+70/-0 both**; no additional source-churn advantage for SHARED in this bounded source treatment.
+- This is NOT a sign reversal, nor a new generative object-oriented law. Both treatments re-used practically identical title helpers and the full issue #173 (saved editable rules, workplace, TUI, MCP list, inbox, hidden count) is NOT complete.
+- Full S/L/C/A/Q, two-independent-world explanatory discrimination, and SOLID as conditional consequence remain **NOT_ESTABLISHED**. P31 stays OPEN and LAW-R2 NOT_AUTHORIZED.
 
 ## Prior closed stage
 
