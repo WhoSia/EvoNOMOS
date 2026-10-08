@@ -6,6 +6,8 @@ on:
     paths:
       - 'tools/law-r1-p31-swamp-team-treatment.py'
       - 'tools/law-r1-p31-swamp-team-persistence.py'
+      - 'tools/law-r1-p31-team-display.py'
+      - 'tools/law-r1-p31-team-upgrade.py'
       - '.github/workflows/g8-law-r1-p31-team-treatment.yml'
   workflow_dispatch:
 
@@ -38,6 +40,8 @@ jobs:
           set -euo pipefail
           python3 tools/law-r1-p31-swamp-team-treatment.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_MATERIALIZATION.json
           python3 tools/law-r1-p31-swamp-team-persistence.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_PERSISTENCE_MATERIALIZATION.json
+          python3 tools/law-r1-p31-team-display.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_DISPLAY_MATERIALIZATION.json
+          python3 tools/law-r1-p31-team-upgrade.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_UPGRADE_MATERIALIZATION.json
           git -C /tmp/swamp-direct diff --check
           git -C /tmp/swamp-shared diff --check
           git -C /tmp/swamp-direct diff --stat | tee out/P31_DIRECT_DIFF_STAT.txt
@@ -45,7 +49,7 @@ jobs:
           git -C /tmp/swamp-direct diff > out/P31_DIRECT_PATCH.diff
           git -C /tmp/swamp-shared diff > out/P31_SHARED_PATCH.diff
           # Preserve untracked source and tests; git diff alone excludes them.
-          tar -C /tmp/swamp-direct -czf out/P31_DIRECT_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go
+          tar -C /tmp/swamp-direct -czf out/P31_DIRECT_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go tui/p31_persisted_team_test.go store/p31_upgrade_existing_test.go
           tar -C /tmp/swamp-shared -czf out/P31_SHARED_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go
           sha256sum out/P31_*PATCH.diff out/P31_*NEW_FILES.tgz | tee out/P31_ALL_SOURCE_SHA256.txt
       - name: Test direct architecture under Team requirement
@@ -66,8 +70,8 @@ jobs:
             echo "EVONOMOS_HEAD=$GITHUB_SHA"
             echo "DIRECT_BASE=a1f174e425d3c68ac0ef6c9c8307814e5d8b4227"
             echo "SHARED_BASE=775bf53ac4dcf1234121fbe4f827704f58d216ee"
-            echo "TREATMENT_SCOPE=PROGRAMMATIC_TEAM_FILTER_ENGINE_STORE_SCHEMA_INGESTION_AND_DISPLAY_PROJECTION"
-            echo "SQLITE_SCHEMA_ADMISSION=EXERCISED_IN_DISPOSABLE_STORE_TESTS"
+            echo "TREATMENT_SCOPE=PROGRAMMATIC_TEAM_FILTER_ENGINE_STORE_SCHEMA_INGESTION_PERSISTED_DISPLAY_AND_LEGACY_UPGRADE"
+            echo "SQLITE_SCHEMA_ADMISSION=EXERCISED_IN_DISPOSABLE_STORE_TESTS_AND_EXISTING_DB_UPGRADE"
             echo "STORE_WRITE_ADMISSION=EXERCISED_IN_DISPOSABLE_STORE_SYNC_TESTS"
             echo "FULL_TUI_TEAM_UI=NOT_DONE"
             echo "FOLLOWUP_DEMAND=NOT_EXECUTED"
