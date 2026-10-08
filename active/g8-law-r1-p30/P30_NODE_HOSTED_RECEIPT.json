@@ -1,0 +1,36 @@
+{
+  "stage": "G8 LAW-R1-P30",
+  "kind": "HOSTED_CANDIDATE_RECEIPT__APPEND_TO_INTERIM_REGISTER",
+  "candidate": "Node.js 22.16.0 WHATWG streaming UTF-8 decoder",
+  "status": "HOSTED_SUCCESS",
+  "source": {
+    "repo": "nodejs/node",
+    "tag": "v22.16.0",
+    "git_commit": "9774069718d9f80578079d252dddf37ae6fd550d"
+  },
+  "run": 37715013959,
+  "job": 113109395814,
+  "head": "0c22568a1fd12d423eb0f03d5b8369feadfa7bf8",
+  "artifact": 11523248904,
+  "digest": "sha256:e81da3ad5b3bc94e1c84c98a06601ee84f605c65c96912cca8c66acb24d98d92",
+  "raw_sha256": "0bc9e57445195b4d55d1184de3006db4d9064e884178eb84de015511d5be6ebc",
+  "results": {
+    "measurements": 1920,
+    "collision_edges": 27840,
+    "minimum_bit_basis": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "adversarial_mutations_rejected": "16/16",
+    "verdict": "PASS_NODE_TEXTDECODER_BOUNDED_PREDICTIVE_SPLIT__IMPLEMENTATION_TRANSPORT_ONLY__LAW_R2_NOT_AUTHORIZED"
+  },
+  "claim_ceiling": "Independent runtime implementation of the same UTF-8 semantics, NOT independent semantic mechanism or LAW-R2 pressure. Cross-runtime joined Court and SQLite exact-source Court remain separately pending.",
+  "terminal_authority": {
+    "p30_closed": false,
+    "law_r2_authorized": false,
+    "notion_decision_not_written": true
+  }
+}
