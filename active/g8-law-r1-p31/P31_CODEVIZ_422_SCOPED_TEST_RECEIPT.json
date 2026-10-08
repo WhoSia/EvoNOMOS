@@ -1,0 +1,47 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "world": "theunrepentantgeek/code-visualizer",
+  "issue": "https://github.com/theunrepentantgeek/code-visualizer/issues/422",
+  "scope": "registry/load smoke SUBSET; not the full requested Git-provider end-to-end test",
+  "precommit": "active/g8-law-r1-p31/P31_CODEVIZ_422_TEST_SUBSET_PRECOMMIT.json",
+  "status": "HOSTED_PASS_BOTH_ARCHITECTURES__NO_GENERATIVE_LAW",
+  "run": 37732257511,
+  "head": "1244610a209efa546d85a7c9f568e7f60049c942",
+  "job": 113163816075,
+  "artifact": 11529958203,
+  "digest": "sha256:60f1726619a0521af224c36c8335fecf70f09a168a3c79c3ee33b86496d1ee0a",
+  "historical_before": "6d48e3b3aa3a21baea44e05b8b0aa8f731fe0fd6",
+  "historical_after": "fb9c0e7e675de70035e556b9ba579d1e8f602da1",
+  "test": {
+    "BUNDLED": {
+      "go_test_lines": 32,
+      "required_mock_methods": [
+        "Name",
+        "Kind",
+        "Description",
+        "Dependencies",
+        "DefaultPalette",
+        "Load"
+      ]
+    },
+    "SPLIT": {
+      "go_test_lines": 30,
+      "required_mock_methods": [
+        "Load"
+      ],
+      "descriptor_data": "MetricDescriptor"
+    },
+    "both_go_provider_tests": "PASS",
+    "source_files_in_artifact": true
+  },
+  "scientific_outcome": "Expected method-obligation difference is source verified; 2-line test fixture discrepancy is not reliable lifecycle advantage. Existing ISP literature/issue explicitly predicts this. No novel moderator, no sign reversal, no full lifecycle S/L/C/A/Q, no independent cross-world mechanism identification.",
+  "limits": [
+    "full #422 git E2E test was not implemented",
+    "pre-refactor and post-refactor differ in production architecture not a controlled single-variable prospective code-change experiment",
+    "no Q parity over actual git outputs",
+    "no causal architectural superiority or SOLID derivation"
+  ],
+  "status_mainline": "HOLD",
+  "p31_closed": false,
+  "law_r2_authorized": false
+}
