@@ -1,0 +1,63 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "REAL_DEMAND_R2_HISTORY_RECOVERY",
+  "status": "NEW_PROSPECTIVE_PRECOMMIT_AFTER_SWAMP_SOURCE_ADMISSION",
+  "demand_origin": {
+    "project": "dklassen/swamp",
+    "issue": "https://github.com/dklassen/swamp/issues/244",
+    "follow_up": "https://github.com/dklassen/swamp/issues/246",
+    "upstream_sha": "9fb288e10730ad214cc1e4413c7664903ee4830a"
+  },
+  "exact_migrations": {
+    "pre19_shape": {
+      "path": "db/migrations/00004_drop_application_status_check_constraint.sql",
+      "blob": "9f6c8a98ce0fc26f7f0eaa65bb2b1e7d01bd3366"
+    },
+    "migration19": {
+      "path": "db/migrations/00019_applications_autoincrement_soft_delete.sql",
+      "blob": "92cbd3ab7d54d9205dd84061ea9addeb50c5c929"
+    }
+  },
+  "engine": {
+    "repo": "sqlite/sqlite",
+    "commit": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+    "fossil_uuid": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
+  },
+  "support": {
+    "history_arms": [
+      "L: applications ID1 was issued and remains",
+      "H: application IDs1 through10 were issued but IDs2..10 were deleted before migration"
+    ],
+    "initial_visible_state": "same old applications schema and current visible row id1/posting101, same postings support, same timestamps; external historical issuance ledger excluded from W",
+    "policies": [
+      "M0: apply exact Swamp migration 00019 and otherwise leave sequence",
+      "M1: apply exact migration; if a trustworthy historical issuance max exists above new sequence, reserve that high-water mark by inserting and deleting a sentinel row before next allocation"
+    ],
+    "repetitions": 3,
+    "trajectories": 12,
+    "oracle": "identical post-migration CREATE application step with fresh posting111, compare ID to historical issued-ID set and confirm post-action visible rows intact"
+  },
+  "prior_knowledge": "Issue #246 notes a deleted higher ID before the migration can be reissued once. Experiment verifies this on a new exact-source controlled fixture, not a blind discovery of SQLite semantics.",
+  "prospective_predictions": {
+    "same_current_W": "both histories have identical old-schema table rows and public SQL projection",
+    "default_migration": "both migrate with sqlite_sequence seq=1 and next generated application ID2",
+    "future_identity_failure": "M0 produces a historical ID collision only in history H, not L",
+    "conditional_external_repair": "M1 with directly available predeclared external issuance max10 yields next ID11 for H; for L max1 yields ID2",
+    "information_boundary": "Without external issuance ledger, a deterministic policy over only the matching old SQL schema+visible rows cannot guarantee no historical reuse for both cases"
+  },
+  "disqualifiers": [
+    "exact SQL migration source or engine mismatch",
+    "differing observed old current tables/schema",
+    "different final SQL interventions",
+    "sentinel fails to preserve visible live applications",
+    "reconstruction relies on future Y instead of prospective issuance ledger",
+    "real user/production database modified",
+    "outcome compared without historical issued ledger"
+  ],
+  "claim_ceiling": "Actual Swamp migration SQL on compatible synthetic disposable fixture; tests historical-loss mechanism and rollout guarantee scope. Not evidence of any particular live database being affected, nor global byte-level indistinguishability, LAW-R2, or full production migration parity.",
+  "governance": {
+    "read_only_CI": true,
+    "bot_contribution_zero": true,
+    "p31_open": true
+  }
+}
