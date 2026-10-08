@@ -2,6 +2,8 @@
 
 **Authority:** actual GitHub Actions source-pinned bounded test PASS; independent prospective evidence and production Q HOLD. No new mathematical theorem; LAW-R2 NOT_AUTHORIZED.
 
+**Strengthened original-source negative control (post-first run):** [read-only hosted run 37809554571](https://github.com/WhoSia/EvoNOMOS/actions/runs/37809554571) SUCCESS at commit `ad1c9b9466568fd4c379e35a8b75ce8726370bd9`; artifact **11564451804**, sha256 **be386abce938b631a3251c5fe17ad20a74156600dc85ce2ed72a961fa8b4275c**. The latest executable additionally runs the **unmodified** pinned source method and confirms that ordinary expected monitor-name/URL template values are replaced by defaults. Thus, in the *fixed two-candidate grammar and bounded ordinary oracle*, empty support fails and both singleton repair supports pass. Extended collision oracle still rejects B and admits A. Prior run 37808780917 remains an archival PASS, not the latest test receipt.
+
 ## 1. Source identity and executable result
 
 P33 directly pinpoints real Uptime Kuma birth source commit 398482d590daaac0d44e288c9be3bc6f6667f8b8 and the relevant three exact Git blobs: server/model/monitor.js at 2ad572e53ed051825425f8783c91195cbd243d77; server/notification.js at b1a42d003a92e3760f6d33a4be59784a9cb4dbf2; server/notification-providers/notification-provider.js at 42079176c01cd2e6d46160bb6f6408d4ba263fd7.
