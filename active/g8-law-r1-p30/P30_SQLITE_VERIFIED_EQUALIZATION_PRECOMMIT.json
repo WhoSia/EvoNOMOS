@@ -1,0 +1,34 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P30",
+  "phase": "II-H",
+  "candidate": "SQLite Verified Sequence Equalization Intervention",
+  "status": "NEW_PROSPECTIVE_PRECOMMIT__NON_RETROACTIVE_AFTER_IIG_MANIPULATION_FAILURE",
+  "source": {
+    "repository": "sqlite/sqlite",
+    "tag": "version-3.46.1",
+    "git_sha": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+    "fossil_uuid": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
+  },
+  "prior_failure": "II-G INSERT OR REPLACE produced duplicate name rows without conflict; preserve HOLD as independent historical observation. No reinterpretation of II-G.",
+  "experiment": {
+    "rounds": 3,
+    "arms": "History absent/present x sequence target 0/7, each freshly created disk database",
+    "initialization": "AUTOINCREMENT events table; optional prior INSERT then DELETE all rows; close CLI process after every SQL statement",
+    "treatment": "Measure sqlite_sequence before treatment. If no matching row, INSERT INTO sqlite_sequence(name,seq) VALUES('events',t). If exactly one matching row, UPDATE sqlite_sequence SET seq=t WHERE name='events'. If more than one matching row, INVALID; no Y inspection.",
+    "treatment_fidelity": "Verify exactly one sqlite_sequence row for name='events' and seq=t immediately after treatment, AND full visible schema/events table and public gate unchanged before future SQL",
+    "future_intervention": "INSERT INTO events(note) VALUES ('probe') RETURNING id in new sqlite3 CLI process",
+    "targets": [
+      0,
+      7
+    ],
+    "prediction": "For each equalized t, both histories produce the same id=t+1; across target sequences 0 and 7, future IDs differ",
+    "adjudication": "Compare entire current W and H within corresponding targets, revalidate SQL process boundaries, treatment selection, all raw observations, expected and cross-arm future outputs",
+    "claim_ceiling": "Strong local intervention-based sufficiency evidence for a specific SQLite internal allocator coordinate, contingent on successful treatment delivery, not a universal ontology theorem nor full future equivalence."
+  },
+  "governance": {
+    "freeze_before_IIH_outcome": true,
+    "bots_read_only": true,
+    "p30_open": true,
+    "law_r2_not_authorized": true
+  }
+}
