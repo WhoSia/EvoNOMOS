@@ -25,3 +25,19 @@ Find actual P2 source materializer and frozen requirement fixtures by repository
 
 ## Authority
 P32 OPEN / SOURCE-WITNESS RECOVERED / OUTCOME-BLIND_EXTRACTOR_NOT_EXECUTED / LAW_R2_NOT_AUTHORIZED.
+## Historical-genealogy correction / P2 materializer lexical source audit
+
+Primary historical ancestors revisited: original 2026-07-29 founding chat and 0.1 (conditional structural-law discovery, not static SOLID scoring); P23 source-to-operation mapping failed its two prospective sign predictions despite valid monoid mathematics; P26 identified only an interventional equivalence class, not unique hidden architecture; P27 distinguished typed kernel orientation at equal rank. These three constrain, but do not prove, P32's representation.
+
+Directly checked `tools/law-r1-p2-materialize.py` method scopes `apply_dispersed` and `apply_dual`. A bounded lexical signature probe found all 10/10 expected declarations for five **conceptually named registration obligations** per arm: backend import, backend provider instantiation, frontend form import, frontend form binding, and UI category membership. In DISPERSED they reside in 3 existing files; in DUAL they reside within 2 newly introduced registry files with 3 consumer integration hooks. The five obligations do **not** simply disappear when registrations become shared. Distinguish:
+- type of required obligation / source-side logical requirement,
+- its module ownership,
+- physical or semantic edit site,
+- one-time integration hooks,
+- implementation work and actual lifecycle outcome.
+
+The P3 S=5 versus S=2 is an **operational semantic membership-site metric**, NOT equal to a count of physical files (3/2) or to the five conceptually named obligations (5/5). Do not conflate these coordinate systems. A changed-location/topology B0 already captures the observed site difference; assigning it to H would be retrospective novelty inflation.
+
+**Source-gated scientific decision:** Uptime Kuma historical #7316→#7559 is useful only for calibration and detecting representation drift. It cannot certify H over B0/B1/B2. To justify a fresh mainline experiment, preregister a complete new demand and pair of comparable A/B structures on which B0/B1/B2 and H **predict different signs, Pareto membership, validity, or abstention**. If no such demand exists, keep the stage on HOLD and no new proof language or workflow may mask the deficit.
+
+The probe was performed against the checked-in P2 Python materializer by scanning expected declarations within each apply-function body; **not** a language-general AST/semantic audit, fresh producer code intervention, or hosted CI verification. The source-grammar claim is local to that materializer. P32 OPEN / NO_NEW_STRUCTURAL_LAW.
