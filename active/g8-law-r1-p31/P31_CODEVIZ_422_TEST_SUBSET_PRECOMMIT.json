@@ -1,0 +1,28 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "scope": "SECOND_WORLD_POST_REFACTOR_DEMAND_SUBSET",
+  "status": "FROZEN_BEFORE_NEW_TREATMENT",
+  "world": "theunrepentantgeek/code-visualizer",
+  "real_demand": "https://github.com/theunrepentantgeek/code-visualizer/issues/422",
+  "created": "2026-06-16",
+  "historical_before": "6d48e3b3aa3a21baea44e05b8b0aa8f731fe0fd6",
+  "historical_split": "fb9c0e7e675de70035e556b9ba579d1e8f602da1",
+  "bounded_demand": "Add a regression test confirming that a registered metric can be identified and its loader selected/executed without visualization code. This is a provider registry smoke subset, NOT the real git E2E suite of #422.",
+  "arms": {
+    "bundled": "register provider implementing metadata and Load; lookup and invoke Load",
+    "split": "register descriptor and Loader; lookup descriptor and loader separately and invoke Load"
+  },
+  "measures": [
+    "run Go provider tests",
+    "new test code lines in both",
+    "number of extra mandatory mock methods in the new test",
+    "modified tracked files and line diff"
+  ],
+  "predictions": {
+    "bundled": "test fixture must implement metadata fields plus Load, even when testing loader execution only",
+    "split": "test fixture implements only Load, while static descriptor is ordinary data",
+    "claim_ceiling": "ISP direct method obligation witness is expected and already known, not novel structural law"
+  },
+  "gate": "Do not claim full #422, user-visible workflow or scientific generality; compile/test and report triviality explicitly.",
+  "law_r2": false
+}
