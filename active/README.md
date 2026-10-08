@@ -1,20 +1,22 @@
 # Active lineage
 
-> **CURRENT OWNER — Generation VIII LAW-R1-P32 OPEN.** P32 Notion: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0. Constitution: [P32](g8-law-r1-p32/P32_OPENING_CONSTITUTION.md). Existing P31 receipts below are **HISTORICAL / BOUNDED**; P31 scientific claim remained HOLD at handoff. No LAW-R2, SOLID derivation or new OO generative mechanism is authorized. The P31 next-stage/RAVEL labels below are retained as original chronology, not active routing. Actions: read-only computation, no bot-authored commits.
+> **CURRENT OWNER — Generation VIII LAW-R1-P33 OPEN.** P33 Notion: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0. Scientific constitution: [P33](g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md). [P32 terminal ruling](g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md) is bounded METHOD PASS / scientific law HOLD; P31 and older receipts below are historical. No LAW-R2, SOLID derivation or new general OO law authorized. Actions remain read-only with no bot-authored commits.
 
+- active stage: **G8 LAW-R1-P33**
+- formal name: **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
+- status: **OPEN — alternative source-admissible repair families and matched strong-rival prospective forecast pending**
+- scientific direction: **From source declaration geometry to source-grounded, nonunique admissible implementation choices and context-indexed future change costs**. Standard antichain facts are not novel; mere CSDG/co-change rediscovery cannot pass.
+- P33 current Run: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0 — Running
+- P32 predecessor: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0 — Complete / Method PASS / Law HOLD
+- P31 predecessor: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — historical scientific HOLD
+- RAVEL 10498–10499 collision is historical and unresolved; no invented unbroken numbering.
+- **LAW-R2 / general design law / manuscript-level SOLID claim: NOT_AUTHORIZED.**
 
-- active stage: **G8 LAW-R1-P32**
-- formal name: **Demand-Conditioned Obligation Geometry, Source-Grounded Structural Invariants, Cost-Sensitive Change Semantics, Prospective Mechanism Discrimination & the Emergence of Conditional Object-Oriented Design Laws**
-- status: **OPEN — source-grounded obligation mechanism and prospective rival discrimination pending**
-- scientific direction: **P32 MAINLINE — STRUCTURAL-LAW SCIENCE HOLD** — source-grounded demand-conditional authority/obligation geometry must beat strong static, semantic, historical, Parnas/DRSpaces/SOLID baselines on independently frozen maintenance demands
-- Current Notion Run: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0 — Running
-- P31 predecessor Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — historical scientific HOLD at handoff
-- Current P32 RAVEL numbering requires historical 10498–10499 collision repair before assigning another unique number; Decision not opened
-- LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
+## P33 — Repair-family research opening
 
-- P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
+Source a and demand d can admit several valid implementations b. Distinguish potential impact, minimal admissible repair support families and realized policy-conditioned vectors. Require matching information budgets for B0+ static overlap, B1 CoChangeFinder-style history with patch availability, B2 Parnas/DRSpaces/CSDG/standard repair synthesis, and H demand-indexed contract choice. Never score P32 retrospective Uptime Kuma #7639 bug as a fresh H victory.
 
-## P32 — First executable source-obligation audit (bounded method result)
+## P32 — Historical bounded first executable source-obligation audit (bounded method result)
 
 - [Source-anchored extractor](../tools/law-r1-p32-obligation-extract.py) emits demand IDs, five declaration types, declared directions, owner files, source lines, full-file hashes and typed declaration edges. It is a bounded syntactic recognizer on P2/P3 source worlds, **not** a complete AST/control/data-dependence analyzer.
 - [Read-only hosted run 37800703213](https://github.com/WhoSia/EvoNOMOS/actions/runs/37800703213) **SUCCESS** at head `8c6fb84b204555551b1c1a23c53f5d8ae74feeef`, artifact **11560347607**, SHA-256 `f00abb78acb5192975e344b3ff99188e04b51f822449342aa54bdf570bc0cb5a`. The verified source birth is `398482d590daaac0d44e288c9be3bc6f6667f8b8`; P3 reconstitution, 50 typed source declarations/edges, destructive mutation rejection, and classical coverage checks passed.
