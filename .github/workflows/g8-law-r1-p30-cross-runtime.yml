@@ -1,0 +1,89 @@
+name: G8 LAW-R1-P30 Cross-Runtime Exact-Source Transport
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_PHASE_IIE_CROSS_RUNTIME_TRANSPORT_CONTRACT.md'
+      - 'tools/law-r1-p30-cross-runtime-transport-court.mjs'
+      - '.github/workflows/g8-law-r1-p30-cross-runtime.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout EvoNOMOS frozen input
+        uses: actions/checkout@v4
+      - name: Pin Node implementation
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Establish runtime and output directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          test "$(node -p 'process.versions.node')" = "22.16.0"
+          node tools/law-r1-p30-node-transport-court.test.mjs | tee out/P30_NODE_TRANSPORT_MUTATION_TESTS.txt
+          node tools/law-r1-p30-cpython-sweep-court.test.mjs | tee out/P30_CPYTHON_SWEEP_MUTATION_TESTS.txt
+      - name: Fetch source-pinned CPython
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet --filter=blob:none https://github.com/python/cpython.git /tmp/p30-cpython
+          cd /tmp/p30-cpython
+          git checkout --quiet 4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5
+          test "$(git rev-parse HEAD)" = "4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+      - name: Build pinned CPython implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/p30-cpython
+          ./configure --without-ensurepip --disable-test-modules >/tmp/p30-transport-configure.log
+          make -j2 python >/tmp/p30-transport-build.log
+          ./python --version | tee "$GITHUB_WORKSPACE/out/P30_CPYTHON_VERSION.txt"
+      - name: Measure both complete prospective grids
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p30-cpython/python tools/law-r1-p30-cpython-predictive-sweep.py >out/P30_PYTHON_RAW.json
+          node tools/law-r1-p30-node-textdecoder-probe.mjs >out/P30_NODE_RAW.json
+          sha256sum out/P30_PYTHON_RAW.json out/P30_NODE_RAW.json | tee out/P30_RAW_HASHES.txt
+      - name: Judge CPython and Node independently
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-cpython-sweep-court.mjs out/P30_PYTHON_RAW.json out/P30_PYTHON_COURT.json | tee out/P30_PYTHON_COURT_STDOUT.txt
+          node tools/law-r1-p30-node-transport-court.mjs out/P30_NODE_RAW.json out/P30_NODE_COURT.json | tee out/P30_NODE_COURT_STDOUT.txt
+      - name: Adjudicate implementation-level transport
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-cross-runtime-transport-court.mjs out/P30_PYTHON_RAW.json out/P30_NODE_RAW.json out/P30_JOINED_TRANSPORT.json | tee out/P30_JOINED_TRANSPORT_STDOUT.txt
+      - name: Emit provenance and claim ceilings
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "CPYTHON_SOURCE_COMMIT=4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+            echo "NODE_VERSION=22.16.0"
+            echo "NODE_SOURCE_COMMIT=9774069718d9f80578079d252dddf37ae6fd550d"
+            echo "TRANSPORT_CONTRACT_COMMIT=0d245a0bf73af2bf61d8d32482c8503441e330ff"
+            echo "TRANSPORT_COURT_COMMIT=77a4912f596f512c34e2dc913e6f8927158c8656"
+            echo "SPECIFICATION_INDEPENDENCE=NOT_CLAIMED"
+            echo "LAW_R2_AUTHORIZED=NO"
+            echo "ACTIONS_WRITEBACK=FORBIDDEN"
+          } | tee out/P30_CROSS_RUNTIME_PROVENANCE.txt
+      - name: Preserve success and failure artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-cross-runtime
+          path: out/
+          if-no-files-found: warn
