@@ -1,0 +1,52 @@
+name: G8 LAW-R1-P33 Information-Cut Repair World
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p33-info-cut-repair-world.mjs'
+      - '.github/workflows/g8-law-r1-p33-information-cut.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-law-r1-p33-information-cut
+  cancel-in-progress: true
+
+jobs:
+  bounded:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout exact source birth
+        uses: actions/checkout@v4
+        with:
+          repository: louislam/uptime-kuma
+          ref: 398482d590daaac0d44e288c9be3bc6f6667f8b8
+          path: world
+          fetch-depth: 1
+
+      - name: Execute both bounded repair choices and collision oracle
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/law-r1-p33-info-cut-repair-world.mjs world out/p33-info-cut.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync('out/p33-info-cut.json','utf8'));
+          if (!x.safe_domain_oracle_both_pass || !x.extended_collision_oracle_only_caller_passes) process.exit(1);
+          if (x.results.caller.collision_oracle!=='PASS' || x.results.dispatcher.collision_oracle!=='FAIL') process.exit(1);
+          if (!x.verdict.includes("STRONG_B2_NOT_BEATEN")) process.exit(1);
+          console.log('P33_BOUNDED_ALTERNATIVE_REPAIRS=PASS_METHOD_ONLY');
+          NODE
+          sha256sum tools/law-r1-p33-info-cut-repair-world.mjs out/p33-info-cut.json > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p33-information-cut
+          path: out/
+          retention-days: 30
