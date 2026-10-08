@@ -4,16 +4,27 @@
 
 EvoNOMOS investigates whether source-grounded responsibility, authority, interface capability and dependency structures can explain and *prospectively predict* the effects of maintenance demands. SOLID principles are possible conditional consequences, **not axioms** or presumed universal laws.
 
-## Current scientific head — Generation VIII LAW-R1-P32
+## Current scientific head — Generation VIII LAW-R1-P33
 
-**Demand-Conditioned Obligation Geometry, Source-Grounded Structural Invariants, Cost-Sensitive Change Semantics, Prospective Mechanism Discrimination & the Emergence of Conditional Object-Oriented Design Laws**
+**Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
 
-**Status:** OPEN / scientific mechanism discrimination pending. **LAW-R2:** NOT_AUTHORIZED. No new generative OO law, prospective out-of-sample advantage, or SOLID derivation has been established.
+**Status:** OPEN / source-grounded admissible repair families and information-matched independent predictions pending. **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law, empirically novel H-over-B0+/B1/B2 advantage, or derived SOLID principle exists.
 
-- [P32 opening constitution](active/g8-law-r1-p32/P32_OPENING_CONSTITUTION.md)
-- [Current active lineage and detailed P31 evidence](active/README.md)
-- [P32 Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
-- [P31 historical Run](https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7)
+- [P33 opening scientific constitution](active/g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md)
+- [P33 current Notion Run](https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0)
+- [P32 terminal strong-rival and repair-family ruling](active/g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md)
+- [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
+- [Active and historical lineage](active/README.md)
+
+### P33 research question
+
+A demand can admit **several valid but non-equivalent source edit strategies**. Under pinned initial source, equivalent complete requirements, frozen implementation grammar and oracle, what is the family of inclusion-minimal *admissible repair supports*, and can context/authority/contract constraints predict the feasible-cost/Pareto change effects beyond strong rivals? A single must-edit site set or static change-impact graph is insufficient as a complete description.
+
+Distinguish `PotentialImpact(source,patch,configuration)`, `AdmissibleRepairs(source,requirement,oracle)` and `RealizedEffect(source,requirement,implementation_policy)`. Strong rivals include configuration-aware CSDG, Parnas/Design Rule Spaces and co-change prediction. **CoChangeFinder is review-stage with an initial patch**, not directly comparable to pre-implementation requirement-only prediction without matching information access.
+
+### P32 historical milestone — bounded method PASS, new design law HOLD
+
+The predecessor closed as `CLOSED_METHOD_PASS__NEGATIVE_CONTROL_PASS__STRONG_RIVAL_DISCRIMINATION_HOLD` at hosted run `37806669570`. Its pinned real-source extraction and certificate-context negative control remain useful; no independent H-over-strong-rival forecast was supported. A real code bug is not proof of novelty when existing analyses also explain it.
 
 ### Immediate research question
 
