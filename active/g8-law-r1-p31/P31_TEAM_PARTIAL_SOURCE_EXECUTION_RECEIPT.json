@@ -1,0 +1,48 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P31",
+  "phase": "STRUCTURAL_TEAM_TREATMENT_PARTIAL_REAL_CODE",
+  "verdict": "PASS_BOUNDED_SOURCE_CODE_TEAM_FILTER_AND_GO_TESTS__FULL_BEHAVIORAL_PARITY_HOLD",
+  "status": "HOSTED_SUCCESS__MAINLINE_STRUCTURAL_LAW_HOLD",
+  "run": {
+    "id": 37722022328,
+    "job_id": 113131617792,
+    "head": "9f0d358ea09a75296c767e549453836ce51c573f",
+    "artifact_id": 11525724267,
+    "artifact_digest": "sha256:9c1f8e8d24a27c8779c0543ecc7033acb2e024adf7c1aa5e29311cc0d7098aee"
+  },
+  "world": {
+    "repo": "dklassen/swamp",
+    "direct": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+    "shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee"
+  },
+  "treatment": {
+    "source": "tools/law-r1-p31-swamp-team-treatment.py",
+    "go_changes": [
+      "filter.Posting.Team",
+      "filter field team matcher",
+      "sync jobboard→filter projection",
+      "tui store→filter projection"
+    ],
+    "test_added": "filter/p31_team_test.go (generated inside disposable worktree; tests run but untracked test file is not included in git diff artifacts)",
+    "tests": "go test ./filter ./sync ./tui on both exact source trees",
+    "direct_patch_sha256": "b97be3b58a85530a1bf060a6dc354c1ffceeef95e3c316b1bcd20af55815f3c0",
+    "shared_patch_sha256": "42992ed7cddce438a11fbcbd3bc90526096fe5cf0e6e65cb1e834db3669a0d25"
+  },
+  "bounded_observation": {
+    "both_filter": "PASS",
+    "both_sync": "PASS",
+    "both_tui": "PASS",
+    "compiler": "PASS",
+    "full_programmatic_filter_save": "NOT_EXECUTED",
+    "schema_migration": "NOT_EXECUTED",
+    "complete_team_ui": "NOT_EXECUTED",
+    "followup_lifecycle": "NOT_EXECUTED",
+    "causal_advantage": "NOT_ESTIMATED"
+  },
+  "claim_ceiling": "Real source modifies filter engine and both consumer projections only; tests passed but not full configured Team filter end-to-end. No signed lifecycle benefit, co-change moderator verdict, SOLID derivation or LAW-R2 authority.",
+  "governance": {
+    "p31_closed": false,
+    "law_r2_authorized": false,
+    "bot_contributions": 0
+  }
+}
