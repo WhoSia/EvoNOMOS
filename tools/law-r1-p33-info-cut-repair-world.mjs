@@ -99,11 +99,37 @@ for(const arm of ["caller","dispatcher"]){
   collision_actual:extended,collision_expected:expectedExtended
  };
 }
+const parametrizedCollisionPairs=[];
+for(let i=0;i<64;i++){
+ const a="https://x"+i+".invalid/", b="https://y"+i+".invalid/";
+ const pair=[
+   {name:"test"+i+"]["+a,url:b},
+   {name:"test"+i,url:a+"]["+b}
+ ];
+ pair.forEach(p=>new URL(p.url));
+ assert.equal(encode(pair[0]),encode(pair[1]));
+ assert.notDeepEqual(pair[0],pair[1]);
+ parametrizedCollisionPairs.push(pair);
+}
+const parametrizedActualSourceExecutions={};
+for(const arm of ["caller","dispatcher"]){
+ let passed=0,failed=0;
+ for(const pair of parametrizedCollisionPairs){
+   const actual=await Promise.all(pair.map(p=>run(arm,p)));
+   const expected=pair.map(p=>p.name+"|"+p.url);
+   if(JSON.stringify(actual)===JSON.stringify(expected))passed++;
+   else failed++;
+ }
+ parametrizedActualSourceExecutions[arm]={passed_pairs:passed,failed_pairs:failed};
+}
+assert.deepEqual(parametrizedActualSourceExecutions.caller,{passed_pairs:64,failed_pairs:0});
+assert.deepEqual(parametrizedActualSourceExecutions.dispatcher,{passed_pairs:0,failed_pairs:64});
 assert.equal(results.caller.collision_oracle,"PASS");
 assert.equal(results.dispatcher.collision_oracle,"FAIL");
 const report={
  schema:"P33_BOUNDED_REAL_SOURCE_ALTERNATIVE_REPAIRS_AND_INFO_CUT_V1",
  source_birth:"398482d590daaac0d44e288c9be3bc6f6667f8b8",
+ empirical_domain_note:"All 64 parametrized collision pairs evaluated by running the pinned method fragments with bounded VM mocks, NOT full production.",
  pinned_git_blobs:blobs,
  source_issue_seen_before_choice:"https://github.com/louislam/uptime-kuma/issues/7639",
  candidate_edit_grammar:"two bounded JS changes: source caller forwards context vs notification dispatch parses the old message",
@@ -114,6 +140,7 @@ const report={
  indistinguishable_legacy_message:encode(collision[0]),
  distinct_required_outputs:collision.map(o=>o.name+"|"+o.url),
  results,
+ parametrized_actual_source_executions:parametrizedActualSourceExecutions,
  logical_proposition:"If observation f(x)=f(y) and target g(x)!=g(y), no deterministic downstream decoder h can satisfy g=h composed with f for both.",
  novelty_ceiling:"STANDARD_KERNEL_FACTORIZATION_THEOREM_APPLIED_TO_PINNED_SOURCE_NOT_NEW_THEOREM",
  execution_scope:"Pinned extracted real JS methods in VM with DB/notification/Liquid mocks. No full server, external notification, customer configuration or production equivalence.",
