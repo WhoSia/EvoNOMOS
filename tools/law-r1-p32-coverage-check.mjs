@@ -28,7 +28,7 @@ function selfTest() {
   let tested = 0;
   for (let a = 0; a < 16; a++) for (let b = 0; b < 16; b++) {
     const sets = {x: masks(a, owners), y: masks(b, owners)};
-    assert.equal(mixed(sets, weights), -overlapCost(sets, weights));
+    assert.ok(mixed(sets, weights) === -overlapCost(sets, weights), "signed zero has identical mathematical value");
     assert.ok(mixed(sets, weights) <= 0);
     tested++;
   }
