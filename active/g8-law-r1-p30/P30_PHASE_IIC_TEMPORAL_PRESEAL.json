@@ -1,0 +1,15 @@
+{
+  "stage":"G8 LAW-R1-P30",
+  "phase":"II-C",
+  "status":"PROSPECTIVE_TEMPORAL_CRITERION_FROZEN",
+  "temporal_correction_commit":"f9cf610c1be1f6c398da842b3d0b60971b85fbe8",
+  "temporal_checker_commit":"67aa99245537fe2dfc4a80b410aa3ede6046cf18",
+  "theorem_check_only":true,
+  "new_world_candidate_precommitted":false,
+  "frozen_tier2_falsifier":"same directly measured W=(Q,R,G,H_selected) and same current public O, but different public trace after an outcome-blind predeclared matched admissible intervention word",
+  "interpretation":"bounded failure of predictive sufficiency for W, not necessarily current-outcome sufficiency failure",
+  "separate_signatures":"Phi^W is observable-coordinate response; Psi^Y is public outcome trace response. Equality of one must never be substituted for the other.",
+  "candidate_requirements":["exact source revision","common public future oracle","future intervention language and horizon","prospective candidate states chosen independently of future Y","structured-G and hidden-H family frozen","measurement, timing, environment, route and stochastic audits","no direct Y intervention","state correspondence and cross-mechanism transport conditions"],
+  "forbidden":["retroactive reinterpretation of zlib","promoting toy finite-state checker as external empirical witness","post-outcome rescue","LAW-R2 promotion","finite-state impossibility"],
+  "repository_history":"WhoSia only; Actions compute/test/artifact only; no bot authored commits"
+}
