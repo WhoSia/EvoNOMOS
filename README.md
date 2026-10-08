@@ -29,6 +29,14 @@ Distinguish `PotentialImpact(source,patch,configuration)`, `AdmissibleRepairs(so
 - [Source-rooted repair options and formal limits](active/g8-law-r1-p33/P33_INFORMATION_CUT_REPAIR_FAMILY_AND_THEORETICAL_PRIOR_ART_COURT.md) · [Executable](tools/law-r1-p33-info-cut-repair-world.mjs) · [Cross-Shelf Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5).
 - Repair-synthesis and diagnosis baselines (SemFix, DirectFix, Angelix, Reiter), patch-overfitting findings, and set-valued multiobjective control already constrain novelty. **LAW-R2 remains NOT_AUTHORIZED.**
 
+### P33 six-paper original-source court and information-cut certificate
+
+The **six user-supplied original papers** — DirectFix (2015), Angelix (2016), Reiter (1987), SemFix (2013), Smith et al. (2015) and Guigue (2014) — were inspected, canonical-named and moved from `00_INTAKE` to `10_PAPERS`, with file IDs preserved and post-move parent verification. The basename uses `—` between author/year and title; `-` for title-internal subtitles. [P33 detailed source/novelty court](active/g8-law-r1-p33/P33_SIX_PAPERS_INFORMATION_CUT_AND_REPAIR_FEASIBILITY_COURT.md) and [cross-shelf original-paper Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5).
+
+- [Read-only hosted run 37810762909](https://github.com/WhoSia/EvoNOMOS/actions/runs/37810762909) **SUCCESS**; artifact `11564738090`, sha256 `45b031289c538a67a07a5c37ce458ed7e50dd4b0660313038e362c78c93fc940`. New finite [repair-cut checker](tools/law-r1-p33-repair-cut-certificate.mjs) validates **64 deliberately constructed collision witness pairs** in pinned Uptime Kuma source and their necessary information-channel edit locations under a **frozen three-site grammar**.
+- Reiter conflict hitting sets, SemFix/DirectFix constrained repair, Angelix multiline repairs, Smith independent overfitting tests and Guigue set-valued control are all existing results. The location certificate is **necessary, not sufficient** for full valid repair; no production oracle or independent H-over-B0+/B1/B2 victory, no new pure theorem.
+- Current ruling: **P33 OPEN / METHOD PASS / PROSPECTIVE SCIENCE HOLD / LAW-R2 NOT_AUTHORIZED**.
+
 ### P33 first reproduced source-support counterexample — historical, not prospective
 
 [Hosted read-only run 37807536786](https://github.com/WhoSia/EvoNOMOS/actions/runs/37807536786) SUCCESS on pinned Uptime Kuma: the first-demand DISPERSED changed-file support has **5** files and is a proper subset of DUAL's **7** (the two additional registry files). Nevertheless, the previously sealed next-demand handwritten churn is **80 versus 75** respectively. This falsifies the shortcut "smaller initial edited-file set implies lower future change cost" in the bounded two-world setting; it does **not** claim a new theorem or predict a new demand. Across both recorded demands, cumulative handwritten L is **102 DISPERSED versus 111 DUAL**, so overall superiority remains withheld.
