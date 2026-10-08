@@ -96,6 +96,45 @@ export const toy={
     regression:     {add_provider:"regression",revise_contract:"regression"}
   }
 };
+
+// Standard finite-data underidentification witness, not a new theorem:
+// no finite trace-length horizon identifies unbounded future behavior.
+export function finiteHorizonBlindSpot(horizon) {
+  if(!Number.isInteger(horizon)||horizon<0)throw Error("bad horizon");
+  const demandAlphabet=["extend","revise"];
+  const chainStates=Array.from({length:horizon+2},(_,i)=>"chain_"+i);
+  const output={},next={};
+  for(let i=0;i<chainStates.length;i++){
+    const state=chainStates[i];
+    output[state]={Q:i===horizon+1?"FAIL":"PASS"};
+    next[state]={extend:chainStates[Math.min(i+1,horizon+1)],revise:state};
+  }
+  const chain={states:chainStates,demands:demandAlphabet,output,next};
+  const pass={states:["pass"],demands:demandAlphabet,
+    output:{pass:{Q:"PASS"}},next:{pass:{extend:"pass",revise:"pass"}}};
+  validate(chain);validate(pass);
+  function evaluate(m,start,word) {
+    let state=start;
+    for(const d of word)state=m.next[state][d];
+    return m.output[state].Q;
+  }
+  // Exhaustively enumerate the declared finite horizon (bounded self-test).
+  let words=[[]];
+  for(let k=0;k<horizon;k++){
+    const level=words.filter(w=>w.length===k);
+    words.push(...level.flatMap(w=>demandAlphabet.map(d=>[...w,d])));
+  }
+  for(const word of words)
+    assert.equal(evaluate(chain,chainStates[0],word),evaluate(pass,"pass",word));
+  const separator=Array(horizon+1).fill("extend");
+  assert.equal(evaluate(pass,"pass",separator),"PASS");
+  assert.equal(evaluate(chain,chainStates[0],separator),"FAIL");
+  return {testedThrough:horizon,identicalTestWords:words.length,
+    firstConstructedDifferenceLength:horizon+1,
+    extraFiniteStates:chainStates.length,
+    verdict:"FINITE_TESTS_DO_NOT_PROVE_UNBOUNDED_EQUIVALENCE"};
+}
+
 export function selfTest() {
   const q=quotient(toy);
   const witness=shortestSeparatingTrace(toy,"isolated","entangled");
@@ -105,6 +144,8 @@ export function selfTest() {
   assert.deepEqual(q.blockCounts,[2,3,4]);
   assert.ok(q.blocks.some(b=>b.length===2&&b.includes("isolated")&&b.includes("isolated_ext")));
   assert.equal(shortestSeparatingTrace(toy,"isolated","isolated_ext"),null);
+  const horizonWitnesses=[0,1,2,3,4].map(finiteHorizonBlindSpot);
+  for(const x of horizonWitnesses)assert.equal(x.firstConstructedDifferenceLength,x.testedThrough+1);
   const bad=structuredClone(toy);delete bad.next.isolated.add_provider;
   assert.throws(()=>validate(bad));
   return {selfTest:"PASS",fixture:"SYNTHETIC_ALGEBRAIC_ONLY",
@@ -112,6 +153,7 @@ export function selfTest() {
     initialObservationEqual:true,shortestWitness:witness,
     naiveCurrentObservationClasses:2,traceStableClasses:q.classes,
     refinementBlockCounts:q.blockCounts,quotientTransitionsWellDefined:true,
+    finiteHorizonUnderidentification:horizonWitnesses,
     sourceWorldEquivalence:"NOT_TESTED",oop_law:"NOT_DISCOVERED",
     SOLID:"NO_SOLID_RULE_ESTABLISHED",lawR2:"NOT_AUTHORIZED"};
 }
