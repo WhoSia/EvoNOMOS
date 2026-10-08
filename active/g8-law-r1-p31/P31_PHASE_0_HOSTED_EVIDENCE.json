@@ -1,0 +1,64 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P31",
+  "status": "PHASE_0_CALIBRATION_HOSTED_PASS__STAGE_STILL_OPEN",
+  "verdict": "PASS_BOUNDED_DECISION_SUFFICIENT_ONE_BIT__STATE_AWARE_POLICY_DISCRIMINATES__LAW_R2_NOT_AUTHORIZED",
+  "source": {
+    "repository": "sqlite/sqlite",
+    "version": "3.46.1",
+    "git_commit": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+    "fossil_uuid": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
+  },
+  "first_hosted": {
+    "run": 37717824001,
+    "head": "573f3fe2537cdf5bc25d589f58c0dbdbb01b2eb5",
+    "job": 113118298715,
+    "artifact": 11524915688,
+    "digest": "sha256:d8c5b83475c4b8e1a7e990db7a29488b5361b5dc8686c564f46048961df741a6",
+    "raw_sha256": "9dcd693c2c2f0b59437738c7fbbe329b9e4302637ee8975645edefddcf6940a0",
+    "status": "SUCCESS",
+    "tamper_rejected": "18/18"
+  },
+  "audit_gated_hosted": {
+    "run": 37717921116,
+    "head": "96bb4bb50f56334ec68151d5a352c1615d7ff960",
+    "job": 113118614405,
+    "artifact": 11524263874,
+    "digest": "sha256:510552eb576347b5bac9b2a010bfdb99b15a47abf47d68a702421f7c521fc0d1",
+    "raw_sha256": "36e9503d6756535fe3b43a76a3f69ff827a1549b683ed2ce660b7f220d31ef06",
+    "status": "SUCCESS",
+    "tamper_rejected": "18/18",
+    "policy_grid": "8/8 PASS",
+    "abstention": "11/11 PASS"
+  },
+  "result": {
+    "trajectories": 48,
+    "paired_cells": 24,
+    "policy_NOOP": {
+      "requirement_violations": 15,
+      "extra_write_transactions": 0
+    },
+    "policy_ALWAYS_RESERVE": {
+      "requirement_violations": 0,
+      "extra_write_transactions": 24,
+      "redundant": 9
+    },
+    "policy_H_AWARE": {
+      "requirement_violations": 0,
+      "extra_write_transactions": 15,
+      "redundant": 0
+    },
+    "decision_feature_bits": 1,
+    "decision_feature": "B(h,m)=1 when h+1<m",
+    "exact_future_id_prediction_from_one_bit": false
+  },
+  "scope": "Precommitted SQLite synthetic demand grid; real engine executed from exact source; not a fresh independent maintainer demand. Outcome vector confirms correctness and action transaction count, but neither timing nor I/O performance causality is established.",
+  "limitation": "Different raw hashes across hosted repeats may reflect descriptive timing/runtime or binary/build metadata differences; two logical adjudications agree. No generic future-stream, cross-semantics, or universal-complexity claim.",
+  "authority": {
+    "phase0": "PASS",
+    "p31_closed": false,
+    "law_r2_authorized": false,
+    "macro_law": false,
+    "manuscript_authority": false,
+    "subsequent_requirement": "admit fresh real maintenance demand and independent semantic mechanism after source inspection; no terminal P31 seal"
+  }
+}
