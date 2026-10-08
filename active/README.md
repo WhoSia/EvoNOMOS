@@ -5,7 +5,7 @@
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
 - scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
 - Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10493; next 10494 (new P31 hypothesis in GitHub; Notion RAVEL append pending); Decision not opened
+- RAVEL 10466–10497; next 10498; Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
@@ -69,6 +69,15 @@
 - BUNDLED test fixture requires Name/Kind/Description/Dependencies/DefaultPalette/Load (32 lines); SPLIT fixture uses only a Load implementation plus ordinary descriptor data (30 lines).
 - This confirms a known ISP-type capability-obligation difference **without** novelty, sign reversal, full Git-provider E2E, complete S/L/C/A/Q or a cross-world generative OO structural law. See `P31_CODEVIZ_422_SCOPED_TEST_RECEIPT.json`.
 - Mainline finding: **METHOD/LOCAL SOURCE WITNESS ONLY**; do not add more formalisms or promote on test-count. P31 OPEN / LAW-R2 NOT_AUTHORIZED.
+
+## P31 Source-First SOLID Return — Drive PDF / Harvest / Small LawKit
+
+- Deep-read **canonical Drive 10_PAPERS PDFs**: Geipel & Schweitzer (2012, `1_JqwFqXNKUFaatrvDGk_tkjsPh1RJ88X`), Ajienka et al. (2018, `1twTf3LnpMQsbk2YvCEORBfF0cwSehZ51`), plus internal Parnas (1972), Cai et al. (2019) DRSpaces and Lohse & Zweben (1984). Original-download versions in `00_INTAKE` have **identical extracted text** to the two canonical PDFs; SHA byte identity not yet audited. Do not duplicate canonical PDFs.
+- Full scientific reading/novelty-collision bridge: `P31_SOURCE_FIRST_PAPERS_HARVEST_SOLID_RETURN.md`, commit `be938269d6bafaa4d1abfd6386368957b3ee398d`.
+- Harvest genealogy linked in existing `Harvest Genealogy Continuation — XII onward`: P18 Principle-as-Projection, P17 feature interaction novelty defeats, P27 typed orientation versus rank, plus cross-Lab conditional authority. Harvest **does not** promote LAW authority.
+- Executable LawKit demonstration: `tools/law-r1-p31-cil-projection.mjs`. Input real P3 CIL-C1 two-demand vectors; birth `ΔL=+14, ΔA=+3, ΔS=-3`; first later change `ΔL=-5, ΔS=-3`. Cumulative L after *observed* later demand: `+9`. Only **hypothetically**, if each subsequent same-family demand saves 5 L again, L-only recovery occurs by 3 future demands: `14-5×3=-1`. The script never recommends an architecture; A and Q remain separate and future savings unverified.
+- Read-only Actions `37746064976` SUCCESS, job `113207725358`, self-tests PASS and mandatory `ABSTAIN_NO_OVERALL_ARCHITECTURE_WINNER`. This is **code correctness**, not independent source-world or generative law evidence.
+- DCOG remains hypothesis-only; demand-conditioned obligation semantics must outperform strong static, historical cochange, semantic coupling and DRSpaces baselines on a complete prospective intervention. P31 OPEN / LAW-R2 NOT_AUTHORIZED.
 
 ## P31 Paper Candidate — Scientific Hypothesis, Not a New Law
 
