@@ -14,7 +14,15 @@
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
 
-## Evidence
+## P32 — First executable source-obligation audit (bounded method result)
+
+- [Source-anchored extractor](../tools/law-r1-p32-obligation-extract.py) emits demand IDs, five declaration types, declared directions, owner files, source lines, full-file hashes and typed declaration edges. It is a bounded syntactic recognizer on P2/P3 source worlds, **not** a complete AST/control/data-dependence analyzer.
+- [Read-only hosted run 37800703213](https://github.com/WhoSia/EvoNOMOS/actions/runs/37800703213) **SUCCESS** at head `8c6fb84b204555551b1c1a23c53f5d8ae74feeef`, artifact **11560347607**, SHA-256 `f00abb78acb5192975e344b3ff99188e04b51f822449342aa54bdf570bc0cb5a`. The verified source birth is `398482d590daaac0d44e288c9be3bc6f6667f8b8`; P3 reconstitution, 50 typed source declarations/edges, destructive mutation rejection, and classical coverage checks passed.
+- Historical #7316 source declaration types: DISPERSED=5 in 3 physical files, DUAL=5 in 2. #7559: DISPERSED=20 in 3, DUAL=20 in 2. **Frozen P2 site counts 5 versus 2 are historical references, not freshly extracted site metrics.** Type count / physical files / semantic edit sites are distinct quantities.
+- Standard weighted owner-coverage has nonpositive pairwise mixed difference; an architecture-selection envelope can have positive mixed difference **even if every fixed arm is modular**. [Counterexample and rivals](g8-law-r1-p32/P32_COVERAGE_BARRIER_POLICY_ENVELOPE_AND_RIVAL_CONTRACT.md). Neither theorem is claimed new; P3 sequential outcomes are not a 2x2 factorial interaction.
+- **RULING:** `P32_METHOD_HOSTED_PASS__H_PROSPECTIVE_DISCRIMINATOR_NOT_YET_FOUND__LAW_R2_NOT_AUTHORIZED`. B0+ overlap-aware topology, B1 co-change/semantic coupling and B2 Parnas/Design Rule Spaces/CSDG are undefeated. No general OO mechanism, SOLID condition, or independent prospective sign/Pareto differential is proved.
+
+## P31 historical evidence
 
 - P31 constitution: `active/g8-law-r1-p31/P31_CONSTITUTION.json`.
 - Prospective policy trial: SQLite 3.46.1, 48 source-pinned trajectories. Always NOOP: 15 violations, no added writes. Always RESERVE: 0 violations, 24 added write transactions. One-bit H-aware: 0 violations, 15 added write transactions.
