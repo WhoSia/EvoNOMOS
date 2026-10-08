@@ -1,0 +1,26 @@
+{
+ "stage":"G8 LAW-R1-P30",
+ "candidate":"CPython 3.12.12 UTF-8 IncrementalDecoder pending-prefix temporal split",
+ "status":"FUTURE_OUTCOME_PRECOMMITTED",
+ "parent_temporal_seal":"32f3f1ec4c4a45dcd0a1e17cbc11a3ad51532f2e",
+ "exact_source":{"repository":"python/cpython","tag":"v3.12.12","annotated_tag_sha":"32d78678ec9dc36b82bb6194b2fdbdcb97e4b49a","peeled_commit":"4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"},
+ "contract":"Two independently constructed UTF-8 incremental decoders using the same CPython revision, same strict error policy, and identical final decode intervention; public output is exact decoded Unicode string.",
+ "pair_selection":"Fixed before future Y inspection: arm A receives one byte 0xC2, arm B receives one byte 0xC3, both with final=False. Each prefix is one UTF-8 leading byte expected to remain buffered. The future intervention on both arms is exactly byte 0xA9 with final=True.",
+ "W":{
+  "Q":"Decoder constructor succeeded, state independently of future public decode output.",
+  "R":"Exactly the same codecs.getincrementaldecoder('utf-8') route in both arms.",
+  "G":["both initialized","one prefix byte submitted with final=False","same future suffix 0xA9 admitted","strict decode policy"],
+  "H_pending_length":"length of undecoded pending bytes from getstate() before future intervention; prospective coarse hidden coordinate.",
+  "excluded_coordinate_H_pending_content":"byte identity of the pending prefix, measured by getstate() independently of Y; available as a prospective rival rescue but not part of baseline W."
+ },
+ "intervention_family":["identity","append bytes A9 with final=True"],
+ "horizon":1,
+ "passive_oracle":"current decoded output from prefix only, must be empty in both arms; match independent Q,R,G,H_pending_length before future comparison",
+ "future_oracle":"exact Unicode string obtained on final suffix decode; compare UTF-8 hex representations as an unambiguous byte-level receipt",
+ "predicted_contrast":"Both current outputs are empty; the same suffix 0xA9 may yield different Unicode scalar values, contingent on exact source behavior.",
+ "admissibility":["same runtime executable and binary revision for both decoders","same encoding errors policy","no mutation of future Y or oracle","direct getstate() for H_pending_length and H_pending_content","avoid post-outcome alteration of W","repeatability with two fresh instances"],
+ "negative_outcomes":["if passive output differs, HOLD","if W differs, classify measurement resolution","if future output is equal, HOLD_NO_TEMPORAL_SPLIT","if only full pending content distinguishes arms, classify local prospective H rescue; no persistent refinement failure"],
+ "verdict_if_exact":"PASS_TEMPORAL_PREDICTIVE_COLLISION_AT_COARSE_W__PROSPECTIVE_PENDING_CONTENT_REFINEMENT__LAW_R2_NOT_AUTHORIZED",
+ "claims_forbidden":["universal predictive impossibility","LAW-R2 authority","persistent failure after all prospective refinements","general cross-mechanism transport","new finite-state impossibility"],
+ "governance":{"bot_contribution_zero":true,"actions_compute_test_artifact_only":true,"history_actor":"WhoSia"}
+}
