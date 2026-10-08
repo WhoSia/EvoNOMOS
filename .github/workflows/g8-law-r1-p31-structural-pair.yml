@@ -1,0 +1,55 @@
+name: G8 LAW-R1-P31 Real OOP Filter Structure Source Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p31/P31_SWAMP_OOP_STRUCTURE_PRECOMMIT.json'
+      - 'tools/law-r1-p31-swamp-structural-pair-audit.mjs'
+      - '.github/workflows/g8-law-r1-p31-structural-pair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout EvoNOMOS read-only
+        uses: actions/checkout@v4
+      - name: Checkout exact before and after revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          test -f active/g8-law-r1-p31/P31_SWAMP_OOP_STRUCTURE_PRECOMMIT.json
+          git clone --quiet --filter=blob:none https://github.com/dklassen/swamp.git /tmp/p31-swamp-pair
+          git -C /tmp/p31-swamp-pair checkout --quiet 775bf53ac4dcf1234121fbe4f827704f58d216ee
+          git -C /tmp/p31-swamp-pair worktree add --detach /tmp/p31-swamp-direct a1f174e425d3c68ac0ef6c9c8307814e5d8b4227
+          test "$(git -C /tmp/p31-swamp-pair rev-parse HEAD^)" = "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227"
+      - name: Source topology and semantic-domain audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-swamp-structural-pair-audit.mjs /tmp/p31-swamp-direct /tmp/p31-swamp-pair out/P31_STRUCTURE_SOURCE_COURT.json | tee out/P31_STRUCTURE_SOURCE_STDOUT.txt
+      - name: Setup exact Go implementation
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: /tmp/p31-swamp-pair/go.mod
+          cache: false
+      - name: Independently run source tests before and after refactoring
+        shell: bash
+        run: |
+          set -euo pipefail
+          go version | tee out/P31_GO_VERSION.txt
+          (cd /tmp/p31-swamp-direct && go test ./filter ./sync ./tui) 2>&1 | tee out/P31_DIRECT_GO_TESTS.txt
+          (cd /tmp/p31-swamp-pair && go test ./filter ./sync ./tui) 2>&1 | tee out/P31_SHARED_GO_TESTS.txt
+      - name: Preserve source-only receipt even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p31-structural-pair-source
+          path: out/
+          if-no-files-found: warn
