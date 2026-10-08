@@ -6,6 +6,8 @@ on:
     paths:
       - 'active/g8-law-r1-p31/P31_SECOND_WORLD_CODEVIZ_PRECOMMIT.json'
       - 'tools/law-r1-p31-codeviz-source-court.mjs'
+      - 'tools/law-r1-p31-codeviz-422-smoke.py'
+      - 'active/g8-law-r1-p31/P31_CODEVIZ_422_TEST_SUBSET_PRECOMMIT.json'
       - '.github/workflows/g8-law-r1-p31-codeviz-world.yml'
   workflow_dispatch:
 
@@ -35,11 +37,22 @@ jobs:
         with:
           go-version-file: /tmp/codeviz-after/go.mod
           cache: false
+      - name: Apply issue 422 scoped registry execution tests on both architectures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p31-codeviz-422-smoke.py --before /tmp/codeviz-before --after /tmp/codeviz-after | tee out/P31_CODEVIZ_422_MATERIALIZATION.json
+          git -C /tmp/codeviz-before diff --check
+          git -C /tmp/codeviz-after diff --check
+          wc -l /tmp/codeviz-before/internal/provider/p31_registry_execution_test.go /tmp/codeviz-after/internal/provider/p31_registry_execution_test.go | tee out/P31_CODEVIZ_422_SOURCE_LINES.txt
+          sha256sum /tmp/codeviz-before/internal/provider/p31_registry_execution_test.go /tmp/codeviz-after/internal/provider/p31_registry_execution_test.go | tee out/P31_CODEVIZ_422_SOURCE_HASHES.txt
+          tar -C /tmp/codeviz-before -czf out/P31_422_BEFORE_NEW_TEST.tgz internal/provider/p31_registry_execution_test.go
+          tar -C /tmp/codeviz-after -czf out/P31_422_AFTER_NEW_TEST.tgz internal/provider/p31_registry_execution_test.go
       - name: Verify original and refactored provider tests independently
         shell: bash
         run: |
           set -euo pipefail
-          (cd /tmp/codeviz-before && go test ./internal/provider) 2>&1 | tee out/P31_CODEVIZ_BEFORE_GO_TEST.txt
+          (cd /tmp/codeviz-before && go test ./internal/provider -run 'TestP31ProviderRegistryExecutionWithoutRendering|TestRegisterAndGet|TestGetUnregistered' -count=1 && go test ./internal/provider) 2>&1 | tee out/P31_CODEVIZ_BEFORE_GO_TEST.txt
           (cd /tmp/codeviz-after && go test ./internal/provider) 2>&1 | tee out/P31_CODEVIZ_AFTER_GO_TEST.txt
       - name: Preserve proof and failures without repository writeback
         if: always()
