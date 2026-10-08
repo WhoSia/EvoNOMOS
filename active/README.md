@@ -16,6 +16,12 @@
 
 Source a and demand d can admit several valid implementations b. Distinguish potential impact, minimal admissible repair support families and realized policy-conditioned vectors. Require matching information budgets for B0+ static overlap, B1 CoChangeFinder-style history with patch availability, B2 Parnas/DRSpaces/CSDG/standard repair synthesis, and H demand-indexed contract choice. Never score P32 retrospective Uptime Kuma #7639 bug as a fresh H victory.
 
+### P33 third source-bound method pass — six original PDFs and obstruction certificate
+
+- Six new canonical original research PDFs moved into Drive 10_PAPERS: DirectFix, Angelix, Reiter diagnosis, SemFix, Smith repair-overfitting, Guigue set-valued Pareto control. File-level custody was read back. [Detailed six-paper court](g8-law-r1-p33/P33_SIX_PAPERS_INFORMATION_CUT_AND_REPAIR_FEASIBILITY_COURT.md) and [Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5).
+- The [64-pair finite information-cut certificate](../tools/law-r1-p33-repair-cut-certificate.mjs) passed [hosted read-only run 37810762909](https://github.com/WhoSia/EvoNOMOS/actions/runs/37810762909), artifact `11564738090`, sha256 `45b031289c538a67a07a5c37ce458ed7e50dd4b0660313038e362c78c93fc940`.
+- Within the frozen 3-site edit grammar, the cut-crossing site is **necessary** for all witnessed collisions. It is **not a sufficient or globally necessary software repair**. Standard factorization + Reiter hitting sets, SemFix/DirectFix/Angelix and Guigue are already strong competing methods/mathematics. P33 **OPEN / SCIENCE HOLD / LAW-R2 NOT_AUTHORIZED**.
+
 ### P33 second source-bounded result — repair alternatives and an information cut
 
 - [Latest run 37809554571](https://github.com/WhoSia/EvoNOMOS/actions/runs/37809554571) SUCCESS; artifact `11564451804`, sha256 `be386abce938b631a3251c5fe17ad20a74156600dc85ce2ed72a961fa8b4275c`. Original source fails ordinary template oracle; A/B modifications each PASS that bounded oracle and only A survives delimiter collision. The earlier run 37808780917 SUCCESS is retained as precursor.
