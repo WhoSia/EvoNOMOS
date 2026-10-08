@@ -1,0 +1,46 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P30",
+  "phase": "II-G",
+  "candidate": "SQLite sqlite_sequence Intervention Equalization and Predictive Rescue",
+  "status": "PROSPECTIVE_INTERVENTION_PRECOMMIT_AFTER_PHASE_IIF_LOCAL_OBSERVATION",
+  "provenance": {
+    "sqlite_repo": "sqlite/sqlite",
+    "tag": "version-3.46.1",
+    "git_source": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+    "official_fossil": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33",
+    "parent": "c113115cad0d2737507c0701f59309f35dfcda49"
+  },
+  "population": {
+    "rounds": 3,
+    "prior_history": [
+      "empty_db_no_prior_insert",
+      "one_row_inserted_then_deleted"
+    ],
+    "controlled_sequence": [
+      0,
+      7
+    ],
+    "all_crosses": "2 histories x 2 forced sqlite_sequence values x 3 rounds",
+    "future": "INSERT INTO events(note) VALUES ('probe') RETURNING id"
+  },
+  "setup": "Same file-backed schema events(id INTEGER PRIMARY KEY AUTOINCREMENT,note TEXT NOT NULL). Before any future Y inspection, each arm reaches empty visible table; close and reopen between every SQL operation.",
+  "state_intervention": "INSERT OR REPLACE INTO sqlite_sequence(name,seq) VALUES('events', target_seq) on a fresh sqlite3 CLI process; target_seq is 0 or 7, assigned prospectively independently of Y. Then independently reopen the database, verify the sqlite_sequence row equals the assigned value, and only then execute identical INSERT ... RETURNING id.",
+  "oracle": {
+    "visible_current": "sqlite_schema, events rows and same pragma gates",
+    "hidden_coordinate": "assigned sqlite_sequence seq, directly measured before future",
+    "future": "RETURNING id",
+    "confound_audit": "Check identical visible rows/schema within each target_seq pair; forbid triggers, nonempty target, concurrent transactions"
+  },
+  "predicted_frozen": "For each target sequence 0,7, both history arms give the same future id, respectively 1 and 8, independent of past insertion/deletion. Distinct target seq values yield distinct next ids.",
+  "negative_controls": "Do not treat first candidate local observations as new independent confirmation. Compare corresponding history arms under both target assignments; preserve per-round raw outputs and fail on any mismatch.",
+  "limitations": [
+    "This is a direct internal-state intervention permitted only in controlled disposable SQLite databases; not a recommendation for live database manipulation",
+    "Equalization demonstrates local causal sufficiency under one-step SQL and bounded support, not universal predictive sufficiency",
+    "Not independent mechanism replication and not LAW-R2, macro law or P30 closure."
+  ],
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_read_only": true,
+    "precommit_before_outcome": true
+  }
+}
