@@ -1,0 +1,36 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "SOURCE_TREATMENT_VECTOR_P1",
+  "status": "HOSTED_PASS_LOCAL_SOURCE_DIFF__C_A_Q_AND_FOLLOWUP_HOLD",
+  "run": 37722908214,
+  "head": "a81dc0f7516d40a729b4cb2a30d3f07b876d35ed",
+  "job": 113134443943,
+  "artifact": 11525818864,
+  "digest": "sha256:b46d9dd6c4aebd108b58be30e552251007940cc6009933c0008122984a95909e",
+  "DIRECT": {
+    "modified_existing_files": 3,
+    "go_added_lines": 30,
+    "go_removed_lines": 3,
+    "new_test_lines": 148,
+    "new_sql_lines": 34
+  },
+  "SHARED": {
+    "modified_existing_files": 3,
+    "go_added_lines": 5,
+    "go_removed_lines": 2,
+    "new_test_lines": 148,
+    "new_sql_lines": 34
+  },
+  "adjudication": "Descriptive source-diff contrast under one prospective Team feature; D architecture had a missing persisted filter-display path repaired by 26 extra Go lines. Neither extra lines nor modified files constitute complete S/L/C/A/Q lifecycle measurement. Historical implementations also differ in unsupported-field error semantics.",
+  "missing": [
+    "complete interactive TUI picker",
+    "independent follow-up maintenance change",
+    "C consumer capability obligation measurement",
+    "A boundary introduction/ongoing cost",
+    "full Q equivalence over unknown fields",
+    "signed context-moderator reversal",
+    "out-of-world transport"
+  ],
+  "p31_closed": false,
+  "law_r2_authorized": false
+}
