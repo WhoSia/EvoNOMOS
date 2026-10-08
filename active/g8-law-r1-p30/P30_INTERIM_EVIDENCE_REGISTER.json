@@ -1,0 +1,130 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "status": "OPEN__INTERIM_EVIDENCE_REGISTER__NOT_TERMINAL",
+  "type": "APPEND_ONLY_EVIDENCE_SNAPSHOT",
+  "law_r2_authorized": false,
+  "verified_hosted": [
+    {
+      "candidate": "zlib dictionary passive-state calibration",
+      "run": 37575821547,
+      "job": 112644367551,
+      "artifact": 11462202815,
+      "digest": "sha256:8e6a2e9ef8c72bf100b86111e4f3bf7f7b499343539aadb54835457fe610fae7",
+      "verdict": "PASS_SAME_REPAIRED_STATE_DIFFERENT_Y__HIDDEN_COORDINATE_REFINEMENT_REQUIRED__LAW_R2_NOT_AUTHORIZED",
+      "role": "Tier 0 calibration, not temporal Tier 2"
+    },
+    {
+      "candidate": "Phase II-C temporal theorem",
+      "run": 37713081714,
+      "head": "c6f907510a98f0394f188eb473c4898d06f12a04",
+      "job": 113103254683,
+      "artifact": 11523636154,
+      "digest": "sha256:320b03da3940ec194b121892a3505254ce03c9f5cf6d214687f0fb6ed8ad1a65",
+      "status": "SUCCESS",
+      "role": "finite constructed theorem checker, not external witness"
+    },
+    {
+      "candidate": "CPython v3.12.12 exact-source temporal two-arm Court",
+      "run": 37713990396,
+      "head": "d412518f5b64508f5737e784467c6b3602692d1b",
+      "job": 113106150204,
+      "artifact": 11523976144,
+      "digest": "sha256:fc60292b04c2c5623fb0f209ea6a0aa428d055394f56a01ca71e2a4bd4e8b837",
+      "status": "SUCCESS",
+      "verdict": "PASS_TEMPORAL_PREDICTIVE_COLLISION_AT_COARSE_W__PROSPECTIVE_PENDING_CONTENT_REFINEMENT__LAW_R2_NOT_AUTHORIZED",
+      "audit": "PASS_RAW_EVIDENCE_INTEGRITY; 12/12 mutation rejection",
+      "scope": "bounded one-step predictive collision with admissible pending-byte rescue"
+    },
+    {
+      "candidate": "CPython v3.12.12 exact-source complete prefix/suffix census",
+      "run": 37714495681,
+      "head": "9125dbb07b13cb9a94defa9729a55b90c3d135ed",
+      "job": 113107756310,
+      "artifact": 11524330254,
+      "digest": "sha256:cf5a3caba147c448cf861b393a0b15b50306bd07d2015df3c44369aabbf7f011",
+      "status": "SUCCESS",
+      "measurements": 1920,
+      "edges": 27840,
+      "minimum_bit_basis": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "verdict": "PASS_BOUNDED_PREDICTIVE_COLLISION_CENSUS__MINIMAL_BIT_RESCUE_CONFIRMED__LAW_R2_NOT_AUTHORIZED",
+      "audit": "16/16 tamper rejection",
+      "claim_ceiling": "exact finite one-step UTF-8 grid, not universal representation complexity"
+    },
+    {
+      "candidate": "CPython v3.12.12 temporal regression with failure artifact preservation",
+      "run": 37714507516,
+      "head": "92f0d6660a408edb3eeab19c6f2f6a463ca73e3d",
+      "job": 113107793499,
+      "artifact": 11523692436,
+      "digest": "sha256:0646acbc413441b7e26a8374d345071ae88d4c055148d24b977a391d71b9c2db",
+      "status": "SUCCESS",
+      "role": "CI integrity and artifact durability regression"
+    }
+  ],
+  "local_preliminary": [
+    {
+      "candidate": "SQLite v3.46.1 durable history cross-arm local replication",
+      "rounds": 3,
+      "measurements": 12,
+      "positive_auto_pairs": 3,
+      "negative_rowid_pairs": 3,
+      "source_pinned": false,
+      "status": "LOCAL_PASS_NOT_HOSTED",
+      "evidence_file": "EvoNOMOS_P30_SQLite_local_durable_history.json",
+      "ceiling": "SQLite stdlib-linked version, not exact source build"
+    },
+    {
+      "candidate": "SQLite Phase II-G sequence equalization via INSERT OR REPLACE",
+      "status": "HOLD_INTERVENTION_FIDELITY_FAILURE",
+      "precommit": "0c5535651343473d704bed128facbc6850d83b29",
+      "audit": "8dce3f335ac4c21c85db666117de9d61aade475f",
+      "explanation": "sqlite_sequence.name lacks UNIQUE; attempted replacement created duplicate row, no causal inference"
+    },
+    {
+      "candidate": "SQLite Phase II-H verified UPDATE/INSERT intervention",
+      "status": "LOCAL_PASS_NOT_HOSTED",
+      "precommit": "cc677ef3e9fce41eed3b382f52f4432322bf853f",
+      "tested_equalization_pairs": 6,
+      "source_pinned": false,
+      "claim_ceiling": "local one-step H mediation only"
+    }
+  ],
+  "prospective_pending": [
+    {
+      "candidate": "Node 22.16.0 full streaming decoder Court",
+      "run": 37715013959,
+      "head": "0c22568a1fd12d423eb0f03d5b8369feadfa7bf8",
+      "required": "Hosted adjudication"
+    },
+    {
+      "candidate": "CPython-Node exact-source joined behavioral transport",
+      "run": 37715113276,
+      "head": "5df854285503518e04533f193e6283e5811edc11",
+      "required": "Hosted adjudication of all raw rows; no independent semantic specification"
+    },
+    {
+      "candidate": "SQLite source-pinned II-F and II-H combined Court",
+      "run": 37716088875,
+      "head": "5f14dc890a54936349f9efdff7a2f7e3b0af5d61",
+      "required": "Exact SQLite source, Fossil UUID, raw row and intervention-fidelity Court, tamper regression"
+    }
+  ],
+  "closure_gates": {
+    "phaseII_CI": "PASS",
+    "source_pinned_temporal_pair": "PASS",
+    "source_pinned_census": "PASS",
+    "cross_runtime_hosted": "PENDING",
+    "different_semantic_mechanism_exact_source": "PENDING",
+    "causal_H_equalization_exact_source": "PENDING",
+    "terminal_RAVEL_Notion_authority": "NOT_WRITTEN",
+    "active_readme_promotion": "FORBIDDEN_UNTIL_TERMINAL",
+    "law_r2": "NOT_AUTHORIZED"
+  },
+  "conclusion": "Tier-2 bounded coarse-predictive-sufficiency failure confirmed at CPython grain; prospective local hidden-state rescue succeeds. Independent ontology-class-failure and LAW-R2 pressure remain unestablished."
+}
