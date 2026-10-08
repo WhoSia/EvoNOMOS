@@ -7,6 +7,8 @@ on:
       - 'active/g8-law-r1-p30/P30_CPYTHON_UTF8_TEMPORAL_PRECOMMIT.json'
       - 'tools/law-r1-p30-cpython-utf8-probe.py'
       - 'tools/law-r1-p30-cpython-temporal-court.mjs'
+      - 'tools/law-r1-p30-cpython-evidence-audit.mjs'
+      - 'tools/law-r1-p30-cpython-evidence-audit.test.mjs'
       - '.github/workflows/g8-law-r1-p30-cpython-temporal.yml'
   workflow_dispatch:
 
@@ -20,6 +22,12 @@ jobs:
     steps:
       - name: Checkout frozen EvoNOMOS head
         uses: actions/checkout@v4
+      - name: Run adversarial evidence-integrity regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/law-r1-p30-cpython-evidence-audit.test.mjs | tee out/P30_CPYTHON_AUDIT_TESTS.txt
       - name: Check source provenance and read-only discipline
         shell: bash
         run: |
@@ -47,6 +55,11 @@ jobs:
           set -euo pipefail
           mkdir -p out
           /tmp/p30-cpython/python tools/law-r1-p30-cpython-utf8-probe.py | tee out/P30_CPYTHON_TEMPORAL_PROBE.json
+      - name: Audit raw prospective evidence independently
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-cpython-evidence-audit.mjs out/P30_CPYTHON_TEMPORAL_PROBE.json out/P30_CPYTHON_AUDIT.json | tee out/P30_CPYTHON_AUDIT_STDOUT.txt
       - name: Apply frozen Court
         shell: bash
         run: |
