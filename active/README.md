@@ -5,7 +5,7 @@
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
 - scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
 - Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10490; next 10491; Decision not opened
+- RAVEL 10466–10492; next 10493; Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
@@ -52,6 +52,14 @@
 - This is structurally distinct from Swamp's duplicated/shared conversion: capability segregation and unnecessary execution obligation versus co-required conversion semantics. **No fresh matched follow-up demand treatment and no independent S/L/C/A/Q effect measured.**
 - Related issue #155 generic git-provider registration had already been fixed on 2026-05-04, before issue #162's 2026-05-07 structural refactor. It **cannot** honestly serve as a post-#162 prospective new demand. Do not invert that chronology.
 - Issue #162 explicitly invoked ISP, so the empirical realization of ISP alone is **not novelty**. No new OO generative law, no SOLID derivation, LAW-R2 NOT_AUTHORIZED.
+
+## Independent Provider Follow-Up — Bounded Negative Novelty Ruling
+
+- Real later issue [code-visualizer #422](https://github.com/theunrepentantgeek/code-visualizer/issues/422) concerns complete Git-provider E2E verification. We prospectively selected only **a registry-to-Load smoke subset**: this does not solve the whole issue.
+- Exact historical BUNDLED/SPLIT Go source branches both pass fresh regression tests in hosted run `37732257511`, artifact `11529958203`, digest `sha256:60f1726619a0521af224c36c8335fecf70f09a168a3c79c3ee33b86496d1ee0a`.
+- BUNDLED test fixture requires Name/Kind/Description/Dependencies/DefaultPalette/Load (32 lines); SPLIT fixture uses only a Load implementation plus ordinary descriptor data (30 lines).
+- This confirms a known ISP-type capability-obligation difference **without** novelty, sign reversal, full Git-provider E2E, complete S/L/C/A/Q or a cross-world generative OO structural law. See `P31_CODEVIZ_422_SCOPED_TEST_RECEIPT.json`.
+- Mainline finding: **METHOD/LOCAL SOURCE WITNESS ONLY**; do not add more formalisms or promote on test-count. P31 OPEN / LAW-R2 NOT_AUTHORIZED.
 
 ## Prior closed stage
 
