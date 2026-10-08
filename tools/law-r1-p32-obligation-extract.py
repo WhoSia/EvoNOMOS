@@ -103,7 +103,7 @@ def extract(snapshots: Path) -> dict:
                 "obligation_types": len(by_kind),
                 "physical_owner_files": len(owners),
                 "owners": owners,
-                "semantic_membership_edit_sites_from_frozen_design": 5 if arm == "DISPERSED" else 2,
+                "P2_pre_reveal_membership_site_reference_NOT_measured_here": 5 if arm == "DISPERSED" else 2,
                 "type_to_owner": by_kind,
             }
     if len(entries) != 50:
@@ -115,6 +115,7 @@ def extract(snapshots: Path) -> dict:
         "method": "source-anchored line-and-SHA lexical signatures, not general AST/semantic verification",
         "outcome_blind": True,
         "historical_result_used_as_feature": False,
+        "reference_warning": "P2 pre-reveal membership site constants are provenance-only; do not treat them as derived AST source measurements.",
         "observations": entries,
         "typed_edges": [{"source": e["source_vertex"], "target": e["target_vertex"], "edge_type": e["edge_type"], "demand": e["demand"], "owner": e["owner"], "source_line": e["source_line"]} for e in entries],
         "direction_warning": "These arrows encode declarations, not demonstrated causal change propagation.",
