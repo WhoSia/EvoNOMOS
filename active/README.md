@@ -3,12 +3,13 @@
 > **CURRENT OWNER — Generation VIII LAW-R1-P32 OPEN.** P32 Notion: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0. Constitution: [P32](g8-law-r1-p32/P32_OPENING_CONSTITUTION.md). Existing P31 receipts below are **HISTORICAL / BOUNDED**; P31 scientific claim remained HOLD at handoff. No LAW-R2, SOLID derivation or new OO generative mechanism is authorized. The P31 next-stage/RAVEL labels below are retained as original chronology, not active routing. Actions: read-only computation, no bot-authored commits.
 
 
-- active stage: **G8 LAW-R1-P31**
-- formal name: **Intervention-Stable Predictive-State Reconstitution, Cross-Mechanism Minimal Sufficient Coordinates, Observable-Class Complexity Barriers, History–Context Transport, State-Aware Structural Policy Discrimination & the Return from Behavioral Quotients to Conditional Software-Design Laws**
-- status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
-- scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
-- Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10499; next 10500; Decision not opened
+- active stage: **G8 LAW-R1-P32**
+- formal name: **Demand-Conditioned Obligation Geometry, Source-Grounded Structural Invariants, Cost-Sensitive Change Semantics, Prospective Mechanism Discrimination & the Emergence of Conditional Object-Oriented Design Laws**
+- status: **OPEN — source-grounded obligation mechanism and prospective rival discrimination pending**
+- scientific direction: **P32 MAINLINE — STRUCTURAL-LAW SCIENCE HOLD** — source-grounded demand-conditional authority/obligation geometry must beat strong static, semantic, historical, Parnas/DRSpaces/SOLID baselines on independently frozen maintenance demands
+- Current Notion Run: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0 — Running
+- P31 predecessor Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — historical scientific HOLD at handoff
+- Current P32 RAVEL numbering requires historical 10498–10499 collision repair before assigning another unique number; Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
