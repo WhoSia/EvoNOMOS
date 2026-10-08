@@ -49,7 +49,9 @@ jobs:
           const f=require('fs');
           const x=JSON.parse(f.readFileSync('out/p33-cut-certificate.json','utf8'));
           if(x.collision_pair_count!==64 || x.minimal_obstruction_hitting_sets.length!==1) process.exit(1);
-          if(x.verdict!=='PINNED_SOURCE_INFORMATION_CUT_CERTIFICATE_METHOD_PASS__SCIENCE_HOLD') process.exit(1);
+          if(x.prior_code_executed_results.all_64_pairs.caller.passed_pairs!==64) process.exit(1);
+          if(x.prior_code_executed_results.all_64_pairs.dispatcher.failed_pairs!==64) process.exit(1);
+          if(x.verdict!=='PINNED_TWO_REPAIR_64_PAIR_EXECUTED_ORACLE_PASS__SOURCE_SITE_IDENTIFICATION_RETROSPECTIVE__SCIENCE_HOLD') process.exit(1);
           console.log('P33_OBSTRUCTION_CUT_CERTIFICATE=PASS_METHOD_ONLY');
           NODE
           sha256sum tools/law-r1-p33-*.mjs out/*.json > out/sha256.txt
