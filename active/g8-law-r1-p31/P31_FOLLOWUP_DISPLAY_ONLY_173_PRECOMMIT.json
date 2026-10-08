@@ -1,0 +1,44 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "FOLLOWUP_REAL_WORLD_DISPLAY_ONLY_173",
+  "status": "PROSPECTIVE_BEFORE_TREATMENT_OUTCOMES",
+  "source_issue": "https://github.com/dklassen/swamp/issues/173",
+  "source_antecedent": "https://github.com/dklassen/swamp/issues/61",
+  "base_direct": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+  "base_shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee",
+  "starting_treatment": "P31 Team source treatment + persisted migration and display upgrade, exact scripts from EvoNOMOS main",
+  "demand": "New display-only global title inclusion/exclusion filter, with whole-word case-insensitive matching. Do not alter CompanyFilter ingestion gate or delete persisted postings.",
+  "scope_deferred": [
+    "Global rule persistence",
+    "TUI configuration screen",
+    "workplace normalization issue #171",
+    "MCP list_postings and cross-company inbox",
+    "hidden count UX complete"
+  ],
+  "requirement_no_silent_ingest_change": true,
+  "comparison": {
+    "architecture_direct": "local company-filter mapping plus separate display-only postfilter",
+    "architecture_shared": "shared company-filter conversion plus separate display-only postfilter",
+    "guarantee": "same title candidate support and same tests, nil rule defaults preserve previous behavior"
+  },
+  "prospective_hypotheses": {
+    "Hsemantic": "For display-only semantic divergence, neither architecture should inject global title rules into the ingestion converter. Both should require a display-only operation.",
+    "Hreversal": "The prior shared Team change advantage is not expected to transfer automatically to title-only display policy. Sign reversal not required; tie counts as potential support for semantic-boundary moderator but is not novelty by itself.",
+    "Hsimple": "Simple number of touched files and changed Go lines may explain the effect as well as proposed variation-authority variable; must report both."
+  },
+  "falsifier": [
+    "either arm changes ingestion source under display-only demand",
+    "go tests fail or the title filter silently omits whole-word boundaries",
+    "one arm changes persisted records",
+    "only one architectural arm meets bounded requirement",
+    "claiming full #173 solved without persisted settings/workplace/count oracle"
+  ],
+  "outcomes": [
+    "Q exact title cases and existing Go tests",
+    "S touched existing files",
+    "L changed Go lines",
+    "C/A as NOT_MEASURED unless independent validated manual coding",
+    "hidden count as fixture-local output only"
+  ],
+  "claim_ceiling": "A frozen, partial real requirement #173 code witness and comparison against prior Team result. No comprehensive #173 completion, causal global architecture advantage, lifecycle generalization, macro-law, R2 or SOLID derivation."
+}
