@@ -1,0 +1,38 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "status": "HOSTED_PASS_SOURCE_REALIZATION__LIFECYCLE_COMPARISON_HOLD",
+  "run": 37722765214,
+  "head": "d47f0171ad24ee8923e258b11c61fdfafe76a0d1",
+  "job": 113133993328,
+  "artifact": 11525818692,
+  "digest": "sha256:afb1f58dd86aa413fc48e19ad126d2a655b1e9e01e40b9f8296e34eec56256b2",
+  "repo": "dklassen/swamp",
+  "direct": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+  "shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee",
+  "passed_both": [
+    "filter",
+    "sync",
+    "tui",
+    "store",
+    "db/migrations"
+  ],
+  "added_test_paths": [
+    "tui/p31_persisted_team_test.go",
+    "store/p31_upgrade_existing_test.go"
+  ],
+  "new_functionality": [
+    "DIRECT retained local filter conversion and now enforces persisted team during loadPostings",
+    "SHARED continues sync.FilterRules conversion",
+    "Existing department filter survives Goose v5→v6 upgrade and Team rows can be added",
+    "Team persisted filter display and ingestion tests pass"
+  ],
+  "limitations": [
+    "No full TUI Team picker interaction",
+    "No independent follow-up demand to compute lifecycle S/L/C/A/Q",
+    "No cross-world explanatory discrimination or signed Pareto reversal",
+    "Not a universal SOLID or ontology law"
+  ],
+  "claim": "bounded architecture treatment correctness only",
+  "r2": false,
+  "p31_closed": false
+}
