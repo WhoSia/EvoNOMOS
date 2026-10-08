@@ -1,0 +1,77 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P31",
+  "candidate": "SQLite History-Aware Allocation-Threshold Structural Policy",
+  "status": "P31_FIRST_CANDIDATE_PRECOMMITTED_BEFORE_ANY_P31_OUTCOME",
+  "precommit_order": [
+    "P31_CONSTITUTION.json",
+    "P31_DECISION_SUFFICIENCY_DOSSIER.md",
+    "this precommit",
+    "probe",
+    "independent court",
+    "read-only hosted workflow"
+  ],
+  "exact_source": {
+    "repository": "sqlite/sqlite",
+    "tag": "version-3.46.1",
+    "git_commit": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+    "official_fossil_uuid": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
+  },
+  "population": {
+    "history_sequence_values": [
+      0,
+      3,
+      7,
+      11
+    ],
+    "minimum_next_identifiers": [
+      5,
+      9
+    ],
+    "actions": [
+      "NOOP",
+      "RESERVE"
+    ],
+    "independent_rounds": 3,
+    "total_trajectories": 48
+  },
+  "state": {
+    "W": "schema, empty rows, count, journal_mode, foreign_keys, read_uncommitted, source and action admissibility at pre-treatment",
+    "H": "sqlite_sequence.seq measured directly before action",
+    "E": "minimum-next-id threshold m, provided as an environment demand, not hidden mechanism state",
+    "decision_bit": "B = (H+1 < E.m), computed only from prospective pre-action fields"
+  },
+  "structural_arms": {
+    "NOOP": "No extra write transaction; afterwards submit exactly INSERT INTO events(note) VALUES('next') RETURNING id;",
+    "RESERVE": "As one committed transaction, INSERT explicit id m-1 into events, then DELETE that row, preserving empty public rows; afterwards submit identical final INSERT oracle"
+  },
+  "outcome_vector": [
+    "exact future id",
+    "violation = future_id < m",
+    "public rows remain empty after action",
+    "extra write transactions 0/1",
+    "extra mutation statements 0/2",
+    "file_size_delta and elapsed_ns descriptive only"
+  ],
+  "pre_declared_hypotheses": {
+    "noop_id": "h+1",
+    "reserve_id": "max(h,m-1)+1",
+    "optimal_action": "RESERVE iff h+1 < m; otherwise NOOP",
+    "expected_grid": "state-aware policy yields zero violations without redundant repairs; constant NOOP has 5 failing of 8 demand contexts, constant RESERVE has 3 avoidable reservations of 8; each repeated 3x"
+  },
+  "negative_outcomes": [
+    "NOOP or RESERVE result violates source semantics",
+    "W differs before actions for same (h,m,round)",
+    "H is measured after outcome or derived from it",
+    "A1 does not preserve visible rows or treatment isolation",
+    "oracles and environment differ",
+    "all constant policies tie the state-aware policy on lexicographic burden",
+    "timing or file size wrongly used as a binding proof"
+  ],
+  "evidence_claim_ceiling": "Calibration of state-conditioned action choice and minimal 1-bit decision feature on a fixed SQLite source/action/demand support only. Not independent real-maintenance demand, novel SQLite allocator semantics, source-code architecture superiority, transport, universal state sufficiency or LAW-R2.",
+  "governance": {
+    "GITHUB_ACTIONS": "contents read only; no repo commits/pushes/tags",
+    "AUTHOR": "human account only",
+    "P31": "OPEN; not CLOSED",
+    "LAW_R2": "NOT_AUTHORIZED"
+  }
+}
