@@ -1,0 +1,64 @@
+name: G8 LAW-R1-P33 Source Repair Support Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p33-repair-support.py'
+      - '.github/workflows/g8-law-r1-p33-repair-support.yml'
+
+concurrency:
+  group: g8-law-r1-p33-repair-support
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  p33:
+    name: Historical presealed treatment support comparison
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check immutable P2 predecessor
+        run: |
+          set -euo pipefail
+          test "$(git hash-object tools/law-r1-p2-materialize.py)" = "6ce9dc792419bf51a2884508168babf78ad7b4ba"
+
+      - name: Checkout exact real birth source
+        uses: actions/checkout@v4
+        with:
+          repository: louislam/uptime-kuma
+          ref: 398482d590daaac0d44e288c9be3bc6f6667f8b8
+          path: world
+          fetch-depth: 1
+
+      - name: Restore full historical treatment family
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 tools/law-r1-p3-reconstitute.py --source world --repo-root . --out snapshots --receipt out/reconstruction.json
+
+      - name: Test file-support inclusion and later real-demand cost reversal
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p33-repair-support.py --snapshots snapshots --p3-seal active/g8-law-r1-p3/P3_TERMINAL_SEAL.json --out out/p33-support-comparison.json
+          python3 - <<'PY'
+          import json
+          o=json.load(open("out/p33-support-comparison.json"))
+          assert o["first_disperse_support_strict_subset_dual"] is True
+          assert o["follow_L_disperse_dual"] == [80,75]
+          assert o["verdict"].startswith("HISTORICAL_SOURCE_GROUNDED_COUNTEREXAMPLE")
+          assert "out-of-sample prediction" in o["not_claimed"]
+          print("P33_HISTORICAL_SUPPORT_DOMINANCE_BARRIER=PASS")
+          PY
+          sha256sum tools/law-r1-p33-repair-support.py out/*.json > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p33-historical-support-geometry
+          path: out/
+          retention-days: 30
