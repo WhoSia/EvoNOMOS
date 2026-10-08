@@ -9,6 +9,7 @@ on:
       - 'tools/law-r1-p31-team-display.py'
       - 'tools/law-r1-p31-team-upgrade.py'
       - 'tools/law-r1-p31-real-source-vector.mjs'
+      - 'tools/law-r1-p31-followup-title-display.py'
       - '.github/workflows/g8-law-r1-p31-team-treatment.yml'
   workflow_dispatch:
 
@@ -43,6 +44,7 @@ jobs:
           python3 tools/law-r1-p31-swamp-team-persistence.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_PERSISTENCE_MATERIALIZATION.json
           python3 tools/law-r1-p31-team-display.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_DISPLAY_MATERIALIZATION.json
           python3 tools/law-r1-p31-team-upgrade.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TEAM_UPGRADE_MATERIALIZATION.json
+          python3 tools/law-r1-p31-followup-title-display.py --direct /tmp/swamp-direct --shared /tmp/swamp-shared | tee out/P31_TITLE_FOLLOWUP_MATERIALIZATION.json
           git -C /tmp/swamp-direct diff --check
           git -C /tmp/swamp-shared diff --check
           git -C /tmp/swamp-direct diff --stat | tee out/P31_DIRECT_DIFF_STAT.txt
@@ -50,7 +52,7 @@ jobs:
           git -C /tmp/swamp-direct diff > out/P31_DIRECT_PATCH.diff
           git -C /tmp/swamp-shared diff > out/P31_SHARED_PATCH.diff
           # Preserve untracked source and tests; git diff alone excludes them.
-          tar -C /tmp/swamp-direct -czf out/P31_DIRECT_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go tui/p31_persisted_team_test.go store/p31_upgrade_existing_test.go
+          tar -C /tmp/swamp-direct -czf out/P31_DIRECT_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go tui/p31_persisted_team_test.go store/p31_upgrade_existing_test.go tui/p31_title_display_only_test.go
           tar -C /tmp/swamp-shared -czf out/P31_SHARED_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go
           sha256sum out/P31_*PATCH.diff out/P31_*NEW_FILES.tgz | tee out/P31_ALL_SOURCE_SHA256.txt
       - name: Measure real source change vector without claims of law
@@ -80,7 +82,10 @@ jobs:
             echo "SQLITE_SCHEMA_ADMISSION=EXERCISED_IN_DISPOSABLE_STORE_TESTS_AND_EXISTING_DB_UPGRADE"
             echo "STORE_WRITE_ADMISSION=EXERCISED_IN_DISPOSABLE_STORE_SYNC_TESTS"
             echo "FULL_TUI_TEAM_UI=NOT_DONE"
-            echo "FOLLOWUP_DEMAND=NOT_EXECUTED"
+            echo "FOLLOWUP_DEMAND=DISPLAY_ONLY_TITLE_RULE_SCOPED_PARTIAL_TREATMENT"
+            echo "GLOBAL_RULE_STORAGE=NOT_IMPLEMENTED"
+            echo "MCP_AND_INBOX_FILTER=NOT_IMPLEMENTED"
+            echo "WORKPLACE_TYPE_RULE=NOT_IMPLEMENTED"
             echo "LIFECYCLE_LAW_VERDICT=HOLD"
             echo "P31_CLOSED=NO"
             echo "LAW_R2_AUTHORIZED=NO"
