@@ -1,5 +1,8 @@
 # Active lineage
 
+> **CURRENT OWNER — Generation VIII LAW-R1-P32 OPEN.** P32 Notion: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0. Constitution: [P32](g8-law-r1-p32/P32_OPENING_CONSTITUTION.md). Existing P31 receipts below are **HISTORICAL / BOUNDED**; P31 scientific claim remained HOLD at handoff. No LAW-R2, SOLID derivation or new OO generative mechanism is authorized. The P31 next-stage/RAVEL labels below are retained as original chronology, not active routing. Actions: read-only computation, no bot-authored commits.
+
+
 - active stage: **G8 LAW-R1-P31**
 - formal name: **Intervention-Stable Predictive-State Reconstitution, Cross-Mechanism Minimal Sufficient Coordinates, Observable-Class Complexity Barriers, History–Context Transport, State-Aware Structural Policy Discrimination & the Return from Behavioral Quotients to Conditional Software-Design Laws**
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
