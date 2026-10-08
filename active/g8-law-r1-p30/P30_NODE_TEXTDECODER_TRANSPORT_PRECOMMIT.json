@@ -1,0 +1,51 @@
+{
+  "stage": "G8 LAW-R1-P30",
+  "candidate": "Node.js 22.16.0 WHATWG streaming TextDecoder transport",
+  "status": "PROSPECTIVE_PRECOMMIT_BEFORE_NODE_WORLD_OUTPUT",
+  "node_source": {
+    "repository": "nodejs/node",
+    "tag": "v22.16.0",
+    "annotated_tag": "665c462b76b7428c64bcee76a67e27ee75aa4e97",
+    "peeled_commit": "9774069718d9f80578079d252dddf37ae6fd550d"
+  },
+  "prior_comparison": "CPython 3.12.12 prefix census precommitted; this compares semantics across two independent runtime implementations of one UTF-8 decoding contract; NOT independent semantic specification.",
+  "state_initialization": "new TextDecoder('utf-8',{fatal:true,ignoreBOM:false}) for each arm",
+  "prospective_initial_states": "prefix 0xC2 and 0xC3, each decoder.decode(Uint8Array([prefix]),{stream:true})",
+  "prospective_intervention": "same suffix byte 0xA9 with stream:false on each arm",
+  "sweep_population": "all 30 prefixes C2..DF; all 64 suffixes 80..BF; 1920 independent decoder trials; no outcome filtering",
+  "coarse_W": {
+    "Q": "constructor success",
+    "R": "WHATWG TextDecoder utf-8",
+    "G": "same fatal flag, streaming prefix-only initial step, final suffix step",
+    "H": "one pending leading byte as inferred from input history; native TextDecoder does not expose pending byte via getstate"
+  },
+  "oracle": {
+    "current": "prefix-only decoded output",
+    "future": "exact Unicode string or named error",
+    "expected_pair": "C2,A9 yields © and C3,A9 yields é"
+  },
+  "admissible_hidden_coordinate": "prefix byte content from a prospectively recorded input-history ledger, not a private state variable exposed by Node",
+  "intervention_horizon": 1,
+  "transport_contract": "abstract decoder input/output behavior under finalization; map CPython final=False to Node stream=true and Python final=True to Node stream=false; map strict UnicodeDecodeError to fatal TypeError only for failures",
+  "tests": [
+    "pair initial outputs equal",
+    "pair coarse W match",
+    "pair future outputs differ",
+    "all 1920 raw rows validated independently against exact UTF-8 scalar formula",
+    "frozen sweep 30x64, edge enumeration 27840 nominal edges",
+    "repeat census with fresh instances",
+    "minimum bit-cover via exact subsets"
+  ],
+  "limitations": [
+    "Node and CPython share UTF-8 semantics, so this is implementation transport not mechanism-independent theory validation",
+    "pending byte content is accessible from input history",
+    "no Tier 3/4 claim",
+    "no LAW-R2",
+    "no P30 closure absent hosted receipts"
+  ],
+  "governance": {
+    "human_commits_only": true,
+    "bot_contribution_zero": true,
+    "workflow_read_only": true
+  }
+}
