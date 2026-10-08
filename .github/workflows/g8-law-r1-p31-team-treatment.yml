@@ -8,6 +8,7 @@ on:
       - 'tools/law-r1-p31-swamp-team-persistence.py'
       - 'tools/law-r1-p31-team-display.py'
       - 'tools/law-r1-p31-team-upgrade.py'
+      - 'tools/law-r1-p31-real-source-vector.mjs'
       - '.github/workflows/g8-law-r1-p31-team-treatment.yml'
   workflow_dispatch:
 
@@ -52,6 +53,11 @@ jobs:
           tar -C /tmp/swamp-direct -czf out/P31_DIRECT_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go tui/p31_persisted_team_test.go store/p31_upgrade_existing_test.go
           tar -C /tmp/swamp-shared -czf out/P31_SHARED_NEW_FILES.tgz db/migrations/00006_p31_team_filter.sql filter/p31_team_test.go store/p31_team_store_test.go sync/p31_team_sync_test.go
           sha256sum out/P31_*PATCH.diff out/P31_*NEW_FILES.tgz | tee out/P31_ALL_SOURCE_SHA256.txt
+      - name: Measure real source change vector without claims of law
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-real-source-vector.mjs /tmp/swamp-direct /tmp/swamp-shared out/P31_REAL_SOURCE_VECTOR.json | tee out/P31_SOURCE_VECTOR_STDOUT.txt
       - name: Test direct architecture under Team requirement
         shell: bash
         run: |
