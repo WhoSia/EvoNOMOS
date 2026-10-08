@@ -1,0 +1,41 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P31",
+  "object": "DEMAND_TRACE_CONGRUENCE_OO_THEORY_BRIDGE",
+  "status": "SYNTHETIC_CHECKER_PASS__NO_EMPIRICAL_OO_LAW",
+  "source_note": "active/g8-law-r1-p31/P31_DEMAND_TRACE_CONGRUENCE_OO_BRIDGE.md",
+  "checker": "tools/law-r1-p31-demand-trace-quotient.mjs",
+  "hosted_run": 37794232907,
+  "hosted_head": "f51e2d3a101fb91dfafb641d4f3532bb84ddd65c",
+  "job": 113369372911,
+  "artifact": 11557612628,
+  "artifact_digest": "sha256:885394b40ef8bdd878c94b42d0944790fa4264043f65a76b643006c0d7c1289a",
+  "checks": {
+    "test": "PASS",
+    "pair_product_checks": 25,
+    "shortest_distinguishing_typed_demand_word": [
+      "add_provider",
+      "revise_contract"
+    ],
+    "minimum_length": 2,
+    "observation_blocks": 2,
+    "trace_stable_blocks": 4,
+    "refinement_block_counts": [
+      2,
+      3,
+      4
+    ],
+    "well_defined_finite_quotient": true
+  },
+  "scope": {
+    "observation": "Q_ONLY",
+    "model": "SYNTHETIC_DETERMINISTIC_TYPED_MAINTENANCE_MACHINE",
+    "oo_structural_intervention": "NOT_REAL_WORLD_TESTED",
+    "full_S_L_C_A_Q": "NOT_MEASURED",
+    "mathematical_originality": "STANDARD_PARTITION_REFINEMENT_NOT_NEW",
+    "paper_novelty": "NOT_ADMITTED",
+    "type_isomorphism_to_SOLID": "NOT_CLAIMED",
+    "P31": "OPEN",
+    "LAW_R2": "NOT_AUTHORIZED"
+  },
+  "explanation": "Current-output equality is coarser than equivalence under future change-demand traces. A Q-only synthetic model does not identify actual OO structures; a source-to-maintenance-transition map and strong prior-art baseline comparisons remain missing."
+}
