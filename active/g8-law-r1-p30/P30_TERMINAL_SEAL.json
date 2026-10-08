@@ -1,0 +1,131 @@
+{
+  "stage": "EvoNOMOS Generation VIII LAW-R1-P30",
+  "suffix": "Falsification",
+  "status": "CLOSED_PASS_BOUNDED_WITH_PROSPECTIVE_REPAIR",
+  "verdict": "PASS_BOUNDED_STATE_COLLISIONS_AND_TEMPORAL_PREDICTIVE_FAILURE__PROSPECTIVE_HIDDEN_COORDINATE_REPAIR_VALIDATED__CROSS_SEMANTIC_MECHANISM_LOCAL_REPLICATION__ONTOLOGY_CLASS_FAILURE_NOT_ESTABLISHED__LAW_R2_NOT_AUTHORIZED",
+  "terminal_court_commit": "d6b2711fd7d3165ea2e3d4d9d9d258a28b7713d6",
+  "terminal_court_path": "active/g8-law-r1-p30/P30_TERMINAL_SCIENTIFIC_COURT.md",
+  "provenance": {
+    "zlib": {
+      "run": 37575821547,
+      "job": 112644367551,
+      "artifact": 11462202815,
+      "digest": "sha256:8e6a2e9ef8c72bf100b86111e4f3bf7f7b499343539aadb54835457fe610fae7"
+    },
+    "cpython_temporal": {
+      "run": 37713990396,
+      "head": "d412518f5b64508f5737e784467c6b3602692d1b",
+      "job": 113106150204,
+      "artifact": 11523976144,
+      "digest": "sha256:fc60292b04c2c5623fb0f209ea6a0aa428d055394f56a01ca71e2a4bd4e8b837"
+    },
+    "cpython_census": {
+      "run": 37714495681,
+      "head": "9125dbb07b13cb9a94defa9729a55b90c3d135ed",
+      "job": 113107756310,
+      "artifact": 11524330254,
+      "digest": "sha256:cf5a3caba147c448cf861b393a0b15b50306bd07d2015df3c44369aabbf7f011"
+    },
+    "node_census": {
+      "run": 37715013959,
+      "head": "0c22568a1fd12d423eb0f03d5b8369feadfa7bf8",
+      "job": 113109395814,
+      "artifact": 11523248904,
+      "digest": "sha256:e81da3ad5b3bc94e1c84c98a06601ee84f605c65c96912cca8c66acb24d98d92"
+    },
+    "joined_trace_transport": {
+      "run": 37715113276,
+      "head": "5df854285503518e04533f193e6283e5811edc11",
+      "job": 113109701764,
+      "artifact": 11524036841,
+      "digest": "sha256:c54d13af725baaf55c27089a0bbf28ade7df5414eb1c764e4b49cee0a8eb1269"
+    },
+    "sqlite": {
+      "source_commit": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+      "fossil_uuid": "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33",
+      "run": 37716920534,
+      "head": "1faa6895a494797dbb9dcd4a1f2d608d1cd7a835",
+      "job": 113115399840,
+      "artifact": 11523659162,
+      "digest": "sha256:31aa346846bc41a0db8acfbbaf2c0fe3d03b12986c245100c9fa3f4372404481"
+    }
+  },
+  "measured_scope": {
+    "cp_node_each": {
+      "measurements": 1920,
+      "indexed_edges": 27840,
+      "minimal_prefix_bits": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "joined_trace_rows": 1920,
+    "sqlite_durable": {
+      "rounds": 3,
+      "rows": 12,
+      "auto_history_pairs": 3,
+      "ordinary_rowid_control_pairs": 3
+    },
+    "sqlite_equalization": {
+      "rounds": 3,
+      "arms": 12,
+      "equalized_pairs": 6,
+      "target_sequences": [
+        0,
+        7
+      ],
+      "future_ids": [
+        1,
+        8
+      ]
+    },
+    "adversarial_checks": {
+      "cp_temporal": 12,
+      "cp_census": 16,
+      "node_census": 16,
+      "sqlite_durable": 22,
+      "sqlite_equalization": 23
+    }
+  },
+  "negative_receipts": {
+    "failed_sqlite_II_G": "HOLD_INTERVENTION_FIDELITY_FAILURE; precommit 0c5535651343473d704bed128facbc6850d83b29",
+    "failed_II_H_workflow": "Run 37716088875 failed a no-op tamper fixture, not raw measurement; preserved",
+    "corrected_II_H": "Commit 1faa6895a494797dbb9dcd4a1f2d608d1cd7a835, run 37716920534 success, 23/23 tamper mutations rejected"
+  },
+  "scope_authorized": [
+    "single-fiber current-state insufficiency at frozen zlib (Q,R,G) grain",
+    "bounded one-step predictive insufficiency of prospective coarse W in UTF-8 and SQLite",
+    "prospective hidden-coordinate correction and causal sequence equalization on bounded support",
+    "same-UTF8-contract runtime trace correspondence",
+    "different-semantic-mechanism bounded recurrence of history-dependence"
+  ],
+  "explicitly_not_authorized": [
+    "universal sufficient-state ontology failure",
+    "representational impossibility for all finite deterministic systems",
+    "Tier 3/4 persistent insufficiency",
+    "LAW-R2 promotion",
+    "macro law",
+    "SOLID special-case derivation",
+    "manuscript authority",
+    "unbounded predictive sufficiency",
+    "common cross-mechanism hidden coordinate"
+  ],
+  "governance": {
+    "bot_contribution_zero": true,
+    "actions_read_only": true,
+    "notion_readback_required": true,
+    "active_p29_preserved_as_history": true,
+    "P31_open": false
+  },
+  "suggested_P31": "EvoNOMOS Generation VIII LAW-R1-P31 — Intervention-Stable Predictive-State Reconstitution, Cross-Mechanism Minimal Sufficient Coordinates, Observable-Class Complexity Barriers, History–Context Transport, State-Aware Structural Policy Discrimination & the Return from Behavioral Quotients to Conditional Software-Design Laws",
+  "global_ledger_target": {
+    "RAVEL_start": 10423,
+    "RAVEL_end": 10448,
+    "Decision_start": 10449,
+    "Decision_end": 10465,
+    "global_next": 10466
+  }
+}
