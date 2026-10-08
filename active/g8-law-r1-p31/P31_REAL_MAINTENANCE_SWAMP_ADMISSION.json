@@ -1,0 +1,80 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "REAL_MAINTENANCE_ADMISSION_R1",
+  "status": "SOURCE_SCREENED__FRESH_OUTCOME_NOT_YET_MEASURED",
+  "case": "Swamp agent/TUI application ID reuse and selective AUTOINCREMENT migration",
+  "issues": [
+    "https://github.com/dklassen/swamp/issues/244",
+    "https://github.com/dklassen/swamp/issues/246"
+  ],
+  "source": {
+    "repo": "dklassen/swamp",
+    "exact_commit": "9fb288e10730ad214cc1e4413c7664903ee4830a"
+  },
+  "source_witnesses": {
+    "migration_applications": {
+      "path": "db/migrations/00019_applications_autoincrement_soft_delete.sql",
+      "blob": "92cbd3ab7d54d9205dd84061ea9addeb50c5c929",
+      "semantic": "applications primary key already made AUTOINCREMENT with soft-deletion and partial live posting uniqueness"
+    },
+    "company_filters_schema": {
+      "path": "db/migrations/00001_initial_schema.sql",
+      "blob": "002915c06122273ad3d715df68b7c9a5eb0a3145",
+      "semantic": "company_filters current primary key is plain INTEGER PRIMARY KEY"
+    },
+    "filter_replacement": {
+      "path": "store/company_filter.go",
+      "blob": "3fc3a6a681d68660297649efcc5ed12d88fc100d",
+      "semantic": "ReplaceCompanyFilters deletes all old filters and recreates them"
+    },
+    "document_gate": {
+      "path": "stage/document.go",
+      "blob": "069b1b289fd3e6e2a0565b908bca7d5dba15b7c0",
+      "semantic": "application lookup rejects not-found/deleted IDs before document write"
+    },
+    "document_event": {
+      "path": "db/migrations/00020_document_writes.sql",
+      "blob": "d6095616491981059e0439f4230698cc0a7031a1",
+      "semantic": "document_writes uses AUTOINCREMENT as an append-only event identity"
+    }
+  },
+  "demand": "Fix wrong-account draft attachment from reissued external application IDs, while avoiding schema-wide migration risk when a table's IDs are internal and routinely replaced.",
+  "structural_rivals": {
+    "A0": "Maintain existing targeted applications fix and do not rebuild unrelated tables without evidence of externally persistent IDs.",
+    "A1": "Rebuild all nine remaining integer-primary-key tables to AUTOINCREMENT in one broad migration.",
+    "A2": "Gate per-table migration on documented external ID references, deletion/reuse exposure, a constraint-preservation oracle and rollout-cost audit; abstain if exposure cannot be determined."
+  },
+  "evaluation_dimensions": [
+    "actual wrong-association prevention",
+    "external identity stability",
+    "DDL/index/constraint preservation",
+    "Go store and MCP behavior",
+    "migration and startup costs",
+    "downstream SQL generator changes",
+    "measured missing evidence and abstention"
+  ],
+  "hard_boundaries": [
+    "Existing P31 SQLite 48-cell result is calibration, not confirmatory evidence for this repository",
+    "Issue wording is maintainer claim not automatic proof of global absence of external references",
+    "No writes to upstream project or user databases",
+    "Do not promise historical no-reuse for IDs deleted before migration without independent historic issuance ledger",
+    "No security, privacy or data-loss guarantee from AUTOINCREMENT alone",
+    "No law-R2/macro/SOLID/manuscript promotion"
+  ],
+  "next_gate": "Prospectively freeze a source-backed functional oracle and exact pre-treatment tree for targeted versus broad migration; validate application protection, filter replacement, schema/index fidelity and migration cost on disposable copies before opening outcome.",
+  "other_independent_rivals": [
+    {
+      "issue": "https://github.com/vesmaro/vesma/issues/366",
+      "why": "resume cursor skips records after rowid reuse; separate cursor-consistency semantics"
+    },
+    {
+      "issue": "https://github.com/sydlexius/canticle/issues/936",
+      "why": "migration 012 may already have destroyed historical issued-ID high-water; demands read-only historical impact audit before repair"
+    },
+    {
+      "issue": "https://github.com/martinsharkey/optuna/issues/15",
+      "why": "ID reuse corrupts cache association despite changed rows; separate cache identity mechanism"
+    }
+  ],
+  "decision": "Admit Swamp source-screened R1 as first real-maintenance challenger; do not promote it beyond source-grounded candidate admission until an independently executed intervention oracle passes."
+}
