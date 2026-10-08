@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'tools/law-r1-p32-obligation-extract.py'
+      - 'tools/law-r1-p32-coverage-check.mjs'
       - '.github/workflows/g8-law-r1-p32-obligations.yml'
 
 concurrency:
@@ -39,6 +40,19 @@ jobs:
           PY
           mkdir -p out
           python3 tools/law-r1-p32-obligation-extract.py --self-test --out out/self-test.json
+
+      - name: Test cost-sensitive theorem instance and rival adequacy
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p32-coverage-check.mjs > out/coverage-theorem.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('out/coverage-theorem.json'))
+          assert x['status']=='PASS'
+          assert x['exhaustive_mask_pairs']==256
+          assert x['same_marginal_count_counterexample']['H_novelty']=='NOT_ESTABLISHED'
+          print('P32_COVERAGE_THEOREM_INSTANCE=PASS')
+          PY
 
       - name: Checkout pinned upstream Uptime Kuma
         uses: actions/checkout@v4
