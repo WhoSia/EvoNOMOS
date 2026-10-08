@@ -1,0 +1,26 @@
+name: G8 LAW-R1-P31 Conditional CIL Projection Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p31-cil-projection.mjs'
+      - '.github/workflows/g8-law-r1-p31-cil-projection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  projection-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check source-tethered conditional accounting
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-cil-projection.mjs --self-test
+          node tools/law-r1-p31-cil-projection.mjs --future-repeat-count 1
+          node tools/law-r1-p31-cil-projection.mjs --future-repeat-count 3
