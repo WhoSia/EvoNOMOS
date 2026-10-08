@@ -1,0 +1,73 @@
+name: G8 LAW-R1-P30 CPython UTF-8 Temporal Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_CPYTHON_UTF8_TEMPORAL_PRECOMMIT.json'
+      - 'tools/law-r1-p30-cpython-utf8-probe.py'
+      - 'tools/law-r1-p30-cpython-temporal-court.mjs'
+      - '.github/workflows/g8-law-r1-p30-cpython-temporal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cpython-temporal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout frozen EvoNOMOS head
+        uses: actions/checkout@v4
+      - name: Check source provenance and read-only discipline
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f active/g8-law-r1-p30/P30_CPYTHON_UTF8_TEMPORAL_PRECOMMIT.json
+          if grep -En 'git[[:space:]]+(commit|push|tag)|contents:[[:space:]]*write' .github/workflows/g8-law-r1-p30-cpython-temporal.yml; then
+            exit 1
+          fi
+          git clone --quiet --filter=blob:none https://github.com/python/cpython.git /tmp/p30-cpython
+          cd /tmp/p30-cpython
+          git checkout --quiet 4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5
+          test "$(git rev-parse HEAD)" = "4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+          echo "CPYTHON_EXACT_HEAD=$(git rev-parse HEAD)"
+      - name: Build CPython exact source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/p30-cpython
+          ./configure --without-ensurepip --disable-test-modules >/tmp/p30-configure.log
+          make -j2 python >/tmp/p30-build.log
+          ./python --version
+      - name: Measure prospective temporal candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          /tmp/p30-cpython/python tools/law-r1-p30-cpython-utf8-probe.py | tee out/P30_CPYTHON_TEMPORAL_PROBE.json
+      - name: Apply frozen Court
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-cpython-temporal-court.mjs out/P30_CPYTHON_TEMPORAL_PROBE.json out/P30_CPYTHON_TEMPORAL_COURT.json | tee out/P30_CPYTHON_COURT_STDOUT.txt
+      - name: Create source receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "CPYTHON_SOURCE=python/cpython"
+            echo "CPYTHON_COMMIT=4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+            echo "CPYTHON_TAG=v3.12.12"
+            echo "PRECOMMIT=b088d29baad52359daa7028cb6c1fa53a081a93a"
+            echo "PROBE_COMMIT=f8a8fc13a75ff182f98c5fcfba7e1078d9814714"
+            echo "COURT_COMMIT=9d84cca9b5caf21caa6f4accad026dbd4a59168b"
+            echo "ACTIONS_REPOSITORY_WRITEBACK=FORBIDDEN"
+          } | tee out/P30_CPYTHON_RECEIPT.txt
+      - name: Upload immutable result evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-cpython-temporal
+          path: out/
