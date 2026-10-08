@@ -1,0 +1,73 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P31",
+  "phase": "STRUCTURAL_RETURN_WC_A0_SOURCE_PAIR",
+  "status": "PREOUTCOME_SOURCE_AND_VALID_DOMAIN_LOCK__NO_NEW_LIFECYCLE_TREATMENT",
+  "scientific_object": "Independent conversion knowledge at ingestion/display boundaries versus single shared conversion authority; actual OOP/modular responsibility topology, not SQLite allocator state.",
+  "world": {
+    "repository": "dklassen/swamp",
+    "issue": 61,
+    "issue_url": "https://github.com/dklassen/swamp/issues/61",
+    "base_sha": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+    "historical_fix_sha": "775bf53ac4dcf1234121fbe4f827704f58d216ee",
+    "real_issue_status": "closed",
+    "go_mod_version": "1.26.1"
+  },
+  "source_form": {
+    "historical_direct": "two independently maintained ingestion/display conversion routes with direct field literals",
+    "historical_shared": "sync.FilterRules shared conversion and tui.filterPostingsByCompanyFilters delegation"
+  },
+  "semantic_confounds": [
+    "fix commit includes new tests and error handling for unknown filter names",
+    "pre and post are historical snapshots not randomized isolated implementations",
+    "code churn between revisions includes user-visible behavior changes outside admissible valid-field support"
+  ],
+  "prospective_domain": {
+    "allowed_filter_fields": [
+      "department",
+      "location"
+    ],
+    "unsupported_filter_field": "reserved as a negative-control semantic divergence, NOT an equivalence witness",
+    "required_baseline_tests": [
+      "go test ./filter",
+      "go test ./sync",
+      "go test ./tui"
+    ],
+    "unmodified_tests_only": true
+  },
+  "next_structural_rival_trial": {
+    "task": "Add a third filterable Team capability to both ingestion and display while preserving the same domain semantics on both existing and new fields.",
+    "action_arms": [
+      "DUPLICATED_CROSS_BOUNDARY_CONVERSION",
+      "CENTRALIZED_SHARED_CONVERSION"
+    ],
+    "phase0": "Inspect source identity and exact intermodule ownership; do not modify treatment bytes or view future Y",
+    "future_treatment": "separately freeze code changes from the exact historical direct and shared worlds for a common new demand; enforce functional equivalence and module-surface measurements",
+    "predicted_moderator": "When both ingestion and display must change together, shared authority may eliminate one independent rule-construction site; when only one client changes, shared boundary may impose avoidable coordination and overload.",
+    "falsifier": "Shared path does not reduce distinct handwritten obligation sites or lifecycle source churn; or independent consumers have incompatible semantics and single shared boundary increases conformance burden.",
+    "outcome_vector": [
+      "functionality Q",
+      "source change surface S",
+      "handwritten churn L",
+      "consumer obligation C",
+      "additional module/abstraction A",
+      "realization and test failures"
+    ],
+    "not_claimed": [
+      "novel theoretical law",
+      "causal treatment equivalence of historical commits without domain check",
+      "independent fresh world contact",
+      "full lifecycle sign reversal",
+      "SOLID consequence derivation"
+    ]
+  },
+  "existing_law_candidates": [
+    "CIL-C1",
+    "CBL-C1"
+  ],
+  "claim_ceiling": "Real source topology and valid-domain prior to new prospective modification only; mainline structural evidence requires an independently frozen source-level rival intervention on an actual follow-up requirement.",
+  "governance": {
+    "bot_commits": 0,
+    "actions": "read-only test/receipt",
+    "R2": "NOT_AUTHORIZED"
+  }
+}
