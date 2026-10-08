@@ -16,6 +16,12 @@
 
 Source a and demand d can admit several valid implementations b. Distinguish potential impact, minimal admissible repair support families and realized policy-conditioned vectors. Require matching information budgets for B0+ static overlap, B1 CoChangeFinder-style history with patch availability, B2 Parnas/DRSpaces/CSDG/standard repair synthesis, and H demand-indexed contract choice. Never score P32 retrospective Uptime Kuma #7639 bug as a fresh H victory.
 
+### P33 first bounded source-world contact — historical replay
+
+- Read-only hosted run [37807536786](https://github.com/WhoSia/EvoNOMOS/actions/runs/37807536786), SUCCESS; artifact `11563706254`, SHA256 `ce5724b5f4084b2d550e330a9936714899a277e76744206c12ed9d320a92bac0`.
+- Pinned Uptime Kuma initial provider demand: DISPERSED changed files 5, DUAL changed files 7, with strict support inclusion and two additional DUAL registry modules. Same historical P3 next demand: `L=80` DISPERSED vs `L=75` DUAL, while cumulative two-demand L is 102 vs 111. No overall architecture winner and no independent prospective H>B0+/B1/B2 proof.
+- [P33 source-support court](g8-law-r1-p33/P33_FIRST_SOURCE_SUPPORT_DOMINANCE_BARRIER.md) and [checker](../tools/law-r1-p33-repair-support.py). Exact source file set measured from bytes, not P3 semantic edit-site S=5/2.
+
 ## P32 — Historical bounded first executable source-obligation audit (bounded method result)
 
 - [Source-anchored extractor](../tools/law-r1-p32-obligation-extract.py) emits demand IDs, five declaration types, declared directions, owner files, source lines, full-file hashes and typed declaration edges. It is a bounded syntactic recognizer on P2/P3 source worlds, **not** a complete AST/control/data-dependence analyzer.
