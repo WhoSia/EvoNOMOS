@@ -18,7 +18,7 @@ Source a and demand d can admit several valid implementations b. Distinguish pot
 
 ### P33 second source-bounded result — repair alternatives and an information cut
 
-- [Hosted run 37808780917](https://github.com/WhoSia/EvoNOMOS/actions/runs/37808780917) SUCCESS; artifact `11564131346`, sha256 `ef86e5a6b59f557be00dfd8cbd3655f1529a542cdad9ab7934b7cdf7664c6218`.
+- [Latest run 37809554571](https://github.com/WhoSia/EvoNOMOS/actions/runs/37809554571) SUCCESS; artifact `11564451804`, sha256 `be386abce938b631a3251c5fe17ad20a74156600dc85ce2ed72a961fa8b4275c`. Original source fails ordinary template oracle; A/B modifications each PASS that bounded oracle and only A survives delimiter collision. The earlier run 37808780917 SUCCESS is retained as precursor.
 - Pinned Uptime Kuma extracted JS methods from three hash-verified original files. Alternative single-file edits: caller-side monitor context forwarding vs dispatcher-side parsing of legacy certificate message. Both pass two ordinary inputs, but on two deliberately constructed `][` collisions only the caller-side fix survives; dispatcher path returns template fallback values. These are *bounded test-oracle* source repairs, not general admissible production repairs. The source bug #7639 was known beforehand.
 - Standard kernel-inclusion condition limits downstream repair where distinct required outputs share identical visible inputs. The fact is classical; [P33 court](g8-law-r1-p33/P33_INFORMATION_CUT_REPAIR_FAMILY_AND_THEORETICAL_PRIOR_ART_COURT.md) and [cross-shelf Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) distinguish prior art, source mapping and science claims.
 - P33 remains **OPEN / NO INDEPENDENT H OVER B0+/B1/B2 / LAW-R2 NOT_AUTHORIZED**.
