@@ -1,0 +1,17 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "candidate": "Swamp contextual migration source admission",
+  "status": "SOURCE_ONLY_HOSTED_PASS__BEHAVIORAL_ACTIONS_NOT_TESTED",
+  "upstream": "dklassen/swamp",
+  "source_commit": "9fb288e10730ad214cc1e4413c7664903ee4830a",
+  "issue_primary": "https://github.com/dklassen/swamp/issues/244",
+  "issue_followup": "https://github.com/dklassen/swamp/issues/246",
+  "run": 37718391996,
+  "head": "64918f99b752c36c2ff09172f4e09261699494d8",
+  "job": 113120117680,
+  "artifact": 11525115703,
+  "digest": "sha256:97aacf6a13f093b081a054fa1d437f2915b3980607656b1e7e8121d2875e0f88",
+  "verdict": "PASS_SOURCE_GROUNDED_SWAMP_CONTEXTUAL_ACTION_RIVALS__BEHAVIORAL_COMPARISON_NOT_EXECUTED",
+  "observed": "applications AUTOINCREMENT+soft delete; company_filters plain INTEGER PRIMARY KEY and delete/recreate; guarded application document writes; document_writes AUTOINCREMENT.",
+  "limits": "No globally complete code-reference proof, no blanket migration comparison, no production risk estimate, no behavioral outcome, no P31 closure or LAW-R2."
+}
