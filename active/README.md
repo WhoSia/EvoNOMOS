@@ -5,7 +5,7 @@
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
 - scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
 - Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10484; next 10485; Decision not opened
+- RAVEL 10466–10486; next 10487; Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
@@ -29,7 +29,9 @@
 - Receipt: active/g8-law-r1-p31/P31_STRUCTURAL_SOURCE_BASELINE_RECEIPT.json; hypotheses: active/g8-law-r1-p31/P31_STRUCTURAL_VARIATION_AUTHORITY_HYPOTHESES.md.
 - Historical invalid-field error semantics changed with the original refactoring. Total equivalence is NOT established; restrict source-pair comparison to valid department/location filter inputs.
 - Team filter real Go source intervention and persisted-programmatic API executed on both structures: run `37722278100` SUCCESS; artifact `11526163753` digest `sha256:cc1fb5143b5abee9863496860c68aaf439183daf36b8739713224ef4cc59b2e7`. Both passed `go test ./filter ./sync ./tui ./store ./db/migrations` including new Team persistence and ingestion tests. See `P31_TEAM_PERSISTENCE_HOSTED_RECEIPT.json`.
-- Still missing: dedicated old-database upgrade test, complete TUI Team picker, a distinct follow-up demand, signed S/L/C/A/Q lifecycle effects, and external explanatory transport. **NO STRUCTURAL LAW PASS**.
+- Hosted old-database upgrade + persisted Team display test SUCCESS, run `37722765214`, artifact `11525818692`. DIRECT retains independent TUI conversion, SHARED retains shared sync.FilterRules.
+- Hosted local Team source-diff vector run `37722908214`, artifact `11525818864`: DIRECT 3 modified existing Go files, +30/−3 lines; SHARED 3 files, +5/−2; common new tests 148 lines, migration SQL 34 lines. This is bounded source-change evidence and may reflect DIRECT's preexisting missing persisted display path, not universal superiority.
+- Still missing: complete interactive Team picker, an independent subsequent demand, C/A/Q full lifecycle interpretation, signed effect/Pareto reversal and independent explanatory transport. **NO STRUCTURAL LAW PASS**.
 - P31 mainline structural-law promotion: DIRECTIONALITY HOLD. Literature I–IV novelty downgrades preserved; SOLID-as-conditional-outcome is a research goal, not proved.
 - RAVEL recorded in canonical Notion P31 Run: 10466–10481; next 10482. Decision not opened.
 
