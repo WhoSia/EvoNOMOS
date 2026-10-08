@@ -5,7 +5,7 @@
 - status: **OPEN — Phase-0 BOUNDED PASS; real maintenance behavioral tests not yet executed**
 - scientific direction: **ORIGIN RETURN / STRUCTURAL-LAW MAINLINE HOLD** — P31 must compare real object-oriented responsibility/interface/dependency arrangements under changing requirements, not promote generic state-sufficiency results as an OO ontology
 - Notion Run: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — Running
-- RAVEL 10466–10497; next 10498; Decision not opened
+- RAVEL 10466–10499; next 10500; Decision not opened
 - LAW-R2, macro law, SOLID derivation, universal state ontology and manuscript authority: **NOT_AUTHORIZED**
 
 - P31 origin-return ruling: `active/g8-law-r1-p31/P31_ORIGIN_RETURN_STRUCTURAL_EXPLANANDUM.md` (commit `afa1e05941c83fc59351cca8543ad037f7b1f406`).
@@ -69,6 +69,16 @@
 - BUNDLED test fixture requires Name/Kind/Description/Dependencies/DefaultPalette/Load (32 lines); SPLIT fixture uses only a Load implementation plus ordinary descriptor data (30 lines).
 - This confirms a known ISP-type capability-obligation difference **without** novelty, sign reversal, full Git-provider E2E, complete S/L/C/A/Q or a cross-world generative OO structural law. See `P31_CODEVIZ_422_SCOPED_TEST_RECEIPT.json`.
 - Mainline finding: **METHOD/LOCAL SOURCE WITNESS ONLY**; do not add more formalisms or promote on test-count. P31 OPEN / LAW-R2 NOT_AUTHORIZED.
+
+## P31 Mathematical Sieve — Theoretical CS Without SOLID Isomorphism Inflation
+
+- Exact source-backed theorem/caveats: `active/g8-law-r1-p31/P31_OBSERVATIONAL_SIEVE_SOLID_PROJECTION_THEOREMS.md`, initially `d59e11c86a5b421b534c3ca0b16f911549f42b34`; extended with classical Myhill-Nerode route and computability guard in `970c1d68041cc017230fda8a55445d0356c4c958`.
+- **No canonical 'OO architecture ≅ SOLID'**: natural-language maxims lack an admitted algebra; formal projection means an exact policy correspondence `P = p∘alpha` only when observed Pareto sets are constant on the abstraction's fibers.
+- Minimal observed partition refinement `alpha* = (alpha,P)` exists but **leaks observed outcome**, so does not predict unseen demands. Fixed Pareto-admissible selectors need only common frontier intersection, a weaker condition.
+- Real source illustration: Uptime Kuma P3 Q-bounded outcomes yield `phase0 → {DISPERSED,DUAL}`, `phase1 → {DUAL}`. Therefore phase-blind **exact frontier compression fails**, while constant DUAL remains in both observed frontiers. No claim of universal superiority or empirical sign reversal.
+- Executable bounded proof-instance checker `tools/law-r1-p31-observational-sieve.mjs`, using real P3 sealed vectors; read-only hosted Actions `37747411582` PASS, subsequent `37747622124` PASS. The tests prove no new math and no universal source-world effects.
+- Classical minimal deterministic future-residual quotient is unique up to state renaming **only under complete, specified deterministic observation and finite index**. No exact universal algorithm for Turing-complete contextual program equivalence; classical abstract interpretation/full-abstraction/computational mechanics antecedents already in canonical Drive.
+- Real research next: source-before-outcome OO obligation invariant distinguishing unseen principle-admissibility boundaries beyond static, history, semantic and DSM/design-rule baselines. **No further World Contact until prospective baseline-disagreeing predictions and a full oracle.** P31 OPEN, LAW-R2 NOT_AUTHORIZED.
 
 ## P31 Source-First SOLID Return — Drive PDF / Harvest / Small LawKit
 
