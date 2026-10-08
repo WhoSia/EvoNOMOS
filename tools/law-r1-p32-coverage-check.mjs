@@ -52,9 +52,23 @@ function selfTest() {
   const envelopeMixed = envelope(["x","y"]) - envelope(["x"]) -
     envelope(["y"]) + envelope([]);
   assert.equal(envelopeMixed, 2);
+  // Minimal repair supports are an antichain, not a unique required site set.
+  // This is an abstract implementation-choice witness; source admissibility
+  // in any real repository has NOT been proved.
+  const repairFamily = [["a"],["b","c"]];
+  const mandatory = repairFamily.reduce((acc, support) => acc.filter(x => support.includes(x)));
+  const minimalCost = weights => Math.min(
+    ...repairFamily.map(support => support.reduce((v,owner)=>v+weights[owner],0))
+  );
+  assert.deepEqual(mandatory, []);
+  assert.equal(minimalCost({a:3,b:1,c:1}),2);
+  assert.equal(minimalCost({a:1,b:3,c:3}),1);
+  // Ignoring alternative admissible repairs yields false zero lower costs.
+  assert.equal(mandatory.reduce((v,owner)=>v+({a:3,b:1,c:1})[owner],0),0);
   return {
     status:"PASS",
     exhaustive_mask_pairs:tested,
+    repair_antichain_counterexample:{minimal_supports:repairFamily,common_mandatory_owners:mandatory,optimal_cost_under_weights_1:2,optimal_cost_under_weights_2:1,real_repo_admissibility:"NOT_ESTABLISHED",novelty:"STANDARD_SET_SYSTEM_FACT"},
     policy_envelope_counterexample:{fixed_arm_interactions:[0,0], optimized_envelope_interaction:envelopeMixed, interpretation:"positive interaction can arise from architecture selection without intrinsic within-arm coupling", authority:"synthetic known mathematical possibility"},
     under_theorem_assumptions:"mixed interaction exactly equals negative shared-owner weight",
     same_marginal_count_counterexample:{
