@@ -8,6 +8,10 @@ on:
       - 'tools/law-r1-p30-sqlite-durable-history-probe.py'
       - 'tools/law-r1-p30-sqlite-history-court.mjs'
       - 'tools/law-r1-p30-sqlite-history-court.test.mjs'
+      - 'active/g8-law-r1-p30/P30_SQLITE_VERIFIED_EQUALIZATION_PRECOMMIT.json'
+      - 'tools/law-r1-p30-sqlite-verified-equalization-probe.py'
+      - 'tools/law-r1-p30-sqlite-verified-equalization-court.mjs'
+      - 'tools/law-r1-p30-sqlite-verified-equalization-court.test.mjs'
       - '.github/workflows/g8-law-r1-p30-sqlite-durable.yml'
   workflow_dispatch:
 
@@ -36,6 +40,7 @@ jobs:
           cd /tmp/p30-sqlite
           git checkout --quiet f3d536d37825302e31ed0eddd811c689f38f85a3
           test "$(git rev-parse HEAD)" = "f3d536d37825302e31ed0eddd811c689f38f85a3"
+          test "$(tr -d '\n' < manifest.uuid)" = "c9c2ab54ba1f5f46360f1b4f35d849cd3f080e6fc2b6c60e91b16c63f69a1e33"
           cp manifest.uuid "$GITHUB_WORKSPACE/out/P30_SQLITE_OFFICIAL_FOSSIL_ID.txt"
           git rev-parse HEAD | tee "$GITHUB_WORKSPACE/out/P30_SQLITE_GIT_SOURCE_ID.txt"
       - name: Compile exact-source SQLite CLI
@@ -65,6 +70,23 @@ jobs:
         run: |
           set -euo pipefail
           node tools/law-r1-p30-sqlite-history-court.test.mjs out/P30_SQLITE_RAW.json | tee out/P30_SQLITE_TAMPER_TESTS.txt
+      - name: Run separately precommitted verified-sequence intervention
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f active/g8-law-r1-p30/P30_SQLITE_VERIFIED_EQUALIZATION_PRECOMMIT.json
+          python3 tools/law-r1-p30-sqlite-verified-equalization-probe.py --sqlite-bin /tmp/p30-sqlite/sqlite3 >out/P30_SQLITE_IIH_RAW.json
+          sha256sum out/P30_SQLITE_IIH_RAW.json | tee out/P30_SQLITE_IIH_RAW_SHA256.txt
+      - name: Apply independent sequence intervention Court
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-sqlite-verified-equalization-court.mjs out/P30_SQLITE_IIH_RAW.json out/P30_SQLITE_IIH_COURT.json | tee out/P30_SQLITE_IIH_COURT_STDOUT.txt
+      - name: Verify mutation rejection including prior failed treatment
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-sqlite-verified-equalization-court.test.mjs out/P30_SQLITE_IIH_RAW.json | tee out/P30_SQLITE_IIH_TAMPER_TESTS.txt
       - name: Record non-promotion authority
         shell: bash
         run: |
@@ -77,6 +99,11 @@ jobs:
             echo "P30_PROBE=392c0c8405360ce9d68c5bb171cd7926f83d4eba"
             echo "P30_COURT=913794be45b12715c85c8c8f21703113adae2f3e"
             echo "P30_TAMPER_TEST=80bb2c23ec5a2dda139fde1155861c9d0fbb1e49"
+            echo "P30_IIH_PRECOMMIT=cc677ef3e9fce41eed3b382f52f4432322bf853f"
+            echo "P30_IIH_VERIFIER=6d2fd0d65ae3cd488185f23a703e3ab632c59679"
+            echo "P30_IIH_COURT=b8034c1ca8619b56066ed22facf036ea0bf49d3b"
+            echo "P30_IIH_TAMPER_TEST=bc12a58828ea1f334e93644591185747d1c4d5aa"
+            echo "P30_IIG_ORIGINAL_MANIPULATION=HOLD_INTERVENTION_FIDELITY_FAILURE"
             echo "LAW_R2=NOT_AUTHORIZED"
             echo "P30_CLOSED=NO"
             echo "GITHUB_ACTIONS_WRITEBACK=FORBIDDEN"
