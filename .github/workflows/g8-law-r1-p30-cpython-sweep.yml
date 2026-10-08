@@ -1,0 +1,68 @@
+name: G8 LAW-R1-P30 CPython Predictive Census
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p30/P30_CPYTHON_PREDICTIVE_SWEEP_PRECOMMIT.json'
+      - 'tools/law-r1-p30-cpython-predictive-sweep.py'
+      - 'tools/law-r1-p30-cpython-sweep-court.mjs'
+      - '.github/workflows/g8-law-r1-p30-cpython-sweep.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cpython-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout immutable EvoNOMOS revision
+        uses: actions/checkout@v4
+      - name: Freeze exact source checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f active/g8-law-r1-p30/P30_CPYTHON_PREDICTIVE_SWEEP_PRECOMMIT.json
+          git clone --quiet --filter=blob:none https://github.com/python/cpython.git /tmp/p30-cpython
+          cd /tmp/p30-cpython
+          git checkout --quiet 4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5
+          test "$(git rev-parse HEAD)" = "4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+      - name: Compile source-pinned CPython
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/p30-cpython
+          ./configure --without-ensurepip --disable-test-modules >/tmp/p30-configure.log
+          make -j2 python >/tmp/p30-build.log
+          ./python --version
+      - name: Execute complete candidate census
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          /tmp/p30-cpython/python tools/law-r1-p30-cpython-predictive-sweep.py >out/P30_PREDICTIVE_SWEEP_RAW.json
+          sha256sum out/P30_PREDICTIVE_SWEEP_RAW.json | tee out/P30_PREDICTIVE_SWEEP_SHA256.txt
+      - name: Independent raw-row census Court
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p30-cpython-sweep-court.mjs out/P30_PREDICTIVE_SWEEP_RAW.json out/P30_PREDICTIVE_SWEEP_VERDICT.json | tee out/P30_PREDICTIVE_SWEEP_COURT.txt
+      - name: Emit run provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "EVONOMOS_HEAD=$GITHUB_SHA"
+            echo "CPYTHON_SOURCE_HEAD=4a5632fbf9bf59477c540e3f53fa7cdbeea3e3f5"
+            echo "SWEEP_PRECOMMIT=a7d56173e64689d8a73f608988003f85445497c3"
+            echo "SWEEP_PROBE=9eddc4db61e6701802861d05b43dbdbffada3ef7"
+            echo "SWEEP_COURT=9bfc5206fa3e7e6bb7c7bfc9e83d04e2b1516c84"
+            echo "GITHUB_ACTIONS_WRITEBACK=FORBIDDEN"
+          } | tee out/P30_PREDICTIVE_SWEEP_RECEIPT.txt
+      - name: Upload full reproducibility artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p30-cpython-predictive-census
+          path: out/
