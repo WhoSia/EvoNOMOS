@@ -1,0 +1,74 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P30",
+  "phase": "II-F",
+  "candidate": "SQLite AUTOINCREMENT durable-history predictive collision",
+  "status": "PRECOMMITTED_BEFORE_ANY_SQLITE_CANDIDATE_OUTCOME_INSPECTION",
+  "source": {
+    "mirror": "sqlite/sqlite",
+    "tag": "version-3.46.1",
+    "exact_mirror_commit": "f3d536d37825302e31ed0eddd811c689f38f85a3",
+    "verification": "Compile sqlite3 CLI from exact mirror commit; verify SELECT sqlite_version()='3.46.1'; retain manifest.uuid fossil origin identifier"
+  },
+  "arms": [
+    {
+      "name": "AUTOINCREMENT_FRESH",
+      "auto_increment": true,
+      "history": false
+    },
+    {
+      "name": "AUTOINCREMENT_INSERT_DELETE",
+      "auto_increment": true,
+      "history": true
+    },
+    {
+      "name": "ROWID_FRESH_CONTROL",
+      "auto_increment": false,
+      "history": false
+    },
+    {
+      "name": "ROWID_INSERT_DELETE_CONTROL",
+      "auto_increment": false,
+      "history": true
+    }
+  ],
+  "initialization": "Each arm uses a fresh disk-backed database. Create identical events(id INTEGER PRIMARY KEY [AUTOINCREMENT], note TEXT NOT NULL) DDL within each matching pair; history arm INSERT ('history') then DELETE all events and COMMIT. Close and reopen between initialization, observations, and intervention with independently launched sqlite3 CLI processes.",
+  "coarse_ontology": {
+    "Q": "database reopens and accepts SQL",
+    "R": "exact-source sqlite3 CLI; file-backed database; one finalizing INSERT ... RETURNING id",
+    "G": [
+      "schema signature within same mode",
+      "visible events content (entire rows)",
+      "same DB availability",
+      "same transaction isolation mode and PRAGMAs",
+      "same future SQL and note"
+    ],
+    "H": "SQLite sqlite_sequence row presence and seq for AUTOINCREMENT table, read before the future insert; do NOT include in coarse W"
+  },
+  "observations": {
+    "current": "Full sqlite_schema schema rows, entire events table rows and SELECT count(*) from events; ignore database-file bytes, page allocation and sqlite_sequence content only as prospectively excluded hidden coordinates",
+    "hidden": "For AUTOINCREMENT arms: SELECT name,seq FROM sqlite_sequence WHERE name='events' before future SQL; for ROWID arms: no sqlite_sequence table is expected",
+    "future": "INSERT INTO events(note) VALUES ('probe') RETURNING id; compare exact returned integer"
+  },
+  "predicted": [
+    "AUTOINCREMENT pair W same and current public rows empty, future id different due to hidden persistent sequence",
+    "ROWID control W same and current rows empty, future id equal due to rowid reuse",
+    "Adding a prospectively recorded sqlite_sequence coordinate separates AUTOINCREMENT pair, a local predictive repair",
+    "At least two independently initialized on-disk rounds agree"
+  ],
+  "disqualifiers": [
+    "different visible rows or schema within matching pair",
+    "same engine version or build not verified",
+    "open transaction or hidden trigger confound",
+    "future SQL text differs",
+    "missing future RETURNING id or nondeterministic outcome",
+    "hardware/runtime differences",
+    "future outcome used to define candidate state"
+  ],
+  "claim_ceiling": "Different semantic mechanism (database allocator/history vs UTF-8 decoder) exhibiting restricted present-observation predictive failure; mechanisms share only abstract state-sufficiency issue, not a transportable hidden-coordinate identity. A prospective sqlite_sequence rescue makes this Tier 2/local refinement, not Tier 3/4 persistent failure. No LAW-R2/P30 closure solely from candidate.",
+  "governance": {
+    "evidence_contract": "candidate precommit before outcome",
+    "bot_contribution_zero": true,
+    "read_only_CI": true,
+    "human_commits_only": true
+  }
+}
