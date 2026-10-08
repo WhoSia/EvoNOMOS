@@ -16,6 +16,13 @@
 
 Source a and demand d can admit several valid implementations b. Distinguish potential impact, minimal admissible repair support families and realized policy-conditioned vectors. Require matching information budgets for B0+ static overlap, B1 CoChangeFinder-style history with patch availability, B2 Parnas/DRSpaces/CSDG/standard repair synthesis, and H demand-indexed contract choice. Never score P32 retrospective Uptime Kuma #7639 bug as a fresh H victory.
 
+### P33 second source-bounded result — repair alternatives and an information cut
+
+- [Hosted run 37808780917](https://github.com/WhoSia/EvoNOMOS/actions/runs/37808780917) SUCCESS; artifact `11564131346`, sha256 `ef86e5a6b59f557be00dfd8cbd3655f1529a542cdad9ab7934b7cdf7664c6218`.
+- Pinned Uptime Kuma extracted JS methods from three hash-verified original files. Alternative single-file edits: caller-side monitor context forwarding vs dispatcher-side parsing of legacy certificate message. Both pass two ordinary inputs, but on two deliberately constructed `][` collisions only the caller-side fix survives; dispatcher path returns template fallback values. These are *bounded test-oracle* source repairs, not general admissible production repairs. The source bug #7639 was known beforehand.
+- Standard kernel-inclusion condition limits downstream repair where distinct required outputs share identical visible inputs. The fact is classical; [P33 court](g8-law-r1-p33/P33_INFORMATION_CUT_REPAIR_FAMILY_AND_THEORETICAL_PRIOR_ART_COURT.md) and [cross-shelf Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) distinguish prior art, source mapping and science claims.
+- P33 remains **OPEN / NO INDEPENDENT H OVER B0+/B1/B2 / LAW-R2 NOT_AUTHORIZED**.
+
 ### P33 first bounded source-world contact — historical replay
 
 - Read-only hosted run [37807536786](https://github.com/WhoSia/EvoNOMOS/actions/runs/37807536786), SUCCESS; artifact `11563706254`, SHA256 `ce5724b5f4084b2d550e330a9936714899a277e76744206c12ed9d320a92bac0`.
