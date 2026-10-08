@@ -8,6 +8,8 @@ on:
       - 'tools/law-r1-p31-sqlite-policy-probe.py'
       - 'tools/law-r1-p31-sqlite-policy-court.mjs'
       - 'tools/law-r1-p31-sqlite-policy-court.test.mjs'
+      - 'tools/law-r1-p31-state-aware-policy.mjs'
+      - 'tools/law-r1-p31-state-aware-policy.test.mjs'
       - '.github/workflows/g8-law-r1-p31-sqlite-policy.yml'
   workflow_dispatch:
 
@@ -35,6 +37,11 @@ jobs:
         run: |
           set -euo pipefail
           node tools/law-r1-p31-sqlite-policy-court.test.mjs | tee out/P31_COURT_ADVERSARIAL_REGRESSION.txt
+      - name: Test read-only state-aware policy and abstention gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-state-aware-policy.test.mjs | tee out/P31_POLICY_ABSTENTION_TESTS.txt
       - name: Check out exact SQLite mechanism revision
         shell: bash
         run: |
