@@ -70,7 +70,25 @@ Suppose X_seen is a proper subset of a wider context universe X_all and no unobs
 
 This is a generic underdetermination construction, not a surprising new theorem. The research problem is to find **genuine structural axioms**, restrictions on OO program transformations and demand composition, that rule out the spurious extensions and have independently testable consequences.
 
-## 7. Deep-TCS development fork (not yet established)
+## 7. A harder classical route — minimal future-behavior quotient
+
+The finite *observed* sieve above uses P(x), so it cannot predict unseen results. A genuine theoretical-computer-science route is to quantify over **future demand sequences**, conditioned on the same typed OO obligation semantics.
+
+Fix a demand alphabet D and an ideal deterministic maintenance transition system with histories H=D*, externally specified functional contracts, and a complete output function `o:H→Y`, where Y is a **typed**, correctness-gated architecture/decision-response object rather than a scalar quality number. Define future-residual equivalence
+
+`h ≡ h'  iff  ∀w∈D*: o(hw)=o(h'w)`.
+
+**Theorem E (classical right-congruence / Myhill–Nerode construction).** This relation is an equivalence and a right congruence: `h≡h' ⇒ hd≡h'd` for any demand d. If its index is finite, the quotient states `H/≡`, transitions `[h] --d--> [hd]`, and output `o([h])=o(h)` define a deterministic minimal realization of the specified complete behavior, unique up to state-renaming isomorphism among reachable deterministic realizations.
+
+**Proof sketch.** Right congruence follows from substituting continuation `dw` into the defining equality. Therefore the transition and output maps are representative-independent. Any other deterministic realization producing o must map distinct residual futures to distinct internal states; the quotient has one state for each distinct future residual, hence is minimal. State renaming gives uniqueness. □
+
+**This is the sort of exact isomorphism that mathematics can actually provide**, but it is **not** `SOLID≅OO reality`. It is an isomorphism of minimal behavioral presentations *under an explicit and complete maintenance-demand model*. The theorem is classical and cannot be claimed as an EvoNOMOS novelty. Direct Drive antecedents: Shalizi & Crutchfield (2001), *Computational Mechanics: Pattern and Prediction, Structure and Simplicity*, `1T0T2lXQs5VuD9ytU86O6KnV6B_JIlZ-k`; Barnett & Crutchfield (2015), *Computational Mechanics of Input–Output Processes*, `1enuIYvv7dF4B1r59nCcGQmdO8mthCCwO`. Their process/channel predictive constructions are not evidence that OO design laws are already derived.
+
+**Critical restriction:** o includes the result of potentially expensive or noncomputable complete program behavior. For arbitrary Turing-complete OO languages, universal exact contextual behavior equivalence is undecidable: a hypothetical universal equivalence decider could compare a program that returns iff a specified machine halts to one that diverges, deciding the halting problem. Thus no universal effective, perfectly lossless "SOLID drying machine" can be promised. Finite-state contracts, bounded demand alphabets, specified observables, approximate/confidence-qualified abstraction, and honest abstention are not mere implementation shortcuts; they define where effective mathematics is possible.
+
+A *new* EvoNOMOS theorem would need a **program-structural assumption** (e.g. finite typed obligation ownership, locality/noninterference rules and a controlled demand-composition algebra) that yields a nontrivial bound, compositionality, or prospective separating invariant for the minimal quotient. Without such a source-grounded result, this is classical automata theory applied to a new problem, not a novel law.
+
+## 8. Deep-TCS development fork (not yet established)
 
 For mathematical structure worthy of an eventual paper:
 
