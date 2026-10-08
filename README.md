@@ -1,27 +1,38 @@
 # EvoNOMOS
 
-Canonical repository for executable research on context-conditional software design laws.
+**Evolutionary Nomology, Optimization, and Measurement of Software Organization**
 
-## Current scientific head
+EvoNOMOS investigates whether source-grounded responsibility, authority, interface capability and dependency structures can explain and *prospectively predict* the effects of maintenance demands. SOLID principles are possible conditional consequences, **not axioms** or presumed universal laws.
 
-**EvoNOMOS Generation VIII LAW-R1-P10 — Prospective Context×Geometry Factorization Stress Test, Matched-Geometry Moderator Reversal, Matched-Context Structural Intervention Discrimination, Interaction-Induced Nonseparability, Transport Failure, Missing-Coordinate Reopening & Conditional Design-Law State-Sufficiency Court**
+## Current scientific head — Generation VIII LAW-R1-P32
 
-Status: **CLOSED / PASS**.
+**Demand-Conditioned Obligation Geometry, Source-Grounded Structural Invariants, Cost-Sensitive Change Semantics, Prospective Mechanism Discrimination & the Emergence of Conditional Object-Oriented Design Laws**
 
-Canonical authority:
-- run `36954213256`
-- head `fcd963ab9a26db666e13792af1eacc41d4c2c090`
-- artifact `11205386179`
-- digest `sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4`
+**Status:** OPEN / scientific mechanism discrimination pending. **LAW-R2:** NOT_AUTHORIZED. No new generative OO law, prospective out-of-sample advantage, or SOLID derivation has been established.
 
-P10 rejects a separable policy decomposition over context and structural geometry.
+- [P32 opening constitution](active/g8-law-r1-p32/P32_OPENING_CONSTITUTION.md)
+- [Current active lineage and detailed P31 evidence](active/README.md)
+- [P32 Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
+- [P31 historical Run](https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7)
 
-Retained state:
-`(X,G,E)`
+### Immediate research question
 
-Promoted policy:
-`Pi(X,G,E)`
+For functionally equivalent, source-pinned OO design realizations A/B and the **same independently specified new maintenance demand**, can an **outcome-blind** encoding of demand-activated ownership, capabilities and dependency obligations correctly predict a lifecycle effect sign, Pareto relationship, correctness boundary or abstention that stronger rival models cannot?
 
-The policy may require interaction-bearing rules over the joint state. No fresh world showed the same materially specified `(X,G,E)` requiring incompatible actions, so LAW-R1 state ontology survives and LAW-R2 is not authorized.
+Rivals: **B0** static coupling/topology and changed surfaces; **B1** historical and semantic co-change; **B2** Parnas/Design Rule Spaces and familiar SOLID explanations. Proposed **H** is a typed, demand-conditioned obligation structure. Where forecast differences cannot be prospectively fixed, **HOLD**, not claimed discovery.
 
-Global next: **9396**.
+The first source-grounded candidate is existing Uptime Kuma CIL-C1 DISPERSED/DUAL. Existing outcomes are calibration material only; a fresh independent demand is required for prospective validation. Both functionality/requirement coverage and engineering cost must be scoped correctly.
+
+### Evidence and scientific authority
+
+P31 produced real but bounded object-oriented source treatments (Swamp and Code Visualizer) and auxiliary SQLite policy, quotient, and finite-horizon formal tests. Those results remain preserved; local PASS does not demonstrate a new general OO law. Some real source comparisons have known behavioral confounds or incomplete user-facing request coverage.
+
+Maintain the original lifecycle vector **S/L/C/A/Q** and its explicit admissibility/measurement boundaries. Do not silently reduce multiobjective results to one score or manufacture a frontier after inspecting outcomes.
+
+### Repository authorship safeguard
+
+GitHub Actions are read-only verification/computation infrastructure (`contents: read`). **Never allow Actions to commit, push, merge, tag, mutate refs, or author/commit repository history as `github-actions[bot]`.** Scientific results may be promoted to source history only through separately verified human-account-authored commits. Audit author and committer identity; preserve archival lineage.
+
+## Historical milestone — LAW-R1-P10 (not current)
+
+P10 CLOSED/PASS in its bounded policy factorization test, run `36954213256`, head `fcd963ab9a26db666e13792af1eacc41d4c2c090`, artifact `11205386179`, digest `sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4`. It rejected a separable policy decomposition; `(X,G,E)` / `Pi(X,G,E)` survived locally, without universal law authority. Historical global next `9396` is **superseded**, not a current action pointer.
