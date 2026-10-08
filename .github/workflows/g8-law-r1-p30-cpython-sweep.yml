@@ -7,6 +7,7 @@ on:
       - 'active/g8-law-r1-p30/P30_CPYTHON_PREDICTIVE_SWEEP_PRECOMMIT.json'
       - 'tools/law-r1-p30-cpython-predictive-sweep.py'
       - 'tools/law-r1-p30-cpython-sweep-court.mjs'
+      - 'tools/law-r1-p30-cpython-sweep-court.test.mjs'
       - '.github/workflows/g8-law-r1-p30-cpython-sweep.yml'
   workflow_dispatch:
 
@@ -20,6 +21,12 @@ jobs:
     steps:
       - name: Checkout immutable EvoNOMOS revision
         uses: actions/checkout@v4
+      - name: Run tamper-resistance regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/law-r1-p30-cpython-sweep-court.test.mjs | tee out/P30_SWEEP_COURT_TESTS.txt
       - name: Freeze exact source checkout
         shell: bash
         run: |
@@ -61,8 +68,10 @@ jobs:
             echo "SWEEP_COURT=9bfc5206fa3e7e6bb7c7bfc9e83d04e2b1516c84"
             echo "GITHUB_ACTIONS_WRITEBACK=FORBIDDEN"
           } | tee out/P30_PREDICTIVE_SWEEP_RECEIPT.txt
-      - name: Upload full reproducibility artifact
+      - name: Upload full reproducibility artifact, including failure diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: g8-law-r1-p30-cpython-predictive-census
           path: out/
+          if-no-files-found: warn
