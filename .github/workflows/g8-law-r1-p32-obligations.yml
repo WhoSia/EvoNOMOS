@@ -7,6 +7,7 @@ on:
     paths:
       - 'tools/law-r1-p32-obligation-extract.py'
       - 'tools/law-r1-p32-coverage-check.mjs'
+      - 'tools/law-r1-p32-contract-probe.py'
       - '.github/workflows/g8-law-r1-p32-obligations.yml'
 
 concurrency:
@@ -66,6 +67,19 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/law-r1-p3-reconstitute.py --source world --repo-root . --out snapshots --receipt out/reconstitution.json
+
+      - name: Audit source-rooted certificate context negative control
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p32-contract-probe.py --world world --out out/p32-contract-negative-control.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('out/p32-contract-negative-control.json'))
+          assert x['certificate_notification_call_argument_count']==2
+          assert x['CSDG_B2_can_also_represent_this_context_flow'] is True
+          assert x['novelty']=='NO_H_VS_B2_DISCRIMINATION'
+          print("P32_SOURCE_CONTRACT_NEGATIVE_CONTROL=PASS")
+          PY
 
       - name: Extract typed obligation witnesses
         run: |
