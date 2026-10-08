@@ -1,0 +1,80 @@
+{
+  "stage": "G8 LAW-R1-P31",
+  "phase": "FOLLOWUP_REAL_WORLD_ISSUE_173_SCOPED_TITLE_DISPLAY",
+  "status": "SOURCE_EXECUTION_PASS__FULL_EXTERNAL_REQUIREMENT_HOLD__NO_STRUCTURAL_LAW",
+  "upstream": "dklassen/swamp",
+  "issue": "https://github.com/dklassen/swamp/issues/173",
+  "baseline": {
+    "direct": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+    "shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee"
+  },
+  "run": {
+    "id": 37723683551,
+    "head": "f0027cf4120b859cac85f2d541985dbeebfd6ba8",
+    "job": 113136867767,
+    "artifact": 11527245967,
+    "digest": "sha256:bc031d45b0d787c74fc2976718759401711ded635ee2721de2a2cabf7e22c2ea",
+    "conclusion": "success"
+  },
+  "preregistration": "active/g8-law-r1-p31/P31_FOLLOWUP_DISPLAY_ONLY_173_PRECOMMIT.json",
+  "treatment": "tools/law-r1-p31-followup-title-display.py",
+  "measured": {
+    "DIRECT": {
+      "modified_existing_files": 3,
+      "tracked_go_added": 100,
+      "tracked_go_removed": 3,
+      "new_test_lines": 198,
+      "new_sql_lines": 34
+    },
+    "SHARED": {
+      "modified_existing_files": 3,
+      "tracked_go_added": 75,
+      "tracked_go_removed": 2,
+      "new_test_lines": 198,
+      "new_sql_lines": 34
+    },
+    "prior_TEAM_ONLY": {
+      "DIRECT": {
+        "added": 30,
+        "removed": 3
+      },
+      "SHARED": {
+        "added": 5,
+        "removed": 2
+      }
+    },
+    "followup_increment_tracked_go_added": {
+      "DIRECT": 70,
+      "SHARED": 70
+    },
+    "followup_increment_tracked_go_removed": {
+      "DIRECT": 0,
+      "SHARED": 0
+    },
+    "same_total_modified_existing_files": true,
+    "both_go_packages_pass": [
+      "filter",
+      "sync",
+      "tui",
+      "store",
+      "db/migrations"
+    ],
+    "whole_word_casefolded_title_tests": "passed as part of tui package",
+    "ingestion_source_changed_by_followup": false,
+    "feature_scope": "title display-only programmatic argument path; production loadPostings still defaults to no title rules"
+  },
+  "result": "The source-churn advantage observed for SHARED during the earlier Team change did not create a further marginal change-line advantage for the new independent display-only title-policy code, on this specific implementation.",
+  "caveats": [
+    "The follow-up helper was implemented with identical code in both architectures and has no stored global-rule configuration; code lines being equal is not an independent prediction validation of a new structural primitive.",
+    "The complete real issue #173 requires saved editable rules, UI, workplace type, list_postings and hidden count; NOT implemented.",
+    "No synthetic fabricated sign reversal, and none empirically observed. No C/A/Q fully measured.",
+    "Tracked Go-line counts are descriptive, not a general causal estimate of architecture effect.",
+    "The two historical source versions are not globally functionally equivalent outside the frozen supported-field domain."
+  ],
+  "authority": {
+    "p31_open": true,
+    "oop_mainline_law": "HOLD",
+    "law_r2": false,
+    "solids_special_case_derivation": false
+  }
+}
