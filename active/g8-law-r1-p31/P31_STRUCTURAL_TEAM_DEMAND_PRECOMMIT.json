@@ -1,0 +1,56 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P31",
+  "phase": "REAL_OOP_STRUCTURAL_TREATMENT_P1",
+  "status": "PROSPECTIVE_REQUIREMENT_PRECOMMIT__NO_NEW_TREATMENT_BYTES_OR_OUTCOMES",
+  "origin": "SOLID principles as conditional derivatives of generative object-oriented structure; do not promote generic state-adequacy experiments as the scientific object.",
+  "source_pair": {
+    "repo": "dklassen/swamp",
+    "direct": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+    "shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee",
+    "common_ancestor": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+    "baseline_go_source_run": 37720828504
+  },
+  "world_domain": {
+    "valid_before": [
+      "department",
+      "location"
+    ],
+    "excluded_confound": "unknown filter field semantics differ in historical revisions"
+  },
+  "source_changes_to_compare": [
+    "JOINT: Add Team as third filterable field used by both ingestion and display; requires filter model and matching, jobboard/store conversion, SQLite constraint/migration on old and fresh installations, UI selection or explicit programmatic API admission; common behavioral oracle for both architectures.",
+    "DIVERGENT: Freeze an independently justified ingestion-vs-display semantic exception using a separate observable demand. If no externally justified exception is found, mark this contrast HOLD and do not invent one merely to get reversal."
+  ],
+  "competitive_hypotheses": [
+    "H_loc: shared authority can reduce independent field mapping obligations when both consumers need the same new field semantics",
+    "H_cong: semantic congruence moderates H_loc; shared boundary may impose adapters or branching when duties diverge",
+    "H_simple: file count, dependency fanout or naive changed-site count explains all apparent effects without a novel structural primitive"
+  ],
+  "required_treatment_controls": [
+    "same initial externally visible behavior over valid current filters",
+    "both realized structural variants meet the complete frozen Team requirement including schema and user workflow or documented scoped programmatic demand",
+    "same Go toolchain and version pinned",
+    "same complete functional tests, plus cross-consumer parity and unknown-field negative control",
+    "no edits to upstream repo or production data; disposable source clones",
+    "retain pre-action ownership diagrams and independently inspect treatment diffs",
+    "follow-up changes included, initial implementation only cannot establish lifetime effect",
+    "report S,L,C,A,Q and separate compilation/functional-failure coordinates",
+    "no scalar best design",
+    "compare against coupling-only and changed-site-only model",
+    "report sign/Pareto on frozen channel and support; if no reversal, reject that prediction"
+  ],
+  "outcome_authority": {
+    "baseline_source_go_tests": "PASS already, not effect outcome",
+    "treatment": "UNEXECUTED",
+    "mainline_pass": "requires real source action with full behavior oracle and directional prediction",
+    "negative": "if simpler model is equally predictive or original source lacks controlled semantics, downgrade extra-ontology claim",
+    "abstain": "if UI/schema incomplete or demand divergence fabricated, HOLD"
+  },
+  "novelty_ceiling": "An unreplicated one-repository change comparison is not publishable generative OO theory. Conditional cross-demand signed-vector prediction that surpasses simpler coupling/DSM explanations would be the first defensible novel result.",
+  "governance": {
+    "p31_open": true,
+    "law_r2_not_authorized": true,
+    "bot_zero": true,
+    "precommit_before_outcome": true
+  }
+}
