@@ -1,0 +1,50 @@
+name: G8 LAW-R1-P31 Independent Provider Capability World
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p31/P31_SECOND_WORLD_CODEVIZ_PRECOMMIT.json'
+      - 'tools/law-r1-p31-codeviz-source-court.mjs'
+      - '.github/workflows/g8-law-r1-p31-codeviz-world.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provider-capability-world:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Obtain source-pinned independent world
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git clone --quiet --filter=blob:none https://github.com/theunrepentantgeek/code-visualizer.git /tmp/codeviz-after
+          git -C /tmp/codeviz-after checkout --quiet fb9c0e7e675de70035e556b9ba579d1e8f602da1
+          git -C /tmp/codeviz-after worktree add --detach /tmp/codeviz-before 6d48e3b3aa3a21baea44e05b8b0aa8f731fe0fd6
+      - name: Independently audit exact OOP structural source
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/law-r1-p31-codeviz-source-court.mjs /tmp/codeviz-before /tmp/codeviz-after out/P31_CODEVIZ_SOURCE_COURT.json | tee out/P31_CODEVIZ_COURT_STDOUT.txt
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: /tmp/codeviz-after/go.mod
+          cache: false
+      - name: Verify original and refactored provider tests independently
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd /tmp/codeviz-before && go test ./internal/provider) 2>&1 | tee out/P31_CODEVIZ_BEFORE_GO_TEST.txt
+          (cd /tmp/codeviz-after && go test ./internal/provider) 2>&1 | tee out/P31_CODEVIZ_AFTER_GO_TEST.txt
+      - name: Preserve proof and failures without repository writeback
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p31-independent-provider-capability
+          path: out/
+          if-no-files-found: warn
