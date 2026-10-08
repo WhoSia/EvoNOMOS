@@ -1,0 +1,76 @@
+name: G8 LAW-R1-P32 Source Obligation Extractor
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p32-obligation-extract.py'
+      - '.github/workflows/g8-law-r1-p32-obligations.yml'
+
+concurrency:
+  group: g8-law-r1-p32-obligations
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  p32:
+    name: Pinned source obligation audit (method only)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout EvoNOMOS
+        uses: actions/checkout@v4
+
+      - name: Verify unchanged predecessor and self-test
+        run: |
+          set -euo pipefail
+          test "$(git hash-object tools/law-r1-p2-materialize.py)" = "6ce9dc792419bf51a2884508168babf78ad7b4ba"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p2=json.loads(Path("active/g8-law-r1-p2/P2_PRE_REVEAL_SEAL.json").read_text())
+          p3=json.loads(Path("active/g8-law-r1-p3/P3_TERMINAL_SEAL.json").read_text())
+          assert p2["source"]["commit"]==p3["source_birth"] if "source_birth" in p3 else p2["source"]["commit"]=="398482d590daaac0d44e288c9be3bc6f6667f8b8"
+          assert p3["canonical_run"]==36670337111
+          print("P32_PREDECESSOR_SEALS=PASS")
+          PY
+          mkdir -p out
+          python3 tools/law-r1-p32-obligation-extract.py --self-test --out out/self-test.json
+
+      - name: Checkout pinned upstream Uptime Kuma
+        uses: actions/checkout@v4
+        with:
+          repository: louislam/uptime-kuma
+          ref: 398482d590daaac0d44e288c9be3bc6f6667f8b8
+          path: world
+          fetch-depth: 1
+
+      - name: Reconstitute verified P3 source snapshots
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p3-reconstitute.py --source world --repo-root . --out snapshots --receipt out/reconstitution.json
+
+      - name: Extract typed obligation witnesses
+        run: |
+          set -euo pipefail
+          python3 tools/law-r1-p32-obligation-extract.py --snapshots snapshots --out out/p32-obligations.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('out/p32-obligations.json'))
+          assert x['scientific_authority']=='METHOD_ONLY__P32_OPEN__LAW_R2_NOT_AUTHORIZED'
+          assert len(x['observations'])==50
+          for phase in ('phase0','phase1'):
+              assert x['summaries'][f'{phase}:DISPERSED']['physical_owner_files']==3
+              assert x['summaries'][f'{phase}:DUAL']['physical_owner_files']==2
+          print("P32_SOURCE_OBLIGATIONS=PASS_METHOD_ONLY")
+          PY
+          sha256sum tools/law-r1-p32-obligation-extract.py out/*.json > out/p32-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p32-source-obligations
+          path: out/
+          retention-days: 30
