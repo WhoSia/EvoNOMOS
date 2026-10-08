@@ -1,0 +1,50 @@
+{
+  "stage": "EvoNOMOS G8 LAW-R1-P31",
+  "phase": "TEAM_FILTER_PROGRAMMATIC_PERSISTENCE",
+  "verdict": "HOSTED_PASS_BOTH_REAL_STRUCTURAL_ARMS__FIVE_GO_PACKAGES__NO_LIFECYCLE_LAW",
+  "run": {
+    "id": 37722278100,
+    "head": "b3eb637ba537bf0919e48ae3bdb885cd21379a0b",
+    "job": 113132442027,
+    "artifact": 11526163753,
+    "digest": "sha256:cc1fb5143b5abee9863496860c68aaf439183daf36b8739713224ef4cc59b2e7"
+  },
+  "input": {
+    "upstream": "dklassen/swamp",
+    "direct": "a1f174e425d3c68ac0ef6c9c8307814e5d8b4227",
+    "shared": "775bf53ac4dcf1234121fbe4f827704f58d216ee"
+  },
+  "interventions": [
+    "Team field matching and direct/shared ingestion/display projections",
+    "goose schema migration 00006 adding team to company_filters permitted values, with preservation of old filter rows",
+    "programmatic Store.CreateCompanyFilter persistence test and unknown-field rejection",
+    "SyncCompany Team ingestion acceptance/rejection test"
+  ],
+  "go_tests": {
+    "direct": [
+      "filter",
+      "sync",
+      "tui",
+      "store",
+      "db/migrations"
+    ],
+    "shared": [
+      "filter",
+      "sync",
+      "tui",
+      "store",
+      "db/migrations"
+    ],
+    "all": "PASS"
+  },
+  "source_custody": "Artifact contains tracked code patches and tarballs of all new migration/test source files",
+  "nonclaims": [
+    "full interactive TUI Team selection NOT_IMPLEMENTED",
+    "old live SQLite database upgrade carrying existing rows not yet independently shown in a dedicated upgrade test, although migrations run and store tests pass",
+    "independently frozen follow-up change and lifecycle S/L/C/A/Q effect NOT_MEASURED",
+    "not an independent treatment of shared/duplicated responsibility alone; historical revisions differ in unsupported-field error semantics",
+    "P31 NOT_CLOSED",
+    "LAW-R2 NOT_AUTHORIZED"
+  ],
+  "next_action": "Test schema upgrade with existing rows and functional display-filter parity from persisted Team rules; compare change propagation on a genuinely separate follow-up maintenance demand."
+}
