@@ -1,0 +1,60 @@
+name: G8 LAW-R1-P35 P5 Train-Only Go Historical Predictors
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p5/**'
+      - '.github/workflows/g8-law-r1-p35-p5-train-only.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-p35-p5-train-only
+  cancel-in-progress: false
+
+jobs:
+  train-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Read human-authored EvoNOMOS source
+        uses: actions/checkout@v4
+      - name: Go-first parser and historical predictor
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - name: Original historical chi checkout with full Git history
+        uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          fetch-depth: 0
+          path: chi
+      - name: Compile, vet and test actual Go predictor
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p5
+          go version | tee out/p35-p5/go-version.txt
+          (cd tools/p35-p5 && go vet ./... && go test -v ./... && go build -o ../../out/p35-p5/predictor .)
+      - name: Read only pre-2020 Git commits and original Go AST; print model seal
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C chi rev-parse HEAD)" = "67be7d9cafdaeb4e04e887ff78d09e030ee43b00"
+          ./out/p35-p5/predictor -mode=train -repo=chi -out=out/p35-p5/model.json | tee out/p35-p5/training-receipt.log
+          sha256sum out/p35-p5/model.json | tee out/p35-p5/model-sha256.txt
+          echo 'P35P5_TRAIN_ONLY_FINISHED__HELDOUT_NOT_OPENED'
+      - name: Archive training receipts without repository write
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p5-go-historical-training-seal
+          path: out/p35-p5/
+          if-no-files-found: warn
+          retention-days: 30
