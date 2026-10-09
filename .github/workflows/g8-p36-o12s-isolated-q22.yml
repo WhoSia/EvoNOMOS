@@ -1,0 +1,61 @@
+name: G8 P36 O12S Isolated Original JSON Q22 Contract and Race
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/g8-p36-o12s-isolated-q22.yml'
+      - 'tools/p36-o12/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-module-q22:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        original: [GJSON, JSONPARSER]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Select independent original code pin
+        shell: bash
+        run: |
+          if [ "${{ matrix.original }}" = GJSON ]; then
+            echo UPSTREAM=tidwall/gjson >>"$GITHUB_ENV"
+            echo SHA=690362d6edf4bcbde1e9f54d552d3814f1cd5bcb >>"$GITHUB_ENV"
+            echo LOCAL=gjson >>"$GITHUB_ENV"
+          else
+            echo UPSTREAM=buger/jsonparser >>"$GITHUB_ENV"
+            echo SHA=36a686d11807c62cd5a30d41b294d66969ea25d8 >>"$GITHUB_ENV"
+            echo LOCAL=jsonparser >>"$GITHUB_ENV"
+          fi
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.UPSTREAM }}
+          ref: ${{ env.SHA }}
+          path: original
+          fetch-depth: 1
+      - name: Independent Q22 exact source functional and scoped concurrency test
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o12s
+          test "$(git -C original rev-parse HEAD)" = "$SHA"
+          cp "tools/p36-o12/arms/$LOCAL/p36_o12_raw.go" original/
+          cp "tools/p36-o12/tests/$LOCAL/p36_o12_q22_test.go" original/
+          sha256sum "tools/p36-o12/arms/$LOCAL/p36_o12_raw.go" "tools/p36-o12/tests/$LOCAL/p36_o12_q22_test.go" >out/p36-o12s/source-sha256.txt
+          (cd original && go test -vet=off -race -v -count=1 -run '^TestP36O12' .) >out/p36-o12s/q22-race.log 2>&1 || { cat out/p36-o12s/q22-race.log; exit 31; }
+          grep -q 'PASS: TestP36O12LexicalProvenanceQ22' out/p36-o12s/q22-race.log
+          grep -q 'PASS: TestP36O12ConcurrentReadOnlyQ22' out/p36-o12s/q22-race.log
+          (cd original && go vet -unreachable=false -unsafeptr=false ./...) >out/p36-o12s/qualified-vet.log 2>&1 || { cat out/p36-o12s/qualified-vet.log; exit 32; }
+          echo P36_O12_FROZEN_Q22_NATIVE_RACE_AND_QUALIFIED_VET_PASS >out/p36-o12s/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o12s-${{ matrix.original }}-original-source-frozen-q22
+          path: out/p36-o12s/
+          if-no-files-found: warn
+          retention-days: 30
