@@ -19,7 +19,7 @@ Historical archive source: [Research OS EvoNOMOS Chat Archive](https://drive.goo
 
 - Barbara H. Liskov and Jeannette M. Wing, **A Behavioral Notion of Subtyping** (ACM TOPLAS 1994), DOI [10.1145/197320.197383](https://doi.org/10.1145/197320.197383), [author PDF](https://www.cs.cmu.edu/~wing/publications/LiskovWing94.pdf). Semantic subtyping preserves client-provable properties; preconditions, postconditions, invariants and history constraints. Original PDF was **not found by focused Drive title/author search**, not assumed unavailable universally.
 - Robert C. Martin, **The Dependency Inversion Principle** (C++ Report column, 1996), [original author's PDF](https://objectmentor.com/resources/articles/dip.pdf). DIP is presented as a structural consequence of OCP and LSP in that essay. This P33 model separates **a sufficient safety proof** from **a source dependency/ownership choice**; not a claim the author gave the following formal graph semantics.
-- Luca de Alfaro and Thomas A. Henzinger, **Interface Automata** (ESEC/FSE 2001), DOI [10.1145/503209.503226](https://doi.org/10.1145/503209.503226), [PDF](https://web.cs.wpi.edu/~heineman/html/teaching_/CS562/p109-de_alfaro.pdf). Assumptions about invocation order and guarantees about external interactions; input/output compatible refinement. DOI must be verified against the original publisher record before canonical PDF naming because third-party records contain conflicting strings.
+- Luca de Alfaro and Thomas A. Henzinger, **Interface Automata** (ESEC/FSE 2001), DOI [10.1145/503271.503226](https://doi.org/10.1145/503271.503226), [PDF](https://web.cs.wpi.edu/~heineman/html/teaching_/CS562/p109-de_alfaro.pdf). Assumptions about invocation order and guarantees about external interactions; input/output compatible refinement. DOI must be verified against the original publisher record before canonical PDF naming because third-party records contain conflicting strings.
 - Parnas (1972/1979), Sullivan et al. (2001), Tishby et al. (1999/2000), Reiter, SemFix, DirectFix, Angelix, Guigue: already held in canonical Drive 10_PAPERS, as documented in the P33 six-paper court and previous quotient manuscript.
 - Existing Design Rule Spaces/CSDG/co-change studies remain relevant to real maintenance prediction. The present document is **not** a claim to have defeated them.
 
@@ -170,3 +170,17 @@ The test is a finite **model** of dependency ownership; it does **not parse or c
 - Manuscript-quality introduction, proofs, adversarial counterexamples and full citations. Interpretive scholarly contribution is already legitimate with the above scoped mathematics.
 
 **P33 theory verdict:** \`P33_INTEGRATED_SOLID_INTERPRETATION_COMPLETE_AT_BOUNDED_MODEL_LEVEL__LSP_DIP_FINITE_CHECK_HOSTED_PASS__P33_OPEN__LAW_R2_NOT_AUTHORIZED\`.
+
+## 10. Research-literature acquisition and disclosure policy — 2026-10-09
+
+**Required on every future new paper recommendation or citation:** explicitly mark `Drive: HELD` with verified canonical Drive ID, or `Drive: NOT FOUND BY INDEXED SEARCH` with an authentic, checked **direct downloadable PDF URL**. When a DOI/publisher link is all that exists, label it as a landing page, not PDF. Never assert a PDF was downloaded or ingested unless actual Drive metadata proves it. Search alternate author/title/DOI terms to avoid duplicate intake; PDF arrival goes to 00_INTAKE, then original-first-page and duplicate audit prior to P&K canonical rename and 10_PAPERS move. This also applies to references in prose, Notion Harvests and future paper drafts.
+
+### Newly cited, not currently located in indexed Drive search
+
+1. **Liskov & Wing (1994), A Behavioral Notion of Subtyping.** Drive: NOT FOUND. Direct author PDF: https://www.cs.cmu.edu/~wing/publications/LiskovWing94.pdf ; DOI 10.1145/197320.197383.
+2. **Martin (1996), The Dependency Inversion Principle.** Drive: NOT FOUND. Direct original author PDF: https://objectmentor.com/resources/articles/dip.pdf ; historical C++ Report column, not a journal research paper.
+3. **de Alfaro & Henzinger (2001), Interface Automata.** Drive: NOT FOUND. Direct university-hosted PDF: https://web.cs.wpi.edu/~heineman/html/teaching_/CS562/p109-de_alfaro.pdf ; **corrected** DOI 10.1145/503271.503226. Previous 10.1145/503209.503226 was bibliographically wrong for the cited ACM ESEC/FSE article. This correction overrides earlier unverified P33 DOI text.
+4. **Ye, Martinez, Durieux & Monperrus (2021), A Comprehensive Study of Automatic Program Repair on the QuixBugs Benchmark.** Drive: NOT FOUND. Direct author-deposited journal-version manuscript PDF: https://arxiv.org/pdf/1805.03454 ; JSS DOI 10.1016/j.jss.2020.110825.
+5. **Huang et al. (2023), A Survey on Automated Program Repair Techniques.** Drive: NOT FOUND. Direct arXiv PDF: https://arxiv.org/pdf/2303.18184 ; arXiv 2303.18184.
+
+**Already in canonical Drive; do NOT request again:** Parnas 1972 and 1979, Sullivan et al. 2001, Tishby et al. 1999/2000, Angerer 2019, Hong 2024, Cai/DRSpaces, Reiter 1987, SemFix 2013, DirectFix 2015, Angelix 2016, Smith et al. 2015, Guigue 2014. This list is a scoped lookup summary, not a claim of full-library exhaustive enumeration.
