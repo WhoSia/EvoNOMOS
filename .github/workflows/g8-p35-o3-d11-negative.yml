@@ -1,0 +1,81 @@
+name: G8 P35 O3 D11 Two Independent Go Repositories Frozen Negative Control
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o3/tests/**'
+      - '.github/workflows/g8-p35-o3-d11-negative.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  chi-original-d11-negatives:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Genuine original Chi baseline and 4 D11 negative source controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/p35-o3-negative-chi"
+          mkdir -p "$OUT"
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          (cd chi && go test -count=1 ./...) > "$OUT/original-go-regression.log" 2>&1 || { cat "$OUT/original-go-regression.log"; exit 11; }
+          cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
+          for structure in live snapshot; do
+            for style in inline helper; do
+              arm="${structure}-${style}"
+              cp "tools/p35-math2/arms/$structure/$style/both/route_headers.go" chi/middleware/route_headers.go
+              (cd chi && go test -race -count=1 ./middleware) > "$OUT/${arm}-old-contract.log" 2>&1 || { cat "$OUT/${arm}-old-contract.log"; exit 12; }
+              cp tools/p35-o3/tests/chi/p35_o3_d11_test.go chi/middleware/
+              set +e
+              (cd chi && go test -count=1 -run '^TestP35O3D11' ./middleware) > "$OUT/${arm}-expected-d11-negative.log" 2>&1
+              status=$?
+              set -e
+              if [ "$status" -eq 0 ]; then echo "UNEXPECTED_D11_PASS_$arm"; exit 13; fi
+              grep -q 'P35_O3_D11_CONTRACT_FAILURE' "$OUT/${arm}-expected-d11-negative.log" || { cat "$OUT/${arm}-expected-d11-negative.log"; exit 14; }
+              echo "P35_O3_CHI_${arm}_ORIGINAL_D11_NEGATIVE_PASS" | tee "$OUT/${arm}.verdict"
+              rm chi/middleware/p35_o3_d11_test.go
+            done
+          done
+          sha256sum tools/p35-o3/tests/chi/p35_o3_d11_test.go > "$OUT/oracle-sha256.txt"
+          echo 'P35_O3_CHI_FOUR_REAL_GO_ORIGINAL_NEGATIVE_CONTROLS_PASS'
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: p35-o3-d11-chi-original-negative-controls, path: out/p35-o3-negative-chi/, if-no-files-found: warn, retention-days: 30}
+
+  gorilla-independent-d11-negative:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: gorilla/mux, ref: b4617d0b9670ad14039b2739167fd35a60f557c5, path: gorilla, fetch-depth: 1}
+      - name: Genuine independent Gorilla original regression and D11 negative
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/p35-o3-negative-gorilla"
+          mkdir -p "$OUT"
+          test "$(git -C gorilla rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          (cd gorilla && go test -count=1 ./...) > "$OUT/original-go-regression.log" 2>&1 || { cat "$OUT/original-go-regression.log"; exit 21; }
+          cp tools/p35-o3/tests/gorilla/p35_o3_d11_test.go gorilla/
+          set +e
+          (cd gorilla && go test -count=1 -run '^TestP35O3D11' ./...) > "$OUT/expected-d11-negative.log" 2>&1
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then echo 'UNEXPECTED_GORILLA_D11_PASS'; exit 22; fi
+          grep -q 'P35_O3_D11_CONTRACT_FAILURE' "$OUT/expected-d11-negative.log" || { cat "$OUT/expected-d11-negative.log"; exit 23; }
+          echo 'P35_O3_GORILLA_V1_8_1_ORIGINAL_D11_NEGATIVE_PASS' | tee "$OUT/verdict.txt"
+          sha256sum tools/p35-o3/tests/gorilla/p35_o3_d11_test.go > "$OUT/oracle-sha256.txt"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: p35-o3-d11-gorilla-original-negative-control, path: out/p35-o3-negative-gorilla/, if-no-files-found: warn, retention-days: 30}
