@@ -1,0 +1,67 @@
+name: G8 LAW-R1-P34 P4 Independent Restic Adapter Comparison
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p34-p4/pair.go'
+      - 'tools/p34-p4/pair_test.go'
+      - '.github/workflows/g8-law-r1-p34-p4-backend-pair.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-law-r1-p34-p4-pair
+  cancel-in-progress: true
+
+jobs:
+  paired-backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+
+      - name: Checkout original Restic before OCI demand
+        uses: actions/checkout@v4
+        with:
+          repository: restic/restic
+          ref: 495982232cf1af184eac0a97871ef8161e8708ee
+          path: restic
+          fetch-depth: 1
+
+      - name: Compile and run two new independent public Backend implementations
+        run: |
+          set -euo pipefail
+          mkdir -p restic/internal/backend/p34pair out
+          cp tools/p34-p4/pair.go tools/p34-p4/pair_test.go restic/internal/backend/p34pair/
+          cd restic
+          P34_REPORT="$GITHUB_WORKSPACE/out/p34-p4-pair.json" go test -count=1 -v ./internal/backend/p34pair | tee "$GITHUB_WORKSPACE/out/p34-p4-go.log"
+
+      - name: Verify prespecified report and protect old P12 non-result
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const r=JSON.parse(fs.readFileSync('out/p34-p4-pair.json','utf8'));
+          const p=JSON.parse(fs.readFileSync('lawkit/fixtures/p12-terminal-closure.json','utf8'));
+          if(!r.TracesEquivalent || r.PublicMethodCount!==12 || r.MandatoryMethods.length!==6)process.exit(1);
+          if(r.DirectBoundaryVisits!==0 || r.ComposedBoundaryVisits!==r.CoreCalls || r.ComposedInnerUnits!==4)process.exit(1);
+          if(r.Trace.length!==r.CoreCalls || r.CoreCalls<15)process.exit(1);
+          if(p.terminal_status!=='TERMINAL_NONRESULT'||p.scientific_firewall.lifecycle_coordinates_opened!==false)process.exit(1);
+          console.log('P34_P4_REAL_RESTIC_BACKEND_PAIR=PASS');
+          NODE
+          sha256sum tools/p34-p4/pair.go tools/p34-p4/pair_test.go out/*.json out/p34-p4-go.log > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p34-p4-restic-pair
+          path: out/
+          retention-days: 30
