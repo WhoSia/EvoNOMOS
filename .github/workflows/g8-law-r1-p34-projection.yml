@@ -1,0 +1,53 @@
+name: G8 LAW-R1-P34 Source Projection and Contract Separator
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p34-source-projection.mjs'
+      - '.github/workflows/g8-law-r1-p34-projection.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-law-r1-p34-projection
+  cancel-in-progress: true
+
+jobs:
+  pinned-world:
+    name: Pinned JavaScript source and projection barrier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout immutable Uptime Kuma birth source
+        uses: actions/checkout@v4
+        with:
+          repository: louislam/uptime-kuma
+          ref: 398482d590daaac0d44e288c9be3bc6f6667f8b8
+          path: world
+          fetch-depth: 1
+
+      - name: Execute source-method contract channel comparison
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/law-r1-p34-source-projection.mjs world out/p34-projection.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const v=JSON.parse(fs.readFileSync('out/p34-projection.json','utf8'));
+          if(v.collision_pairs_executed!==64 || !v.weak_graph_equal)process.exit(1);
+          if(v.verdict!=='P34_PINNED_WEAK_GRAPH_INSUFFICIENCY_METHOD_PASS__RICH_STATIC_M1_NOT_BEATEN__LAW_R2_HOLD')process.exit(1);
+          if(!v.stronger_static_competitor.includes('WOULD distinguish'))process.exit(1);
+          console.log('P34_GRAPH_CONTRACT_SEPARATOR=PASS_BOUNDED');
+          NODE
+          sha256sum tools/law-r1-p34-source-projection.mjs out/p34-projection.json > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p34-source-projection
+          path: out/
+          retention-days: 30
