@@ -1,0 +1,56 @@
+name: G8 LAW-R1-P35 P5 Go Historical Heldout Evaluation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/g8-law-r1-p35-p5-evaluate.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-p35-p5-historical-evaluation
+  cancel-in-progress: false
+
+jobs:
+  heldout-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Read sealed human-authored EvoNOMOS source and model
+        uses: actions/checkout@v4
+      - name: Native Go historical predictors
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - name: Pin full-history original Go repository
+        uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          fetch-depth: 0
+          path: chi
+      - name: Go test, compile and audit SHA-pinned model
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p5-eval
+          go version | tee out/p35-p5-eval/go-version.txt
+          test "$(git -C chi rev-parse HEAD)" = "67be7d9cafdaeb4e04e887ff78d09e030ee43b00"
+          (cd tools/p35-p5 && go vet ./... && go test -v ./... && go build -o ../../out/p35-p5-eval/predictor .)
+          sha256sum tools/p35-p5/seals/predictions-2020.json > out/p35-p5-eval/sealed-model-sha256.txt
+          ./out/p35-p5-eval/predictor -mode=evaluate -repo=chi -seal=tools/p35-p5/seals/predictions-2020.json -out=out/p35-p5-eval/heldout.json | tee out/p35-p5-eval/heldout-receipt.log
+          echo 'P35P5_GO_HELDOUT_EVALUATED_AGAINST_HUMAN_FROZEN_B0_B1_B2_MODEL'
+          sha256sum out/p35-p5-eval/*.json out/p35-p5-eval/*.txt > out/p35-p5-eval/receipt-sha256.txt
+      - name: Read-only evidence archive
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p5-go-historical-heldout-score
+          path: out/p35-p5-eval/
+          if-no-files-found: warn
+          retention-days: 30
