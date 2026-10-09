@@ -1,6 +1,6 @@
 # EvoNOMOS — Structural Law Paper A and Real Go Repair-Order Competition (MATH-3 planning seal)
 
-**As of 2026-10-09:** REAL GO experimental gate planned; result **NOT YET OBSERVED**. No novel beyond-SOLID law claimed. Parent P35 OPEN, LAW-R2 NOT_AUTHORIZED.
+**As of 2026-10-09:** O1 real-source Go Git 3-way merge classifier completed [#37931146034](https://github.com/WhoSia/EvoNOMOS/actions/runs/37931146034) **SUCCESS as CLASSIFICATION ONLY**: 8/8 selected source merges have textual conflicts; zero clean merges, zero merged-Go semantic test runs. **This is NOT relational noncommutation.** O2 exact first-demand→second-demand Go edit paths were separately committed and [original Go CI #37932458774](https://github.com/WhoSia/EvoNOMOS/actions/runs/37932458774) is being adjudicated; not counted PASS until run concludes successfully. No novel beyond-SOLID law claimed. Parent P35 OPEN, LAW-R2 NOT_AUTHORIZED.
 
 ## Research question
 
@@ -45,3 +45,8 @@ These mechanisms are hypotheses; vanilla process algebra, refinement calculus, r
 *"Software design principles such as SOLID are often discussed without a clear account of the future changes under which one implementation should be preferred to another. We model permissible maintenance as a set-valued relation rather than a unique edit function, and distinguish observable functional equivalence from preservation of future repair alternatives. In an original Go HTTP routing codebase, four independently organized patches already pass a frozen repeated-header and token contract, demonstrating nonuniqueness of admissible implementations within the explored grammar. We propose to study whether the order of matched future demands changes which valid implementations remain reachable, using explicit two-stage source edits, original module regressions, bounded independent reference models and formal Lean/Prolog countermodels. These experiments can reveal when existing principles have conditional relevance, but no universal design superiority is presupposed."*
 
 **Publication evidence floor:** do not claim two actual real source order paths until both compiled/Go-tested; add independent genuine source cohort, coding-method rival baselines, and honest negative/neutral results. No falsely 'axiomatic' mathematics: use Lean as checker and Go for actual mechanism.
+
+
+## Sources and adjacent empirical literature not yet located in Drive
+
+Read the [standing Paper A/B literature acquisition audit](P35_PAPERS_A_B_MISSING_FROM_DRIVE_LITERATURE_AUDIT.md), particularly **Huet (1980) confluent reductions**, **Knuth–Bendix (1970) word problems/critical-pair completion**, and **Gazzola–Micucci–Mariani (2019) automatic software repair survey**. These classical sources are a skeptical baseline, not supporting citations for a claim that our chosen patch order is mathematically noncommutative. Parnas (1972), Liskov–Wing (1994), Angluin (1987), and Smith (2015) are already in Drive; do not ask user to reacquire them.

@@ -25,6 +25,14 @@ EvoNOMOS is a **Go-first laboratory for experimentally discovering conditional l
 
 **Status hierarchy:** `CLOSED` means the named phase received its terminal verdict, not that every large scientific hypothesis passed. `METHOD PASS` certifies only the declared method. `HOLD` and `TERMINAL_NONRESULT` are not transformed into evidence by a later narrative. In particular, original ORIGIN-R1-P12 is still **TERMINAL_NONRESULT**.
 
+## Two complementary EvoNOMOS publication tracks
+
+**Paper A — Conditional Mathematics of Software Structure:** original Go structure rivalries, same future demands in both intervention orders, **set-valued** admissible patch paths, verified Go oracle and Lean/Prolog attacks; neither Git textual conflicts nor a chosen repair witness prove mathematical noncommutation or architecture dominance. [Working paper A and run preseal](active/g8-law-r1-p35/P35_STRUCTURAL_LAW_GO_CHANGE_ORDER_PAPER_A_AND_SEAL.md).
+
+**Paper B — SOLID's Historical Authority and AI Coding-Agent Instructions:** historically reconstruct heterogeneous OOP/SOLID origins, operational *quasi-axiomatization*, pedagogical and repository-norm diffusion, and prospectively test when hard/scoped SOLID instructions alter agents' design choices. Training-corpus influence and causal industry-level dogmatization are **NOT demonstrated**. [Working paper B](active/g8-law-r1-p35/P35_SOLID_OBJECT_ORIENTATION_AND_AI_QUASI_AXIOMATIZATION_PAPER_B.md).
+
+**Standing bibliography policy:** before every further paper-writing run, compare newly invoked historical and formal/empirical literature against *actual authenticated Drive metadata*; propose originals still unfound regardless of OA/paywall, mark only `NOT_FOUND_BY_METADATA`, dedupe originals before import. Current [Paper A/B missing-originals audit and verified already-owned PDFs](active/g8-law-r1-p35/P35_PAPERS_A_B_MISSING_FROM_DRIVE_LITERATURE_AUDIT.md).
+
 ## Go-first research program
 
 **Go is the primary language for EvoNOMOS's executable software research**, not merely a convenient example implementation. Real Go repositories, native `go test` and `-race`, `go/parser`/`go/ast`, Go historical-impact predictors and source-level behavioral oracles are the normal route from a hypothesis to evidence. Rust is used where independently justified by computational scale; Python and JavaScript are auxiliary preparation/reporting tools, not the default scientific implementation.
