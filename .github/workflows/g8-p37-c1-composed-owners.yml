@@ -1,0 +1,47 @@
+name: G8 P37 C1 Real Chi-GJSON Two-Owner Provenance Composition
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-c1/**'
+      - '.github/workflows/g8-p37-c1-composed-owners.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-chi-gjson-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Pin two independently evolved original Go module versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-c1
+          cd tools/p37-c1
+          go get github.com/go-chi/chi/v5@67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          go get github.com/tidwall/gjson@690362d6edf4bcbde1e9f54d552d3814f1cd5bcb
+          go mod tidy
+          go list -m all >../../out/p37-c1/module-versions.txt
+          go version >../../out/p37-c1/go-version.txt
+          sha256sum ingress/ingress.go archive/archive.go composite_test.go >../../out/p37-c1/source-sha256.txt
+      - name: Verify legacy observable equality, historical no-go, future-only authority and race
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd tools/p37-c1 && go vet ./...) >out/p37-c1/vet.log 2>&1 || { cat out/p37-c1/vet.log; exit 21; }
+          (cd tools/p37-c1 && go test -v -race -count=1 ./...) >out/p37-c1/native-race.log 2>&1 || { cat out/p37-c1/native-race.log; exit 22; }
+          grep -q 'PASS: TestP37C1SameLegacyObservationAcrossFourWorlds' out/p37-c1/native-race.log
+          grep -q 'PASS: TestP37C1OwnerBRepairCanRecoverWhenIngressRetainedRaw' out/p37-c1/native-race.log
+          grep -q 'PASS: TestP37C1OwnerBLossyHistoricalWorldsIndistinguishable' out/p37-c1/native-race.log
+          grep -q 'PASS: TestP37C1IngressPolicyChangeProtectsFutureNotHistory' out/p37-c1/native-race.log
+          echo P37_C1_ORIGINAL_CHI_GJSON_TWO_OWNER_HISTORICAL_PROVENANCE_CONDITIONAL_PASS >out/p37-c1/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-c1-real-chi-gjson-two-owner-original-module-receipt
+          path: out/p37-c1/
+          retention-days: 30
