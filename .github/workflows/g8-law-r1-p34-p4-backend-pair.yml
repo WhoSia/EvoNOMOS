@@ -52,9 +52,9 @@ jobs:
           const fs=require('node:fs');
           const r=JSON.parse(fs.readFileSync('out/p34-p4-pair.json','utf8'));
           const p=JSON.parse(fs.readFileSync('lawkit/fixtures/p12-terminal-closure.json','utf8'));
-          if(!r.TracesEquivalent || r.PublicMethodCount!==12 || r.MandatoryMethods.length!==6)process.exit(1);
-          if(r.DirectBoundaryVisits!==0 || r.ComposedBoundaryVisits!==r.CoreCalls || r.ComposedInnerUnits!==4)process.exit(1);
-          if(r.Trace.length!==r.CoreCalls || r.CoreCalls<15)process.exit(1);
+          if(!r.traces_equivalent || r.public_method_count!==12 || r.mandatory_methods.length!==6)process.exit(1);
+          if(r.direct_boundary_visits!==0 || r.composed_boundary_visits!==r.core_calls || r.composed_inner_units!==4)process.exit(1);
+          if(r.trace.length!==r.core_calls || r.core_calls<15)process.exit(1);
           if(p.terminal_status!=='TERMINAL_NONRESULT'||p.scientific_firewall.lifecycle_coordinates_opened!==false)process.exit(1);
           console.log('P34_P4_REAL_RESTIC_BACKEND_PAIR=PASS');
           NODE
