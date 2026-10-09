@@ -1,0 +1,77 @@
+name: G8 P37 E4 Two Independent Session Algorithms and Capability Bridge
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-e4/**'
+      - '.github/workflows/g8-p37-e4-scs-gorilla-two-algorithms.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-algorithm-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/sessions
+          ref: bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          path: original-gorilla-sessions
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/securecookie
+          ref: eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          path: original-gorilla-securecookie
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: alexedwards/scs
+          ref: 209de6e426de9259665975ce16b91331d228f052
+          path: original-scs
+          fetch-depth: 1
+      - name: Pin original separate algorithms and scope authorized new source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-e4
+          test "$(git -C original-gorilla-sessions rev-parse HEAD)" = bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          test "$(git -C original-gorilla-securecookie rev-parse HEAD)" = eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          test "$(git -C original-scs rev-parse HEAD)" = 209de6e426de9259665975ce16b91331d228f052
+          sha256sum original-gorilla-sessions/store.go original-gorilla-securecookie/securecookie.go original-scs/data.go original-scs/session.go tools/p37-e4/bridge.go tools/p37-e4/bridge_test.go >out/p37-e4/source-sha256.txt
+          (
+            cd tools/p37-e4
+            go mod edit -require=github.com/gorilla/sessions@v1.4.0
+            go mod edit -require=github.com/alexedwards/scs/v2@v2.0.0
+            go mod edit -replace=github.com/gorilla/sessions=../../original-gorilla-sessions
+            go mod edit -replace=github.com/gorilla/securecookie=../../original-gorilla-securecookie
+            go mod edit -replace=github.com/alexedwards/scs/v2=../../original-scs
+            go mod tidy
+            go list -m all >../../out/p37-e4/original-modules.txt
+          )
+          { date -u; go version; git -C original-scs status --short; git -C original-gorilla-sessions status --short; git -C original-gorilla-securecookie status --short; } >out/p37-e4/metadata.txt
+      - name: Run native original-algorithm compatibility, capability negatives and race
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd tools/p37-e4 && go vet ./...) >out/p37-e4/composite-vet.log 2>&1 || { cat out/p37-e4/composite-vet.log; exit 21; }
+          (cd tools/p37-e4 && go test -race -count=1 -v ./...) >out/p37-e4/composite-race.log 2>&1 || { cat out/p37-e4/composite-race.log; exit 22; }
+          for t in TestP37E4IndependentAlgorithmCapabilityMatrix TestP37E4SafeOwnerSequentialRolloutAndNoPrematureContraction TestP37E4NoAlgorithmOnlySemanticCongruenceUnderFutureContext; do
+            grep -q -- "PASS: $t" out/p37-e4/composite-race.log
+          done
+          (cd original-scs && go vet ./...) >out/p37-e4/scs-original-vet.log 2>&1 || { cat out/p37-e4/scs-original-vet.log; exit 23; }
+          (cd original-scs && go test -race -count=1 ./...) >out/p37-e4/scs-original-full-race.log 2>&1 || { cat out/p37-e4/scs-original-full-race.log; exit 24; }
+          echo P37_E4_GORILLA_CLIENT_STATE_VS_SCS_SERVER_TOKEN_ORIGINAL_NATIVE_PASS >out/p37-e4/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-e4-independent-session-algorithms-original-go-court
+          path: out/p37-e4/
+          if-no-files-found: warn
+          retention-days: 30
