@@ -1,0 +1,76 @@
+name: G8 P36 O10R Two Independent Same Contract Source Cost Replications
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o10r/**'
+      - '.github/workflows/g8-p36-o10r-two-runner-cost.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-paired-runner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        first: [CHI_FIRST, GORILLA_FIRST]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: mux
+          fetch-depth: 1
+      - name: Pin unchanged source and tests, verify original modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o10r/chi out/p36-o10r/mux
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C mux rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          for repo in chi mux; do
+            cp "tools/p36-o10/arms/$repo/p36_o10_selectable.go" "$repo/p36_o10_selectable.go"
+            cp "tools/p36-o10/tests/$repo/p36_o10_identical_q21_test.go" "$repo/p36_o10_identical_q21_test.go"
+            sha256sum "tools/p36-o10/arms/$repo/p36_o10_selectable.go" "tools/p36-o10/tests/$repo/p36_o10_identical_q21_test.go" >"out/p36-o10r/$repo/source-sha256.txt"
+            (cd "$repo" && go vet ./...) >"out/p36-o10r/$repo/vet.log" 2>&1 || { cat "out/p36-o10r/$repo/vet.log"; exit 10; }
+            (cd "$repo" && go test -count=1 ./...) >"out/p36-o10r/$repo/full.log" 2>&1 || { cat "out/p36-o10r/$repo/full.log"; exit 11; }
+            (cd "$repo" && go test -race -count=1 ./...) >"out/p36-o10r/$repo/race.log" 2>&1 || { cat "out/p36-o10r/$repo/race.log"; exit 12; }
+            (cd "$repo" && go test -v -count=1 -run '^TestP36O10' .) >"out/p36-o10r/$repo/q21.log" 2>&1 || { cat "out/p36-o10r/$repo/q21.log"; exit 13; }
+            grep -q 'PASS: TestP36O10IdenticalQ21' "out/p36-o10r/$repo/q21.log"
+          done
+          { date -u; uname -a; go version; lscpu | grep -E 'Model name|CPU\(s\)|Architecture' | head -8; } >out/p36-o10r/runner-metadata.txt
+      - name: Source-exact counterbalanced Q21 costs on fresh runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          for block in 1 2; do
+            if [ '${{ matrix.first }}' = CHI_FIRST ]; then
+              if [ "$block" = 1 ]; then repos='chi mux'; else repos='mux chi'; fi
+            else
+              if [ "$block" = 1 ]; then repos='mux chi'; else repos='chi mux'; fi
+            fi
+            for repo in $repos; do
+              (cd "$repo" && GOMAXPROCS=1 go test -run '^$' -bench '^BenchmarkP36O10' -count=6 -benchtime=150ms -benchmem -cpu=1 .) >"out/p36-o10r/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o10r/$repo/bench-block-$block.log"; exit 20; }
+              grep -q 'BenchmarkP36O10Dispatch' "out/p36-o10r/$repo/bench-block-$block.log"
+              grep -q 'BenchmarkP36O10Build' "out/p36-o10r/$repo/bench-block-$block.log"
+            done
+          done
+          echo P36_O10R_FIXED_Q21_BOTH_ORIGINAL_MODULES_PASS_12_TIMING_SAMPLES_PER_VARIANT >out/p36-o10r/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o10r-${{ matrix.first }}-independent-runner
+          path: out/p36-o10r/
+          if-no-files-found: warn
+          retention-days: 30
