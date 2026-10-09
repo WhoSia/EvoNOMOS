@@ -1,5 +1,7 @@
 # EvoNOMOS P35 — Paper A/B Missing-From-Drive Original Literature Audit
 
+> **2026-10-09 post-upload correction:** The earlier *MISSING BY DRIVE NAME SEARCH* status below is now HISTORICAL and superseded. **All eight exact cited PDFs were located in user-supplied `00_INTAKE — Literature Radar`, first-page author/title verified (Kay scan text poor), metadata-only renamed and MOVED to `10_PAPERS — Canonical Literature Commons`, preserving original Drive IDs.** See [eight-original canonical ingest and primary-text challenge](P35_PAPERS_A_B_EIGHT_ORIGINALS_CANONICAL_INGEST_AND_READING.md). No need to ask user for those eight again. Full binary-hash dedupe against all other Drive holdings remains unverified; don't claim global uniqueness. 
+
 **Date:** 2026-10-09. **Evidence rule:** the records below are *NOT FOUND BY TITLE/AUTHOR IN ACCESSIBLE GOOGLE DRIVE METADATA*, NOT proven wholly absent from every personal archive or renamed PDF. Search covered the authenticated Drive namespace using exact title/author substrings, with manual disambiguation and no automatic downloads/renames. User will obtain original bytes; classification can be updated by SHA and canonical 00→10 handling. Exclude unavailable `7.md` from primary chat reconstruction.
 
 ## High-priority proposed acquisition — Paper B (historical/OOP/AI authority)
