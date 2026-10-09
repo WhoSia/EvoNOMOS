@@ -1,0 +1,48 @@
+name: G8 P35 O4 D12 Live CSV Original Chi Positive
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o4/arms/**'
+      - '.github/workflows/g8-p35-o4-d12-native-positive.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-csv-quote-origin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Frozen original Chi and D12 source regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-o4-d12-positive
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
+          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go tools/p35-o4/tests/chi/p35_o4_d12_test.go chi/middleware/
+          cp tools/p35-o4/arms/chi/live-csv/route_headers.go chi/middleware/route_headers.go
+          (cd chi && go vet ./middleware) >out/p35-o4-d12-positive/vet.log 2>&1 || { cat out/p35-o4-d12-positive/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p35-o4-d12-positive/race.log 2>&1 || { cat out/p35-o4-d12-positive/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p35-o4-d12-positive/full-original.log 2>&1 || { cat out/p35-o4-d12-positive/full-original.log; exit 13; }
+          (cd chi && go test -v -count=1 -run '^TestP35' ./middleware) >out/p35-o4-d12-positive/contracts.log 2>&1 || { cat out/p35-o4-d12-positive/contracts.log; exit 14; }
+          grep -q 'PASS: TestP35O4D12QuotedOnlyFutureDemand' out/p35-o4-d12-positive/contracts.log
+          grep -q 'P35P7_D_LIVE_PASS__D_FROZEN_FAIL' out/p35-o4-d12-positive/contracts.log
+          sha256sum chi/middleware/route_headers.go tools/p35-o4/tests/chi/p35_o4_d12_test.go >out/p35-o4-d12-positive/frozen-sha256.txt
+          echo 'P35_O4_D12_LIVE_CSV_NATIVE_GO_RACE_PASS' | tee out/p35-o4-d12-positive/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o4-d12-live-csv-original-native
+          path: out/p35-o4-d12-positive/
+          if-no-files-found: warn
+          retention-days: 30
