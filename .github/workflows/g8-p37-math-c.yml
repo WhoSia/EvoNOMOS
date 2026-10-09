@@ -1,0 +1,33 @@
+name: G8 P37 Math-C Scoped SOLID Embedding Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-c/**'
+      - '.github/workflows/g8-p37-math-c.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-structural-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact finite transition embedding and information-loss worlds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-math-c/solid_repair_embedding_finite.py | tee p37-math-c.log
+          grep -q 'P37_MATH_C_RESTRICTED_FINITE_EMBEDDING_PASS cases=16' p37-math-c.log
+          grep -q 'P37_MATH_C_SOLID_REPRESENTATION_LOSS_COUNTEREXAMPLE_PASS' p37-math-c.log
+          grep -q 'CLASSICAL_REPRESENTATION_AND_INFORMATION_ARGUMENT_NOT_NEW_LAW' p37-math-c.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-c-finite-solid-embedding-receipt
+          path: p37-math-c.log
+          retention-days: 30
