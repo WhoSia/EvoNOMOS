@@ -41,11 +41,17 @@ for architecture in live snapshot; do
       git merge-file -p "$first" "$base" "$second" > "$p-source.go" 2> "$p-merge.log"
       code=$?
       set -e
-      if [[ "$code" -gt 1 ]]; then cat "$p-merge.log"; echo "MERGE_TOOL_FAILURE" > "$p.verdict"; exit 32; fi
-      if [[ "$code" -eq 1 ]]; then
+      # git merge-file returns the count of conflict regions (up to 127).
+      # A status >1 is NOT necessarily a tool crash. Classify from markers.
+      if [[ "$code" -ne 0 ]] && grep -q '^<<<<<<< ' "$p-source.go"; then
         conflicted=$((conflicted+1))
         printf 'PATCH_REPLAY_CONFLICT_HOLD: %s/%s/%s (noncommutation NOT inferred)\n' "$architecture" "$style" "$order" | tee "$p.verdict"
         continue
+      fi
+      if [[ "$code" -ne 0 ]]; then
+        cat "$p-merge.log"
+        echo "MERGE_TOOL_FAILURE_WITHOUT_CONFLICT_MARKERS" > "$p.verdict"
+        exit 32
       fi
       clean=$((clean+1))
       cp "$p-source.go" chi/middleware/route_headers.go

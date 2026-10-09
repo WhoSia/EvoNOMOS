@@ -20,7 +20,7 @@
 
 **Verified historical sources:**
 
-1. Ole-Johan Dahl / Kristen Nygaard history in David Ungar? **DO NOT assume**; authoritative detailed historical paper: "Object-oriented programming: Some history, and challenges for the next fifty years," *Information and Computation* 231 (2013), doi:10.1016/j.ic.2013.08.002, https://www.sciencedirect.com/science/article/pii/S0890540113000795
+1. Andrew P. Black (2013), authoritative historical account: "Object-oriented programming: Some history, and challenges for the next fifty years," *Information and Computation* 231 (2013), doi:10.1016/j.ic.2013.08.002, https://arxiv.org/abs/1303.0427
 2. Alan C. Kay (1993), "The Early History of Smalltalk", ACM SIGPLAN Notices 28(3), DOI 10.1145/155360.155364, https://doi.org/10.1145/155360.155364
 3. D. L. Parnas (1972), "On the criteria to be used in decomposing systems into modules", CACM 15(12), DOI 10.1145/361598.361623, https://doi.org/10.1145/361598.361623
 4. B. Liskov and J. Wing (1994), "A Behavioral Notion of Subtyping", ACM TOPLAS 16(6), DOI 10.1145/197320.197383, https://www.cs.cmu.edu/~svc/papers/view-publications-lw94.html
