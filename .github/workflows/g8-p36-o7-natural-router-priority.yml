@@ -68,7 +68,8 @@ jobs:
             grep -q 'PASS: TestP36O7D18ChronologicalPriority' "out/p36-o7/$folder/d18.log"
             echo P36_O7_GORILLA_ORIGINAL_Q0_AND_D18_NATIVE_PASS >"out/p36-o7/$folder/verdict.txt"
           fi
-          sha256sum "tools/p36-o7/tests/$folder/p36_o7_original_crossheader_test.go" >"out/p36-o7/$folder/source-sha256.txt"
+          if [ "$folder" = chi ]; then test_source=tools/p36-o7/tests/chi/p36_o7_original_crossheader_test.go; else test_source=tools/p36-o7/tests/mux/p36_o7_original_crossheader_test.go; fi
+          sha256sum "$test_source" >"out/p36-o7/$folder/source-sha256.txt"
       - if: always()
         uses: actions/upload-artifact@v4
         with:
