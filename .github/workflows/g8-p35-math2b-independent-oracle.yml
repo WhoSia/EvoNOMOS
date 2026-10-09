@@ -1,0 +1,48 @@
+name: G8 P35 MATH2B Independent Reference Go Differential Grid
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-math2b/**'
+      - '.github/workflows/g8-p35-math2b-independent-oracle.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-chi-differential:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Four fixed source arms versus independent frozen reference, 720 cases each
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/math2b"
+          mkdir -p "$OUT"
+          test "$(git -C chi rev-parse HEAD)" = '67be7d9cafdaeb4e04e887ff78d09e030ee43b00'
+          go version | tee "$OUT/go-version.txt"
+          cp tools/p35-p7/tests/*.go chi/middleware/
+          cp tools/p35-math2/tests/*.go chi/middleware/
+          cp tools/p35-math2b/tests/*.go chi/middleware/
+          for architecture in live snapshot; do
+            for style in inline helper; do
+              arm="tools/p35-math2/arms/$architecture/$style/both/route_headers.go"
+              cp "$arm" chi/middleware/route_headers.go
+              (cd chi && go test -race -count=1 -v -run '^TestP35Math2BIndependentReferenceGrid$' ./middleware) > "$OUT/$architecture-$style-grid.log" 2>&1 || { cat "$OUT/$architecture-$style-grid.log"; exit 21; }
+              grep -q 'MATH2B_INDEPENDENT_REFERENCE_GRID_PASS cases=720' "$OUT/$architecture-$style-grid.log"
+              (cd chi && go test -count=1 -run '^TestP35' ./middleware) > "$OUT/$architecture-$style-prior-contract.log" 2>&1 || { cat "$OUT/$architecture-$style-prior-contract.log"; exit 22; }
+              sha256sum "$arm" > "$OUT/$architecture-$style-source.sha256"
+              echo "MATH2B_${architecture}_${style}_REFERENCE_720_AND_PRIOR_CONTRACT_PASS" | tee "$OUT/$architecture-$style.verdict"
+            done
+          done
+          find tools/p35-math2b -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/differential-source-sha256.txt"
+          echo MATH2B_ORIGINAL_CHI_ALL_FOUR_ARMS_2880_TEST_CASES_PASS | tee "$OUT/overall.verdict"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: math2b-original-chi-independent-oracle, path: out/math2b/, if-no-files-found: warn, retention-days: 30}
