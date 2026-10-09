@@ -1,0 +1,62 @@
+name: G8 P35 O5 D13 Original Go Parser Adversary
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o5/**'
+      - '.github/workflows/g8-p35-o5-d13-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  parser-adversary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        strategy: [csv, scanner]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Original Go regression followed by isolated D13 grammar probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-o5/${{ matrix.strategy }}
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
+          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go chi/middleware/
+          cp tools/p35-o3/arms/chi/live-${{ matrix.strategy }}/route_headers.go chi/middleware/route_headers.go
+          (cd chi && go vet ./middleware) >out/p35-o5/${{ matrix.strategy }}/vet.log 2>&1 || { cat out/p35-o5/${{ matrix.strategy }}/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p35-o5/${{ matrix.strategy }}/race.log 2>&1 || { cat out/p35-o5/${{ matrix.strategy }}/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p35-o5/${{ matrix.strategy }}/old-full.log 2>&1 || { cat out/p35-o5/${{ matrix.strategy }}/old-full.log; exit 13; }
+          cp tools/p35-o5/tests/chi/p35_o5_d13_test.go chi/middleware/
+          set +e
+          (cd chi && go test -v -count=1 -run '^TestP35O5D13TrailingWhitespace$' ./middleware) >out/p35-o5/${{ matrix.strategy }}/new-contract.log 2>&1
+          result=$?
+          set -e
+          if [[ '${{ matrix.strategy }}' == 'csv' ]]; then
+            test "$result" -ne 0 || { echo UNEXPECTED_CSV_POSITIVE; exit 20; }
+            grep -q P35_O5_D13_CONTRACT_FAILURE out/p35-o5/${{ matrix.strategy }}/new-contract.log || { cat out/p35-o5/${{ matrix.strategy }}/new-contract.log; exit 21; }
+            echo P35_O5_D13_CSV_EXPECTED_NEGATIVE | tee out/p35-o5/${{ matrix.strategy }}/verdict.txt
+          else
+            test "$result" -eq 0 || { cat out/p35-o5/${{ matrix.strategy }}/new-contract.log; exit 22; }
+            grep -q 'PASS: TestP35O5D13TrailingWhitespace' out/p35-o5/${{ matrix.strategy }}/new-contract.log
+            echo P35_O5_D13_SCANNER_EXPECTED_POSITIVE | tee out/p35-o5/${{ matrix.strategy }}/verdict.txt
+          fi
+          sha256sum chi/middleware/route_headers.go tools/p35-o5/tests/chi/p35_o5_d13_test.go >out/p35-o5/${{ matrix.strategy }}/sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o5-d13-${{ matrix.strategy }}-native
+          path: out/p35-o5/${{ matrix.strategy }}/
+          if-no-files-found: warn
+          retention-days: 30
