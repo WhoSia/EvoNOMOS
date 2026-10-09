@@ -1,6 +1,6 @@
 # Active lineage
 
-> **CURRENT SCIENTIFIC OWNER — EvoNOMOS G8 LAW-R1-P35 OPEN; P34 CLOSED.** P33 remains CLOSED. [P34 current Notion Run](https://app.notion.com/p/3f4ef561cf9281d49e99ebaacf335fe5), [opening constitution](g8-law-r1-p34/P34_OPENING_CONSTITUTION.md). Existing EvoNOMOS research is being deepened, not split into another Lab. No LAW-R2 or universal source-architecture law authorized. GitHub Actions are read-only and cannot author commits.
+> **CURRENT SCIENTIFIC OWNER — EvoNOMOS G8 LAW-R1-P35 OPEN; P34 CLOSED.** P33 remains CLOSED. [P35 current Notion Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784), [opening constitution](g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md). Existing EvoNOMOS research is being deepened, not split into another Lab. No LAW-R2 or universal source-architecture law authorized. GitHub Actions are read-only and cannot author commits.
 
 - stage: **G8 LAW-R1-P35 — Independent Capability Engines, Cross-Operation Change Propagation, Source-Edit Locality & Demand-Conditioned SOLID Cost Geometry**
 - P0: [source call graph/contract separator](g8-law-r1-p34/P34_P0_SOURCE_PROJECTION_CONTRACT_SEPARATOR.md), hosted 37885239006 PASS; known retrospective world, no independent M2>M1.
