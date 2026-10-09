@@ -1,0 +1,67 @@
+name: G8 P36 O3 Original Chi Retain Erase and Future Repair Survival
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o3/**'
+      - '.github/workflows/g8-p36-o3-chi-survival.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-repair-survival:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        arm: [RETAIN, ERASE]
+    env:
+      P35_O6_ARM: EAGER
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: D14 matched source repair then independent future D15 oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          arm=$(echo '${{ matrix.arm }}' | tr '[:upper:]' '[:lower:]')
+          mkdir -p out/p36-o3/${{ matrix.arm }}
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p36-o3/arms/chi/$arm/p35_epoch_router.go chi/middleware/p35_epoch_router.go
+          cp tools/p35-o6/tests/chi/p35_o6_eager_lazy_test.go chi/middleware/
+          cp tools/p36-o3/tests/chi/p36_o3_d14_test.go chi/middleware/
+          (cd chi && go vet ./middleware) >out/p36-o3/${{ matrix.arm }}/vet.log 2>&1 || { cat out/p36-o3/${{ matrix.arm }}/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p36-o3/${{ matrix.arm }}/race.log 2>&1 || { cat out/p36-o3/${{ matrix.arm }}/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p36-o3/${{ matrix.arm }}/full-original.log 2>&1 || { cat out/p36-o3/${{ matrix.arm }}/full-original.log; exit 13; }
+          (cd chi && go test -v -count=1 -run '^TestP36O3D14' ./middleware) >out/p36-o3/${{ matrix.arm }}/d14.log 2>&1 || { cat out/p36-o3/${{ matrix.arm }}/d14.log; exit 14; }
+          grep -q 'PASS: TestP36O3D14Disable' out/p36-o3/${{ matrix.arm }}/d14.log
+          cp tools/p36-o3/tests/chi/p36_o3_d15_future_test.go chi/middleware/
+          set +e
+          (cd chi && go test -v -count=1 -run '^TestP36O3D15RestoreOriginalClosure$' ./middleware) >out/p36-o3/${{ matrix.arm }}/d15.log 2>&1
+          rc=$?
+          set -e
+          if [ '${{ matrix.arm }}' = RETAIN ]; then
+            test "$rc" -eq 0 || { cat out/p36-o3/${{ matrix.arm }}/d15.log; exit 20; }
+            grep -q 'PASS: TestP36O3D15RestoreOriginalClosure' out/p36-o3/${{ matrix.arm }}/d15.log
+            echo P36_O3_RETAIN_D14_NATIVE_PASS_AND_D15_NATIVE_SURVIVED | tee out/p36-o3/${{ matrix.arm }}/verdict.txt
+          else
+            test "$rc" -ne 0 || { cat out/p36-o3/${{ matrix.arm }}/d15.log; echo UNEXPECTED_ERASE_FUTURE_PASS; exit 21; }
+            grep -q 'P36_O3_D15_RESTORE_EXPECTED_NEGATIVE_OR_BUG' out/p36-o3/${{ matrix.arm }}/d15.log || { cat out/p36-o3/${{ matrix.arm }}/d15.log; exit 22; }
+            echo P36_O3_ERASE_D14_NATIVE_PASS_AND_D15_EXPECTED_NEGATIVE | tee out/p36-o3/${{ matrix.arm }}/verdict.txt
+          fi
+          sha256sum chi/middleware/p35_epoch_router.go tools/p36-o3/tests/chi/*.go >out/p36-o3/${{ matrix.arm }}/sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o3-${{ matrix.arm }}-native-source-survival
+          path: out/p36-o3/${{ matrix.arm }}/
+          if-no-files-found: warn
+          retention-days: 30
