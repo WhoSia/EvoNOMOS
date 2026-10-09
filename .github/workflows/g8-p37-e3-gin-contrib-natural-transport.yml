@@ -1,0 +1,68 @@
+name: G8 P37 E3 Original Gin-Contrib Gorilla Cross-Org Transport
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-e3/**'
+      - '.github/workflows/g8-p37-e3-gin-contrib-natural-transport.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-gin-gorilla-transport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: gin-contrib/sessions
+          ref: 12aa9f4b814f76844894f186ace4bd23b1ff29c0
+          path: original-gin-sessions
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/sessions
+          ref: bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          path: original-gorilla-sessions
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/securecookie
+          ref: eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          path: original-securecookie
+          fetch-depth: 1
+      - name: Pin independent authentic upstream modules and frozen extra test
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-e3
+          test "$(git -C original-gin-sessions rev-parse HEAD)" = 12aa9f4b814f76844894f186ace4bd23b1ff29c0
+          test "$(git -C original-gorilla-sessions rev-parse HEAD)" = bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          test "$(git -C original-securecookie rev-parse HEAD)" = eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          cp tools/p37-e3/tests/gin-contrib-cookie/p37_e3_original_transport_test.go original-gin-sessions/cookie/
+          sha256sum original-gin-sessions/cookie/cookie.go original-gin-sessions/sessions.go original-gorilla-sessions/store.go original-securecookie/securecookie.go tools/p37-e3/tests/gin-contrib-cookie/p37_e3_original_transport_test.go >out/p37-e3/source-test-sha256.txt
+          (cd original-gin-sessions && go mod edit -replace github.com/gorilla/sessions=../original-gorilla-sessions)
+          (cd original-gin-sessions && go mod edit -replace github.com/gorilla/securecookie=../original-securecookie)
+          { date -u; go version; git -C original-gin-sessions status --short; git -C original-gorilla-sessions status --short; git -C original-securecookie status --short; } >out/p37-e3/metadata.txt
+          { git -C original-gin-sessions rev-parse HEAD; git -C original-gorilla-sessions rev-parse HEAD; git -C original-securecookie rev-parse HEAD; } >out/p37-e3/pins.txt
+      - name: Run original gin-cookie source plus Q23-independent frozen E3 race
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd original-gin-sessions && go test -mod=mod -race -count=1 -v -run '^TestP37E3' ./cookie) >out/p37-e3/e3-original-race.log 2>&1 || { cat out/p37-e3/e3-original-race.log; exit 22; }
+          grep -q 'PASS: TestP37E3OriginalGinGorillaCompatibilityTransport' out/p37-e3/e3-original-race.log
+          (cd original-gin-sessions && go vet -mod=mod ./cookie) >out/p37-e3/cookie-vet.log 2>&1 || { cat out/p37-e3/cookie-vet.log; exit 23; }
+          (cd original-gin-sessions && go list -mod=mod -m all) >out/p37-e3/module-versions.txt
+          echo P37_E3_CROSS_ORG_GIN_GORILLA_ORIGINAL_SOURCE_TRANSPORT_RACE_VET_PASS >out/p37-e3/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-e3-cross-org-original-gin-gorilla-source-transport
+          path: out/p37-e3/
+          if-no-files-found: warn
+          retention-days: 30
