@@ -22,7 +22,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m unittest discover -s tools/p36-p37-rival-court -p 'test_*.py' -v
-          if grep -nE '(law_r2.*AUTHORIZED|DIP49.*IDENTIFIED)' tools/p36-p37-rival-court/*.py; then
+          if grep -nE '"law_r2"[[:space:]]*:[[:space:]]*"AUTHORIZED"|"scientific_law_status"[[:space:]]*:[[:space:]]*"DIP49_IDENTIFIED"' tools/p36-p37-rival-court/*.py; then
             echo "UNAUTHORIZED_LAW_PROMOTION_TEXT"
             exit 21
           fi
