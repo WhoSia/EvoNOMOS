@@ -79,6 +79,15 @@ if(process.argv[2] && fs.existsSync(process.argv[2])){
  assert.equal(s.parametrized_actual_source_executions.dispatcher.failed_pairs,64);
  sourceReceipts="bounded source execution already verified 64/64 vs 0/64";
 }
+// Conditional SRP-cost illustration, not a universal decomposition law.
+const pA=.2,pB=.2,pAB=.04,initialOverhead=.03;
+const xor=pA+pB-2*pAB,union=pA+pB-pAB;
+const grouped=lambda=>union+lambda*xor;
+const split=pA+pB+initialOverhead;
+const threshold=(split-union)/xor;
+assert.ok(Math.abs(threshold-.21875)<1e-12);
+assert.ok(grouped(.1)<split);
+assert.ok(grouped(.3)>split);
 const record={
  schema:"P33_DEMAND_RELATIVE_INTERFACE_QUOTIENT_V1",
  kind:"CLASSICAL_MATHEMATICS_PLUS_SOLID_INTERPRETATION",
@@ -86,6 +95,7 @@ const record={
  universal_property:"The canonical tuple observation q_D is coarsest sufficient quotient up to bijective recoding; any sufficient o factors q_D through o.",
  tested_observation_functions:checked,
  exhaustive_factorization_pairs:exhaustive,
+ srp_conditional_cost_model:{pA,pB,pAB,grouped_base_touch:union,one_axis_only_probability:xor,amortized_split_overhead:initialOverhead,split_cost:split,split_preference_threshold_lambda:threshold,grouping_preferred_at_lambda_0_1:true,split_preferred_at_lambda_0_3:true,interpretation:"Illustrative stipulated coupling-risk penalty, NOT an empirically estimated design law"},
  min_interface_labels_for_A:minA,
  min_interface_labels_for_A_and_B:minBoth,
  sufficient_observations_for_A:suffA,
