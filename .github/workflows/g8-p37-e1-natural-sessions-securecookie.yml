@@ -1,0 +1,68 @@
+name: G8 P37 E1 Original Gorilla Sessions Securecookie Safe Repair Product
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-e1/**'
+      - '.github/workflows/g8-p37-e1-natural-sessions-securecookie.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  two-original-repositories-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/sessions
+          ref: bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          path: upstream-sessions
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/securecookie
+          ref: eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          path: upstream-securecookie
+          fetch-depth: 1
+      - name: Preserve both upstream source commits and attach ONLY frozen test to sessions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-e1
+          test "$(git -C upstream-sessions rev-parse HEAD)" = bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          test "$(git -C upstream-securecookie rev-parse HEAD)" = eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          cp tools/p37-e1/tests/sessions/p37_e1_original_cookie_compatibility_test.go upstream-sessions/
+          sha256sum tools/p37-e1/tests/sessions/p37_e1_original_cookie_compatibility_test.go upstream-sessions/store.go upstream-securecookie/securecookie.go >out/p37-e1/source-sha256.txt
+          (cd upstream-sessions && go mod edit -replace github.com/gorilla/securecookie=../upstream-securecookie)
+          (cd upstream-sessions && go mod tidy)
+          { date -u; go version; git -C upstream-sessions status --short; git -C upstream-securecookie status --short; } >out/p37-e1/metadata.txt
+          { git -C upstream-sessions rev-parse HEAD; git -C upstream-securecookie rev-parse HEAD; } >out/p37-e1/original-pins.txt
+      - name: Check actual securecookie module original Go full race vet
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd upstream-securecookie && go vet ./...) >out/p37-e1/securecookie-vet.log 2>&1 || { cat out/p37-e1/securecookie-vet.log; exit 21; }
+          (cd upstream-securecookie && go test -race -count=1 ./...) >out/p37-e1/securecookie-full-race.log 2>&1 || { cat out/p37-e1/securecookie-full-race.log; exit 22; }
+      - name: Check actual sessions original Go full race vet and FROZEN owner compatibility test
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd upstream-sessions && go vet ./...) >out/p37-e1/sessions-vet.log 2>&1 || { cat out/p37-e1/sessions-vet.log; exit 23; }
+          (cd upstream-sessions && go test -race -count=1 ./...) >out/p37-e1/sessions-full-race.log 2>&1 || { cat out/p37-e1/sessions-full-race.log; exit 24; }
+          (cd upstream-sessions && go test -race -count=1 -v -run '^TestP37E1' .) >out/p37-e1/e1-frozen-race.log 2>&1 || { cat out/p37-e1/e1-frozen-race.log; exit 25; }
+          grep -q 'PASS: TestP37E1ExactOriginalCompatibilityMatrix' out/p37-e1/e1-frozen-race.log
+          grep -q 'PASS: TestP37E1OriginalSafeSequentialMigration' out/p37-e1/e1-frozen-race.log
+          echo P37_E1_ORIGINAL_GORILLA_SESSIONS_SECURECOOKIE_BOTH_FULL_RACE_VET_AND_FROZEN_INVARIANT_PASS >out/p37-e1/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-e1-original-two-repo-compatibility-invariant-court
+          path: out/p37-e1/
+          if-no-files-found: warn
+          retention-days: 30
