@@ -2,121 +2,105 @@
 
 **Evolutionary Nomology, Optimization, and Measurement of Software Organization**
 
-EvoNOMOS investigates whether source-grounded responsibility, authority, interface capability and dependency structures can explain and *prospectively predict* the effects of maintenance demands. SOLID principles are possible conditional consequences, **not axioms** or presumed universal laws.
+EvoNOMOS studies the *conditions under which software organization changes the cost and safety of future changes*. It tests responsibility boundaries, dependency direction, behavioral contracts, interface capability, shared invariants, and migration paths in executable source. **SOLID is a family of conditional design hypotheses—not an axiomatic scoring system or a guaranteed architecture ranking.**
 
-## Current scientific head — Generation VIII LAW-R1-P35 OPEN
+> **Current scientific head (2026-10-09):** Generation VIII · **LAW-R1-P35 OPEN** — *Independent Capability Engines, Cross-Operation Change Propagation, Source-Edit Locality & Demand-Conditioned SOLID Cost Geometry*. **LAW-R2 NOT AUTHORIZED.**
 
-**Independent Capability Engines, Cross-Operation Change Propagation, Source-Edit Locality & Demand-Conditioned SOLID Cost Geometry**
+## Start here
 
-**P33/P34 predecessors:** CLOSED with attributed conditional SOLID theory and bounded real-source/contract evidence. **P35 current stage:** OPEN; **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
+| Surface | Canonical source | What it establishes |
+| --- | --- | --- |
+| Current experiment | [P35 technical opening](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) · [P35 Notion Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784) | Two genuinely different in-memory Go storage organizations; matched behavioral and change demands |
+| Verified predecessor | [P34 terminal](active/g8-law-r1-p34/P34_TERMINAL_SOURCE_EDITS_AND_P35_HANDOFF.md) | DIRECT/COMPOSED changed one method and +4/−1 lines each under KeyFile size rule; no locality winner |
+| Theoretical foundation | [P33 integrated SOLID interpretation](active/g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md) · [Demand-relative quotient](active/g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) | Classical factorization, contract refinement, authority and conditional change-cost theory; not a new universal mathematical theorem |
+| Literature & rivals | [Harvest / source and repair families](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) | Parnas, Liskov–Wing, Martin, Design Rule Spaces, CSDG, repair synthesis, information cuts, set-valued continuation |
+| Genealogy | [Active lineage](active/README.md) · [Research OS / Entry Card](https://app.notion.com/p/3caef561cf928153ae09eed2bf4b7d72) | Separate historical snapshots from current permission to make scientific claims |
+| Reproduction bridge | [P35 source-and-validation protocol](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md) | Exact local-pass/upstream-hold distinction, reproducible original-source commands, strong-rival limitations |
 
-- [P33 opening scientific constitution](active/g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md)
-- [P33 final scientific court and P34 proposed title](active/g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md)
-- [P33 completed Notion Run](https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0)
-- [P32 terminal strong-rival and repair-family ruling](active/g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md)
-- [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
-- [Active and historical lineage](active/README.md)
+**Status hierarchy:** `CLOSED` means the named phase received its terminal verdict, not that every large scientific hypothesis passed. `METHOD PASS` certifies only the declared method. `HOLD` and `TERMINAL_NONRESULT` are not transformed into evidence by a later narrative. In particular, original ORIGIN-R1-P12 is still **TERMINAL_NONRESULT**.
 
-### P35 active successor — real independent capability implementations, not policy drift
+## Research question
 
-[P35 opening scientific constitution](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) and [active Notion P35 Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784). **P34 has CLOSED**: [P34 terminal scientific court](active/g8-law-r1-p34/P34_TERMINAL_SOURCE_EDITS_AND_P35_HANDOFF.md). [P34-P5 read-only hosted 37889096693](https://github.com/WhoSia/EvoNOMOS/actions/runs/37889096693) **SUCCESS**, original unmodified Go adapter baseline FAILS new synthetic KeyFile contract, whereas independently patched DIRECT and COMPOSED worlds each PASS all old/new tests. Each touches **one Go source file, one Go method, +4/−1 lines**, verified by diff files and logs (artifact `11597199571`; digest `3a874e79a625599e975a5e14ff5a5cd64a9973e5ee45e81e045a9f243fdc9fb5`). Negative design-locality control: layering does not improve this single-site edit footprint when both designs share one storage kernel. P35 will test **genuinely different** storage-capability implementations and coupled source changes. Historical ORIGIN-P12 stays TERMINAL_NONRESULT; no new universal OO law or P12 results.
+Given the **same public behavior**, the **same change demand**, and a disclosed repair grammar, when does one object/module boundary make change cheaper, safer or more expensive than another? What is observable before implementation, and when do different architectures become **nonidentifiable** under a chosen experiment?
 
-### P34-P4 latest independently implemented and hosted source court
+Track the lifecycle vector **S / L / C / A / Q** where supported (physical edit sites; changed source lines; inter-component coordination; architectural burden/authority contacts where independently operationalized; behavior-oracle outcome). Do not collapse incomparable dimensions into a synthetic `SOLID quality` score or infer person-hours from call/dispatch counts.
 
-**New source implementations**, not the original non-result P12 treatments: [DIRECT and four-unit COMPOSED Restic-compatible adapters](tools/p34-p4/pair.go), [identical public contract tests](tools/p34-p4/pair_test.go), [registered outcome contract](active/g8-law-r1-p34/P34_P4_PAIRED_RESTIC_BACKEND_PRECOMMIT.md) and [P4 scientific judgment](active/g8-law-r1-p34/P34_P4_RESTIC_IMPLEMENTATION_COORDINATION_AND_DEMAND_EVOLUTION_COURT.md). Exact original Go `restic.Backend` (12 public methods) at `495982232cf1af184eac0a97871ef8161e8708ee` was compiled and tested under two new in-memory designs with identical core storage semantics. **18/18 observable public operation histories equal**, zero DIRECT versus eighteen COMPOSED *additional adapter-to-capability-unit dispatches*. Separate demand-widening P4b `{Save,Load} → 6 functions` confirms **2 then 5** additional public operations and equal traces; source change effort **not measured**.
+A meaningful structural claim needs:
+1. A pinned source state and stated behavior/history contract, including cancellation and error callbacks.
+2. Explicit intervention and matched requirements; unchanged pre-demand negative control.
+3. Actual source diffs, compile/test logs, and independent or strongest available analysis baseline.
+4. Repair-strategy alternatives and identifiable conditions for a claimed advantage or reversal.
+5. An honest limitation when static dependence, known factorization or representation choices already explain the result.
 
-[Final hosted Actions 37888110765](https://github.com/WhoSia/EvoNOMOS/actions/runs/37888110765) **SUCCESS**, artifact `11596179928`, SHA256 `9b35a9c80c72d4f5c0ca76ccb58a3bcd4dcef6f7aa3e9ec6a76e61f1b39d133a`; first harness-only tagged-JSON error disclosed in court and corrected. P34 P4 is bounded **typed-implementation and temporal behavior PASS**, not developer hours, source patch effort, overall Pareto winner, new universal OO law or a rewrite of **ORIGIN-P12 TERMINAL_NONRESULT**. Existing Harvest [F36](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) tracks the exact evidence.
+## Current empirical line: P33 → P34 → P35
 
-### P34-P3 newest verified court — original Go wire timeline and Restic six-of-six boundary
+### P33 — Conditional mathematical interpretation (CLOSED)
 
-[P34-P3 source-referenced science court](active/g8-law-r1-p34/P34_P3_TEMPORAL_WIRE_AND_RESTIC_COREQUIREMENT_COURT.md) · [Read-only hosted 37887161953](https://github.com/WhoSia/EvoNOMOS/actions/runs/37887161953) **SUCCESS**, artifact `11597370040` SHA256 `02101059bcf8fba31774ee082fbf582ea9886c18ad37c573674665669e42340c`. Original P11 Go handler was run via local httptest: 10 ordered HTTP calls, four valid success response/ledger events and six rejected requests with no success ledger entry. P12 Restic fixed birth source confirms 6/6 bundled public capabilities demanded, so `|B\\D|=0`; there is no **excess-capability conformance** margin to remove by ISP in that world. **ORIGIN-P12 ended TERMINAL_NONRESULT, costs never revealed, OneDrive phase1 unopened**: no treatment superiority or winner. [P34 harvest F35](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) preserves literature and history genealogy.
+- **ISP / restricted OCP:** For demanded observations `g_d`, a boundary `o` can support downstream-only refinement only when `ker(o) ⊆ ker(g_d)`, under the stated deterministic setting. This is **classical function factorization** applied to design; it is not claimed as newly proved mathematics.
+- **LSP:** Client-preserving substitutability requires contract/trace history and admissibility, not matching names or method signatures alone.
+- **DIP:** Compile-time dependency inversion, runtime control flow, and ownership of the abstraction are distinct questions.
+- **SRP:** Separation trades change-interference costs against its own coordination and evolution costs; sign depends on demand distribution and prices.
+- Repair families are **grammar- and oracle-relative**. A recorded successful patch is not the complete family, and the smallest initial edit is not necessarily the smallest lifecycle cost.
 
-### P34 current scientific head — existing EvoNOMOS strengthened
+[Integrated theory and its limits](active/g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md).
 
-**Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
+### P34 — Real Go behavior and source edits (CLOSED)
 
-**Status: P34 OPEN / P0 source projection METHOD PASS / P1 source import METHOD PASS / genuine authority and full temporal semantics HOLD / LAW-R2 NOT_AUTHORIZED.** P33 remains CLOSED; this is not a new Lab.
+The same pinned [Restic `Backend` interface](https://github.com/restic/restic/blob/495982232cf1af184eac0a97871ef8161e8708ee/internal/restic/backend.go) (12 methods) was implemented by a DIRECT arm and a COMPOSED arm that **intentionally shared one data vault**. Hosted [P4 run #37888110765](https://github.com/WhoSia/EvoNOMOS/actions/runs/37888110765) reported **18/18 identical public-operation histories**, with 0 vs 18 *extra adapter→unit dispatches*. This measures dispatch topology, **not developer work**.
 
-- [P34 opening constitution](active/g8-law-r1-p34/P34_OPENING_CONSTITUTION.md) · [Notion P34 active Run](https://app.notion.com/p/3f4ef561cf9281d49e99ebaacf335fe5)
-- [P34-P0 graph vs contract information separator](active/g8-law-r1-p34/P34_P0_SOURCE_PROJECTION_CONTRACT_SEPARATOR.md). Read-only [CI 37885239006](https://github.com/WhoSia/EvoNOMOS/actions/runs/37885239006) SUCCESS: 64 source-executed collision pairs, matched weak Notification.send call-target graph, original two-argument call versus amended three-argument structured context; **M1 rich static call arity already distinguishes**, so no new M2 prediction victory.
-- [P34-P1 real CommonJS import/authority audit](active/g8-law-r1-p34/P34_P1_SOURCE_IMPORTS_AND_AUTHORITY_BOUNDARY.md). Read-only [CI 37885549293](https://github.com/WhoSia/EvoNOMOS/actions/runs/37885549293) SUCCESS: monitor.js line 48 imports Notification; certificate call at line 1596. Source dependency is measured, contract-change authority **NOT IDENTIFIABLE FROM IMPORTS**.
-- [P34-P2 historical TrueForge ORIGIN P11 contract and governance court](active/g8-law-r1-p34/P34_P2_ORIGIN_P11_TEMPORAL_LSP_ISP_AND_GOVERNANCE_COURT.md), [read-only hosted 37886536081](https://github.com/WhoSia/EvoNOMOS/actions/runs/37886536081) **SUCCESS**. Recovered the original Exa→Tavily WIDE/SEG vectors: birth SEG-L +27, later −31; SEG-C −1 both phases; phase0 tradeoff, phase1 SEG phasewise Pareto, **no global winner**. Finite client-relative trace model: both satisfy actual search-only Q; SEG does not furnish WIDE's all-provider fetch contract. Independent TrueForge CODEOWNERS, CONTRIBUTING, approved pre-demand PR #761/#833 and [current public ruleset](https://api.github.com/repos/truefoundry/trueforge/rulesets/19614738) show required general PR approval but **no mandatory code-owner review**. No prospective new-law claim.
-- [Existing Harvest XVI F28–F32](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) and canonical Drive originals Fortuna 2011, Zanetti 2012 and Schäfer 2022: modularity does not imply a universal repair-cost rank and physical-grid Braess does not transfer by analogy. Always use original canonical Drive papers first.
-- **P11 chronology warning:** ORIGIN-R1-P11 TrueForge WIDE vs SEGREGATED in archive 10.md is not LAW-R1-P11 Pi(X,G,E) policy sufficiency in archive 12.md; both remain distinct historical evidence.
+A separately precommitted KeyFile Save rule (reject >8 bytes, preserving prior data) made the unedited baseline fail. Hosted [P5 run #37889096693](https://github.com/WhoSia/EvoNOMOS/actions/runs/37889096693) passed in both patched arms. Both patches changed **one file, one method, +4/−1 lines**. This negative result shows a delegating object boundary need not improve locality under a single-operation demand. No universal conclusion about modularity follows.
 
-### P33 interpretive mathematics track — recognized research contribution
+### P35 — Independent state engines and coupled change (OPEN)
 
-**Scope adjustment (2026-10-09):** A careful, genuinely useful *mathematical reconstruction of SOLID using correctly cited established results* is a legitimate theoretical software-design contribution. Independent new pure mathematics or an out-of-sample defeat of all prior models is **not mandatory** to record and develop this conceptual strand. It is mandatory only to back claims of a **novel empirically predictive generative law**. Distinguish classical propositions, our synthesis/interpretation, local executable examples and fresh empirical effects.
+The P35 implementation comparison must eliminate P34's common vault:
+- **UNIFIED:** one `map[Handle]record` authoritative for payload and logical size.
+- **COMPOSED:** separately owned payload and metadata stores, a read decoder and removal coordination, connected by explicit consistency operations. Distinct maps are *not automatically a proof of operational independence*.
 
-[Demand-Relative Interface Quotients and Conditional SOLID](active/g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) reconstructs ISP as the coarsest sufficient demand-relative observation quotient and a **restricted** OCP extension criterion via `ker(o) ⊆ ker(g_d)`. SRP (change-reason assignment), LSP (trace refinement) and DIP (authority/port inversion) have additional assumptions and cannot be falsely deduced from one quotient theorem. Foundations include Parnas (1972/1979), Sullivan et al. (2001), information-bottleneck research, program repair and set-valued control.
+The first **local P35-P1** source experiment (2026-10-09) applied two requirements to the same P0 starting implementations:
 
-[Read-only hosted run 37882674220](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882674220) **SUCCESS**; [finite verifier](tools/law-r1-p33-demand-quotient.mjs) checks 65,536 four-state map/observation pairs with a pinned Uptime Kuma source witness. Artifact `11595092855`, SHA256 `4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`. This does not prove new general mathematics or a production OO law. **P33 OPEN / conceptual interpretation PASS / LAW-R2 NOT_AUTHORIZED.**
+| New demand | UNIFIED observed edit support | COMPOSED observed edit support | Scope |
+| --- | --- | --- | --- |
+| KeyFile-only length rule | 1 existing method | 1 existing method | Selected local Go source patches; both pass |
+| Reversible versioned storage retaining arbitrary legacy data | 2 existing methods | 6 methods with separate version map; 5 with tagged payload | Selected candidate repair strategies, **not minimal architectures** |
 
- **SRP conditional-cost threshold extension:** the same verifier now tests pA=pB=.2, pAB=.04, amortized overhead .03 and a stipulated interference price λ; separation is favorable only at λ>.21875. Latest [run 37882892847](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882892847) SUCCESS, artifact `11595337491`, digest `sha256:9286223a63293b8f700157d27175c097e11a8c079f2196d46144f9374fb7aa9a`. A mathematical conditional illustration, not a universal SRP result.
-### P33 all-five mathematical SOLID synthesis — Contract × Observation × Authority
+In the versioning case a content prefix is not enough to classify old arbitrary byte streams: `S_old(x)=S_new(y)` with `x≠y` makes the two intended decodings incompatible unless distinguishing context exists. This is a **known information-cut obstruction**, not a new theorem. The experiment placed that additional information in different source structures and measured actual patches. The composed arm's change from 6 to 5 methods under an alternate implementation is itself evidence that one patch footprint does not characterize an entire design.
 
-[Integrated P33 theoretical chapter](active/g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md) combines **LSP behavioral/trace refinement**, **DIP compile-time source dependency direction, contract authority and injection**, the established **ISP/OCP demand-relative observation quotient**, and **SRP change-conditioned expected cost** into a coherent *conditional mathematical interpretation* of SOLID. The principles are distinct constraints/choices, not five synonyms of a single theorem. P18's Principle-as-Projection hypothesis and ORIGIN-R1-P11's WIDE versus CAPABILITY_SEGREGATED tradeoff are explicit historical ancestors.
+**Validation boundary:** Local Go 1.23.2 tests (including `-race`), P34-like 18-operation regression histories and baseline-negative controls were observed PASS using a **synthetic interface shim**, not the complete upstream Restic repository. **Authentic pinned Restic compile, upstream conformance and hosted P35 Actions are PENDING.** Do not label P35 source as original-Restic-verified or claim H outperforms strong static/history/architecture rivals. Source and re-run details are in the [P35 reproduction bridge](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md). Source artifacts are maintained separately until human-authored GitHub ingestion.
 
-A bounded joint model proves finite safety-inclusion sanity checks and constructive **independence counterexamples**: LSP-safe but not inverted, inverted but behaviorally unsafe, both but a new demand's required information unavailable, and trace-safety with deadlock/progress absent. [Read-only hosted run 37883377979](https://github.com/WhoSia/EvoNOMOS/actions/runs/37883377979) **SUCCESS**, [finite code](tools/law-r1-p33-lsp-dip-contract-graph.mjs), **4096** trace-contract/client-safety triples, artifact `11595032811`, sha256 `03d9ba0d338006071dc09c542ffbaf4a2e2f4a7bc815095e5c711f2b18651de9`. Liskov & Wing (1994), Martin (1996), and de Alfaro & Henzinger (2001) originals cited. Interpretive **theory** success is acknowledged without claiming first discovery of substitutability or a new universal OO law.
+## What would constitute a stronger result?
 
-### P33 research question
+Potential impact `Impact(A,d)`, actual admissible repairs `R_A(d; T,G)`, and realized edit support `S_A(r)` answer **different** questions. A dependency graph may conservatively include every ultimately edited method yet fail to choose a unique repair. Conversely, conventional static/source-aware or architecture-design baselines may predict the edits just as well as any proposed new structural formalism.
 
-A demand can admit **several valid but non-equivalent source edit strategies**. Under pinned initial source, equivalent complete requirements, frozen implementation grammar and oracle, what is the family of inclusion-minimal *admissible repair supports*, and can context/authority/contract constraints predict the feasible-cost/Pareto change effects beyond strong rivals? A single must-edit site set or static change-impact graph is insufficient as a complete description.
+**Competitors:** B0+ source-aware call/data/field/selector analysis; B1 genuine history-informed co-change predictors when history exists; B2 Parnas/Design Rule Spaces/CSDG and standard repair synthesis. Match access to source, demand knowledge, repair hints and outcome information. No victory by comparing a full-information new hypothesis to a deliberately crippled old model.
 
-Distinguish `PotentialImpact(source,patch,configuration)`, `AdmissibleRepairs(source,requirement,oracle)` and `RealizedEffect(source,requirement,implementation_policy)`. Strong rivals include configuration-aware CSDG, Parnas/Design Rule Spaces and co-change prediction. **CoChangeFinder is review-stage with an initial patch**, not directly comparable to pre-implementation requirement-only prediction without matching information access.
+A meaningful mathematical next step is a **bounded set-valued, demand-conditioned repair-cost relation**, with admissibility stated explicitly. A new universal structure law does **not** follow just from naming that relation or from invoking category theory, sheaves, option value or Pareto geometry. Prefer executable counterexamples and failure of an actually viable rival over ornamental abstraction.
 
-### P33 source-pinned two-repair information-cut witness — bounded METHOD PASS
+## Repository structure and reproducibility
 
-[Latest read-only Actions run 37809554571](https://github.com/WhoSia/EvoNOMOS/actions/runs/37809554571) **SUCCESS**, with the unmodified-source ordinary-input negative control also FAIL as expected (artifact `11564451804`, sha256 `be386abce938b631a3251c5fe17ad20a74156600dc85ce2ed72a961fa8b4275c`); prior [run 37808780917](https://github.com/WhoSia/EvoNOMOS/actions/runs/37808780917) **SUCCESS**, artifact `11564131346` digest `sha256:ef86e5a6b59f557be00dfd8cbd3655f1529a542cdad9ab7934b7cdf7664c6218`. Extracted immutable Uptime Kuma JS methods were executed in a bounded VM harness under two alternative single-file patches for the **already known** certificate-template bug (#7639). Caller-side structured monitor context forwarding and dispatcher-side legacy message parsing both pass ordinary inputs; only caller-side forwarding passes an adversarial delimiter-collision oracle. The original two-argument legacy channel maps distinct context states to the same message, so no deterministic downstream-only decoder restricted to those observations can recover both outputs. This is **classical kernel-factorization**, not new mathematics or an independent blind prediction. No full production acceptance oracle or H-vs-strong-B2 win.
+```text
+active/       Current experimental stages, exact verdicts and lineage
+tools/        Executable Go/JS/Rust/Python methods and test harnesses
+lawkit/       Finite law-candidate and structure probes
+crates/       Rust support where appropriate
+.github/      Hosted read-only test workflows
+```
 
-- [Source-rooted repair options and formal limits](active/g8-law-r1-p33/P33_INFORMATION_CUT_REPAIR_FAMILY_AND_THEORETICAL_PRIOR_ART_COURT.md) · [Executable](tools/law-r1-p33-info-cut-repair-world.mjs) · [Cross-Shelf Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5).
-- Repair-synthesis and diagnosis baselines (SemFix, DirectFix, Angelix, Reiter), patch-overfitting findings, and set-valued multiobjective control already constrain novelty. **LAW-R2 remains NOT_AUTHORIZED.**
+Go is used for Restic-native interface/behavior tests, Rust for appropriate high-throughput core analysis, and Python or JS for reproducible preparation and audits; language selection follows the actual substrate, not a mandatory polyglot checklist.
 
-### P33 six-paper original-source court and information-cut certificate
+For the **verified P34** run, see [source](tools/p34-p4/pair.go), [18-step oracle](tools/p34-p4/pair_test.go), and [P5 materializer](tools/p34-p5/materialize.mjs). Do not run P35's local fixture tests and report them as original Restic acceptance. Follow the [P35 explicit real-source validation procedure](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md) before promoting its scientific status.
 
-The **six user-supplied original papers** — DirectFix (2015), Angelix (2016), Reiter (1987), SemFix (2013), Smith et al. (2015) and Guigue (2014) — were inspected, canonical-named and moved from `00_INTAKE` to `10_PAPERS`, with file IDs preserved and post-move parent verification. The basename uses `—` between author/year and title; `-` for title-internal subtitles. [P33 detailed source/novelty court](active/g8-law-r1-p33/P33_SIX_PAPERS_INFORMATION_CUT_AND_REPAIR_FEASIBILITY_COURT.md) and [cross-shelf original-paper Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5).
+## Literature and custody
 
-- **Audit correction:** earlier [run 37810762909](https://github.com/WhoSia/EvoNOMOS/actions/runs/37810762909) verified 64 constructed string collisions but assigned information-cut site capability manually; it did **not** auto-discover a unique mandatory file. Corrected [run 37811536823](https://github.com/WhoSia/EvoNOMOS/actions/runs/37811536823) SUCCESS, artifact `11564134925`, SHA256 `2f65a0e84abe13e5808e58667f3132a7986c53678622dd13e5175b1e3bb4966d`, **executes pinned JS method variants on all 64 collision pairs**: caller context forwarding 64/64 pass; dispatcher string parser 0/64 pass. The surviving candidate is determined retrospectively within an executed two-edit grammar, **not** an independent source-computed invariant. Full production Q and a prospective H-over-strong-rivals forecast remain HOLD.
-- [Read-only hosted run 37810762909](https://github.com/WhoSia/EvoNOMOS/actions/runs/37810762909) **SUCCESS**; artifact `11564738090`, sha256 `45b031289c538a67a07a5c37ce458ed7e50dd4b0660313038e362c78c93fc940`. New finite [repair-cut checker](tools/law-r1-p33-repair-cut-certificate.mjs) validates **64 deliberately constructed collision witness pairs** in pinned Uptime Kuma source and their necessary information-channel edit locations under a **frozen three-site grammar**.
-- Reiter conflict hitting sets, SemFix/DirectFix constrained repair, Angelix multiline repairs, Smith independent overfitting tests and Guigue set-valued control are all existing results. The location certificate is **necessary, not sufficient** for full valid repair; no production oracle or independent H-over-B0+/B1/B2 victory, no new pure theorem.
-- Current ruling: **P33 OPEN / METHOD PASS / PROSPECTIVE SCIENCE HOLD / LAW-R2 NOT_AUTHORIZED**.
+Use **canonical original PDFs in Google Drive** before web summaries. Search `10_PAPERS` and existing Harvest by title, author, DOI and aliases; inspect the original methods and limits. Newly discussed papers must be labelled `Drive 보유` with the confirmed file or `Drive 미확보(색인 검색 기준)` with an independently checked legal *direct PDF* link if available. `00_INTAKE` → bibliographic/duplicate/byte checks → canonical `10_PAPERS` → readback → existing Harvest extension. Absence from search is not proof of global absence.
 
-### P33 first reproduced source-support counterexample — historical, not prospective
+Relevant original sources already recorded as held include [Liskov & Wing 1994](https://drive.google.com/file/d/1g7ruRxKmmki7ts6fQ09MIOwuYPCeCVvl/view), [Martin 1996](https://drive.google.com/file/d/1fZQi6039W58RcQxTKFHiJZw22mU9kw7g/view), [de Alfaro & Henzinger 2001](https://drive.google.com/file/d/1NUV-6p3ANXDT6ftnURRb8LpwbSp1xTSV/view), and the original repair/diagnosis papers indexed in the [P33 Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5). Do not treat citation prominence as evidence quality.
 
-[Hosted read-only run 37807536786](https://github.com/WhoSia/EvoNOMOS/actions/runs/37807536786) SUCCESS on pinned Uptime Kuma: the first-demand DISPERSED changed-file support has **5** files and is a proper subset of DUAL's **7** (the two additional registry files). Nevertheless, the previously sealed next-demand handwritten churn is **80 versus 75** respectively. This falsifies the shortcut "smaller initial edited-file set implies lower future change cost" in the bounded two-world setting; it does **not** claim a new theorem or predict a new demand. Across both recorded demands, cumulative handwritten L is **102 DISPERSED versus 111 DUAL**, so overall superiority remains withheld.
+## Reproducibility, authorship and scope
 
-- [Source-supported proof-of-case and ceilings](active/g8-law-r1-p33/P33_FIRST_SOURCE_SUPPORT_DOMINANCE_BARRIER.md), [deterministic source checker](tools/law-r1-p33-repair-support.py), [read-only workflow](.github/workflows/g8-law-r1-p33-repair-support.yml).
+- `main` is the canonical working branch. Pin source SHA and artifact hashes; avoid branch-per-stage archival structures.
+- **BOT_CONTRIBUTION_ZERO:** GitHub Actions are computation-only (`contents: read`) and must **never** commit/push/tag/rewrite refs. Audit both commit author and committer before promoting changes. Bot-authored repo contributions are an immediate stop condition.
+- Negative cases, superseded results and `HOLD` states are retained as *history*, not hidden or promoted.
+- GitHub carries compact executable evidence; Notion maintains decisions and science narrative; Google Drive retains canonical original research files and historical conversation archive. The 1–14 chat exports are research context, **not** independently adjudicated outcome data.
+- **No automatic LAW-R2**, no attribution of P34 outcomes to original ORIGIN-P12, and no independent new predictive architecture-law claim without the relevant strong-rival and held-out evidence.
 
-### P32 historical milestone — bounded method PASS, new design law HOLD
-
-The predecessor closed as `CLOSED_METHOD_PASS__NEGATIVE_CONTROL_PASS__STRONG_RIVAL_DISCRIMINATION_HOLD` at hosted run `37806669570`. Its pinned real-source extraction and certificate-context negative control remain useful; no independent H-over-strong-rival forecast was supported. A real code bug is not proof of novelty when existing analyses also explain it.
-
-### Immediate research question
-
-For functionally equivalent, source-pinned OO design realizations A/B and the **same independently specified new maintenance demand**, can an **outcome-blind** encoding of demand-activated ownership, capabilities and dependency obligations correctly predict a lifecycle effect sign, Pareto relationship, correctness boundary or abstention that stronger rival models cannot?
-
-Rivals: **B0** static coupling/topology and changed surfaces; **B1** historical and semantic co-change; **B2** Parnas/Design Rule Spaces and familiar SOLID explanations. Proposed **H** is a typed, demand-conditioned obligation structure. Where forecast differences cannot be prospectively fixed, **HOLD**, not claimed discovery.
-
-The first source-grounded candidate is existing Uptime Kuma CIL-C1 DISPERSED/DUAL. Existing outcomes are calibration material only; a fresh independent demand is required for prospective validation. Both functionality/requirement coverage and engineering cost must be scoped correctly.
-
-### P32 source-grounded method result — bounded PASS
-
-The pinned Uptime Kuma source was replayed through the earlier P3 materializer under read-only Actions. The P32 extractor produced **50 source-anchored obligation declarations and 50 typed declaration edges** across demands #7316/#7559 and the two DISPERSED/DUAL realizations (phase0: 5 per arm; phase1: 20 per arm). Recorded physical owner files are 3 versus 2. Previously pre-reveal-sealed membership site counts of 5 versus 2 are **historical references, not new measurements**.
-
-- [Source extractor](tools/law-r1-p32-obligation-extract.py), [weighted-coverage and policy-envelope checker](tools/law-r1-p32-coverage-check.mjs), [mathematical rival/limits note](active/g8-law-r1-p32/P32_COVERAGE_BARRIER_POLICY_ENVELOPE_AND_RIVAL_CONTRACT.md).
-- [Hosted audited run 37800703213](https://github.com/WhoSia/EvoNOMOS/actions/runs/37800703213): SUCCESS, exact-source reconstitution, synthetic mutation test, 256-case mathematical instance test and artifact upload. Predecessor verified run 37800498512 SUCCESS, artifact 11561120061, digest `sha256:36ef2369628706db171d0a364244c4b089dd5090dc68d4603aacbeff2cac8d73`.
-- **Scientific verdict: METHOD PASS / NO NEW PROSPECTIVE DISCRIMINATOR.** The source-level recognizer is not a general JavaScript AST/causal change-propagation verifier. A stronger, overlap-aware B0+, historical/semantic B1 and Parnas/DRSpaces/CSDG B2 remain undefeated; an independently precommitted maintenance demand is still required. The proof-instance checker tests classical weighted coverage and an architecture-choice envelope counterexample, not novel pure mathematics.
-
-### Evidence and scientific authority
-
-P31 produced real but bounded object-oriented source treatments (Swamp and Code Visualizer) and auxiliary SQLite policy, quotient, and finite-horizon formal tests. Those results remain preserved; local PASS does not demonstrate a new general OO law. Some real source comparisons have known behavioral confounds or incomplete user-facing request coverage.
-
-Maintain the original lifecycle vector **S/L/C/A/Q** and its explicit admissibility/measurement boundaries. Do not silently reduce multiobjective results to one score or manufacture a frontier after inspecting outcomes.
-
-### Repository authorship safeguard
-
-GitHub Actions are read-only verification/computation infrastructure (`contents: read`). **Never allow Actions to commit, push, merge, tag, mutate refs, or author/commit repository history as `github-actions[bot]`.** Scientific results may be promoted to source history only through separately verified human-account-authored commits. Audit author and committer identity; preserve archival lineage.
-
-## Historical milestone — LAW-R1-P10 (not current)
-
-P10 CLOSED/PASS in its bounded policy factorization test, run `36954213256`, head `fcd963ab9a26db666e13792af1eacc41d4c2c090`, artifact `11205386179`, digest `sha256:e974116536e1c67d28f32d6c7b915bd83ceaf773729fa154c1c440933c4c67a4`. It rejected a separable policy decomposition; `(X,G,E)` / `Pi(X,G,E)` survived locally, without universal law authority. Historical global next `9396` is **superseded**, not a current action pointer.
+**Next executable work:** run exact pinned Restic native compilation and regression, repair any real API mismatches, compare alternative admissible patch supports under a declared grammar and strong source-aware baseline, then issue a bounded P35 verdict rather than indefinitely reconfirming a preferred SOLID slogan.
