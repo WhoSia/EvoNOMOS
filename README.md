@@ -6,7 +6,7 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 
 ## Current scientific head — Generation VIII LAW-R1-P34 OPEN
 
-**Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
+**Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
 
 **P33 predecessor:** CLOSED with attributed conditional SOLID theory PASS; independently established universal OO-law claims remain HOLD. **P34 current stage:** OPEN; **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
 
@@ -16,6 +16,10 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 - [P32 terminal strong-rival and repair-family ruling](active/g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md)
 - [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
 - [Active and historical lineage](active/README.md)
+
+### P34-P3 newest verified court — original Go wire timeline and Restic six-of-six boundary
+
+[P34-P3 source-referenced science court](active/g8-law-r1-p34/P34_P3_TEMPORAL_WIRE_AND_RESTIC_COREQUIREMENT_COURT.md) · [Read-only hosted 37887161953](https://github.com/WhoSia/EvoNOMOS/actions/runs/37887161953) **SUCCESS**, artifact `11597370040` SHA256 `02101059bcf8fba31774ee082fbf582ea9886c18ad37c573674665669e42340c`. Original P11 Go handler was run via local httptest: 10 ordered HTTP calls, four valid success response/ledger events and six rejected requests with no success ledger entry. P12 Restic fixed birth source confirms 6/6 bundled public capabilities demanded, so `|B\\D|=0`; there is no **excess-capability conformance** margin to remove by ISP in that world. **ORIGIN-P12 ended TERMINAL_NONRESULT, costs never revealed, OneDrive phase1 unopened**: no treatment superiority or winner. [P34 harvest F35](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) preserves literature and history genealogy.
 
 ### P34 current scientific head — existing EvoNOMOS strengthened
 
