@@ -1,0 +1,67 @@
+name: G8 P36 O8 Native Historical Maintainer Fix Boundary
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o8/**'
+      - '.github/workflows/g8-p36-o8-original-chi-historical.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [LEGACY, MAINTAINER_FIXED]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Select genuine upstream SHA
+        shell: bash
+        run: |
+          if [ "${{ matrix.version }}" = LEGACY ]; then
+            echo SOURCE_SHA=67be7d9cafdaeb4e04e887ff78d09e030ee43b00 >>"$GITHUB_ENV"
+          else
+            echo SOURCE_SHA=05f1ef7bb50b8a8cb33a9dd3ba1c5b94bff0f723 >>"$GITHUB_ENV"
+          fi
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: ${{ env.SOURCE_SHA }}
+          path: chi
+          fetch-depth: 1
+      - name: Original Go suite and retrospective historical regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o8/${{ matrix.version }}
+          test "$(git -C chi rev-parse HEAD)" = "$SOURCE_SHA"
+          (cd chi && go vet ./...) >out/p36-o8/${{ matrix.version }}/vet.log 2>&1 || { cat out/p36-o8/${{ matrix.version }}/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p36-o8/${{ matrix.version }}/race.log 2>&1 || { cat out/p36-o8/${{ matrix.version }}/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p36-o8/${{ matrix.version }}/full-original.log 2>&1 || { cat out/p36-o8/${{ matrix.version }}/full-original.log; exit 13; }
+          cp tools/p36-o8/tests/chi/p36_o8_historical_empty_router_test.go chi/middleware/
+          set +e
+          (cd chi && go test -v -count=1 -run '^TestP36O8EmptyRouteHeadersInvokeNextExactlyOnce$' ./middleware) >out/p36-o8/${{ matrix.version }}/regression.log 2>&1
+          rc=$?
+          set -e
+          if [ "${{ matrix.version }}" = LEGACY ]; then
+            test "$rc" -ne 0 || { cat out/p36-o8/${{ matrix.version }}/regression.log; echo UNEXPECTED_LEGACY_CORRECT; exit 21; }
+            grep -q 'P36_O8_UPSTREAM_EMPTY_MAP_DOUBLE_DISPATCH' out/p36-o8/${{ matrix.version }}/regression.log || { cat out/p36-o8/${{ matrix.version }}/regression.log; exit 22; }
+            echo P36_O8_ACTUAL_OLD_CHI_HISTORICAL_REGRESSION_CONFIRMED >out/p36-o8/${{ matrix.version }}/verdict.txt
+          else
+            test "$rc" -eq 0 || { cat out/p36-o8/${{ matrix.version }}/regression.log; exit 23; }
+            grep -q 'PASS: TestP36O8EmptyRouteHeadersInvokeNextExactlyOnce' out/p36-o8/${{ matrix.version }}/regression.log
+            echo P36_O8_ACTUAL_2026_MAINTAINER_PATCH_NATIVE_FIXED >out/p36-o8/${{ matrix.version }}/verdict.txt
+          fi
+          sha256sum tools/p36-o8/tests/chi/p36_o8_historical_empty_router_test.go >out/p36-o8/${{ matrix.version }}/test-source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o8-original-chi-${{ matrix.version }}
+          path: out/p36-o8/${{ matrix.version }}/
+          if-no-files-found: warn
+          retention-days: 30
