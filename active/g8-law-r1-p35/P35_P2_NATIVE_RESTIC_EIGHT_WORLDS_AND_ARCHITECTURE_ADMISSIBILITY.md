@@ -1,5 +1,7 @@
 # EvoNOMOS G8 LAW-R1-P35-P2 — Native Restic Eight-World Regression and Frozen-Architecture Admissibility
 
+> **Historical P2 scope; subsequent correction:** [P35-P3](P35_P3_FROZEN_DECODER_REPAIR_FAMILY_AND_RIVAL_VERDICT.md) exhibits an additional native Restic-tested COMPOSED four-method patch that **preserves the independent read decoder**. P2's previously best-observed C5 is **not** a lower bound. Original P2 evidence remains unchanged; do not revise historical measured outcomes.
+
 **Date:** 2026-10-09  
 **Phase result:** `P35_P2_NATIVE_RESTIC_PACKAGE_PASS__P35_MAINLINE_OPEN__LAW_R2_NOT_AUTHORIZED`
 
