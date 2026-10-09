@@ -40,3 +40,16 @@ Do not call the Gorilla outcome independent oracle confirmation until actual run
 - P35 remains CLOSED as a version while this evidence is authored in P36.
 
 **Court at source stage:** `D13_NATIVE_REPAIRED_AND_BOUNDED_PASS__CHI_EAGER_LAZY_NATIVE_FUNCTIONAL_PASS__P36_O1_BENCHMARK_PENDING__GORILLA_SOURCE_TREATMENTS_COMMITTED_NATIVE_PENDING__DIP49_IDENTIFICATION_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+## Native original-Chi whole-lifecycle benchmark artifact: raw readback (not P36-O1 scoped)
+
+Downloaded and inspected the **original GitHub Actions artifact ZIP bytes** for [O6 #37951885323](https://github.com/WhoSia/EvoNOMOS/actions/runs/37951885323), with `benchmark.log`, `contracts.log`, `full-original.log`, `race.log`, `vet.log`, `verdict.txt`, `sha256.txt`. Original job runner reported Linux amd64 and AMD EPYC 7763 64-Core Processor; Go benchmark names carry suffix `-4`. Each run specified `-benchtime=200ms -count=3`.
+
+| Arm | Full lifecycle `BenchmarkP35O6Burst` raw ns/op | Median | Full lifecycle `BenchmarkP35O6Interleaved` raw ns/op | Median |
+| --- | --- | ---: | --- | ---: |
+| EAGER | 112698, 112341, 112030 | **112341** | 107355, 106825, 108512 | **107355** |
+| LAZY | 76812, 75605, 75277 | **75605** | 89629, 89529, 90461 | **89629** |
+
+**Important: original P35 benchmark samples include the initial 32 registrations as well as the first snapshot publication and the subsequent 16 U / 16 R.** Therefore this result **does not** measure only post-baseline maintenance effects. LAZY appears faster in both old whole-lifecycle traces, whereas an earlier *non-native local reconstruction* (which excludes initialization) suggested EAGER could be better under alternating U/R. Different measurement windows, different machines/methods and no paired original-host run mean the difference cannot be attributed causally to one factor. Do NOT assert native Go performance preference reversal from this evidence. P36-O1's correctly scoped original Chi hosted [#37954396262](https://github.com/WhoSia/EvoNOMOS/actions/runs/37954396262) remained QUEUED at this update.
+
+This is useful **negative methodological pressure**: choosing an architecture from a total-work benchmark without naming initial installation vs future change workload can reverse or distort the supposed design consequence. Classical amortized analysis and cache-invalidation theory already explain why lifecycle window matters. It is not a newly identified law.
