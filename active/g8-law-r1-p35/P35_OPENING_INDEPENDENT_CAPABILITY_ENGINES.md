@@ -11,3 +11,11 @@ Retain P34's null control, then preregister one capability-local requirement and
 The original ORIGIN-P12 still has no adjudicated comparative result. Avoid policy/risk-administration drift and bot-authored commits. Next work is Go source and tests.
 
 [Previous P34 terminal](../g8-law-r1-p34/P34_TERMINAL_SOURCE_EDITS_AND_P35_HANDOFF.md).
+
+## P35-P0 technical interface and discriminating tests
+
+**Source requirements:** original Restic `restic.Backend` has 12 public methods; test six core operations against a deterministic history with callback, absent-file, cancellation, partial-load and list consistency checks. Unlike P34, the two engines must not both invoke the same vault implementation.
+
+**U source structure:** unified private `map[Handle]Record{stored,logicalLength}` with Save/Load/Stat/List and Delete over one authoritative representation.
+
+**C source structure:** a distinct writable payload store, independent read decoder, metadata index and removal coordinator, connected only by explicit typed APIs/consistency updates. Merely adding delegates to the same shared map fails P35's independence criterion.
