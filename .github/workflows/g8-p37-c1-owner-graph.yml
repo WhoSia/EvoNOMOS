@@ -1,0 +1,35 @@
+name: G8 P37 C1 Owner-Typed Historical Repair Graph
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-c1/model/**'
+      - '.github/workflows/g8-p37-c1-owner-graph.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-source-linked-repair-graph:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify current quotient and B-only uniform historical repair obstruction
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-c1/model/check_owner_graph.py | tee owner-graph.log
+          grep -q 'P37_C1_TYPED_FOUR_WORLD_COMPOSITION_PASS' owner-graph.log
+          grep -q 'P37_C1_OWNER_B_REPAIR_LOSSY_NO_ORACLE_UNIFORMLY_IMPOSSIBLE' owner-graph.log
+          sha256sum tools/p37-c1/model/owner_repair_graph.json tools/p37-c1/model/check_owner_graph.py >graph-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-c1-owner-repair-graph-receipt
+          path: |
+            owner-graph.log
+            graph-sha256.txt
+          retention-days: 30
