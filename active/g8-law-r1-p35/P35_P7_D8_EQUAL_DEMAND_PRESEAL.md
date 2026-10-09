@@ -1,0 +1,15 @@
+# P35-P7-D8 — Identical Follow-up Go Requirement Across Both Structures
+
+**2026-10-09, fixed BEFORE either D8 production patch.** Parent native P7 D0 result is already visible, so this is a strictly **pre-D8-implementation/outcome** seal, not a blind D0 pre-outcome design. Target remains original `go-chi/chi v5.1.0 @67be7d9cafdaeb4e04e887ff78d09e030ee43b00` and the two exact original-source `middleware/route_headers.go` algorithms LIVE and SNAPSHOT as committed in `a47876564d7463b76f7ddbf130a8ac357d6e5691`.
+
+## The same new functional demand D8 in both arms
+
+When **distinct header keys** each have a matching route on the same request, a matching *exact literal header value pattern* should outrank a matching wildcard header-value pattern, regardless of header name order. If both candidate keys have an exact match or both wildcard matches, keep the previous lexical header-key precedence. Within a single header, preserve **first matching registered route** regardless of later registration specificity. For `RouteAny`, exact-match evidence comes from a matching literal `Pattern` in its list, even if a wildcard is listed before that literal. Preserve D0 fallback/no-route exactly-once, RouteAny match behavior, and each arm's prior D-LIVE or D-FROZEN sequential-update behavior. No new exported Go API or non-Go implementation.
+
+**New oracle:** `tools/p35-p7/tests/p35_p7_d8_same_requirement_test.go`; freezes distinct-header exact outranking wildcard, equal-wildcard header priority, same-header registration precedence, RouteAny exact candidate, fallback. Test must fail against each unmodified D0 successful source **for the exact/wildcard contrast**, not merely compile failure. Both independently patched Go sources must pass **all** original D0 + D8 public tests, original Go `go test ./...` and middleware `-race`. Two separate negative source worlds retained.
+
+## Falsifiable expectations and exact scientific rank scope
+
+Both alternative routing algorithms now have access to the **same** user-visible D8 request and the original program. Classic sorting/selection theory already suggests both can implement specificity precedence. Frozen direction: **both can pass after local routing-selection modifications without changing the public HeaderRouter API**. Do **not** assume LIVE/SNAPSHOT will have a different *minimal* repair site count or runtime Pareto rank. Count source changed existing Go methods, added helpers, +/- source lines, and one source-ability audit for each actual patch; no proof of repair-family minimum. Strong classical explanation: specificity is a routing-preference comparator independent of live/snapshot storage until updates; negative equal edit footprints are evidence, not failure of effort.
+
+The broader EvoNOMOS explanandum is real **conditional design-law discovery**, not perpetuating responsibility boundary or source patch-site metrics. D8 is a bounded real-world structural repair court with equal future demand, **not a novel discovered law**. P35 remains OPEN; LAW-R2 remains NOT_AUTHORIZED.
