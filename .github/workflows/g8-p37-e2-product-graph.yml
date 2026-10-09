@@ -1,0 +1,37 @@
+name: G8 P37 E2 Owner Product Graph and Invariant Barrier
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-e2/**'
+      - '.github/workflows/g8-p37-e2-product-graph.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classical-owner-product:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exhaustive binary square and safe rollout bridge
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-e2/owner_product_repair_graph.py | tee owner-product.log
+          grep -q 'P37_E2_EXACT_BINARY_SQUARE_FOUR_VARIANTS_PASS' owner-product.log
+          grep -q 'P37_E2_NONRECTANGULAR_GLOBAL_INVARIANT_NO_LOCAL_FACTOR_PASS' owner-product.log
+          grep -q 'P37_E2_NO_BRIDGE_SEQUENTIAL_OWNER_PATH_UNREACHABLE_PASS' owner-product.log
+          grep -q 'P37_E2_DUAL_COMPAT_BRIDGE_THEN_EXPLICIT_EXPIRY_PATH_PASS' owner-product.log
+          sha256sum tools/p37-e2/owner_product_repair_graph.py >source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-e2-owner-product-invariant-court
+          path: |
+            owner-product.log
+            source-sha256.txt
+          retention-days: 30
