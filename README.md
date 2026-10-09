@@ -4,11 +4,11 @@
 
 EvoNOMOS investigates whether source-grounded responsibility, authority, interface capability and dependency structures can explain and *prospectively predict* the effects of maintenance demands. SOLID principles are possible conditional consequences, **not axioms** or presumed universal laws.
 
-## Current scientific head — Generation VIII LAW-R1-P34 OPEN
+## Current scientific head — Generation VIII LAW-R1-P35 OPEN
 
-**Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
+**Independent Capability Engines, Cross-Operation Change Propagation, Source-Edit Locality & Demand-Conditioned SOLID Cost Geometry**
 
-**P33 predecessor:** CLOSED with attributed conditional SOLID theory PASS; independently established universal OO-law claims remain HOLD. **P34 current stage:** OPEN; **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
+**P33/P34 predecessors:** CLOSED with attributed conditional SOLID theory and bounded real-source/contract evidence. **P35 current stage:** OPEN; **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
 
 - [P33 opening scientific constitution](active/g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md)
 - [P33 final scientific court and P34 proposed title](active/g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md)
@@ -16,6 +16,10 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 - [P32 terminal strong-rival and repair-family ruling](active/g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md)
 - [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
 - [Active and historical lineage](active/README.md)
+
+### P35 active successor — real independent capability implementations, not policy drift
+
+[P35 opening scientific constitution](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) and [active Notion P35 Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784). **P34 has CLOSED**: [P34 terminal scientific court](active/g8-law-r1-p34/P34_TERMINAL_SOURCE_EDITS_AND_P35_HANDOFF.md). [P34-P5 read-only hosted 37889096693](https://github.com/WhoSia/EvoNOMOS/actions/runs/37889096693) **SUCCESS**, original unmodified Go adapter baseline FAILS new synthetic KeyFile contract, whereas independently patched DIRECT and COMPOSED worlds each PASS all old/new tests. Each touches **one Go source file, one Go method, +4/−1 lines**, verified by diff files and logs (artifact `11597199571`; digest `3a874e79a625599e975a5e14ff5a5cd64a9973e5ee45e81e045a9f243fdc9fb5`). Negative design-locality control: layering does not improve this single-site edit footprint when both designs share one storage kernel. P35 will test **genuinely different** storage-capability implementations and coupled source changes. Historical ORIGIN-P12 stays TERMINAL_NONRESULT; no new universal OO law or P12 results.
 
 ### P34-P4 latest independently implemented and hosted source court
 
