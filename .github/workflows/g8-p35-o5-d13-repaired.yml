@@ -1,0 +1,56 @@
+name: G8 P35 O5 D13 Repaired CSV and Original Scanner Go
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o5/arms/**'
+      - '.github/workflows/g8-p35-o5-d13-repaired.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  d13-original-positive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        strategy: [csv-repaired, scanner-unmodified]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Verify original source, old D0-D11 and new D13 native Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ matrix.strategy }}" in
+            csv-repaired) source=tools/p35-o5/arms/chi/live-csv/route_headers.go ;;
+            scanner-unmodified) source=tools/p35-o3/arms/chi/live-scanner/route_headers.go ;;
+            *) exit 91 ;;
+          esac
+          mkdir -p out/p35-o5-positive
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
+          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go tools/p35-o5/tests/chi/p35_o5_d13_test.go chi/middleware/
+          cp "$source" chi/middleware/route_headers.go
+          (cd chi && go vet ./middleware) >out/p35-o5-positive/vet.log 2>&1 || { cat out/p35-o5-positive/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p35-o5-positive/race.log 2>&1 || { cat out/p35-o5-positive/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p35-o5-positive/full-original.log 2>&1 || { cat out/p35-o5-positive/full-original.log; exit 13; }
+          (cd chi && go test -v -count=1 -run '^TestP35' ./middleware) >out/p35-o5-positive/contracts.log 2>&1 || { cat out/p35-o5-positive/contracts.log; exit 14; }
+          grep -q 'PASS: TestP35O5D13TrailingWhitespace' out/p35-o5-positive/contracts.log
+          sha256sum "$source" tools/p35-o5/tests/chi/p35_o5_d13_test.go >out/p35-o5-positive/sha256.txt
+          echo P35_O5_D13_ORIGINAL_GO_VET_RACE_FULL_PASS | tee out/p35-o5-positive/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o5-d13-${{ matrix.strategy }}-original
+          path: out/p35-o5-positive/
+          if-no-files-found: warn
+          retention-days: 30
