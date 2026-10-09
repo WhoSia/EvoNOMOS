@@ -38,13 +38,14 @@ jobs:
           mkdir -p out/p35-o5-positive
           test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
           cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
-          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go tools/p35-o5/tests/chi/p35_o5_d13_test.go chi/middleware/
+          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go tools/p35-o5/tests/chi/p35_o5_d13_test.go tools/p35-o5/tests/chi/p35_o5_bounded_parser_audit_test.go chi/middleware/
           cp "$source" chi/middleware/route_headers.go
           (cd chi && go vet ./middleware) >out/p35-o5-positive/vet.log 2>&1 || { cat out/p35-o5-positive/vet.log; exit 11; }
           (cd chi && go test -race -count=1 ./middleware) >out/p35-o5-positive/race.log 2>&1 || { cat out/p35-o5-positive/race.log; exit 12; }
           (cd chi && go test -count=1 ./...) >out/p35-o5-positive/full-original.log 2>&1 || { cat out/p35-o5-positive/full-original.log; exit 13; }
           (cd chi && go test -v -count=1 -run '^TestP35' ./middleware) >out/p35-o5-positive/contracts.log 2>&1 || { cat out/p35-o5-positive/contracts.log; exit 14; }
           grep -q 'PASS: TestP35O5D13TrailingWhitespace' out/p35-o5-positive/contracts.log
+          grep -q 'PASS: TestP35O5PostTreatmentBoundedParserAudit' out/p35-o5-positive/contracts.log
           sha256sum "$source" tools/p35-o5/tests/chi/p35_o5_d13_test.go >out/p35-o5-positive/sha256.txt
           echo P35_O5_D13_ORIGINAL_GO_VET_RACE_FULL_PASS | tee out/p35-o5-positive/verdict.txt
       - if: always()
