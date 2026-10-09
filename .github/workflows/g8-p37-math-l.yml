@@ -1,0 +1,42 @@
+name: G8 P37 Math-L Information Budget and Graph Oracle Identifiability
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-l/**'
+      - 'tools/p37-e4/model/capability_repair_graph.py'
+      - '.github/workflows/g8-p37-math-l.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-information-resource-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify Existing E4 Semantics and Budgeted Identification Bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-e4/model/capability_repair_graph.py | tee math-l-e4.log
+          python tools/p37-math-l/resource_identifiability.py | tee math-l.log
+          grep -q 'P37_MATH_L_ORIGINAL_E4_REUSE_VALID_START_8_CONTEXTS_PASS' math-l.log
+          grep -q 'P37_MATH_L_INFORMATION_ORACLE_MINIMAX_DEPTH=3' math-l.log
+          grep -q 'P37_MATH_L_UNIFORM_CERTIFYING_QUERY_AUDIT_PASS worlds=192' math-l.log
+          grep -q 'P37_MATH_L_CLASSICAL_COST_OPTIMAL_ORDER=bridge,expiry,store expected=5/2 naive=11/2' math-l.log
+          grep -q 'P37_MATH_L_SYNTHETIC_GRAPH_ORACLE_DEPTH_OBSTRUCTION_PASS cases=18' math-l.log
+          grep -q 'P37_MATH_L_EVO_VS_STRONG_CLASSICAL_PREDICTION_DIFFERENCE=0' math-l.log
+          sha256sum tools/p37-math-l/resource_identifiability.py tools/p37-e4/model/capability_repair_graph.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-l-resource-identifiability
+          path: |
+            math-l-e4.log
+            math-l.log
+            source-sha256.txt
+          retention-days: 30
