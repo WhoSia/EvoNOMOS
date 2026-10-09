@@ -1,0 +1,78 @@
+name: G8 P36 O11 Integrated Original-Go Lifecycle Threshold Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o11/**'
+      - '.github/workflows/g8-p36-o11-integrated-lifecycle.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-integrated-cost:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        first: [CHI_FIRST, GORILLA_FIRST]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: mux
+          fetch-depth: 1
+      - name: Verify source unchanged from Q21 and native Go safety and function
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o11/chi out/p36-o11/mux
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C mux rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          for repo in chi mux; do
+            cp "tools/p36-o10/arms/$repo/p36_o10_selectable.go" "$repo/p36_o10_selectable.go"
+            cp "tools/p36-o10/tests/$repo/p36_o10_identical_q21_test.go" "$repo/p36_o10_identical_q21_test.go"
+            cp "tools/p36-o11/tests/$repo/p36_o11_lifecycle_bench_test.go" "$repo/p36_o11_lifecycle_bench_test.go"
+            sha256sum "tools/p36-o10/arms/$repo/p36_o10_selectable.go" "tools/p36-o10/tests/$repo/p36_o10_identical_q21_test.go" "tools/p36-o11/tests/$repo/p36_o11_lifecycle_bench_test.go" >"out/p36-o11/$repo/source-sha256.txt"
+            (cd "$repo" && go vet ./...) >"out/p36-o11/$repo/vet.log" 2>&1 || { cat "out/p36-o11/$repo/vet.log"; exit 11; }
+            (cd "$repo" && go test -count=1 ./...) >"out/p36-o11/$repo/full.log" 2>&1 || { cat "out/p36-o11/$repo/full.log"; exit 12; }
+            (cd "$repo" && go test -race -count=1 ./...) >"out/p36-o11/$repo/race.log" 2>&1 || { cat "out/p36-o11/$repo/race.log"; exit 13; }
+            (cd "$repo" && go test -v -count=1 -run '^TestP36O10' .) >"out/p36-o11/$repo/q21.log" 2>&1 || { cat "out/p36-o11/$repo/q21.log"; exit 14; }
+            grep -q 'PASS: TestP36O10IdenticalQ21' "out/p36-o11/$repo/q21.log"
+          done
+          { date -u; uname -a; go version; lscpu | grep -E 'Model name|CPU\(s\)|Architecture' | head -8; } >out/p36-o11/runner-metadata.txt
+      - name: Run integrated build plus N requests at sealed 14 point grid
+        shell: bash
+        run: |
+          set -euo pipefail
+          for block in 1 2; do
+            if [ '${{ matrix.first }}' = CHI_FIRST ]; then
+              if [ "$block" = 1 ]; then repos='chi mux'; else repos='mux chi'; fi
+            else
+              if [ "$block" = 1 ]; then repos='mux chi'; else repos='chi mux'; fi
+            fi
+            for repo in $repos; do
+              (cd "$repo" && GOMAXPROCS=1 go test -run '^$' -bench '^BenchmarkP36O11Lifecycle' -count=5 -benchtime=100ms -benchmem -cpu=1 .) >"out/p36-o11/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o11/$repo/bench-block-$block.log"; exit 21; }
+              grep -q 'BenchmarkP36O11Lifecycle/single/N0000' "out/p36-o11/$repo/bench-block-$block.log"
+              grep -q 'BenchmarkP36O11Lifecycle/single/N1024' "out/p36-o11/$repo/bench-block-$block.log"
+              grep -q 'BenchmarkP36O11Lifecycle/overlap/N1024' "out/p36-o11/$repo/bench-block-$block.log"
+            done
+          done
+          echo P36_O11_TWO_ORIGINAL_MODULES_Q21_PASS_14_POINTS_INTEGRATED_LOGGED >out/p36-o11/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o11-${{ matrix.first }}-original-integrated-lifecycle
+          path: out/p36-o11/
+          if-no-files-found: warn
+          retention-days: 30
