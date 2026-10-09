@@ -1,0 +1,22 @@
+{
+  "model": "P37_C1_BOUNDED_TYPED_REPAIR_GRAPH_FROM_SOURCE_CONTRACT",
+  "source_context": "project-authored Chi+gjson integration, not production software history",
+  "owners": ["A:ingress", "B:archive"],
+  "observed_legacy_state": {"id": 7, "revision": 1},
+  "histories": [
+    {"id":"raw_plain","ingress_forward_original":true,"hidden_key":"\"id\"","archive_accessible_key":"\"id\""},
+    {"id":"raw_escape","ingress_forward_original":true,"hidden_key":"\"i\\u0064\"","archive_accessible_key":"\"i\\u0064\""},
+    {"id":"lost_plain","ingress_forward_original":false,"hidden_key":"\"id\"","archive_accessible_key":null},
+    {"id":"lost_escape","ingress_forward_original":false,"hidden_key":"\"i\\u0064\"","archive_accessible_key":null}
+  ],
+  "authorized_edits": [
+    {"owner":"B:archive","label":"install_hist_raw_reader","edits_ingress":false,"can_query_archive_state":true,"can_replay_input":false},
+    {"owner":"A:ingress","label":"forward_original_for_subsequent_events","edits_ingress":true,"can_query_archive_state":false,"can_replay_input":false}
+  ],
+  "invariants": [
+    "POST /events status 204",
+    "GET /state id=7 revision=1 after first event",
+    "No external replay/history oracle",
+    "Reader is deterministic function of archive-accessible stored state"
+  ]
+}
