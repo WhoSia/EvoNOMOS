@@ -1,0 +1,90 @@
+name: G8 P36 O10 Same Contract Paired Original Go Repairs
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o10/**'
+      - '.github/workflows/g8-p36-o10-matched-chi-gorilla.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  one-runner-matched-q21:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CHI_SHA: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+      GORILLA_SHA: b4617d0b9670ad14039b2739167fd35a60f557c5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: mux
+          fetch-depth: 1
+      - name: Verify original immutable sources and apply additive Q21 repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o10/chi out/p36-o10/mux
+          test "$(git -C chi rev-parse HEAD)" = "$CHI_SHA"
+          test "$(git -C mux rev-parse HEAD)" = "$GORILLA_SHA"
+          for repo in chi mux; do
+            cp "tools/p36-o10/arms/$repo/p36_o10_selectable.go" "$repo/p36_o10_selectable.go"
+            cp "tools/p36-o10/tests/$repo/p36_o10_identical_q21_test.go" "$repo/p36_o10_identical_q21_test.go"
+            sha256sum "tools/p36-o10/arms/$repo/p36_o10_selectable.go" "tools/p36-o10/tests/$repo/p36_o10_identical_q21_test.go" >"out/p36-o10/$repo/source-sha256.txt"
+            git -C "$repo" status --short >"out/p36-o10/$repo/source-status.txt"
+            echo "Source additive author-only files for $repo:"
+            cat "out/p36-o10/$repo/source-status.txt"
+          done
+          {
+            date -u
+            uname -a
+            go version
+            lscpu | grep -E 'Model name|CPU\(s\)|Architecture' | head -8
+          } >out/p36-o10/runner-metadata.txt
+      - name: Both independent original Go complete suites, race, vet, and Q21
+        shell: bash
+        run: |
+          set -euo pipefail
+          for repo in chi mux; do
+            echo "Checking original $repo with additive Q21 source"
+            (cd "$repo" && go vet ./...) >"out/p36-o10/$repo/vet.log" 2>&1 || { cat "out/p36-o10/$repo/vet.log"; exit 11; }
+            (cd "$repo" && go test -count=1 ./...) >"out/p36-o10/$repo/full-original.log" 2>&1 || { cat "out/p36-o10/$repo/full-original.log"; exit 12; }
+            (cd "$repo" && go test -race -count=1 ./...) >"out/p36-o10/$repo/race.log" 2>&1 || { cat "out/p36-o10/$repo/race.log"; exit 13; }
+            (cd "$repo" && go test -v -count=1 -run '^TestP36O10' .) >"out/p36-o10/$repo/q21.log" 2>&1 || { cat "out/p36-o10/$repo/q21.log"; exit 14; }
+            grep -q 'PASS: TestP36O10IdenticalQ21' "out/p36-o10/$repo/q21.log"
+            grep -q 'PASS: TestP36O10InvalidPolicyAndFrozenConfiguration' "out/p36-o10/$repo/q21.log"
+            grep -q 'PASS: TestP36O10PublishedConcurrency' "out/p36-o10/$repo/q21.log"
+            echo "Q21 original $repo FULL_RACE_VET_AND_MATCHED_CONTRACT_PASS" >"out/p36-o10/$repo/verdict.txt"
+          done
+      - name: Same runner two counterbalanced blocks of equal Q21 Go benchmarks
+        shell: bash
+        run: |
+          set -euo pipefail
+          for block in 1 2; do
+            if [ "$block" = 1 ]; then repos='chi mux'; else repos='mux chi'; fi
+            for repo in $repos; do
+              echo "Q21 benchmark block=$block original=$repo"
+              (cd "$repo" && GOMAXPROCS=1 go test -run '^$' -bench '^BenchmarkP36O10' -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o10/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o10/$repo/bench-block-$block.log"; exit 20; }
+              grep -q 'BenchmarkP36O10Dispatch' "out/p36-o10/$repo/bench-block-$block.log"
+              grep -q 'BenchmarkP36O10Build' "out/p36-o10/$repo/bench-block-$block.log"
+            done
+          done
+          echo P36_O10_SAME_RUNNER_COUNTERBALANCED_COST_LOGS_CAPTURED >out/p36-o10/cost-verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o10-original-chi-gorilla-common-q21-source-cost
+          path: out/p36-o10/
+          if-no-files-found: warn
+          retention-days: 30
