@@ -1,0 +1,49 @@
+name: G8 P35 O4 D12 Original Chi Frozen Negative
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o4/tests/**'
+      - '.github/workflows/g8-p35-o4-d12-negative.yml'
+permissions:
+  contents: read
+jobs:
+  original-chi-negative:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: D11 positive then D12 original expected negative
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-o4-d12
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
+          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go chi/middleware/
+          cp tools/p35-o3/arms/chi/live-csv/route_headers.go chi/middleware/route_headers.go
+          (cd chi && go test -count=1 -run '^TestP35O3D11' ./middleware) >out/p35-o4-d12/previous-d11-positive.log 2>&1 || { cat out/p35-o4-d12/previous-d11-positive.log; exit 12; }
+          cp tools/p35-o4/tests/chi/p35_o4_d12_test.go chi/middleware/
+          set +e
+          (cd chi && go test -count=1 -run '^TestP35O4D12' ./middleware) >out/p35-o4-d12/d12-expected-negative.log 2>&1
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then echo UNEXPECTED_D12_ORIGINAL_PASS; exit 20; fi
+          grep -Eq 'RouteQuoted undefined|has no field or method RouteQuoted' out/p35-o4-d12/d12-expected-negative.log || { cat out/p35-o4-d12/d12-expected-negative.log; exit 21; }
+          sha256sum chi/middleware/route_headers.go tools/p35-o4/tests/chi/p35_o4_d12_test.go >out/p35-o4-d12/frozen-sha256.txt
+          echo 'P35_O4_D12_ORIGINAL_EXPECTED_NEGATIVE_PASS' | tee out/p35-o4-d12/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o4-d12-original-negative
+          path: out/p35-o4-d12/
+          if-no-files-found: warn
+          retention-days: 30
