@@ -142,3 +142,66 @@ func TestP34NewPairedRealResticInterface(t *testing.T){
  }
  t.Logf("P34_P4_RESTIC_PAIR_PASS calls=%d direct_visits=0 composed_visits=%d trace_equal=true",n0,c.boundaryVisits())
 }
+
+type wideningReport struct {
+ Schema string `json:"schema"`
+ Precommit string `json:"precommit"`
+ InitialContract []string `json:"initial_contract"`
+ WidenedContract []string `json:"widened_contract"`
+ Phase0PublicCalls int `json:"phase0_public_calls"`
+ Phase1PublicCalls int `json:"phase1_public_calls"`
+ Phase0ComposedVisits int64 `json:"phase0_composed_visits"`
+ Phase1ComposedVisits int64 `json:"phase1_composed_visits"`
+ TracesIdentical bool `json:"traces_identical"`
+ ContractWideningTested bool `json:"contract_widening_tested"`
+ SourceChangeCostMeasured bool `json:"source_change_cost_measured"`
+ Outcome string `json:"outcome"`
+}
+func wideningScenario(t *testing.T,b restic.Backend)(p0,p1 []string) {
+ t.Helper()
+ ctx:=context.Background()
+ h:=restic.Handle{Type:restic.PackFile,Name:"evolving-item"}
+ if err:=b.Save(ctx,h,restic.NewByteReader([]byte("value"),b.Hasher()));err!=nil{t.Fatal(err)}
+ p0=append(p0,"Save:OK")
+ var got []byte
+ err:=b.Load(ctx,h,0,0,func(r io.Reader)error{var e error;got,e=io.ReadAll(r);return e})
+ if err!=nil||!bytes.Equal(got,[]byte("value")){t.Fatal("D0 Load failed",err)}
+ p0=append(p0,"Load:"+checksum(got))
+ meta,err:=b.Stat(ctx,h)
+ if err!=nil||meta.Size!=5{t.Fatal("D1 Stat failed")}
+ p1=append(p1,fmt.Sprintf("Stat:%d",meta.Size))
+ n:=0
+ err=b.List(ctx,restic.PackFile,func(fi restic.FileInfo)error{n++;return nil})
+ if err!=nil||n!=1{t.Fatal("D1 List failed")}
+ p1=append(p1,"List:1")
+ if err=b.Remove(ctx,h);err!=nil{t.Fatal("D1 Remove failed")}
+ p1=append(p1,"Remove:OK")
+ if err=b.Delete(ctx);err!=nil{t.Fatal("D1 Delete failed")}
+ p1=append(p1,"Delete:OK")
+ _,err=b.Stat(ctx,h)
+ if !b.IsNotExist(err){t.Fatal("D1 final absence failed")}
+ p1=append(p1,"StatAfterDelete:NOT_FOUND")
+ return p0,p1
+}
+func TestP34DemandWideningAcrossSameAdapters(t *testing.T) {
+ d:=newDirect();c:=newComposed()
+ d0,d1:=wideningScenario(t,d)
+ c0,c1:=wideningScenario(t,c)
+ if !reflect.DeepEqual(d0,c0)||!reflect.DeepEqual(d1,c1){t.Fatal("demand-indexed traces diverged")}
+ if len(d0)!=2||len(d1)!=5||c.boundaryVisits()!=7{t.Fatalf("incorrect temporal trace width: %d %d visits=%d",len(d0),len(d1),c.boundaryVisits())}
+ r:=wideningReport{
+  Schema:"P34_P4B_REAL_RESTIC_DEMAND_INDEXED_CLIENT_TRANSITION_V1",
+  Precommit:"P34_P4_PAIRED_RESTIC_BACKEND_PRECOMMIT.md P4b registered before this test",
+  InitialContract:[]string{"Save","Load"},
+  WidenedContract:[]string{"Save","Load","Stat","List","Remove","Delete"},
+  Phase0PublicCalls:2,Phase1PublicCalls:5,
+  Phase0ComposedVisits:2,Phase1ComposedVisits:5,
+  TracesIdentical:true,ContractWideningTested:true,SourceChangeCostMeasured:false,
+  Outcome:"P34_P4B_DEMAND_WIDENING_TRACE_PASS__NO_SOURCE_CHANGE_COST_CLAIM",
+ }
+ if dst:=os.Getenv("P34_PHASE_REPORT");dst!=""{
+  raw,e:=json.MarshalIndent(r,"","  ");if e!=nil{t.Fatal(e)}
+  if e=os.WriteFile(dst,append(raw,10),0644);e!=nil{t.Fatal(e)}
+ }
+ t.Logf("P34_P4B_CLIENT_CONTRACT_WIDENING=PASS phase0=2 phase1=5 composed_visits=7")
+}
