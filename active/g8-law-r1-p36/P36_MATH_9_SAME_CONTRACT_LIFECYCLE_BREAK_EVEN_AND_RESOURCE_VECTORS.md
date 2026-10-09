@@ -1,0 +1,64 @@
+# P36-MATH-9 — Same-Q21 Life-Cycle Cost Crossover Under Different Valid Workloads
+
+**2026-10-10 KST · P36 OPEN · POST FIRST ORIGINAL-GO Q21 RESULTS / BEFORE O10R REPLICATION READBACK. This is classical fixed-plus-variable amortization, not a novel law or measured physical crossover.**
+
+## Unit-consistent, contract-correct cost objects
+
+Original Chi and original Gorilla, both using specifically authored additive Q21 API source repairs, passed the SAME presealed functional contract under the first native CI [#37970800075](https://github.com/WhoSia/EvoNOMOS/actions/runs/37970800075). We measured **build+publish once** and per-request dispatch, each in independent Go benchmark loops on the same host. For a homogeneous request workload `w` and N requests, define an **approximate analytic proxy**, in nanoseconds:
+```
+T_A(N;w) := median_go_build(A) + N * median_go_dispatch(A;w).
+```
+Likewise `M_A(N;w):=Bbuild_A+N*Bdispatch_A` in allocated bytes and `K_A(N;w):=alloc_build_A+N*alloc_dispatch_A` in count of allocations. These are **additive projections built from separate benchmarks**, not observed joint lifecycle traces; they ignore GC coupling, warmup/cache, concurrency, tail latency, initialization dependencies and migration costs. `N` is dimensionless and measures the chosen workload's request count, not elapsed time. The benchmark includes `httptest.NewRecorder()` inside dispatch loops on both sides.
+
+## First-run data from Q21 specificity policy, PARAM registered first
+
+Same EPYC 7763 runner, 10 raw Go benchmark repetitions per variant from counterbalanced two library-order blocks:
+```
+build:   Chi 1,623.5 ns,  2,000 B,  31 allocs
+         Gorilla 16,726.5 ns, 13,376 B, 203 allocs
+
+w=overlap GET /members/me: Chi 1,122.0 ns, 1,568 B, 12 allocs
+                           Gorilla 1,346.5 ns, 1,792 B, 15 allocs
+
+w=single GET /members/42: Chi 1,646.0 ns, 2,208 B, 19 allocs
+                           Gorilla 1,603.5 ns, 2,096 B, 16 allocs
+```
+For **overlap**, Chi is smaller on all *measured* fixed and incremental dimensions, so this simple proxy shows **no positive N crossover** for Gorilla. This does **not** establish Pareto dominance over migration, all client methods, error semantics or memory residency.
+
+For the **single generic-only match** despite same policy/functional contract:
+```
+ΔT(N) := T_Gorilla(N) - T_Chi(N)
+       = (16,726.5 - 1,623.5) ns
+         + N * (1,603.5 - 1,646.0) ns/request
+       = 15,103 ns - 42.5 N ns.
+```
+Hence a purely *model-implied* crossover at
+```
+N_T* = 15,103 / 42.5 ≈ 355.36 requests
+```
+(**Gorilla lower** for integer N≥356 *in that proxy*). Separately, bytes and allocation counts have different crossing scales:
+```
+ΔM(N) = 11,376 B - 112 N B
+=> N_B* = 101.57 requests (integer 102);
+
+ΔK(N) = 172 allocs - 3 N allocs
+=> N_K* = 57.33 requests (integer 58).
+```
+**Important:** these are **not** three observed “break-even points”; they are numerical implications of assuming linear composition of benchmark medians with constant per-request costs. They also do not incorporate any costs of moving clients to the new opt-in API. Future actual end-to-end N-sweep is needed to test if T(N) truly approximates joint lifecycle behavior.
+
+## Conditional structural insight, and strongest rival
+
+The same functional contract `Q21` admits opposing allocation and weak timing dispatch preference signs when the input workload changes between overlapping and generic-only requests. The exact source mechanism is obvious under classical routing/evaluation: Chi add-on checks a list of real mini-Mux route matchers; Gorilla add-on delegates to a single original route-list Mux configured in a different order; negative predicate tests and separate core matching costs differ. The selected adapter implementations are a confound. Even a confirmed multi-runner cost sign reversal is not a beyond-classical law.
+
+The stronger reusable research program is **function-and-authority-indexed lifecycle reachability and vector-valued cost**:
+```
+For fixed Q, Γ, c, route distribution μ:
+  Feasible(B;Q,Γ) first,
+  then compare (build, dispatch, allocations, migration)
+  among eligible B across controlled μ and N.
+```
+A static per-request 'best' and a per-lifecycle 'best' can disagree without any surprising new mathematics. What may be novel later would require a *prospectively separable stronger rival prediction* on independently evolved systems after controlling known memory/route matching costs, not this simple threshold.
+
+[O10R pre-replication seal](P36_O10R_TWO_RUNNER_COST_SIGN_REPLICATION_PRESEAL.md) was committed after initial medians were read, before new runner data. **If replication changes the weak ~2.6% single-match time sign, the 356-request time proxy loses empirical support in that environment.** Preserve that negative instead of promoting an unconditional threshold.
+
+**Court:** `CLASSICAL_LINEAR_LIFECYCLE_BREAK_EVEN_EXPLORATORY__SAME_Q21_NATIVE_PASS__INDEPENDENT_CPU_REPLICATION_PENDING__DIP49_HOLD__LAW_R2_NOT_AUTHORIZED`.
