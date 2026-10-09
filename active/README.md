@@ -1,16 +1,13 @@
 # Active lineage
 
-> **CURRENT SCIENTIFIC BOUNDARY — Generation VIII LAW-R1-P33 CLOSED; P34 TITLE PROPOSED / NOT OPEN.** P33 Notion: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0. Scientific constitution: [P33](g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md). [P32 terminal ruling](g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md) is bounded METHOD PASS / scientific law HOLD; P31 and older receipts below are historical. No LAW-R2 or new universal predictive OO law authorized; P33's cited conditional SOLID theoretical reconstruction is admissible as conceptual scholarship. Actions remain read-only with no bot-authored commits.
+> **CURRENT SCIENTIFIC OWNER — EvoNOMOS G8 LAW-R1-P34 OPEN.** P33 remains CLOSED. [P34 current Notion Run](https://app.notion.com/p/3f4ef561cf9281d49e99ebaacf335fe5), [opening constitution](g8-law-r1-p34/P34_OPENING_CONSTITUTION.md). Existing EvoNOMOS research is being deepened, not split into another Lab. No LAW-R2 or universal source-architecture law authorized. GitHub Actions are read-only and cannot author commits.
 
-- last completed stage: **G8 LAW-R1-P33**; successor **G8 LAW-R1-P34 PROPOSED ONLY**
-- formal name: **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
-- status: **CLOSED — cited conditional SOLID mathematical integration PASS; independent source-predictive generative law still HOLD. P34 not open.**
-- scientific direction: **From source declaration geometry to source-grounded, nonunique admissible implementation choices and context-indexed future change costs**. Standard antichain facts are not novel; mere CSDG/co-change rediscovery cannot pass.
-- P33 terminal Run: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0 — Complete
-- P32 predecessor: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0 — Complete / Method PASS / Law HOLD
-- P31 predecessor: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — historical scientific HOLD
-- RAVEL 10498–10499 collision is historical and unresolved; no invented unbroken numbering.
-- **LAW-R2 / new universal generative design law: NOT_AUTHORIZED. A properly scoped conceptual SOLID manuscript is allowed.**
+- stage: **G8 LAW-R1-P34 — Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
+- P0: [source call graph/contract separator](g8-law-r1-p34/P34_P0_SOURCE_PROJECTION_CONTRACT_SEPARATOR.md), hosted 37885239006 PASS; known retrospective world, no independent M2>M1.
+- P1: [pinned require-import and authority limit](g8-law-r1-p34/P34_P1_SOURCE_IMPORTS_AND_AUTHORITY_BOUNDARY.md), hosted 37885549293 PASS; caller imports notification.js at line 48, certificate notification call at line 1596; contract owner **NOT INFERRED**.
+- Harvest XVI F28–F32: existing [Cross-Shelf Harvest](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5). Original Drive papers Fortuna 2011, Zanetti 2012, Schäfer 2022 held. Network modularity/AC grid mechanism are neither complete change-cost nor software-Braess laws.
+- ORIGIN-R1-P11 historical TrueForge Exa/Tavily WIDE/SEGREGATED ≠ LAW-R1-P11 state-sufficiency transport, despite shared stage number.
+- next: original ORIGIN P11 outcome/contract readback and actual source-derived temporal actor contracts. New empirical prediction authority remains HOLD.
 
 ## P33 terminal theoretical court and P34 title proposal
 
