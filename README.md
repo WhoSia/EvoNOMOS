@@ -24,6 +24,7 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 
 [Read-only hosted run 37882674220](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882674220) **SUCCESS**; [finite verifier](tools/law-r1-p33-demand-quotient.mjs) checks 65,536 four-state map/observation pairs with a pinned Uptime Kuma source witness. Artifact `11595092855`, SHA256 `4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`. This does not prove new general mathematics or a production OO law. **P33 OPEN / conceptual interpretation PASS / LAW-R2 NOT_AUTHORIZED.**
 
+ **SRP conditional-cost threshold extension:** the same verifier now tests pA=pB=.2, pAB=.04, amortized overhead .03 and a stipulated interference price λ; separation is favorable only at λ>.21875. Latest [run 37882892847](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882892847) SUCCESS, artifact `11595337491`, digest `sha256:9286223a63293b8f700157d27175c097e11a8c079f2196d46144f9374fb7aa9a`. A mathematical conditional illustration, not a universal SRP result.
 ### P33 research question
 
 A demand can admit **several valid but non-equivalent source edit strategies**. Under pinned initial source, equivalent complete requirements, frozen implementation grammar and oracle, what is the family of inclusion-minimal *admissible repair supports*, and can context/authority/contract constraints predict the feasible-cost/Pareto change effects beyond strong rivals? A single must-edit site set or static change-impact graph is insufficient as a complete description.
