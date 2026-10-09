@@ -1,0 +1,29 @@
+name: G8 P36 to P37 Strong Classical Rival Court Unit Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-p37-rival-court/**'
+      - '.github/workflows/g8-p36-p37-strong-rival-court.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evaluator-synthetic-tests-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Evaluate synthetic positive, null, leakage and sample-size rejection
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tools/p36-p37-rival-court -p 'test_*.py' -v
+          if grep -nE '(law_r2.*AUTHORIZED|DIP49.*IDENTIFIED)' tools/p36-p37-rival-court/*.py; then
+            echo "UNAUTHORIZED_LAW_PROMOTION_TEXT"
+            exit 21
+          fi
+          echo "P37_RIVAL_SCORER_SYNTHETIC_UNIT_TESTS_ONLY_NOT_REAL_PREDICTIVE_EVIDENCE"
