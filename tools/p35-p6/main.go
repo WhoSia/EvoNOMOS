@@ -24,8 +24,8 @@ import (
 const original = "e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec"
 const cutoff = "2021-01-01T00:00:00Z"
 const end = "2024-06-01T10:31:12Z"
-var triad=[]string{"command.go","completions.go","args.go"}
-var b2=map[string]string{"command.go":"completions.go","completions.go":"command.go","args.go":"command.go"}
+var triad=[]string{"command.go","args.go","cobra.go"}
+var b2=map[string]string{"command.go":"args.go","args.go":"command.go","cobra.go":"command.go"}
 
 
 const none = "NONE"
