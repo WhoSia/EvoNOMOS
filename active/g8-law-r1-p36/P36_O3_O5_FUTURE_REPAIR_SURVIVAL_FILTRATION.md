@@ -50,3 +50,28 @@ Program repair overfitting (Qi et al. ISSTA 2015), continuation equivalence (Myh
 - What is the strongest classical countermodel to each proposed law? Preseal a query for which signatures differ rather than presenting the same standard prediction as novelty.
 
 **P36 stays OPEN, P35 stage CLOSED. DIP49 strong model-pair identification HOLD. LAW-R2 NOT_AUTHORIZED.**
+
+
+## 2026-10-10 — O5 Native Post-Preseal Readback and Strict Four-Repair Survival Chain
+
+This section is **after** the O5 source and D17 oracle were frozen. Do not silently change earlier pre-result declarations.
+
+[Original pinned Chi native Go CI #37965392085](https://github.com/WhoSia/EvoNOMOS/actions/runs/37965392085) completed **SUCCESS**, both matrix jobs. Each original-source variant passed existing upstream full Go, race/vet, **and the unmodified old D14/D15/D16 frozen tests**. Then independently presealed D17 was applied:
+
+- **RELATIVE_REBASE**: exact original-source artifact id `11633034916`, ZIP SHA256 `47a447a1fd597835f03cd26b8788d0d41901da5c172ab6b42d3bb339563bc187`. Old D14/D15/D16 PASS. D17 **expected negative** in both worlds, with literal native log `P36_O5_D17_CYCLIC_PRIORITY_FAILURE action=restore_B got="C" want="B"`. Source SHA256 `e377097f669b2edc1037cc9a87e95ed067d365b2602c0f5086c9c195218d16d6`.
+- **STABLE_ORDER**: artifact id `11633141469`, ZIP SHA256 `238e2a029395643831b291330afe692ce9526aa06fd81e52cee73c15b81e27ba`. Old D14/D15/D16 PASS and new D17 PASS both worlds. Source SHA256 `0733318f9e18ec2df88d5025783a8d4e3fc18f39d99cf1e80473dd65d54086bc`. Both arms used exactly the same D17 oracle SHA256 `63a87c9f3ad6a3d1bfd9c1bc3fd98e95ed7dcc9b9295eff7a63ae4dd8f38aff3`.
+
+The now-verified **restricted four-source survival filtration**, with frozen cumulative prefix test suites, is strictly nested:
+```
+V_D14              = {ERASE, POSITION_INDEX, RELATIVE_REBASE, STABLE_ORDER}
+V_D14+D15          = {POSITION_INDEX, RELATIVE_REBASE, STABLE_ORDER}
+V_D14+D15+D16      = {RELATIVE_REBASE, STABLE_ORDER}
+V_D14+D15+D16+D17  = {STABLE_ORDER}.
+```
+This is actual original-Go native test evidence over *four intentionally constructed source candidates*, **not** a demonstration that all possible edits inhabit this chain. The independent future requirements were created sequentially *after examining earlier source failures*; the test-source chronology was prospective for each respective repair, but the full chain was **not** blind sampled from real future user demands. The eventual stable candidate has not yet passed unbounded traces or an independent reference beyond these selectively constructed tests.
+
+## O6 independent finite maintenance-automaton challenge
+
+To attack source-induced selection, a separate after-source [O6 preseal](P36_O6_FINITE_MAINTENANCE_AUTOMATON_PRESEAL.md) and [standalone reference-model test](../../tools/p36-o6/tests/chi/p36_o6_finite_action_reference_test.go) were committed **after** the O3–O5 implementations, without any new treatment source. All `1+3+9+27+81+243+729=1093` action words of lengths 0..6 over `R=RegisterNew,D=DisableEarliest,E=EnableOldestDisabled` are prospectively fully enumerated, reference uses a logical ordered list+FIFO pending IDs, independently of source indices/ordinals. [Original Chi four-arm CI #37966139703](https://github.com/WhoSia/EvoNOMOS/actions/runs/37966139703) is currently **QUEUED**. A pass here can certify only the declared finite action alphabet and depth, not universal model checking.
+
+**Status now:** `O3_O4_O5_NATIVE_STRICT_FOUR_ARM_FILTRATION_CONFIRMED__O6_EXHAUSTIVE_1093_SOURCE_GO_PENDING__DIP49_NOVEL_PAIR_HOLD__LAW_R2_NOT_AUTHORIZED`.
