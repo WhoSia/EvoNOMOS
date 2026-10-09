@@ -33,3 +33,15 @@ Both arms have (B=D) for six mandatory methods, so (E(B,D)=|B\setminus D|=0). No
 **Fatal conditions:** missing public method, unequal behavior trace, different input policy, reliance on hidden P12 outcomes, only synthetic mock without original Go contract type, or bot-authored GitHub commit. Any test error is a harness/semantic HOLD until investigated.
 
 Precommit ruling: `P34_P4_NEW_INDEPENDENT_PAIRED_SOURCE_EXPERIMENT_PRECOMMITTED__RESULTS_UNOPENED__LAW_R2_HOLD`.
+
+
+## P4b declared extension — demand-indexed client contract sequence (registered after P4a result; before P4b test)
+P4a produced 18 identical public traces and explicit 0 versus 18 *additional adapter-to-unit* dispatches at read-only run 37887934272. The P4a implementation is now fixed; it must NOT be retroactively labeled a change-cost experiment.
+
+For P4b, run a **new clean stateful instance** of each unchanged adapter through two nested client contracts:
+- **D0**, an initial client with `Save, Load` requirements: execute exactly one Save then one Load with exact data readback.
+- **D1**, a widened client requiring all six public storage operations: on the same backend instance, subsequently call Stat, List, Remove and Delete, verify each response and final absent state (final absent check is an extra Stat). All public results must be identical between arms.
+- Record exact additional adapter-to-unit visit counts per D0/D1 segment; predict DIRECT 0, COMPOSED one per public core call. Source edits to adapters are prohibited between phases; this measures **client demand widening already satisfied by both**, not maintainers implementing a changed API after shipment.
+- Explicitly separate `client_contract_widening_tested` from `incremental_source_change_cost_NOT_MEASURED`. Adversarial fail if any public trace differs or old P12 terminal status changes.
+
+No claim of prospective OO law or universal cost optimality.
