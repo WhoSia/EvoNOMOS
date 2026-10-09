@@ -60,7 +60,7 @@ const result={
  vectors:v,delta:{phase0:delta("phase0"),phase1:delta("phase1")},
  pareto:seal.pareto,cases,
  codeowners_core_wildcard:wildcard,
- governance_claim:"Code owners named and maintainer-approval policy present; pre-demand PR reviews independently checked; branch-protection enforcement NOT verified",
+ governance_claim:"Code owners documented and pre-demand PR approvals verified; public main ruleset #19614738 currently requires one approval, not mandatory code-owner review; historical rule-event history not established",
  interpretation:"Both arms meet demand search and own truthful advertised-capability contracts; SEG is not substitutable under a stronger all-provider fetch client for Exa/Tavily; this does not mean SEG breaks the actual search-only requirement.",
  restriction:"Abstract trace model from frozen receipts, NOT treatment re-execution or full temporal interface automata",
  ruling:"P34_ORIGIN_P11_RECONSTITUTED__CLIENT_RELATIVE_LSP_ISP_PASS__GOVERNANCE_PARTIAL__LAW_R2_HOLD"
