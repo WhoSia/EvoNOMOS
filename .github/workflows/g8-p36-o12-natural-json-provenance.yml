@@ -40,6 +40,8 @@ jobs:
             set +e
             (cd "$repo" && go vet ./...) >"out/p36-o12/$repo/upstream-vet-before.log" 2>&1
             echo "$?" >"out/p36-o12/$repo/upstream-vet-before-exit.txt"
+            (cd "$repo" && go test -vet=off -count=1 ./...) >"out/p36-o12/$repo/upstream-full-before.log" 2>&1
+            echo "$?" >"out/p36-o12/$repo/upstream-full-before-exit.txt"
             set -e
           done
           for repo in gjson jsonparser; do
@@ -71,8 +73,28 @@ jobs:
               echo ORIGINAL_UPSTREAM_AND_NEW_SOURCE_FULL_VET_PASS >"out/p36-o12/$repo/vet-qualification.txt"
             fi
             (cd "$repo" && go vet -unreachable=false -unsafeptr=false ./...) >"out/p36-o12/$repo/qualified-vet.log" 2>&1 || { cat "out/p36-o12/$repo/qualified-vet.log"; exit 20; }
-            (cd "$repo" && go test -vet=off -count=1 ./...) >"out/p36-o12/$repo/full.log" 2>&1 || { cat "out/p36-o12/$repo/full.log"; exit 12; }
-            (cd "$repo" && go test -vet=off -race -count=1 ./...) >"out/p36-o12/$repo/race.log" 2>&1 || { cat "out/p36-o12/$repo/race.log"; exit 13; }
+            set +e
+            (cd "$repo" && go test -vet=off -count=1 ./...) >"out/p36-o12/$repo/full.log" 2>&1
+            post_full_exit=$?
+            set -e
+            if [ "$repo" = jsonparser ]; then
+              test "$(cat "out/p36-o12/$repo/upstream-full-before-exit.txt")" != 0 || { echo UNEXPECTED_BASELINE_FULL_PASS; exit 31; }
+              test "$post_full_exit" != 0 || { echo UPSTREAM_FULL_FAILURE_DISAPPEARED; exit 32; }
+              grep -q -- 'FAIL: TestOracleSetPr286Regression' "out/p36-o12/$repo/upstream-full-before.log"
+              grep -q -- 'FAIL: TestOracleSetPr286Regression' "out/p36-o12/$repo/full.log"
+              for case in 'pr286-top-level-oob' 'pr286-top-level-far'; do
+                grep -q -- "FAIL: TestOracleSetPr286Regression/$case" "out/p36-o12/$repo/upstream-full-before.log"
+                grep -q -- "FAIL: TestOracleSetPr286Regression/$case" "out/p36-o12/$repo/full.log"
+              done
+              (cd "$repo" && go test -vet=off -skip '^TestOracleSetPr286Regression$' -count=1 ./...) >"out/p36-o12/$repo/qualified-full.log" 2>&1 || { cat "out/p36-o12/$repo/qualified-full.log"; exit 33; }
+              (cd "$repo" && go test -vet=off -race -skip '^TestOracleSetPr286Regression$' -count=1 ./...) >"out/p36-o12/$repo/race.log" 2>&1 || { cat "out/p36-o12/$repo/race.log"; exit 13; }
+              echo ORIGINAL_UPSTREAM_FULL_HAS_TWO_PR286_FAILS_UNCHANGED_AND_REST_PASS >"out/p36-o12/$repo/full-qualification.txt"
+            else
+              test "$(cat "out/p36-o12/$repo/upstream-full-before-exit.txt")" = 0 || { cat "out/p36-o12/$repo/upstream-full-before.log"; exit 34; }
+              test "$post_full_exit" = 0 || { cat "out/p36-o12/$repo/full.log"; exit 12; }
+              (cd "$repo" && go test -vet=off -race -count=1 ./...) >"out/p36-o12/$repo/race.log" 2>&1 || { cat "out/p36-o12/$repo/race.log"; exit 13; }
+              echo FULL_ORIGINAL_UPSTREAM_PASS >"out/p36-o12/$repo/full-qualification.txt"
+            fi
             (cd "$repo" && go test -vet=off -v -count=1 -run '^TestP36O12' .) >"out/p36-o12/$repo/q22.log" 2>&1 || { cat "out/p36-o12/$repo/q22.log"; exit 14; }
             grep -q 'PASS: TestP36O12LexicalProvenanceQ22' "out/p36-o12/$repo/q22.log"
             grep -q 'PASS: TestP36O12ConcurrentReadOnlyQ22' "out/p36-o12/$repo/q22.log"
