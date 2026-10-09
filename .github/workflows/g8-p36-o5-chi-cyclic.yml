@@ -1,0 +1,74 @@
+name: G8 P36 O5 Real Chi Cyclic Priority vs Local Rebasing
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o5/**'
+      - '.github/workflows/g8-p36-o5-chi-cyclic.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-source-cyclic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [RELATIVE_REBASE, STABLE_ORDER]
+    env:
+      P35_O6_ARM: EAGER
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Previously sealed D14 D15 D16 before independent D17 cyclic challenge
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o5/${{ matrix.variant }}
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          if [ "${{ matrix.variant }}" = RELATIVE_REBASE ]; then
+            source_file=tools/p36-o5/arms/chi/relative-rebase/p35_epoch_router.go
+          else
+            source_file=tools/p36-o4/arms/chi/stable-order/p35_epoch_router.go
+          fi
+          cp "$source_file" chi/middleware/p35_epoch_router.go
+          cp tools/p35-o6/tests/chi/p35_o6_eager_lazy_test.go chi/middleware/
+          cp tools/p36-o3/tests/chi/p36_o3_d14_test.go chi/middleware/
+          cp tools/p36-o3/tests/chi/p36_o3_d15_future_test.go chi/middleware/
+          cp tools/p36-o4/tests/chi/p36_o4_d16_future_test.go chi/middleware/
+          (cd chi && go vet ./...) >out/p36-o5/${{ matrix.variant }}/vet.log 2>&1 || { cat out/p36-o5/${{ matrix.variant }}/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p36-o5/${{ matrix.variant }}/race.log 2>&1 || { cat out/p36-o5/${{ matrix.variant }}/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p36-o5/${{ matrix.variant }}/full-original.log 2>&1 || { cat out/p36-o5/${{ matrix.variant }}/full-original.log; exit 13; }
+          (cd chi && go test -v -count=1 -run '^TestP36O(3D1[45]|4D16)' ./middleware) >out/p36-o5/${{ matrix.variant }}/old-contracts.log 2>&1 || { cat out/p36-o5/${{ matrix.variant }}/old-contracts.log; exit 14; }
+          grep -q 'PASS: TestP36O3D15RestoreOriginalClosure' out/p36-o5/${{ matrix.variant }}/old-contracts.log
+          grep -q 'PASS: TestP36O4D16OriginalPriorityAfterMultipleDisableRestore' out/p36-o5/${{ matrix.variant }}/old-contracts.log
+          cp tools/p36-o5/tests/chi/p36_o5_d17_cyclic_future_test.go chi/middleware/
+          set +e
+          (cd chi && go test -v -count=1 -run '^TestP36O5D17CyclicDisableRestorePriority$' ./middleware) >out/p36-o5/${{ matrix.variant }}/d17.log 2>&1
+          rc=$?
+          set -e
+          if [ "${{ matrix.variant }}" = RELATIVE_REBASE ]; then
+            test "$rc" -ne 0 || { cat out/p36-o5/${{ matrix.variant }}/d17.log; echo UNEXPECTED_REBASE_D17_PASS; exit 21; }
+            grep -q 'P36_O5_D17_CYCLIC_PRIORITY_FAILURE' out/p36-o5/${{ matrix.variant }}/d17.log || { cat out/p36-o5/${{ matrix.variant }}/d17.log; exit 22; }
+            echo P36_O5_RELATIVE_REBASE_D14_D15_D16_PASS_D17_EXPECTED_NEGATIVE >out/p36-o5/${{ matrix.variant }}/verdict.txt
+          else
+            test "$rc" -eq 0 || { cat out/p36-o5/${{ matrix.variant }}/d17.log; exit 23; }
+            grep -q 'PASS: TestP36O5D17CyclicDisableRestorePriority' out/p36-o5/${{ matrix.variant }}/d17.log
+            echo P36_O5_STABLE_ORDER_D14_D15_D16_D17_NATIVE_PASS >out/p36-o5/${{ matrix.variant }}/verdict.txt
+          fi
+          sha256sum "$source_file" tools/p36-o5/tests/chi/p36_o5_d17_cyclic_future_test.go >out/p36-o5/${{ matrix.variant }}/source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o5-${{ matrix.variant }}-original-chi-future-survival
+          path: out/p36-o5/${{ matrix.variant }}/
+          if-no-files-found: warn
+          retention-days: 30
