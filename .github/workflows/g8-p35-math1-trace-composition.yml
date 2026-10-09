@@ -1,0 +1,83 @@
+name: G8 P35 MATH1 Trace Filtration and Composition Go Lean Prolog
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-math1/**'
+      - '.github/workflows/g8-p35-math1-trace-composition.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  lean-formal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Explicit hole and introduced-axiom rejection
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[^[:alnum:]_])(sorry|admit|axiom)([^[:alnum:]_]|$)' tools/p35-math1/lean/*.lean; then
+            echo 'P35_MATH1_UNACCEPTABLE_PROOF_PLACEHOLDER'
+            exit 10
+          fi
+          echo 'P35_MATH1_NO_PROOF_HOLE'
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p35-math1/lean
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Immutable Lean proof receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-math1-lean
+          sha256sum tools/p35-math1/lean/EvoNOMOSMath1.lean tools/p35-math1/lean/lakefile.toml tools/p35-math1/lean/lake-manifest.json > out/p35-math1-lean/source-sha256.txt
+          cat tools/p35-math1/lean/lean-toolchain > out/p35-math1-lean/toolchain.txt
+          echo 'P35_MATH1_LEAN_TRACE_PRODUCT_PROOF_AND_CHECKER_PASS' | tee out/p35-math1-lean/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-math1-lean-proof
+          path: out/p35-math1-lean/
+          retention-days: 30
+          if-no-files-found: warn
+
+  go-prolog-attack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Independent SWI-Prolog runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends swi-prolog-nox
+      - name: Native finite countermodels and bounded product tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-math1-attack
+          go version > out/p35-math1-attack/go-version.txt
+          swipl --version > out/p35-math1-attack/prolog-version.txt
+          (cd tools/p35-math1/go && go vet ./... && go test -race -count=1 -v ./...) > out/p35-math1-attack/go.log 2>&1 || { cat out/p35-math1-attack/go.log; exit 21; }
+          (cd tools/p35-math1/go && go run ./cmd/enumerate) > out/p35-math1-attack/finite-model.json
+          jq -e '.depth_zero_equal == true and .depth_one_equal == false and .first_length == 1 and .first_separator == ["tick"] and .hidden_output_equal_up_to_three == true and .state_probe_separates_at_empty == true and .product_cases > 0 and .product_violations == 0' out/p35-math1-attack/finite-model.json
+          swipl -q -g run_tests -t halt tools/p35-math1/prolog/countermodels.pl > out/p35-math1-attack/prolog.log 2>&1 || { cat out/p35-math1-attack/prolog.log; exit 22; }
+          echo 'P35_MATH1_GO_PROLOG_BOUND_ONE_AND_HIDDEN_STATE_COUNTERMODELS_PASS' | tee out/p35-math1-attack/verdict.txt
+          sha256sum out/p35-math1-attack/finite-model.json tools/p35-math1/go/model.go tools/p35-math1/prolog/countermodels.pl > out/p35-math1-attack/sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-math1-go-prolog-countermodels
+          path: out/p35-math1-attack/
+          retention-days: 30
+          if-no-files-found: warn
