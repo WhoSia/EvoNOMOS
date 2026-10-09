@@ -1,0 +1,51 @@
+name: G8 LAW-R1-P35 P6 Cobra Go Operator Heldout Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/g8-law-r1-p35-p6-cobra-evaluate.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  independent-go-heldout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Read human-sealed Go source and prior model
+        uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - name: Actual original Cobra full history pinned commit
+        uses: actions/checkout@v4
+        with:
+          repository: spf13/cobra
+          ref: e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec
+          path: cobra
+          fetch-depth: 0
+      - name: Go test and audit original model bytes BEFORE opening holdout labels
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p6-eval
+          go version | tee out/p35-p6-eval/go-version.txt
+          test "$(git -C cobra rev-parse HEAD)" = "e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec"
+          (cd tools/p35-p6 && go vet ./... && go test -count=1 -v ./... && go build -o ../../out/p35-p6-eval/go-predictor .)
+          sha256sum tools/p35-p6/seals/cobra-v2-training-predictions.json > out/p35-p6-eval/human-seal-sha256.txt
+          ./out/p35-p6-eval/go-predictor -mode=evaluate -repo=cobra -seal=tools/p35-p6/seals/cobra-v2-training-predictions.json -out=out/p35-p6-eval/heldout-go-operators.json | tee out/p35-p6-eval/heldout-receipt.log
+          echo 'P35P6_GO_INDEPENDENT_COBRA_HELDOUT_EVALUATED_AFTER_EXACT_TRAIN_SEAL'
+          sha256sum out/p35-p6-eval/*.json out/p35-p6-eval/*.txt > out/p35-p6-eval/sha256-receipt.txt
+      - name: Preserve original input and evaluation outputs, repository read-only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p6-cobra-go-operator-none-heldout
+          path: out/p35-p6-eval/
+          if-no-files-found: warn
+          retention-days: 30
