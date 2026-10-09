@@ -1,0 +1,58 @@
+name: G8 LAW-R1-P35 P6 Cobra Go Operator Train-Only
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p6/main.go'
+      - 'tools/p35-p6/main_test.go'
+      - 'tools/p35-p6/go.mod'
+      - '.github/workflows/g8-law-r1-p35-p6-cobra-train.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-p35-p6-cobra-train
+  cancel-in-progress: false
+
+jobs:
+  train-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Read authored source
+        uses: actions/checkout@v4
+      - name: Go language native analysis
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - name: Original independent Cobra source, full history, pinned tag
+        uses: actions/checkout@v4
+        with:
+          repository: spf13/cobra
+          ref: e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec
+          fetch-depth: 0
+          path: cobra
+      - name: Go vet, Go unit tests, train-only operator change rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p6-train
+          go version | tee out/p35-p6-train/go-version.txt
+          test "$(git -C cobra rev-parse HEAD)" = "e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec"
+          (cd tools/p35-p6 && go vet ./... && go test -count=1 -v ./... && go build -o ../../out/p35-p6-train/go-predictor .)
+          ./out/p35-p6-train/go-predictor -mode=train -repo=cobra -out=out/p35-p6-train/seal-model.json | tee out/p35-p6-train/train-receipt.log
+          sha256sum out/p35-p6-train/seal-model.json > out/p35-p6-train/model-sha256.txt
+          echo 'P35P6_TRAIN_ONLY__NO_HELDOUT_COMPANION_LABEL_READ'
+      - name: Retain train-only artifacts, no bot writes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p6-cobra-go-train-only
+          path: out/p35-p6-train/
+          if-no-files-found: warn
+          retention-days: 30
