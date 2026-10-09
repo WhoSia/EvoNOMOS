@@ -1,0 +1,58 @@
+name: G8 P37 E4 Source-Derived Capability Graph and Mathematical Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-e4/model/**'
+      - '.github/workflows/g8-p37-e4-source-graph.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-derived-owner-graph:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/sessions
+          ref: bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          path: original-gorilla-sessions
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/securecookie
+          ref: eae3c1840ec4adda88a4af683ad0f60bb690e7c2
+          path: original-gorilla-securecookie
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: alexedwards/scs
+          ref: 209de6e426de9259665975ce16b91331d228f052
+          path: original-scs
+          fetch-depth: 1
+      - name: Verify pinned source callsites and test capability-typed future-repair graph
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-e4-graph
+          test "$(git -C original-gorilla-sessions rev-parse HEAD)" = bb4cd60c952a9ce48ea0dc6cc7b282ff79c38263
+          test "$(git -C original-scs rev-parse HEAD)" = 209de6e426de9259665975ce16b91331d228f052
+          python tools/p37-e4/model/probe_original_source_contract.py . >out/p37-e4-graph/source-contract.json
+          grep -q 'PASS_SOURCE_CALLSITE_EVIDENCE_ONLY' out/p37-e4-graph/source-contract.json
+          python tools/p37-e4/model/capability_repair_graph.py | tee out/p37-e4-graph/repair-graph.log
+          grep -q 'P37_E4_CAPABILITY_MATRIX_ALL_FIVE_SOURCE_SIGNATURES_PASS' out/p37-e4-graph/repair-graph.log
+          grep -q 'P37_E4_BRIDGE_FOUR_TRANSITIONS_WITH_EXPLICIT_LEGACY_EXPIRY_PASS' out/p37-e4-graph/repair-graph.log
+          grep -q 'P37_E4_BOTH_OWNER_CAPABILITIES_NEEDED_FOR_THIS_GAMMA_PASS' out/p37-e4-graph/repair-graph.log
+          sha256sum tools/p37-e4/model/*.py >out/p37-e4-graph/sha256.txt
+          echo P37_E4_SOURCE_LINKED_CAPABILITY_GRAPH_CLASSICAL_COURT_PASS >out/p37-e4-graph/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-e4-original-source-capability-graph-receipt
+          path: out/p37-e4-graph/
+          retention-days: 30
