@@ -1,0 +1,27 @@
+name: G8 P35 O4 Go Provenance Erasure Calibration
+on:
+  push:
+    paths:
+      - 'tools/p35-o4/**'
+      - '.github/workflows/g8-p35-o4-provenance-calibration.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  go-local-calibration:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/p35-o4/provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: tools/p35-o4/provenance/go.mod
+          cache: false
+      - name: Static analysis
+        run: go vet ./...
+      - name: Finite contract test
+        run: go test -count=1 ./...
+      - name: Race instrumentation
+        run: go test -race -count=1 ./...
