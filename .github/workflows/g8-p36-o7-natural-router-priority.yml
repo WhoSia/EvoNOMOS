@@ -1,0 +1,78 @@
+name: G8 P36 O7 Original Natural Routers Chronological Cross-header Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o7/**'
+      - '.github/workflows/g8-p36-o7-natural-router-priority.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-natural-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        source: [CHI, GORILLA]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Fetch exact independently evolved original source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.source }}" = CHI ]; then
+            echo "SOURCE_REPO=go-chi/chi" >>"$GITHUB_ENV"
+            echo "SOURCE_SHA=67be7d9cafdaeb4e04e887ff78d09e030ee43b00" >>"$GITHUB_ENV"
+          else
+            echo "SOURCE_REPO=gorilla/mux" >>"$GITHUB_ENV"
+            echo "SOURCE_SHA=b4617d0b9670ad14039b2739167fd35a60f557c5" >>"$GITHUB_ENV"
+          fi
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ env.SOURCE_SHA }}
+          path: original
+          fetch-depth: 1
+      - name: Native full Go and future D18 source-structure discriminator
+        shell: bash
+        run: |
+          set -euo pipefail
+          folder=$(echo '${{ matrix.source }}' | tr '[:upper:]' '[:lower:]')
+          mkdir -p "out/p36-o7/$folder"
+          test "$(git -C original rev-parse HEAD)" = "$SOURCE_SHA"
+          (cd original && go vet ./...) >"out/p36-o7/$folder/vet.log" 2>&1 || { cat "out/p36-o7/$folder/vet.log"; exit 11; }
+          (cd original && go test -race -count=1 ./...) >"out/p36-o7/$folder/race.log" 2>&1 || { cat "out/p36-o7/$folder/race.log"; exit 12; }
+          (cd original && go test -count=1 ./...) >"out/p36-o7/$folder/original.log" 2>&1 || { cat "out/p36-o7/$folder/original.log"; exit 13; }
+          if [ "$folder" = chi ]; then
+            cp tools/p36-o7/tests/chi/p36_o7_original_crossheader_test.go original/middleware/
+            pkg=./middleware
+          else
+            cp tools/p36-o7/tests/mux/p36_o7_original_crossheader_test.go original/
+            pkg=.
+          fi
+          (cd original && go test -v -count=1 -run '^TestP36O7BaselineUniqueHeaderRoutes$' "$pkg") >"out/p36-o7/$folder/q0.log" 2>&1 || { cat "out/p36-o7/$folder/q0.log"; exit 14; }
+          set +e
+          (cd original && go test -v -count=1 -run '^TestP36O7D18ChronologicalPriority$' "$pkg") >"out/p36-o7/$folder/d18.log" 2>&1
+          rc=$?
+          set -e
+          if [ "$folder" = chi ]; then
+            test "$rc" -ne 0 || { echo CHI_NEW_D18_UNEXPECTED_PASS; cat "out/p36-o7/$folder/d18.log"; exit 21; }
+            grep -q 'P36_O7_D18_ORIGINAL_SOURCE_PRIORITY_MISMATCH' "out/p36-o7/$folder/d18.log" || { cat "out/p36-o7/$folder/d18.log"; exit 22; }
+            echo P36_O7_CHI_ORIGINAL_Q0_PASS_D18_EXPECTED_NEW_CONTRACT_NEGATIVE >"out/p36-o7/$folder/verdict.txt"
+          else
+            test "$rc" -eq 0 || { cat "out/p36-o7/$folder/d18.log"; exit 23; }
+            grep -q 'PASS: TestP36O7D18ChronologicalPriority' "out/p36-o7/$folder/d18.log"
+            echo P36_O7_GORILLA_ORIGINAL_Q0_AND_D18_NATIVE_PASS >"out/p36-o7/$folder/verdict.txt"
+          fi
+          sha256sum "tools/p36-o7/tests/$folder/p36_o7_original_crossheader_test.go" >"out/p36-o7/$folder/source-sha256.txt"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o7-original-${{ matrix.source }}-crossheader
+          path: out/p36-o7/
+          if-no-files-found: warn
+          retention-days: 30
