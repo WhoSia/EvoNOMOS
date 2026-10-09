@@ -1,0 +1,31 @@
+name: G8 P35 MATH3 Native Go Selected Source-Edit Order Replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-math3/**'
+      - '.github/workflows/g8-p35-math3-selected-go-order.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-chi-order-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Classify both real Go source change orders with 3-way integration
+        shell: bash
+        run: bash tools/p35-math3/replay_selected_change_orders.sh
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-math3-original-chi-both-order-source-replay
+          path: out/p35-math3-order/
+          if-no-files-found: warn
+          retention-days: 30
