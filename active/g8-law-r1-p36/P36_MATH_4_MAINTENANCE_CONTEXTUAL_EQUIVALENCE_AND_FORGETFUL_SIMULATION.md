@@ -58,3 +58,8 @@ On Gorilla original same-source O2 16U/16R burst, EAGER and LAZY have exactly 16
 **Source authority**: all original-source runs above have archived SHA256 artifact ZIP receipts; see companion O2 and O3 receipt courts. Missing formal Lean `P36-O3` kernel verdict remains PENDING until original run [#37961481644](https://github.com/WhoSia/EvoNOMOS/actions/runs/37961481644) terminal readback. This new MATH-4 theorem must independently compile and check its proof; do not claim kernel-pass merely from written code.
 
 **MATH-4 STATUS**: `CLASSICAL_SIMULATION_THEORY_SPECIFIED__REAL_GO_OPTION_NON-EQUIVALENCE_BOUNDED_PASS__SOURCE_GRAPH_GENUINE_DISCRIMINATION_OPEN__DIP49_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+
+## 2026-10-10 — Lean 4 checker receipt
+
+The original [MATH-4 kernel workflow #37964349042](https://github.com/WhoSia/EvoNOMOS/actions/runs/37964349042) completed **SUCCESS**, single job, [P36Math4.lean](../../tools/p36-math4/lean/P36Math4.lean) proven without `sorry`/`admit`/`axiom`. The generic theorem requires a step-compatible projection and observation compatibility, then proves finite-trace compatibility by induction. It is classical, independent of whether our real Go source satisfies the premises. O6 supplies an explicit finite behavioral bridge on fixed traces, not a fully general refinement proof of Chi implementations.
