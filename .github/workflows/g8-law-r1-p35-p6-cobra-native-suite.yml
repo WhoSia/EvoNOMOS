@@ -1,0 +1,48 @@
+name: G8 LAW-R1-P35 P6 Original Cobra Go Full Suite Verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/g8-law-r1-p35-p6-cobra-native-suite.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  actual-original-cobra:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: spf13/cobra
+          ref: e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec
+          path: cobra
+          fetch-depth: 1
+      - name: Build and run untouched actual Cobra Go tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p6-cobra-native
+          go version | tee out/p35-p6-cobra-native/go-version.txt
+          test "$(git -C cobra rev-parse HEAD)" = "e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec"
+          (cd cobra && go test -count=1 ./...) > out/p35-p6-cobra-native/full-go-suite.log 2>&1 || { cat out/p35-p6-cobra-native/full-go-suite.log; exit 20; }
+          (cd cobra && go test -race -count=1 .) > out/p35-p6-cobra-native/root-race.log 2>&1 || { cat out/p35-p6-cobra-native/root-race.log; exit 21; }
+          echo 'P35P6_UNTOUCHED_NATIVE_COBRA_FULL_SUITE_AND_ROOT_RACE_PASS' | tee out/p35-p6-cobra-native/verdict.txt
+          sha256sum out/p35-p6-cobra-native/*.log out/p35-p6-cobra-native/*.txt > out/p35-p6-cobra-native/sha256.txt
+      - name: Preserve original Go evidence, repository read-only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p6-original-cobra-go-native-suite
+          path: out/p35-p6-cobra-native/
+          if-no-files-found: warn
+          retention-days: 30

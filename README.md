@@ -4,13 +4,14 @@
 
 EvoNOMOS is a **Go-first laboratory for software structure and real source evolution**. We study the *conditions under which software organization preserves behavior while changing the localization and propagation of code modifications*. It tests responsibility boundaries, dependency direction, behavioral contracts, interface capability, shared invariants, and migration paths in executable source. **SOLID is a family of conditional design hypotheses—not an axiomatic scoring system or a guaranteed architecture ranking.**
 
-> **Current scientific head (2026-10-09):** Generation VIII · **LAW-R1-P35 OPEN** — *Independent Capability Engines, Cross-Operation Change Propagation, Source-Edit Locality & Demand-Conditioned SOLID Cost Geometry*. **LAW-R2 NOT AUTHORIZED.**
+> **Current scientific head (2026-10-09):** Generation VIII · **LAW-R1-P35 OPEN** — *Go-Native Change Operators, Contract Propagation, Conditional SOLID and Required-vs-Optional Source Edits*. **P35-P6 bounded CLOSED; parent P35 OPEN; LAW-R2 NOT AUTHORIZED.**
 
 ## Start here
 
 | Surface | Canonical source | What it establishes |
-| **Go historical prediction (current)** | [P35-P5 original Git-source verdict](active/g8-law-r1-p35/P35_P5_GO_HISTORICAL_PREDICTION_AND_COCHANGE_BOUNDARY.md) · [Go predictor](tools/p35-p5/main.go) · [Human-frozen JSON](tools/p35-p5/seals/predictions-2020.json) · [Go AST source audit](tools/p35-p5/sourceaudit/main.go) | 121 real training commits and 40 heldout commits; B0+ and B1 top-1 tie, B2 different; all baseline algorithms over-alert on singleton edits |
 | --- | --- | --- |
+| **P35-P6 current Go contract/necessity court** | [P6 original source verdict](active/g8-law-r1-p35/P35_P6_GO_OPERATOR_NONE_AND_CONTRACT_ABLATION_VERDICT.md) · [Go operator predictor](tools/p35-p6/main.go) · [Frozen Cobra model](tools/p35-p6/seals/cobra-v2-training-predictions.json) | Independent Cobra train/heldout; explicit NONE/ABSTAIN; retrospective Go AST labels and live original Chi 405 ablation |
+| Go historical predecessor | [P35-P5 original Git-source verdict](active/g8-law-r1-p35/P35_P5_GO_HISTORICAL_PREDICTION_AND_COCHANGE_BOUNDARY.md) · [Go predictor](tools/p35-p5/main.go) · [Human-frozen JSON](tools/p35-p5/seals/predictions-2020.json) | Original Chi history; B0+/B1 rank-only false alarms on single-file edits |
 | Current independent real-source court | [P35-P4/P4B Chi two-demand verdict](active/g8-law-r1-p35/P35_P4_P4B_REAL_CHI_TWO_DEMAND_TOURNAMENT_VERDICT.md) · [P35 Notion Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784) | Presealed D4/D5 source interventions, original `go-chi/chi` native Go suites, stage-specific edit-sign reversal and undefeated classical rivals |
 | Foundational current stage | [P35 technical opening](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) | Genuine capability organization and earlier source-edit counterexamples |
 | Verified predecessor | [P34 terminal](active/g8-law-r1-p34/P34_TERMINAL_SOURCE_EDITS_AND_P35_HANDOFF.md) | DIRECT/COMPOSED changed one method and +4/−1 lines each under KeyFile size rule; no locality winner |
@@ -26,6 +27,26 @@ EvoNOMOS is a **Go-first laboratory for software structure and real source evolu
 **Go is the primary language for EvoNOMOS's executable software research**, not merely a convenient example implementation. Real Go repositories, native `go test` and `-race`, `go/parser`/`go/ast`, Go historical-impact predictors and source-level behavioral oracles are the normal route from a hypothesis to evidence. Rust is used where independently justified by computational scale; Python and JavaScript are auxiliary preparation/reporting tools, not the default scientific implementation.
 
 The mathematical subject is **program organization, behavioral refinement, information hiding, change propagation, and identifiability**. Change-site counts and error metrics are observable diagnostics, not economic welfare variables. We are **not** turning SOLID into a financial model or performing econometric effect estimation. Conditional edit-cost comparisons are useful only insofar as they expose actual software mechanisms and their counterexamples.
+
+### P35-P6 — Independent Go history, explicit NONE and original contract ablation
+
+**Independent Go source court:** [`spf13/cobra v1.8.1`](https://github.com/spf13/cobra/tree/e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec), with source-valid pre-2021 triad `command.go`, `args.go`, `cobra.go`. [V1 preseal](active/g8-law-r1-p35/P35_P6_COBRA_OPERATOR_NONE_PREHISTORY_SEAL.md) initially named `completions.go`, which did **not** exist at training cutoff. [Prescore v2 eligibility correction](active/g8-law-r1-p35/P35_P6_COBRA_COHORT_ELIGIBILITY_V2.md) replaced it only after verifying real pre-2021 file existence and **before obtaining the training model or heldout labels**. Go's receiver AST printer and the external contract-fixture package also required isolated technical harness corrections; failed runs remain in provenance.
+
+[Go train-only Actions #37904751015](https://github.com/WhoSia/EvoNOMOS/actions/runs/37904751015) **PASS**: 223 original pre-2021 commits, 20 multi-target. **Human `WhoSia` commit [`4b18d1c`](https://github.com/WhoSia/EvoNOMOS/commit/4b18d1c44f5f7f6cd996027a74e8511c64f465d5)** freezes actual B0+·B1·B2 predictions per source operator **before** any heldout co-edit scoring. [Read-only Go heldout #37905258309](https://github.com/WhoSia/EvoNOMOS/actions/runs/37905258309) **SUCCESS**, with exact training-byte seal verified before scoring. Forty-two later commits, eight multi-target, 53 seed queries (19 companion-positive and 34 singleton-negative).
+
+| Predeclared model | Observed companion hits /19 | Correct NONE /34 | False singleton alerts | Abstain |
+| --- | ---: | ---: | ---: | ---: |
+| B0+ AST + operator | 0 | 29 | 5 | 0 |
+| B1 Git cochange + operator | **4** | **31** | **1** | **6** |
+| B1 Git cochange, seed-only | 4 | 32 | 2 | 0 |
+| B2 qualitative design rule | 0 | 29 | 5 | 0 |
+| ALWAYS_NONE | 0 | 34 | 0 | 0 |
+
+**The key source-truth counterexample:** [postscore original Cobra Go AST audit #37905630361](https://github.com/WhoSia/EvoNOMOS/actions/runs/37905630361) shows that **three of the eight multi-file Go-path commits changed zero Go AST in the triad** (copyright, license and documentation edits). They account for **eight of nineteen path-level positive seed labels**. At least two of B1's four raw cochange hits arise from these documentation-only commits. This is *label contamination*, not just model failure; program-structure dependencies cannot be inferred from every multi-file Git commit.
+
+**Stronger original Go contract contact:** [real Chi HTTP 405 `Allow` contract ablation #37904876755](https://github.com/WhoSia/EvoNOMOS/actions/runs/37904876755) **PASS** at upstream [commit `4b14b832`](https://github.com/go-chi/chi/commit/4b14b832d53cef6c77fdcf852876a34f46bc84a2). Original full Go tests and specific public behavior PASS; restoring **any one** of `mux.go`, `tree.go` or `context.go` to the immediately prior bytes breaks compilation or that behavior test. This is evidence of *necessity relative to that exact historical implementation and test*, not proof of necessity across all admissible repairs.
+
+**P6 outcome:** `BOUNDED_NATIVE_PASS / RAW_COHANGE_PROXY_NEGATIVE / NO_NEW_PREDICTIVE_LAW`. Classical Parnas, source-aware CSDG/Design Rule Spaces and actual full `go/types`/SSA competitors are **not defeated**. Next: pre-register a new Go source cohort in which contract operators and NONE/ABSTAIN are first-class, test actual behavioral counterfactuals, and compare equally informed strong rivals. [Scientific record and limits](active/g8-law-r1-p35/P35_P6_GO_OPERATOR_NONE_AND_CONTRACT_ABLATION_VERDICT.md).
 
 ### P35-P5 — Frozen historical predictions in genuine Go code
 
@@ -146,4 +167,4 @@ Relevant original sources already recorded as held include [Liskov & Wing 1994](
 - GitHub carries compact executable evidence; Notion maintains decisions and science narrative; Google Drive retains canonical original research files and historical conversation archive. The 1–14 chat exports are research context, **not** independently adjudicated outcome data.
 - **No automatic LAW-R2**, no attribution of P34 outcomes to original ORIGIN-P12, and no independent new predictive architecture-law claim without the relevant strong-rival and held-out evidence.
 
-**Next executable work:** Go-native source-change-operator prediction with **NONE (no companion edit)** as an explicit label, trained and frozen before a fresh historical cohort. Distinguish contract propagation, representation/layout alterations, and independent local changes using actual Go AST plus behavioral constraints; compare source-aware B0+, genuine cochange B1 and Parnas/Design-Rule B2 fairly. No econometric redirection, no universal SOLID law from retrospective rankings.
+**Next executable work:** Introduce Go `go/types`/SSA and explicit contract witnesses into a **new, preregistered source-change cohort**: compare `NONE`, `ABSTAIN` and companion edits for genuine behavioral coupling, with read-only original Go regression and patch-relative ablation. Calibrate against actual strong B0+/B1/B2/CSDG rivals, not scalar financial costs. Do **not** infer a universal SOLID law from Git path co-occurrence or even AST co-edit.
