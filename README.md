@@ -4,11 +4,11 @@
 
 EvoNOMOS investigates whether source-grounded responsibility, authority, interface capability and dependency structures can explain and *prospectively predict* the effects of maintenance demands. SOLID principles are possible conditional consequences, **not axioms** or presumed universal laws.
 
-## Current scientific state — G8 LAW-R1-P33 CLOSED / P34 TITLE PROPOSED
+## Current scientific head — Generation VIII LAW-R1-P34 OPEN
 
 **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
 
-**Status:** P33 CLOSED (attributed mathematical SOLID synthesis + bounded finite methods PASS; predictive universal OO-law claims HOLD). **P34 title PROPOSED, not yet OPEN. LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
+**P33 predecessor:** CLOSED with attributed conditional SOLID theory PASS; independently established universal OO-law claims remain HOLD. **P34 current stage:** OPEN; **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
 
 - [P33 opening scientific constitution](active/g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md)
 - [P33 final scientific court and P34 proposed title](active/g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md)
@@ -17,11 +17,17 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 - [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
 - [Active and historical lineage](active/README.md)
 
-### Proposed next stage, not yet opened
+### P34 current scientific head — existing EvoNOMOS strengthened
 
-**EvoNOMOS Generation VIII LAW-R1-P34 — Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
+**Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
 
-P33's cited conceptual SOLID mathematics is a finished bounded deliverable. P34 would tackle the still-open temporal interface-automata semantics, actual source-level dependency/contract-owner extraction, and WIDE↔SEGREGATED decisions over future demands. No P34 action authority, run or claim exists yet. P33 final read-only [CI 37884542193](https://github.com/WhoSia/EvoNOMOS/actions/runs/37884542193) SUCCESS; finite classical contract-order verification with source replay and prior finite suites. The 5 newly supplied primary papers are now **Drive HELD**; [final custody/reading court](active/g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md) contains direct canonical Drive links. Cross-Lab original-Drive-first disclosure rule is now in CURRENT Research OS doctrine.
+**Status: P34 OPEN / P0 source projection METHOD PASS / P1 source import METHOD PASS / genuine authority and full temporal semantics HOLD / LAW-R2 NOT_AUTHORIZED.** P33 remains CLOSED; this is not a new Lab.
+
+- [P34 opening constitution](active/g8-law-r1-p34/P34_OPENING_CONSTITUTION.md) · [Notion P34 active Run](https://app.notion.com/p/3f4ef561cf9281d49e99ebaacf335fe5)
+- [P34-P0 graph vs contract information separator](active/g8-law-r1-p34/P34_P0_SOURCE_PROJECTION_CONTRACT_SEPARATOR.md). Read-only [CI 37885239006](https://github.com/WhoSia/EvoNOMOS/actions/runs/37885239006) SUCCESS: 64 source-executed collision pairs, matched weak Notification.send call-target graph, original two-argument call versus amended three-argument structured context; **M1 rich static call arity already distinguishes**, so no new M2 prediction victory.
+- [P34-P1 real CommonJS import/authority audit](active/g8-law-r1-p34/P34_P1_SOURCE_IMPORTS_AND_AUTHORITY_BOUNDARY.md). Read-only [CI 37885549293](https://github.com/WhoSia/EvoNOMOS/actions/runs/37885549293) SUCCESS: monitor.js line 48 imports Notification; certificate call at line 1596. Source dependency is measured, contract-change authority **NOT IDENTIFIABLE FROM IMPORTS**.
+- [Existing Harvest XVI F28–F32](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) and canonical Drive originals Fortuna 2011, Zanetti 2012 and Schäfer 2022: modularity does not imply a universal repair-cost rank and physical-grid Braess does not transfer by analogy. Always use original canonical Drive papers first.
+- **P11 chronology warning:** ORIGIN-R1-P11 TrueForge WIDE vs SEGREGATED in archive 10.md is not LAW-R1-P11 Pi(X,G,E) policy sufficiency in archive 12.md; both remain distinct historical evidence.
 
 ### P33 interpretive mathematics track — recognized research contribution
 
