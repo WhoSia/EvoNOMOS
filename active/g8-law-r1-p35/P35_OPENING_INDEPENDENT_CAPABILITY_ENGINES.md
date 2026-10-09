@@ -19,3 +19,5 @@ The original ORIGIN-P12 still has no adjudicated comparative result. Avoid polic
 **U source structure:** unified private `map[Handle]Record{stored,logicalLength}` with Save/Load/Stat/List and Delete over one authoritative representation.
 
 **C source structure:** a distinct writable payload store, independent read decoder, metadata index and removal coordinator, connected only by explicit typed APIs/consistency updates. Merely adding delegates to the same shared map fails P35's independence criterion.
+
+**P35 contrast:** compare a KeyFile-only Save bound (P34 null control) with an encoded-storage change that must preserve Save, Load, Stat and List together. Source change supports must be measured from real Go diffs under matching public tests. An existing source-aware static dependency baseline must be allowed to predict the changed sites; no novelty claim from a known factorization argument alone.
