@@ -1,4 +1,4 @@
-// EvoNOMOS P35-P5. Go-native, deterministic source/history change prediction.
+// EvoNOMOS P35-P6. Go-native operator-conditioned historical source prediction.
 // Training must never read heldout co-change labels; evaluated runs require
 // a byte-exact human-authored frozen model and reconstruct it before scoring.
 package main
@@ -176,7 +176,7 @@ func fingerprints(src string)(map[string]string,map[string]string,error){
    name:=fn.Name.Name
    if fn.Recv!=nil{
     var b bytes.Buffer
-    if err=format.Node(&b,fs,fn.Recv);err!=nil{return nil,nil,err}
+    if err=format.Node(&b,fs,fn.Recv.List[0].Type);err!=nil{return nil,nil,err}
     name=b.String()+"."+name
    }
    var b bytes.Buffer

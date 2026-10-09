@@ -16,3 +16,10 @@ func TestNoEditAndAbstentionGate(t *testing.T){
 func TestB2FrozenMapping(t *testing.T){
  for _,name:=range triad{if b2[name]==""||name==b2[name]{t.Fatal(name)}}
 }
+
+func TestReceiverTypeASTFormatting(t *testing.T) {
+ before:="package cobra\ntype X struct{}\nfunc (x *X) Run() int {return 1}"
+ after:="package cobra\ntype X struct{}\nfunc (x *X) Run() int {return 2}"
+ got,e:=classifyText(before,after)
+ if e!=nil||got!="FUNCTION_ONLY"{t.Fatalf("got %q error=%v",got,e)}
+}
