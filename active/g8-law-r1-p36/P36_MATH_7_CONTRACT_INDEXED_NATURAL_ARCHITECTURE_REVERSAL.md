@@ -38,3 +38,10 @@ R_{Q_s→Q_c}^{Γ}(A) = { B : A --(allowed edit Γ)--> B
 The Γ restrictions must be realistic: API/ABI compatibility, external clients whose registration order cannot be rewritten, code ownership, runtime availability, and delivery budget. To prevent a straw classical rival, compare actual source patches with classical code-data abstraction, dispatch-table design, trie ordering, refactoring and program-repair economics. If no prospectively separable strong-rival prediction emerges, retain HOLD.
 
 **MATH-7 verdict pre-native:** `CONTRACT_INDEX_NECESSITY_CLASSICAL__NATURAL_CORE_SOURCE_POLICY_REVERSAL_PREDICTED__O9_NATIVE_PENDING__DIP49_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+
+## Actual natural core-source readback, prospectively predicted
+
+[Original Chi + Gorilla unchanged native core CI #37969103183](https://github.com/WhoSia/EvoNOMOS/actions/runs/37969103183) completed **SUCCESS 2/2**: Q0 disjoint path PASS in both. On generic-first registration of `/members/{id}` then `/members/me`, actual source outputs on GET `/members/me` are Chi STATIC and Gorilla PARAM. Under new *specificity-first* client policy D19, Chi passes while Gorilla fails; under mutually exclusive *chronology-first* D20, Gorilla passes while Chi fails. The original source logs with exact test case/ZIP SHA are at [O9 preseal's post-result section](P36_O9_NATURAL_CORE_ROUTER_POLICY_REVERSAL_PRESEAL.md). No source repairs were applied to produce either behavioral result, and no special project-written routing wrapper was used. This is a genuine **conditional functional feasibility reversal** across two naturally evolved core routers.
+
+**Policy index is mandatory**: a statement `A > B` detached from `Q` is ill-typed here. Under `Q19`, `Feasible(Chi)=true, Feasible(Gorilla)=false`; under `Q20`, `Feasible(Chi)=false, Feasible(Gorilla)=true`. That does not establish opposite **runtime cost** signs at equal Q, because one arm fails the compared contract in each pairing. Classical radix-tree priority and ordered route evaluation completely predict the outcome; `DIP49_NEW_LAW_HOLD`.
