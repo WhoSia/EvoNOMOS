@@ -12,3 +12,11 @@ direct:"func (d *direct) Save(c context.Context,h restic.Handle,r restic.RewindR
 composed:"func (x *writeUnit) save(c context.Context,h restic.Handle,r restic.RewindReader)error{return x.state.save(c,h,r)}"
 };
 const hash=s=>crypto.createHash("sha256").update(s).digest("hex");
+function patch(s,arm){
+ const old=anchors[arm];
+ if(s.split(old).length!==2)throw Error("immutable P4 method anchor drift");
+ const check='if h.Type==restic.KeyFile && r.Length()>8 {return errors.New("P34_KEYFILE_LIMIT_EXCEEDED")}';
+ const replacement=old.replace("error{return","error{\n "+check+"\n return").replace(/\)}$/,")\n}");
+ return s.replace(old,replacement);
+}
+const measurements={schema:"P34_P5_PAIRED_SOURCE_PATCHES_V1",baseline_sha256:hash(original),variants:{}};
