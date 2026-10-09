@@ -136,7 +136,7 @@ func(p *P35EpochRouter) EnableRoute(header,match string)bool {
     // after restoring a route. No permanent per-registration identity.
     // The frozen D17 cyclic sequence tests whether this rule is sufficient.
     for pendingKey,pending:=range p.disabled {
-        if !strings.HasPrefix(pendingKey,header+"\\x00") {continue}
+        if !strings.HasPrefix(pendingKey,header+"\x00") {continue}
         for k:=range pending {
             if pending[k].index>=i {pending[k].index++}
         }
