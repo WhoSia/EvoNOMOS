@@ -1,0 +1,82 @@
+name: G8 P36 O9 Original Core Router Structural Policy Reversal
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o9/**'
+      - '.github/workflows/g8-p36-o9-natural-core-policy.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-core-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        upstream: [CHI, GORILLA]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Pin naturally evolved original core structure
+        shell: bash
+        run: |
+          if [ "${{ matrix.upstream }}" = CHI ]; then
+            echo SOURCE_REPO=go-chi/chi >>"$GITHUB_ENV"
+            echo SOURCE_SHA=67be7d9cafdaeb4e04e887ff78d09e030ee43b00 >>"$GITHUB_ENV"
+          else
+            echo SOURCE_REPO=gorilla/mux >>"$GITHUB_ENV"
+            echo SOURCE_SHA=b4617d0b9670ad14039b2739167fd35a60f557c5 >>"$GITHUB_ENV"
+          fi
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ env.SOURCE_SHA }}
+          path: original
+          fetch-depth: 1
+      - name: Old native correctness and independently frozen Q0, D19, D20
+        shell: bash
+        run: |
+          set -euo pipefail
+          arm=$(echo '${{ matrix.upstream }}' | tr '[:upper:]' '[:lower:]')
+          mkdir -p out/p36-o9/$arm
+          test "$(git -C original rev-parse HEAD)" = "$SOURCE_SHA"
+          (cd original && go vet ./...) >out/p36-o9/$arm/vet.log 2>&1 || { cat out/p36-o9/$arm/vet.log; exit 11; }
+          (cd original && go test -race -count=1 ./...) >out/p36-o9/$arm/race.log 2>&1 || { cat out/p36-o9/$arm/race.log; exit 12; }
+          (cd original && go test -count=1 ./...) >out/p36-o9/$arm/old-full.log 2>&1 || { cat out/p36-o9/$arm/old-full.log; exit 13; }
+          if [ "$arm" = chi ]; then
+            test_file=tools/p36-o9/tests/chi/p36_o9_original_core_priority_test.go
+          else
+            test_file=tools/p36-o9/tests/mux/p36_o9_original_core_priority_test.go
+          fi
+          cp "$test_file" original/
+          (cd original && go test -v -count=1 -run '^TestP36O9BaselineDisjointPath$' .) >out/p36-o9/$arm/q0.log 2>&1 || { cat out/p36-o9/$arm/q0.log; exit 14; }
+          set +e
+          (cd original && go test -v -count=1 -run '^TestP36O9D19SpecificityRegardlessOfOrder$' .) >out/p36-o9/$arm/d19.log 2>&1
+          d19_rc=$?
+          (cd original && go test -v -count=1 -run '^TestP36O9D20ChronologyRegardlessOfSpecificity$' .) >out/p36-o9/$arm/d20.log 2>&1
+          d20_rc=$?
+          set -e
+          if [ "$arm" = chi ]; then
+            test "$d19_rc" -eq 0 || { cat out/p36-o9/$arm/d19.log; exit 20; }
+            grep -q 'PASS: TestP36O9D19SpecificityRegardlessOfOrder' out/p36-o9/$arm/d19.log
+            test "$d20_rc" -ne 0 || { cat out/p36-o9/$arm/d20.log; echo UNEXPECTED_CHI_CHRONOLOGY_PASS; exit 21; }
+            grep -q 'P36_O9_D20_CHRONOLOGY_MISMATCH' out/p36-o9/$arm/d20.log || { cat out/p36-o9/$arm/d20.log; exit 22; }
+            echo P36_O9_ORIGINAL_CHI_Q0_D19_PASS_D20_EXPECTED_NEGATIVE >out/p36-o9/$arm/verdict.txt
+          else
+            test "$d19_rc" -ne 0 || { cat out/p36-o9/$arm/d19.log; echo UNEXPECTED_GORILLA_SPECIFICITY_PASS; exit 23; }
+            grep -q 'P36_O9_D19_SPECIFICITY_MISMATCH' out/p36-o9/$arm/d19.log || { cat out/p36-o9/$arm/d19.log; exit 24; }
+            test "$d20_rc" -eq 0 || { cat out/p36-o9/$arm/d20.log; exit 25; }
+            grep -q 'PASS: TestP36O9D20ChronologyRegardlessOfSpecificity' out/p36-o9/$arm/d20.log
+            echo P36_O9_ORIGINAL_GORILLA_Q0_D19_EXPECTED_NEGATIVE_D20_PASS >out/p36-o9/$arm/verdict.txt
+          fi
+          sha256sum "$test_file" >out/p36-o9/$arm/test-source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o9-${{ matrix.upstream }}-native-core-policy
+          path: out/p36-o9/
+          if-no-files-found: warn
+          retention-days: 30
