@@ -1,0 +1,53 @@
+name: G8 LAW-R1-P35 Native Restic Source and Change Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p1/**'
+      - '.github/workflows/g8-law-r1-p35-native-restic.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-law-r1-p35-native-restic
+  cancel-in-progress: false
+
+jobs:
+  native-restic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Read EvoNOMOS source (no repository-write token)
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+
+      - name: Read pinned upstream original Restic
+        uses: actions/checkout@v4
+        with:
+          repository: restic/restic
+          ref: 495982232cf1af184eac0a97871ef8161e8708ee
+          fetch-depth: 1
+          path: restic
+
+      - name: Compile, vet, race-test and check prior behavior in every source world
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash tools/p35-p1/run_pinned_restic.sh
+
+      - name: Preserve actual upstream logs, hash manifest and negative controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p35-pinned-restic-8worlds
+          path: out/p35-real-restic/
+          if-no-files-found: warn
+          retention-days: 30
