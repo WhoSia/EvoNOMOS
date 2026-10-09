@@ -1,0 +1,57 @@
+name: G8 LAW-R1-P35 P7 D8 Identical Future Go Demand
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/p35-p7/d8/**', '.github/workflows/g8-law-r1-p35-p7-d8-identical.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native-same-demand:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Confirm negative old arm, repair both source worlds, full original native Go regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/p35-p7-d8"
+          mkdir -p "$OUT"
+          go version | tee "$OUT/go-version.txt"
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p35-p7/tests/*.go chi/middleware/
+          for arm in live snapshot; do
+            cp "tools/p35-p7/arms/$arm/route_headers.go" chi/middleware/route_headers.go
+            set +e
+            (cd chi && go test -count=1 -run '^TestP35P7D8IdenticalNewDemand$' ./middleware) > "$OUT/$arm-D8-expected-negative.log" 2>&1
+            negative=$?
+            set -e
+            if [ "$negative" -eq 0 ]; then echo 'D8_UNEXPECTED_BASELINE_PASS'; exit 21; fi
+            grep -q 'P35P7_D8_SPECIFICITY_FAILURE' "$OUT/$arm-D8-expected-negative.log" || { cat "$OUT/$arm-D8-expected-negative.log"; exit 22; }
+            echo "P35P7_D8_ORIGINAL_ARM_EXPECTED_FAIL_$arm"
+            cp "tools/p35-p7/d8/$arm/route_headers.go" chi/middleware/route_headers.go
+            (cd chi && go vet ./middleware && go test -race -count=1 ./middleware) > "$OUT/$arm-race.log" 2>&1 || { cat "$OUT/$arm-race.log"; exit 23; }
+            (cd chi && go test -count=1 ./...) > "$OUT/$arm-all-original-go.log" 2>&1 || { cat "$OUT/$arm-all-original-go.log"; exit 24; }
+            (cd chi && go test -v -count=1 -run '^TestP35P7' ./middleware) > "$OUT/$arm-all-acceptance.log" 2>&1 || { cat "$OUT/$arm-all-acceptance.log"; exit 25; }
+            grep -q 'PASS: TestP35P7D8IdenticalNewDemand' "$OUT/$arm-all-acceptance.log"
+            if [ "$arm" = live ]; then grep -q 'P35P7_D_LIVE_PASS__D_FROZEN_FAIL' "$OUT/$arm-all-acceptance.log"; else grep -q 'P35P7_D_FROZEN_PASS__D_LIVE_FAIL' "$OUT/$arm-all-acceptance.log"; fi
+            diff -u "tools/p35-p7/arms/$arm/route_headers.go" "tools/p35-p7/d8/$arm/route_headers.go" > "$OUT/$arm-change.patch" || [ "$?" -eq 1 ]
+            sha256sum "chi/middleware/route_headers.go" > "$OUT/$arm-sha256.txt"
+            echo "P35P7_D8_$arm_SAME_DEMAND_NATIVE_PASS" | tee "$OUT/$arm.verdict"
+          done
+          find tools/p35-p7 -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/source-sha256.txt"
+          (cd "$OUT" && sha256sum ./*.log ./*.patch ./*.txt ./*.verdict > receipts-sha256.txt)
+          echo 'P35P7_D8_TWO_ORIGINAL_GO_STRUCTURES_IDENTICAL_NEW_DEMAND_PASS'
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p7-d8-two-native-chi-source-repairs
+          path: out/p35-p7-d8/
+          if-no-files-found: warn
+          retention-days: 30
