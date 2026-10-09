@@ -38,6 +38,8 @@ A richer owner/obligation model can predict correctly only because it sees varia
 
 ## IV. Existing original-source–linked E4 natural algorithms: bounded proof of concept
 
+**HOSTED CHECK READBACK (2026-10-10 KST):** [Read-only Math-K Actions #37994595999](https://github.com/WhoSia/EvoNOMOS/actions/runs/37994595999) SUCCESS on source checker head d3a7e3de8d3e3fded443142c8308905da56e9298. The exact original research E4 graph reuse, independent backward fixed-point evaluator, 16/16 agreement, 1/1/1/0 projection minima and no-separator assertions all passed; artifact 11646079023 has SHA-256 806daf65ee61fe9b2b5acaaa54b1831037c1835556687ff859b654402b54f359. This hosted proof of bounded checker execution does not turn it into original source edit completeness or external generalization.
+
 **No new original Go experiment is performed.** Reuse the already hosted, pinned-source E4 evidence and its **research-authored bounded** owner/capability graph (not a complete enumeration of permitted Go source patches):
 
 - [Gorilla CookieStore original](P37_E4_H_TWO_INDEPENDENT_ALGORITHMS_NATIVE_SOURCE_AND_REPAIR_GRAPH_VERDICT.md): client-stored, signed serialized value, source APIs invoke \`securecookie.DecodeMulti\`/\`EncodeMulti\`.
