@@ -1,16 +1,23 @@
 # Active lineage
 
-> **CURRENT OWNER — Generation VIII LAW-R1-P33 OPEN.** P33 Notion: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0. Scientific constitution: [P33](g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md). [P32 terminal ruling](g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md) is bounded METHOD PASS / scientific law HOLD; P31 and older receipts below are historical. No LAW-R2 or new universal predictive OO law authorized; P33's cited conditional SOLID theoretical reconstruction is admissible as conceptual scholarship. Actions remain read-only with no bot-authored commits.
+> **CURRENT SCIENTIFIC BOUNDARY — Generation VIII LAW-R1-P33 CLOSED; P34 TITLE PROPOSED / NOT OPEN.** P33 Notion: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0. Scientific constitution: [P33](g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md). [P32 terminal ruling](g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md) is bounded METHOD PASS / scientific law HOLD; P31 and older receipts below are historical. No LAW-R2 or new universal predictive OO law authorized; P33's cited conditional SOLID theoretical reconstruction is admissible as conceptual scholarship. Actions remain read-only with no bot-authored commits.
 
-- active stage: **G8 LAW-R1-P33**
+- last completed stage: **G8 LAW-R1-P33**; successor **G8 LAW-R1-P34 PROPOSED ONLY**
 - formal name: **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
-- status: **OPEN — alternative source-admissible repair families and matched strong-rival prospective forecast pending**
+- status: **CLOSED — cited conditional SOLID mathematical integration PASS; independent source-predictive generative law still HOLD. P34 not open.**
 - scientific direction: **From source declaration geometry to source-grounded, nonunique admissible implementation choices and context-indexed future change costs**. Standard antichain facts are not novel; mere CSDG/co-change rediscovery cannot pass.
-- P33 current Run: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0 — Running
+- P33 terminal Run: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0 — Complete
 - P32 predecessor: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0 — Complete / Method PASS / Law HOLD
 - P31 predecessor: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — historical scientific HOLD
 - RAVEL 10498–10499 collision is historical and unresolved; no invented unbroken numbering.
 - **LAW-R2 / new universal generative design law: NOT_AUTHORIZED. A properly scoped conceptual SOLID manuscript is allowed.**
+
+## P33 terminal theoretical court and P34 title proposal
+
+- **P33 CLOSED**: [Terminal SOLID mathematical theory and P34 proposed title](g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md), with credited classical Liskov–Wing, Martin and de Alfaro–Henzinger; ISP/OCP quotients, trace-refined LSP, compile/authority DIP and context-dependent SRP, plus independent counterexamples. Results are theoretical synthesis rather than a newly discovered universal software law.
+- Latest [read-only hosted P33 CI 37884542193](https://github.com/WhoSia/EvoNOMOS/actions/runs/37884542193) **SUCCESS**, artifact `11596106052`, sha256 `4f7e051666ceef63705aa3de364d297785deb88b61d17fff321b403e2b83ec6e`. Final contract partial-order checker covers 16 contracts and 4096 triples, preserves original source replay and earlier tests.
+- **Five newly obtained primary PDFs verified in Drive canonical 10_PAPERS**; their prior NOT FOUND status is historical. [Paper custody in P33 terminal](g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md). GLOBAL original Drive-first literature disclosure policy is in Research OS Runtime Bootstrap and CURRENT Method Shelf for **all Labs**.
+- **P34 proposed formal name:** *Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change*. The stage has **not** been opened or given execution rights; maintain clean generation boundary.
 
 ## P33 — Theoretical re-interpretation track (2026-10-09)
 
