@@ -1,0 +1,31 @@
+name: G8 P37 Math-A Finite Repair Quotient Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-a/**'
+      - '.github/workflows/g8-p37-math-a.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mathematical-countermodels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enumerate all finite three-node repair graphs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-math-a/finite_repair_quotient.py | tee math-a.log
+          grep -q 'P37_MATH_A_FINITE_CLASSICAL_PASS cases=4096' math-a.log
+          grep -q 'No new-law inference' math-a.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-a-finite-quotient-receipt
+          path: math-a.log
+          retention-days: 30
