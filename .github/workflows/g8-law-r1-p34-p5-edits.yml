@@ -48,3 +48,38 @@ jobs:
           if [ "$code" -eq 0 ]; then echo "Baseline unexpectedly meets new demand"; exit 1; fi
           grep -q 'new requirement violated' ../out/baseline-required-failure.log
           echo "P34_P5_ORIGINAL_BASELINE_FAILS_NEW_DEMAND=PASS"
+      - name: Independently compile and test both changed source worlds
+        run: |
+          set -euo pipefail
+          for arm in direct composed; do
+            echo "P34-P5 treatment=$arm"
+            ( cd restic && P34_ARM="$arm" go test -count=1 -v "./internal/backend/p34p5$arm" ) | tee "out/$arm-go-test.log"
+            grep -q 'P34_P5_NEW_MAINTENANCE_CONTRACT=PASS' "out/$arm-go-test.log"
+            grep -q 'P34_P4_RESTIC_PAIR_PASS' "out/$arm-go-test.log"
+            grep -q 'P34_P4B_CLIENT_CONTRACT_WIDENING=PASS' "out/$arm-go-test.log"
+          done
+
+      - name: Verify actual edit geometry and preserve original P12
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync('out/p34-p5-source-diffs.json'));
+          const c=j.variants;
+          for(const arm of ['direct','composed']){
+            if(c[arm].file_count!==1 || c[arm].method_count!==1)process.exit(1);
+            if(c[arm].added_lines!==4 || c[arm].removed_lines!==1)process.exit(1);
+            if(c[arm].sha256===j.baseline_sha256)process.exit(1);
+          }
+          if(c.direct.sha256===c.composed.sha256)process.exit(1);
+          const old=JSON.parse(fs.readFileSync('lawkit/fixtures/p12-terminal-closure.json'));
+          if(old.terminal_status!=='TERMINAL_NONRESULT')process.exit(1);
+          console.log('P34_P5_PAIRED_SOURCE_DIFFS_AND_CORRECTNESS=PASS');
+          NODE
+          sha256sum tools/p34-p5/* out/*.patch out/*.log out/*.json > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p34-p5-actual-source-edit-comparison
+          path: out/
+          retention-days: 30
