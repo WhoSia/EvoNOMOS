@@ -1,0 +1,161 @@
+{
+  "Original": "e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec",
+  "Cutoff": "2021-01-01T00:00:00Z",
+  "End": "2024-06-01T10:31:12Z",
+  "TrainingRevision": "a4ab3fa09e3d6c4ac3fb7deece97a910957305ab",
+  "TrainingEvents": 223,
+  "TrainingMulti": 20,
+  "Cohort": [
+    "command.go",
+    "args.go",
+    "cobra.go"
+  ],
+  "OperatorPrecedence": [
+    "TYPE_SHAPE",
+    "FUNCTION_ONLY",
+    "NO_DECL_CHANGE"
+  ],
+  "B1Threshold": 0.5,
+  "B1MinSamples": 5,
+  "Predictions": {
+    "args.go": {
+      "FUNCTION_ONLY": {
+        "B0": "NONE",
+        "B1Operator": "ABSTAIN",
+        "B1SeedOnly": "command.go",
+        "B2": "NONE",
+        "SeedTraining": 6,
+        "SeedMulti": 3,
+        "OperatorTraining": 3,
+        "OperatorMulti": 0,
+        "OperatorRate": 0,
+        "B1Rank": "cobra.go",
+        "B1RankPairCount": 0,
+        "StaticScore": 12
+      },
+      "NO_DECL_CHANGE": {
+        "B0": "NONE",
+        "B1Operator": "ABSTAIN",
+        "B1SeedOnly": "command.go",
+        "B2": "NONE",
+        "SeedTraining": 6,
+        "SeedMulti": 3,
+        "OperatorTraining": 2,
+        "OperatorMulti": 2,
+        "OperatorRate": 1,
+        "B1Rank": "command.go",
+        "B1RankPairCount": 2,
+        "StaticScore": 12
+      },
+      "TYPE_SHAPE": {
+        "B0": "command.go",
+        "B1Operator": "ABSTAIN",
+        "B1SeedOnly": "command.go",
+        "B2": "command.go",
+        "SeedTraining": 6,
+        "SeedMulti": 3,
+        "OperatorTraining": 1,
+        "OperatorMulti": 1,
+        "OperatorRate": 1,
+        "B1Rank": "command.go",
+        "B1RankPairCount": 1,
+        "StaticScore": 12
+      }
+    },
+    "cobra.go": {
+      "FUNCTION_ONLY": {
+        "B0": "NONE",
+        "B1Operator": "NONE",
+        "B1SeedOnly": "NONE",
+        "B2": "NONE",
+        "SeedTraining": 39,
+        "SeedMulti": 18,
+        "OperatorTraining": 20,
+        "OperatorMulti": 8,
+        "OperatorRate": 0.4,
+        "B1Rank": "command.go",
+        "B1RankPairCount": 8,
+        "StaticScore": 7
+      },
+      "NO_DECL_CHANGE": {
+        "B0": "NONE",
+        "B1Operator": "command.go",
+        "B1SeedOnly": "NONE",
+        "B2": "NONE",
+        "SeedTraining": 39,
+        "SeedMulti": 18,
+        "OperatorTraining": 13,
+        "OperatorMulti": 9,
+        "OperatorRate": 0.6923076923076923,
+        "B1Rank": "command.go",
+        "B1RankPairCount": 9,
+        "StaticScore": 7
+      },
+      "TYPE_SHAPE": {
+        "B0": "command.go",
+        "B1Operator": "NONE",
+        "B1SeedOnly": "NONE",
+        "B2": "command.go",
+        "SeedTraining": 39,
+        "SeedMulti": 18,
+        "OperatorTraining": 6,
+        "OperatorMulti": 1,
+        "OperatorRate": 0.16666666666666666,
+        "B1Rank": "command.go",
+        "B1RankPairCount": 1,
+        "StaticScore": 7
+      }
+    },
+    "command.go": {
+      "FUNCTION_ONLY": {
+        "B0": "NONE",
+        "B1Operator": "NONE",
+        "B1SeedOnly": "NONE",
+        "B2": "NONE",
+        "SeedTraining": 199,
+        "SeedMulti": 20,
+        "OperatorTraining": 132,
+        "OperatorMulti": 10,
+        "OperatorRate": 0.07575757575757576,
+        "B1Rank": "cobra.go",
+        "B1RankPairCount": 10,
+        "StaticScore": 12
+      },
+      "NO_DECL_CHANGE": {
+        "B0": "NONE",
+        "B1Operator": "NONE",
+        "B1SeedOnly": "NONE",
+        "B2": "NONE",
+        "SeedTraining": 199,
+        "SeedMulti": 20,
+        "OperatorTraining": 18,
+        "OperatorMulti": 5,
+        "OperatorRate": 0.2777777777777778,
+        "B1Rank": "cobra.go",
+        "B1RankPairCount": 4,
+        "StaticScore": 12
+      },
+      "TYPE_SHAPE": {
+        "B0": "args.go",
+        "B1Operator": "NONE",
+        "B1SeedOnly": "NONE",
+        "B2": "args.go",
+        "SeedTraining": 199,
+        "SeedMulti": 20,
+        "OperatorTraining": 49,
+        "OperatorMulti": 5,
+        "OperatorRate": 0.10204081632653061,
+        "B1Rank": "cobra.go",
+        "B1RankPairCount": 4,
+        "StaticScore": 12
+      }
+    }
+  },
+  "Limitations": [
+    "Real Git coedit is a proxy, not counterfactual necessity.",
+    "Completed seed patch available to all models. Future companion patches hidden until seal verification.",
+    "AST declaration changes do not prove public-contract change; three coarse operators.",
+    "B0 lexical static link and B2 qualitative owner mapping are not full CSDG/DRSpaces.",
+    "A commit may yield correlated multiple seed queries; no independence claim."
+  ]
+}
