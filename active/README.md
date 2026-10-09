@@ -1,6 +1,6 @@
 # Active lineage
 
-> **CURRENT OWNER — Generation VIII LAW-R1-P33 OPEN.** P33 Notion: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0. Scientific constitution: [P33](g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md). [P32 terminal ruling](g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md) is bounded METHOD PASS / scientific law HOLD; P31 and older receipts below are historical. No LAW-R2, SOLID derivation or new general OO law authorized. Actions remain read-only with no bot-authored commits.
+> **CURRENT OWNER — Generation VIII LAW-R1-P33 OPEN.** P33 Notion: https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0. Scientific constitution: [P33](g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md). [P32 terminal ruling](g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md) is bounded METHOD PASS / scientific law HOLD; P31 and older receipts below are historical. No LAW-R2 or new universal predictive OO law authorized; P33's cited conditional SOLID theoretical reconstruction is admissible as conceptual scholarship. Actions remain read-only with no bot-authored commits.
 
 - active stage: **G8 LAW-R1-P33**
 - formal name: **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
@@ -10,7 +10,7 @@
 - P32 predecessor: https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0 — Complete / Method PASS / Law HOLD
 - P31 predecessor: https://app.notion.com/p/3f3ef561cf9281bda59be5654f034ed7 — historical scientific HOLD
 - RAVEL 10498–10499 collision is historical and unresolved; no invented unbroken numbering.
-- **LAW-R2 / general design law / manuscript-level SOLID claim: NOT_AUTHORIZED.**
+- **LAW-R2 / new universal generative design law: NOT_AUTHORIZED. A properly scoped conceptual SOLID manuscript is allowed.**
 
 ## P33 — Theoretical re-interpretation track (2026-10-09)
 
@@ -20,6 +20,12 @@
 - **Interpretive theory PASS / full empirical predictive claim HOLD / LAW-R2 NOT_AUTHORIZED**. Current P33 Run unchanged; no stage inflation.
 
 - The same [conditional SOLID paper](g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) now derives a change-probability/interference-cost SRP decision threshold. The [latest hosted run 37882892847](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882892847) **SUCCESS** tests it alongside quotient factorization (artifact `11595337491`, SHA256 `9286223a63293b8f700157d27175c097e11a8c079f2196d46144f9374fb7aa9a`). Not a universal optimal-decomposition law.
+
+## P33 — Five-principle mathematical integration / LSP × DIP
+
+- [P33 Contract–Observation–Authority mathematical chapter](g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md): LSP is a **client-visible trace and input-precondition refinement gate** (history/invariants, separate progress); DIP is a **compile-time arrow plus client-policy contract-ownership and injected-binding** regime, not the runtime invocation direction. ISP/OCP require demand-sufficient observations; SRP is change-dependent cost. P18 Principle-as-Projection and ORIGIN-P11 WIDE vs SEGREGATED genealogy restored from real chat archive.
+- [Hosted read-only CI 37883377979](https://github.com/WhoSia/EvoNOMOS/actions/runs/37883377979) **SUCCESS**, artifact `11595032811`, sha256 `03d9ba0d338006071dc09c542ffbaf4a2e2f4a7bc815095e5c711f2b18651de9`. [JS checker](../tools/law-r1-p33-lsp-dip-contract-graph.mjs) tests 4096 finite trace subset triples plus LSP/DIP/ISP/OCP independence and liveness-caveat counterexamples.
+- This is a **legitimate rigorous integrative conceptual-theory result** grounded in Liskov–Wing/Martin/de Alfaro–Henzinger originals and cited earlier Drive work. It does not require a newly invented theorem; production-wide empirical optimality/new universal LAW-R2 remains unproven.
 
 ## P33 — Repair-family research opening
 
