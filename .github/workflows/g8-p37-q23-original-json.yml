@@ -1,0 +1,66 @@
+name: G8 P37 Q23 Original JSON Key Provenance and Congruence
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-q23/**'
+      - '.github/workflows/g8-p37-q23-original-json.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-q23:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        source: [GJSON, JSONPARSER]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Determine independent original pinned source
+        shell: bash
+        run: |
+          if [ '${{ matrix.source }}' = GJSON ]; then
+            echo 'REPO=tidwall/gjson' >>"$GITHUB_ENV"
+            echo 'PIN=690362d6edf4bcbde1e9f54d552d3814f1cd5bcb' >>"$GITHUB_ENV"
+            echo 'LOCAL=gjson' >>"$GITHUB_ENV"
+          else
+            echo 'REPO=buger/jsonparser' >>"$GITHUB_ENV"
+            echo 'PIN=36a686d11807c62cd5a30d41b294d66969ea25d8' >>"$GITHUB_ENV"
+            echo 'LOCAL=jsonparser' >>"$GITHUB_ENV"
+          fi
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.REPO }}
+          ref: ${{ env.PIN }}
+          path: original
+          fetch-depth: 1
+      - name: Validate unchanged original and frozen research source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-q23
+          test "$(git -C original rev-parse HEAD)" = "$PIN"
+          sha256sum "tools/p37-q23/tests/$LOCAL/p37_q23_test.go" "tools/p37-q23/arms/$LOCAL/p37_q23_source.go" >out/p37-q23/shas.txt
+          cp "tools/p37-q23/tests/$LOCAL/p37_q23_test.go" original/
+          cp "tools/p37-q23/arms/$LOCAL/p37_q23_source.go" original/
+          git -C original status --short >out/p37-q23/change-scope.txt
+          go version >out/p37-q23/go-version.txt
+      - name: Run identical Q23 contract and native Go race
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd original && go test -vet=off -race -count=1 -v -run '^TestP37Q23' .) >out/p37-q23/q23-race.log 2>&1 || { cat out/p37-q23/q23-race.log; exit 21; }
+          grep -q 'PASS: TestP37Q23SemanticKeyAndExactLexeme' out/p37-q23/q23-race.log
+          grep -q 'PASS: TestP37Q23ConcurrentReadOnly' out/p37-q23/q23-race.log
+          (cd original && go vet -unreachable=false -unsafeptr=false ./...) >out/p37-q23/scoped-vet.log 2>&1 || { cat out/p37-q23/scoped-vet.log; exit 22; }
+          echo 'P37_Q23_PINNED_ORIGINAL_GO_SAME_FUNCTIONAL_CONTRACT_PASS' >out/p37-q23/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-q23-${{ matrix.source }}-original-go
+          path: out/p37-q23
+          retention-days: 30
