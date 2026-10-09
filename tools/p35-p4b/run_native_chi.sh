@@ -17,22 +17,22 @@ for arm in independent shared; do
  rm -f "$UP/middleware/content_media_parse.go"
  cp tools/p35-p4/arms/"$arm"/*.go "$UP/middleware/"
  # D4 treatment must satisfy original D4 acceptance, and fail D5 at specified boundary.
- (cd "$UP" && go test -count=1 -run '^TestP35P4CanonicalContentPolicy$' ./middleware) > "$OUT/$arm-D4-precondition.log" 2>&1 || {cat "$OUT/$arm-D4-precondition.log";exit 20;}
+ (cd "$UP" && go test -count=1 -run '^TestP35P4CanonicalContentPolicy$' ./middleware) > "$OUT/$arm-D4-precondition.log" 2>&1 || { cat "$OUT/$arm-D4-precondition.log"; exit 20; }
  set +e
  (cd "$UP" && go test -count=1 -run '^TestP35P4BHeaderLengthBudget$' ./middleware) > "$OUT/$arm-D5-negative.log" 2>&1
  rc=$?
  set -e
- if [[ "$rc" == 0 ]];then echo "P35P4B_UNEXPECTED_BASELINE_PASS $arm";exit 21;fi
- grep -q 'P35P4B_LENGTH_BUDGET_FAILURE' "$OUT/$arm-D5-negative.log" || {cat "$OUT/$arm-D5-negative.log";exit 22;}
+ if [[ "$rc" == 0 ]]; then echo "P35P4B_UNEXPECTED_BASELINE_PASS $arm"; exit 21; fi
+ grep -q 'P35P4B_LENGTH_BUDGET_FAILURE' "$OUT/$arm-D5-negative.log" || { cat "$OUT/$arm-D5-negative.log"; exit 22; }
  echo "P35P4B_D4_ARM_EXPECTED_D5_FAIL=$arm"
  # No unsealed test modifications: same exact D4 + D5 frozen oracles.
  cp "$OUT/original/content_charset.go" "$UP/middleware/content_charset.go"
  cp "$OUT/original/content_type.go" "$UP/middleware/content_type.go"
  rm -f "$UP/middleware/content_media_parse.go"
  cp tools/p35-p4b/arms/"$arm"/*.go "$UP/middleware/"
- (cd "$UP" && go test -race -count=1 ./middleware) > "$OUT/$arm-race.log" 2>&1 || {cat "$OUT/$arm-race.log";exit 23;}
- (cd "$UP" && go test -count=1 ./...) > "$OUT/$arm-entire-repo.log" 2>&1 || {cat "$OUT/$arm-entire-repo.log";exit 24;}
- (cd "$UP" && go test -v -count=1 -run '^TestP35P4(CanonicalContentPolicy|BHeaderLengthBudget)$' ./middleware) > "$OUT/$arm-two-demands.log" 2>&1 || {cat "$OUT/$arm-two-demands.log";exit 25;}
+ (cd "$UP" && go test -race -count=1 ./middleware) > "$OUT/$arm-race.log" 2>&1 || { cat "$OUT/$arm-race.log"; exit 23; }
+ (cd "$UP" && go test -count=1 ./...) > "$OUT/$arm-entire-repo.log" 2>&1 || { cat "$OUT/$arm-entire-repo.log"; exit 24; }
+ (cd "$UP" && go test -v -count=1 -run '^TestP35P4(CanonicalContentPolicy|BHeaderLengthBudget)$' ./middleware) > "$OUT/$arm-two-demands.log" 2>&1 || { cat "$OUT/$arm-two-demands.log"; exit 25; }
  grep -q '^--- PASS: TestP35P4CanonicalContentPolicy' "$OUT/$arm-two-demands.log"
  grep -q '^--- PASS: TestP35P4BHeaderLengthBudget' "$OUT/$arm-two-demands.log"
  echo "P35P4B_NATIVE_CHI_D5_PASS=$arm" | tee "$OUT/$arm.verdict"
