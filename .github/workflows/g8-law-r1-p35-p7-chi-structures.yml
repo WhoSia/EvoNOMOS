@@ -46,7 +46,7 @@ jobs:
             (cd chi && go test -count=1 -run '^$' -bench '^BenchmarkP35P7' -benchtime=100ms -benchmem ./middleware) > "$OUT/$arm-bench.log" 2>&1 || { cat "$OUT/$arm-bench.log"; exit 24; }
             diff -u "$OUT/original-route_headers.go" "chi/middleware/route_headers.go" > "$OUT/$arm-source.patch" || [ "$?" -eq 1 ]
             sha256sum "chi/middleware/route_headers.go" > "$OUT/$arm-sha256.txt"
-            echo "P35P7_NATIVE_$arm_D0_AND_FULL_GO_AND_RACE_PASS" | tee "$OUT/$arm.verdict"
+            echo "P35P7_NATIVE_${arm}_D0_AND_FULL_GO_AND_RACE_PASS" | tee "$OUT/$arm.verdict"
           done
           find tools/p35-p7 -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/source-manifest.txt"
           (cd "$OUT" && sha256sum ./*.log ./*.patch ./*.txt ./*.verdict > receipt-sha256.txt)

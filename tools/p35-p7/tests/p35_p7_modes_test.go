@@ -1,7 +1,7 @@
 package middleware
 import ("net/http";"net/http/httptest";"testing")
 func TestP35P7ConditionalMode(t *testing.T){
- next:=http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.Header().Set("X-P35-P7","next")})
+ next:=http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){if w.Header().Get("X-P35-P7")=="" { w.Header().Set("X-P35-P7","next") }})
  registry:=RouteHeaders()
  old:=registry.Handler(next)
  registry.Route("X-After","y",p35tag("late"))

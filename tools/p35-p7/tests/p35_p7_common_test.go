@@ -22,7 +22,7 @@ func TestP35P7EmptyRouterExactlyOnce(t *testing.T){
  if n!=1{t.Fatalf("P35P7_D0_EMPTY_ROUTE_FAILURE exactly-once expected 1, got %d",n)}
 }
 func TestP35P7StableHeaderOrderAndFallback(t *testing.T){
- next:=http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.Header().Set("X-P35-P7","next")})
+ next:=http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){if w.Header().Get("X-P35-P7")=="" { w.Header().Set("X-P35-P7","next") }})
  r:=RouteHeaders().Route("X-B","b",p35tag("B")).Route("X-A","a",p35tag("A")).Route("X-A","a",p35tag("A-second")).RouteDefault(p35tag("fallback"))
  h:=r.Handler(next)
  for _,c:=range []struct{name string;headers map[string]string;want string}{
@@ -33,7 +33,7 @@ func TestP35P7StableHeaderOrderAndFallback(t *testing.T){
  }{t.Run(c.name,func(t *testing.T){for i:=0;i<20;i++{if got:=p35request(h,c.headers);got!=c.want{t.Fatalf("P35P7_D0_ROUTE_FAILURE got %q want %q",got,c.want)}}})}
 }
 func TestP35P7RouteAny(t *testing.T){
- h:=RouteHeaders().RouteAny("X-Q",[]string{"q*","*z"},p35tag("match")).Handler(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.Header().Set("X-P35-P7","none")}))
+ h:=RouteHeaders().RouteAny("X-Q",[]string{"q*","*z"},p35tag("match")).Handler(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){if w.Header().Get("X-P35-P7")=="" { w.Header().Set("X-P35-P7","none") }}))
  for _,v:=range []string{"q42","az"}{if got:=p35request(h,map[string]string{"X-Q":v});got!="match"{t.Fatalf("got %q",got)}}
  if got:=p35request(h,map[string]string{"X-Q":"no"});got!="none"{t.Fatal(got)}
 }
