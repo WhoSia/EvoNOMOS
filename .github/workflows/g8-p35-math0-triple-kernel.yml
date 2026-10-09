@@ -1,0 +1,88 @@
+name: G8 P35 MATH0 Lean Prolog Go Mathematical Discovery Mode
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-math0/**'
+      - '.github/workflows/g8-p35-math0-triple-kernel.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lean proof is explicit and contains no holes or introduced axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|axiom)([^A-Za-z]|$)' tools/p35-math0/lean/*.lean; then
+            echo 'P35_MATH0_PROOF_HOLE_FORBIDDEN'
+            exit 10
+          fi
+          echo 'P35_MATH0_NO_SORRY_ADMIT_AXIOM_PASS'
+      - name: Lean 4.34.1 Lake build with kernel independent checker
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p35-math0/lean
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Record Lean source and verified toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-math0-lean
+          cat tools/p35-math0/lean/lean-toolchain | tee out/p35-math0-lean/lean-toolchain.txt
+          sha256sum tools/p35-math0/lean/EvoNOMOSMath0.lean tools/p35-math0/lean/lakefile.toml > out/p35-math0-lean/lean-source-sha256.txt
+          echo 'P35_MATH0_LEAN_KERNEL_FOUNDATION_PASS' | tee out/p35-math0-lean/lean-verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-math0-lean-core-foundation
+          path: out/p35-math0-lean/
+          if-no-files-found: warn
+          retention-days: 30
+
+  prolog-go-countermodels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Install original SWI-Prolog inference runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends swi-prolog-nox
+          swipl --version
+      - name: Native Go and Prolog execute independently
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-math0-go-prolog
+          go version | tee out/p35-math0-go-prolog/go-version.txt
+          swipl --version | tee out/p35-math0-go-prolog/prolog-version.txt
+          (cd tools/p35-math0/go && go vet ./... && go test -race -count=1 -v ./...) > out/p35-math0-go-prolog/go-tests.log 2>&1 || { cat out/p35-math0-go-prolog/go-tests.log; exit 20; }
+          (cd tools/p35-math0/go && go run ./cmd/enumerate) > out/p35-math0-go-prolog/go-countermodels.json
+          jq -e 'length == 2 and all(.[]; .initial_agreement == true and .later_disagreement == true)' out/p35-math0-go-prolog/go-countermodels.json
+          swipl -q -g run_tests -t halt tools/p35-math0/prolog/countermodels.pl > out/p35-math0-go-prolog/prolog-tests.log 2>&1 || { cat out/p35-math0-go-prolog/prolog-tests.log; exit 21; }
+          echo 'P35_MATH0_PROLOG_AND_GO_TWO_STARTS_COUNTERMODEL_PASS' | tee out/p35-math0-go-prolog/verdict.txt
+          sha256sum tools/p35-math0/go/model.go tools/p35-math0/prolog/countermodels.pl out/p35-math0-go-prolog/go-countermodels.json > out/p35-math0-go-prolog/sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-math0-go-prolog-bounded-countermodels
+          path: out/p35-math0-go-prolog/
+          if-no-files-found: warn
+          retention-days: 30
