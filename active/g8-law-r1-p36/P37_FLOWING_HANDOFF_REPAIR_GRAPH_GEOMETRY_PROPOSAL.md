@@ -74,3 +74,12 @@ P36 remains **OPEN**, not completed by arbitrary naming. Complete O12 true non-r
 
 **Proposed exact status**:
 `P37_FORMAL_NAME_PROPOSED_ONLY__P36_ACTIVE_NONROUTER_ATTACK_OPEN__H_G_VS_BSTAR_PROSPECTIVE_QUANTITATIVE_SPLIT_DEFINED_BUT_UNTESTED__DIP49_IDENTIFICATION_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+
+## 2026-10-10 — Rigorous predictor-chronology and non-router positive readback
+
+[Nonrouter O12 original independent gjson/jsonparser Go Q22](P36_O12_JSON_ORIGINAL_Q22_NATIVE_VERDICT_AND_BASELINE_FAILURE_AUDIT.md) completed native [original full/qualified #37974374859](https://github.com/WhoSia/EvoNOMOS/actions/runs/37974374859) SUCCESS and independently isolated Q22 race [#37974852391](https://github.com/WhoSia/EvoNOMOS/actions/runs/37974852391) 2/2 SUCCESS. Source-aware classical information/provenance strongly predicted BOTH could provide same raw-number lexeme selection with additive API; gjson and jsonparser actual costs differ, but this does not distinguish H_G from B_*. Historical jsonparser full upstream PR286 test and vet warnings documented without weakening Q22.
+
+[Strong-rival scorer synthetic unit workflow #37974481371](https://github.com/WhoSia/EvoNOMOS/actions/runs/37974481371) SUCCESS. It enforces CSV content schema, distinct repo/episode IDs, strict holdout split flag, minimum 20 episodes/6 repos/3 domains, 2 repos per domain, strict probability bounds, per-repo equal weighting, seeded repo-cluster bootstrap and a fixed 0.05 nats gain requirement. However **a user-asserted `split=holdout` CSV row does not prove true chronological or repository independence**. Before any scientific P37 evaluation: independently commit `prediction_manifest.csv` with frozen per-episode B* and H_G forecasts, Git commit and SHA256; freeze the *episodes' existence, Q, Γ, source pins and holdout repo grouping before repair outcome collection*; only then reveal a separate provenance-checked true outcome file and join with predictions by typed IDs. The present scorer is a deterministic final statistical evaluator, **not** a leakage-proof capture mechanism. Synthetic PASS never means scientific predictive separation. Furthermore even genuine finite predictive lift is not proof that classical theory logically cannot derive the feature.
+
+P36 remains OPEN and P37 remains a formal name PROPOSAL. `DIP49_NEW_LAW_IDENTIFICATION_HOLD`.
