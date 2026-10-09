@@ -70,9 +70,9 @@ theorem one_valid_patch_does_not_force_every_patch :
     May demoRepair 0 (fun b => b = 1) ∧
       ¬ Must demoRepair 0 (fun b => b = 1) := by
   constructor
-  · exact ⟨1, by decide, rfl⟩
+  · exact ⟨1, by simp [demoRepair, addA, addB], rfl⟩
   · intro all
-    have other : demoRepair 0 2 := by decide
+    have other : demoRepair 0 2 := by simp [demoRepair, addA, addB]
     have impos : (2 : Fin 3) = 1 := all.2 2 other
     cases impos
 
@@ -85,7 +85,7 @@ def addB (x y : Fin 5) : Prop :=
   (x = 0 ∧ y = 2) ∨ (x = 1 ∧ y = 3)
 
 theorem ab_can_reach_three : TwoStep addA addB 0 3 := by
-  exact ⟨1, by decide, by decide⟩
+  exact ⟨1, by simp [demoRepair, addA, addB], by simp [demoRepair, addA, addB]⟩
 
 theorem ba_cannot_reach_three : ¬ TwoStep addB addA 0 3 := by
   intro h
@@ -97,11 +97,11 @@ theorem ba_cannot_reach_three : ¬ TwoStep addB addA 0 3 := by
     | inl yes => exact yes.2
     | inr no => cases no.1
   subst mid
-  have impossible : ¬ addA 2 3 := by decide
+  have impossible : ¬ addA 2 3 := by simp [demoRepair, addA, addB]
   exact impossible ha
 
 theorem ba_can_reach_four : TwoStep addB addA 0 4 := by
-  exact ⟨2, by decide, by decide⟩
+  exact ⟨2, by simp [demoRepair, addA, addB], by simp [demoRepair, addA, addB]⟩
 
 theorem ab_cannot_reach_four : ¬ TwoStep addA addB 0 4 := by
   intro h
@@ -113,7 +113,7 @@ theorem ab_cannot_reach_four : ¬ TwoStep addA addB 0 4 := by
     | inl yes => exact yes.2
     | inr no => cases no.1
   subst mid
-  have impossible : ¬ addB 1 4 := by decide
+  have impossible : ¬ addB 1 4 := by simp [demoRepair, addA, addB]
   exact impossible hb
 
 end EvoNOMOS.Math2
