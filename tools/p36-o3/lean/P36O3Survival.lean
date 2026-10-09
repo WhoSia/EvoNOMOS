@@ -30,12 +30,9 @@ theorem erased_history_cannot_be_reconstructed_for_two_answers
       _ = required h₂ := second
   exact different_required_answers contradiction
 
--- The existence of more information in a lawful successor can avoid the
--- premise above; losing only public current output is not enough. A future
--- source modifier may legally consult an authorized event log if specified.
-theorem observational_identity_does_not_imply_hidden_identity
-    {H O : Type} (observe : H → O)
-    (a b : H) (heq : observe a = observe b) :
-    observe a = observe b := heq
+-- This lemma applies only if a source-specific observation map really
+-- erases the distinguishing history. Public response equivalence alone
+-- does not prove equal private Go snapshots, so actual source premises
+-- remain a separate empirical and semantic obligation.
 
 end EvoNOMOS.P36
