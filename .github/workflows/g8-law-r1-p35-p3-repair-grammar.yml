@@ -1,0 +1,95 @@
+name: G8 LAW-R1-P35 P3 Frozen-Architecture Repair and Rival Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p3/**'
+      - '.github/workflows/g8-law-r1-p35-p3-repair-grammar.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-law-r1-p35-p3-repair
+  cancel-in-progress: false
+
+jobs:
+  p35-p3-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: restic/restic
+          ref: 495982232cf1af184eac0a97871ef8161e8708ee
+          path: restic
+          fetch-depth: 1
+      - name: Test four-method fixed-decoder repair against original Restic
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p3 restic/internal/backend/p35p3
+          test "$(git -C restic rev-parse HEAD)" = "495982232cf1af184eac0a97871ef8161e8708ee"
+          go version | tee out/p35-p3/go-version.txt
+          cp tools/p35-p3/c-encoded-four-decoder/*.go restic/internal/backend/p35p3/
+          cp tools/p35-p1/tests/backend_test.go restic/internal/backend/p35p3/
+          cp tools/p35-p1/tests/demand_test.go restic/internal/backend/p35p3/
+          cp tools/p35-p1/tests/p34_public_oracle_test.go restic/internal/backend/p35p3/
+          cp tools/p35-p3/architecture_gate_test.go restic/internal/backend/p35p3/
+          cp tools/p35-p3/lifecycle_test.go restic/internal/backend/p35p3/
+          (cd restic && P35_ARM=c go vet ./internal/backend/p35p3 && P35_ARM=c go test -race -count=3 -v -run '^TestP35(PairedContract|DistinctPhysicalStores|P1VersionedStorage|P1P34BehavioralRegression|P3)' ./internal/backend/p35p3) | tee out/p35-p3/frozen-native.log
+          grep -q 'P35_P3_FROZEN_READ_DECODER=PASS' out/p35-p3/frozen-native.log
+          grep -q 'P35_P3_REMOVE_DELETE_REUSE_NO_STALE_VERSION=PASS' out/p35-p3/frozen-native.log
+          grep -q 'P35_P3_ATOMIC_SNAPSHOT_RACE=PASS' out/p35-p3/frozen-native.log
+          grep -q 'P34_PUBLIC_HISTORY_18_OF_18=PASS' out/p35-p3/frozen-native.log
+          echo 'P35_P3_AUTHENTIC_RESTIC_C4_FIXED_DECODER=PASS'
+      - name: Negative architecture mutant must fail fixed-decoder admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          target=restic/internal/backend/p35p3
+          rm -f "$target"/*.go
+          cp tools/p35-p1/worlds/c-encoded-compact/backend.go "$target/"
+          cp tools/p35-p1/worlds/c-encoded-compact/codec.go "$target/"
+          cp tools/p35-p3/architecture_gate_test.go "$target/"
+          set +e
+          (cd restic && go test -count=1 -run '^TestP35P3FrozenIndependentDecoder$' ./internal/backend/p35p3) > out/p35-p3/expected-architecture-drift.log 2>&1
+          ec=$?
+          set -e
+          if [ "$ec" -eq 0 ]; then echo 'ARCHITECTURE_GATE_FALSE_ACCEPT';exit 1;fi
+          grep -q 'P35_ARCHITECTURAL_DRIFT:' out/p35-p3/expected-architecture-drift.log
+          echo 'P35_P3_ARCHITECTURE_MUTANT_EXPECTED_REJECTION=PASS'
+      - name: Go AST normalized source edits and source-aware strong rivals
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o out/p35-p3/semantic_ast tools/p35-p3/semantic_ast.go
+          python3 tools/p35-p3/source_audit.py out/p35-p3/semantic_ast > out/p35-p3/repair-rival-audit.json
+          python3 - <<'PY'
+          import json
+          q=json.load(open('out/p35-p3/repair-rival-audit.json'))
+          assert q['source_worlds']['C4_frozen']['method_count']==4
+          assert q['source_worlds']['U2']['method_count']==2
+          assert q['source_worlds']['C5']['method_count']==5
+          assert q['rivals']['B2_conditional_information_hiding']['exact'] is True
+          assert 'NO FAIR TRAINING SAMPLE' in q['B1_history']
+          print('P35_P3_U2_VS_C4_FIXED__B2_EXPLANATORY_BASELINE_NOT_DEFEATED=PASS')
+          PY
+          find tools/p35-p3 -type f -print0 | sort -z | xargs -0 sha256sum > out/p35-p3/source-sha256.txt
+          (cd out/p35-p3 && sha256sum *.json *.log *.txt > receipt-sha256.txt)
+      - name: Upload read-only evidence, including expected negative
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p35-p3-frozen-decoder-rival-audit
+          path: out/p35-p3/
+          if-no-files-found: warn
+          retention-days: 30
