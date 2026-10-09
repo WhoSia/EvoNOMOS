@@ -1,0 +1,51 @@
+name: G8 LAW-R1-P35 P6 Postscore Cobra Go AST Cochange Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p6/sourceaudit/**'
+      - '.github/workflows/g8-law-r1-p35-p6-cobra-postscore.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: spf13/cobra
+          ref: e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec
+          fetch-depth: 0
+          path: cobra
+      - name: Postscore Go AST contact and harmless documentation cochange
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p6-sourceaudit
+          go version | tee out/p35-p6-sourceaudit/go-version.txt
+          (cd tools/p35-p6 && go vet . && go test -count=1 . && go build -o ../../out/p35-p6-sourceaudit/audit ./sourceaudit)
+          ./out/p35-p6-sourceaudit/audit -repo=cobra -out=out/p35-p6-sourceaudit/source-ast.json | tee out/p35-p6-sourceaudit/audit-receipt.log
+          grep -q '9e6b58afc70c.*ast=\[\]' out/p35-p6-sourceaudit/audit-receipt.log
+          grep -q '6d978a911e7f.*ast=\[\]' out/p35-p6-sourceaudit/audit-receipt.log
+          grep -q 'bf11ab6321f2.*ast=\[\]' out/p35-p6-sourceaudit/audit-receipt.log
+          echo 'P35P6_ORIGINAL_COBRA_THREE_DOCUMENTATION_COHANGES_HAVE_NO_GO_AST_EDIT_PASS'
+          sha256sum out/p35-p6-sourceaudit/*.json out/p35-p6-sourceaudit/*.txt > out/p35-p6-sourceaudit/sha256.txt
+      - name: Retain original Go audit evidence without repository write
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p6-postscore-real-cobra-ast-audit
+          path: out/p35-p6-sourceaudit/
+          if-no-files-found: warn
+          retention-days: 30
