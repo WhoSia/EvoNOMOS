@@ -1,0 +1,35 @@
+name: G8 P37 Math-I Minimal Future Sufficiency and Context Noncommutation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-i/**'
+      - '.github/workflows/g8-p37-math-i.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-minimal-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check demand refinement and composition counterexample
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-math-i/minimal_future_quotients.py | tee math-i.log
+          grep -q 'P37_MATH_I_DEMAND_REFINEMENT_EXHAUSTIVE_PASS cases=4096' math-i.log
+          grep -q 'P37_MATH_I_COMPOSE_THEN_QUOTIENT_NOT_QUOTIENT_THEN_COMPOSE_PASS' math-i.log
+          sha256sum tools/p37-math-i/minimal_future_quotients.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-i-minimal-future-quotient
+          path: |
+            math-i.log
+            source-sha256.txt
+          retention-days: 30
