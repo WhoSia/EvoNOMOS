@@ -1,0 +1,107 @@
+name: G8 P35 O3 D11 Independent Original Go Positive Repairs
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o3/arms/**'
+      - '.github/workflows/g8-p35-o3-d11-native-positive.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  chi-four-repairs:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [live-csv, live-scanner, snapshot-csv, snapshot-scanner]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Negative control and source-positive Go tests
+        shell: bash
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/p35-o3-d11-chi-${VARIANT}"
+          mkdir -p "$OUT"
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          go version | tee "$OUT/go-version.txt"
+          cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
+          cp tools/p35-o3/tests/chi/p35_o3_d11_test.go chi/middleware/
+          STRUCTURE="${VARIANT%-*}"
+          cp "tools/p35-math2/arms/${STRUCTURE}/helper/both/route_headers.go" chi/middleware/route_headers.go
+          set +e
+          (cd chi && go test -count=1 -run '^TestP35O3D11' ./middleware) > "$OUT/old-expected-negative.log" 2>&1
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then echo 'UNEXPECTED_OLD_D11_PASS'; exit 10; fi
+          grep -q 'P35_O3_D11_CONTRACT_FAILURE' "$OUT/old-expected-negative.log" || { cat "$OUT/old-expected-negative.log"; exit 11; }
+          cp "tools/p35-o3/arms/chi/${VARIANT}/route_headers.go" chi/middleware/route_headers.go
+          (cd chi && go vet ./middleware && go test -race -count=1 ./middleware) > "$OUT/middleware-race.log" 2>&1 || { cat "$OUT/middleware-race.log"; exit 20; }
+          (cd chi && go test -count=1 ./...) > "$OUT/full-original-go.log" 2>&1 || { cat "$OUT/full-original-go.log"; exit 21; }
+          (cd chi && go test -v -count=1 -run '^TestP35' ./middleware) > "$OUT/contracts.log" 2>&1 || { cat "$OUT/contracts.log"; exit 22; }
+          grep -q 'PASS: TestP35O3D11QuotedResearchHeader' "$OUT/contracts.log"
+          if [ "$STRUCTURE" = live ]; then grep -q 'P35P7_D_LIVE_PASS__D_FROZEN_FAIL' "$OUT/contracts.log"; else grep -q 'P35P7_D_FROZEN_PASS__D_LIVE_FAIL' "$OUT/contracts.log"; fi
+          sha256sum chi/middleware/route_headers.go tools/p35-o3/tests/chi/p35_o3_d11_test.go > "$OUT/source-and-oracle-sha256.txt"
+          echo "P35_O3_D11_CHI_${VARIANT}_FULL_NATIVE_GO_RACE_PASS" | tee "$OUT/verdict.txt"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o3-chi-${{ matrix.variant }}-native
+          path: out/p35-o3-d11-chi-*/
+          if-no-files-found: warn
+          retention-days: 30
+  gorilla-original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: gorilla
+          fetch-depth: 1
+      - name: Original Gorilla Headers and HeadersRegexp native Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/p35-o3-d11-gorilla"
+          mkdir -p "$OUT"
+          test "$(git -C gorilla rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          go version | tee "$OUT/go-version.txt"
+          cp tools/p35-o3/tests/gorilla/p35_o3_d11_test.go gorilla/
+          set +e
+          (cd gorilla && go test -count=1 -run '^TestP35O3D11' ./...) > "$OUT/old-expected-negative.log" 2>&1
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then echo 'UNEXPECTED_GORILLA_OLD_PASS'; exit 30; fi
+          grep -q 'P35_O3_D11_CONTRACT_FAILURE' "$OUT/old-expected-negative.log" || { cat "$OUT/old-expected-negative.log"; exit 31; }
+          cp tools/p35-o3/arms/gorilla/csv/mux.go gorilla/mux.go
+          (cd gorilla && go vet ./...) > "$OUT/go-vet.log" 2>&1 || { cat "$OUT/go-vet.log"; exit 32; }
+          (cd gorilla && go test -race -count=1 ./...) > "$OUT/go-race.log" 2>&1 || { cat "$OUT/go-race.log"; exit 33; }
+          (cd gorilla && go test -count=1 ./...) > "$OUT/full-original-go.log" 2>&1 || { cat "$OUT/full-original-go.log"; exit 34; }
+          (cd gorilla && go test -v -count=1 -run '^TestP35O3D11' ./...) > "$OUT/contracts.log" 2>&1 || { cat "$OUT/contracts.log"; exit 35; }
+          grep -q 'PASS: TestP35O3D11GorillaHeadersAndRegex' "$OUT/contracts.log"
+          sha256sum gorilla/mux.go tools/p35-o3/tests/gorilla/p35_o3_d11_test.go > "$OUT/source-and-oracle-sha256.txt"
+          echo 'P35_O3_D11_GORILLA_HEADERS_REGEX_FULL_NATIVE_GO_RACE_PASS' | tee "$OUT/verdict.txt"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o3-gorilla-original-native
+          path: out/p35-o3-d11-gorilla/
+          if-no-files-found: warn
+          retention-days: 30
