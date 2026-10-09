@@ -33,3 +33,19 @@ Future true law discrimination requires predeclared stronger H* and B2 with genu
 ## Next gate
 
 After the actual source treatments and CI outcomes: bounded O6 closure (PASS/FAIL/HOLD as appropriate), selection of the next law-identification question, and only then **P36 formal name proposal** if the question shifts substantially. Do not start P36 or close P35 for administrative convenience.
+
+## Post-source, pre-hosted-CI mathematical critic: classical cost crossover (NOT a newly presealed experiment)
+
+The following was written after both source variants were authored but while all O6 native jobs remained QUEUED. It is a transparent theoretical calculation and **must not be counted as a preregistered, independent empirical forecast**.
+
+Let `b>0` denote amortized work to clone and publish a registry of the fixed size range, `m>=0` the incremental LAZY dirty-marker bookkeeping per completed update, and `h>=0` the incremental LAZY revision check per request. Equal common route-dispatch cost is suppressed. Under this **simplified constant-cost model**, for `U` updates, `R` requests and `C` consumed nonempty update bursts:
+```
+work(EAGER) = U*b + W_common
+work(LAZY)  = C*b + U*m + R*h + W_common
+EAGER - LAZY = (U-C)*b - U*m - R*h
+```
+Therefore LAZY is lower in modeled total work iff `(U-C)*b > U*m+R*h`. In alternating `(UR)^16`, `U=C=16`, so EAGER is weakly better in this model when `m` or `h` is positive. In burst `U^16 R^16`, `U-C=15` and LAZY is lower for sufficiently costly rebuilds `15b>16m+16h`. For a dimensionless example `b=100, m=h=1`, the EAGER-minus-LAZY modeled work contrast is +1468 in burst and -32 in alternating. **Those figures are not observed Go performance.** Registry growth violates the strictly constant `b` assumption, and shared runners, allocator effects and scheduling change actual measurement. Request tail latency and update latency cannot be inferred from the scalar inequality; the former can increase in LAZY even if total work decreases.
+
+This is a **classical lazy-cache/write-through threshold**, not a novel software-design law. If the native tests and source instrumentation succeed, O6 provides an implementation-grounded example of preference reversal under a change/request distribution. It still cannot separate a proposed new H* from B-CACHE or certify SOLID guidance.
+
+**Conditional P36 formal-title proposal (do not open yet):** *EvoNOMOS Generation VIII LAW-R1-P36 — Prospective Structural-Law Discrimination Across Real Software: Demand-Sequence Reversals, Repair-Option Survival & Cross-Repository Transport*. Move to P36 only if a new scientific question is prospectively fixed with genuinely competing strong-theory predictions and faithful independent Go world-contact. O5/O6 implementation completion alone is insufficient.
