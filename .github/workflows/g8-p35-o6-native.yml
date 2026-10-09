@@ -1,0 +1,54 @@
+name: G8 P35 O6 Native Chi Eager Lazy Competition
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-o6/**'
+      - '.github/workflows/g8-p35-o6-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  matched-native-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        arm: [EAGER, LAZY]
+    env:
+      P35_O6_ARM: ${{ matrix.arm }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Original Go functional, race, full-regression and cost measurements
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-o6/${{ matrix.arm }}
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git status --porcelain -- tools/p35-o6/tests/chi/p35_o6_eager_lazy_test.go)" = ""
+          cp tools/p35-o6/arms/${{ matrix.arm == 'EAGER' && 'eager' || 'lazy' }}/p35_epoch_router.go chi/middleware/p35_epoch_router.go
+          cp tools/p35-o6/tests/chi/p35_o6_eager_lazy_test.go chi/middleware/
+          (cd chi && go vet ./middleware) >out/p35-o6/${{ matrix.arm }}/vet.log 2>&1 || { cat out/p35-o6/${{ matrix.arm }}/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p35-o6/${{ matrix.arm }}/race.log 2>&1 || { cat out/p35-o6/${{ matrix.arm }}/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p35-o6/${{ matrix.arm }}/full-original.log 2>&1 || { cat out/p35-o6/${{ matrix.arm }}/full-original.log; exit 13; }
+          (cd chi && go test -v -count=1 -run '^TestP35O6' ./middleware) >out/p35-o6/${{ matrix.arm }}/contracts.log 2>&1 || { cat out/p35-o6/${{ matrix.arm }}/contracts.log; exit 14; }
+          grep -q 'PASS: TestP35O6ExactTraceCounts' out/p35-o6/${{ matrix.arm }}/contracts.log
+          (cd chi && go test -run '^$' -bench '^BenchmarkP35O6' -benchtime=200ms -count=3 ./middleware) >out/p35-o6/${{ matrix.arm }}/benchmark.log 2>&1 || { cat out/p35-o6/${{ matrix.arm }}/benchmark.log; exit 15; }
+          sha256sum chi/middleware/p35_epoch_router.go tools/p35-o6/tests/chi/p35_o6_eager_lazy_test.go >out/p35-o6/${{ matrix.arm }}/sha256.txt
+          echo P35_O6_${{ matrix.arm }}_ORIGINAL_GO_RACE_FULL_TRACE_PASS | tee out/p35-o6/${{ matrix.arm }}/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-o6-${{ matrix.arm }}-native-go
+          path: out/p35-o6/${{ matrix.arm }}/
+          if-no-files-found: warn
+          retention-days: 30
