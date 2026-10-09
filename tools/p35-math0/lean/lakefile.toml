@@ -1,0 +1,6 @@
+name = "EvoNOMOSMath0"
+version = "0.1.0"
+defaultTargets = ["EvoNOMOSMath0"]
+
+[[lean_lib]]
+name = "EvoNOMOSMath0"
