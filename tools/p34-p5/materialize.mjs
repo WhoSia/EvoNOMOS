@@ -20,3 +20,19 @@ function patch(s,arm){
  return s.replace(old,replacement);
 }
 const measurements={schema:"P34_P5_PAIRED_SOURCE_PATCHES_V1",baseline_sha256:hash(original),variants:{}};
+for(const arm of ["baseline","direct","composed"]){
+ const dir=path.join(root,"internal/backend","p34p5"+arm);
+ const src=arm==="baseline"?original:patch(original,arm);
+ fs.mkdirSync(dir,{recursive:true});
+ fs.writeFileSync(path.join(dir,"pair.go"),src);
+ fs.writeFileSync(path.join(dir,"pair_test.go"),tests);
+ fs.writeFileSync(path.join(dir,"keyfile_requirement_test.go"),newTests);
+ const touched=arm==="baseline"?0:1;
+ measurements.variants[arm]={file_count:touched,method_count:touched,
+  added_lines:touched*4,removed_lines:touched,
+  source_method:arm==="direct"?"direct.Save":arm==="composed"?"writeUnit.save":"none",
+  sha256:hash(src)};
+}
+fs.mkdirSync("out",{recursive:true});
+fs.writeFileSync("out/p34-p5-source-diffs.json",JSON.stringify(measurements,null,2)+"\n");
+console.log("P34_P5_GENERATED_TWO_DISTINCT_GO_SOURCE_WORLDS_AND_BASELINE");
