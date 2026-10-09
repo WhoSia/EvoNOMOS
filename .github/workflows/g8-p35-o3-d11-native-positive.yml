@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [live-csv, live-scanner, snapshot-csv, snapshot-scanner]
+        variant: [live-csv, live-scanner, snapshot-csv, snapshot-scanner, live-inline-csv, snapshot-inline-csv]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -39,8 +39,10 @@ jobs:
           go version | tee "$OUT/go-version.txt"
           cp tools/p35-p7/tests/*.go tools/p35-math2/tests/*.go chi/middleware/
           cp tools/p35-o3/tests/chi/p35_o3_d11_test.go chi/middleware/
-          STRUCTURE="${VARIANT%-*}"
-          cp "tools/p35-math2/arms/${STRUCTURE}/helper/both/route_headers.go" chi/middleware/route_headers.go
+          STRUCTURE="${VARIANT%%-*}"
+          STYLE=helper
+          if [[ "$VARIANT" == *"-inline-"* ]]; then STYLE=inline; fi
+          cp "tools/p35-math2/arms/${STRUCTURE}/${STYLE}/both/route_headers.go" chi/middleware/route_headers.go
           set +e
           (cd chi && go test -count=1 -run '^TestP35O3D11' ./middleware) > "$OUT/old-expected-negative.log" 2>&1
           rc=$?
