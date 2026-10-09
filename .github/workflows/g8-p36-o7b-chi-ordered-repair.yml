@@ -1,0 +1,48 @@
+name: G8 P36 O7B Original Chi Additive Order Repair and Cost
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o7/**'
+      - '.github/workflows/g8-p36-o7b-chi-ordered-repair.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-chi-opt-in:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          fetch-depth: 1
+      - name: Additive source, preserved upstream Go, new frozen D18 acceptance and cost
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o7b
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p36-o7/arms/chi/additive-ordered/p36_o7_ordered_headers.go chi/middleware/
+          cp tools/p36-o7/tests/chi/p36_o7_b_optin_ordered_test.go chi/middleware/
+          (cd chi && go vet ./...) >out/p36-o7b/vet.log 2>&1 || { cat out/p36-o7b/vet.log; exit 11; }
+          (cd chi && go test -race -count=1 ./middleware) >out/p36-o7b/race.log 2>&1 || { cat out/p36-o7b/race.log; exit 12; }
+          (cd chi && go test -count=1 ./...) >out/p36-o7b/full-original.log 2>&1 || { cat out/p36-o7b/full-original.log; exit 13; }
+          (cd chi && go test -v -count=1 -run '^TestP36O7B' ./middleware) >out/p36-o7b/new-contracts.log 2>&1 || { cat out/p36-o7b/new-contracts.log; exit 14; }
+          grep -q 'PASS: TestP36O7BOptInChronologicalHeaders' out/p36-o7b/new-contracts.log
+          grep -q 'PASS: TestP36O7BLegacyHeaderRouterUnmodified' out/p36-o7b/new-contracts.log
+          (cd chi && GOMAXPROCS=1 go test -run '^$' -bench '^BenchmarkP36O7B' -cpu=1 -benchtime=200ms -count=5 -benchmem ./middleware) >out/p36-o7b/bench.log 2>&1 || { cat out/p36-o7b/bench.log; exit 15; }
+          sha256sum tools/p36-o7/arms/chi/additive-ordered/p36_o7_ordered_headers.go tools/p36-o7/tests/chi/p36_o7_b_optin_ordered_test.go >out/p36-o7b/source-sha256.txt
+          echo P36_O7B_ADDITIVE_ORIGINAL_CHI_FULL_RACE_LEGACY_D18_PASS >out/p36-o7b/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o7b-original-chi-additive-ordered
+          path: out/p36-o7b/
+          if-no-files-found: warn
+          retention-days: 30
