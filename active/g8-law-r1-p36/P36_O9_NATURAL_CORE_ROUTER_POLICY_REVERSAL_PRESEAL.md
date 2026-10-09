@@ -35,3 +35,15 @@ Both Q19 and Q20 are tested against the exact same original source, same request
 **Key prediction**: each original evolved core routing representation wins **one** distinct requested semantic policy without a repair and fails the other in one registration order; neither is globally preferable. This improves on a unilateral Gorilla winner from O7's particular D18 demand without forcing artificial SOLID scoring.
 
 **At seal:** `P36_O9_ORIGINAL_CORE_ROUTERS_TWO_CONFLICTING_CLIENT_POLICIES_FROZEN__NATIVE_UNVERIFIED__DIP49_NEW_LAW_PAIR_HOLD`.
+
+
+## 2026-10-10 — Native original-source run completed, immutable prior seal preserved
+
+[Original core Chi/Gorilla two-job CI #37969103183](https://github.com/WhoSia/EvoNOMOS/actions/runs/37969103183) finished **SUCCESS 2/2**. Both original upstream pins ran `go vet ./...`, `go test -race -count=1 ./...`, `go test -count=1 ./...` and Q0 disjoint path PASS. The new D19/D20 independent functional acceptance predicates were tested individually without source edits.
+
+- **Actual original Chi core** `chi.NewRouter`: D19 SPECIFICITY PASS for both route registration orders; D20 CHRONOLOGY scientific expected-negative for generic-first, literal `P36_O9_D20_CHRONOLOGY_MISMATCH paramFirst=true trial=0 tag=STATIC code=200 want=PARAM`. Artifact id `11634424128`, ZIP SHA256 `d02c2a6578362e4b45d5887007c7a7c7a96cc32cc6b1271c1edf1e0472716b3f`.
+- **Actual original Gorilla core** `mux.NewRouter`: D19 SPECIFICITY expected-negative for generic-first, literal `P36_O9_D19_SPECIFICITY_MISMATCH paramFirst=true trial=0 tag=PARAM code=200 want=STATIC`; D20 CHRONOLOGY PASS for both orders. Artifact id `11635230474`, ZIP SHA256 `1e19a62baa162991bc2bf49d998fdc4c667957a43d56be943678bb7c2c843bf5`.
+
+All FOUR cells in the preregistered two-source × two-contract predicted result matrix agree with actual original source behavior. The workflow's **SUCCESS** encodes two expected scientific negatives, not universal D19 and D20 PASS. The original source feature behavior is not labeled an upstream bug. The clients demand incompatible outcomes in generic-first world and therefore **no universal architecture preference** follows. Unlike O2's research-authored EAGER/LAZY policies, the dispatch structures here are existing original *core* router designs.
+
+**Strong classical rival `B_classical_priority` fully predicts this matrix** from ordered radix node-type traversal vs route registration slice. Consequently `DIP49_DISTINCT_NEW_LAW_IDENTIFICATION_HOLD`. The real scientific gain is strong prospective **context-specific structure-choice evidence across two genuinely independent libraries**, not new theory beyond established route precedence semantics.
