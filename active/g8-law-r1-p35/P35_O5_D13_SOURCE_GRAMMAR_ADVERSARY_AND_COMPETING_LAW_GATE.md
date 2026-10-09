@@ -25,6 +25,21 @@ Build genuinely different **original Go** implementations of the SAME mutable ro
 - `C(w)`: number of maximal nonempty update bursts that are followed by a request before the next update burst.
 - EAGER predicts rebuild calls proportional to `U(w)` for the frozen exact implementation; LAZY predicts calls proportional to `C(w)`. At fixed counts of updates and requests, `UURR` and `URUR` give `U=2` for each but `C=1` and `C=2`, respectively, for LAZY. These are **conditional architecture-specific hypotheses**, not claims about all repairs. Their expected workload-order effect is already understood by classical caching, incremental computation and dependency invalidation. It is **not** a law-vs-classical disagreement.
 
+### Prospectively fixed structural workload signature (planning only, NOT native execution)
+
+To avoid reducing the next trial to method counts or arbitrary patch-count ranking, freeze TWO operationally distinct implementations **before** outcomes: `EAGER` compiles each completed registered update under a synchronizing publication operation; `LAZY` marks the registered state dirty under the same synchronization and compiles at most once on the next request after that nonempty update burst. Each request must see all previously completed updates. Both arms clone the exact same baseline code and pass the same complete dispatch oracle. Public `HeaderRouter map` exposes direct writes that cannot be intercepted; the concurrent-safety claim MUST be restricted to a newly declared synchronized registration API, not to arbitrary unsynchronized external map mutations. Otherwise mark `REALIZATION_HOLD`.
+
+Two deterministic test sequences, held at 16 successful route updates and 16 route-dispatch requests each, with the same initial 32-entry registry, are:
+
+| Query | Exact word | U | R | EAGER rebuilds | LAZY rebuilds |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Q-burst | `U^16 R^16` | 16 | 16 | 16 | 1 |
+| Q-interleaved | `(UR)^16` | 16 | 16 | 16 | 16 |
+
+`U` and `R` represent successful API-level operations, not background cache pollution or unverified scheduling. Count rebuilds **after the initial handler construction**. The predicted rebuild numbers are testable implementational mechanisms (falsified by different counts on exact sources), not a causal architecture law by themselves. The primary outcome vector additionally contains correct dispatch, registry revision visibility, race/linearizability checks, update latency, request latency and allocated bytes; never silently collapse it to one scalar score. Prior classical eager/lazy caching mechanisms predict these patterns; the prospective EvoNOMOS theory has **not yet supplied a conflicting explanation**.
+
+To claim repair-option survival, seal a syntactically and semantically explicit allowed repair grammar `Γ` and compare sets of *observed witnesses*; when arbitrary source rewrites are permitted, initial architecture labels alone cannot logically fix universal repair reachability. Preserve one-run `MAY` versus all-repairs `MUST`. Do not pretend selected arms enumerate `R_d^Γ(A)`.
+
 **Identification gate:** Before allowing the separate structural experiment to earn novel-law credit, freeze an actual strong B2/caching competitor and EvoNOMOS H* with *different predictions on one shared prospective query* `q=(c,w,Q)`, plus proof of DIP-50 semantic prefix/observation factorization. If the B2 and H* signatures coincide, report `MODEL_PAIR_NOT_SEPARATED` and do not claim novelty regardless of native CI outcomes. Runtime performance, update latency, reader tail latency, memory use and correct dispatch remain different outcome dimensions. No single SOLID score.
 
 ## Negative-aware final eligibility
