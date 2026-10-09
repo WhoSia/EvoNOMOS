@@ -47,6 +47,25 @@ Suppose the only permitted change on adding d is a new deterministic downstream 
 
 These readings are **jointly coherent but not all logically equivalent**: S depends on organizational/demand axis assignment, L needs trace/refinement, O/I use factorization, D additionally constrains dependency authority/ports. Treat that separation as intellectual clarity, not a failure of SOLID.
 
+## 3A. Conditional SRP economics: a small, cited model, not a universal commandment
+
+An organizational "reason to change" is not automatically a mathematical independence class. To illustrate *when* separating two responsibility axes can be justified, stipulate change events A and B with marginal probabilities p_A, p_B, and joint probability p_AB, one grouped owner's expected edit touch cost c_g, two separated owners' touch costs c_a,c_b, amortized fixed split cost k≥0, and a **hypothesized** within-module cross-reason interference surcharge λ≥0 paid only when exactly one axis changes.
+
+Then the modeled expected costs are
+
+    C_group = c_g (p_A + p_B - p_AB) + λ(p_A+p_B-2p_AB)
+    C_split = c_a p_A + c_b p_B + k.
+
+For q=p_A+p_B−2p_AB>0, the separated design wins in this *specific model* exactly when
+
+    λ > [c_a p_A+c_b p_B+k−c_g(p_A+p_B−p_AB)] / q.
+
+Proof: algebraic rearrangement of C_split<C_group. If q=0, the interference term cannot favor separation at all. This is a **conditional accounting identity** built from assumed costs, not a new optimization theorem and not an experimentally estimated general SRP rule. Its value is to show why "one responsibility per class" may or may not lower expected maintenance cost.
+
+Example: independent change probabilities p_A=p_B=.2, p_AB=.04; normalized edit touch costs all 1, k=.03. Then C_group=.36+.32λ and C_split=.43. Separation is favored iff λ>.21875; at λ=.1 grouping wins; at λ=.3 splitting wins. [Finite checker](../../tools/law-r1-p33-demand-quotient.mjs) asserts both cells.
+
+This connects Parnas information hiding, Sullivan et al. modularity real-options, and the exact-demand interface quotients into a single conditional research story: **SRP depends on change distribution and interference cost; ISP/OCP depend on observation sufficiency.** Neither one subsumes the other, nor does this scalar illustration replace P33's vector/Pareto continuation analysis.
+
 ## 4. Source-rooted bridge to P33
 
 Pinned Uptime Kuma certificate context uses an unescaped `[name][url]` message. Different (name,url) states can have identical encoded messages, so the decoder interface violates ker(o)⊆ker(g_name,url) for an exact-context demand. Existing template-message decoder cannot recover distinctions hidden by the encoding alone. The candidate caller-side repair adds a structured context channel, changing o; downstream string parser does not. This **illustrates** the O/I/D interpretation with a real code witness; the issue (#7639) was already known.
