@@ -22,7 +22,7 @@ Then for each \(s\in S\),
 \operatorname{May}_{\Gamma,I}(s,d)\quad\Longleftrightarrow\quad s\in\mu X.\Phi_d(X).
 \]
 
-**Proof (no finite-state assumption required):** The iterates \(X_0=\varnothing\), \(X_{n+1}=\Phi_d(X_n)\) contain exactly states with a safe path of length **at most** \(n\) to a \(G_d\) state. The base includes zero-length paths in \(I\cap G_d\); induction adds exactly one safe permitted predecessor. Since \(\Phi_d\) preserves arbitrary increasing unions here (existential predecessor), the union of finite iterates is a least fixed point. Owner labels, capabilities and temporal obligations can all be included in the state and edge typing. In finite graphs termination is trivial. An unknown or unbounded source edit grammar is **not** thereby computable: exact semantics and extraction are assumed, not magically inferred.
+**Proof (no finite-state assumption required):** The iterates \(X_0=\varnothing\), \(X_{n+1}=\Phi_d(X_n)\) have \(X_{n+1}\) equal to the states with a safe path of length **at most** \(n\) to a \(G_d\) state. The base includes zero-length paths in \(I\cap G_d\); induction adds exactly one safe permitted predecessor. Since \(\Phi_d\) preserves arbitrary increasing unions here (existential predecessor), the union of finite iterates is a least fixed point. Owner labels, capabilities and temporal obligations can all be included in the state and edge typing. In finite graphs termination is trivial. An unknown or unbounded source edit grammar is **not** thereby computable: exact semantics and extraction are assumed, not magically inferred.
 
 **Full-information non-separation corollary:** If the comparator \(B_*\) has the *same correct exact* \((S,\Gamma,I,G_d)\), and \(H\) is sound and complete for the same May question, then \(\sigma(H)=\sigma(B_*)\) on every admitted input. Therefore \(\sigma(H)\ne\sigma(B_*)\) entails a mismatch in information, semantic assumptions, approximation, or at least one prediction error; it is **not by itself** evidence of a new law. This is a definitional representation/fixed-point consequence, not an impossibility result about future mathematical innovation.
 
@@ -58,7 +58,7 @@ The finite executable court reuses [the already provenanced E4 research graph](.
 
 | Model | Information supplied | E4 16-case minimum possible errors |
 | --- | --- | ---: |
-| \(B_{\rm static}\) | Same fixed upstream source and current observation only; no contextual flags | 1 |
+| \(B_{\rm static}\) | Same fixed upstream source and current G readability only; no future contextual flags | 1 |
 | \(B_{\rm caps}\) | \(k_G,k_S\), but not owner B bridge authorization or duty expiry | 1 |
 | \(B_{\rm bridge}\) | \(k_G,k_S,b\), but not duty-expiry action | 1 |
 | \(B_*\) full classical | Exact state, labeled \(\Gamma\), \(I\), capabilities and expiry | **0** |
