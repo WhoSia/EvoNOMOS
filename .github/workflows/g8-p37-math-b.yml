@@ -1,0 +1,31 @@
+name: G8 P37 Math-B Contextual Congruence Negative Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-b/**'
+      - '.github/workflows/g8-p37-math-b.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classical-counterexamples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test context closure, repair transparency and forward simulation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-math-b/context_congruence_counterexamples.py | tee p37-math-b.log
+          grep -q 'P37_MATH_B_CLASSICAL_COUNTEREXAMPLES_PASS' p37-math-b.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-b-contextual-counterexamples
+          path: p37-math-b.log
+          retention-days: 30
