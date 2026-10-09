@@ -15,9 +15,17 @@ The new demands were **researcher-authored synthetic maintenance requests execut
 
 1. [**D4 PRESEAL commit 5d31ade**](https://github.com/WhoSia/EvoNOMOS/commit/5d31ade7711e382450e62083a4dc831a31e665fe): original SHA, original source, fixed HTTP acceptance tests (16 cases), R0 negative, R-IND and R-SHARED alternatives, B0+/B1/B2 predictions and stopping rule **before either source implementation**.
 2. [**D4 source-treatment commit 0045c07**](https://github.com/WhoSia/EvoNOMOS/commit/0045c078e8e09b1a2c108a912af19c7fc8b23a18), author and committer `WhoSia`; read-only original-source [Actions **#37899279543**](https://github.com/WhoSia/EvoNOMOS/actions/runs/37899279543) **SUCCESS**.
-3. [**D5 second-demand PRE-OUTCOME SEAL 880cdc6**](https://github.com/WhoSia/EvoNOMOS/commit/880cdc6660374d7b7e34f186f6c5e10d0aa93920) signed **before the first D4 hosted result was opened or interpreted**, holding 128-byte boundary tests, architecture-fixed incremental edit predictions, no posthoc outcome metric changes.
+3. [**D5 second-demand PRE-OUTCOME SEAL 880cdc6**](https://github.com/WhoSia/EvoNOMOS/commit/880cdc6660374d7b7e34f186f6c5e10d0aa93920) signed **before the assistant accessed D4 hosted results but 62 seconds after CI had completed; outcome-unavailable preregistration NOT MET**, holding 128-byte boundary tests, architecture-fixed incremental edit predictions, no posthoc outcome metric changes.
 4. [**D5 treatment commit fdf510f**](https://github.com/WhoSia/EvoNOMOS/commit/fdf510feb72887cc2bfdaa6b86290e1b4883778a). First D5 runner #37899871990 **FAIL** on Bash syntax **before** Go testing (non-scientific harness failure). Only the shell guard syntax was corrected in human `WhoSia` [commit 0104e1e](https://github.com/WhoSia/EvoNOMOS/commit/0104e1e9cafaef2133c1885561a60728868beeb0); frozen D4/D5 tests and Go source arms were not changed.
 5. Read-only original-source [Actions **#37899998083**](https://github.com/WhoSia/EvoNOMOS/actions/runs/37899998083) **SUCCESS**. No Actions-authored commit, no bot contributor and no repository-writing workflow permission.
+
+### Timestamp and information-leakage audit (mandatory limitation)
+
+The first original [D4 CI #37899279543](https://github.com/WhoSia/EvoNOMOS/actions/runs/37899279543) **completed at 2026-10-09T07:31:47Z**. The D5 [pre-implementation seal](https://github.com/WhoSia/EvoNOMOS/commit/880cdc6660374d7b7e34f186f6c5e10d0aa93920) was committed **at 07:32:49Z, 62 seconds AFTER D4 CI completion**. In this conversation the assistant had not yet queried or interpreted that run's result when it wrote and committed D5, but GitHub already made the outcome available. Therefore:
+
+- D5 requirements and the 2-site versus 1-site prediction are **genuinely sealed before D5 implementation and D5 testing/outcome**.
+- D5 was **not** sealed before the D4 result existed. Claims of a strictly **pre-D4-outcome** seal or independently blinded outcome selection are **NOT CERTIFIED**. Conversation chronology supports *analyst-unreviewed* selection, which is a weaker evidentiary tier than outcome-unavailable preregistration.
+- The actual Go native behavior result and D4→D5 incremental edit-direction change are unaffected; the **predictive evidence strength** of the second-demand choice is narrower. A subsequent fresh trial must register *all demand sequences before any arm-run is started* to restore the strictest prospective claim.
 
 ## 2. Demand specification and execution
 
@@ -48,7 +56,7 @@ All source arms, frozen public acceptance tests, native runners, AST symbol audi
 | D4 native acceptance/full Go/race | PASS | PASS |
 | D5 inherited D4 + new acceptance/full Go/race | PASS | PASS |
 
-**Empirical sign change:** R-IND has lower **D4 file edit footprint** (2 vs 3), while R-SHARED has lower **D5 incremental footprint** (1 vs 2). That direction change was prospectively frozen **before D4 outcomes were opened**. It does **not** prove total design dominance or a universal SRP/OCP/DIP law: adding a helper carries continuing costs, changed-file visits are not effort, and this is one researcher-selected demand sequence in one source repo.
+**Empirical sign change:** R-IND has lower **D4 file edit footprint** (2 vs 3), while R-SHARED has lower **D5 incremental footprint** (1 vs 2). That direction change was fixed **before D5 treatment and D5 CI outcomes**, and before this analyst reviewed D4 logs; however D4 completion preceded the D5 seal, so it is **not** a fully result-unavailable prospective choice. It does **not** prove total design dominance or a universal SRP/OCP/DIP law: adding a helper carries continuing costs, changed-file visits are not effort, and this is one researcher-selected demand sequence in one source repo.
 
 A transparent equal-cost thought model after `k` *further demands of the same kind* is `E_IND(k)=2+2k`, `E_SHARED(k)=3+k`. For `k=1`, totals tie at 4 file visits; `k>1` would favor shared if every further demand truly has the same scope and unit per-file cost. The future cases and nonuniform prices were **not tested**, and this elementary linear equation is not a novel pure-mathematical theorem. We cannot substitute it for observations.
 
