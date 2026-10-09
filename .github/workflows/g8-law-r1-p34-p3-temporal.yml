@@ -28,3 +28,33 @@ jobs:
           repository: restic/restic
           ref: 495982232cf1af184eac0a97871ef8161e8708ee
           path: restic
+      - name: Test the original Go handler's ordered HTTP trace
+        run: |
+          set -euo pipefail
+          mkdir -p out p34-go
+          cp historical/lawkit/oracles/provider-surface-v01/main.go p34-go/
+          cp historical/lawkit/oracles/provider-surface-v01/main_test.go p34-go/
+          cp historical/lawkit/oracles/provider-surface-v01/go.mod p34-go/
+          cp tools/p34-p3-temporal-oracle_test.go p34-go/p34_p3_temporal_test.go
+          cd p34-go
+          P34_OUT="$GITHUB_WORKSPACE/out/p34-wire.json" go test -v ./... | tee "$GITHUB_WORKSPACE/out/go-test.log"
+
+      - name: Audit Restic mandatory co-requirements against the unopened original experiment
+        run: |
+          set -euo pipefail
+          node tools/p34-p3-restic-core.mjs restic out/p34-restic.json
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const a=JSON.parse(fs.readFileSync('out/p34-wire.json'));
+          const b=JSON.parse(fs.readFileSync('out/p34-restic.json'));
+          if(a.http_steps!==10 || a.successful_ledger_events!==4 || a.negative_attempts_excluded_from_ledger!==6)process.exit(1);
+          if(b.P12_scientific_outcome!=='TERMINAL_NONRESULT'||b.P12_extra_capability_mismatch!==0||b.winner!==null)process.exit(1);
+          console.log('P34_P3_FROZEN_ORACLE_AND_RESTIC_COUNTERWORLD=PASS');
+          NODE
+          sha256sum tools/p34-p3-* out/*.json out/go-test.log > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p34-p3-wire-restic
+          path: out/
+          retention-days: 30
