@@ -26,12 +26,16 @@ jobs:
           grep -q 'P37_E2_NONRECTANGULAR_GLOBAL_INVARIANT_NO_LOCAL_FACTOR_PASS' owner-product.log
           grep -q 'P37_E2_NO_BRIDGE_SEQUENTIAL_OWNER_PATH_UNREACHABLE_PASS' owner-product.log
           grep -q 'P37_E2_DUAL_COMPAT_BRIDGE_THEN_EXPLICIT_EXPIRY_PATH_PASS' owner-product.log
-          sha256sum tools/p37-e2/owner_product_repair_graph.py >source-sha256.txt
+          python tools/p37-e2/check_rectangular_theorems.py | tee math-f.log
+          grep -q 'P37_MATH_F_RECTANGULAR_ALL_64_RELATIONS_PASS' math-f.log
+          grep -q 'P37_MATH_F_ASYNC_PRODUCT_MAY_FACTORING_PASS cases=16384' math-f.log
+          sha256sum tools/p37-e2/owner_product_repair_graph.py tools/p37-e2/check_rectangular_theorems.py >source-sha256.txt
       - if: always()
         uses: actions/upload-artifact@v4
         with:
           name: p37-e2-owner-product-invariant-court
           path: |
             owner-product.log
+            math-f.log
             source-sha256.txt
           retention-days: 30
