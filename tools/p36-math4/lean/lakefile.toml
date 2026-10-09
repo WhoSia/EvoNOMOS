@@ -1,0 +1,6 @@
+name = "P36Math4"
+version = "0.1.0"
+defaultTargets = ["P36Math4"]
+
+[[lean_lib]]
+name = "P36Math4"
