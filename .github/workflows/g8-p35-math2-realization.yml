@@ -1,0 +1,118 @@
+name: EvoNOMOS P35 MATH2 Lean Prolog Real Chi Repair Families
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/p35-math2/**','.github/workflows/g8-p35-math2-realization.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: No axioms or holes
+        run: |
+          if grep -nE '(^|[^[:alnum:]_])(sorry|admit|axiom)([^[:alnum:]_]|$)' tools/p35-math2/lean/*.lean; then exit 8; fi
+      - uses: leanprover/lean-action@v1
+        with: {lake-package-directory: tools/p35-math2/lean, build: 'true', test: 'false', lint: 'false', use-mathlib-cache: 'false', leanchecker: 'true'}
+      - name: Receipt
+        run: |
+          mkdir -p out/lean
+          sha256sum tools/p35-math2/lean/EvoNOMOSMath2.lean > out/lean/source.sha256
+          echo 'MATH2_LEAN_CHECKER_PASS' > out/lean/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: math2-lean-proof, path: out/lean/, if-no-files-found: warn}
+  prolog-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Prolog install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends swi-prolog-nox
+      - name: Finite countermodels
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/finite
+          (cd tools/p35-math2/go && go vet ./... && go test -race -count=1 ./...) > out/finite/go.log 2>&1 || { cat out/finite/go.log; exit 20; }
+          (cd tools/p35-math2/go && go run ./cmd/enumerate) > out/finite/model.json
+          jq -e '.may_helper == true and .must_helper == false and .paths_commute == false and .ab == ["three"] and .ba == ["four"]' out/finite/model.json
+          swipl -q -g run_tests -t halt tools/p35-math2/prolog/countermodels.pl > out/finite/prolog.log 2>&1 || { cat out/finite/prolog.log; exit 21; }
+          echo 'MATH2_GO_PROLOG_PASS' > out/finite/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: math2-go-prolog-countermodels, path: out/finite/, if-no-files-found: warn}
+  original-chi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Frozen original Go acceptance and actual repair alternatives
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/real"
+          mkdir -p "$OUT"
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp tools/p35-p7/tests/*.go chi/middleware/
+          cp tools/p35-math2/tests/*.go chi/middleware/
+          negative() {
+            local name="$1"; shift
+            set +e
+            (cd chi && go test -count=1 -run "$name" ./middleware) > "$OUT/negative.log" 2>&1
+            local status=$?
+            set -e
+            if [ "$status" -eq 0 ]; then echo "UNEXPECTED_NEGATIVE_PASS $name"; exit 31; fi
+            grep -q P35_MATH2_ORACLE_FAILURE "$OUT/negative.log" || { cat "$OUT/negative.log"; exit 32; }
+          }
+          positive() {
+            local name="$1"; shift
+            (cd chi && go test -count=1 -run "$name" ./middleware) > "$OUT/positive.log" 2>&1 || { cat "$OUT/positive.log"; exit 33; }
+          }
+          for arm in live snapshot; do
+            cp "tools/p35-p7/d8/$arm/route_headers.go" chi/middleware/route_headers.go
+            negative '^TestP35Math2D9RepeatedPhysicalHeaderFields$'
+            negative '^TestP35Math2D10CommaDelimitedTokens$'
+            echo "MATH2_D8_BASELINE_EXPECTED_FAIL_$arm"
+            for style in inline helper; do
+              prefix="tools/p35-math2/arms/$arm/$style"
+              cp "$prefix/d9/route_headers.go" chi/middleware/route_headers.go
+              positive '^TestP35Math2D9RepeatedPhysicalHeaderFields$'
+              negative '^TestP35Math2D10CommaDelimitedTokens/second-comma-token-matches$'
+              cp "$prefix/d10/route_headers.go" chi/middleware/route_headers.go
+              positive '^TestP35Math2D10CommaDelimitedTokens/second-comma-token-matches$'
+              negative '^TestP35Math2D9RepeatedPhysicalHeaderFields/second-physical-field-literal$'
+              cp "$prefix/both/route_headers.go" chi/middleware/route_headers.go
+              (cd chi && go vet ./middleware && go test -race -count=1 ./middleware) > "$OUT/$arm-$style-race.log" 2>&1 || { cat "$OUT/$arm-$style-race.log"; exit 34; }
+              (cd chi && go test -count=1 ./...) > "$OUT/$arm-$style-full.log" 2>&1 || { cat "$OUT/$arm-$style-full.log"; exit 35; }
+              (cd chi && go test -v -count=1 -run '^TestP35' ./middleware) > "$OUT/$arm-$style-acceptance.log" 2>&1 || { cat "$OUT/$arm-$style-acceptance.log"; exit 36; }
+              grep -q 'PASS: TestP35Math2D9RepeatedPhysicalHeaderFields' "$OUT/$arm-$style-acceptance.log"
+              grep -q 'PASS: TestP35Math2D10CommaDelimitedTokens' "$OUT/$arm-$style-acceptance.log"
+              if [ "$arm" = live ]; then
+                grep -q P35P7_D_LIVE_PASS__D_FROZEN_FAIL "$OUT/$arm-$style-acceptance.log"
+              else
+                grep -q P35P7_D_FROZEN_PASS__D_LIVE_FAIL "$OUT/$arm-$style-acceptance.log"
+              fi
+              sha256sum "$prefix/both/route_headers.go" > "$OUT/$arm-$style-source.sha256"
+              diff -u "tools/p35-p7/d8/$arm/route_headers.go" "$prefix/both/route_headers.go" > "$OUT/$arm-$style.patch" || test "$?" -eq 1
+              echo "MATH2_ORIGINAL_CHI_${arm}_${style}_PASS" | tee "$OUT/$arm-$style.verdict"
+            done
+            if cmp -s "tools/p35-math2/arms/$arm/inline/both/route_headers.go" "tools/p35-math2/arms/$arm/helper/both/route_headers.go"; then exit 37; fi
+          done
+          echo MATH2_FOUR_NATIVE_ORIGINAL_GO_REPAIR_WITNESSES_PASS | tee "$OUT/overall.verdict"
+          find tools/p35-math2 -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/sources.sha256"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: math2-native-chi-four-witnesses, path: out/real/, if-no-files-found: warn}
