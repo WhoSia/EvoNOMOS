@@ -34,8 +34,8 @@ Capture in artifacts: pinned SHA, `go version`, dependency resolution, `go test 
 
 - **Local** Go 1.23.2 portable shim runner: baseline ordinary tests PASS; five local edited implementations PASS their selected demands; untouched baseline two expected negative requirements FAIL.
 - **P34 behavior replay:** 18 public action history for original semantics. Unlike P34, adapter-to-unit dispatch counts are not compared because the architectures no longer share that topology.
-- **Actual source patches:** local-only `KeyFile` demand: one modified method in each arm. Encoded-storage demand: 2 modified existing methods in U; 6 in C with separate version map, 5 in C with tagged payload. All are realized patches, **not inclusion-minimal admissible repair families**.
-- **Independent native upstream:** not yet verified. No P35 hosted CI success receipt exists.
+- **Actual source patches:** local-only `KeyFile` demand: one modified method in each arm. Encoded-storage demand: 2 modified existing methods in U; 6 in C with separate version map, 5 in C with tagged payload, and 4 in C when the payload store decodes tagged values internally. All are realized patches, **not inclusion-minimal admissible repair families**.
+- **Independent native upstream:** not yet verified. No P35 hosted CI success receipt exists. A pinned-checkout original Restic reproduction script was also prepared and executed locally, but **git clone failed with DNS resolution error** (exit 40, `Could not resolve host: github.com`). Neither its Go compile nor upstream package test ran. The script may be rerun in a network-enabled environment.
 
 ## Source-aware rival / identification
 
