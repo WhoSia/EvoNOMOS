@@ -1,0 +1,51 @@
+name: G8 LAW-R1-P35 P5 Go AST Source-Mechanism Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p5/sourceaudit/**'
+      - '.github/workflows/g8-law-r1-p35-p5-sourceaudit.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: g8-p35-p5-postscore-sourceaudit
+  cancel-in-progress: false
+
+jobs:
+  source-mechanism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          fetch-depth: 0
+          path: chi
+      - name: Post-score, original-source Go AST explanatory audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p5-source
+          go version | tee out/p35-p5-source/go-version.txt
+          (cd tools/p35-p5 && go test ./... && go vet ./... && go build -o ../../out/p35-p5-source/sourceaudit ./sourceaudit)
+          ./out/p35-p5-source/sourceaudit -repo=chi -out=out/p35-p5-source/ast-change-court.json | tee out/p35-p5-source/ast-change-receipt.log
+          sha256sum out/p35-p5-source/*.json out/p35-p5-source/*.txt > out/p35-p5-source/sha256.txt
+      - name: Upload audit evidence read-only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p5-go-postscore-source-mechanisms
+          path: out/p35-p5-source/
+          if-no-files-found: warn
+          retention-days: 30
