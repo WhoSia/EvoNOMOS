@@ -43,7 +43,7 @@ jobs:
             if [ "$arm" = live ]; then grep -q 'P35P7_D_LIVE_PASS__D_FROZEN_FAIL' "$OUT/$arm-all-acceptance.log"; else grep -q 'P35P7_D_FROZEN_PASS__D_LIVE_FAIL' "$OUT/$arm-all-acceptance.log"; fi
             diff -u "tools/p35-p7/arms/$arm/route_headers.go" "tools/p35-p7/d8/$arm/route_headers.go" > "$OUT/$arm-change.patch" || [ "$?" -eq 1 ]
             sha256sum "chi/middleware/route_headers.go" > "$OUT/$arm-sha256.txt"
-            echo "P35P7_D8_$arm_SAME_DEMAND_NATIVE_PASS" | tee "$OUT/$arm.verdict"
+            echo "P35P7_D8_${arm}_SAME_DEMAND_NATIVE_PASS" | tee "$OUT/$arm.verdict"
           done
           find tools/p35-p7 -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/source-sha256.txt"
           (cd "$OUT" && sha256sum ./*.log ./*.patch ./*.txt ./*.verdict > receipts-sha256.txt)
