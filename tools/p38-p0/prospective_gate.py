@@ -124,8 +124,9 @@ def validate(data, allow_synthetic=False):
     rival = data.get("rival_selection") or {}
     if not rival.get("selection_receipt") or not rival.get("prior_validation_cutoff"):
         issues.add("RIVAL_SELECTION_NOT_FROZEN")
-    if rival.get("selected_strongest_implementable_rival") not in
-        ("B_sem", "B_AG", "B_impact", "B_query", "B_value", "B_composite"):
+    if rival.get("selected_strongest_implementable_rival") not in (
+        "B_sem", "B_AG", "B_impact", "B_query", "B_value", "B_composite"
+    ):
         issues.add("STRONG_RIVAL_MISSING")
     if not rival.get("same_evidence_access") or not rival.get("same_implementation_budget"):
         issues.add("UNEQUAL_ACCESS")
