@@ -43,7 +43,7 @@ for architecture in live snapshot; do
       cp "$final" "$up/middleware/route_headers.go"
       (cd "$up" && go vet ./middleware && go test -race -count=1 ./middleware && go test -count=1 ./...) > "$out/$label-native.log" 2>&1 || { cat "$out/$label-native.log"; exit 33; }
       complete_pass=$((complete_pass+1))
-      echo "P35_MATH3_O2_$label_TWO_STAGE_GO_NATIVE_PASS" | tee "$out/$label.verdict"
+      echo "P35_MATH3_O2_${label}_TWO_STAGE_GO_NATIVE_PASS" | tee "$out/$label.verdict"
     done
   done
 done
