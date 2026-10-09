@@ -48,3 +48,19 @@ Current Research OS bootstrap, EvoNOMOS founding intent, P32 precise limits, Pol
 
 ## Opening verdict
 `P33_OPEN__REPAIR_FAMILY_SEMANTICS_HYPOTHESIS__SOURCE_ADMISSIBILITY_PENDING__STRONG_RIVAL_PREDICTION_PENDING__LAW_R2_NOT_AUTHORIZED`.
+
+## 2026-10-09 Scope amendment — Accepted contribution types: interpretive SOLID mathematics
+
+**User-directed correction of the research standard:** Earlier language could be read to make *independent novelty over every existing strong model* the only legitimate scientific output. **That is too restrictive.** This Lab recognizes three distinct valid scholarly tracks:
+
+1. **Interpretive/theoretical reconstruction:** use already published theorems accurately, with citations, to build an original, internally coherent way to understand SOLID and OO change. It may be a worthwhile conceptual software engineering contribution even with no new theorem or blind predictive win. Label proofs borrowed/classical versus interpretive construction correctly.
+2. **Operational instantiation:** source-grounded definitions, worked cases, executable teaching/counterexample artifacts, and scope-aware formal semantics. These can themselves be independent deliverables without claiming universally novel law.
+3. **New theoretical/empirical discoveries:** new formal claims, new predictive separation from existing methods and new general laws. Welcome, but **not a compulsory prerequisite for tracks 1–2**.
+
+The strong-rival and prospective-world tests from the opening constitution remain mandatory **only for a claim of empirical predictive superiority or an original generative OO law**, not for publication-quality conceptual reinterpretation and formal exposition. Avoid needless "all predecessors must lose" gates. Strong citations and honest claim ceilings remain mandatory.
+
+**Active theory axis:** [P33 Demand-Relative Interface Quotients and Conditional SOLID](P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md). It reconstructs ISP and a restricted OCP using the classical factorization condition `ker(o) ⊆ ⋂ ker(g_d)`; distinguishes SRP demand-change ownership, LSP trace refinement and DIP port authority as separate assumptions rather than fake deductions. [Read-only source-integrated finite verifier](../../tools/law-r1-p33-demand-quotient.mjs) has hosted PASS run `37882674220` (65,536 finite function-observation combinations), artifact `11595092855`, SHA-256 `4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`. General theorem justified by a separate elementary proof; finite tests do not establish universal truth.
+
+**Next:** deepen this conditional mathematical SOLID model and develop a coherent manuscript outline with citations, counterexamples and limitations. New predictive research may proceed in parallel without blocking it.
+
+**Amended ruling:** `P33_THEORY_INTERPRETATION_ADMISSIBLE__CLASSICAL_THEOREMS_CITED__FINITE_CASE_PASS__EMPIRICAL_CLAIMS_SEPARATELY_HELD__LAW_R2_NOT_AUTHORIZED`.
