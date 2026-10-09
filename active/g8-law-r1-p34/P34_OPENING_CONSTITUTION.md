@@ -33,3 +33,7 @@ P3: exact legal repair trajectory and Pareto conditional choice; Braess analogy 
 Bounded VM tests are not production Q. Interface-owner identity cannot be inferred from call graph alone. No LAW-R2. GitHub Actions read-only; never generate bot-authored commits. New paper references must show Drive HELD or Drive NOT FOUND with a genuine PDF download link.
 
 **Opening ruling:** P34_OPEN__HARVEST_XVI_LINKED__PINNED_SOURCE_EXPERIMENT_PENDING__LAW_R2_NOT_AUTHORIZED.
+
+## P34-P2 addendum — Original P11 and contract governance
+
+[P2 research court](P34_P2_ORIGIN_P11_TEMPORAL_LSP_ISP_AND_GOVERNANCE_COURT.md) reconstitutes historical Exa/Tavily WIDE versus SEG vectors from immutable pre-P12 receipts. Read-only [run 37886244507](https://github.com/WhoSia/EvoNOMOS/actions/runs/37886244507) SUCCESS, 20 finite client/phase/provider contract instances; method-only, not new treatment. Search-only clients accept both, while fetch-entitled broad clients cannot replace WIDE with SEG for Exa/Tavily. Independent historical TrueForge CODEOWNERS, CONTRIBUTING, pre-demand approved PR 761/833 supply partial review-authority evidence; actual branch protection was inaccessible and remains unknown. P34 OPEN, LAW-R2 NOT_AUTHORIZED.
