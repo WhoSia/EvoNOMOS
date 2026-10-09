@@ -85,19 +85,7 @@ jobs:
           for block in 1 2; do
             if [ "$block" = 1 ]; then repos='gjson jsonparser'; else repos='jsonparser gjson'; fi
             for repo in $repos; do
-              (cd "$repo" && GOMAXPROCS=1 go test -vet=off -run '^ -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; }
-              grep -q 'BenchmarkP36O12Selection' "out/p36-o12/$repo/bench-block-$block.log"
-            done
-          done
-          echo P36_O12_TWO_INDEPENDENT_JSON_SOURCE_Q22_NATIVE_AND_PAIRED_COST_PASS >out/p36-o12/verdict.txt
-      - if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: p36-o12-independent-original-json-q22-source
-          path: out/p36-o12/
-          if-no-files-found: warn
-          retention-days: 30
- -bench '^BenchmarkP36O12Selection' -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; }
+              (cd "$repo" && GOMAXPROCS=1 go test -vet=off -run '^=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; } -bench '^BenchmarkP36O12Selection' -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; }
               grep -q 'BenchmarkP36O12Selection' "out/p36-o12/$repo/bench-block-$block.log"
             done
           done
