@@ -1,0 +1,63 @@
+name: G8 P36 O2 Paired Same-Runner Gorilla Benchmark Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o2/**'
+      - '.github/workflows/g8-p36-o2-paired-gorilla.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  same-runner-pairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        order: [EAGER-LAZY, LAZY-EAGER]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: mux-eager
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: mux-lazy
+          fetch-depth: 1
+      - name: Same-host benchmark with both source arms and reversed treatment order
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o2-paired/${{ matrix.order }}
+          { uname -a; go version; cat /proc/cpuinfo | grep -m1 'model name' || :; } >out/p36-o2-paired/${{ matrix.order }}/runner.txt
+          for arm in EAGER LAZY; do
+            if [ "$arm" = EAGER ]; then lower=eager; else lower=lazy; fi
+            root=mux-$lower
+            test "$(git -C "$root" rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+            cp tools/p36-o2/arms/mux/$lower/p35_epoch_router.go "$root"/
+            cp tools/p36-o2/tests/mux/*.go "$root"/
+            sha256sum "$root"/p35_epoch_router.go >out/p36-o2-paired/${{ matrix.order }}/$lower-sha256.txt
+          done
+          IFS='-' read -r first second <<< '${{ matrix.order }}'
+          for arm in "$first" "$second"; do
+            if [ "$arm" = EAGER ]; then lower=eager; else lower=lazy; fi
+            root=mux-$lower
+            (cd "$root" && P35_O6_ARM="$arm" go test -count=1 -run '^TestP35O6' .) >out/p36-o2-paired/${{ matrix.order }}/$lower-tests.log 2>&1 || { cat out/p36-o2-paired/${{ matrix.order }}/$lower-tests.log; exit 11; }
+            (cd "$root" && GOMAXPROCS=1 P35_O6_ARM="$arm" go test -run '^$' -bench '^BenchmarkP36PostBaseline' -cpu=1 -benchtime=250ms -count=5 -benchmem .) >out/p36-o2-paired/${{ matrix.order }}/$lower-benchmark.log 2>&1 || { cat out/p36-o2-paired/${{ matrix.order }}/$lower-benchmark.log; exit 12; }
+          done
+          echo P36_O2_PAIRED_${{ matrix.order }}_RUNNER_BENCHMARKS_RECORDED >out/p36-o2-paired/${{ matrix.order }}/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o2-paired-${{ matrix.order }}
+          path: out/p36-o2-paired/${{ matrix.order }}/
+          if-no-files-found: warn
+          retention-days: 30
