@@ -43,7 +43,7 @@ jobs:
           mkdir -p restic/internal/backend/p34pair out
           cp tools/p34-p4/pair.go tools/p34-p4/pair_test.go restic/internal/backend/p34pair/
           cd restic
-          P34_REPORT="$GITHUB_WORKSPACE/out/p34-p4-pair.json" go test -count=1 -v ./internal/backend/p34pair | tee "$GITHUB_WORKSPACE/out/p34-p4-go.log"
+          P34_REPORT="$GITHUB_WORKSPACE/out/p34-p4-pair.json" P34_PHASE_REPORT="$GITHUB_WORKSPACE/out/p34-p4-widening.json" go test -count=1 -v ./internal/backend/p34pair | tee "$GITHUB_WORKSPACE/out/p34-p4-go.log"
 
       - name: Verify prespecified report and protect old P12 non-result
         run: |
@@ -55,6 +55,9 @@ jobs:
           if(!r.traces_equivalent || r.public_method_count!==12 || r.mandatory_methods.length!==6)process.exit(1);
           if(r.direct_boundary_visits!==0 || r.composed_boundary_visits!==r.core_calls || r.composed_inner_units!==4)process.exit(1);
           if(r.trace.length!==r.core_calls || r.core_calls<15)process.exit(1);
+          const w=JSON.parse(fs.readFileSync('out/p34-p4-widening.json','utf8'));
+          if(!w.traces_identical || !w.contract_widening_tested || w.source_change_cost_measured!==false)process.exit(1);
+          if(w.phase0_public_calls!==2 || w.phase1_public_calls!==5 || w.phase0_composed_visits!==2 || w.phase1_composed_visits!==5)process.exit(1);
           if(p.terminal_status!=='TERMINAL_NONRESULT'||p.scientific_firewall.lifecycle_coordinates_opened!==false)process.exit(1);
           console.log('P34_P4_REAL_RESTIC_BACKEND_PAIR=PASS');
           NODE
