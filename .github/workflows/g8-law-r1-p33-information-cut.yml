@@ -7,6 +7,7 @@ on:
     paths:
       - 'tools/law-r1-p33-info-cut-repair-world.mjs'
       - 'tools/law-r1-p33-repair-cut-certificate.mjs'
+      - 'tools/law-r1-p33-demand-quotient.mjs'
       - '.github/workflows/g8-law-r1-p33-information-cut.yml'
 
 permissions:
@@ -53,6 +54,16 @@ jobs:
           if(x.prior_code_executed_results.all_64_pairs.dispatcher.failed_pairs!==64) process.exit(1);
           if(x.verdict!=='PINNED_TWO_REPAIR_64_PAIR_EXECUTED_ORACLE_PASS__SOURCE_SITE_IDENTIFICATION_RETROSPECTIVE__SCIENCE_HOLD') process.exit(1);
           console.log('P33_OBSTRUCTION_CUT_CERTIFICATE=PASS_METHOD_ONLY');
+          NODE
+          node tools/law-r1-p33-demand-quotient.mjs out/p33-info-cut.json out/p33-solid-quotient.json
+          node - <<'NODE'
+          const f=require('fs');
+          const r=JSON.parse(f.readFileSync('out/p33-solid-quotient.json','utf8'));
+          if(r.exhaustive_factorization_pairs!==65536)process.exit(1);
+          if(r.min_interface_labels_for_A!==2 || r.min_interface_labels_for_A_and_B!==4)process.exit(1);
+          if(r.source_receipts!=='bounded source execution already verified 64/64 vs 0/64')process.exit(1);
+          if(!r.verdict.includes('FORMAL_REINTERPRETATION_PASS'))process.exit(1);
+          console.log('P33_FINITE_DEMAND_RELATIVE_QUOTIENT=PASS_INTERPRETIVE_THEORY');
           NODE
           sha256sum tools/law-r1-p33-*.mjs out/*.json > out/sha256.txt
 
