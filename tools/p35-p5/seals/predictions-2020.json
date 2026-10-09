@@ -1,0 +1,53 @@
+{
+  "Original": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+  "Cutoff": "2020-01-01T00:00:00Z",
+  "End": "2024-06-28T14:29:28Z",
+  "TrainingSource": "7fb34524d9ab7c9e3dd0f9c17c1ec808d8c77f33",
+  "TrainingEvents": 121,
+  "TrainingMulti": 43,
+  "SelectionCaveat": "Triad and cutoff selected after total path-count scouting, including postcutoff aggregate counts and a few titles. Joint labels not consulted. NOT fully untouched holdout.",
+  "B0Caveat": "Go AST cross-file package-declaration identifier overlap at train cutoff; no symbol-resolved SSA/full CSDG. Lexicographic ties.",
+  "B1Caveat": "Real nonmerge git path cochange from before 2020. Top conditional count; abstain if seed \u003c5 or frequency \u003c0.10.",
+  "B2Caveat": "Predeclared Parnas-style qualitative mapping, NOT full DRSpaces/CSDG: mux-\u003etree, tree-\u003econtext, context-\u003emux.",
+  "Predict": {
+    "context.go": {
+      "B0": "mux.go",
+      "B1": "mux.go",
+      "B2": "mux.go",
+      "B1SeedEvents": 33,
+      "B1PairEvents": 22,
+      "B1Conditional": 0.6666666666666666,
+      "B1Abstain": false,
+      "StaticScores": {
+        "mux.go": 15,
+        "tree.go": 2
+      }
+    },
+    "mux.go": {
+      "B0": "tree.go",
+      "B1": "tree.go",
+      "B2": "tree.go",
+      "B1SeedEvents": 83,
+      "B1PairEvents": 34,
+      "B1Conditional": 0.40963855421686746,
+      "B1Abstain": false,
+      "StaticScores": {
+        "context.go": 15,
+        "tree.go": 43
+      }
+    },
+    "tree.go": {
+      "B0": "mux.go",
+      "B1": "mux.go",
+      "B2": "context.go",
+      "B1SeedEvents": 64,
+      "B1PairEvents": 34,
+      "B1Conditional": 0.53125,
+      "B1Abstain": false,
+      "StaticScores": {
+        "context.go": 2,
+        "mux.go": 43
+      }
+    }
+  }
+}

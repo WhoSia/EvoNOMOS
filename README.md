@@ -2,13 +2,14 @@
 
 **Evolutionary Nomology, Optimization, and Measurement of Software Organization**
 
-EvoNOMOS studies the *conditions under which software organization changes the cost and safety of future changes*. It tests responsibility boundaries, dependency direction, behavioral contracts, interface capability, shared invariants, and migration paths in executable source. **SOLID is a family of conditional design hypotheses—not an axiomatic scoring system or a guaranteed architecture ranking.**
+EvoNOMOS is a **Go-first laboratory for software structure and real source evolution**. We study the *conditions under which software organization preserves behavior while changing the localization and propagation of code modifications*. It tests responsibility boundaries, dependency direction, behavioral contracts, interface capability, shared invariants, and migration paths in executable source. **SOLID is a family of conditional design hypotheses—not an axiomatic scoring system or a guaranteed architecture ranking.**
 
 > **Current scientific head (2026-10-09):** Generation VIII · **LAW-R1-P35 OPEN** — *Independent Capability Engines, Cross-Operation Change Propagation, Source-Edit Locality & Demand-Conditioned SOLID Cost Geometry*. **LAW-R2 NOT AUTHORIZED.**
 
 ## Start here
 
 | Surface | Canonical source | What it establishes |
+| **Go historical prediction (current)** | [P35-P5 pre-score research seal](active/g8-law-r1-p35/P35_P5_GO_HISTORICAL_PRE_SCORE_SEAL.md) · [Actual Go predictor](tools/p35-p5/main.go) · [Frozen train predictions](tools/p35-p5/seals/predictions-2020.json) | Real chi history before 2020; B0+ AST vs B1 cochange vs B2 responsibility, human-committed deterministic prediction receipt |
 | --- | --- | --- |
 | Current independent real-source court | [P35-P4/P4B Chi two-demand verdict](active/g8-law-r1-p35/P35_P4_P4B_REAL_CHI_TWO_DEMAND_TOURNAMENT_VERDICT.md) · [P35 Notion Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784) | Presealed D4/D5 source interventions, original `go-chi/chi` native Go suites, stage-specific edit-sign reversal and undefeated classical rivals |
 | Foundational current stage | [P35 technical opening](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) | Genuine capability organization and earlier source-edit counterexamples |
@@ -19,6 +20,24 @@ EvoNOMOS studies the *conditions under which software organization changes the c
 | Native proof | [P35-P3 frozen-decoder source court](active/g8-law-r1-p35/P35_P3_FROZEN_DECODER_REPAIR_FAMILY_AND_RIVAL_VERDICT.md) · [P35-P2 eight-world baseline](active/g8-law-r1-p35/P35_P2_NATIVE_RESTIC_EIGHT_WORLDS_AND_ARCHITECTURE_ADMISSIBILITY.md) | Real pinned Restic PASS for C4 independent reader, lifecycle tests, architecture mutant negative, strong-rival scope |
 
 **Status hierarchy:** `CLOSED` means the named phase received its terminal verdict, not that every large scientific hypothesis passed. `METHOD PASS` certifies only the declared method. `HOLD` and `TERMINAL_NONRESULT` are not transformed into evidence by a later narrative. In particular, original ORIGIN-R1-P12 is still **TERMINAL_NONRESULT**.
+
+## Go-first research program
+
+**Go is the primary language for EvoNOMOS's executable software research**, not merely a convenient example implementation. Real Go repositories, native `go test` and `-race`, `go/parser`/`go/ast`, Go historical-impact predictors and source-level behavioral oracles are the normal route from a hypothesis to evidence. Rust is used where independently justified by computational scale; Python and JavaScript are auxiliary preparation/reporting tools, not the default scientific implementation.
+
+The mathematical subject is **program organization, behavioral refinement, information hiding, change propagation, and identifiability**. Change-site counts and error metrics are observable diagnostics, not economic welfare variables. We are **not** turning SOLID into a financial model or performing econometric effect estimation. Conditional edit-cost comparisons are useful only insofar as they expose actual software mechanisms and their counterexamples.
+
+### P35-P5 — Frozen historical predictions in genuine Go code
+
+The first history-rich cohort is the pinned real [`go-chi/chi` `v5.1.0`](https://github.com/go-chi/chi/tree/67be7d9cafdaeb4e04e887ff78d09e030ee43b00), restricted to `mux.go`, `tree.go`, `context.go`. [Train-only CI #37902114102](https://github.com/WhoSia/EvoNOMOS/actions/runs/37902114102) compiled and tested the original-source Go predictor and used **only pre-2020 history and AST**: **121 qualifying Git commits, 43 multi-target cochange commits**. The resulting B0+ Go AST and B1 Git cochange predictions agree on all three seed files, while B2's predeclared information-hiding map differs on `tree.go`. This disagreement is to be scored **only after committing an exact frozen model**.
+
+| Seed | B0+ AST | B1 past cochange | B2 design responsibility |
+| --- | --- | --- | --- |
+| `mux.go` | `tree.go` | `tree.go` | `tree.go` |
+| `tree.go` | `mux.go` | `mux.go` | `context.go` |
+| `context.go` | `mux.go` | `mux.go` | `mux.go` |
+
+**Integrity and caution:** code reads only pre-cutoff history in train mode, with an independent post-cutoff scoring mode that **must verify human-sealed JSON bytes before opening outcomes**. Triad and cutoff were selected after scouting aggregate historical *counts* including some test-window totals, so do not call the holdout pristine-blind. Past cochange does not prove necessary joint maintenance; B0+ is AST-lexical, B2 is qualitative, and neither is a full source-aware CSDG or DRSpaces implementation. Full cohort results must reflect abstention, class imbalance and null outcomes.
 
 ## Research question
 
@@ -125,4 +144,4 @@ Relevant original sources already recorded as held include [Liskov & Wing 1994](
 - GitHub carries compact executable evidence; Notion maintains decisions and science narrative; Google Drive retains canonical original research files and historical conversation archive. The 1–14 chat exports are research context, **not** independently adjudicated outcome data.
 - **No automatic LAW-R2**, no attribution of P34 outcomes to original ORIGIN-P12, and no independent new predictive architecture-law claim without the relevant strong-rival and held-out evidence.
 
-**Next executable work:** With P35-P4/P4B source tests sealed, choose a **history-rich independent maintenance cohort** (prebaseline source path counts: `mux.go` ≥100, `tree.go` 75, `context.go` 46 in go-chi/chi, unfiltered and not yet cochange labels), freeze training/holdout and matched-information B0+/B1/B2 predictions before source edits, and run original native tests. Do not infer a predictive victory or universal SOLID law from this bounded two-demand sign change.
+**Next executable work:** Verify that the deterministic human-committed Go training-prediction JSON reconstructs byte-for-byte on the pinned original chi repository, then open the 2020–2024 heldout Git cochange labels once. Score B0+/B1/B2 with false-alert rates and abstentions, inspect independent real source mechanisms only afterward, and keep SOLID a program-structure question—not econometrics.
