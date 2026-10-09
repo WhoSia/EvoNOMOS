@@ -4,17 +4,24 @@
 
 EvoNOMOS investigates whether source-grounded responsibility, authority, interface capability and dependency structures can explain and *prospectively predict* the effects of maintenance demands. SOLID principles are possible conditional consequences, **not axioms** or presumed universal laws.
 
-## Current scientific head — Generation VIII LAW-R1-P33
+## Current scientific state — G8 LAW-R1-P33 CLOSED / P34 TITLE PROPOSED
 
 **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
 
-**Status:** OPEN / source-grounded admissible repair families and information-matched independent predictions pending. **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
+**Status:** P33 CLOSED (attributed mathematical SOLID synthesis + bounded finite methods PASS; predictive universal OO-law claims HOLD). **P34 title PROPOSED, not yet OPEN. LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
 
 - [P33 opening scientific constitution](active/g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md)
-- [P33 current Notion Run](https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0)
+- [P33 final scientific court and P34 proposed title](active/g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md)
+- [P33 completed Notion Run](https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0)
 - [P32 terminal strong-rival and repair-family ruling](active/g8-law-r1-p32/P32_TERMINAL_STRONG_RIVALS_AND_REPAIR_FAMILY_COURT.md)
 - [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
 - [Active and historical lineage](active/README.md)
+
+### Proposed next stage, not yet opened
+
+**EvoNOMOS Generation VIII LAW-R1-P34 — Temporal Contract Refinement, Source-Grounded Dependency Authority, Demand-Indexed Interface Evolution & the Pareto Geometry of Safe Object-Oriented Change**
+
+P33's cited conceptual SOLID mathematics is a finished bounded deliverable. P34 would tackle the still-open temporal interface-automata semantics, actual source-level dependency/contract-owner extraction, and WIDE↔SEGREGATED decisions over future demands. No P34 action authority, run or claim exists yet. P33 final read-only [CI 37884542193](https://github.com/WhoSia/EvoNOMOS/actions/runs/37884542193) SUCCESS; finite classical contract-order verification with source replay and prior finite suites. The 5 newly supplied primary papers are now **Drive HELD**; [final custody/reading court](active/g8-law-r1-p33/P33_TERMINAL_CONDITIONAL_SOLID_THEORY_AND_P34_PROPOSAL.md) contains direct canonical Drive links. Cross-Lab original-Drive-first disclosure rule is now in CURRENT Research OS doctrine.
 
 ### P33 interpretive mathematics track — recognized research contribution
 
