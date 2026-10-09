@@ -8,7 +8,7 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 
 **Admissible Repair-Set Geometry, Contextual Implementation Choice, Demand-Indexed Contract Obligations, Prospective Cross-Architecture Separators & the Identification Boundary of Conditional Software-Design Laws**
 
-**Status:** OPEN / source-grounded admissible repair families and information-matched independent predictions pending. **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law, empirically novel H-over-B0+/B1/B2 advantage, or derived SOLID principle exists.
+**Status:** OPEN / source-grounded admissible repair families and information-matched independent predictions pending. **LAW-R2:** NOT_AUTHORIZED. No new universal OO structure law or independently demonstrated H-over-B0+/B1/B2 predictive advantage exists; the cited conditional SOLID mathematical reconstruction is now an acknowledged **interpretive theoretical** result.
 
 - [P33 opening scientific constitution](active/g8-law-r1-p33/P33_OPENING_SCIENTIFIC_CONSTITUTION.md)
 - [P33 current Notion Run](https://app.notion.com/p/3f3ef561cf92819f8332ce4e8a03b2c0)
@@ -25,6 +25,12 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 [Read-only hosted run 37882674220](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882674220) **SUCCESS**; [finite verifier](tools/law-r1-p33-demand-quotient.mjs) checks 65,536 four-state map/observation pairs with a pinned Uptime Kuma source witness. Artifact `11595092855`, SHA256 `4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`. This does not prove new general mathematics or a production OO law. **P33 OPEN / conceptual interpretation PASS / LAW-R2 NOT_AUTHORIZED.**
 
  **SRP conditional-cost threshold extension:** the same verifier now tests pA=pB=.2, pAB=.04, amortized overhead .03 and a stipulated interference price λ; separation is favorable only at λ>.21875. Latest [run 37882892847](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882892847) SUCCESS, artifact `11595337491`, digest `sha256:9286223a63293b8f700157d27175c097e11a8c079f2196d46144f9374fb7aa9a`. A mathematical conditional illustration, not a universal SRP result.
+### P33 all-five mathematical SOLID synthesis — Contract × Observation × Authority
+
+[Integrated P33 theoretical chapter](active/g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md) combines **LSP behavioral/trace refinement**, **DIP compile-time source dependency direction, contract authority and injection**, the established **ISP/OCP demand-relative observation quotient**, and **SRP change-conditioned expected cost** into a coherent *conditional mathematical interpretation* of SOLID. The principles are distinct constraints/choices, not five synonyms of a single theorem. P18's Principle-as-Projection hypothesis and ORIGIN-R1-P11's WIDE versus CAPABILITY_SEGREGATED tradeoff are explicit historical ancestors.
+
+A bounded joint model proves finite safety-inclusion sanity checks and constructive **independence counterexamples**: LSP-safe but not inverted, inverted but behaviorally unsafe, both but a new demand's required information unavailable, and trace-safety with deadlock/progress absent. [Read-only hosted run 37883377979](https://github.com/WhoSia/EvoNOMOS/actions/runs/37883377979) **SUCCESS**, [finite code](tools/law-r1-p33-lsp-dip-contract-graph.mjs), **4096** trace-contract/client-safety triples, artifact `11595032811`, sha256 `03d9ba0d338006071dc09c542ffbaf4a2e2f4a7bc815095e5c711f2b18651de9`. Liskov & Wing (1994), Martin (1996), and de Alfaro & Henzinger (2001) originals cited. Interpretive **theory** success is acknowledged without claiming first discovery of substitutability or a new universal OO law.
+
 ### P33 research question
 
 A demand can admit **several valid but non-equivalent source edit strategies**. Under pinned initial source, equivalent complete requirements, frozen implementation grammar and oracle, what is the family of inclusion-minimal *admissible repair supports*, and can context/authority/contract constraints predict the feasible-cost/Pareto change effects beyond strong rivals? A single must-edit site set or static change-impact graph is insufficient as a complete description.
