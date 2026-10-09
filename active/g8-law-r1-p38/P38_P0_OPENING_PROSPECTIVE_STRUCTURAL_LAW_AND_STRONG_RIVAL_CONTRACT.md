@@ -82,3 +82,9 @@ No GitHub Actions bot-authored commits, no branch-per-stage. GitHub main-first; 
 - **P38-P4:** compare observed independent outcome and existing strongest rival. No law authorization before G4.
 
 **Current verdict:** P38 OPEN · P0 SCOPE SEALED · P1 THEORY/NEGATIVE-CONTROL IN PROGRESS · P2 SCREENING ONLY · P3 ORIGINAL_GO_EXPERIMENT BLOCKED · DIP49 IDENTIFICATION HOLD · LAW-R2 NOT_AUTHORIZED.
+
+## P0 hosted receipt and subsequent source-screening addendum (2026-10-10 KST)
+
+The stage now has a verified [Notion P38 Run](https://app.notion.com/p/3f4ef561cf928177b570e5d57c2a03de). The read-only [P38-P0 GitHub Actions #37996515283](https://github.com/WhoSia/EvoNOMOS/actions/runs/37996515283) completed **SUCCESS** for the 13 negative controls and the intentionally CLOSED preseal manifest. Executed workflow source HEAD `18cdbf217957e55244d90271496e9238ff057128`; artifact `11646499797`, SHA-256 `f590698b1d1cb7487aafde8d0b20f1ff80022f735911d20a17e4ae3dbcd383e3`. Later documentation/source-candidate commits are **not** re-tested original-Go runs.
+
+[Original P38-P2B source-dated issue audit](P38_P2B_FIBER_ISSUE_4605_OPEN_CROSS_OWNER_EXPORT_REQUEST_AND_PINNED_SOURCE_BOUNDARIES.md) checked a real **OPEN** original Fiber issue [#4605](https://github.com/gofiber/fiber/issues/4605) proposing fasthttp private-helper exports and downstream duplicate-code removal. Actual fasthttp v1.75.0 source includes the named unexported helpers and Fiber directly imports this version. This adds a genuine candidate *request*, but **neither creates upstream review/deployment sovereignty evidence nor pre-seals a distinct H-vs-strong-B outcome forecast**. The canonical source experiment manifest remains CLOSED, and P38 P3 original-Go work remains BLOCKED. P37 predecessor [stage closure (science still HOLD)](../g8-law-r1-p37/P37_TERMINAL_FLOWING_HANDOFF_TO_P38.md) is history, not promotion of classical results.
