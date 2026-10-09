@@ -12,6 +12,13 @@
 - RAVEL 10498–10499 collision is historical and unresolved; no invented unbroken numbering.
 - **LAW-R2 / general design law / manuscript-level SOLID claim: NOT_AUTHORIZED.**
 
+## P33 — Theoretical re-interpretation track (2026-10-09)
+
+- **Changed research standard:** a well-cited, rigorous reconstruction of SOLID using classical mathematics **counts as a genuine conceptual/theoretical result** without requiring a novel universal theorem or independent out-of-sample predictive advantage. Keep such interpretive claims distinct from empirically new generative OO laws.
+- [P33 conditional SOLID quotient paper seed](g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md): demand-indexed quotient q_D, ISP as coarsest sufficient observation, restricted OCP as factorization through an unchanged boundary, with separate semantics for SRP, LSP, DIP. Existing Parnas, modularity/value, information theory, program synthesis citations preserved.
+- [Demand quotient checker](../tools/law-r1-p33-demand-quotient.mjs) and [Hosted run 37882674220](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882674220) **SUCCESS**. 65,536 four-state factorization checks, example 2→4 minimal observable classes when independent demands are added, source-bounded Uptime Kuma information collision; artifact `11595092855` digest `sha256:4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`.
+- **Interpretive theory PASS / full empirical predictive claim HOLD / LAW-R2 NOT_AUTHORIZED**. Current P33 Run unchanged; no stage inflation.
+
 ## P33 — Repair-family research opening
 
 Source a and demand d can admit several valid implementations b. Distinguish potential impact, minimal admissible repair support families and realized policy-conditioned vectors. Require matching information budgets for B0+ static overlap, B1 CoChangeFinder-style history with patch availability, B2 Parnas/DRSpaces/CSDG/standard repair synthesis, and H demand-indexed contract choice. Never score P32 retrospective Uptime Kuma #7639 bug as a fresh H victory.
