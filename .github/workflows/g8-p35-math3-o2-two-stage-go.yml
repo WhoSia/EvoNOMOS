@@ -1,0 +1,34 @@
+name: G8 P35 MATH3 O2 Sequential Native Go Repairs
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-math3/o2/**'
+      - 'tools/p35-math3/replay_second_demand_paths.sh'
+      - '.github/workflows/g8-p35-math3-o2-two-stage-go.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  eight-authentic-paths:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Go syntax of source-replay runner
+        run: bash -n tools/p35-math3/replay_second_demand_paths.sh
+      - name: Test two actual committed source stages in each of eight paths
+        shell: bash
+        run: bash tools/p35-math3/replay_second_demand_paths.sh
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-math3-eight-sequential-go-source-repairs
+          path: out/p35-math3-o2/
+          if-no-files-found: warn
+          retention-days: 30
