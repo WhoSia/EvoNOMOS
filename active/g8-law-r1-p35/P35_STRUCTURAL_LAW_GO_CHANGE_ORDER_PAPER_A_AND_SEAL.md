@@ -1,6 +1,6 @@
 # EvoNOMOS — Structural Law Paper A and Real Go Repair-Order Competition (MATH-3 planning seal)
 
-**As of 2026-10-09:** O1 real-source Go Git 3-way merge classifier completed [#37931146034](https://github.com/WhoSia/EvoNOMOS/actions/runs/37931146034) **SUCCESS as CLASSIFICATION ONLY**: 8/8 selected source merges have textual conflicts; zero clean merges, zero merged-Go semantic test runs. **This is NOT relational noncommutation.** O2 exact first-demand→second-demand Go edit paths were separately committed and [original Go CI #37932458774](https://github.com/WhoSia/EvoNOMOS/actions/runs/37932458774) is being adjudicated; not counted PASS until run concludes successfully. No novel beyond-SOLID law claimed. Parent P35 OPEN, LAW-R2 NOT_AUTHORIZED.
+**As of 2026-10-09:** O1 real-source Go Git 3-way merge classifier completed [#37931146034](https://github.com/WhoSia/EvoNOMOS/actions/runs/37931146034) **SUCCESS as CLASSIFICATION ONLY**: 8/8 selected source merges have textual conflicts; zero clean merges, zero merged-Go semantic test runs. **This is NOT relational noncommutation.** O2 exact first-demand→second-demand Go edit paths were separately committed and [original Go CI #37932458774](https://github.com/WhoSia/EvoNOMOS/actions/runs/37932458774) **SUCCESS** in both source-repair orders across LIVE/SNAPSHOT × INLINE/HELPER: eight verified first-demand Go prefixes, eight verified full Go/race second-demand endpoints; **all eight endpoints equal the four previously verified final BOTH source byte SHA**. No novel beyond-SOLID law claimed. Parent P35 OPEN, LAW-R2 NOT_AUTHORIZED.
 
 ## Research question
 
@@ -50,3 +50,8 @@ These mechanisms are hypotheses; vanilla process algebra, refinement calculus, r
 ## Sources and adjacent empirical literature not yet located in Drive
 
 Read the [standing Paper A/B literature acquisition audit](P35_PAPERS_A_B_MISSING_FROM_DRIVE_LITERATURE_AUDIT.md), particularly **Huet (1980) confluent reductions**, **Knuth–Bendix (1970) word problems/critical-pair completion**, and **Gazzola–Micucci–Mariani (2019) automatic software repair survey**. These classical sources are a skeptical baseline, not supporting citations for a claim that our chosen patch order is mathematically noncommutative. Parnas (1972), Liskov–Wing (1994), Angluin (1987), and Smith (2015) are already in Drive; do not ask user to reacquire them.
+
+
+## P35-MATH-3 O1/O2 measured original Go outcome (2026-10-09)
+
+[Complete terminal scientific court](P35_MATH_3_O1_O2_REAL_GO_CHANGE_ORDER_COURT.md), with original program, 8/8 textual merge conflicts in O1, actual independent first-stage→second-demand Go patches in O2, unchanged frozen D9/D10 tests, 8/8 first-stage PASS and 8/8 full original-Go+raced final endpoints PASS, prior artifact identities and full limitations. Crucially, O2 is **post-O1 conflict-aware implementation**, not blinded order discovery. Each family's two orders reach the *same* existing source bytes. A finite witness of two valid sequential paths cannot justify universal confluence or novel mathematical commutation. Further paper publication requires true prospective law rivals, D11 before outcome, independent source replication, and real relevance beyond known rewrite/refinement and program repair theory. Artifact **11617083276**, sha256 **4aaf9f0c6c8eb500d0b4af05ffb0ad44e41d62d8bafcf00e685f99eb9b917a0d**.
