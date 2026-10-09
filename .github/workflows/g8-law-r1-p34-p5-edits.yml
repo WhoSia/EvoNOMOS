@@ -28,3 +28,23 @@ jobs:
           ref: 495982232cf1af184eac0a97871ef8161e8708ee
           path: restic
           fetch-depth: 1
+      - name: Materialize independent source variants and their patches
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/p34-p5/materialize.mjs restic
+          diff -u tools/p34-p4/pair.go restic/internal/backend/p34p5direct/pair.go > out/direct.patch || test "$?" -eq 1
+          diff -u tools/p34-p4/pair.go restic/internal/backend/p34p5composed/pair.go > out/composed.patch || test "$?" -eq 1
+
+      - name: Show genuine new-demand failure in untouched baseline
+        run: |
+          set -euo pipefail
+          cd restic
+          go test -count=1 -run 'TestP34NewPairedRealResticInterface|TestP34DemandWideningAcrossSameAdapters' ./internal/backend/p34p5baseline
+          set +e
+          P34_ARM=direct go test -count=1 -run '^TestP34P5KeyFileLengthBound$' ./internal/backend/p34p5baseline > ../out/baseline-required-failure.log 2>&1
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then echo "Baseline unexpectedly meets new demand"; exit 1; fi
+          grep -q 'new requirement violated' ../out/baseline-required-failure.log
+          echo "P34_P5_ORIGINAL_BASELINE_FAILS_NEW_DEMAND=PASS"
