@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'tools/law-r1-p34-source-projection.mjs'
+      - 'tools/law-r1-p34-source-import-audit.mjs'
       - '.github/workflows/g8-law-r1-p34-projection.yml'
 
 permissions:
@@ -44,7 +45,17 @@ jobs:
           if(!v.stronger_static_competitor.includes('WOULD distinguish'))process.exit(1);
           console.log('P34_GRAPH_CONTRACT_SEPARATOR=PASS_BOUNDED');
           NODE
-          sha256sum tools/law-r1-p34-source-projection.mjs out/p34-projection.json > out/sha256.txt
+          node tools/law-r1-p34-source-import-audit.mjs world out/p34-projection.json out/p34-imports.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const v=JSON.parse(fs.readFileSync('out/p34-imports.json','utf8'));
+          if(v.exact_caller_to_notification.line!==48)process.exit(1);
+          if(v.certificate_notification_callsite.line!==1596)process.exit(1);
+          if(v.notification_dispatcher_provider_require_count<=30)process.exit(1);
+          if(v.authority_status!=='NOT_IDENTIFIABLE_FROM_IMPORT_SYNTAX')process.exit(1);
+          console.log('P34_BOUNDED_SOURCE_IMPORT_AUDIT=PASS');
+          NODE
+          sha256sum tools/law-r1-p34-*.mjs out/*.json > out/sha256.txt
 
       - uses: actions/upload-artifact@v4
         with:
