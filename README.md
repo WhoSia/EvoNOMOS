@@ -16,6 +16,14 @@ EvoNOMOS investigates whether source-grounded responsibility, authority, interfa
 - [P32 closed historical Notion Run](https://app.notion.com/p/3f3ef561cf928195bd76dff7d3ff3fd0)
 - [Active and historical lineage](active/README.md)
 
+### P33 interpretive mathematics track — recognized research contribution
+
+**Scope adjustment (2026-10-09):** A careful, genuinely useful *mathematical reconstruction of SOLID using correctly cited established results* is a legitimate theoretical software-design contribution. Independent new pure mathematics or an out-of-sample defeat of all prior models is **not mandatory** to record and develop this conceptual strand. It is mandatory only to back claims of a **novel empirically predictive generative law**. Distinguish classical propositions, our synthesis/interpretation, local executable examples and fresh empirical effects.
+
+[Demand-Relative Interface Quotients and Conditional SOLID](active/g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) reconstructs ISP as the coarsest sufficient demand-relative observation quotient and a **restricted** OCP extension criterion via `ker(o) ⊆ ker(g_d)`. SRP (change-reason assignment), LSP (trace refinement) and DIP (authority/port inversion) have additional assumptions and cannot be falsely deduced from one quotient theorem. Foundations include Parnas (1972/1979), Sullivan et al. (2001), information-bottleneck research, program repair and set-valued control.
+
+[Read-only hosted run 37882674220](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882674220) **SUCCESS**; [finite verifier](tools/law-r1-p33-demand-quotient.mjs) checks 65,536 four-state map/observation pairs with a pinned Uptime Kuma source witness. Artifact `11595092855`, SHA256 `4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`. This does not prove new general mathematics or a production OO law. **P33 OPEN / conceptual interpretation PASS / LAW-R2 NOT_AUTHORIZED.**
+
 ### P33 research question
 
 A demand can admit **several valid but non-equivalent source edit strategies**. Under pinned initial source, equivalent complete requirements, frozen implementation grammar and oracle, what is the family of inclusion-minimal *admissible repair supports*, and can context/authority/contract constraints predict the feasible-cost/Pareto change effects beyond strong rivals? A single must-edit site set or static change-impact graph is insufficient as a complete description.
