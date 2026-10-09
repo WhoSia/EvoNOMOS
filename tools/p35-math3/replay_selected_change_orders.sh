@@ -33,7 +33,7 @@ for architecture in live snapshot; do
       if [[ "$demand" == "D9" ]]; then
         stage='^TestP35P7|^TestP35Math2D9'
       else
-        stage='^TestP35P7|^TestP35Math2D10CommaDelimitedTokens/second-comma-token-matches
+        stage="^TestP35P7|^TestP35Math2D10CommaDelimitedTokens/second-comma-token-matches"
       fi
       (cd chi && go test -count=1 -run "$stage" ./middleware) > "$p-first-demand.log" 2>&1 || { cat "$p-first-demand.log"; echo "STAGE_FAIL" > "$p.verdict"; exit 31; }
       sha256sum "$base" "$first" "$second" > "$p-input-sha256.txt"
