@@ -1,0 +1,48 @@
+name: G8 P36 O3 Lean History Erasure and Repair Survival Lemma
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o3/lean/**'
+      - '.github/workflows/g8-p36-o3-lean-survival.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: No opaque axiom, proof hole or admit
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|axiom)([^A-Za-z]|$)' tools/p36-o3/lean/*.lean; then
+            echo P36_O3_PROOF_HOLE_FORBIDDEN
+            exit 11
+          fi
+      - name: Lean 4.34.1 and independent kernel checker
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p36-o3/lean
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Source proof and scope receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o3-lean
+          sha256sum tools/p36-o3/lean/*.lean tools/p36-o3/lean/lakefile.toml >out/p36-o3-lean/source-sha256.txt
+          cat tools/p36-o3/lean/lean-toolchain >out/p36-o3-lean/lean-toolchain.txt
+          echo P36_O3_CLASSICAL_ERASURE_LEMMA_LEAN_KERNEL_PASS >out/p36-o3-lean/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o3-lean-classical-information-obstruction
+          path: out/p36-o3-lean/
+          if-no-files-found: warn
+          retention-days: 30
