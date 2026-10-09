@@ -75,3 +75,25 @@ This is actual original-Go native test evidence over *four intentionally constru
 To attack source-induced selection, a separate after-source [O6 preseal](P36_O6_FINITE_MAINTENANCE_AUTOMATON_PRESEAL.md) and [standalone reference-model test](../../tools/p36-o6/tests/chi/p36_o6_finite_action_reference_test.go) were committed **after** the O3–O5 implementations, without any new treatment source. All `1+3+9+27+81+243+729=1093` action words of lengths 0..6 over `R=RegisterNew,D=DisableEarliest,E=EnableOldestDisabled` are prospectively fully enumerated, reference uses a logical ordered list+FIFO pending IDs, independently of source indices/ordinals. [Original Chi four-arm CI #37966139703](https://github.com/WhoSia/EvoNOMOS/actions/runs/37966139703) is currently **QUEUED**. A pass here can certify only the declared finite action alphabet and depth, not universal model checking.
 
 **Status now:** `O3_O4_O5_NATIVE_STRICT_FOUR_ARM_FILTRATION_CONFIRMED__O6_EXHAUSTIVE_1093_SOURCE_GO_PENDING__DIP49_NOVEL_PAIR_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+
+## 2026-10-10 — O6 complete, original Go finite-depth conformance verified
+
+[O6 original Chi four-arm full Go/race/vet + independent logical reference #37966139703](https://github.com/WhoSia/EvoNOMOS/actions/runs/37966139703) completed **SUCCESS (4/4 jobs)**, with strict historical preservation of all frozen earlier source variants. Reference Go oracle source SHA256 `49c49090ff7c0093f9fa08dea8a19055bf2c60a41eca4a72d1d6e71346319079`. The action alphabet was fixed `Σ={R=register new, D=disable earliest, E=enable oldest pending}`, initial same-header A>B>C, and all 1093 words of length 0–6 enumerated shortest first. The oracle used an independent logical entry-order list and FIFO queue and compared method return, published revision and HTTP response on every prefix.
+
+| Original source treatment | First incorrect word, found shortest-first | Native mismatch | Actual ZIP artifact & SHA256 |
+| --- | --- | --- | --- |
+| ERASE | `DE` length 2 | `Enable actual=false ref=true` | 11633626650, `352b99751906a5506de6d113397f4464b705fe25ebedc01a432311e87743f56a` |
+| POSITION_INDEX | `DDEE` length 4 | `HTTP actual=B reference=A` | 11633831407, `25f8a8180e8bc282c9bbf0787bd7b8ebccfd220e4f77980a3bb08afcc1992e33` |
+| RELATIVE_REBASE | `DDEDE` length 5 | `HTTP actual=C reference=B` | 11633741513, `d356e18bb56ad417519f76b829da27d71246a41966caecf6f950a66e46f4e411` |
+| STABLE_ORDER | **none at length ≤6** | **all 1093 words and every prefix PASS** | 11633242485, `4d840ab25fbe9a3c919eb10b5aa6250b9bf2e1d681997e7bd6b95d081492c3ea` |
+
+**Crucial distinction**: the three negative arms did NOT execute all 1093 words: the frozen test stops at its first counterexample. Because words are enumerated by increasing length with no prior failures, the counterexample length is a verified **minimal failing length** within the given finite alphabet and initial state. The STABLE_ORDER positive arm alone exhausted the entire 1093-word domain. Nothing proves unbounded behavior, all action alphabets, all initial registries or all real software contexts.
+
+This yields bounded empirical `d_Σ(ERASE)=2`, `d_Σ(POSITION_INDEX)=4`, `d_Σ(RELATIVE_REBASE)=5`, and `d_Σ(STABLE_ORDER)>6`, where `d_Σ(B)=min{|w|:O_w(B) differs from fixed reference}`. **Do not turn this test-relative depth into a universal structural quality score.**
+
+### Two same-current-observer histories separated by a one-step future action
+
+[MATH-5](P36_MATH_5_ONE_STEP_MAINTENANCE_SEPARATING_CONTINUATION.md) originally predeclared a **source-concrete** classical continuation distinction using `h_1=DDRR` and `h_2=DDED`, both length 4 from the same initial A,B,C source. Under observer `O=(current HTTP tag, Stats published revision)`, both output `(C,7)` but after future `E` they output respectively `(A,8)` and `(B,8)`. The passing O6 stable source test covers `DDRRE` and `DDEDE` and every prefix, so this is now a **bounded original-Go-validated observation witness**, not merely symbolic speculation. The observation projection is explicit and does not include private registry metadata or counts. It is classical non-Markovity under a coarse observation and ordinary Nerode distinguishing continuation, not non-Markovity of the full Go state.
+
+**Updated court:** `O3_O4_O5_NESTED_NATIVE_STRICT_FILTRATION_PASS__O6_ORIGINAL_CHI_FINITE_1093_STABLE_ONLY_PASS__MATH5_ONE_ACTION_OBSERVER_SEPARATOR_BOUNDED_VALIDATED__DIP49_CLASSICAL_RIVALS_UNDEFEATED__LAW_R2_NOT_AUTHORIZED`.
