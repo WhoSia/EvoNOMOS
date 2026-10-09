@@ -35,6 +35,13 @@ jobs:
           mkdir -p out/p36-o12/gjson out/p36-o12/jsonparser
           test "$(git -C gjson rev-parse HEAD)" = 690362d6edf4bcbde1e9f54d552d3814f1cd5bcb
           test "$(git -C jsonparser rev-parse HEAD)" = 36a686d11807c62cd5a30d41b294d66969ea25d8
+          # Audit upstream vet BEFORE applying any research source.
+          for repo in gjson jsonparser; do
+            set +e
+            (cd "$repo" && go vet ./...) >"out/p36-o12/$repo/upstream-vet-before.log" 2>&1
+            echo "$?" >"out/p36-o12/$repo/upstream-vet-before-exit.txt"
+            set -e
+          done
           for repo in gjson jsonparser; do
             cp "tools/p36-o12/arms/$repo/p36_o12_raw.go" "$repo/p36_o12_raw.go"
             cp "tools/p36-o12/tests/$repo/p36_o12_q22_test.go" "$repo/p36_o12_q22_test.go"
@@ -47,13 +54,29 @@ jobs:
         run: |
           set -euo pipefail
           for repo in gjson jsonparser; do
-            (cd "$repo" && go vet ./...) >"out/p36-o12/$repo/vet.log" 2>&1 || { cat "out/p36-o12/$repo/vet.log"; exit 11; }
-            (cd "$repo" && go test -count=1 ./...) >"out/p36-o12/$repo/full.log" 2>&1 || { cat "out/p36-o12/$repo/full.log"; exit 12; }
-            (cd "$repo" && go test -race -count=1 ./...) >"out/p36-o12/$repo/race.log" 2>&1 || { cat "out/p36-o12/$repo/race.log"; exit 13; }
-            (cd "$repo" && go test -v -count=1 -run '^TestP36O12' .) >"out/p36-o12/$repo/q22.log" 2>&1 || { cat "out/p36-o12/$repo/q22.log"; exit 14; }
+            set +e
+            (cd "$repo" && go vet ./...) >"out/p36-o12/$repo/upstream-vet-with-addon.log" 2>&1
+            post_vet_exit=$?
+            set -e
+            if [ "$repo" = jsonparser ]; then
+              test "$(cat "out/p36-o12/$repo/upstream-vet-before-exit.txt")" != 0 || { echo EXPECTED_UPSTREAM_VET_WARNING_ABSENT; exit 17; }
+              test "$post_vet_exit" != 0 || { echo VET_WARNING_CHANGED_UNEXPECTEDLY; exit 18; }
+              grep -q 'parser.go:2023:2: unreachable code' "out/p36-o12/$repo/upstream-vet-before.log"
+              grep -q 'bytes_unsafe_test.go:29:35: possible misuse of reflect.StringHeader' "out/p36-o12/$repo/upstream-vet-before.log"
+              diff -u "out/p36-o12/$repo/upstream-vet-before.log" "out/p36-o12/$repo/upstream-vet-with-addon.log" || { echo RESEARCH_SOURCE_ADDED_NEW_VET_DIAGNOSTICS; exit 19; }
+              echo ORIGINAL_UPSTREAM_HAS_TWO_VET_WARNINGS_UNCHANGED >"out/p36-o12/$repo/vet-qualification.txt"
+            else
+              test "$(cat "out/p36-o12/$repo/upstream-vet-before-exit.txt")" = 0
+              test "$post_vet_exit" = 0 || { cat "out/p36-o12/$repo/upstream-vet-with-addon.log"; exit 11; }
+              echo ORIGINAL_UPSTREAM_AND_NEW_SOURCE_FULL_VET_PASS >"out/p36-o12/$repo/vet-qualification.txt"
+            fi
+            (cd "$repo" && go vet -unreachable=false -unsafeptr=false ./...) >"out/p36-o12/$repo/qualified-vet.log" 2>&1 || { cat "out/p36-o12/$repo/qualified-vet.log"; exit 20; }
+            (cd "$repo" && go test -vet=off -count=1 ./...) >"out/p36-o12/$repo/full.log" 2>&1 || { cat "out/p36-o12/$repo/full.log"; exit 12; }
+            (cd "$repo" && go test -vet=off -race -count=1 ./...) >"out/p36-o12/$repo/race.log" 2>&1 || { cat "out/p36-o12/$repo/race.log"; exit 13; }
+            (cd "$repo" && go test -vet=off -v -count=1 -run '^TestP36O12' .) >"out/p36-o12/$repo/q22.log" 2>&1 || { cat "out/p36-o12/$repo/q22.log"; exit 14; }
             grep -q 'PASS: TestP36O12LexicalProvenanceQ22' "out/p36-o12/$repo/q22.log"
             grep -q 'PASS: TestP36O12ConcurrentReadOnlyQ22' "out/p36-o12/$repo/q22.log"
-            echo P36_O12_ORIGINAL_SOURCE_Q22_FULL_RACE_VET_PASS >"out/p36-o12/$repo/verdict.txt"
+            echo P36_O12_ORIGINAL_SOURCE_Q22_FULL_RACE_WITH_BASELINE_VET_QUALIFICATION_PASS >"out/p36-o12/$repo/verdict.txt"
           done
       - name: Same runner original two JSON packages counterbalanced costs
         shell: bash
@@ -62,7 +85,19 @@ jobs:
           for block in 1 2; do
             if [ "$block" = 1 ]; then repos='gjson jsonparser'; else repos='jsonparser gjson'; fi
             for repo in $repos; do
-              (cd "$repo" && GOMAXPROCS=1 go test -run '^$' -bench '^BenchmarkP36O12Selection' -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; }
+              (cd "$repo" && GOMAXPROCS=1 go test -vet=off -run '^ -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; }
+              grep -q 'BenchmarkP36O12Selection' "out/p36-o12/$repo/bench-block-$block.log"
+            done
+          done
+          echo P36_O12_TWO_INDEPENDENT_JSON_SOURCE_Q22_NATIVE_AND_PAIRED_COST_PASS >out/p36-o12/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o12-independent-original-json-q22-source
+          path: out/p36-o12/
+          if-no-files-found: warn
+          retention-days: 30
+ -bench '^BenchmarkP36O12Selection' -benchtime=150ms -count=5 -benchmem -cpu=1 .) >"out/p36-o12/$repo/bench-block-$block.log" 2>&1 || { cat "out/p36-o12/$repo/bench-block-$block.log"; exit 21; }
               grep -q 'BenchmarkP36O12Selection' "out/p36-o12/$repo/bench-block-$block.log"
             done
           done
