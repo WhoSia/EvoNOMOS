@@ -1,0 +1,52 @@
+name: G8 P37 C1D Scoped DIP Nonnecessity Negative Control
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-c1/**'
+      - '.github/workflows/g8-p37-c1d-concrete-control.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  concrete-dependency-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Fetch original independently evolved pinned Chi and gjson
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p37-c1d
+          cd tools/p37-c1
+          go get github.com/go-chi/chi/v5@67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          go get github.com/tidwall/gjson@690362d6edf4bcbde1e9f54d552d3814f1cd5bcb
+          go mod tidy
+          go list -m all >../../out/p37-c1d/modules.txt
+          sha256sum ingress/ingress.go archive/archive.go concreteingress/concrete.go composite_test.go concrete_control_test.go >../../out/p37-c1d/source-test-sha256.txt
+      - name: Prove direct concrete archive dependency statically
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'tools/p37-c1/archive' tools/p37-c1/concreteingress/concrete.go
+          grep -q 'func New(store \*archive.Store)' tools/p37-c1/concreteingress/concrete.go
+          ! grep -q 'tools/p37-c1/archive' tools/p37-c1/ingress/ingress.go
+          echo P37_C1D_STATIC_DIP_CRITERION_FAILS_BY_DIRECT_CONCRETE_OWNER_DEPENDENCY >out/p37-c1d/static-dependency.txt
+      - name: Exact original source composite Go test race and vet
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd tools/p37-c1 && go vet ./...) >out/p37-c1d/vet.log 2>&1 || { cat out/p37-c1d/vet.log; exit 21; }
+          (cd tools/p37-c1 && go test -race -v -count=1 ./...) >out/p37-c1d/race.log 2>&1 || { cat out/p37-c1d/race.log; exit 22; }
+          grep -q 'PASS: TestP37C1DConcreteOwnerDependencyAndHistoricalRecovery' out/p37-c1d/race.log
+          grep -q 'PASS: TestP37C1OwnerBLossyHistoricalWorldsIndistinguishable' out/p37-c1d/race.log
+          echo P37_C1D_CONCRETE_DEPENDENCY_NOT_NECESSARY_FOR_THIS_HISTORICAL_RECOVERY_PASS >out/p37-c1d/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-c1d-native-scoped-dip-negative-control
+          path: out/p37-c1d/
+          retention-days: 30
