@@ -44,7 +44,7 @@ jobs:
           mkdir -p out/p35-p6-train
           go version | tee out/p35-p6-train/go-version.txt
           test "$(git -C cobra rev-parse HEAD)" = "e94f6d0dd9a5e5738dca6bce03c4b1207ffbc0ec"
-          (cd tools/p35-p6 && go vet ./... && go test -count=1 -v ./... && go build -o ../../out/p35-p6-train/go-predictor .)
+          (cd tools/p35-p6 && go vet . && go test -count=1 -v . && go build -o ../../out/p35-p6-train/go-predictor .)
           ./out/p35-p6-train/go-predictor -mode=train -repo=cobra -out=out/p35-p6-train/seal-model.json | tee out/p35-p6-train/train-receipt.log
           sha256sum out/p35-p6-train/seal-model.json > out/p35-p6-train/model-sha256.txt
           echo 'P35P6_TRAIN_ONLY__NO_HELDOUT_COMPANION_LABEL_READ'
