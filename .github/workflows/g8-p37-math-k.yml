@@ -1,0 +1,39 @@
+name: G8 P37 Math-K Classical Rival Envelope and Authority Identifiability
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-k/**'
+      - 'tools/p37-e4/model/capability_repair_graph.py'
+      - '.github/workflows/g8-p37-math-k.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full-classical-negative-identification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check E4 source-tethered classical rival against compressed hypotheses
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-e4/model/capability_repair_graph.py | tee math-k-original-e4.log
+          python tools/p37-math-k/classical_rival_envelope.py | tee math-k.log
+          grep -q 'P37_MATH_K_FULL_CLASSICAL_MU_CALCULUS_EQUIVALENT_PASS cases=16 positives=1' math-k.log
+          grep -q 'P37_MATH_K_PROJECTED_INFORMATION_INDETERMINACY_PASS min_errors=1,1,1,0' math-k.log
+          grep -q 'P37_MATH_K_STRONG_CLASSICAL_RIVAL_DIFFERENCE=0' math-k.log
+          sha256sum tools/p37-e4/model/capability_repair_graph.py tools/p37-math-k/classical_rival_envelope.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-k-full-rival-negative-identification
+          path: |
+            math-k.log
+            math-k-original-e4.log
+            source-sha256.txt
+          retention-days: 30
