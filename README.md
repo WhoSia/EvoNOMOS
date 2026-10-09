@@ -10,7 +10,8 @@ EvoNOMOS studies the *conditions under which software organization changes the c
 
 | Surface | Canonical source | What it establishes |
 | --- | --- | --- |
-| Current experiment | [P35 technical opening](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) · [P35 Notion Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784) | Two genuinely different in-memory Go storage organizations; matched behavioral and change demands |
+| Current independent real-source court | [P35-P4/P4B Chi two-demand verdict](active/g8-law-r1-p35/P35_P4_P4B_REAL_CHI_TWO_DEMAND_TOURNAMENT_VERDICT.md) · [P35 Notion Run](https://app.notion.com/p/3f4ef561cf9281e6acd6c17204066784) | Presealed D4/D5 source interventions, original `go-chi/chi` native Go suites, stage-specific edit-sign reversal and undefeated classical rivals |
+| Foundational current stage | [P35 technical opening](active/g8-law-r1-p35/P35_OPENING_INDEPENDENT_CAPABILITY_ENGINES.md) | Genuine capability organization and earlier source-edit counterexamples |
 | Verified predecessor | [P34 terminal](active/g8-law-r1-p34/P34_TERMINAL_SOURCE_EDITS_AND_P35_HANDOFF.md) | DIRECT/COMPOSED changed one method and +4/−1 lines each under KeyFile size rule; no locality winner |
 | Theoretical foundation | [P33 integrated SOLID interpretation](active/g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md) · [Demand-relative quotient](active/g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) | Classical factorization, contract refinement, authority and conditional change-cost theory; not a new universal mathematical theorem |
 | Literature & rivals | [Harvest / source and repair families](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) | Parnas, Liskov–Wing, Martin, Design Rule Spaces, CSDG, repair synthesis, information cuts, set-valued continuation |
@@ -49,6 +50,20 @@ A meaningful structural claim needs:
 The same pinned [Restic `Backend` interface](https://github.com/restic/restic/blob/495982232cf1af184eac0a97871ef8161e8708ee/internal/restic/backend.go) (12 methods) was implemented by a DIRECT arm and a COMPOSED arm that **intentionally shared one data vault**. Hosted [P4 run #37888110765](https://github.com/WhoSia/EvoNOMOS/actions/runs/37888110765) reported **18/18 identical public-operation histories**, with 0 vs 18 *extra adapter→unit dispatches*. This measures dispatch topology, **not developer work**.
 
 A separately precommitted KeyFile Save rule (reject >8 bytes, preserving prior data) made the unedited baseline fail. Hosted [P5 run #37889096693](https://github.com/WhoSia/EvoNOMOS/actions/runs/37889096693) passed in both patched arms. Both patches changed **one file, one method, +4/−1 lines**. This negative result shows a delegating object boundary need not improve locality under a single-operation demand. No universal conclusion about modularity follows.
+
+### P35-P4/P4B — Independent public Go repository and prospective two-demand crossover
+
+**NEW: actual [go-chi/chi](https://github.com/go-chi/chi) at `v5.1.0` / `67be7d9cafdaeb4e04e887ff78d09e030ee43b00`.** The [D4 preseal](active/g8-law-r1-p35/P35_P4_REAL_CHI_PREDEMAND_SEAL.md) locked 16 HTTP acceptance tests and source-aware B0+/B1/B2 predictions *before* implementation. Two real Go middleware designs were tested: independent stdlib MIME parsing and a common internal MIME parse helper. [Native D4 Actions #37899279543](https://github.com/WhoSia/EvoNOMOS/actions/runs/37899279543) **SUCCESS**: unmodified source expected FAIL, both treatments PASS the new contract, original entire `go test ./...` and middleware `go test -race`. Artifact 11601623479 SHA-256 `aeffe3aaad4c6e4aa3fd0db71d5b74acded398ed93bd2436699dce73a342fc23`.
+
+A second requirement (reject syntactically valid `Content-Type` raw header longer than 128 bytes on nonempty body) and both architecture-fixed predictions were [sealed before D4 outcome review](active/g8-law-r1-p35/P35_P4B_SECOND_CHANGE_PREOUTCOME_SEAL.md). [Native D5 Actions #37899998083](https://github.com/WhoSia/EvoNOMOS/actions/runs/37899998083) **SUCCESS**: each unmodified D4 arm failed D5 as expected; both changed versions PASS D4, D5, original full Go module and middleware race. Artifact 11601912362 SHA-256 `cb1c392648927c6a13e42dcc26728a3bf1b63f7630b848f49d12635a809d5168`. Initial first D5 workflow failed in Bash parsing before Go ran; a human-only runner syntax correction was made without modifying frozen acceptance tests or Go treatments.
+
+| Source edit cost stage | Independent parse | Shared internal parse |
+| --- | ---: | ---: |
+| Initial D4 changed production files | **2** | **3** (one new helper) |
+| New D5 incremental changed production files | **2** | **1** |
+| Total production-file edit visits D4 + D5 | **4** | **4** |
+
+This is an **observed prospective sign change in incremental source-edit footprint**, **not** a complete architecture winner or new theorem. New helper costs and uneven prices remain open. The result is already explained by B0+ source-aware impact and classical Parnas/Sullivan information-hiding/modularity reasoning; the target files' real prebaseline production histories (one vs five changes with no verified joint production-file modification) do **not** provide enough support for a fair B1 cochange ranking. The two new demands are **researcher-authored interventions on real source**, not historical maintainer requests. [Full code, original-run receipts, limits and scientific verdict](active/g8-law-r1-p35/P35_P4_P4B_REAL_CHI_TWO_DEMAND_TOURNAMENT_VERDICT.md). P35-P4/P4B bounded CLOSED, **P35 overall remains OPEN**, LAW-R2 NOT_AUTHORIZED.
 
 ### P35 — Independent state engines and coupled change (OPEN)
 
@@ -110,4 +125,4 @@ Relevant original sources already recorded as held include [Liskov & Wing 1994](
 - GitHub carries compact executable evidence; Notion maintains decisions and science narrative; Google Drive retains canonical original research files and historical conversation archive. The 1–14 chat exports are research context, **not** independently adjudicated outcome data.
 - **No automatic LAW-R2**, no attribution of P34 outcomes to original ORIGIN-P12, and no independent new predictive architecture-law claim without the relevant strong-rival and held-out evidence.
 
-**Next executable work:** P35-P3 is a bounded native-source PASS and a counterexample to the putative C≥5 edit bound; U2/C4 are *observed* repair supports, not global minima. B0+ static candidates already cover C4 (4/6); a Parnas-style information-hiding/lifecycle rival explains its four obligations retrospectively; B1 has no fair same-population pre-demand P35 cochange history. Pursue an **independently sampled real evolving codebase with prospective matched-information B0+/B1/B2 predictions**, rather than repeatedly rescue this synthetic comparison.
+**Next executable work:** With P35-P4/P4B source tests sealed, choose a **history-rich independent maintenance cohort** (prebaseline source path counts: `mux.go` ≥100, `tree.go` 75, `context.go` 46 in go-chi/chi, unfiltered and not yet cochange labels), freeze training/holdout and matched-information B0+/B1/B2 predictions before source edits, and run original native tests. Do not infer a predictive victory or universal SOLID law from this bounded two-demand sign change.
