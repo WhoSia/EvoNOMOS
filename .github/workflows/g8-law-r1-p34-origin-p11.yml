@@ -1,0 +1,57 @@
+name: G8 LAW-R1-P34 TrueForge Temporal Contract Court
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/law-r1-p34-origin-p11-temporal.mjs'
+      - '.github/workflows/g8-law-r1-p34-origin-p11.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  reconstitute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout original EvoNOMOS pre-P12 terminal evidence
+        uses: actions/checkout@v4
+        with:
+          repository: WhoSia/EvoNOMOS
+          ref: e2e5a2e43c899e9e3574b615ba2375b32d0895fb
+          path: historical
+          fetch-depth: 1
+
+      - name: Checkout exact pre-demand TrueForge code and governance
+        uses: actions/checkout@v4
+        with:
+          repository: truefoundry/trueforge
+          ref: dd421b79216c9b42eefd7b0191e546919f8be3f1
+          path: trueforge
+          fetch-depth: 1
+
+      - name: Verify original seal and client-relative capability contracts
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          node tools/law-r1-p34-origin-p11-temporal.mjs historical trueforge out/p34-p11.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync('out/p34-p11.json','utf8'));
+          if(x.original_run!==36382197510 || x.cases.length!==20)process.exit(1);
+          if(x.delta.phase0[1]!==27 || x.delta.phase1[1]!==-31)process.exit(1);
+          if(!x.codeowners_core_wildcard.includes('@heerambavi1998'))process.exit(1);
+          if(!x.ruling.includes('GOVERNANCE_PARTIAL'))process.exit(1);
+          console.log('P34_ORIGIN_P11_RECONSTITUTION_AND_LSP_ISP=PASS');
+          NODE
+          sha256sum tools/law-r1-p34-origin-p11-temporal.mjs out/p34-p11.json > out/sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-law-r1-p34-temporal-p11
+          path: out/
+          retention-days: 30
