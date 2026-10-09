@@ -28,3 +28,15 @@ Run the same untouched Go test for exactly-one next-handler call, original pinne
 Standard bug fixing vs missing historical information already predicts these outcomes. Do not turn 'one-line fix vs new API' into design goodness rank: the demands are different, source versions differ by more than one commit, and editing authority/acceptance conditions differ. For exact causal attribution to `return`, use commit patch itself as evidence, or a matched pre-fix branch with just the one line, clearly labeled a project-authored treatment, **not** actual naturally evolved version. Version-level native tests alone cannot isolate the causal effect of a one-line patch if intervening changes are present.
 
 **Status before native O8 run:** `ORIGINAL_MAINTAINER_FIX_IDENTIFIED__RETROSPECTIVE_NATIVE_VALIDATION_PENDING__DIP49_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+
+## 2026-10-10 — Post-outcome actual native upstream receipts
+
+[Historical real-upstream original Chi CI #37968399257](https://github.com/WhoSia/EvoNOMOS/actions/runs/37968399257) is final **SUCCESS**, both historical source revision jobs. Exact test [`TestP36O8EmptyRouteHeadersInvokeNextExactlyOnce`](../../tools/p36-o8/tests/chi/p36_o8_historical_empty_router_test.go) was authored after reading the actual maintainer patch (retrospective, NOT blind). The original full Go module, middleware race, and `go vet` passed in both versions **without** the retrospective test; then the same external test was added.
+
+- Older original pinned Chi `67be7d9cafdaeb4e04e887ff78d09e030ee43b00`: original native exact output `P36_O8_UPSTREAM_EMPTY_MAP_DOUBLE_DISPATCH actual=2 wanted=1`, expected scientific negative; artifact id **11633644654**, ZIP SHA256 `3a897287d7c2833d8c8602b4855107b4a6f832918799d4153f5d0306d0ba79f1`.
+- Real upstream maintainer fix commit `05f1ef7bb50b8a8cb33a9dd3ba1c5b94bff0f723`: exact same native test **PASS**, next handler called once. Original full Go/race/vet PASS; artifact **11633639780**, ZIP SHA256 `a3bb1f25a6010559ed9574959c5f46a19a75b0822b2da1222679591e17cf2187`.
+
+The actual [upstream commit diff](https://github.com/go-chi/chi/commit/05f1ef7bb50b8a8cb33a9dd3ba1c5b94bff0f723) directly establishes the one-line `return` addition. Version-level tests separately confirm the associated behavioral contrast but do not by themselves isolate the single line from all intervening source changes. Earlier false technical CI statuses were NOT part of this historical O8 experiment.
+
+**Historical verdict:** `ACTUAL_UPSTREAM_MAINTAINER_REPAIR_CONFIRMED_ON_TWO_REAL_GO_REVISIONS__RETROSPECTIVE_NOT_PROSPECTIVE__CLASSICAL_CONTROL_FLOW_AND_STATE_INFORMATION_RIVALS_EXPLAIN__LAW_R2_NOT_AUTHORIZED`.
