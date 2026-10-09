@@ -1,0 +1,75 @@
+{
+  "schema": "evonomos-p35-b1-design-v1",
+  "status": "PRE_AGENT_RUN_NO_OUTCOMES",
+  "repositories": [
+    {
+      "task": "CHI_D11",
+      "repo": "go-chi/chi",
+      "pinned_commit": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+      "eligibility": "O3_D11_CORE_CALIBRATION_ONLY"
+    },
+    {
+      "task": "GORILLA_D11",
+      "repo": "gorilla/mux",
+      "pinned_commit": "b4617d0b9670ad14039b2739167fd35a60f557c5",
+      "eligibility": "O3_D11_COMMON_SUBSET_ONLY"
+    }
+  ],
+  "conditions": [
+    "NONE",
+    "HARD_SOLID",
+    "SCOPED_SOLID",
+    "EVIDENCE_CONDITIONAL"
+  ],
+  "latin_square": [
+    [
+      "NONE",
+      "HARD_SOLID",
+      "SCOPED_SOLID",
+      "EVIDENCE_CONDITIONAL"
+    ],
+    [
+      "HARD_SOLID",
+      "SCOPED_SOLID",
+      "EVIDENCE_CONDITIONAL",
+      "NONE"
+    ],
+    [
+      "SCOPED_SOLID",
+      "EVIDENCE_CONDITIONAL",
+      "NONE",
+      "HARD_SOLID"
+    ],
+    [
+      "EVIDENCE_CONDITIONAL",
+      "NONE",
+      "HARD_SOLID",
+      "SCOPED_SOLID"
+    ]
+  ],
+  "agentRuns": 0,
+  "modelId": null,
+  "temperature": null,
+  "attemptBudget": null,
+  "accessAndExecutor": "NOT_YET_FIXED; HOLD_AGENT_LAUNCH",
+  "outcomePrimary": "original native Go entire suite + same hidden frozen D11 oracle",
+  "outcomeSecondary": [
+    "API preservation",
+    "AST and file edits",
+    "specified scope and exceptions",
+    "independent follow-up counterexample handling",
+    "explicit ABSTAIN"
+  ],
+  "invalidCausalClaims": [
+    "prompt difference is not training-weight causation",
+    "task difference is not agent difference",
+    "single run is not population generalization"
+  ],
+  "requireBeforeRun": [
+    "fix model/version and authorized external tools",
+    "fix per-run compute/time/token budget",
+    "freeze evaluator and exact starter files",
+    "fresh contexts and no solution leakage",
+    "lock assignment and randomization procedure"
+  ]
+}

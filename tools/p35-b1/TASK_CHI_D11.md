@@ -1,0 +1,5 @@
+# Task CHI_D11 — Go source maintenance (unsolved source supplied)
+
+Original upstream code: go-chi/chi v5.1.0 at `67be7d9cafdaeb4e04e887ff78d09e030ee43b00`. The study provides a separate bounded starting source with preexisting experimental repeated-value/comma-token functionality, **not** the solved D11 implementation. Follow the complete task's named nonnegotiable behavior below and preserve original Go API/test behavior.
+
+For the synthetic research header `X-EvoNOMOS-Mode`, support CSV-style quoted comma tokens and doubled double quotes. Only quoted tokens protect commas; trim surrounding whitespace and ignore empty unquoted fields. A malformed quoted field contributes no matching tokens; other physical fields may still match. Preserve prior repeated-field and unquoted comma-token routing, exact-versus-wildcard precedence between different headers and first matching route within one header, plus each assigned LIVE/SNAPSHOT construction-time semantics. Do not generalize this CSV grammar to arbitrary HTTP field types. Tests/assessment are architecture neutral. Report failures.
