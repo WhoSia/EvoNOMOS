@@ -1,0 +1,30 @@
+name: G8 LAW-R1-P34 P5 Paired Go Source Modification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p34-p5/**'
+      - '.github/workflows/g8-law-r1-p34-p5-edits.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  source-edits:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: restic/restic
+          ref: 495982232cf1af184eac0a97871ef8161e8708ee
+          path: restic
+          fetch-depth: 1
