@@ -62,3 +62,14 @@ A static per-request 'best' and a per-lifecycle 'best' can disagree without any 
 [O10R pre-replication seal](P36_O10R_TWO_RUNNER_COST_SIGN_REPLICATION_PRESEAL.md) was committed after initial medians were read, before new runner data. **If replication changes the weak ~2.6% single-match time sign, the 356-request time proxy loses empirical support in that environment.** Preserve that negative instead of promoting an unconditional threshold.
 
 **Court:** `CLASSICAL_LINEAR_LIFECYCLE_BREAK_EVEN_EXPLORATORY__SAME_Q21_NATIVE_PASS__INDEPENDENT_CPU_REPLICATION_PENDING__DIP49_HOLD__LAW_R2_NOT_AUTHORIZED`.
+
+
+## Independent cost replication and direct integrated-lifecycle challenge
+
+[Native O10R two independently hosted matched original-module runners #37971308882](https://github.com/WhoSia/EvoNOMOS/actions/runs/37971308882) **2/2 SUCCESS**, after the first-run cost sign predictions were frozen. Both full original Go/race/vet/Q21 PASS and identical source/test SHA. Exact [O10R two-runner raw cost receipt](P36_O10R_TWO_INDEPENDENT_RUNNERS_NATIVE_COST_VERDICT.md). On specificity/PS overlapping request, Chi dispatch has lower latency and allocations in **all three** physical runner sessions; on specification/PS generic-only request, Gorilla has lower dispatch latency and allocations in **all three**, under the SAME Q21. The chronology/PS/overlap near tie **switches sign** across runners; no stable universal ranking.
+
+The simple linear setup+N*request latency proxy predicts three distinct generic-only break-even counts: ~355.36 requests (first EPYC 7763), ~195.37 (EPYC 9V74) and ~414.97 (other EPYC 7763). Byte and allocation model-only crossings 102 requests and 58 requests are stable across these runs. **None** is a measured integrated lifecycle threshold.
+
+[O11 integrated lifecycle grid was preregistered before O11 benchmark code](P36_O11_INTEGRATED_LIFECYCLE_FINITE_N_GRID_PRESEAL.md): freeze N={0,64,128,256,384,512,1024}, specificity/PS, both Q21-legal requests single and overlap; time **whole operation** of fresh handler build + N requests with same recorder construction, on two fresh runners counterbalancing Chi/Gorilla source order. [Native O11 CI #37972048630](https://github.com/WhoSia/EvoNOMOS/actions/runs/37972048630) **PENDING at this inscription**. The work explicitly tests whether addition of *separate* first-run medians predicts real integrated source behavior, not just a ratio from arithmetic.
+
+**Mathematical caution:** a conditional Pareto ordering on dispatch-cost vectors under a specified workload is no universal total order on software design; a different workload can reverse it without violating classical cost theory. Maintain `DIP49_HOLD / LAW-R2_NOT_AUTHORIZED`.
