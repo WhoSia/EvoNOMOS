@@ -159,7 +159,7 @@ This is where P18's Principle-as-Projection Hypothesis can be given a **formal i
 - LSP-safe/direct-import, DIP-satisfied/LSP-unsafe, both satisfied/new demand information-insufficient;
 - source-rooted P33 predecessor quotient model: existing [65,536 finite factorization checks](../../tools/law-r1-p33-demand-quotient.mjs) and already-known Uptime Kuma certificate-context collision.
 
-The test is a finite **model** of dependency ownership; it does **not parse or certify the actual Uptime Kuma production dependency graph**. The combined hosted read-only workflow retains pinned source checks and human authoring, no repository writeback. Record its exact run ID and digest after execution.
+The test is a finite **model** of dependency ownership; it does **not parse or certify the actual Uptime Kuma production dependency graph**. The combined hosted read-only workflow retains pinned source checks and human authoring, no repository writeback. **Verified read-only hosted run:** [37883377979](https://github.com/WhoSia/EvoNOMOS/actions/runs/37883377979) SUCCESS, job 113667872029, artifact `11595032811`, SHA256 `03d9ba0d338006071dc09c542ffbaf4a2e2f4a7bc815095e5c711f2b18651de9`. The workflow also completed the predecessor bounded source repair and demand-quotient checks. The new finite model checks 4096 trace-set triples and its independent LSP/DIP/ISP/OCP counterexamples. No full production JavaScript import graph was extracted.
 
 ## 9. What remains open
 
@@ -169,4 +169,4 @@ The test is a finite **model** of dependency ownership; it does **not parse or c
 - Theorems stronger than the composition of well-known quotient/refinement/interface properties, only if worthwhile; **no novelty compulsions**.
 - Manuscript-quality introduction, proofs, adversarial counterexamples and full citations. Interpretive scholarly contribution is already legitimate with the above scoped mathematics.
 
-**P33 theory verdict:** \`P33_INTEGRATED_SOLID_INTERPRETATION_COMPLETE_AT_BOUNDED_MODEL_LEVEL__LSP_DIP_FINITE_CHECK_PENDING__P33_OPEN__LAW_R2_NOT_AUTHORIZED\`.
+**P33 theory verdict:** \`P33_INTEGRATED_SOLID_INTERPRETATION_COMPLETE_AT_BOUNDED_MODEL_LEVEL__LSP_DIP_FINITE_CHECK_HOSTED_PASS__P33_OPEN__LAW_R2_NOT_AUTHORIZED\`.
