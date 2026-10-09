@@ -61,6 +61,12 @@ The important logical correction is **not** “composition universally preserves
 
 **All these rivals remain undefeated.** This project *checks its own chosen formalization*, not the novelty of the formal statement or its correspondence to every actual Go program. Mathlib is not made a massive dependency for a small kernel-proof seed; its definitions/lemmas should be used when the next theorem genuinely requires finite-state structure, quotients or algebra.
 
+## Historical non-novelty and recovery addendum (read back 2026-10-09)
+
+**Provenance correction, not a revision of the successfully Lean-checked formal statements.** The [historical chat and Notion audit](P35_AUTOMATA_HISTORICAL_LINEAGE_AND_MATH1_SCOPE_CORRECTION.md) establishes that EvoNOMOS already treated automata, causal bisimulation and minimal continuation equivalence in **Gen VI DIP-10, DIP-28, DIP-42, DIP-48, DIP-49, DIP-50 (Aug 29–30)** and decision-bisimulation in **Gen VII P19 (Sep 12)**. Original `14.md` further identified nonunique repairs `R_d ⊆ A×A`. Missing `7.md` was excluded.
+
+Therefore MATH-1 **does not introduce automata or novel bounded-trace equivalence into the EvoNOMOS intellectual lineage**. It provides a verified Lean4 executable proof suite plus separate Go/Prolog countermodels, while many previous `THEORY PASS` records were analytic rather than machine-checked or validated on independent source. The next research gate must not re-prove DIP-42/48 under new labels; instead directly attack the **faithful realization of symbolic law-separating demands in actual Go** with **multiple admissible repair choices** and strong prior art.
+
 ## 5. Next mathematical gate: not more toy theorems for their own sake
 
 **MATH-2 direction:** (a) for arbitrary k, can two finite-state machines first become distinguishable at k+1, and what number of states is required? (b) compare bounded trace equivalence under state-hiding, input-feedback, nondeterministic and shared-state product operators, without slipping into unsupported universal congruence. (c) rigorously map software's *future demand transformations* to action/context families and test whether structural tradeoff/relative rankings are invariant under allowable equivalence and representational choices. (d) require independent *original Go* source A/B competitors and actual future demands; P7 remains the native source substrate, not the proven model's exhaustive semantics.
