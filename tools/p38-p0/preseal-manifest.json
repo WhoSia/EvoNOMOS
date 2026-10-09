@@ -1,0 +1,45 @@
+{
+  "project": "EvoNOMOS",
+  "stage": "G8-LAW-R1-P38-P0",
+  "status": "PREOUTCOME",
+  "contains_holdout_labels": false,
+  "case_type": "LIVE_PROSPECTIVE",
+  "synthetic": false,
+  "candidate_source_status": "UNSCREENED",
+  "semantic_target": "NOT_YET_FROZEN",
+  "cutoff_at": null,
+  "predictions_sealed_at": null,
+  "source": {
+    "upstream_sha": null,
+    "downstream_sha": null,
+    "natural_dependency_source_anchor": null,
+    "actual_independent_maintainer_evidence": null,
+    "allowed_edit_grammar_evidence": null,
+    "checkpoint_invariant_evidence": null,
+    "prospective_demand_source_anchor": null,
+    "evidence_ledger": []
+  },
+  "outcome": {
+    "visibility": "UNSEEN",
+    "actual_label": null,
+    "oracle_contract": null
+  },
+  "shared_limits": {
+    "evidence_bytes": null,
+    "source_parse_nodes": null,
+    "state_expansions": null,
+    "cpu_milliseconds": null,
+    "preprocess_milliseconds": null,
+    "label_annotations": null
+  },
+  "models": {},
+  "rival_selection": {
+    "selection_receipt": null,
+    "prior_validation_cutoff": null,
+    "selected_strongest_implementable_rival": null,
+    "same_evidence_access": false,
+    "same_implementation_budget": false
+  },
+  "independent_evidence_audit_receipt": null,
+  "notes": "Canonical CLOSED placeholder. Never fill with invented sources, synthetic outcome predictions or assumed owner/deployment rights. Passing static review will still need independent source/time audit."
+}
