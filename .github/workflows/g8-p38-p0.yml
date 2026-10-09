@@ -1,0 +1,40 @@
+name: G8 P38 P0 Prospective Gate and Strong Rival Preseal
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p38-p0/**'
+      - '.github/workflows/g8-p38-p0.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p38-preseal-negative-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run preregistration gates and refuse premature external-Go authorization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p38-p0/prospective_gate.py
+          python tools/p38-p0/prospective_gate.py --selftest | tee p38-preseal-selftest.log
+          python tools/p38-p0/prospective_gate.py --manifest tools/p38-p0/preseal-manifest.json | tee p38-canonical-gate.json
+          grep -q 'P38_P0_MANIFEST_GATE_NEGATIVE_CONTROL_PASS fixtures=13' p38-preseal-selftest.log
+          grep -q 'P38_P0_CANONICAL_OPEN_MANIFEST_GATE=CLOSED' p38-preseal-selftest.log
+          grep -q 'P38_P3_EXTERNAL_GO_NATIVE_TRIAL_NOT_AUTHORIZED' p38-preseal-selftest.log
+          grep -q '"status": "CLOSED"' p38-canonical-gate.json
+          sha256sum tools/p38-p0/prospective_gate.py tools/p38-p0/preseal-manifest.json > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p38-p0-preseal-hold-and-control-receipts
+          path: |
+            p38-preseal-selftest.log
+            p38-canonical-gate.json
+            source-sha256.txt
+          retention-days: 30
