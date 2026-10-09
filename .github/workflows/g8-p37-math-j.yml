@@ -1,0 +1,36 @@
+name: G8 P37 Math-J Contextual Minimality and Authority Partitions
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p37-math-j/**'
+      - '.github/workflows/g8-p37-math-j.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-context-minimality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Context and Authority-Indexed Partitions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p37-math-j/context_minimality.py | tee math-j.log
+          grep -q 'P37_MATH_J_CONTEXTUAL_SUFFICIENCY_MINIMALITY_DISTINCT_PASS' math-j.log
+          grep -q 'P37_MATH_J_AUTHORITY_INCLUSION_REACHABILITY_MONOTONE_PASS cases=5832' math-j.log
+          grep -q 'P37_MATH_J_AUTHORITY_PARTITION_INCOMPARABILITY_PASS cases=162' math-j.log
+          sha256sum tools/p37-math-j/context_minimality.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p37-math-j-context-authority
+          path: |
+            math-j.log
+            source-sha256.txt
+          retention-days: 30
