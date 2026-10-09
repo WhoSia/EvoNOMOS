@@ -8,6 +8,7 @@ on:
       - 'tools/law-r1-p33-info-cut-repair-world.mjs'
       - 'tools/law-r1-p33-repair-cut-certificate.mjs'
       - 'tools/law-r1-p33-demand-quotient.mjs'
+      - 'tools/law-r1-p33-lsp-dip-contract-graph.mjs'
       - '.github/workflows/g8-law-r1-p33-information-cut.yml'
 
 permissions:
@@ -64,6 +65,18 @@ jobs:
           if(r.source_receipts!=='bounded source execution already verified 64/64 vs 0/64')process.exit(1);
           if(!r.verdict.includes('FORMAL_REINTERPRETATION_PASS'))process.exit(1);
           console.log('P33_FINITE_DEMAND_RELATIVE_QUOTIENT=PASS_INTERPRETIVE_THEORY');
+          NODE
+          node tools/law-r1-p33-lsp-dip-contract-graph.mjs out/p33-lsp-dip-finite.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync('out/p33-lsp-dip-finite.json','utf8'));
+          if(x.examined_trace_contract_triplets!==4096)process.exit(1);
+          if(!x.cross_principle_cases.all_bounded_conditions.inversion ||
+             x.cross_principle_cases.LSP_and_DIP_but_new_demand_unobservable.demandAdequacy ||
+             x.cross_principle_cases.LSP_but_DIP_not_satisfied.inversion ||
+             x.cross_principle_cases.DIP_but_LSP_not_satisfied.traceRefinement)process.exit(1);
+          if(x.provider_cases.silent_progress!==false)process.exit(1);
+          console.log('P33_LSP_DIP_FINITE_INTERPRETIVE_CERTIFICATE=PASS');
           NODE
           sha256sum tools/law-r1-p33-*.mjs out/*.json > out/sha256.txt
 
