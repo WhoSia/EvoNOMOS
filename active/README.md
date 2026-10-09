@@ -19,6 +19,8 @@
 - [Demand quotient checker](../tools/law-r1-p33-demand-quotient.mjs) and [Hosted run 37882674220](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882674220) **SUCCESS**. 65,536 four-state factorization checks, example 2→4 minimal observable classes when independent demands are added, source-bounded Uptime Kuma information collision; artifact `11595092855` digest `sha256:4c06ba75d196836b31fdeee87c2d6a027d3a4390a9be3c4eee92479e170e1c1b`.
 - **Interpretive theory PASS / full empirical predictive claim HOLD / LAW-R2 NOT_AUTHORIZED**. Current P33 Run unchanged; no stage inflation.
 
+- The same [conditional SOLID paper](g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) now derives a change-probability/interference-cost SRP decision threshold. The [latest hosted run 37882892847](https://github.com/WhoSia/EvoNOMOS/actions/runs/37882892847) **SUCCESS** tests it alongside quotient factorization (artifact `11595337491`, SHA256 `9286223a63293b8f700157d27175c097e11a8c079f2196d46144f9374fb7aa9a`). Not a universal optimal-decomposition law.
+
 ## P33 — Repair-family research opening
 
 Source a and demand d can admit several valid implementations b. Distinguish potential impact, minimal admissible repair support families and realized policy-conditioned vectors. Require matching information budgets for B0+ static overlap, B1 CoChangeFinder-style history with patch availability, B2 Parnas/DRSpaces/CSDG/standard repair synthesis, and H demand-indexed contract choice. Never score P32 retrospective Uptime Kuma #7639 bug as a fresh H victory.
