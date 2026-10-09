@@ -1,0 +1,60 @@
+name: G8 LAW-R1-P35 P7 Original Chi Structural Rivals
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/p35-p7/arms/**', '.github/workflows/g8-law-r1-p35-p7-chi-structures.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native-paired:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with: {repository: go-chi/chi, ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00, path: chi, fetch-depth: 1}
+      - name: Original baseline and native paired Go regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$GITHUB_WORKSPACE/out/p35-p7"
+          mkdir -p "$OUT"
+          test "$(git -C chi rev-parse HEAD)" = "67be7d9cafdaeb4e04e887ff78d09e030ee43b00"
+          go version | tee "$OUT/go-version.txt"
+          cp chi/middleware/route_headers.go "$OUT/original-route_headers.go"
+          cp tools/p35-p7/tests/*.go chi/middleware/
+          set +e
+          (cd chi && go test -count=1 -run '^TestP35P7EmptyRouterExactlyOnce$' ./middleware) > "$OUT/baseline-negative.log" 2>&1
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then echo 'BASELINE_UNEXPECTED_PASS'; exit 11; fi
+          grep -q 'P35P7_D0_EMPTY_ROUTE_FAILURE' "$OUT/baseline-negative.log" || { cat "$OUT/baseline-negative.log"; exit 12; }
+          echo 'P35P7_BASELINE_EXPECTED_FAIL'
+          for arm in live snapshot; do
+            cp "tools/p35-p7/arms/$arm/route_headers.go" chi/middleware/route_headers.go
+            (cd chi && go vet ./middleware && go test -race -count=1 ./middleware) > "$OUT/$arm-race.log" 2>&1 || { cat "$OUT/$arm-race.log"; exit 21; }
+            (cd chi && go test -count=1 ./...) > "$OUT/$arm-full-module.log" 2>&1 || { cat "$OUT/$arm-full-module.log"; exit 22; }
+            (cd chi && go test -v -count=1 -run '^TestP35P7' ./middleware) > "$OUT/$arm-contract.log" 2>&1 || { cat "$OUT/$arm-contract.log"; exit 23; }
+            grep -q 'PASS: TestP35P7EmptyRouterExactlyOnce' "$OUT/$arm-contract.log"
+            grep -q 'PASS: TestP35P7StableHeaderOrderAndFallback' "$OUT/$arm-contract.log"
+            grep -q 'PASS: TestP35P7RouteAny' "$OUT/$arm-contract.log"
+            if [ "$arm" = live ]; then grep -q 'P35P7_D_LIVE_PASS__D_FROZEN_FAIL' "$OUT/$arm-contract.log"; else grep -q 'P35P7_D_FROZEN_PASS__D_LIVE_FAIL' "$OUT/$arm-contract.log"; fi
+            (cd chi && go test -count=1 -run '^$' -bench '^BenchmarkP35P7' -benchtime=100ms -benchmem ./middleware) > "$OUT/$arm-bench.log" 2>&1 || { cat "$OUT/$arm-bench.log"; exit 24; }
+            diff -u "$OUT/original-route_headers.go" "chi/middleware/route_headers.go" > "$OUT/$arm-source.patch" || [ "$?" -eq 1 ]
+            sha256sum "chi/middleware/route_headers.go" > "$OUT/$arm-sha256.txt"
+            echo "P35P7_NATIVE_$arm_D0_AND_FULL_GO_AND_RACE_PASS" | tee "$OUT/$arm.verdict"
+          done
+          find tools/p35-p7 -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/source-manifest.txt"
+          (cd "$OUT" && sha256sum ./*.log ./*.patch ./*.txt ./*.verdict > receipt-sha256.txt)
+          echo 'P35P7_REAL_GO_STRUCTURAL_TWO_ARM_WORLD_CONTACT_PASS'
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p7-native-chi-live-snapshot-worlds
+          path: out/p35-p7/
+          if-no-files-found: warn
+          retention-days: 30
