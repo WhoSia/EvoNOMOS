@@ -1,0 +1,30 @@
+name: G8 LAW-R1-P34 P3 Temporal Wire and Restic Contrast
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p34-p3-temporal-oracle_test.go'
+      - 'tools/p34-p3-restic-core.mjs'
+      - '.github/workflows/g8-law-r1-p34-p3-temporal.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  contract-and-counterworld:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - uses: actions/checkout@v4
+        with:
+          repository: WhoSia/EvoNOMOS
+          ref: e2e5a2e43c899e9e3574b615ba2375b32d0895fb
+          path: historical
+      - uses: actions/checkout@v4
+        with:
+          repository: restic/restic
+          ref: 495982232cf1af184eac0a97871ef8161e8708ee
+          path: restic
