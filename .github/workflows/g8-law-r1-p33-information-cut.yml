@@ -9,6 +9,7 @@ on:
       - 'tools/law-r1-p33-repair-cut-certificate.mjs'
       - 'tools/law-r1-p33-demand-quotient.mjs'
       - 'tools/law-r1-p33-lsp-dip-contract-graph.mjs'
+      - 'tools/law-r1-p33-contract-poset.mjs'
       - '.github/workflows/g8-law-r1-p33-information-cut.yml'
 
 permissions:
@@ -77,6 +78,14 @@ jobs:
              x.cross_principle_cases.DIP_but_LSP_not_satisfied.traceRefinement)process.exit(1);
           if(x.provider_cases.silent_progress!==false)process.exit(1);
           console.log('P33_LSP_DIP_FINITE_INTERPRETIVE_CERTIFICATE=PASS');
+          NODE
+          node tools/law-r1-p33-contract-poset.mjs out/p33-contract-poset.json
+          node - <<'NODE'
+          const f=require('fs');
+          const x=JSON.parse(f.readFileSync('out/p33-contract-poset.json','utf8'));
+          if(x.contracts_enumerated!==16 || x.triple_cases!==4096) process.exit(1);
+          if(!x.refinements.pass || !x.verdict.includes('CONCEPTUAL_SOLID_THEORY_BOUNDED_CLOSE_CANDIDATE')) process.exit(1);
+          console.log('P33_CLASSICAL_AG_CONTRACT_ORDER=PASS');
           NODE
           sha256sum tools/law-r1-p33-*.mjs out/*.json > out/sha256.txt
 
