@@ -1,6 +1,6 @@
 # P35-P1 — Four-Method Composed Repair and Strong-Rival Boundary
 
-**2026-10-09. Scientific status:** `LOCAL_SOURCE_REPAIR_FAMILY_EXPANDED__UPSTREAM_DNS_BLOCK__LAW_R2_NOT_AUTHORIZED`. This is a same-stage extension, **not** P36, LAW-R2 or a new Lab.
+**2026-10-09. Updated scientific status:** `LOCAL_SOURCE_REPAIR_FAMILY_EXPANDED__PINNED_RESTIC_PACKAGE_PASS__ARCHITECTURE_ADMISSIBILITY_BOUNDARY_OPEN__LAW_R2_NOT_AUTHORIZED`. Local DNS was superseded by [hosted original Restic #37895607800](https://github.com/WhoSia/EvoNOMOS/actions/runs/37895607800). This is a same-stage extension, **not** P36, LAW-R2 or a new Lab.
 
 ## Experimental contact
 
@@ -26,7 +26,7 @@ All values are `Go AST diff against exactly the same unedited P35-P0`, counting 
 | C encoded, tagged payload decoded in read engine | 5 | +55/−9 | Local demand PASS |
 | **C encoded, tagged payload decoded in payload store** | **4** | **+50/−7** | **Local demand PASS** |
 
-The four-method candidate modifies `newPayloadStore`, `payloadStore.put`, `payloadStore.get`, `payloadStore.clear`; `readEngine.decode`, `composed.Save`, `composed.Load`, `Stat` and `List` remain byte-identical to P0 in that candidate. This is **not** a zero-cost implementation: typed payload representation and codec helpers are additional structural obligations.
+The four-method candidate modifies `newPayloadStore`, `payloadStore.put`, `payloadStore.get`, `payloadStore.clear`; `readEngine.decode`, `composed.Save`, `composed.Load`, `Stat` and `List` remain byte-identical to P0. **Critical architectural correction:** `readEngine.decode` is only a forwarded call while the payload store performs the version interpretation, violating P35's frozen *independent read-decoder* responsibility. Its behavior PASS is not admissible as a fixed-architecture C repair. The lowest observed C repair that preserves independent decode is **five modified methods (tagged variant)**, not four. The difference is a test of the architectural repair grammar, not proof of a global minimum. Typed payload state and codec helpers add costs even in the four-method arm.
 
 **Verification:** Go 1.23.2 shim `go vet` PASS; `go test -race -count=10` PASS for the selected tests; P34 public behavior replay `18/18`; expected unedited new-demand baseline FAIL. Does **not** imply Restic full upstream conformance or developer time.
 
@@ -42,8 +42,8 @@ Existing syntactic B0+ reachability seeds include `unified.Save/Load/Stat/List/R
 
 ## Authentic upstream attempt / reproducibility
 
-A read-only original-source validation driver has been written and syntax-checked and tries to clone the *real* Restic pinned repository in a temporary directory, run `go vet`, `go test -race` on all source worlds and baseline-negative controls. The attempted local run returned **exit 40** before checkout: `fatal: unable to access ... Could not resolve host: github.com`. No original upstream build took place. The script is provided in the local P35-P1 evidence bundle to be executed on a host with network.
+The earlier read-only *local* original-source attempt exited 40 during GitHub DNS resolution. Subsequently, [read-only GitHub Actions #37895607800](https://github.com/WhoSia/EvoNOMOS/actions/runs/37895607800) checked out the pinned **actual Restic** commit, compiled, vetted and race-tested all eight Go source worlds, replayed the P34 18-step history in each, and demonstrated both untouched-baseline expected failures. The source and runner are now [human-authored browser-readable files](../../tools/p35-p1/worlds/baseline/backend.go); artifact 11599942843 SHA256 `49d38c9c60a7415c9b9395cb7c52db5e33cdf25e55297de6888d5f52fa89f85b`. No full upstream Restic suite or strong-rival win is claimed.
 
-**Next legitimate action:** original Restic compile and 18-step tests, then source-aware rival baseline under matched input. If no structural discrimination survives, close P35 with its actual bounded outcome instead of inventing novel names for established theories.
+**Next legitimate action:** architecture-admissible repair family comparison under matched information and source-aware B0+/B1/B2; separate a test-passing decoder relocation from a genuinely fixed COMPOSED read contract. Maintain persistence in seeking better independent worlds without indefinitely retesting the same null contrast.
 
 Authorship: GitHub commit author and committer must be authenticated `WhoSia`; Actions must remain read-only. No bot-authored repository history.

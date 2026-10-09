@@ -15,7 +15,7 @@ EvoNOMOS studies the *conditions under which software organization changes the c
 | Theoretical foundation | [P33 integrated SOLID interpretation](active/g8-law-r1-p33/P33_CONTRACT_OBSERVATION_AUTHORITY_INTEGRATED_SOLID.md) · [Demand-relative quotient](active/g8-law-r1-p33/P33_DEMAND_RELATIVE_INTERFACE_QUOTIENTS_AND_CONDITIONAL_SOLID.md) | Classical factorization, contract refinement, authority and conditional change-cost theory; not a new universal mathematical theorem |
 | Literature & rivals | [Harvest / source and repair families](https://app.notion.com/p/3f3ef561cf9281819a9fd930746e5ca5) | Parnas, Liskov–Wing, Martin, Design Rule Spaces, CSDG, repair synthesis, information cuts, set-valued continuation |
 | Genealogy | [Active lineage](active/README.md) · [Research OS / Entry Card](https://app.notion.com/p/3caef561cf928153ae09eed2bf4b7d72) | Separate historical snapshots from current permission to make scientific claims |
-| Reproduction bridge | [P35 source-and-validation protocol](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md) | Exact local-pass/upstream-hold distinction, reproducible original-source commands, strong-rival limitations |
+| Native proof | [P35-P2 native Restic evidence](active/g8-law-r1-p35/P35_P2_NATIVE_RESTIC_EIGHT_WORLDS_AND_ARCHITECTURE_ADMISSIBILITY.md) · [P35 reproduction protocol](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md) | Eight separately compiled Go source worlds, original pinned Restic tests and negative controls; not full upstream test suite |
 
 **Status hierarchy:** `CLOSED` means the named phase received its terminal verdict, not that every large scientific hypothesis passed. `METHOD PASS` certifies only the declared method. `HOLD` and `TERMINAL_NONRESULT` are not transformed into evidence by a later narrative. In particular, original ORIGIN-R1-P12 is still **TERMINAL_NONRESULT**.
 
@@ -52,6 +52,9 @@ A separately precommitted KeyFile Save rule (reject >8 bytes, preserving prior d
 
 ### P35 — Independent state engines and coupled change (OPEN)
 
+**Native upstream execution PASS (2026-10-09).** [GitHub Actions #37895607800](https://github.com/WhoSia/EvoNOMOS/actions/runs/37895607800) checked out the exact original `restic/restic@495982232cf1af184eac0a97871ef8161e8708ee`, compiled, vetted and race-tested **eight independent P35 source worlds**, re-ran the P34 18-operation public-history contract on each, and verified both pre-edit negative controls fail for the intended reason. All eight passed the native package regression; artifact [#11599942843](https://github.com/WhoSia/EvoNOMOS/actions/runs/37895607800) SHA-256 `49d38c9c60a7415c9b9395cb7c52db5e33cdf25e55297de6888d5f52fa89f85b`. Source, shared tests and a read-only reusable runner are [browser-readable Go files under `tools/p35-p1/`](tools/p35-p1/worlds/baseline/backend.go). **This is a bounded P35 package result, not a full upstream Restic test-suite or production storage certification.**
+
+
 The P35 implementation comparison must eliminate P34's common vault:
 - **UNIFIED:** one `map[Handle]record` authoritative for payload and logical size.
 - **COMPOSED:** separately owned payload and metadata stores, a read decoder and removal coordination, connected by explicit consistency operations. Distinct maps are *not automatically a proof of operational independence*.
@@ -65,9 +68,9 @@ The first **local P35-P1** source experiment (2026-10-09) applied two requiremen
 
 In the versioning case a content prefix is not enough to classify old arbitrary byte streams: `S_old(x)=S_new(y)` with `x≠y` makes the two intended decodings incompatible unless distinguishing context exists. This is a **known information-cut obstruction**, not a new theorem. The experiment placed that additional information in different source structures and measured actual patches. The composed arm's change from 6 to 5 methods under an alternate implementation is itself evidence that one patch footprint does not characterize an entire design.
 
-**Four-method repair update:** [P35 observed repair-family and rival-baseline audit](active/g8-law-r1-p35/P35_P1_FOUR_METHOD_REPAIR_AND_STRONG_RIVAL_BOUNDARY.md) shows that moving trusted payload-version decoding from `readEngine` into `payloadStore.get` reduces one feasible COMPOSED repair to four changed pre-existing methods. This does **not** prove either architecture's optimal patch cost.
+**Repair-grammar boundary:** [P35 repair-family and rival-baseline audit](active/g8-law-r1-p35/P35_P1_FOUR_METHOD_REPAIR_AND_STRONG_RIVAL_BOUNDARY.md) records a four-method COMPOSED variant that moves decoding into `payloadStore.get`. It **passes behavior but violates the frozen independence of the read decoder**. A five-method tagged-payload variant preserves that independence. Neither figure is a proven architectural minimum.
 
-**Validation boundary:** Local Go 1.23.2 tests (including `-race`), P34-like 18-operation regression histories and baseline-negative controls were observed PASS using a **synthetic interface shim**, not the complete upstream Restic repository. **Authentic pinned Restic compile, upstream conformance and hosted P35 Actions are PENDING.** Do not label P35 source as original-Restic-verified or claim H outperforms strong static/history/architecture rivals. Source and re-run details are in the [P35 reproduction bridge](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md). Source artifacts are maintained separately until human-authored GitHub ingestion. A new four-method COMPOSED repair was tested locally after the initial P35-P1 experiments; it further reduces the observed COMPOSED patch support without establishing a global minimum.
+**Validation boundary:** Local shim checks were preliminary; **actual pinned Restic module package compile, `go vet`, `go test -race` and all eight P35 source-world regressions have now passed on a hosted read-only runner**. Baseline new-demand negatives failed as intended. Tests do not cover the entire upstream Restic module/production backend, real external durability, or independent future-demand prediction; B0+/B1/B2 strong rivals and grammar-complete minimum repair search remain open. The Go sources and [runner](tools/p35-p1/run_pinned_restic.sh) are committed to GitHub by the human account; [source-based verdict](active/g8-law-r1-p35/P35_P2_NATIVE_RESTIC_EIGHT_WORLDS_AND_ARCHITECTURE_ADMISSIBILITY.md).
 
 ## What would constitute a stronger result?
 
@@ -89,7 +92,7 @@ crates/       Rust support where appropriate
 
 Go is used for Restic-native interface/behavior tests, Rust for appropriate high-throughput core analysis, and Python or JS for reproducible preparation and audits; language selection follows the actual substrate, not a mandatory polyglot checklist.
 
-For the **verified P34** run, see [source](tools/p34-p4/pair.go), [18-step oracle](tools/p34-p4/pair_test.go), and [P5 materializer](tools/p34-p5/materialize.mjs). Do not run P35's local fixture tests and report them as original Restic acceptance. Follow the [P35 explicit real-source validation procedure](active/g8-law-r1-p35/P35_P1_REPRODUCTION_AND_SOURCE_BOUNDARY.md) before promoting its scientific status.
+For the **verified P34** run, see [source](tools/p34-p4/pair.go), [18-step oracle](tools/p34-p4/pair_test.go), and [P5 materializer](tools/p34-p5/materialize.mjs). For **P35**, inspect [real Go source worlds](tools/p35-p1/worlds/baseline/backend.go), [original Restic runner](tools/p35-p1/run_pinned_restic.sh), and [hosted evidence](active/g8-law-r1-p35/P35_P2_NATIVE_RESTIC_EIGHT_WORLDS_AND_ARCHITECTURE_ADMISSIBILITY.md). Original Restic module package acceptance is demonstrated at the pinned commit, but broader upstream/production assertions are withheld.
 
 ## Literature and custody
 
@@ -105,4 +108,4 @@ Relevant original sources already recorded as held include [Liskov & Wing 1994](
 - GitHub carries compact executable evidence; Notion maintains decisions and science narrative; Google Drive retains canonical original research files and historical conversation archive. The 1–14 chat exports are research context, **not** independently adjudicated outcome data.
 - **No automatic LAW-R2**, no attribution of P34 outcomes to original ORIGIN-P12, and no independent new predictive architecture-law claim without the relevant strong-rival and held-out evidence.
 
-**Next executable work:** run exact pinned Restic native compilation and regression, repair any real API mismatches, compare alternative admissible patch supports under a declared grammar and strong source-aware baseline, then issue a bounded P35 verdict rather than indefinitely reconfirming a preferred SOLID slogan.
+**Next executable work:** with original Restic package compatibility now verified, compare architecture-admissible patch families (especially U2 vs C5) against equally informed source-aware B0+, historical B1 where available, and Parnas/DRSpaces/CSDG B2; then adjudicate P35 without premature global ranking. Pursue fresh real maintenance worlds where the current experiment is nonidentifying.

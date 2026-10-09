@@ -1,6 +1,6 @@
 # P35-P1 — Authentic Restic Validation and Source-Claim Boundary
 
-**2026-10-09. Status:** `LOCAL_SHIM_CONTRACT_PASS__ORIGINAL_RESTIC_MODULE_BUILD_PENDING__HOSTED_P35_CI_PENDING__LAW_R2_NOT_AUTHORIZED`.
+**2026-10-09. Updated status:** `PINNED_UPSTREAM_RESTIC_P35_PACKAGE_PASS__EIGHT_WORLDS__BASELINE_NEGATIVE_CONTROLS_PASS__FULL_RESTIC_SUITE_NOT_RUN__LAW_R2_NOT_AUTHORIZED`. Prior local DNS failure remains a historical environment attempt, superseded by [Actions #37895607800](https://github.com/WhoSia/EvoNOMOS/actions/runs/37895607800).
 
 ## Why this document exists
 
@@ -35,7 +35,7 @@ Capture in artifacts: pinned SHA, `go version`, dependency resolution, `go test 
 - **Local** Go 1.23.2 portable shim runner: baseline ordinary tests PASS; five local edited implementations PASS their selected demands; untouched baseline two expected negative requirements FAIL.
 - **P34 behavior replay:** 18 public action history for original semantics. Unlike P34, adapter-to-unit dispatch counts are not compared because the architectures no longer share that topology.
 - **Actual source patches:** local-only `KeyFile` demand: one modified method in each arm. Encoded-storage demand: 2 modified existing methods in U; 6 in C with separate version map, 5 in C with tagged payload, and 4 in C when the payload store decodes tagged values internally. All are realized patches, **not inclusion-minimal admissible repair families**.
-- **Independent native upstream:** not yet verified. No P35 hosted CI success receipt exists. A pinned-checkout original Restic reproduction script was also prepared and executed locally, but **git clone failed with DNS resolution error** (exit 40, `Could not resolve host: github.com`). Neither its Go compile nor upstream package test ran. The script may be rerun in a network-enabled environment.
+- **Actual native upstream:** [Actions #37895607800](https://github.com/WhoSia/EvoNOMOS/actions/runs/37895607800) **SUCCESS** at original pinned Restic commit, Go 1.23.12, all eight source worlds package `go vet` and `go test -race` PASS; 18/18 P34 public history each; both negative controls expected-fail. Artifact **11599942843**, SHA-256 **49d38c9c60a7415c9b9395cb7c52db5e33cdf25e55297de6888d5f52fa89f85b**. Earlier local `git clone` exit-40 DNS block is a preserved historical attempt, not a current hosted blocker. Full upstream Restic suite not tested.
 
 ## Source-aware rival / identification
 
@@ -47,6 +47,6 @@ For old arbitrary bytes `S_0(x)=x` and new format `S_1(y)=E(y)`, overlapping ran
 
 ## Verdict discipline
 
-`P35-P1 LOCAL TEST PASS` is valid. `P35-P1 REAL RESTIC PASS`, `P35 CLOSED`, `LAW-R2`, an architecture-wide Pareto rank and predictive superiority over B0+/B1/B2 remain **HOLD**. If competing repair grammars cannot be distinguished using the required evidence, record nonidentifiability and move to a genuinely new demand/world. Do not introduce another governance theory to rescue the phase.
+`P35-P1 LOCAL TEST PASS` and bounded `P35-P2 PINNED RESTIC PACKAGE PASS` are now valid. `P35 CLOSED`, `LAW-R2`, a whole-upstream Restic suite success, architecture-wide Pareto rank, minimal global repair family and predictive superiority over B0+/B1/B2 remain **HOLD**. If competing repair grammars cannot be distinguished using the required evidence, record nonidentifiability and move to a genuinely new demand/world. Do not introduce another governance theory to rescue the phase.
 
 Authorship: no workflow may commit to the repository, including with `GITHUB_TOKEN`. Human-account-author and committer evidence is required for promoting this text or executable source.
