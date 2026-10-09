@@ -48,6 +48,9 @@ jobs:
           grep -q 'P37_E4_CAPABILITY_MATRIX_ALL_FIVE_SOURCE_SIGNATURES_PASS' out/p37-e4-graph/repair-graph.log
           grep -q 'P37_E4_BRIDGE_FOUR_TRANSITIONS_WITH_EXPLICIT_LEGACY_EXPIRY_PASS' out/p37-e4-graph/repair-graph.log
           grep -q 'P37_E4_BOTH_OWNER_CAPABILITIES_NEEDED_FOR_THIS_GAMMA_PASS' out/p37-e4-graph/repair-graph.log
+          python tools/p37-e4/model/owner_permission_countermodels.py | tee out/p37-e4-graph/math-h-countermodels.log
+          grep -q 'P37_MATH_H_RECTANGULAR_I_BUT_AUTHORITY_GAMMA_NONPRODUCT_NO_PATH_PASS' out/p37-e4-graph/math-h-countermodels.log
+          grep -q 'P37_MATH_H_INDEPENDENT_GAMMA_BUT_NONRECTANGULAR_I_NO_PATH_PASS' out/p37-e4-graph/math-h-countermodels.log
           sha256sum tools/p37-e4/model/*.py >out/p37-e4-graph/sha256.txt
           echo P37_E4_SOURCE_LINKED_CAPABILITY_GRAPH_CLASSICAL_COURT_PASS >out/p37-e4-graph/verdict.txt
       - if: always()
