@@ -1,0 +1,65 @@
+name: G8 LAW-R1-P35 P6 Historical Go Contract Ablation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p35-p6/contract/**'
+      - '.github/workflows/g8-law-r1-p35-p6-405-ablation.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  actual-original-chi-ablation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 4b14b832d53cef6c77fdcf852876a34f46bc84a2
+          path: chi-405
+          fetch-depth: 2
+      - name: Actual Go source method-contract ablation without mutating upstream
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p35-p6-405
+          test "$(git -C chi-405 rev-parse HEAD)" = "4b14b832d53cef6c77fdcf852876a34f46bc84a2"
+          go version | tee out/p35-p6-405/go-version.txt
+          cp tools/p35-p6/contract/allow_405_test.go chi-405/p35_p6_405_contract_test.go
+          (cd chi-405 && go test -count=1 ./... && go test -race -count=1 -v -run '^TestP35P6Historical405AllowContract$' .) > out/p35-p6-405/original.log 2>&1 || { cat out/p35-p6-405/original.log; exit 12; }
+          grep -q 'P35_P6_REAL_405_ALLOW_HEADER_CONTRACT_PASS' out/p35-p6-405/original.log
+          echo 'P35P6_ORIGINAL_405_FULL_GO_SUITE_AND_PUBLIC_CONTRACT_PASS'
+          for path in mux.go tree.go context.go; do
+            git -C chi-405 show HEAD:"$path" > out/p35-p6-405/"$path".original
+            git -C chi-405 show HEAD^:"$path" > chi-405/"$path"
+            set +e
+            (cd chi-405 && go test -count=1 -run '^TestP35P6Historical405AllowContract$' .) > out/p35-p6-405/ablate-"$path".log 2>&1
+            rc=$?
+            set -e
+            cp out/p35-p6-405/"$path".original chi-405/"$path"
+            if [[ "$rc" -eq 0 ]]; then
+              echo "P35P6_ABLATION_NOT_REQUIRED_UNDER_THIS_ORACLE=$path" | tee out/p35-p6-405/"$path".verdict
+            else
+              echo "P35P6_ABLATION_BREAKS_THIS_EXACT_PATCH_ORACLE=$path" | tee out/p35-p6-405/"$path".verdict
+            fi
+          done
+          sha256sum out/p35-p6-405/*.log out/p35-p6-405/*.verdict > out/p35-p6-405/log-sha256.txt
+          echo 'P35P6_RETROSPECTIVE_405_ABLATION_AUDIT_COMPLETE_NOT_GLOBAL_NECESSITY'
+      - name: Preserve complete read-only negative and positive evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g8-p35-p6-retrospective-real-go-405-ablation
+          path: out/p35-p6-405/
+          if-no-files-found: warn
+          retention-days: 30
