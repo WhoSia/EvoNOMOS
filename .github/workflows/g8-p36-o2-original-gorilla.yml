@@ -1,0 +1,54 @@
+name: G8 P36 O2 Original Gorilla Mux Cross-Repository Transport
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-o2/**'
+      - '.github/workflows/g8-p36-o2-original-gorilla.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gorilla-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        arm: [EAGER, LAZY]
+    env:
+      P35_O6_ARM: ${{ matrix.arm }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: mux
+          fetch-depth: 1
+      - name: Exact Original Gorilla Module and Frozen Common Contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-o2/${{ matrix.arm }}
+          test "$(git -C mux rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          if [ "${{ matrix.arm }}" = EAGER ]; then arm=eager; else arm=lazy; fi
+          cp tools/p36-o2/arms/mux/$arm/p35_epoch_router.go mux/p35_epoch_router.go
+          cp tools/p36-o2/tests/mux/*.go mux/
+          (cd mux && go vet ./...) >out/p36-o2/${{ matrix.arm }}/vet.log 2>&1 || { cat out/p36-o2/${{ matrix.arm }}/vet.log; exit 11; }
+          (cd mux && go test -race -count=1 ./...) >out/p36-o2/${{ matrix.arm }}/race.log 2>&1 || { cat out/p36-o2/${{ matrix.arm }}/race.log; exit 12; }
+          (cd mux && go test -count=1 ./...) >out/p36-o2/${{ matrix.arm }}/full-original.log 2>&1 || { cat out/p36-o2/${{ matrix.arm }}/full-original.log; exit 13; }
+          (cd mux && go test -v -count=1 -run '^TestP35O6' .) >out/p36-o2/${{ matrix.arm }}/contracts.log 2>&1 || { cat out/p36-o2/${{ matrix.arm }}/contracts.log; exit 14; }
+          grep -q 'PASS: TestP35O6ExactTraceCounts' out/p36-o2/${{ matrix.arm }}/contracts.log
+          (cd mux && GOMAXPROCS=1 go test -run '^$' -bench '^BenchmarkP36PostBaseline' -cpu=1 -benchtime=200ms -count=5 -benchmem .) >out/p36-o2/${{ matrix.arm }}/benchmark.log 2>&1 || { cat out/p36-o2/${{ matrix.arm }}/benchmark.log; exit 15; }
+          sha256sum mux/p35_epoch_router.go tools/p36-o2/tests/mux/*.go >out/p36-o2/${{ matrix.arm }}/sha256.txt
+          echo P36_O2_${{ matrix.arm }}_ORIGINAL_GORILLA_FULL_RACE_TRANSPORT_PASS | tee out/p36-o2/${{ matrix.arm }}/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-o2-gorilla-${{ matrix.arm }}-native
+          path: out/p36-o2/${{ matrix.arm }}/
+          if-no-files-found: warn
+          retention-days: 30
