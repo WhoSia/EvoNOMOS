@@ -1,0 +1,48 @@
+name: G8 P36 MATH4 Classical Forgetful Simulation Kernel
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p36-math4/lean/**'
+      - '.github/workflows/g8-p36-math4-lean.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Proof-hole and axiom audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|axiom)([^A-Za-z]|$)' tools/p36-math4/lean/*.lean; then
+            echo FORBIDDEN_PROOF_HOLE
+            exit 11
+          fi
+      - name: Lean formal proof and checker
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p36-math4/lean
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Audit source and permitted conclusion
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p36-math4
+          sha256sum tools/p36-math4/lean/*.lean tools/p36-math4/lean/lakefile.toml >out/p36-math4/sources.txt
+          echo CLASSICAL_SIMULATION_CONDITIONAL_ONLY >out/p36-math4/scope.txt
+          echo P36_MATH4_LEAN_KERNEL_PASS >out/p36-math4/verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p36-math4-forgetful-simulation-kernel
+          path: out/p36-math4/
+          if-no-files-found: warn
+          retention-days: 30
