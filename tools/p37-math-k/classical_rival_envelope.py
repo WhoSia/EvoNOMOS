@@ -40,7 +40,7 @@ def classical_least_fixed_point(case):
 def projections(case):
     key_g, store_s, bridge_b, expiry = case
     return {
-        "source_and_present_only": (),
+        "source_and_present_only": (key_g,),
         "source_and_reader_capabilities": (key_g, store_s),
         "capabilities_and_bridge": (key_g, store_s, bridge_b),
         "full_classical_context": (key_g, store_s, bridge_b, expiry),
