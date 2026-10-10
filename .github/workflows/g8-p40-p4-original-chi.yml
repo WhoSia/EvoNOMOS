@@ -1,0 +1,69 @@
+name: G8 P40 P4 Original Maintained Chi Boundary Gluing Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-p4/**'
+      - '.github/workflows/g8-p40-p4-original-chi.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-source-context-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout EvoNOMOS theory and source harness
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout unmodified original go-chi at a pinned 2026-09-29 commit
+        uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p40-p4/original-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert original project revision and module boundary
+        run: |
+          set -euo pipefail
+          actual="$(git -C tools/p40-p4/original-chi rev-parse HEAD)"
+          test "$actual" = '167e1e3bd039d060696b99c8da4e876ae04f42c1'
+          grep -q '^module github.com/go-chi/chi/v5' tools/p40-p4/original-chi/go.mod
+          echo "P40_P4_PINNED_GO_CHI_ORIGINAL_SHA=$actual" | tee source-pin.log
+      - name: Test real chi parent and child router composition
+        working-directory: tools/p40-p4
+        env:
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+          GOWORK: 'off'
+        run: |
+          set -euo pipefail
+          go test -count=1 -v . | tee original-chi-go-test.log
+          grep -q 'P40_P4_ORIGINAL_CHI_SEPARATE_MOUNTS_PASS' original-chi-go-test.log
+          grep -q 'P40_P4_ORIGINAL_CHI_3X3_LOCAL_GLOBAL_BOUNDARY_PASS distinct=6 duplicate_minimal=3' original-chi-go-test.log
+          grep -q 'P40_P4_ORIGINAL_CHI_MIDDLEWARE_ORDER_GUARD_PASS' original-chi-go-test.log
+      - name: Verify mathematical boundary minimality and local gluing failure
+        run: |
+          set -euo pipefail
+          python tools/p40-p4/boundary_minimum_certificate_court.py | tee original-chi-boundary-math.log
+          grep -q 'P40_P4_BOUNDARY_KERNEL_NEC_SUFF all_27_three_label_encodings PASS' original-chi-boundary-math.log
+          grep -q 'P40_P4_NAMESPACE_BOUNDARY_MIN_MEMORY bits=2 namespaces=3 PASS' original-chi-boundary-math.log
+          grep -q 'P40_P4_FINITE_BOUNDARY_AND_MINIMUM_OBSTRUCTION_MODEL_PASS' original-chi-boundary-math.log
+          sha256sum tools/p40-p4/original_chi_gluing_test.go tools/p40-p4/boundary_minimum_certificate_court.py > sources.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p4-pinned-original-chi-compositional-gluing
+          path: |
+            source-pin.log
+            tools/p40-p4/original-chi-go-test.log
+            original-chi-boundary-math.log
+            sources.sha256
+          retention-days: 30
