@@ -71,3 +71,9 @@ with out-of-range predecessors false and initial state handled separately. All p
 Construct two **equally capable** and prospectively comparable alternative architectures under the SAME closed-client and future-contract grammar: versioned adapters, wrappers, and interface extension. Model the precise authorized edit set and atomicity, compile all intermediate source variants, then seek a genuinely architectural condition under which relative repair **reachability, cost or option diversity** changes sign. Strong classical rivals must be implemented under identical evidence and resource budgets, not treated as strawmen.
 
 **Status:** P40 OPEN · P1 GO-SOURCE MICROCASE LOCAL PASSED · GUARD-PRODUCT CLASSICAL · NEW-LAW IDENTIFICATION HOLD · LAW-R2 NOT_AUTHORIZED.
+
+## P1-G. Verified hosted Go compiler receipt
+
+[GitHub Actions run #38040317493](https://github.com/WhoSia/EvoNOMOS/actions/runs/38040317493) **SUCCESS** for checker/workflow HEAD `ace386fe5d30a6c32123957facb29e0469a54f4d`, job `go-source-court` and step compiling all sixteen source states **SUCCESS**. Artifact `11664774807` SHA256 `727bf0ef2012c436ba47b60a6dc06b23ed6502bdd5c32a930dbe15adb8549dec`. Python harness invokes actual `go test -count=1 ./...` with `GOPROXY=off`, no third-party deps. Expected 3 compiler negatives were asserted as part of successful court. **This is an ACTUAL Go source compilation**, unlike P39's synthetic edit-order tests, but does not assert any independent maintainer approval or natural external Go corpus result. Later Markdown/source changes are not part of this tested HEAD.
+
+[P40 P2 endpoint-vs-intermediate safety and atomic patch model](P40_P2_ENDPOINT_SEQUENCE_OBSTRUCTION_AND_ATOMIC_SOURCE_EDIT_COURT.md) distinguishes a truly invalid terminal source from a valid terminal whose safe sequential path is blocked by owner/compile guards. Both remain classical finite-state reachability and Go type-set effects; new architecture-law identification HOLD.
