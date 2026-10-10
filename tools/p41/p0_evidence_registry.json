@@ -39,16 +39,21 @@
       "sort": "versioned institution/governance",
       "predicate": "permission(principal,artifact,revision,edit)",
       "observation": "authenticated maintainer authority with historical state",
-      "evidence_status": "PLATFORM_AUTHORITY_SNAPSHOT_LIMITED",
+      "evidence_status": "PLATFORM_AUTHORITY_CURRENT_ROLE_AND_HISTORICAL_MERGE_LIMITED",
       "source": {
         "repo": "WhoSia/EvoNOMOS",
         "artifact": "tools/p41/p1-authority/github_operational_authority_snapshot.json",
         "query": "GitHub get_repo_collaborator_permission(WhoSia/EvoNOMOS,WhoSia)",
         "reported_permission": "admin",
         "observed_local_date": "2026-10-11",
-        "verification_workflow_run_id": 38063852776
+        "verification_workflow_run_id": 38063852776,
+        "historical_event": "tools/p41/p1-authority/github_historical_merge_event.json",
+        "external_merged_repo": "labstack/echo",
+        "external_merge_actor": "vishr",
+        "external_merge_commit": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+        "external_merge_at_utc": "2026-09-30T01:00:17Z"
       },
-      "missing": "historical per-revision rights and independent institutional/normative legitimacy NOT PROVED; CI schema audit does not re-authenticate the GitHub permission endpoint"
+      "missing": "actual source of branch protection / policy rules applicable to this edit at this earlier date, actor legitimacy for all edits, and any normative rights theorem NOT PROVED"
     },
     {
       "code": "D",
@@ -98,7 +103,7 @@
   ],
   "proof_debt": [
     "typed-product model independence is synthetic and does not prove real-software A-F independence",
-    "C now has snapshot-only authenticated operational admin; F has pinned native Echo structural interface and behavior counterexample; neither proves historical C or general F nor A-F irredundancy",
+    "C now has authenticated present admin and a separate historically timestamped externally merged PR event with actor and commit; neither exposes full protected-branch rules at the edit nor proves legitimate rights. F is original Echo source interface and provider divergence; neither proves full A–F irredundancy",
     "old-client observation needs an explicit observer population and history",
     "conditional SOLID must use precise scoped theorem families and must compete with Parnas, Liskov-Wing, Reynolds frame, CSP/constraint satisfaction and rely-guarantee",
     "new-law novelty remains HOLD, LAW-R2 NOT_AUTHORIZED"
