@@ -72,6 +72,8 @@ jobs:
           test "$(grep -c 'P40_P5_ABSTAIN_OBSERVATION' issue-native-go.log)" -eq 1
           if grep -q 'P40_P5_FORECAST_FALSIFIED' issue-native-go.log;then exit 14;fi
           echo P40_P5_ISSUE_DERIVED_3_LOCKED_1_ABSTAIN_ORIGINAL_GO_PASS
+          python ../issue_certificate_court.py ../issue_derived_prereg.json ${{ matrix.ecosystem }} issue-native-go.log issue-native-certificate.json
+          grep -q 'P40_P5_MACHINE_ORIGINAL_GO_CERTIFICATE_PASS' <(python ../issue_certificate_court.py ../issue_derived_prereg.json ${{ matrix.ecosystem }} issue-native-go.log issue-native-certificate.json)
       - if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -79,4 +81,5 @@ jobs:
           path: |
             out/p40-p5-${{ matrix.ecosystem }}/
             tools/p40-math-b-p5/${{ matrix.ecosystem }}/issue-native-go.log
+            tools/p40-math-b-p5/${{ matrix.ecosystem }}/issue-native-certificate.json
           retention-days: 90
