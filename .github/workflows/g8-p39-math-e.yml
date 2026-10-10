@@ -1,0 +1,37 @@
+name: G8 P39 Math-E Graph-Indexed Repair Memory Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p39-math-e/**'
+      - '.github/workflows/g8-p39-math-e.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-theory-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent graph orientation / chromatic courts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p39-math-e/interaction_graph_memory_court.py
+          python tools/p39-math-e/interaction_graph_memory_court.py | tee math-e.log
+          grep -q 'P39_MATH_E_TOTAL_GRAPHS=1099_CHORDAL_GRAPHS=894_PASS' math-e.log
+          grep -q 'P39_MATH_E_SAME_N_M_DIFFERENT_MIN_MEMORY n=5 m=6 bits=6_vs_5 PASS' math-e.log
+          grep -q 'P39_MATH_E_NO_ORIGINAL_GO_NO_HOSTED_CI_CLAIM' math-e.log
+          sha256sum tools/p39-math-e/interaction_graph_memory_court.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: math-e-finite-theory-independent-count
+          path: |
+            math-e.log
+            source-sha256.txt
+          retention-days: 30
