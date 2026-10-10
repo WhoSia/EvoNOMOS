@@ -1,0 +1,58 @@
+{
+  "protocol": "P41_P1_C_GITHUB_AUTHORITY_EVIDENCE_SNAPSHOT_V1",
+  "observed_local_date": "2026-10-11",
+  "observed_timezone": "Asia/Seoul",
+  "evidence_subject": {
+    "platform": "GitHub",
+    "repository": "WhoSia/EvoNOMOS",
+    "account": "WhoSia",
+    "revision_basis": "observation-time repository permission; NOT a historical commit authorization snapshot"
+  },
+  "verification": [
+    {
+      "source": "GitHub get_repo_collaborator_permission authenticated connector",
+      "query": {
+        "repository_full_name": "WhoSia/EvoNOMOS",
+        "username": "WhoSia"
+      },
+      "observed_permission": "admin"
+    },
+    {
+      "source": "GitHub get_repo authenticated connector",
+      "query": {
+        "repository_full_name": "WhoSia/EvoNOMOS"
+      },
+      "observed_owner": "WhoSia",
+      "observed_authenticated_permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      }
+    },
+    {
+      "source": "GitHub list_pull_request_reviews",
+      "query": {
+        "repo_full_name": "labstack/echo",
+        "pr_number": 3132
+      },
+      "observed_review_states": [
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "subject": "Different repository: demonstrates comments recorded, NOT approval/merge authorization; these reviews must not be used to prove P41 C"
+    }
+  ],
+  "claim_granted": "Authenticated GitHub reported admin platform-level repository permission to WhoSia for WhoSia/EvoNOMOS at observation time.",
+  "claim_not_granted": [
+    "historical version-indexed edit authorization at the P40 Go experiment source commits",
+    "permission level of any other public-repository collaborator",
+    "legitimate institutional, legal or moral right to edit arbitrary source",
+    "authority delegated to an arbitrary actor or to modify external upstream source",
+    "branch-protection/ruleset evaluation at an earlier commit",
+    "review comments imply approval (they do not)"
+  ],
+  "independent_source_status": "AUTHENTICATED_PLATFORM_OPERATIONAL_SNAPSHOT_ONLY",
+  "general_p41_C_axiom_status": "UNPROVED"
+}
