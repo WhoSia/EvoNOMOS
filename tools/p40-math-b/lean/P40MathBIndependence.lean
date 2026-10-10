@@ -202,4 +202,37 @@ theorem p3_method_partition_frame (x : MethodScopedPair)
   simp [scopedSourceAdmitted, ha, hb, hDistinct]
 
 
+
+/- P4: A genuinely non-circular classical resource-disjoint frame calculus.
+   This abstracts disjoint editable namespace coordinates, not Go's trie.
+   The proof obligations can be checked from independent source footprints. -/
+def writeResource (state : Nat → Nat) (key value : Nat) : Nat → Nat :=
+  fun query => if query = key then value else state query
+
+theorem p4_disjoint_frame {state : Nat → Nat} {key value query : Nat}
+    (h : query ≠ key) :
+    writeResource state key value query = state query := by
+  simp [writeResource, h]
+
+theorem p4_disjoint_writes_commute
+    (state : Nat → Nat) (keyA keyB valueA valueB : Nat)
+    (h : keyA ≠ keyB) :
+    writeResource (writeResource state keyA valueA) keyB valueB =
+      writeResource (writeResource state keyB valueB) keyA valueA := by
+  funext query
+  by_cases ha : query = keyA
+  · by_cases hb : query = keyB
+    · exact False.elim (h (ha.symm.trans hb))
+    · simp [writeResource, ha, hb]
+  · by_cases hb : query = keyB
+    · simp [writeResource, ha, hb]
+    · simp [writeResource, ha, hb]
+
+theorem p4_same_resource_writes_not_commutative :
+    writeResource (writeResource (fun _ => 0) 1 7) 1 8 ≠
+      writeResource (writeResource (fun _ => 0) 1 8) 1 7 := by
+  intro h
+  have hv := congrArg (fun f : Nat → Nat => f 1) h
+  simp [writeResource] at hv
+
 end P40MathB
