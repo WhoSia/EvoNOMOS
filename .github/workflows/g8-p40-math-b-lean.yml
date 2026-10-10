@@ -37,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p out/p40-math-b-lean
-          sha256sum tools/p40-math-b/lean/P40MathBIndependence.lean tools/p40-math-b/lean/lean-toolchain tools/p40-math-b/lean/lakefile.toml >out/p40-math-b-lean/source-sha256.txt
+          sha256sum tools/p40-math-b/lean/*.lean tools/p40-math-b/lean/lean-toolchain tools/p40-math-b/lean/lakefile.toml >out/p40-math-b-lean/source-sha256.txt
           echo P40_MATH_B_LEAN_CLASSICAL_CONDITIONAL_KERNEL_PASS >out/p40-math-b-lean/verdict.txt
           echo "No Go semantics automatically proved by the Lean declarations." >out/p40-math-b-lean/scope.txt
       - if: always()
