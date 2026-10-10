@@ -1,0 +1,6 @@
+name = "P41SemanticP0"
+version = "0.1.0"
+defaultTargets = ["P41SemanticP0"]
+
+[[lean_lib]]
+name = "P41SemanticP0"
