@@ -223,9 +223,9 @@ theorem p4_disjoint_writes_commute
   by_cases ha : query = keyA
   · by_cases hb : query = keyB
     · exact False.elim (h (ha.symm.trans hb))
-    · simp [writeResource, ha, hb]
+    · simp [writeResource, ha, hb, h, Ne.symm h]
   · by_cases hb : query = keyB
-    · simp [writeResource, ha, hb]
+    · simp [writeResource, ha, hb, h, Ne.symm h]
     · simp [writeResource, ha, hb]
 
 theorem p4_same_resource_writes_not_commutative :
