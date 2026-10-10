@@ -1,6 +1,6 @@
 # EvoNOMOS G8 LAW-R1-P41-P2 — Noncircular Axiom Irredundancy, Source-Realized Projection Countermodels & Classical Reduction Court
 
-**2026-10-11 KST · P41-P2 FIRST BOUNDED NEGATIVE COURT · full A–F independent axiom basis OPEN · LAW-R1 · LAW-R2 NOT_AUTHORIZED.**
+**2026-10-11 KST · P41-P2 FIRST BOUNDED NEGATIVE COURT PASS · independent Lean 4.34.1 kernel-checked · full A–F independent axiom basis OPEN · LAW-R1 · LAW-R2 NOT_AUTHORIZED.**
 
 ## 0. Decision first — the six-field “foundation” cannot be promoted
 
@@ -81,7 +81,7 @@ Likewise `C_currentAdmin` or one observed historical merge event is not a substi
 - **Liskov–Wing 1994 behavioral subtyping**, **Reynolds/Separation Logic**, **capability-based authorization** and **rely/guarantee** remain applicable.
 - **CSP terminology:** P40’s admission scorer uses *constraint satisfaction problem* source conditions, not automatically Hoare's *Communicating Sequential Processes*.
 
-**The best classical explanation survives every independently checked P41-P1 counterexample.** Existing source evidence discriminates against weak baselines (type-only/response-only) but does not falsify the strongest contextual, source-aware classical model.
+**The strongest classical alternatives are NOT falsified by these P41-P1 cases.** Existing source evidence defeats weak type-only/response-only classifiers, but the present P41-P2 did **not** independently train/test every strongest source-aware contextual refinement model prospectively; the prior P40 bounded classical CSP scorers and the established theories motivate the surviving challenge. This is a *classical adequacy non-rejection*, not a new independently measured 100% prediction result.
 
 ### 5A. Verified primary classical rivals
 
@@ -91,6 +91,18 @@ Likewise `C_currentAdmin` or one observed historical merge event is not a substi
 
 These are **competing established theories**, not citations proving P41's empirical outcomes. The original Go and GitHub source cases are the outcomes.
 
+## 5B. Independently verified P41-P2 Lean kernel receipt
+
+[P41InformationMinimality.lean](../../tools/p41/lean/P41InformationMinimality.lean) is now independently compiled and checked by the Lean 4.34.1 kernel in [GitHub Actions #38064519091 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38064519091). **Exact tested proof source HEAD `293875bb36b3c1d36559b8912830628ec99d6adb`**, artifact `11675120980` SHA-256 `1c4cf43f57589aa570b9a9b16e1d61992bd1a0cfb324e6a680619e81b49b3c09`.
+
+The independently checked theorem family includes:
+- `no_type_and_source_only_provider_goal_classifier` on explicitly abstract, restricted worlds;
+- `no_current_role_only_historical_authority_classifier` on **synthetic** possible rights histories (not a finding of wrongful behavior by any account);
+- `duplicate_premise_is_eliminable` proving an extra guard that simply repeats A cannot improve premise minimality;
+- `structural_provider_guard_redundant`, conditional on the actual assembled compiler accepting a specified provider interface check: (A_{build}\Rightarrow F_{shape}), so ((A_{build}\land F_{shape})\leftrightarrow A_{build}).
+
+All are **ordinary classical semantic/propositional facts**. Separate original Echo Go CI grounds the chosen provider and route counterexamples, but **no Lean–Go whole-language simulation theorem or complete independent A–F OO axiom basis follows**.
+
 ## 6. Next irreversible scientific gate
 
 1. Obtain **historically versioned, authentic permission/approval evidence** for a real edit, not current repository role alone. Privacy and third-party rights must be respected, and lack of access must remain UNKNOWN, not false.
@@ -98,4 +110,4 @@ These are **competing established theories**, not citations proving P41's empiri
 3. Specify the observer class and source edit grammar **before** obtaining new test outcomes; compare conditional OO theory with source-aware classical CSP/frame/refinement using exactly the same information budget.
 4. For each proposed minimal axiom, demand a **noncircular external outcome** not definitionally identical to the conjunction of premises, a kernel proof, and a genuine original-source omission witness. Record nonidentifiability and classical collapses as valid negative outcomes.
 
-**P41-P1: bounded independent C platform/F source evidence completed, broader C/F OPEN. P41-P2: first negative irredundancy/observer sufficiency court complete only after standalone Lean kernel PASS at a tested HEAD; comprehensive A–F axiom minimality OPEN. Historical SOLID total reconstruction OPEN. New fundamental OO law HOLD. LAW-R2 NOT_AUTHORIZED.**
+**P41-P1: bounded C platform current-role + one historically verified merge/F original source provider evidence complete; broader C/F legitimate/semantic scope OPEN. P41-P2: scoped negative irredundancy and information-minimality formal court VERIFIED at #38064519091, comprehensive A–F actual axiom independence NOT PROVED. P41-P3 next challenge: conditional noncircular SOLID reconstruction with equal-strength classical comparisons. Historical SOLID total reconstruction OPEN. New fundamental OO law HOLD. LAW-R2 NOT_AUTHORIZED.**
