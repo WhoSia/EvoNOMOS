@@ -120,4 +120,33 @@ theorem source_revision_not_required_for_sufficient_head_boundary :
     abstract {fallbackExample with hiddenRevision := 222} =
     abstract fallbackExample := by decide
 
+
+/- Restricted observational irredundancy: HEAD status and empty response body
+   cannot identify whether GET-handler side effects execute. This remains a
+   classical no-factorization fact; original source cases are checked in Go. -/
+def statusBodyOnly (s : NativeSourceState) : Nat × Bool :=
+  if sourceDispatch s = .unavailable then (405, true) else (200, true)
+
+def getExecuted (s : NativeSourceState) : Bool :=
+  decide (sourceDispatch s = .fallback)
+
+theorem status_body_same_for_explicit_and_fallback :
+    statusBodyOnly explicitExample = statusBodyOnly fallbackExample := by decide
+
+theorem handler_effect_differs_for_explicit_and_fallback :
+    getExecuted explicitExample ≠ getExecuted fallbackExample := by decide
+
+theorem no_status_body_only_handler_effect_classifier :
+    ¬ ∃ f : Nat × Bool → Bool,
+        ∀ s : NativeSourceState, getExecuted s = f (statusBodyOnly s) := by
+  intro h
+  rcases h with ⟨f, hf⟩
+  apply handler_effect_differs_for_explicit_and_fallback
+  calc
+    getExecuted explicitExample = f (statusBodyOnly explicitExample) := hf _
+    _ = f (statusBodyOnly fallbackExample) := by
+      rw [status_body_same_for_explicit_and_fallback]
+    _ = getExecuted fallbackExample := (hf _).symm
+
+
 end P40IssueSimulation
