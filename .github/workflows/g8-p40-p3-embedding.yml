@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'tools/p40-p3/embedded_*'
+      - 'tools/p40-p3/multimodule_embedded_gluing_court.py'
       - '.github/workflows/g8-p40-p3-embedding.yml'
   workflow_dispatch:
 permissions:
@@ -39,6 +40,16 @@ jobs:
           grep -q 'P40_P3_EMBEDDING_CONTEXT_REVERSAL same_rights_embedding_wrapper_only C_D_W=(0, 0, 1) PASS' p40-p3-embedding-math.log
           grep -q 'P40_P3_EMBEDDING_CONTEXT_REVERSAL embedding_plus_nominal_no_solution C_D_W=(0, 0, 0) PASS' p40-p3-embedding-math.log
           sha256sum tools/p40-p3/embedded_*.py > embedded-sources.sha256
+      - name: Independently compile three Go packages then integrate old client
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p3/multimodule_embedded_gluing_court.py
+          python tools/p40-p3/multimodule_embedded_gluing_court.py | tee p40-p3-module-gluing.log
+          grep -q 'P40_P3_MULTI_MODULE arch=direct component_go_test=PASS integration_old_client=FAIL_EXPECTED PASS' p40-p3-module-gluing.log
+          grep -q 'P40_P3_MULTI_MODULE arch=wrapper component_go_test=PASS integration_old_client=PASS PASS' p40-p3-module-gluing.log
+          grep -q 'P40_P3_LOCAL_COMPONENT_COMPILE_NOT_CONTEXTUALLY_COMPOSITIONAL_PASS' p40-p3-module-gluing.log
+          sha256sum tools/p40-p3/multimodule_embedded_gluing_court.py >> embedded-sources.sha256
       - if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -46,5 +57,6 @@ jobs:
           path: |
             p40-p3-embedding-go.log
             p40-p3-embedding-math.log
+            p40-p3-module-gluing.log
             embedded-sources.sha256
           retention-days: 30
