@@ -6,7 +6,7 @@
 
 [P40-MATH-B base paper](P40_MATH_B_GUARDED_OBJECT_REPAIR_AXIOMS_AND_MINIMAL_FUTURE_BOUNDARY_THEOREMS.md) · [new source falsification tests](../../tools/p40-p4/original_chi_math_b_boundary_test.go) · [Lean theorem source](../../tools/p40-math-b/lean/P40MathBIndependence.lean) · [original pinned Go CI #38047053489 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38047053489).
 
-Actual library: [unmodified go-chi/chi at commit 167e1e3bd039d060696b99c8da4e876ae04f42c1](https://github.com/go-chi/chi/tree/167e1e3bd039d060696b99c8da4e876ae04f42c1), built with the original Go 1.24 module. All repository tests live outside that external source. Go CI test head 2109c0e325712492a6bc9dd9bb9aed30b5afae58; actual job console logs contain source-boundary success markers. **The Lean receipt MUST be separately checked before being called PASS.** Initial Lean attempts failed on missing Lake manifest and missing Decidable typeclass instances, and were fixed rather than disguised.
+Actual library: [unmodified go-chi/chi at commit 167e1e3bd039d060696b99c8da4e876ae04f42c1](https://github.com/go-chi/chi/tree/167e1e3bd039d060696b99c8da4e876ae04f42c1), built with the original Go 1.24 module. All repository tests live outside that external source. Go CI test head 2109c0e325712492a6bc9dd9bb9aed30b5afae58; actual job console logs contain source-boundary success markers. **Lean formal verification PASSED:** [dedicated Lean 4.34.1 Actions #38047101580](https://github.com/WhoSia/EvoNOMOS/actions/runs/38047101580), compiled + checked using leanchecker on exact Lean source head 74004a09acfbff89285f03fe3b3f9ea8e0eba345; artifact 11668550385 SHA-256 f78f381ae00c7fee862bcbce1ff3bbe37bdb15e6f544b186cf928048fb6eb636. Initial failed runs (missing Lake manifest and missing decidability instances) are recorded and superseded, not silently rewritten. Latest native Go [assertion-gated original-source CI #38047274495 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38047274495) on workflow/head f832e8dc69ddfa61a571e5f83ccc76082aad178c, artifact 11668680223 SHA-256 f795c1892707b3886f6ea8d9a68c323f391247417f4aa1a0cda139d886b43c7e.
 
 ## 1. Stronger native-source falsifier: disjoint HTTP request languages still cannot glue
 
@@ -62,7 +62,7 @@ o(\delta^*(s,w))=o(\delta^*(t,w)).
 
 This is a necessary condition on any exact deterministic future-edit abstraction. It does not prove a fully abstract quotient exists for arbitrary nondeterministic/historical source edits, and it is a classical simulation/Moore-machine fact. Real Go source fidelity is established separately by native Go tests, **not** by the Lean structure definitions.
 
-No sorry, admit, or additional axioms are permitted in the Lean file. Successful Lean compilation and kernel checking must be confirmed through the dedicated hosted workflow and its checked source SHA.
+No sorry, admit, or additional axioms are permitted in the Lean file. Successful Lean compilation and independent checker status were confirmed from [run #38047101580](https://github.com/WhoSia/EvoNOMOS/actions/runs/38047101580) and its actual job steps. The checking result applies exactly to the Lean source at commit 74004a09 (not to any later Markdown updates).
 
 ## 5. Competition with existing theory and publication boundary
 
@@ -75,4 +75,4 @@ The strongest rivals remain:
 
 These experiments strengthen the **source-backed necessity of more than local SOLID*/extensional HTTP observations** within a bounded χ grammar, but do NOT imply that every global interpretation of OCP or ISP misses this information.
 
-**Verdict:** original Go tests PASS for three independent source guards and a genuinely stronger disjoint-regex source-gluing obstruction. Scoped Lean independence and kernel theory are conditional on hosted check status. Full independent A-F OO axioms NOT PROVED. New foundational law HOLD. P40 OPEN, LAW-R2 NOT_AUTHORIZED.
+**Verdict:** original Go tests PASS for three independent source guards and a genuinely stronger disjoint-regex source-gluing obstruction. Scoped Lean independence and deterministic-kernel theorem **LEAN KERNEL VERIFIED** at explicitly pinned Lean test head. Full independent A-F OO axioms NOT PROVED. New foundational law HOLD. P40 OPEN, LAW-R2 NOT_AUTHORIZED.
