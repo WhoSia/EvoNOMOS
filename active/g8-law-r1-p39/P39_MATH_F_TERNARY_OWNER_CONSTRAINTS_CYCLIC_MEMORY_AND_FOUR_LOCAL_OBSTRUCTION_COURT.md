@@ -195,3 +195,11 @@ Every triple of these four requests is satisfiable and every four-vertex restric
 **P39-MATH-G refined next challenge:** seek a naturally **source-realizable restricted class** of sparse owner hypergraphs with independently evidenced constraints, where the global repair obstruction size has a nontrivial sharp bound in terms of incidence structure, edit grammar/invariant monitor or separator topology. Plain sparse cyclic precedence cannot provide that bound because arbitrarily large minimal obstructions already exist with bounded hyperedge arity=3.
 
 **Updated status:** P39 OPEN · MATH-F COMPLETE+SPARSE COUNTERMODEL · CLASSICAL CYCLIC/POSET/CSP · LAW-R2 NOT_AUTHORIZED.
+
+## F9 — Latest read-only hosted court including F8 sparse-cycle counterexample
+
+[GitHub Actions #38036230005](https://github.com/WhoSia/EvoNOMOS/actions/runs/38036230005) completed **SUCCESS** for the updated original mathematical Python checker at source HEAD a20eaa1236140b5ad40c7970f0ca3a4ed0bf7b89. The hosted job pure-math-f and its independent computation step both succeeded. Artifact 11663877500 has SHA-256 83a49a9b91d2c2bbfed19547fb695b7aea908b907f5d2534927d452f58f6e8ef.
+
+Unlike earlier [#38035950446](https://github.com/WhoSia/EvoNOMOS/actions/runs/38035950446), this newer run executed the checker code **including the sparse-cycle F8 assertions**: n=5 full/per-deletion/per-four-vertex validity and k=3,…,9 sparse directed-cycle minimality across every proper vertex restriction. The [source checker](../../tools/p39-math-f/higher_order_owner_memory_court.py) prints F8 controls and the final P39_MATH_F_PURE_THEORY_COURT_PASS_NO_NATIVE_GO marker. Current [read-only workflow](../../.github/workflows/g8-p39-math-f.yml) explicitly checks the full-suite marker and original F1–F5 receipts; F8's source asserts were executed by the same script (they were not separately pinned as a grep line in workflow). No original Go code was run.
+
+**Final priority:** F8 is an exact, nontrivial-for-the-source-model counterexample, but mathematically a directed cycle; strongest classical CSP and circular-order extension competitors survive. P39 OPEN · THEORY COURT HOSTED PASS · DIP49 HOLD · LAW-R2 NOT_AUTHORIZED.
