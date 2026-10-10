@@ -1,0 +1,141 @@
+{
+  "protocol": "EVONOMOS_G8_LAW_R1_P42_P0_FREEZE_V1",
+  "official_title": "EvoNOMOS Generation VIII LAW-R1-P42 — Counterfactual Architecture Governance & Evidence-Calibrated Repair: Versioned Change Authority, Observer-Complete Behavioral Contracts, Dependency-Capability Interventions, Cross-Ecology Trials & Classical Adequacy Boundaries",
+  "phase": "P42-P0",
+  "created_local_date": "2026-10-11",
+  "status": "FROZEN_BEFORE_P42_NATIVE_HOLDOUT",
+  "provenance": {
+    "previous_source_knowledge": "P40/P41 original router source behavior already studied; forecasts ARE NOT issue-blind or ecosystem-holdout generalization",
+    "source_read_only": true,
+    "target_repository": "WhoSia/EvoNOMOS",
+    "original_sources": [
+      {
+        "ecosystem": "Echo",
+        "repo": "labstack/echo",
+        "sha": "3882266a3641a36fc2111b48cd597adab1c1ecea"
+      },
+      {
+        "ecosystem": "httprouter",
+        "repo": "julienschmidt/httprouter",
+        "sha": "484018016424d215c0b87c42f4c9b57d980fbd00"
+      }
+    ],
+    "edit_kind": "fresh local test fixture assemblies, NO commits/PR to upstream repositories",
+    "governance": {
+      "user_authorized_project_harness_writes": true,
+      "upstream_actor_identity_or_rights_claimed": false,
+      "upstream_in_force_branch_policy_verified": false,
+      "historical_external_edit_authority": "UNKNOWN",
+      "platform_observation_from_P41": "real PR #3132 merged, no complete historical legitimacy inference"
+    }
+  },
+  "old_request": {
+    "method": "GET",
+    "path": "/p42/old",
+    "status": 200,
+    "body": "OLD",
+    "header_name": "X-Contract",
+    "header_value": "old",
+    "handler_id": "OLD",
+    "handler_invocations": 1
+  },
+  "new_request_disjoint": {
+    "method": "GET",
+    "path": "/p42/extension",
+    "status": 201,
+    "body": "NEW",
+    "header_name": "X-Contract",
+    "header_value": "extension",
+    "handler_id": "NEW"
+  },
+  "intervention_notes": {
+    "disjoint": "register GET /p42/extension after old GET /p42/old",
+    "collision": "register second GET /p42/old with NEW handler, deliberately conflicting",
+    "provider": "Echo only: replace echo.Router with an interface-conforming forwarding provider or a deliberately diverting provider",
+    "separate_method": "httprouter only: register POST /p42/old after existing GET /p42/old"
+  },
+  "judgement_labels": {
+    "source_admitted": "registration permitted by selected original router",
+    "old_frame": "old status, body, header, handler identity and call count all preserved for the explicitly fixed /p42/old request",
+    "post_rejection_client": "NOT_APPLICABLE (no accepted combined program)",
+    "new_goal": "disjoint /p42/extension contract, otherwise intervention-specific",
+    "authority": "UNKNOWN for source edits on original upstream; only local test fixture running"
+  },
+  "preregistrations": [
+    {
+      "id": "echo-disjoint",
+      "ecosystem": "Echo",
+      "intervention": "disjoint",
+      "source_admitted": true,
+      "old_frame": "PRESERVED",
+      "new_goal": "FULFILLED",
+      "handler_result": "OLD"
+    },
+    {
+      "id": "echo-collision",
+      "ecosystem": "Echo",
+      "intervention": "collision",
+      "source_admitted": true,
+      "old_frame": "VIOLATED",
+      "new_goal": "REPLACES_OLD",
+      "handler_result": "NEW"
+    },
+    {
+      "id": "echo-provider",
+      "ecosystem": "Echo",
+      "intervention": "provider",
+      "source_admitted": true,
+      "old_frame": "VIOLATED",
+      "new_goal": "DIVERTED",
+      "handler_result": "PROVIDER"
+    },
+    {
+      "id": "httprouter-disjoint",
+      "ecosystem": "httprouter",
+      "intervention": "disjoint",
+      "source_admitted": true,
+      "old_frame": "PRESERVED",
+      "new_goal": "FULFILLED",
+      "handler_result": "OLD"
+    },
+    {
+      "id": "httprouter-collision",
+      "ecosystem": "httprouter",
+      "intervention": "collision",
+      "source_admitted": false,
+      "old_frame": "NOT_APPLICABLE",
+      "new_goal": "REJECTED",
+      "handler_result": "NOT_APPLICABLE"
+    },
+    {
+      "id": "httprouter-separate-method",
+      "ecosystem": "httprouter",
+      "intervention": "separate_method",
+      "source_admitted": true,
+      "old_frame": "PRESERVED",
+      "new_goal": "POST_OWN_HANDLER",
+      "handler_result": "OLD"
+    }
+  ],
+  "comparators": [
+    {
+      "name": "SOURCE_AWARE_CLASSICAL_GUARDED_CSP",
+      "information": "known pinned source admission and overwrite rules, frozen client observer vector",
+      "expected_score": "6/6 within selected fixture"
+    },
+    {
+      "name": "METHOD_AND_PATH_ONLY_BASELINE",
+      "information": "HTTP method and path, lacks source router admission and provider method semantics",
+      "expected_score": "not scored as independent; included solely for information-budget critique"
+    }
+  ],
+  "nonclaims": [
+    "not a prospective blind historical PR/issue prediction",
+    "not a universal proof of object-oriented safety",
+    "no actual upstream source modifications",
+    "authorization to create local fixtures is not upstream historical edit authorization",
+    "old-client exhaustive set consists of ONE fixed GET request, not all future contexts",
+    "Go original source tests do not establish a Lean-Go complete semantics proof",
+    "P41-P4/P5 scientific debt remains OPEN until truly novel prospective and equal-budget classical trial"
+  ]
+}
