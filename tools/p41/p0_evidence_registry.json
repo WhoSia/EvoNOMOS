@@ -1,8 +1,8 @@
 {
-  "protocol": "EVONOMOS_G8_LAW_R1_P41_P0_EVIDENCE_MATRIX_V1",
-  "stage": "P41-P0",
-  "status": "OPEN",
-  "principle": "All six candidate premises are candidate semantic test domains; none is an independently validated universal OO axiom. Evidence for an individual failure implication does not certify entire axiom independence.",
+  "protocol": "EVONOMOS_G8_LAW_R1_P41_EVIDENCE_MATRIX_V2",
+  "stage": "P41-P1/P2",
+  "status": "RUNNING",
+  "principle": "P41 P1 extends evidence types: C operational GitHub permission at an observation time, NOT historical/normative rights; F original Echo native interface & provider semantic counterexample, NOT complete dependency/capability correctness. No universal OO axioms shown.",
   "source_reuse": "P40 experiment receipts remain source specific. We do NOT independently rerun these in P41-P0.",
   "definitions": [
     {
@@ -39,9 +39,16 @@
       "sort": "versioned institution/governance",
       "predicate": "permission(principal,artifact,revision,edit)",
       "observation": "authenticated maintainer authority with historical state",
-      "evidence_status": "SYNTHETIC_ONLY",
-      "source": null,
-      "missing": "independent authentic authorization source; never infer from code visibility"
+      "evidence_status": "PLATFORM_AUTHORITY_SNAPSHOT_LIMITED",
+      "source": {
+        "repo": "WhoSia/EvoNOMOS",
+        "artifact": "tools/p41/p1-authority/github_operational_authority_snapshot.json",
+        "query": "GitHub get_repo_collaborator_permission(WhoSia/EvoNOMOS,WhoSia)",
+        "reported_permission": "admin",
+        "observed_local_date": "2026-10-11",
+        "verification_workflow_run_id": 38063852776
+      },
+      "missing": "historical per-revision rights and independent institutional/normative legitimacy NOT PROVED; CI schema audit does not re-authenticate the GitHub permission endpoint"
     },
     {
       "code": "D",
@@ -77,14 +84,21 @@
       "sort": "provider-port/versioned dependency graph",
       "predicate": "requiresPort(edit)=providesPort(context)",
       "observation": "dependency incidence graph with pinned signatures, imports and runtime tests",
-      "evidence_status": "SYNTHETIC_ONLY",
-      "source": null,
-      "missing": "independent source-realized provider contract witness"
+      "evidence_status": "NATIVE_INTERFACE_BOUNDARY_ONLY",
+      "source": {
+        "repo": "WhoSia/EvoNOMOS",
+        "run_id": 38063852776,
+        "original_upstream_commit": "3882266a3641a36fc2111b48cd597adab1c1ecea",
+        "interface": "echo.Router",
+        "compile_rejection": "missing method Route",
+        "behavioral_counterexample": "two well-typed providers return CONTRACT_OK vs WRONG_PROVIDER"
+      },
+      "missing": "complete context-dependent provider capability, dependency graph across versions, general dependency principle irredundancy NOT PROVED"
     }
   ],
   "proof_debt": [
     "typed-product model independence is synthetic and does not prove real-software A-F independence",
-    "authorization and dependency premises lack original native-source receipts",
+    "C now has snapshot-only authenticated operational admin; F has pinned native Echo structural interface and behavior counterexample; neither proves historical C or general F nor A-F irredundancy",
     "old-client observation needs an explicit observer population and history",
     "conditional SOLID must use precise scoped theorem families and must compete with Parnas, Liskov-Wing, Reynolds frame, CSP/constraint satisfaction and rely-guarantee",
     "new-law novelty remains HOLD, LAW-R2 NOT_AUTHORIZED"
