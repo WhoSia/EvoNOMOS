@@ -1,0 +1,54 @@
+name: G8 P40 Math-B-P3 Original Echo Maintained Source Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p3-echo/**'
+      - '.github/workflows/g8-p40-math-b-p3-echo.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-echo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p40-math-b-p3-echo/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+      - name: Verify pinned original Echo source and native module
+        run: |
+          set -euo pipefail
+          actual="$(git -C tools/p40-math-b-p3-echo/original-echo rev-parse HEAD)"
+          test "$actual" = '3882266a3641a36fc2111b48cd597adab1c1ecea'
+          grep -q '^module github.com/labstack/echo/v5' tools/p40-math-b-p3-echo/original-echo/go.mod
+          echo "P40_MATH_B_P3_PINNED_ECHO_SOURCE_SHA=$actual" >p40-math-b-p3-echo-pin.log
+      - name: Original unchanged Echo external dependencies and Go integration
+        working-directory: tools/p40-math-b-p3-echo
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -count=1 -v . | tee p40-math-b-p3-echo-test.log
+          grep -q 'P40_MATH_B_P3_ORIGINAL_ECHO_WILDCARD_STATIC_DISJOINT_SAME_METHOD_GLUE_BOTH_ORDERS_PASS' p40-math-b-p3-echo-test.log
+          grep -q 'P40_MATH_B_P3_ORIGINAL_ECHO_METHOD_AND_STATIC_CONTROLS_PASS' p40-math-b-p3-echo-test.log
+          sha256sum go.mod original_echo_gluing_test.go >p40-math-b-p3-echo-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-math-b-p3-original-maintained-echo
+          path: |
+            p40-math-b-p3-echo-pin.log
+            tools/p40-math-b-p3-echo/p40-math-b-p3-echo-test.log
+            tools/p40-math-b-p3-echo/p40-math-b-p3-echo-sha256.txt
+          retention-days: 30
