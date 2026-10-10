@@ -67,7 +67,7 @@ jobs:
           GOTOOLCHAIN: 'auto'
         run: |
           set -euo pipefail
-          go test -count=1 -v . | tee issue-native-go.log
+          go test -mod=mod -count=1 -v . | tee issue-native-go.log
           test "$(grep -c 'P40_P5_LOCKED_PREDICTION_PASS' issue-native-go.log)" -eq ${{ matrix.minimum_predictions }}
           test "$(grep -c 'P40_P5_ABSTAIN_OBSERVATION' issue-native-go.log)" -eq 1
           if grep -q 'P40_P5_FORECAST_FALSIFIED' issue-native-go.log;then exit 14;fi
