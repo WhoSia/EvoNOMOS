@@ -18,7 +18,7 @@ def safe(arch, legacy, t, x, f):
     return True
 
 
-def reachable(arch, context):
+def reachable(arch, context, banned_state=None):
     publish, factory, mutable_fast, add_wrapper, legacy, nominal, t_first, atomic = context
     permitted_x = add_wrapper if arch == "versioned_adapter" else mutable_fast
     if not safe(arch, legacy, 0, 0, 0):
@@ -41,7 +41,7 @@ def reachable(arch, context):
         if not t and not x and not f and atomic and publish and permitted_x:
             options.append((1, 1, 0))
         for dst in options:
-            if dst not in discovered and safe(arch, legacy, *dst):
+            if dst != banned_state and dst not in discovered and safe(arch, legacy, *dst):
                 discovered.add(dst)
                 queue.append(dst)
     return False
@@ -59,15 +59,21 @@ def theorem(arch, context):
 
 def main():
     profiles = Counter()
+    feasible_cases = 0
     for context in product((False, True), repeat=8):
         answers = []
         for arch in ARCHES:
             observed = reachable(arch, context)
             calculated = theorem(arch, context)
             assert observed == calculated, (arch, context, observed, calculated)
+            if observed:
+                feasible_cases += 1
+                assert not reachable(arch, context, banned_state=(1, 1, 0)), (arch, context)
             answers.append(observed)
         profiles[tuple(answers)] += 1
     assert sum(profiles.values()) == 256
+    assert feasible_cases == 60, feasible_cases
+    print("P40_P3_FINAL_FACTORY_PUBLISH_SINGLE_VERTEX_CUT cases=60 minimal_internal_cut=1 PASS")
     assert dict(profiles) == {
         (False, False, False): 216,
         (False, False, True): 8,
