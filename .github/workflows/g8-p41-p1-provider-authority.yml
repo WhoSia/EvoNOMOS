@@ -82,6 +82,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Revalidate actual external public Echo historical merge event via GitHub REST
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p41-p1-permission
+          for endpoint in pulls/3132 issues/3132/events?per_page=100 pulls/3132/reviews?per_page=100; do
+            case "$endpoint" in
+              pulls/3132) outfile=out/p41-p1-permission/live-pr.json;;
+              issues/*) outfile=out/p41-p1-permission/live-events.json;;
+              *) outfile=out/p41-p1-permission/live-reviews.json;;
+            esac
+            curl -fsSL --retry 3 --retry-delay 2 \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/labstack/echo/$endpoint" \
+              -o "$outfile"
+          done
+          python tools/p41/p1-authority/audit_historical_merge_event.py \
+            tools/p41/p1-authority/github_historical_merge_event.json \
+            out/p41-p1-permission/live-pr.json \
+            out/p41-p1-permission/live-events.json \
+            out/p41-p1-permission/live-reviews.json \
+            out/p41-p1-permission/historical-merge-audit.json | tee out/p41-p1-permission/historical-summary.log
+          grep -q 'P41_P1_PUBLIC_HISTORICAL_MERGE_ACTOR_AND_COMMIT_INDEPENDENT_API_PASS' out/p41-p1-permission/historical-summary.log
       - name: Audit authenticated permission claim versus historical/normative UNKNOWN
         run: |
           set -euo pipefail
