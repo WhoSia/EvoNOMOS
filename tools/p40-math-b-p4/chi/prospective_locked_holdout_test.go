@@ -42,7 +42,7 @@ func parent() chi.Router{
 }
 func apply(p chi.Router,e Edit){
  child:=chi.NewRouter()
- child.Method(e.Method,"/item",func(w http.ResponseWriter,_ *http.Request){fmt.Fprint(w,e.Response)})
+ child.Method(e.Method,"/item",http.HandlerFunc(func(w http.ResponseWriter,_ *http.Request){fmt.Fprint(w,e.Response)}))
  p.Mount(e.Pattern,child)
 }
 func oracle(t *testing.T,p http.Handler,method,path,want string){
