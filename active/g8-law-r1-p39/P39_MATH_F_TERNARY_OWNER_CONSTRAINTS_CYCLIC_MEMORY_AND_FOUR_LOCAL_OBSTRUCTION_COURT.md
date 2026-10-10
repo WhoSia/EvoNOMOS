@@ -166,3 +166,32 @@ Read-only [GitHub Actions #38035950446](https://github.com/WhoSia/EvoNOMOS/actio
 **Proposed P39-MATH-G (not opened):** Given a *sparse* source-derived owner hypergraph H, a persistent safe-state invariant I and owner capability monitor K, characterize (1) forbidden/minimal unsatisfiable high-order partial edit orders, (2) minimum residual memory and (3) query adaptivity under real limited owner interfaces. Determine whether there is a structural parameter that makes order extension solvable beyond classical cyclic-order extension, CSP hypertree width or distributed automata. Attack first with an actual sparse-hypergraph countermodel that defeats naive 4-local gluing (which is valid only for complete ternary data). Never transport the synthetic model to real source without its owner/capability evidence, and never promote a classical cycle/order theorem to a new law.
 
 **P39 OPEN · MATH-F HIGHER-ORDER MATHEMATICS PROVED AND HOSTED PASS · STRICT CLASSICAL NOVELTY HOLD · DIP49 IDENTIFICATION HOLD · LAW-R2 NOT_AUTHORIZED.**
+
+
+## F8 — Sparse higher-order owner constraints break the complete-data four-local theorem (verified strengthened result)
+
+**Strongest new negative mathematical observation of Math-F:** the complete-data hypothesis in F3 is not a technical nuisance; dropping it destroys **every finite constant locality bound**, not just the four-element case.
+
+Fix an anchor source edit 0 and k other edits \(1,\ldots,k\) (k≥3). For each directed arc \(i\to i+1\) on a length-k cycle of the outer edits \(1\to2\to\cdots\to k\to1\), include ONE named ternary authorization constraint involving exactly \(\{0,i,i+1\}\), requiring that the anchored cyclic order put i before i+1. This is a sparse 3-uniform owner hypergraph with only k triples, no full ternary query set. All one-shot physical source modifications commute and lead to the same final source. No current-source invariant has been invented beyond this explicit legal future-right compatibility requirement.
+
+**Theorem F8 (classical precedence-cycle obstruction, arbitrarily large minimal certificates):**
+
+1. The full k-constraint family cannot be realized by any edit history: rotating any proposed source-edit order to place 0 first yields a strict precedence cycle \(1<2<\cdots<k<1\).
+2. **Every proper subset** of the k constraints is realizable: deleting any cycle edge makes the precedence digraph a union of directed paths, admitting a topological ordering.
+3. **Every proper subset of the k+1 source edit vertices** has a locally realizable restriction of the hypergraph: deleting the anchor eliminates all constraints, while deleting any outer edit removes at least one cycle edge, breaking the only directed cycle.
+
+Consequently for ANY proposed constant locality bound b, choosing k≥b and n=k+1 gives an unsatisfiable sparse ternary owner policy such that **every subset of at most b vertices is locally satisfiable**. No complete 4-local-to-global theorem transfers to sparse high-order ownership hypergraphs without extra structure.
+
+**Sharp smallest four-local failure example:** n=5, k=4, with four ternary requests equivalent (after cyclic anchoring at edit 0) to
+\[
+1<2,\quad 2<3,\quad 3<4,\quad 4<1.
+\]
+Every triple of these four requests is satisfiable and every four-vertex restriction is satisfiable; no one linear edit order satisfies all four. This is a direct attack on overly optimistic "local approvals imply global source repair" rhetoric.
+
+**Independent finite audits added to [Math-F source checker](../../tools/p39-math-f/higher_order_owner_memory_court.py):** original all 5! permutation test for the four constraints, all one-constraint deletions, every 4-vertex restriction; and directed-cycle/topological-sort checks for k=3..9, every single-edge deletion and every proper vertex subset. These finite checks are supplementary to the arbitrary-k proof. **No original Go library run or real-world owner policy is claimed.**
+
+**Novely / competitor determination:** this is a strict source-interface result **within the declared source-edit model**, but mathematically it is exactly the elementary directed-cycle obstruction for partial-order feasibility, a classical CSP/partial cyclic-order extension phenomenon; [Fiorini & Fishburn (2003)](https://doi.org/10.1023/B:ORDE.0000009252.21331.22) covers cyclic-order extension complexity. It is NOT a new obstruction theorem in general graph/CSP mathematics.
+
+**P39-MATH-G refined next challenge:** seek a naturally **source-realizable restricted class** of sparse owner hypergraphs with independently evidenced constraints, where the global repair obstruction size has a nontrivial sharp bound in terms of incidence structure, edit grammar/invariant monitor or separator topology. Plain sparse cyclic precedence cannot provide that bound because arbitrarily large minimal obstructions already exist with bounded hyperedge arity=3.
+
+**Updated status:** P39 OPEN · MATH-F COMPLETE+SPARSE COUNTERMODEL · CLASSICAL CYCLIC/POSET/CSP · LAW-R2 NOT_AUTHORIZED.
