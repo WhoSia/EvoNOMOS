@@ -105,3 +105,35 @@ func TestP40MathBSourceRoutePatternProbe(t *testing.T) {
   t.Logf("P40_MATH_B_ORIGINAL_CHI_PATTERN_PROBE_%d registered codeA=%d bodyA=%q codeB=%d bodyB=%q",i,codeA,bodyA,codeB,bodyB)
  }
 }
+
+func TestP40MathBRegexDisjointnessStillDoesNotGuaranteeRegistration(t *testing.T) {
+  digitPattern := "/service/{number:[0-9]+}"
+  alphaPattern := "/service/{letter:[a-z]+}"
+  checkSingleton := func(pattern, path, label string) {
+    t.Helper()
+    r := originalParent()
+    r.Mount(pattern, mountRoot(label))
+    request(t,r,"/old","unchanged")
+    request(t,r,path+"/item",label+":item")
+  }
+  // The request languages [0-9]+ and [a-z]+ do not intersect.
+  checkSingleton(digitPattern,"/service/123","NUM")
+  checkSingleton(alphaPattern,"/service/abc","ALPHA")
+  for _,patterns:=range [][2]string{
+    {digitPattern,alphaPattern},{alphaPattern,digitPattern},
+  } {
+    r:=originalParent()
+    r.Mount(patterns[0],mountRoot("FIRST"))
+    var conflict any
+    func(){
+      defer func(){conflict=recover()}()
+      r.Mount(patterns[1],mountRoot("SECOND"))
+    }()
+    if conflict==nil || !strings.Contains(fmt.Sprint(conflict),
+      "attempting to Mount() a handler on an existing path") {
+      t.Fatalf("expected conservative structural route rejection: %#v",conflict)
+    }
+    request(t,r,"/old","unchanged")
+  }
+  t.Log("P40_MATH_B_ORIGINAL_CHI_DISJOINT_REGEX_SINGLETONS_GLOBAL_REJECTION_BOTH_ORDERS_PASS")
+}
