@@ -105,3 +105,39 @@ func TestIssue2619WildcardTransferAbstained(t *testing.T){
  // classify any particular transfer outcome as a correct forecast.
  t.Logf("P40_P5_ABSTAIN_OBSERVATION id=%s pan=%q status=%d body=%q",id,fmt.Sprint(registrationPanic),rec.Code,strings.TrimSpace(rec.Body.String()))
 }
+
+func TestP40P5ExploratoryEqualHeadBodyDifferentGetEffects(t *testing.T){
+ create:=func(withExplicit bool)(*echo.Echo,*int){
+  e:=echo.NewWithConfig(echo.Config{Router:echo.NewRouter(echo.RouterConfig{AutoHandleHEAD:true})})
+  hits:=new(int)
+  e.GET("/issue/effect",func(c *echo.Context)error{
+   *hits++
+   return c.String(http.StatusOK,"body-never-visible-for-head")
+  })
+  if withExplicit{
+   e.HEAD("/issue/effect",func(c *echo.Context)error{return c.NoContent(http.StatusOK)})
+  }
+  return e,hits
+ }
+ a,aHits:=create(false)
+ b,bHits:=create(true)
+ ar:=request(a,http.MethodHead,"/issue/effect")
+ br:=request(b,http.MethodHead,"/issue/effect")
+ if ar.Code!=200||br.Code!=200||ar.Body.String()!=br.Body.String()||
+    ar.Body.Len()!=0||*aHits!=1||*bHits!=0{
+  t.Fatalf("expected identical observed HEAD status/body but unequal handler side effects: a=%d/%q hits=%d b=%d/%q hits=%d",ar.Code,ar.Body.String(),*aHits,br.Code,br.Body.String(),*bHits)
+ }
+ t.Log("P40_P5_EXPLORATORY_SAME_HEAD_STATUS_BODY_DIFFERENT_GET_SIDE_EFFECTS_PASS")
+}
+func TestP40P5Issue2619PostHocBadRoutingReproduction(t *testing.T){
+ // This checks an anomaly FIRST observed in the registered ABSTAIN case,
+ // therefore it is post hoc confirmation and must NEVER count as a forecast.
+ e:=echo.New()
+ e.GET("/v2/*/tags/list",func(c *echo.Context)error{return c.String(200,"TAGS")})
+ e.GET("/v2/*/blobs/uploads/:ref",func(c *echo.Context)error{return c.String(200,"UPLOADS")})
+ rec:=request(e,http.MethodGet,"/v2/foo/bar/tags/list")
+ if rec.Code!=200||rec.Body.String()!="UPLOADS"{
+  t.Fatalf("posthoc v5 routing reproduction changed: %d %q",rec.Code,rec.Body.String())
+ }
+ t.Log("P40_P5_POSTHOC_ECHO_2619_V5_WRONG_HANDLER_REPRODUCTION_PASS_NOT_PREREG")
+}
