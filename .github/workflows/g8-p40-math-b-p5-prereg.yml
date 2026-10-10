@@ -1,0 +1,79 @@
+name: G8 P40 Math-B-P5 Issue-Derived Pretest Source AST Contract Freeze
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p5/issue_derived_prereg.json'
+      - 'tools/p40-math-b-p5/issue_source_extract.go'
+      - '.github/workflows/g8-p40-math-b-p5-prereg.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-issue-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p40-math-b-p5/original-echo
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: gin-gonic/gin
+          ref: 0f09c3a9b4626d9fe9979cf4d0521d6ae32ab646
+          path: tools/p40-math-b-p5/original-gin
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prereg immutable and no P5 native test before frozen commit
+        run: |
+          set -euo pipefail
+          LOCK=ff1aad4f62809717e3f87a67b5085251b01c91ae
+          git merge-base --is-ancestor "$LOCK" HEAD
+          git show "$LOCK:tools/p40-math-b-p5/issue_derived_prereg.json" | cmp - tools/p40-math-b-p5/issue_derived_prereg.json
+          if git ls-tree -r --name-only "$LOCK" | grep '^tools/p40-math-b-p5/.*_test.go$'; then
+            echo LOCK_INVALID_TEST_EXISTS
+            exit 19
+          fi
+          test "$(git -C tools/p40-math-b-p5/original-echo rev-parse HEAD)" = '3882266a3641a36fc2111b48cd597adab1c1ecea'
+          test "$(git -C tools/p40-math-b-p5/original-gin rev-parse HEAD)" = '0f09c3a9b4626d9fe9979cf4d0521d6ae32ab646'
+          mkdir -p out/p40-math-b-p5-prereg
+          sha256sum tools/p40-math-b-p5/issue_derived_prereg.json tools/p40-math-b-p5/issue_source_extract.go >out/p40-math-b-p5-prereg/sha256.txt
+          git rev-parse HEAD >out/p40-math-b-p5-prereg/pretest-HEAD.txt
+          echo "P40_P5_ISSUE_FORECAST_LOCKED_BEFORE_NATIVE_GO_TESTS"
+      - name: Mechanically inspect original issue-related Go source AST
+        run: |
+          set -euo pipefail
+          go run tools/p40-math-b-p5/issue_source_extract.go \
+            tools/p40-math-b-p5/original-echo tools/p40-math-b-p5/original-gin \
+            >out/p40-math-b-p5-prereg/issue-AST-anchors.json
+          python - <<'PY'
+          import json
+          p=json.load(open('tools/p40-math-b-p5/issue_derived_prereg.json'))
+          assert len(p['cases'])==8
+          assert sum(x['forecast']!='ABSTAIN' for x in p['cases'])==6
+          assert sum(x['forecast']=='ABSTAIN' for x in p['cases'])==2
+          assert len({x['id'] for x in p['cases']})==8
+          q=json.load(open('out/p40-math-b-p5-prereg/issue-AST-anchors.json'))
+          assert q['protocol']=='P40_P5_ISSUE_SOURCE_AST_ANCHORS_V1'
+          assert len(q['anchors'])==8
+          assert len({x['ecosystem'] for x in q['anchors']})==2
+          print('P40_P5_ISSUE_PREREG_6_LOCKED_2_ABSTAIN_AND_8_AST_ANCHORS_PASS')
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p5-issue-prereg-and-source-ast
+          path: out/p40-math-b-p5-prereg
+          retention-days: 90
