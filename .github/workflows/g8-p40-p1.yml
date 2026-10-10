@@ -1,0 +1,38 @@
+name: G8 P40 P1 Go Source Architecture Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-p1/**'
+      - '.github/workflows/g8-p40-p1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  go-source-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile all 16 architecture-source revisions
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p1/go_interface_source_repair_court.py
+          python tools/p40-p1/go_interface_source_repair_court.py | tee p40-p1-go-source.log
+          grep -q 'P40_GO_TYPED_16_REVISION_MATRIX_PASS' p40-p1-go-source.log
+          grep -q 'P40_CLASSICAL_GO_METHOD_SET_AND_MENGER_COURT_NO_NOVEL_LAW_CLAIM' p40-p1-go-source.log
+          sha256sum tools/p40-p1/go_interface_source_repair_court.py > source.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p1-actual-go-compilation
+          path: |
+            p40-p1-go-source.log
+            source.sha256
+          retention-days: 30
