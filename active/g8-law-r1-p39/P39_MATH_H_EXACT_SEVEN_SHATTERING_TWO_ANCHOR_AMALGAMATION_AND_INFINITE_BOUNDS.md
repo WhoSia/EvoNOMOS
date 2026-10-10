@@ -136,3 +136,16 @@ The Python checker independently traverses **every graph** on n−1=3,4,5 nonanc
 **Scientific verdict:** d3(7)=7 exactly with a complete finite calculation certificate; two-anchor amalgamation H2 and all-n stronger constructive lower H3 proved; anchored forest characterization H4 proved. These are genuine theorems IN THE SPECIFIED MATHEMATICAL MODEL, with strong classical connections and **independent novelty PRIORITY HOLD**. No law beyond historical source semantics has been identified.
 
 **Status:** P39 OPEN, MATH-H VERIFIED LOCALLY, P40 FORMAL NAME PROPOSED ONLY, DIP49 IDENTIFICATION HOLD, LAW-R2 NOT_AUTHORIZED.
+
+
+## H7. Structural necessity for genuinely minimal higher-order obstructions
+
+Define a **minimal nonshattered family** H to be one whose full set of independent binary triple requirements cannot all be realized, while every proper edge-subfamily H'⊊H is shattered. This is not the same object as one individual UNSAT partial assignment, although every nonshattered H has at least one unrealizable assignment.
+
+**Corollary H7 (two-vertex-separator irreducibility).** Every minimal nonshattered triple family H is **indecomposable into two nonempty edge-subfamilies H_A,H_B covering H with |V(H_A)∩V(H_B)|≤2**.
+
+**Proof:** Under minimality, both proper H_A and H_B are shattered. The two-anchor H2 theorem would then make H_A∪H_B=H shattered, a contradiction. Therefore EVERY proper nontrivial partition of the edge set of such a minimal obstruction has at least three common vertices between its two sides.
+
+This is a **structural filtering theorem for candidate minimum obstruction certificates**: a proposed irreducible global software source-order conflict cannot arise merely from gluing two independently viable higher-order-owner subsystems along ≤2 common edit events. The statement concerns the stipulated circular-order model with no extra cross-block source obligations. Owner-dependent global invariants that couple blocks introduce NEW constraints and invalidate naive transport.
+
+This is a direct, classical-type corollary of circular-order amalgamation; originality unverified. It does not prove every hypergraph satisfying this separation condition is shattered, nor does it characterize all minimal forbidden hypergraphs. Do not confuse the *edge-family shattering* definition with a particular signed UNSAT CSP instance.
