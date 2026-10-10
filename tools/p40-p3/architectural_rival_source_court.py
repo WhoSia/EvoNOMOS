@@ -108,7 +108,7 @@ def main():
     # Extra terminal-client type-identity contract, tested in the Go runtime
     inputs += [(a, p, (1, 1, 1), True) for a, p in product(ARCHES, (False, True))]
     assert len(inputs) == 54
-    with ThreadPoolExecutor(max_workers=6) as pool:
+    with ThreadPoolExecutor(max_workers=3) as pool:
         results = list(pool.map(run_go, inputs))
     for (a, p, b, nominal), ok, diagnostic in results:
         target = expected(a, p, b) and not (nominal and a == "versioned_adapter")
