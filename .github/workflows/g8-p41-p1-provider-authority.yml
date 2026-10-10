@@ -1,0 +1,97 @@
+name: G8 LAW-R1-P41-P1 Original Provider Capability & Permission Snapshot
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p41/p1-provider-echo/**'
+      - 'tools/p41/p1-authority/**'
+      - '.github/workflows/g8-p41-p1-provider-authority.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-echo-interface-provider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p41/p1-provider-echo/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Check pinned original source and capture source fingerprints
+        run: |
+          set -euo pipefail
+          mkdir -p out/p41-p1-provider
+          test "$(git -C tools/p41/p1-provider-echo/original-echo rev-parse HEAD)" = '3882266a3641a36fc2111b48cd597adab1c1ecea'
+          echo "HARNESS_HEAD=$(git rev-parse HEAD)" >out/p41-p1-provider/provenance.txt
+          echo "ORIGINAL_ECHO=3882266a3641a36fc2111b48cd597adab1c1ecea" >>out/p41-p1-provider/provenance.txt
+          sha256sum tools/p41/p1-provider-echo/original-echo/router.go tools/p41/p1-provider-echo/provider_contract_test.go tools/p41/p1-provider-echo/invalid-provider/negative.go >out/p41-p1-provider/source-sha256.txt
+      - name: Native Echo interface providers and behavioral distinction
+        working-directory: tools/p41/p1-provider-echo
+        shell: bash
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p41-p1-provider/native-positive.log
+          grep -q 'P41_P1_ORIGINAL_ECHO_ROUTER_INTERFACE_TYPECHECK_PASS' ../../../out/p41-p1-provider/native-positive.log
+          grep -q 'P41_P1_TWO_NATIVE_INTERFACE_CONFORMING_PROVIDERS_DIFFERENT_BEHAVIOR_PASS' ../../../out/p41-p1-provider/native-positive.log
+      - name: Compile deliberately incomplete router and require real missing Route error
+        working-directory: tools/p41/p1-provider-echo
+        shell: bash
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          set +e
+          go test -mod=mod -tags=p41_negative_provider ./invalid-provider >../../../out/p41-p1-provider/native-negative.log 2>&1
+          status=$?
+          set -e
+          cat ../../../out/p41-p1-provider/native-negative.log
+          if test "$status" -eq 0; then
+            echo UNEXPECTED_MISSING_PROVIDER_METHOD_COMPILED
+            exit 17
+          fi
+          grep -q 'does not implement echo.Router' ../../../out/p41-p1-provider/native-negative.log
+          grep -q 'missing method Route' ../../../out/p41-p1-provider/native-negative.log
+          echo P41_P1_ORIGINAL_ECHO_MISSING_PROVIDER_PORT_REJECTED_AS_EXPECTED
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p41-p1-original-echo-provider-interface-and-behavior
+          path: out/p41-p1-provider/
+          retention-days: 90
+  permission-snapshot-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit authenticated permission claim versus historical/normative UNKNOWN
+        run: |
+          set -euo pipefail
+          mkdir -p out/p41-p1-permission
+          python tools/p41/p1-authority/audit_authority_snapshot.py tools/p41/p1-authority/github_operational_authority_snapshot.json out/p41-p1-permission/authority-audit.json
+          sha256sum tools/p41/p1-authority/*.json tools/p41/p1-authority/*.py >out/p41-p1-permission/source-sha256.txt
+          git rev-parse HEAD >out/p41-p1-permission/tested-head.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p41-p1-authenticated-platform-permission-scope-audit
+          path: out/p41-p1-permission/
+          retention-days: 90
