@@ -32,7 +32,7 @@ The five families are elementary **classical mathematical reductions**:
 - `dip_shape_not_behavior` and `dip_semantically_qualified_replacement`: static structural source admission does not determine provider output, whereas **sufficient behavior evidence on required clients** supports the selected contract.
 - `source_and_behavior_not_authority`: source, client and provider observations do not imply revision-indexed legitimate edits. This is a restatement of a proved projection obstruction, not independent C-source proof.
 
-**Formal verification status must be determined from the exact hosted Lean kernel run after creation.** Even if that run succeeds, Go's complete operational semantics are **NOT verified to refine these Lean functions**; the original Go execution supplies separately observed bounded examples.
+**Independent Lean 4.34.1 kernel verification SUCCESS:** [GitHub Actions #38068156705](https://github.com/WhoSia/EvoNOMOS/actions/runs/38068156705), exact checked theorem-source HEAD `0cc6556038dad83aef5f20bcc2c86f0128957cb0`, artifact `11675672460`, SHA-256 `2602767da130ccb90030a40e99c307d26b3cb7f7769d1ca44d56e64944d4c7ff`. All three named Lean library targets built (7 Lake jobs); independent `leanchecker` passed. This certifies **the stated finite-function models**, not historical SOLID derivation. In particular, Go's complete operational semantics are **NOT proved to refine these Lean functions**; the original Go execution supplies separately observed bounded examples.
 
 ## 2. Five conditional obligations and concrete source attacks
 
@@ -67,7 +67,7 @@ Consequently, **the current five reconstructed claims do not form a logically or
 
 ## 5. P41-P3 stopping decision and P42 proposal
 
-It is scientifically productive to **close P41-P3 as a bounded conditional-reconstruction court** once original Go and exact Lean independent proof receipts pass. It is NOT legitimate to close the entire P41 research as having derived historical SOLID or established novel architecture mathematics.
+Both original Go and independent Lean receipts now **PASS**, so **P41-P3 is CLOSED_AS_BOUNDED_CONDITIONAL_COURT**. This closes only the scoped conditional-reconstruction test, not the entire P41 project. It is NOT legitimate to close the entire P41 research as having derived historical SOLID or established novel architecture mathematics.
 
 **Unfinished work must transfer without erasure**:
 - original P41-P4: genuinely prospective, issue/PR-driven independent outcome tests, properly preregistered, with observer families and source rights constraints;
