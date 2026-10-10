@@ -1,0 +1,40 @@
+name: G8 P39 Math-F Higher-Order Owner-Order Mathematical Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p39-math-f/**'
+      - '.github/workflows/g8-p39-math-f.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pure-math-f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent high-order owner-constraint and cyclic-order checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p39-math-f/higher_order_owner_memory_court.py
+          python tools/p39-math-f/higher_order_owner_memory_court.py | tee math-f.log
+          grep -q 'P39_F_MINIMAL_TERNARY_UNSAT size=3 size3_instances=8 algebraically_consistent_unrealizable=2 PASS' math-f.log
+          grep -q 'P39_F_4_LOCAL_GLOBAL n=5 all_1024_raw_assignments PASS' math-f.log
+          grep -q 'P39_F_MIXED_CONNECTIVITY n=5 graphs=1024 connected=728 PASS' math-f.log
+          grep -q 'P39_F_ADAPTIVE_VS_FIXED n=10 adaptive=4 fixed=9 PASS' math-f.log
+          grep -q 'P39_F_PREFIX_CHECKPOINT_POSETS n=5 dags=543 source_equal_right_profiles=12 min_bits=4 PASS' math-f.log
+          grep -q 'P39_MATH_F_PURE_THEORY_COURT_PASS_NO_NATIVE_GO' math-f.log
+          sha256sum tools/p39-math-f/higher_order_owner_memory_court.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: math-f-higher-order-constraints-proofs
+          path: |
+            math-f.log
+            source-sha256.txt
+          retention-days: 30
