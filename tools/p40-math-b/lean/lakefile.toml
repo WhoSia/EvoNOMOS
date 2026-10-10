@@ -1,6 +1,9 @@
 name = "P40MathBIndependence"
 version = "0.1.0"
-defaultTargets = ["P40MathBIndependence"]
+defaultTargets = ["P40MathBIndependence", "P40IssueSimulation"]
 
 [[lean_lib]]
 name = "P40MathBIndependence"
+
+[[lean_lib]]
+name = "P40IssueSimulation"
