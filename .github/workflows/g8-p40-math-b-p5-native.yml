@@ -1,0 +1,82 @@
+name: G8 P40 Math-B-P5 Issue-Derived Native Go Prospective Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p5/echo/**'
+      - 'tools/p40-math-b-p5/gin/**'
+      - '.github/workflows/g8-p40-math-b-p5-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-original-issue-replay:
+    name: original-source-${{ matrix.ecosystem }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ecosystem: echo
+            repository: labstack/echo
+            pin: 3882266a3641a36fc2111b48cd597adab1c1ecea
+            go: '1.25'
+            minimum_predictions: 3
+          - ecosystem: gin
+            repository: gin-gonic/gin
+            pin: 0f09c3a9b4626d9fe9979cf4d0521d6ae32ab646
+            go: '1.26'
+            minimum_predictions: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.pin }}
+          path: tools/p40-math-b-p5/${{ matrix.ecosystem }}/original-${{ matrix.ecosystem }}
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: Prove case predictions predate compiled source holdout
+        shell: bash
+        run: |
+          set -euo pipefail
+          lock=ff1aad4f62809717e3f87a67b5085251b01c91ae
+          git merge-base --is-ancestor "$lock" HEAD
+          git show "$lock:tools/p40-math-b-p5/issue_derived_prereg.json" | cmp - tools/p40-math-b-p5/issue_derived_prereg.json
+          if git ls-tree -r --name-only "$lock" | grep -E '^tools/p40-math-b-p5/(echo|gin)/.*_test\.go$';then
+            echo P40_P5_TEMPORAL_HOLDOUT_VIOLATION
+            exit 10
+          fi
+          actual="$(git -C tools/p40-math-b-p5/${{ matrix.ecosystem }}/original-${{ matrix.ecosystem }} rev-parse HEAD)"
+          test "$actual" = '${{ matrix.pin }}'
+          mkdir -p out/p40-p5-${{ matrix.ecosystem }}
+          printf '%s\n' "LOCK=$lock" "UPSTREAM=$actual" "TEST_HEAD=$(git rev-parse HEAD)" >out/p40-p5-${{ matrix.ecosystem }}/provenance.txt
+          sha256sum tools/p40-math-b-p5/issue_derived_prereg.json tools/p40-math-b-p5/${{ matrix.ecosystem }}/issue_native_probe_test.go >out/p40-p5-${{ matrix.ecosystem }}/input-sha256.txt
+      - name: Independently compile and run original source issue-derived forecasts
+        shell: bash
+        working-directory: tools/p40-math-b-p5/${{ matrix.ecosystem }}
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -count=1 -v . | tee issue-native-go.log
+          test "$(grep -c 'P40_P5_LOCKED_PREDICTION_PASS' issue-native-go.log)" -eq ${{ matrix.minimum_predictions }}
+          test "$(grep -c 'P40_P5_ABSTAIN_OBSERVATION' issue-native-go.log)" -eq 1
+          if grep -q 'P40_P5_FORECAST_FALSIFIED' issue-native-go.log;then exit 14;fi
+          echo P40_P5_ISSUE_DERIVED_3_LOCKED_1_ABSTAIN_ORIGINAL_GO_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p5-original-go-issue-${{ matrix.ecosystem }}
+          path: |
+            out/p40-p5-${{ matrix.ecosystem }}/
+            tools/p40-math-b-p5/${{ matrix.ecosystem }}/issue-native-go.log
+          retention-days: 90
