@@ -105,6 +105,14 @@ The Python checker uses partition refinement, checks suffix-observation equivale
 
 **Most valuable next falsification:** replace purely deterministic finite source edits with genuinely competing owner-authorized partial source morphisms where local contracts include evolving interfaces, dynamic observations and release histories. Search for a theorem **not equivalent at matching assumptions** to ordinary automata minimization, forward simulation, guarded reachability or CSP. A natural maintainer-source counterexample is needed before any general OO law claim.
 
+## 7A. Original Parnas baseline — checked in the existing Drive corpus
+
+The existing full-text Drive PDFs were read at their relevant original sections rather than redownloaded:
+- [Parnas 1972, On the Criteria To Be Used in Decomposing Systems into Modules](https://drive.google.com/file/d/1EcQRy3iehx4lUN7uGsZ1BFXU33HggcEQ/view), DOI [10.1145/361598.361623](https://doi.org/10.1145/361598.361623): a module is explicitly a *responsibility assignment*, not merely a procedure; independent development and change isolation depend on the choice of hidden design decisions and on interface structure. **A rectangular ownership product is not a derivation of the origin of responsibilities.**
+- [Parnas 1979, Designing Software for Ease of Extension and Contraction](https://drive.google.com/file/d/1XGzB9hq_6wk6aXeVojMo1IeKoKCg704j/view), DOI [10.1109/TSE.1979.234169](https://doi.org/10.1109/TSE.1979.234169): the **uses relation** and design of minimal subsets/extensions are direct earlier competitors for claims that dependency geometry alone generates a new law of extensibility.
+
+**Critical comparison:** interpreting SRP* as separable edit supports and DIP* as graph factorization omits Parnas's *choice of likely-to-change hidden decisions, users' actual needs and alternative decompositions*. Until these are operationalized and tested against original source maintenance evidence, P40 may formalize part of his classical program but cannot claim to derive or supersede it. The Drive papers already existed in the corpus; no duplicate file was created.
+
 ## 8. Verdict
 
 - **PROVED (classical conditional):** local forward simulation implies scoped finite-trace LSP*, continuation-observation equivalence is the coarsest exact deterministic repair quotient, source-only state projection fails under history-dependent rights.
