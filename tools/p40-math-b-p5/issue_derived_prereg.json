@@ -1,0 +1,116 @@
+{
+  "contract": "P40_MATH_B_P5_ISSUE_DERIVED_PREREG_V1",
+  "authored_at": "2026-10-10 Asia/Seoul",
+  "declaration": "Predictions locked before ANY P5 native Go holdout testcase source is committed. Source code reviewed; matching P5 runtime outcomes not viewed. Existing upstream issues may contain original reporters' outcomes and are NOT blind in the sense of unknown historical outcomes. Family selection is informed by reports; experimental outputs are new pinned-version cases.",
+  "reliability_scope": "Bespoke issue-derived modifications; empirical corpus not random; report resolved/newer-version carryover and abstentions separately.",
+  "sources": [
+    {
+      "ecosystem": "echo",
+      "repo": "labstack/echo",
+      "pin": "3882266a3641a36fc2111b48cd597adab1c1ecea",
+      "issue": "https://github.com/labstack/echo/issues/2895",
+      "issue_id": 2895,
+      "issue_state": "open",
+      "scope": "HEAD fallback and explicit priority in v5; issue asks for API support but pinned v5 source has an AutoHandleHEAD option"
+    },
+    {
+      "ecosystem": "echo",
+      "repo": "labstack/echo",
+      "pin": "3882266a3641a36fc2111b48cd597adab1c1ecea",
+      "issue": "https://github.com/labstack/echo/issues/2619",
+      "issue_id": 2619,
+      "issue_state": "open",
+      "scope": "Issue reports v4.11.4 ambiguous middle-wildcard routing; transfer to pinned v5 is unknown"
+    },
+    {
+      "ecosystem": "gin",
+      "repo": "gin-gonic/gin",
+      "pin": "0f09c3a9b4626d9fe9979cf4d0521d6ae32ab646",
+      "issue": "https://github.com/gin-gonic/gin/issues/4641",
+      "issue_id": 4641,
+      "issue_state": "open",
+      "scope": "AIP-136 literal :verb escape versus param-suffix dynamic verb in current maintained Gin"
+    }
+  ],
+  "cases": [
+    {
+      "id": "E-HEAD-DEFAULT",
+      "source": 2895,
+      "ecosystem": "echo",
+      "kind": "GET-to-HEAD",
+      "forecast": "HEAD_405",
+      "rationale": "default Echo router AutoHandleHEAD disabled; no HEAD method handler",
+      "observation": "registered GET /issue/head-default; HEAD request status 405"
+    },
+    {
+      "id": "E-HEAD-OPTIN",
+      "source": 2895,
+      "ecosystem": "echo",
+      "kind": "GET-to-HEAD",
+      "forecast": "HEAD_200_EMPTY_GET_EXECUTES",
+      "rationale": "method HEAD fallback to GET handler when AutoHandleHEAD enabled, with response body suppressed",
+      "observation": "HEAD gets 200, empty body, GET-supplied X-Issue-Handler header and GET handler counter increments"
+    },
+    {
+      "id": "E-HEAD-EXPLICIT",
+      "source": 2895,
+      "ecosystem": "echo",
+      "kind": "GET-to-HEAD",
+      "forecast": "EXPLICIT_HEAD_PRIORITY",
+      "rationale": "find HEAD method-specific handler before auto fallback to GET",
+      "observation": "HEAD gets 200 and X-Issue-Handler=explicit, GET handler counter unaffected"
+    },
+    {
+      "id": "E-WILD-TRANSFER",
+      "source": 2619,
+      "ecosystem": "echo",
+      "kind": "middle-star-path",
+      "forecast": "ABSTAIN",
+      "rationale": "Issue reproduces v4.11.4 and its claimed static-literal absorption cannot be transferred to v5 without executing routing semantics",
+      "observation": "on pinned v5, register /v2/*/tags/list and /v2/*/blobs/uploads/:ref and inspect selected request /v2/foo/bar/tags/list; record registration and matched path without forced accuracy"
+    },
+    {
+      "id": "G-VERB-BARE",
+      "source": 4641,
+      "ecosystem": "gin",
+      "kind": "literal-colon-routes",
+      "forecast": "SECOND_REGISTRATION_PANICS",
+      "rationale": "unescaped colon enters named wildcard parser; two distinct wildcard names conflict in same radix segment",
+      "observation": "register POST /issue/users:batchGet followed by POST /issue/users:batchCreate"
+    },
+    {
+      "id": "G-VERB-ESCAPED",
+      "source": 4641,
+      "ecosystem": "gin",
+      "kind": "literal-colon-routes",
+      "forecast": "BOTH_REGISTER_AND_SERVE",
+      "rationale": "findWildcard skips escaped colon in literal names",
+      "observation": "register /issue/users\\:batchGet and /issue/users\\:batchCreate, POST requests to nonbackslash /issue/users:batchGet and /issue/users:batchCreate yield distinct 200 responses"
+    },
+    {
+      "id": "G-VERB-PARAM-SUFFIX",
+      "source": 4641,
+      "ecosystem": "gin",
+      "kind": "parameter-custom-verb",
+      "forecast": "ABSTAIN",
+      "rationale": "reporter says suffix not supported in v1.12.0, pinned October 2026 master differs and behavior needs exact runtime observation",
+      "observation": "register /issue/customers/:customer_id\\:mutate, POST /issue/customers/123:mutate, report registration, status, route FullPath, captured customer_id"
+    },
+    {
+      "id": "G-STATIC-CONTROL",
+      "source": 4641,
+      "ecosystem": "gin",
+      "kind": "static-path-control",
+      "forecast": "BOTH_REGISTER_AND_SERVE",
+      "rationale": "two unrelated static route literals should be independently added to radix trie",
+      "observation": "register POST /issue/static-a and /issue/static-b, return distinct values"
+    }
+  ],
+  "scoring": {
+    "evaluated": "6 non-abstain cases",
+    "abstained": "2 cases",
+    "threshold": "No threshold, disclose every mismatch",
+    "strong_contract": "Separate registration admission, output, HEAD body suppression, handler side effects and route-path metadata",
+    "no_claim": "not a proof of correctness on arbitrary Go source or an oracle for real maintainer fixes"
+  }
+}
