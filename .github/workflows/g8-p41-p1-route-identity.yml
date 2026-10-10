@@ -1,0 +1,55 @@
+name: G8 LAW-R1-P41-P1 Original Echo Route-Identity Information Loss
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p41/p1-native-echo/**'
+      - '.github/workflows/g8-p41-p1-route-identity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-echo-route-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p41/p1-native-echo/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Assert original read-only upstream source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C tools/p41/p1-native-echo/original-echo rev-parse HEAD)" = '3882266a3641a36fc2111b48cd597adab1c1ecea'
+          mkdir -p out/p41-p1-route
+          echo 'ORIGINAL_ECHO_SHA=3882266a3641a36fc2111b48cd597adab1c1ecea' >out/p41-p1-route/source-receipt.txt
+          echo "ORACLE_HEAD=$(git rev-parse HEAD)" >>out/p41-p1-route/source-receipt.txt
+          sha256sum tools/p41/p1-native-echo/route_identity_projection_test.go >out/p41-p1-route/code-sha256.txt
+      - name: Compare original route provenance with coarse HTTP observations
+        shell: bash
+        working-directory: tools/p41/p1-native-echo
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p41-p1-route/native-original-go.log
+          grep -q 'P41_P1_SAME_HTTP_STATUS_BODY_DIFFERENT_ACTUAL_HANDLER_PASS' ../../../out/p41-p1-route/native-original-go.log
+          grep -q 'P41_P1_ORIGINAL_ROUTE_IDENTITY_READOUT_PASS' ../../../out/p41-p1-route/native-original-go.log
+          echo P41_P1_BOUNDED_ORIGINAL_SOURCE_RESPONSE_ONLY_NONIDENTIFIABILITY_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p41-p1-echo-source-route-identity-information-loss
+          path: out/p41-p1-route/
+          retention-days: 90
