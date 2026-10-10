@@ -38,12 +38,12 @@ def main():
     assert prereg["contract"] == "P40_MATH_B_P4_PREREG_V1"
     assert ast["protocol"] == "P40_P4_AST_SIGNAL_RECEIPT_V1"
     claims = ast["claims"]
-    assert len(claims) == 12 and all(x["Found"] for x in claims)
+    assert len(claims) == 12 and all(x["found"] for x in claims)
     actual = {eco: set() for eco in ("chi", "httprouter", "echo")}
     for cl in claims:
-        assert cl["Line"] > 0
-        assert cl["File"].endswith(".go")
-        actual[cl["Source"]].add(cl["Needle"])
+        assert cl["line"] > 0
+        assert cl["file"].endswith(".go")
+        actual[cl["source"]].add(cl["needle"])
     needed = {
         "chi": {"findPattern", "subr.tree == mx.tree", "mALL", "mx.handler != nil"},
         "httprouter": {"r.trees[method]", "conflicts with existing wildcard", "a handle is already registered"},
