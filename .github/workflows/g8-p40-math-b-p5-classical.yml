@@ -1,0 +1,39 @@
+name: G8 P40 Math-B-P5 Classical Falsification Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p5/p5_classical_reduction.py'
+      - '.github/workflows/g8-p40-math-b-p5-classical.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-aware-classical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prove issue forecast file is still the original immutable prereg
+        run: |
+          set -euo pipefail
+          git show ff1aad4f62809717e3f87a67b5085251b01c91ae:tools/p40-math-b-p5/issue_derived_prereg.json | cmp - tools/p40-math-b-p5/issue_derived_prereg.json
+      - name: Score deliberately weak source-blind model and classical implementation-aware CSP
+        run: |
+          set -euo pipefail
+          mkdir -p out/p40-p5-classical
+          python tools/p40-math-b-p5/p5_classical_reduction.py tools/p40-math-b-p5/issue_derived_prereg.json out/p40-p5-classical/reduction.json | tee out/p40-p5-classical/summary.log
+          grep -q 'P40_P5_CLASSICAL_CSP_EXPLAINS_6_OF_6_ISSUE_DERIVED_OUTCOMES' out/p40-p5-classical/summary.log
+          sha256sum tools/p40-math-b-p5/p5_classical_reduction.py tools/p40-math-b-p5/issue_derived_prereg.json >out/p40-p5-classical/source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p5-issue-classical-competitor-court
+          path: out/p40-p5-classical/
+          retention-days: 90
