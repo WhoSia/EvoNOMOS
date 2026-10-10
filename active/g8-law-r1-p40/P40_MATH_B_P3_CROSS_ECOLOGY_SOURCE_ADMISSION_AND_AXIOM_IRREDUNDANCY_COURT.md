@@ -56,7 +56,25 @@ This is a conditional ***implementation-ecology-dependent reversal***, NOT a new
 
 Independent [labstack/echo](https://github.com/labstack/echo) v5 main SHA \`3882266a3641a36fc2111b48cd597adab1c1ecea\` has a recent 2026-10-07 commit (unlike httprouter's 2024 last master update). Its original \`router.go\` uses \`DefaultRouter.insert\`, maintains separate static, parameter and any-route children and stores per-method handlers in one routing-node structure. Crucially it does **not** use httprouter's same single-method radix wildcard/static conflict rule. This supports the distinct **predicted** outcome for A=GET /service/:name/a and B=GET /service/static/b: both should register and both HTTP clients should work.
 
-[Separate Echo source integration test](../../tools/p40-math-b-p3-echo/original_echo_gluing_test.go) · [read-only pinned-source Actions](https://github.com/WhoSia/EvoNOMOS/actions/workflows/g8-p40-math-b-p3-echo.yml). This is an actively updated independently maintained positive control, and validates or refutes whether H's inability to register disjoint static/parameter paths can be generalized to a different modern trie router. **Status must be read back from the exact corrected test run, not inferred from source alone.** The first Echo attempt #38047932553 FAILED test compilation because the harness called a nonexistent Echo.Routes method. The correction removed this unsupported ancillary API call and kept actual HTTP client assertions. This is a test-harness fix, not an upstream source change.
+[Separate Echo source integration test](../../tools/p40-math-b-p3-echo/original_echo_gluing_test.go) · [read-only pinned-source Actions](https://github.com/WhoSia/EvoNOMOS/actions/workflows/g8-p40-math-b-p3-echo.yml). This is an actively updated independently maintained positive control, and validates or refutes whether H's inability to register disjoint static/parameter paths can be generalized to a different modern trie router. **ORIGINAL ECHO NATIVE GO PASS:** [Actions #38047983713](https://github.com/WhoSia/EvoNOMOS/actions/runs/38047983713) completed SUCCESS on source/head `d16f25d5fbb401ee070e677db9e5a3a2f7a42429`, artifact `11668137741` SHA-256 `cdf3bb4c3fea73429658053d30bc4587f202459768c888a7036fa4d79146bc3a`. Both insertion orders of A=GET /service/:name/a and B=GET /service/static/b preserve the old client and correctly dispatch both new clients; the method-partition and distinct-literal controls also PASS. The first Echo attempt #38047932553 FAILED test compilation because the harness called a nonexistent Echo.Routes method. The correction removed this unsupported ancillary API call, retained actual HTTP client assertions, and re-ran the test to successful completion. This is a test-harness fix, not an upstream source change.
+
+
+## 2B. Same nominal route-language obligations, opposite admission across real source ecosystems
+
+The **same** GET registration patterns and dedicated client expectations in H and Echo are:
+\[
+A=\mathrm{GET}\ \texttt{/service/:name/a}\mapsto A,\qquad
+B=\mathrm{GET}\ \texttt{/service/static/b}\mapsto B.
+\]
+The old client also stays \`GET /old\mapsto unchanged\`. With the stated standard ASCII path patterns (rather than every possible URL encoding or client introspection), the individual route-language obligations and selected HTTP oracle responses are matched. H rejects the combined source registration; Echo accepts it in both orders and passes old+both new HTTP clients.
+
+Let \(\sigma\) retain these two exact path-template strings, GET method labels, named standalone client expectations and the fact each edit is locally accepted; \(\sigma\) omits **the actual implementation's source-registration algorithm**. The two pinned source implementations H and Echo witness:
+\[
+\sigma(H)=\sigma(E),\qquad \operatorname{SourceAdmit}(H)=0,\quad \operatorname{SourceAdmit}(E)=1.
+\]
+So no implementation-oblivious classifier \(f\) on that declared signature can decide joint edit admissibility across both source implementations. This is a stronger cross-ecology witness than merely the predicate \([L_A\cap L_B=\emptyset]\). It is nevertheless an elementary **classical factorization obstruction** and does not refute a classifier that takes the complete router implementation/source admission function as input.
+
+**Do not overextend:** we have not proved whole-program contextual equivalence between H and Echo for arbitrary clients, URL encodings, introspection or middleware. The theorem compares precisely stated symbolic edit obligations, singleton HTTP test oracles, and a fixed source API interface-admission target. The categorical/sheaftheoretic or unknown-law priority remains open.
 
 
 ## 3. The logically valid impossibility claim
@@ -106,4 +124,4 @@ A six-bit unconstrained Cartesian product trivially establishes Boolean independ
 - Ask Lean to check a truly conditional, scope-limited **compositional proof** whose premises can be separately established from native source, not a definition equating admissibility to a conjunction of the desired guards.
 - Only after that attempt a reduction of scoped SRP/OCP/LSP/ISP/DIP to a smaller independent system; original full SOLID derivation remains OPEN.
 
-**Verdict:** second maintained original repository cross-validation SUCCESS; method-key partition is a sufficient repair intervention for the tested H grammar; no cross-router transfer guarantee. Historical SOLID axiomatic derivation remains OPEN. A fundamental nonclassical OO law is NOT identified. P40 OPEN, LAW-R2 NOT_AUTHORIZED.
+**Verdict:** pinned H original source rejects identical GET route obligations while actively maintained Echo v5 accepts BOTH orders under separately verified Go source; original χ rejects disjoint-regex mounts even after child GET/POST split; Lean kernel validates a **scoped** method-partition toy contract but not a Go semantics embedding. H's pinned upstream master dates to 2024 and must not be labeled actively maintained in 2026. Three original source ecosystems expose an implementation-conditioned admission distinction. Full A–F independent axioms and nonclassical new law remain unproved. Historical SOLID axiomatic derivation remains OPEN. A fundamental nonclassical OO law is NOT identified. P40 OPEN, LAW-R2 NOT_AUTHORIZED.
