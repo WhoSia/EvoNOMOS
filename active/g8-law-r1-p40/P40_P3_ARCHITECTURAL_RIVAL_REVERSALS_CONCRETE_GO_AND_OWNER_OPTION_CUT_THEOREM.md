@@ -137,3 +137,78 @@ Try **architecture alternatives that can defeat or reverse D/W under fixed old-c
 Hosted artifact \`11666366140\`; artifact digest SHA-256 \`1d85d12d520e652961451cdd78d1fa309ec4cae6f55a4e30149c70375c709533\`. The tested head includes the **shared pre-factory state 110 cut check**, unlike preceding [#38041271814](https://github.com/WhoSia/EvoNOMOS/actions/runs/38041271814). Subsequent Markdown edits/README/Notion updates are NOT in that source-tested head, and the synthetic code does not establish real external maintainer permissions.
 
 **Classification after hosted verification:** typed source behavior PASS, 768 finite model decisions PASS, classical Go compatibility guidance and standard CSP/graph reachability still fully explain the bounded conditional architecture outcome. No newly identified architecture law or independent pure-mathematical priority.
+
+
+## P3-I. Stronger original-client countermodel: Go embedded method promotion causes NONLOCAL source interference
+
+The previous P3-C 8-bit owner-context theorem compared clients that use Port.Run and a new structural \`Advanced\` capability. Now keep **the same future feature demand and the same owner rights**, but strengthen the *original old-client source invariant* in a Go-realistic way.
+
+Original Go code (already compiled and tested BEFORE any new Fast.Next):
+\`\`\`go
+type Other struct{}
+func (Other) Next() int { return 99 }
+type Composite struct { Fast; Other }
+func OldComposite(c Composite) int { return c.Next() }
+\`\`\`
+Before editing Fast, \`Composite.Next()\` uniquely resolves the promoted \`Other.Next()\`, so the old client expects **99**. If direct architecture D adds \`func (Fast) Next() int {return 42}\`, \`Composite\` now has **two equal-depth promoted methods named Next**. Go refuses to resolve \`c.Next()\`: **\`ambiguous selector c.Next\`**. The failure occurs even though Fast can compile by itself and the new \`Advanced\` future service can compile and execute.
+
+Versioned wrapper W creates a **distinct FastAdapter type** with Next=42 and leaves original Fast untouched; the original Composite continues to select Other.Next=99, while the new factory returns a fully compatible structural Advanced. This is an **old-client preservation difference caused by method promotion**, not merely a different owner permission setting.
+
+[Independent Go embedded-client source checker](../../tools/p40-p3/embedded_promotion_collision_court.py): three architectures × two Legacy protections × eight T/X/F edit subsets = **48 MORE actual Go compilation/test cases** with preserved old \`Composite.Next()==99\`. All cases matched the exact conditional source predicates:
+
+| Architecture | Existing Composite embedded old client | Safe source states | Full structural capability-safe edit paths |
+| --- | --- | ---: | ---: |
+| C coupled | yes | 1 / 8 | 0 |
+| D direct Fast.Next | yes | 2 / 8 | 0 |
+| W versioned FastAdapter | yes | 5 / 8 | 2 |
+
+Results are the same whether Legacy itself is separately protected, because the new promoted-method collision is an independent blocker. For direct/coupled every state where Fast.Next is installed fails the original \`Composite\` source compile.
+
+**Separate packages, stronger noncompositionality witness:** [cross-package Go checker](../../tools/p40-p3/multimodule_embedded_gluing_court.py) creates one Go module with distinct \`fast\`, \`other\`, \`modern\` and \`client\` packages. \`go test ./fast ./other ./modern\` succeeds for BOTH D and W; the modern future factory behaves correctly in BOTH. However \`go test ./client\` and the integrated \`go test ./...\` FAIL under D with \`ambiguous selector c.Next\`, and PASS under W. **Component-level Go compilation is not closed under arbitrary third-party embedding-client contexts.** It becomes compositional only when the true client-context method-set obligations are included in the boundary contract. This is classical language/type semantics, not a proof that any actual maintainer violated a rule.
+
+The Go project's OWN [Go 1 compatibility document](https://go.dev/doc/go1compat) explicitly warns that adding a new method to an existing concrete type can break a struct that embeds it alongside another type that has that method. This is direct original prior art. No independently new language theory is claimed.
+
+## P3-J. Stronger nine-variable source-obstruction theorem and exact finite check
+
+Introduce Boolean \(e\): the pre-existing \`Composite{Fast;Other}.Next\` call is part of the old-client compatibility contract. The other eight flags retain the exact meanings given in P3-C.
+
+The **updated necessary/sufficient repair predicates** for the three actual Go source grammars are:
+
+\[
+\boxed{
+R_C=p f m\,\neg L\,\neg e\,(\neg t\lor a),\quad
+R_D=p f m\,\neg e,\quad
+R_W=p f w\,\neg q.
+}
+\]
+
+The effect of \(e\) on C/D is an actual independent source-typing collision, not a post-hoc permission condition. The stronger client identity flag \(q\) independently makes W unfit for the separate nominal future goal.
+
+[Go-grounded exact guard-theorem checker](../../tools/p40-p3/embedded_contract_generalization_court.py) enumerates ALL \(2^9=512\) owner/old-client/future-client contexts × 3 rival architectures = **1,536** decisions. Independently coded BFS over the actual three-edit T/X/F safe state grid agrees with these closed forms for every instance. Exactly **76 architecture/context instances** have a reachable goal; they occupy the following six viability profiles across the 512 contexts:
+
+| (C,D,W) viable | Count |
+|---|---:|
+| 000 | 456 |
+| 001 | 24 |
+| 010 | 15 |
+| 011 | 5 |
+| 110 | 9 |
+| 111 | 3 |
+
+**A real-source conditional ranking reversal with owner rights HELD CONSTANT:** Choose \(p=f=m=w=L=1\), \(q=t=a=0\). Without embedded original client (\(e=0\)), D and W both safely implement the future structural contract, profile \((0,1,1)\). Add the already-existing embedding client contract (\(e=1\)) and the SAME owner rights yield only W viable, profile \((0,0,1)\). Thus the ranking reversal can arise from the **structure of prior code and client selector dependence**, not only permission toggles.
+
+**Exact mixed-contract impossibility within THIS grammar:** With \(e=q=1\), neither C nor D preserves the old embedding-client source, while W violates the future concrete Fast identity requirement. All three are impossible even if p,f,m,w grant full authorization. This does NOT prove no other Go design can satisfy the demands; it is scoped to C/D/W and their declared T/X/F edits.
+
+Under protected Legacy \(L=1\), the existence of SOME design C/D/W obeying the structural future goal is now
+
+\[
+\boxed{\operatorname{May}_{\text{any}}=p f\big((m\land\neg e)\lor(w\land\neg q)\big).}
+\]
+
+For the pure structural future goal \(q=0\), this simplifies to \(\;p f(w\lor m\neg e)\), a sharper *source-sensitive permission-option formula* than P3-D's old \(p f(m\lor w)\). Standard Boolean factoring, type sets and old-client method promotion fully explain it. **No new SOLID law has been identified.**
+
+**Scientific difference:** the stronger example falsifies an overbroad inference from independent implementation compilation to *whole-ecosystem* source compatibility, and shows exactly why actual old-client source observations—not merely an abstract interface method list—are necessary. The classical Go spec/Go1 compatibility prior identifies the mechanism in advance, so this is high-value source-grounded falsification rather than original theorem priority.
+
+**Boundary:** All 48 generated Go cases and all three new-package tests are a reproducible SOURCE-REALIZABLE mathematical court, not independent outside Go repositories, actual outside maintainers' permissions, or an empirical market prevalence measure. Keep full operational subtyping separate from future repository edits.
+
+**P40 current state remains OPEN; stronger structural counterexample, mathematical exactness verified locally, hosted CI status must be read before asserting new Actions SUCCESS; DIP49 new-law HOLD; LAW-R2 NOT_AUTHORIZED.**
