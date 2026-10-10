@@ -1,0 +1,37 @@
+name: G8 P40 Math-B Dynamic Boundary Continuations
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b/**'
+      - '.github/workflows/g8-p40-math-b.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-theory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Finite synthetic boundary-language court
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-math-b/dynamic_boundary_continuation_court.py
+          python tools/p40-math-b/dynamic_boundary_continuation_court.py | tee p40-math-b.log
+          grep -q 'P40_MATH_B_GOAL_ONLY_MINIMAL_CONTINUATION_CLASSES=4 PASS' p40-math-b.log
+          grep -q 'P40_MATH_B_COMPILE_AND_GOAL_MINIMAL_CONTINUATION_CLASSES=5 PASS' p40-math-b.log
+          grep -q 'P40_MATH_B_SOURCE_ONLY_NONMARKOV_HISTORY_WITNESS PASS' p40-math-b.log
+          grep -q 'P40_MATH_B_FINITE_SYNTHETIC_COURT_PASS' p40-math-b.log
+          sha256sum tools/p40-math-b/dynamic_boundary_continuation_court.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-math-b-dynamic-boundary-finite-court
+          path: |
+            p40-math-b.log
+            source-sha256.txt
+          retention-days: 30
