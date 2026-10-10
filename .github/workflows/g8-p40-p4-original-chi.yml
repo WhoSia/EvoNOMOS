@@ -49,6 +49,9 @@ jobs:
           grep -q 'P40_P4_ORIGINAL_CHI_SEPARATE_MOUNTS_PASS' original-chi-go-test.log
           grep -q 'P40_P4_ORIGINAL_CHI_3X3_LOCAL_GLOBAL_BOUNDARY_PASS distinct=6 duplicate_minimal=3' original-chi-go-test.log
           grep -q 'P40_P4_ORIGINAL_CHI_MIDDLEWARE_ORDER_GUARD_PASS' original-chi-go-test.log
+          grep -q 'P40_MATH_B_ORIGINAL_CHI_NAMESPACE_EQUAL_INTERFACE_ALIAS_DIVERGENCE_PASS' original-chi-go-test.log
+          grep -q 'P40_MATH_B_ORIGINAL_CHI_THREE_INDEPENDENT_BOUNDARY_GUARDS_PASS' original-chi-go-test.log
+          grep -q 'P40_MATH_B_ORIGINAL_CHI_DISJOINT_REGEX_SINGLETONS_GLOBAL_REJECTION_BOTH_ORDERS_PASS' original-chi-go-test.log
       - name: Verify mathematical boundary minimality and local gluing failure
         run: |
           set -euo pipefail
