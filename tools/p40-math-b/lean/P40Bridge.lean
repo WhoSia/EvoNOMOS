@@ -19,7 +19,7 @@ theorem source_branch_matches_declared_model (s : NativeSourceState) :
       sourceDispatch s := by
   cases s with
   | mk d g a n rev =>
-      cases d <;> cases g <;> cases a <;> decide
+      cases d <;> cases g <;> cases a <;> rfl
 
 theorem source_branch_matches_observation_abstraction
     (s : NativeSourceState) :
