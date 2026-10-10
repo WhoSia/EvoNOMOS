@@ -177,9 +177,71 @@ def invariant_court():
           "source_equal_right_profiles=12 min_bits=4 PASS")
 
 
+
+
+def sparse_owner_cycle_court():
+    """Sparse triple questions can have unbounded minimal inconsistency.
+
+    All questions contain anchor edit 0. After cyclic rotation to start at 0,
+    each ternary parity becomes a required precedence edge. Directed cycles
+    cannot be realized; removing any edge makes the system satisfiable.
+    """
+    # Minimal five-vertex example, checked against REAL permutations of this
+    # synthetic alphabet rather than relying only on graph acyclicity.
+    constraints = [
+        ((0,1,2),0), ((0,2,3),0),
+        ((0,3,4),0), ((0,1,4),1)
+    ]
+    orders=tuple(permutations(range(5)))
+    def ok(order,selected):
+        return all(tvalue(order,(t,))[0]==v for t,v in selected)
+    assert not any(ok(order,constraints) for order in orders)
+    assert all(any(ok(order,[x for j,x in enumerate(constraints)
+                             if j!=removed]) for order in orders)
+               for removed in range(4))
+    for vs in combinations(range(5),4):
+        local=[(t,v) for t,v in constraints if set(t)<=set(vs)]
+        assert any(ok(order,local) for order in permutations(vs))
+    print("P39_F_SPARSE_FIVE_VERTEX_LOCAL_GLOBAL_FAILURE "
+          "triple_constraints=4 every_proper_subset_satisfiable PASS")
+
+    # Directed k-cycle on k outer vertices, anchored by zero. Verify its
+    # minimality and every proper vertex-restriction through k=9; the proof
+    # works for arbitrary k>=3.
+    def is_acyclic(nodes,edges):
+        outgoing={v:[] for v in nodes}
+        indeg={v:0 for v in nodes}
+        for a,b in edges:
+            outgoing[a].append(b)
+            indeg[b]+=1
+        todo=[v for v in nodes if indeg[v]==0]
+        seen=0
+        while todo:
+            v=todo.pop()
+            seen+=1
+            for w in outgoing[v]:
+                indeg[w]-=1
+                if indeg[w]==0:
+                    todo.append(w)
+        return seen==len(nodes)
+    for k in range(3,10):
+        outer=tuple(range(1,k+1))
+        edges=[(i,i+1) for i in range(1,k)]+[(k,1)]
+        assert not is_acyclic(outer,edges)
+        for j in range(k):
+            assert is_acyclic(outer,[x for m,x in enumerate(edges) if m!=j])
+        for mask in range(1,(1<<(k+1))-1):
+            chosen={v for v in range(k+1) if mask>>v&1}
+            restricted=[(a,b) for a,b in edges
+                        if 0 in chosen and a in chosen and b in chosen]
+            assert is_acyclic(outer,restricted)
+        print(f"P39_F_UNBOUNDED_SPARSE_CYCLE k={k} "
+              "all_proper_vertex_restrictions_satisfiable PASS")
+
 if __name__=="__main__":
     parity_court()
     mixed_court()
     adaptive_court()
     invariant_court()
+    sparse_owner_cycle_court()
     print("P39_MATH_F_PURE_THEORY_COURT_PASS_NO_NATIVE_GO")
