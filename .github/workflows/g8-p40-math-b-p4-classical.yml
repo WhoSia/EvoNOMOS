@@ -1,0 +1,46 @@
+name: G8 P40 Math-B-P4 Classical CSP Reduction Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p4/classical_reduction_court.py'
+      - '.github/workflows/g8-p40-math-b-p4-classical.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classical-collapse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ensure same locked forecast manifest precedes original source tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 119a83e096203442e54cb8271b3372b0e3ae9412 HEAD
+          git show 119a83e096203442e54cb8271b3372b0e3ae9412:tools/p40-math-b-p4/preregistered_predictions.json | cmp - tools/p40-math-b-p4/preregistered_predictions.json
+      - name: Score classical CSP and deliberately weaker assumptions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p40-math-b-p4/classical_reduction_court.py | tee classical-baseline.log
+          grep -q 'P40_P4_CLASSICAL_CSP_COLLAPSE_AND_WEAK_ABLATIONS_PASS' classical-baseline.log
+          mkdir -p out/p40-p4-classical
+          cp tools/p40-math-b-p4/classical_reduction_receipt.json out/p40-p4-classical/
+          sha256sum tools/p40-math-b-p4/classical_reduction_court.py tools/p40-math-b-p4/preregistered_predictions.json >out/p40-p4-classical/source-sha256.txt
+          echo 'CLASSICAL_CSP_EXPLAINS_BOUNDED_ORIGINAL_GO_HOLDOUT_NOT_A_NEW_UNIVERSAL_LAW' >out/p40-p4-classical/scope.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p4-classical-CSP-baselines
+          path: |
+            out/p40-p4-classical/
+            classical-baseline.log
+          retention-days: 90
