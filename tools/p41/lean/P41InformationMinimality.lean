@@ -70,6 +70,19 @@ theorem no_current_role_only_historical_authority_classifier :
    independence can follow merely from the number of named conjuncts. -/
 def redundantCompilerGuard (w : EditWorld) : Prop := A_Typed w
 
+/- If the *assembled program's compiler acceptance* already contains a
+   required interface-assertion obligation, its structural shape predicate is
+   a redundant separate premise. This is a conditional propositional result,
+   NOT an interpretation of all Go compiler rules. -/
+theorem structural_provider_guard_redundant
+    (compiled interfaceCompatible : Prop)
+    (compiler_checks_the_interface : compiled → interfaceCompatible) :
+    (compiled ∧ interfaceCompatible) ↔ compiled := by
+  constructor
+  · exact And.left
+  · intro hc
+    exact ⟨hc, compiler_checks_the_interface hc⟩
+
 theorem duplicate_premise_is_eliminable (w : EditWorld) :
     (candidateAdequacy w ∧ redundantCompilerGuard w) ↔
       candidateAdequacy w := by
