@@ -1,0 +1,35 @@
+name: G8 P40 P2 Guarded Source Repair Math
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-p2/**'
+      - '.github/workflows/g8-p40-p2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  guarded-edit-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify all guarded two-edit permission and safety models
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p2/guarded_repair_obstruction_court.py
+          python tools/p40-p2/guarded_repair_obstruction_court.py | tee p40-p2-math.log
+          grep -q 'P40_P2_512_GUARDED_GRIDS_FORMULA_EQ_BFS_PASS' p40-p2-math.log
+          grep -q 'P40_P2_ENDPOINT_VS_SEQUENCE_AND_ATOMIC_PATCH_SCOPE_PASS' p40-p2-math.log
+          sha256sum tools/p40-p2/guarded_repair_obstruction_court.py > source.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p2-guarded-source-math
+          path: |
+            p40-p2-math.log
+            source.sha256
+          retention-days: 30
