@@ -1,0 +1,92 @@
+{
+  "protocol": "EVONOMOS_G8_LAW_R1_P41_P0_EVIDENCE_MATRIX_V1",
+  "stage": "P41-P0",
+  "status": "OPEN",
+  "principle": "All six candidate premises are candidate semantic test domains; none is an independently validated universal OO axiom. Evidence for an individual failure implication does not certify entire axiom independence.",
+  "source_reuse": "P40 experiment receipts remain source specific. We do NOT independently rerun these in P41-P0.",
+  "definitions": [
+    {
+      "code": "A",
+      "label": "static typing and compilation",
+      "sort": "compiler/admission judgement",
+      "predicate": "compilerAccepts(edit,context)",
+      "observation": "pinned original-Go compile under declared flags",
+      "evidence_status": "NATIVE_BOUNDED",
+      "source": {
+        "repo": "WhoSia/EvoNOMOS",
+        "run_id": 38060623268,
+        "original_upstream_commit": "3882266a3641a36fc2111b48cd597adab1c1ecea"
+      },
+      "missing": "language-independent proof of typing independence"
+    },
+    {
+      "code": "B",
+      "label": "old-client observational frame",
+      "sort": "observer/context traces",
+      "predicate": "observe(old,after,observer)=observe(old,before,observer)",
+      "observation": "full HTTP output and where required handler side effects",
+      "evidence_status": "NATIVE_BOUNDED",
+      "source": {
+        "repo": "WhoSia/EvoNOMOS",
+        "run_id": 38052437653,
+        "original_upstream_commit": "3882266a3641a36fc2111b48cd597adab1c1ecea"
+      },
+      "missing": "all clients/all contexts equivalence"
+    },
+    {
+      "code": "C",
+      "label": "edit authorization and legitimate owner",
+      "sort": "versioned institution/governance",
+      "predicate": "permission(principal,artifact,revision,edit)",
+      "observation": "authenticated maintainer authority with historical state",
+      "evidence_status": "SYNTHETIC_ONLY",
+      "source": null,
+      "missing": "independent authentic authorization source; never infer from code visibility"
+    },
+    {
+      "code": "D",
+      "label": "new demand and route identity",
+      "sort": "client obligation and chosen handler",
+      "predicate": "newOutput=contractOutput AND dispatchedHandler=contractHandler",
+      "observation": "Echo overwrite/route-priority original Go HTTP tests",
+      "evidence_status": "NATIVE_BOUNDED",
+      "source": {
+        "repo": "WhoSia/EvoNOMOS",
+        "run_id": 38051358314,
+        "original_upstream_commit": "3882266a3641a36fc2111b48cd597adab1c1ecea"
+      },
+      "missing": "complete contextual success of all new demands"
+    },
+    {
+      "code": "E",
+      "label": "source edit registration and namespace",
+      "sort": "native parser/tree registration",
+      "predicate": "sourceAdmission(program,editSequence)",
+      "observation": "original chi disjoint regex mount collision, H/Echo opposite gluing",
+      "evidence_status": "NATIVE_BOUNDED",
+      "source": {
+        "repo": "WhoSia/EvoNOMOS",
+        "run_id": 38047274495,
+        "original_upstream_commit": "167e1e3bd039d060696b99c8da4e876ae04f42c1"
+      },
+      "missing": "mechanically verified complete source semantics"
+    },
+    {
+      "code": "F",
+      "label": "dependency provider/capability incidence",
+      "sort": "provider-port/versioned dependency graph",
+      "predicate": "requiresPort(edit)=providesPort(context)",
+      "observation": "dependency incidence graph with pinned signatures, imports and runtime tests",
+      "evidence_status": "SYNTHETIC_ONLY",
+      "source": null,
+      "missing": "independent source-realized provider contract witness"
+    }
+  ],
+  "proof_debt": [
+    "typed-product model independence is synthetic and does not prove real-software A-F independence",
+    "authorization and dependency premises lack original native-source receipts",
+    "old-client observation needs an explicit observer population and history",
+    "conditional SOLID must use precise scoped theorem families and must compete with Parnas, Liskov-Wing, Reynolds frame, CSP/constraint satisfaction and rely-guarantee",
+    "new-law novelty remains HOLD, LAW-R2 NOT_AUTHORIZED"
+  ]
+}
