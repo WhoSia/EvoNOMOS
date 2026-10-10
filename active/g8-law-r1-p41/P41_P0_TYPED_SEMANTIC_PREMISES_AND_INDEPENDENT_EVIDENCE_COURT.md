@@ -90,6 +90,16 @@ Original theory the P41 project must not ignore:
 
 This independently confirms the P0 `responseOnlyView` underinformativeness in **one native source ecology**, not universal Go semantics or P41-P2 A–F independence. It also proves that an observer enriched with `Context.Path` CAN distinguish these programs; hence the selected context/observer family belongs in the theorem signature. **P41-P1 remains OPEN** for independently sourced legitimate authority and real dependency provider contracts.
 
+### 6B. Post-P0 P41-P1/P2 epistemic upgrade (do not rewrite the original P0 snapshot)
+
+Since the bounded P0 audit recorded **C and F as synthetic-only**, subsequent P41-P1 work obtained new scoped empirical evidence:
+
+- [C authenticated current GitHub role + actual timestamped upstream Echo PR merge](P41_P1_AUTHENTICATED_PERMISSION_AND_NATIVE_PROVIDER_EVIDENCE.md): present `WhoSia/EvoNOMOS` `admin` independently rechecked through authenticated connector; separate historical Echo PR #3132 merged by account `vishr` on 2026-09-30T01:00:17Z, merge commit `f085ffbe8f99de165bd920746920000ab56bd6bc`. Upstream PR+event+review fields were re-fetched by independent Actions [#38064380066 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38064380066). This **does not** supply protected-branch policy at that date, institutional edit legitimacy or all actor/owner rights histories.
+- [F original source Echo Router interface test](P41_P1_AUTHENTICATED_PERMISSION_AND_NATIVE_PROVIDER_EVIDENCE.md): original Echo `Router` requires four Go methods; native compiler rejects missing `Route`, while two type-complete providers execute with divergent contract outputs, original Go Actions [#38063852776 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38063852776).
+- [P41-P2 source-realized information insufficiency and *negative* axiom minimality court](P41_P2_NEGATIVE_IRREDUNDANCY_AND_CLASSICAL_REDUCTION_COURT.md): A compiler acceptance already including provider interface checks subsumes a separate F structural guard in the selected Go fixture. Defining F as outcome itself risks duplicating D. The strong classical model remains sufficient; full A–F irredundancy is **not established**.
+
+The original P0 *as-of* epistemic status remains an accurate historical statement. The latest evidence registry V2 records the new, stricter **partial** categories with their provenance, rather than pretending these were already known at the P0 test revision.
+
 ## 7. Explicit P0 closure / P1 entry requirements
 
 P0 bounded completion requires three separate receipts: (i) exact formal candidate signature compiled/kernel checked, (ii) typed empirical vs synthetic evidence matrix independently audited, and (iii) canonical P41 Run + GitHub research contract linked with P40 transfer. If the Lean compiler/provenance CI fails, leave the corresponding gate unverified. P0 completion *does not* complete P41.
