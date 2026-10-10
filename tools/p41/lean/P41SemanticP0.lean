@@ -69,37 +69,65 @@ def rejectD := { control with resolvedRoute := 21 }
 def rejectE := { control with sourceRegisters := false }
 def rejectF := { control with actualPort := 41 }
 
-theorem control_satisfies_candidates : candidateAdequacy control := by decide
+theorem control_satisfies_candidates : candidateAdequacy control := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 theorem independence_A_in_free_signature :
     ¬ A_Typed rejectA ∧ B_OldObservationFrame rejectA ∧
     C_Authorized rejectA ∧ D_RouteAndGoal rejectA ∧
-    E_SourceRegistered rejectA ∧ F_DependencyAligned rejectA := by decide
+    E_SourceRegistered rejectA ∧ F_DependencyAligned rejectA := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 theorem independence_B_in_free_signature :
     A_Typed rejectB ∧ ¬ B_OldObservationFrame rejectB ∧
     C_Authorized rejectB ∧ D_RouteAndGoal rejectB ∧
-    E_SourceRegistered rejectB ∧ F_DependencyAligned rejectB := by decide
+    E_SourceRegistered rejectB ∧ F_DependencyAligned rejectB := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 theorem independence_C_in_free_signature :
     A_Typed rejectC ∧ B_OldObservationFrame rejectC ∧
     ¬ C_Authorized rejectC ∧ D_RouteAndGoal rejectC ∧
-    E_SourceRegistered rejectC ∧ F_DependencyAligned rejectC := by decide
+    E_SourceRegistered rejectC ∧ F_DependencyAligned rejectC := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 theorem independence_D_in_free_signature :
     A_Typed rejectD ∧ B_OldObservationFrame rejectD ∧
     C_Authorized rejectD ∧ ¬ D_RouteAndGoal rejectD ∧
-    E_SourceRegistered rejectD ∧ F_DependencyAligned rejectD := by decide
+    E_SourceRegistered rejectD ∧ F_DependencyAligned rejectD := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 theorem independence_E_in_free_signature :
     A_Typed rejectE ∧ B_OldObservationFrame rejectE ∧
     C_Authorized rejectE ∧ D_RouteAndGoal rejectE ∧
-    ¬ E_SourceRegistered rejectE ∧ F_DependencyAligned rejectE := by decide
+    ¬ E_SourceRegistered rejectE ∧ F_DependencyAligned rejectE := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 theorem independence_F_in_free_signature :
     A_Typed rejectF ∧ B_OldObservationFrame rejectF ∧
     C_Authorized rejectF ∧ D_RouteAndGoal rejectF ∧
-    E_SourceRegistered rejectF ∧ ¬ F_DependencyAligned rejectF := by decide
+    E_SourceRegistered rejectF ∧ ¬ F_DependencyAligned rejectF := by
+  simp [candidateAdequacy, A_Typed, B_OldObservationFrame,
+    C_Authorized, D_RouteAndGoal, E_SourceRegistered,
+    F_DependencyAligned, control, rejectA, rejectB, rejectC,
+    rejectD, rejectE, rejectF]
 
 /- This view retains compiler/source admission and chosen old/new behavior,
    *not* the principal/owner entitlement evidence. -/
