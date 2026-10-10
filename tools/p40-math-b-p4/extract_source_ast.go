@@ -64,7 +64,7 @@ func main(){
   statement(filepath.Join(chi,"mux.go"),"chi","Mux","Mount","mALL"),
   statement(filepath.Join(chi,"mux.go"),"chi","Mux","Use","mx.handler != nil"),
   statement(filepath.Join(hr,"router.go"),"httprouter","Router","Handle","r.trees[method]"),
-  statement(filepath.Join(hr,"tree.go"),"httprouter","node","addRoute","Wildcard conflict"),
+  statement(filepath.Join(hr,"tree.go"),"httprouter","node","addRoute","conflicts with existing wildcard"),
   statement(filepath.Join(hr,"tree.go"),"httprouter","node","addRoute","a handle is already registered"),
   statement(filepath.Join(echo,"router.go"),"echo","DefaultRouter","Add","allowOverwritingRoute"),
   statement(filepath.Join(echo,"router.go"),"echo","DefaultRouter","insert","addStaticChild"),
