@@ -1,0 +1,52 @@
+name: G8 P40 P3 Matched Go Architecture Rival Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-p3/**'
+      - '.github/workflows/g8-p40-p3.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-formal-rivals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Go architecture revisions and test concrete-type rival
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p3/architectural_rival_source_court.py
+          python tools/p40-p3/architectural_rival_source_court.py | tee p40-p3-real-go.log
+          grep -q 'P40_P3_REAL_GO_COMPILER_REVISION_COURT cases=54 all_expected_pass=54 PASS' p40-p3-real-go.log
+          grep -q 'P40_P3_STATE_CUBE arch=coupled protected=1 safe_states=2 sequential_safe_paths=0 PASS' p40-p3-real-go.log
+          grep -q 'P40_P3_STATE_CUBE arch=versioned_adapter protected=1 safe_states=5 sequential_safe_paths=2 PASS' p40-p3-real-go.log
+          grep -q 'P40_P3_REAL_GO_COMPILATION_REPRODUCIBLE_AND_CLASSICAL_PRIOR_PASS' p40-p3-real-go.log
+      - name: Verify all 256 owner contexts across three architectures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p3/architectural_permission_theorem_court.py
+          python tools/p40-p3/architectural_permission_theorem_court.py | tee p40-p3-math.log
+          grep -q 'P40_P3_768_ARCHITECTURE_CONTEXT_BFS_FORMULA_AGREE PASS' p40-p3-math.log
+          grep -q 'P40_P3_REVERSAL_WITNESS only_direct coupled_direct_wrapper=(0, 1, 0) PASS' p40-p3-math.log
+          grep -q 'P40_P3_REVERSAL_WITNESS only_wrapper coupled_direct_wrapper=(0, 0, 1) PASS' p40-p3-math.log
+          grep -q 'P40_P3_PERMISSION_CUT_FORMULA_AND_CONTEXT_DEPENDENT_REVERSAL_PASS' p40-p3-math.log
+          sha256sum tools/p40-p3/*.py > p40-p3-sources.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p3-go-matched-architecture-reversal
+          path: |
+            p40-p3-real-go.log
+            p40-p3-math.log
+            p40-p3-sources.sha256
+          retention-days: 30
