@@ -1,0 +1,61 @@
+name: G8 LAW-R1-P41-P3 Five Conditional SOLID Original Echo Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p41/p3-native-echo/**'
+      - '.github/workflows/g8-p41-p3-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-conditional-solid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p41/p3-native-echo/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Assert pinned original source and write fingerprints
+        run: |
+          set -euo pipefail
+          mkdir -p out/p41-p3-native
+          test "$(git -C tools/p41/p3-native-echo/original-echo rev-parse HEAD)" = '3882266a3641a36fc2111b48cd597adab1c1ecea'
+          echo "ECHO_ORIGINAL=3882266a3641a36fc2111b48cd597adab1c1ecea" >out/p41-p3-native/provenance.txt
+          echo "HARNESS_HEAD=$(git rev-parse HEAD)" >>out/p41-p3-native/provenance.txt
+          sha256sum tools/p41/p3-native-echo/conditional_solid_court_test.go tools/p41/p3-native-echo/original-echo/router.go >out/p41-p3-native/inputs.sha256
+      - name: Original Go source bounded conditional tests and counterexamples
+        shell: bash
+        working-directory: tools/p41/p3-native-echo
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p41-p3-native/original-go.log
+          for token in \
+            P41_P3_SRP_DISJOINT_ROUTE_RESPONSIBILITY_FRAME_PASS \
+            P41_P3_OCP_DISJOINT_EXTENSION_FRAME_PASS \
+            P41_P3_OCP_UNRESTRICTED_OVERWRITE_COUNTERTRACE_PASS \
+            P41_P3_LSP_HTTP_ONLY_NOT_ROUTE_IDENTITY_PASS \
+            P41_P3_ISP_BOUNDED_INTERFACE_PROJECTION_PASS \
+            P41_P3_DIP_SOURCE_INTERFACE_SHAPE_NOT_BEHAVIORAL_CONTRACT_PASS; do
+            grep -q "$token" ../../../out/p41-p3-native/original-go.log
+          done
+          echo P41_P3_ALL_FIVE_BOUNDED_SOURCE_ANALOGUES_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p41-p3-original-echo-five-conditional-source-court
+          path: out/p41-p3-native/
+          retention-days: 90
