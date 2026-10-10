@@ -201,6 +201,25 @@ def invariant_coupling_court():
     assert all({x[i] for x in profiles} == {0, 1} for i in (0, 1))
     assert (0, 1) not in profiles
     assert (1, 0) not in profiles
+    # Explicit junction-tree separator check: hyperedge scopes share {0,1}.
+    # Each local site is satisfiable, but chosen opposite signs require
+    # contradictory orders on the SAME source-edit separator.
+    separator = (0, 1)
+    def local_project(scope, desired):
+        local_prec = [(a, b) for a, b in P
+                      if a in scope and b in scope]
+        valid = [perm for perm in permutations(scope)
+                 if int(parity(perm, scope)) == desired
+                 and all(perm.index(a) < perm.index(b)
+                         for a, b in local_prec)]
+        return {tuple(x for x in perm if x in separator) for perm in valid}
+    left = local_project(H[0], 0)
+    right = local_project(H[1], 1)
+    assert left == {(0, 1)} and right == {(1, 0)}
+    assert not (left & right)
+    assert local_project(H[0], 0) & local_project(H[1], 0)
+    print("P39_G_JOIN_TREE_SEPARATOR_PROJECTION "
+          "left=(0,1) right=(1,0) local_nonempty_global_empty PASS")
     print("P39_G_COMBINED_ALPHA_PREFIX_INVARIANT_JOINT_FAILURE "
           "individual_signs=2_each joint_profiles=2_of_4 "
           "separator=(0,1)_opposite_order PASS")
