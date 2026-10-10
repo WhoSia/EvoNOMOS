@@ -146,3 +146,44 @@ The n=5 witness shatters 4 triples while any α-acyclic n=5 triple hypergraph ha
 ## G8. Next math gate, not automatic stage creation
 
 Continue to **P39-MATH-H (proposed only)** if the user wishes: attack d_3(7) and a nontrivial general lower/upper bound with independently checkable certificates; investigate forbidden subhypergraph characterizations of cyclic-order shattering; derive when physically meaningful source-invariant constraints preserve a tight projection/gluing theorem. Do not substitute empirical leaderboard benchmarks or relabel standard database/CSP theory as independent math.
+
+
+## G9. Infinite constructive shattering lower bound, not just a small finite certificate
+
+The G5 six-vertex example is a genuinely **independent query block**: it admits all 64 choices of six ternary future rights with the *same fully patched source*. This yields a clean infinite-family bound.
+
+**Lemma G9a (one-vertex anchored gluing preserves shattering).** Let H_A and H_B be two disjoint triple query families on source-edit sets A and B, intersecting only at a common anchor source edit 0. Suppose each family shatters all its own binary question assignments. Then H_A ∪ H_B shatters all \(2^{|H_A|+|H_B|}\) combined assignments. **Proof:** for any desired labels, select circular source edit orders on A and B realizing them, rotate each to place 0 first, and concatenate the non-anchor vertex blocks after the common 0. The relative cyclic order on every selected triple entirely within A or B is unchanged. This is a classical amalgamation argument (but not an α-acyclicity claim about the combined triple scopes).
+
+**Lemma G9b (one-vertex one-query extension).** Given any shattered H on V with at least two old vertices 0 and 1, add one new physical source edit z and one new independently queryable owner triple {0,1,z}. For either desired new sign, start from a realizing old circular order anchored at 0 and insert z either before old edit 1 or after all old edits, preserving all old triple signs. Thus H gains one independently shattered query on one new vertex.
+
+**Theorem G9 (constructive general lower bound).** For every n≥6, write n−1=5k+r with k≥1, 0≤r≤4. Glue k disjoint copies of the 6-vertex/6-query G5 witness along source edit 0 (each extra copy adds 5 vertices and 6 independent ternary questions), then introduce each remaining r vertex by G9b. The resulting n-edit query family shatters exactly all binary assignments on 6k+r queries. Therefore
+\[
+\boxed{
+d_3(n)\ \ge\ n-1+\Big\lfloor\frac{n-1}{5}\Big\rfloor
+\quad\text{for every }n\ge6.
+}
+\]
+Together with the classical cyclic-order cardinality upper bound,
+\[
+\boxed{
+n-1+\Big\lfloor\frac{n-1}{5}\Big\rfloor
+\ \le\ d_3(n)\
+\le\ \Big\lfloor\log_2((n-1)!)\Big\rfloor,\qquad n\ge6.
+}
+\]
+
+This is a **general mathematical theorem within the defined ternary cyclic-order shattering model**, not merely extrapolation from n≤6. Its lower-bound construction is algorithmic and realizes any demanded future permission assignment explicitly, not probabilistically.
+
+The updated [pure-math checker](../../tools/p39-math-g/hypergraph_gluing_and_shattering_court.py) constructs and checks **every one of the \(2^{6k+r}\) right signatures for n=6,…,11**, using independently enumerated six-vertex block witness orders. At n=11, the family has **12 independently queryable triplets** on 11 source edits, a strict separation from the α-acyclic n−2=9 query bound. The general result for n>11 rests on the gluing proof, not brute force.
+
+**Strongest priority caveat:** The lower-bound inequality and explicit block-gluing proof are newly written in this project, but research on cyclic order extendability, permutation shattering and oriented three-hypergraphs is substantial. Current targeted paper searches have **not established a definitive first-publication priority** for \(d_3(n)\) or this specific linear lower bound. Closely related *but not identical* lines include [Johnson & Wickes (2021), *Shattering k-sets with Permutations*](https://arxiv.org/abs/2112.01946), [Girão, Michel & Tamitegama (2026), *Small Families of Partially Shattering Permutations*](https://doi.org/10.1007/s00493-026-00201-6), and [García-Colín et al. (2012), oriented 3-hypergraphs of cyclic orders](https://arxiv.org/abs/1210.6828). These works concern related permutation-shattering notions; **do not equate their question definitions to ours** without full source inspection.
+
+**Next sharpened math attack:** determine d_3(7) (current bounds from G9 and cardinality are 7≤d_3(7)≤9, and no exact upper theorem was proved here), seek asymptotic growth stronger than 6/5 per new vertex, and inspect whether any known VC-dimension theorem of circular order relations already subsumes G9. A finite unsuccessful computational witness search is NOT proof of a bound.
+
+## G10. Latest independent hosted proof receipt for G9 extension
+
+[GitHub Actions #38038339518](https://github.com/WhoSia/EvoNOMOS/actions/runs/38038339518) **SUCCESS**, exact checker source/workflow HEAD \`5e979ab9ccb4dbb7cf87ece1ea9c5f8ae409e7a2\`, original math-only source checker including GYO / primal α agreement, join-tree constructive gluing, exact n≤6 shattering, original mixed-invariant separator contradiction, and new n=6,…,11 block-shattering families. Artifact \`11665041028\` SHA-256 \`da928512938c0c6ff6bf2547d781133ed796861e1cd9f91a6fdcb068b7a1b3b2\`.
+
+This supersedes earlier verification receipts for the **executed checker** but does not magically test later document-only commits. No original Go repository was compiled or modified. **New-math priority remains UNVERIFIED** even though the mathematical theorem and all sampled constructed finite witnesses pass.
+
+**Final G status:** G1/G4 JOIN TREE = CLASSICAL; G3 INVARIANT SEPARATOR = CLASSICAL COUNTERMODEL; G5 SMALL SHATTERING EXACT; G9 INFINITE CONSTRUCTIVE LOWER BOUND PROVEN WITH PRIORITY OPEN; P39 OPEN; DIP49 IDENTIFICATION HOLD; LAW-R2 NOT_AUTHORIZED.
