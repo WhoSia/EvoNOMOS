@@ -252,8 +252,68 @@ def orientation_shattering_court():
               f"hypergraph_alpha={gyo_alpha(H)} PASS")
 
 
+
+
+def block_shattering_lower_bound():
+    """Explicit INFINITE-family construction from the six-edit witness.
+
+    Block gluing on one shared edit preserves every old cyclic triple,
+    while one new edit inserted to either side of (0,1) adds a freely
+    selectable anchored triple. Test EVERY assignment up to n=11.
+    """
+    seed = ((0, 1, 2), (0, 1, 3), (0, 4, 5),
+            (1, 4, 5), (2, 3, 4), (2, 3, 5))
+    local_witness = {}
+    for p in permutations(range(1, 6)):
+        candidate = (0,) + p
+        signature = tuple(int(parity(candidate, t)) for t in seed)
+        local_witness.setdefault(signature, candidate)
+    assert len(local_witness) == 64
+
+    def block_model(n):
+        k, rem = divmod(n - 1, 5)
+        assert k >= 1
+        hyperedges = []
+        for j in range(k):
+            mapping = {0: 0, **{i: 5*j+i for i in range(1, 6)}}
+            hyperedges.extend(tuple(mapping[v] for v in t) for t in seed)
+        for v in range(5*k + 1, n):
+            hyperedges.append((0, 1, v))
+        assert len(hyperedges) == 6*k + rem == (n-1)+k
+        return k, rem, tuple(hyperedges)
+
+    def witness(n, k, rem, bits, H):
+        order = [0]
+        idx = 0
+        for j in range(k):
+            rights = tuple(bits[idx:idx+6])
+            idx += 6
+            base = local_witness[rights]
+            order.extend(5*j+v for v in base[1:])
+        assert idx == 6*k
+        for j in range(rem):
+            new_v = 5*k + 1+j
+            if bits[idx+j] == 1:  # t_0,1,v = 1 iff v is before 1
+                order.insert(1, new_v)
+            else:
+                order.append(new_v)
+        assert len(order) == n and len(set(order)) == n
+        assert tuple(int(parity(order, t)) for t in H) == bits
+        return order
+
+    for n in range(6, 12):
+        k, rem, H = block_model(n)
+        # Confirm the construction rather than mere information counting.
+        for bits in product((0,1), repeat=len(H)):
+            witness(n, k, rem, bits, H)
+        assert len(H) == n-1+(n-1)//5
+        print(f"P39_G_BLOCK_GLUING_LOWER n={n} "
+              f"shattered={len(H)} profiles={1<<len(H)} "
+              f"five_new_vertices_per_six_queries PASS")
+
 if __name__ == "__main__":
     exhaustive_restriction_court()
     invariant_coupling_court()
     orientation_shattering_court()
+    block_shattering_lower_bound()
     print("P39_MATH_G_ALL_SYNTHETIC_THEORY_CHECKS_PASS_NO_ORIGINAL_GO")
