@@ -37,7 +37,7 @@ def main():
   elif not v2:
    assert row["evidence_status"]=="SYNTHETIC_ONLY" and row["source"] is None
   elif key=="C":
-   assert row["evidence_status"]=="PLATFORM_AUTHORITY_SNAPSHOT_LIMITED"
+   assert row["evidence_status"]=="PLATFORM_AUTHORITY_CURRENT_ROLE_AND_HISTORICAL_MERGE_LIMITED"
    a=row["source"]
    assert a["repo"]=="WhoSia/EvoNOMOS" and a["verification_workflow_run_id"]==38063852776
    assert a["reported_permission"]=="admin"
@@ -45,6 +45,15 @@ def main():
    assert snap["verification"][0]["observed_permission"]=="admin"
    assert snap["verification"][1]["observed_authenticated_permissions"]["admin"] is True
    assert snap["general_p41_C_axiom_status"]=="UNPROVED"
+   assert a["external_merge_commit"]=="f085ffbe8f99de165bd920746920000ab56bd6bc"
+   assert a["external_merge_actor"]=="vishr"
+   assert a["external_merge_at_utc"]=="2026-09-30T01:00:17Z"
+   historical=json.loads(Path("tools/p41/p1-authority/github_historical_merge_event.json").read_text())
+   assert historical["merged"] is True
+   assert historical["merge_commit_sha"]==a["external_merge_commit"]
+   assert historical["merge_actor"]==a["external_merge_actor"]
+   assert historical["merge_at_utc"]==a["external_merge_at_utc"]
+   assert historical["not_proved"]
   else:
    assert key=="F" and row["evidence_status"]=="NATIVE_INTERFACE_BOUNDARY_ONLY"
    a=row["source"]
@@ -61,7 +70,8 @@ def main():
   "native_provider_interface_categories":1 if v2 else 0,
   "synthetic_only_categories":0 if v2 else 2,
   "auth_snapshot_independently_reauthenticated_in_CI":False,
-  "historical_permission_authorization_proven":False,
+  "historical_platform_merge_event_recorded":bool(v2),
+  "branch_policy_and_normative_historical_authorization_proven":False,
   "complete_provider_semantic_contract_proven":False,
   "actual_A_F_semantic_independence_proven":False,
   "full_historical_SOLID_derived":False,
