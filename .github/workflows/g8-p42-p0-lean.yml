@@ -1,0 +1,46 @@
+name: G8 LAW-R1-P42-P0 Three-Valued Evidence and Observer Contract Kernel
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/lean/**'
+      - '.github/workflows/g8-p42-p0-lean.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  observer-and-rights:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reject sorry or fresh axioms
+        run: |
+          set -euo pipefail
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' tools/p42/lean/*.lean; then
+            exit 12
+          fi
+      - name: Build Lean 4 and verify proof environment with independent kernel
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p42/lean
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Archive exact formal proof scope
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-p0-lean
+          git rev-parse HEAD >out/p42-p0-lean/tested-head.txt
+          sha256sum tools/p42/lean/*.lean tools/p42/lean/lakefile.toml tools/p42/lean/lake-manifest.json tools/p42/lean/lean-toolchain >out/p42-p0-lean/proof-sha256.txt
+          printf '%s\n' 'P42_P0_THREE_VALUED_EVIDENCE_KERNEL_BOUNDED_PASS' 'SOURCE_TO_LEAN_WHOLE_LANGUAGE_REFINEMENT_NOT_PROVED' 'UPSTREAM_PAST_CHANGE_AUTHORITY_UNKNOWN' 'LAW_R2_NOT_AUTHORIZED' >out/p42-p0-lean/scope.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p0-three-valued-authority-and-client-observation-proof
+          path: out/p42-p0-lean/
+          retention-days: 90
