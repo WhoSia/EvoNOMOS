@@ -35,7 +35,8 @@ jobs:
       - name: Parse original Go AST and generate executable exact HEAD case
         run: |
           set -euo pipefail
-          go run tools/p40-math-b-p6/extract_echo_head.go \
+          go build -o out/p40-math-b-p6/extract_head tools/p40-math-b-p6/extract_echo_head.go
+          out/p40-math-b-p6/extract_head \
             tools/p40-math-b-p6/echo/original-echo/router.go \
             tools/p40-math-b-p6/echo/p6_source_branch_generated.go \
             out/p40-math-b-p6/original-ast-contract.json | tee out/p40-math-b-p6/extraction.log
