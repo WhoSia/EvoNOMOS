@@ -84,6 +84,19 @@ func TestP40P4ProspectiveFrozenEcho(t *testing.T){
    }else if pan==nil {
     t.Fatal("rejection forecast did not carry source failure")
    }
+   if admit && c.Edits[0].Method==c.Edits[1].Method &&
+      c.Edits[0].Pattern==c.Edits[1].Pattern {
+      // Source registration is permitted by Echo's overwrite policy, but the
+      // FIRST module's new-client contract is no longer satisfied.
+      last:=c.Edits[1]
+      recorder:=httptest.NewRecorder()
+      merged.ServeHTTP(recorder,httptest.NewRequest(last.Method,last.Probe,nil))
+      if recorder.Code!=200 || strings.TrimSpace(recorder.Body.String())!=last.Response ||
+         last.Response==c.Edits[0].Response{
+         t.Fatal("expected last writer to supersede first isolated new-client demand")
+      }
+      t.Log("P40_P4_ECHO_ADMISSION_DOES_NOT_IMPLY_BOTH_NEW_CLIENT_CONTRACTS_PASS")
+   }
    correct++
    t.Logf("P40_P4_PREDICTION_CONFIRMED id=%s outcome=%s",c.ID,c.Forecast)
   })
