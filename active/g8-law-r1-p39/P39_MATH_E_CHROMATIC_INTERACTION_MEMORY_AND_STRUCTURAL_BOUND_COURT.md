@@ -114,3 +114,18 @@ Find an **independently justified source-edit semantics** where owner rights com
 The **read-only** [G8 P39 Math-E GitHub Actions run #38035261080](https://github.com/WhoSia/EvoNOMOS/actions/runs/38035261080) completed **SUCCESS** on original checker workflow head commit \`87cb8ca1ffe5c1ae814a8269f250d782528558e3\`. Job \`finite-theory-check\` and its Python verification step completed SUCCESS. Hosted run is a finite **mathematical** checker only (no Go library). Artifact \`11663421254\`, SHA-256 digest \`a6b637fa2c741a81a45fd819eed04a673f00f1215de73bd32e7fadfae4816ce3\`. This is authoritative for the checker version on that head; subsequent mathematical notes/README edits are not automatically included in the executed commit. Earlier local independently implemented Python calculations also matched all 1,099 graphs and counted chordal graphs by a separate permutation clique test.
 
 **Final research status:** mathematical characterization EXACT in E0 model; classical Stanley + Nerode + chordal coloring reduction; P39 OPEN; new theorem priority HOLD; DIP49 IDENTIFICATION HOLD; LAW-R2 NOT_AUTHORIZED.
+
+
+## E8. Stronger primary-text priority falsification: Stanley already states EXACT edge-order equivalence
+
+**Verified directly from the [author-hosted published reprint PDF, p. 907, Corollary 1.3 and the ensuing paragraph](https://math.mit.edu/~rstan/pubs/pubfiles/18.pdf#page=3)**, which identifies the *original 1973 publication* (the 2006 publication reprints it): Stanley does not merely count acyclic orientations. He **explicitly constructs the equivalence relation on all n! vertex labelings** where two orderings are identified exactly when **every graph edge has the same relative endpoint order**. The number of equivalence classes is the number of acyclic orientations, \((-1)^n\chi_G(-1)\). This is mathematically the **same edge-local order-signature quotient** used in Math-E.
+
+**Corrected novelty classification:**
+- The *ordering-to-orientation quotient itself*, beyond the chromatic identity, is **already directly in Stanley 1973**. Its recreation in a source-edit vocabulary is NOT a new combinatorial construction or theorem.
+- The source/policy interpretation of each edge as a selectable future authorization question, and the information-theoretic \(\lceil\log_2 a(G)\rceil\) fixed-length memory measure, are explicit **application/semantics choices**, completed by standard Myhill–Nerode distinguishability. They do NOT presently establish independent original mathematics.
+- Chordal factorization, forest/cycle/clique values and treewidth-one failure similarly remain classical graph-theoretic corollaries.
+- Earlier E1 language “newly articulated source-edit model-to-invariant correspondence” should be read ONLY as *newly recorded in this project*, with **zero mathematical-priority claim**.
+
+The comparison was against **the primary theorem text**, not merely a Google snippet or citation abstract. Original publisher DOI [10.1016/0012-365X(73)90108-8](https://doi.org/10.1016/0012-365X(73)90108-8) and author-hosted 2006-reprinted 1973 text link above. Its PDF is accessible by web but has **not been uploaded/registered as a canonical held original in the user's Drive**. This is a decisive **prior-art negative result**, not a failed research stage.
+
+**After correction:** P39 MATH-E CONDITIONAL GRAPH-MEMORY LAW = CLASSICAL STANLEY ORDER EQUIVALENCE + CLASSICAL NERODE MINIMAL SUFFICIENCY; NO NEW PURE MATHEMATICS THEOREM IDENTIFIED, P39 OPEN, DIP49 HOLD, LAW-R2 NOT_AUTHORIZED.
