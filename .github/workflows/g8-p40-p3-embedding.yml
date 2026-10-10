@@ -1,0 +1,50 @@
+name: G8 P40 P3 Go Embedded Promotion Contract Falsification
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-p3/embedded_*'
+      - '.github/workflows/g8-p40-p3-embedding.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-client-embedding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recompile all embedded old-client architecture revisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p3/embedded_promotion_collision_court.py
+          python tools/p40-p3/embedded_promotion_collision_court.py | tee p40-p3-embedding-go.log
+          grep -q 'P40_P3_EMBEDDED_METHOD_COLLISION_48_REAL_GO_SOURCE_STATES_PASS' p40-p3-embedding-go.log
+          grep -q 'P40_P3_EMBEDDED_OLD_CLIENT arch=direct protected=1 safe_states=2 safe_paths=0 PASS' p40-p3-embedding-go.log
+          grep -q 'P40_P3_EMBEDDED_OLD_CLIENT arch=versioned_adapter protected=1 safe_states=5 safe_paths=2 PASS' p40-p3-embedding-go.log
+      - name: Independently verify all 1536 architecture and source-context outcomes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p40-p3/embedded_contract_generalization_court.py
+          python tools/p40-p3/embedded_contract_generalization_court.py | tee p40-p3-embedding-math.log
+          grep -q 'P40_P3_EMBEDDING_1536_BFS_EQUALS_NECESSARY_SUFFICIENT_FORMULA PASS' p40-p3-embedding-math.log
+          grep -q 'P40_P3_EMBEDDING_CONTEXT_REVERSAL same_rights_embedding_wrapper_only C_D_W=(0, 0, 1) PASS' p40-p3-embedding-math.log
+          grep -q 'P40_P3_EMBEDDING_CONTEXT_REVERSAL embedding_plus_nominal_no_solution C_D_W=(0, 0, 0) PASS' p40-p3-embedding-math.log
+          sha256sum tools/p40-p3/embedded_*.py > embedded-sources.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p3-embedded-client-real-go-countermodels
+          path: |
+            p40-p3-embedding-go.log
+            p40-p3-embedding-math.log
+            embedded-sources.sha256
+          retention-days: 30
