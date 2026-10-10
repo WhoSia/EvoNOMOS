@@ -1,0 +1,37 @@
+name: G8 P39 Math-G Hypergraph Gluing and Shattering
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p39-math-g/**'
+      - '.github/workflows/g8-p39-math-g.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pure-mathematics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact alpha hypergraphs, explicit cyclic order gluing and shattering
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/p39-math-g/hypergraph_gluing_and_shattering_court.py
+          python tools/p39-math-g/hypergraph_gluing_and_shattering_court.py | tee math-g.log
+          grep -q 'P39_G_HYPERGRAPH_CENSUS n=5 total=1024 alpha=126 cyclic_shattered=40 cyclic_nonshattered=858' math-g.log
+          grep -q 'P39_G_COMBINED_ALPHA_PREFIX_INVARIANT_JOINT_FAILURE' math-g.log
+          grep -q 'P39_G_SHATTER_CAPACITY n=6 max_triplet_questions=6 profiles=64' math-g.log
+          grep -q 'P39_MATH_G_ALL_SYNTHETIC_THEORY_CHECKS_PASS_NO_ORIGINAL_GO' math-g.log
+          sha256sum tools/p39-math-g/hypergraph_gluing_and_shattering_court.py > source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p39-math-g-hypergraph-gluing-finite-math
+          path: |
+            math-g.log
+            source-sha256.txt
+          retention-days: 30
