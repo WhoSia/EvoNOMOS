@@ -1,0 +1,56 @@
+name: G8 P40 Math-B-P3 Original Httprouter Cross-Repository Source Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p3/**'
+      - '.github/workflows/g8-p40-math-b-p3-httprouter.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-native-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: julienschmidt/httprouter
+          ref: 484018016424d215c0b87c42f4c9b57d980fbd00
+          path: tools/p40-math-b-p3/original-httprouter
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+      - name: Assert exact maintained-source checkout and module boundary
+        run: |
+          set -euo pipefail
+          actual="$(git -C tools/p40-math-b-p3/original-httprouter rev-parse HEAD)"
+          test "$actual" = '484018016424d215c0b87c42f4c9b57d980fbd00'
+          grep -q '^module github.com/julienschmidt/httprouter' tools/p40-math-b-p3/original-httprouter/go.mod
+          echo "P40_MATH_B_P3_PINNED_ORIGINAL_HTTPROUTER_SOURCE_SHA=$actual" >p40-math-b-p3-pin.log
+      - name: Run original source independent-local and joint-repair experiments
+        working-directory: tools/p40-math-b-p3
+        env:
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+          GOWORK: 'off'
+        run: |
+          set -euo pipefail
+          go test -count=1 -v . | tee p40-math-b-p3-native.log
+          grep -q 'P40_MATH_B_P3_ORIGINAL_HTTPROUTER_DISJOINT_HTTP_LANGUAGES_SAME_METHOD_REJECTION_BOTH_ORDERS_PASS' p40-math-b-p3-native.log
+          grep -q 'P40_MATH_B_P3_ORIGINAL_HTTPROUTER_PER_METHOD_SOURCE_TREE_FRAME_PASS' p40-math-b-p3-native.log
+          grep -q 'P40_MATH_B_P3_ORIGINAL_HTTPROUTER_LITERAL_BRANCH_CONTROL_PASS' p40-math-b-p3-native.log
+          sha256sum go.mod original_httprouter_gluing_test.go >p40-math-b-p3-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-math-b-p3-original-httprouter-source-court
+          path: |
+            p40-math-b-p3-pin.log
+            tools/p40-math-b-p3/p40-math-b-p3-native.log
+            tools/p40-math-b-p3/p40-math-b-p3-sha256.txt
+          retention-days: 30
