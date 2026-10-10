@@ -1,0 +1,37 @@
+name: G8 LAW-R1-P41-P0 Evidence Provenance and Premise Typing Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p41/p0_evidence_registry.json'
+      - 'tools/p41/p0_registry_audit.py'
+      - '.github/workflows/g8-p41-p0-provenance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  provenance-typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit status of A-F candidate evidence and prevent synthetic promotion
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p41-p0-provenance
+          python tools/p41/p0_registry_audit.py tools/p41/p0_evidence_registry.json out/p41-p0-provenance/provenance-receipt.json | tee out/p41-p0-provenance/summary.log
+          grep -q 'P41_P0_PROVENANCE_BOUNDARY_AUDIT_PASS' out/p41-p0-provenance/summary.log
+          sha256sum tools/p41/p0_evidence_registry.json tools/p41/p0_registry_audit.py >out/p41-p0-provenance/source-sha256.txt
+          git rev-parse HEAD >out/p41-p0-provenance/source-head.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p41-p0-source-vs-synthetic-evidence-audit
+          path: out/p41-p0-provenance/
+          retention-days: 90
