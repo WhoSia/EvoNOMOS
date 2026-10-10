@@ -1,0 +1,87 @@
+name: G8 P40 Math-B-P4 Prospective Pinned Original Source Holdout Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p4/chi/**'
+      - 'tools/p40-math-b-p4/httprouter/**'
+      - 'tools/p40-math-b-p4/echo/**'
+      - '.github/workflows/g8-p40-math-b-p4-holdout.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-native-holdout:
+    name: source-forecast-${{ matrix.ecosystem }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ecosystem: chi
+            repository: go-chi/chi
+            pin: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+            go: '1.24'
+            marker: P40_P4_CHI_FROZEN_5_OF_5_SOURCE_ADMISSION_FORECASTS_PASS
+          - ecosystem: httprouter
+            repository: julienschmidt/httprouter
+            pin: 484018016424d215c0b87c42f4c9b57d980fbd00
+            go: '1.24'
+            marker: P40_P4_HTTPROUTER_FROZEN_6_OF_6_SOURCE_ADMISSION_FORECASTS_PASS
+          - ecosystem: echo
+            repository: labstack/echo
+            pin: 3882266a3641a36fc2111b48cd597adab1c1ecea
+            go: '1.25'
+            marker: P40_P4_ECHO_FROZEN_5_OF_5_SOURCE_ADMISSION_FORECASTS_PASS
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.pin }}
+          path: tools/p40-math-b-p4/${{ matrix.ecosystem }}/original-${{ matrix.ecosystem }}
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Prove immutable forecast predates native test code
+        shell: bash
+        run: |
+          set -euo pipefail
+          prereg='119a83e096203442e54cb8271b3372b0e3ae9412'
+          git merge-base --is-ancestor "$prereg" HEAD
+          git show "$prereg:tools/p40-math-b-p4/preregistered_predictions.json" | cmp - tools/p40-math-b-p4/preregistered_predictions.json
+          if git ls-tree -r --name-only "$prereg" | grep -E '^tools/p40-math-b-p4/(chi|httprouter|echo)/.*_test.go$'; then
+            echo PROSPECTIVE_INVALID_ALREADY_TESTED_AT_PREREG
+            exit 27
+          fi
+          actual="$(git -C tools/p40-math-b-p4/${{ matrix.ecosystem }}/original-${{ matrix.ecosystem }} rev-parse HEAD)"
+          test "$actual" = '${{ matrix.pin }}'
+          mkdir -p out/p40-p4-${{ matrix.ecosystem }}
+          echo "P40_P4_PRETEST_PREREG_SHA=$prereg" >out/p40-p4-${{ matrix.ecosystem }}/provenance.txt
+          echo "P40_P4_ORIGINAL_SOURCE_SHA=$actual" >>out/p40-p4-${{ matrix.ecosystem }}/provenance.txt
+          echo "P40_P4_HOLDOUT_RUNNER_SHA=$(git rev-parse HEAD)" >>out/p40-p4-${{ matrix.ecosystem }}/provenance.txt
+      - name: Native Go source admission and old/new client HTTP oracles
+        shell: bash
+        working-directory: tools/p40-math-b-p4/${{ matrix.ecosystem }}
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -count=1 -v . | tee p40-p4-prospective-native.log
+          grep -q '${{ matrix.marker }}' p40-p4-prospective-native.log
+          sha256sum prospective_locked_holdout_test.go go.mod ../preregistered_predictions.json > p40-p4-source-sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p4-immutable-forecast-${{ matrix.ecosystem }}-native-verdict
+          path: |
+            out/p40-p4-${{ matrix.ecosystem }}/
+            tools/p40-math-b-p4/${{ matrix.ecosystem }}/p40-p4-prospective-native.log
+            tools/p40-math-b-p4/${{ matrix.ecosystem }}/p40-p4-source-sha256.txt
+          retention-days: 90
