@@ -155,4 +155,51 @@ theorem exact_abstraction_kernel_subset_futureEq {S Q E O : Type}
       rw [run_map step abstractStep q hStep t w]
     _ = obs (run step t w) := (hObs _).symm
 
+
+/- P3: source-specific admission predicate motivated by independent per-method
+   radix trees (a model, NOT a formal verification of the original Go code). -/
+
+structure MethodScopedPair where
+  localA : Bool
+  localB : Bool
+  disjointRequestLanguages : Bool
+  sameMethodTree : Bool
+  wildcardStaticConflict : Bool
+  deriving Repr, DecidableEq
+
+def extensionalSignature (p : MethodScopedPair) : Bool × Bool × Bool :=
+  (p.localA, p.localB, p.disjointRequestLanguages)
+
+def scopedSourceAdmitted (p : MethodScopedPair) : Bool :=
+  p.localA && p.localB && !(p.sameMethodTree && p.wildcardStaticConflict)
+
+def sameTreeDisjoint : MethodScopedPair :=
+  { localA := true, localB := true, disjointRequestLanguages := true,
+    sameMethodTree := true, wildcardStaticConflict := true }
+
+def distinctMethodDisjoint : MethodScopedPair :=
+  { sameTreeDisjoint with sameMethodTree := false }
+
+theorem p3_extensional_indistinguishable :
+    extensionalSignature sameTreeDisjoint =
+      extensionalSignature distinctMethodDisjoint := by decide
+
+theorem p3_source_admission_diverges :
+    scopedSourceAdmitted sameTreeDisjoint ≠
+      scopedSourceAdmitted distinctMethodDisjoint := by decide
+
+theorem p3_no_request_disjointness_only_classifier :
+    ¬ ∃ f : (Bool × Bool × Bool) → Bool,
+        ∀ x, scopedSourceAdmitted x = f (extensionalSignature x) := by
+  exact no_factorization extensionalSignature scopedSourceAdmitted
+    sameTreeDisjoint distinctMethodDisjoint
+    p3_extensional_indistinguishable p3_source_admission_diverges
+
+theorem p3_method_partition_frame (x : MethodScopedPair)
+    (ha : x.localA = true) (hb : x.localB = true)
+    (hDistinct : x.sameMethodTree = false) :
+    scopedSourceAdmitted x = true := by
+  simp [scopedSourceAdmitted, ha, hb, hDistinct]
+
+
 end P40MathB
