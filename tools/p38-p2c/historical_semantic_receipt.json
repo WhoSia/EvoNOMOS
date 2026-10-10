@@ -91,7 +91,7 @@
       "replacement": "utf-8"
     }
   ],
-  "review_evidence": "https://github.com/gofiber/fiber/pull/4628#issuecomment-3225824584",
+  "review_evidence": "https://github.com/gofiber/fiber/pull/4628",
   "review_comments_endpoint": "https://api.github.com/repos/gofiber/fiber/issues/4628/comments?per_page=40",
   "labels_not_permitted": [
     "new_native_evidence",
