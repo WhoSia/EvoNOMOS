@@ -1,0 +1,53 @@
+name: G8 LAW-R1-P41-P0 Typed Semantic Axiom Candidate Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p41/lean/**'
+      - '.github/workflows/g8-p41-p0-lean.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  typed-premises-and-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reject proof holes or new axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)|:= by[[:space:]]*sorry' tools/p41/lean/*.lean; then
+            echo P41_UNAUTHORIZED_AXIOM_OR_PROOF_HOLE
+            exit 11
+          fi
+      - name: Lean 4 complete build and independent kernel certificate
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p41/lean
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Scope and exact proof-origin receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p41-p0-lean
+          sha256sum tools/p41/lean/*.lean tools/p41/lean/lean-toolchain tools/p41/lean/lakefile.toml >out/p41-p0-lean/source-sha256.txt
+          git rev-parse HEAD >out/p41-p0-lean/tested-head.txt
+          printf '%s\n' \
+            'P41_P0_TYPED_FREE_PRODUCT_INDEPENDENCE_AND_NONFACTOR_KERNEL_PASS' \
+            'No independent semantic A-F proof for arbitrary OO languages; synthetic-only witness status' \
+            'No Go semantics embedding; no actual maintainer authority proof' \
+            'P41-P0 stage only, LAW-R2 NOT_AUTHORIZED' >out/p41-p0-lean/scope.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p41-p0-typed-axiom-candidate-and-nonfactor-kernel
+          path: out/p41-p0-lean/
+          retention-days: 90
