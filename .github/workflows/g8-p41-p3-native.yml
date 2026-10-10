@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'tools/p41/p3-native-echo/**'
+      - 'tools/p41/p3_classical_reduction_manifest.json'
+      - 'tools/p41/p3_reduction_audit.py'
       - '.github/workflows/g8-p41-p3-native.yml'
   workflow_dispatch:
 permissions:
@@ -53,6 +55,11 @@ jobs:
             grep -q "$token" ../../../out/p41-p3-native/original-go.log
           done
           echo P41_P3_ALL_FIVE_BOUNDED_SOURCE_ANALOGUES_PASS
+          python ../../../tools/p41/p3_reduction_audit.py \
+            ../../../tools/p41/p3_classical_reduction_manifest.json \
+            ../../../out/p41-p3-native/original-go.log \
+            ../../../out/p41-p3-native/classical-reduction-receipt.json | tee ../../../out/p41-p3-native/reduction-audit.log
+          grep -q P41_P3_ORIGINAL_SOURCE_FIVE_CLASSICAL_REDUCTIONS_AND_SIX_MARKERS_AUDIT_PASS ../../../out/p41-p3-native/reduction-audit.log
       - if: always()
         uses: actions/upload-artifact@v4
         with:
