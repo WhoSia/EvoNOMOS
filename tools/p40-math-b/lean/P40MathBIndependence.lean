@@ -39,6 +39,26 @@ def OrderSafe (w : World) : Prop :=
 def AllGuards (w : World) : Prop :=
   LocalOK w ∧ NamespaceFree w ∧ NoTreeAlias w ∧ OrderSafe w
 
+instance (w : World) : Decidable (LocalOK w) := by
+  unfold LocalOK
+  infer_instance
+
+instance (w : World) : Decidable (NamespaceFree w) := by
+  unfold NamespaceFree
+  infer_instance
+
+instance (w : World) : Decidable (NoTreeAlias w) := by
+  unfold NoTreeAlias
+  infer_instance
+
+instance (w : World) : Decidable (OrderSafe w) := by
+  unfold OrderSafe
+  infer_instance
+
+instance (w : World) : Decidable (AllGuards w) := by
+  unfold AllGuards
+  infer_instance
+
 def base : World :=
   { typed := true, observedOld := 7, expectedOld := 7,
     ownerAllows := true, frozenCore := 17, currentCore := 17,
