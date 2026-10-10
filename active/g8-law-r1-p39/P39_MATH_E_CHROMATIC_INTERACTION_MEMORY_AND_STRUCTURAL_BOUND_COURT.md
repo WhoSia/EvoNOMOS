@@ -107,3 +107,10 @@ These are **synthetic mathematical graph models**, not original-Go samples, not 
 Find an **independently justified source-edit semantics** where owner rights combine *persistent invariants, changing reviewer capabilities and interaction neighborhoods*, then establish a sharp memory/obstruction theorem that cannot be discharged by Stanley orientation counting + DFA products or standard symbolic/distributed automata. In particular, ask whether **separator-local source-edit policy with globally coupled invariant monitors** admits a true bound parameterized by graph width and the *number of external queries*, and whether that bound has a matching lower witness. A treewidth-only f(tw) bound is **already disproved here** by source interaction path graphs.
 
 **P39 OPEN · MATH-E GRAPH-INDEXED MEMORY EXACT · CLASSICAL STANLEY/NERODE REDUCTION · NEW MATHEMATICAL LAW IDENTIFICATION HOLD · NO NEW ORIGINAL GO · LAW-R2 NOT_AUTHORIZED.**
+
+
+## E7. Hosted independent-execution receipt (post-proof verification, 2026-10-10)
+
+The **read-only** [G8 P39 Math-E GitHub Actions run #38035261080](https://github.com/WhoSia/EvoNOMOS/actions/runs/38035261080) completed **SUCCESS** on original checker workflow head commit \`87cb8ca1ffe5c1ae814a8269f250d782528558e3\`. Job \`finite-theory-check\` and its Python verification step completed SUCCESS. Hosted run is a finite **mathematical** checker only (no Go library). Artifact \`11663421254\`, SHA-256 digest \`a6b637fa2c741a81a45fd819eed04a673f00f1215de73bd32e7fadfae4816ce3\`. This is authoritative for the checker version on that head; subsequent mathematical notes/README edits are not automatically included in the executed commit. Earlier local independently implemented Python calculations also matched all 1,099 graphs and counted chordal graphs by a separate permutation clique test.
+
+**Final research status:** mathematical characterization EXACT in E0 model; classical Stanley + Nerode + chordal coloring reduction; P39 OPEN; new theorem priority HOLD; DIP49 IDENTIFICATION HOLD; LAW-R2 NOT_AUTHORIZED.
