@@ -212,3 +212,15 @@ For the pure structural future goal \(q=0\), this simplifies to \(\;p f(w\lor m\
 **Boundary:** All 48 generated Go cases and all three new-package tests are a reproducible SOURCE-REALIZABLE mathematical court, not independent outside Go repositories, actual outside maintainers' permissions, or an empirical market prevalence measure. Keep full operational subtyping separate from future repository edits.
 
 **P40 current state remains OPEN; stronger structural counterexample, mathematical exactness verified locally, hosted CI status must be read before asserting new Actions SUCCESS; DIP49 new-law HOLD; LAW-R2 NOT_AUTHORIZED.**
+
+
+## P3-K. Independent hosted embedded Go client and cross-package gluing court (final receipt)
+
+[GitHub Actions #38041820659](https://github.com/WhoSia/EvoNOMOS/actions/runs/38041820659) **SUCCESS** on checked source/workflow HEAD \`5ba15f59caecaba7d6a6d2ffc91c5f9b71e4a757\`. Its read-only job \`original-client-embedding\` has **THREE individually successful steps**:
+1. Actual Go compiler/test across the **48** extra embedded-original-client source-state cases; checked expected \`ambiguous selector c.Next\` for C/D after Fast.Next and unaffected W;
+2. Independent complete \(2^9\times3=\mathbf{1,536}\) BFS-versus-formula finite source/owner/client decisions, including source-dependent owner ranking reversals;
+3. Actual **cross-package integration test** where \`fast\`, \`other\`, and \`modern\` Go packages independently build and future structural client passes both architectures, but pre-existing \`client\` fails for D and passes for W.
+
+Hosted artifact \`11666182156\` SHA-256 \`2c1ce3e3f633be9b67421a115cd43a1df3d8230e85e7902343a36b102ce8db25\`. Earlier [P3 basic Actions #38041320962](https://github.com/WhoSia/EvoNOMOS/actions/runs/38041320962) independently certified **48** basic Go source states + **6** nominal identity cases = 54 go test runs, 768 8-bit rival decisions and shared pre-factory single-cut theorem. The new embedded court adds 48 distinct Go source variants with a stronger old-client context, not 48 different maintained GitHub projects. Both workflows retain their respective code head seals; the notes written after them are not in the tested hashes.
+
+**Scientific verdict after full source grounding:** conditional architecture rankings depend not only on who may edit which module but also on the **old client's actual Go selector/method-promotion observations**, and locally compiling modules is insufficient to guarantee global client compatibility. This is a precise and reproducible Go countermodel but the Go language's own original backward-compatibility document directly anticipates the method conflict. **No independent new natural law, no outside maintainer authority, DIP49 IDENTIFICATION HOLD, LAW-R2 NOT_AUTHORIZED.**
