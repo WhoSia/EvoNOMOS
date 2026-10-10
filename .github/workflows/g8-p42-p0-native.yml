@@ -1,0 +1,88 @@
+name: G8 LAW-R1-P42-P0 Two-Ecology Counterfactual Original Go Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p0-native-echo/**'
+      - 'tools/p42/p0-native-httprouter/**'
+      - 'tools/p42/p0_native_oracle.py'
+      - '.github/workflows/g8-p42-p0-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen-original-source-intervention:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p42/p0-native-echo/original-echo
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: julienschmidt/httprouter
+          ref: 484018016424d215c0b87c42f4c9b57d980fbd00
+          path: tools/p42/p0-native-httprouter/original-httprouter
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enforce immutable prediction ancestry, frozen bytes, source pins
+        run: |
+          set -euo pipefail
+          freeze=79f5ed7bae1e4c8d79483e6dd90b1e2e61fcbb88
+          git merge-base --is-ancestor "$freeze" HEAD
+          mkdir -p out/p42-p0-native
+          git show "$freeze":tools/p42/p0_preregistered_evidence_and_predictions.json >out/p42-p0-native/frozen-as-of-prereg.json
+          cmp tools/p42/p0_preregistered_evidence_and_predictions.json out/p42-p0-native/frozen-as-of-prereg.json
+          if git cat-file -e "$freeze":tools/p42/p0-native-echo/counterfactual_native_test.go 2>/dev/null; then echo PRETEST_GATE_VIOLATION;exit 8;fi
+          if git cat-file -e "$freeze":tools/p42/p0-native-httprouter/counterfactual_native_test.go 2>/dev/null; then echo PRETEST_GATE_VIOLATION;exit 9;fi
+          test "$(git -C tools/p42/p0-native-echo/original-echo rev-parse HEAD)" = 3882266a3641a36fc2111b48cd597adab1c1ecea
+          test "$(git -C tools/p42/p0-native-httprouter/original-httprouter rev-parse HEAD)" = 484018016424d215c0b87c42f4c9b57d980fbd00
+          python tools/p42/audit_freeze.py tools/p42/p0_preregistered_evidence_and_predictions.json out/p42-p0-native/frozen-audit.json
+          git rev-parse HEAD >out/p42-p0-native/tested-head.txt
+          echo "FROZEN_SHA=$freeze" >out/p42-p0-native/source-provenance.txt
+          printf '%s\n' 'ECHO_SHA=3882266a3641a36fc2111b48cd597adab1c1ecea' 'HTTPROUTER_SHA=484018016424d215c0b87c42f4c9b57d980fbd00' >>out/p42-p0-native/source-provenance.txt
+          sha256sum tools/p42/p0_preregistered_evidence_and_predictions.json tools/p42/p0-native-echo/counterfactual_native_test.go tools/p42/p0-native-httprouter/counterfactual_native_test.go >out/p42-p0-native/harness-sha256.txt
+          echo P42_P0_ANCESTOR_FROZEN_FORECAST_AND_TWO_UNCHANGED_UPSTREAMS_PASS
+      - name: Execute native Echo selected client frames
+        working-directory: tools/p42/p0-native-echo
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p42-p0-native/echo-native.log
+      - name: Execute native httprouter accepted/rejected assemblies
+        working-directory: tools/p42/p0-native-httprouter
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p42-p0-native/httprouter-native.log
+      - name: Compare frozen source forecasts and manually disclosed strong classical rival
+        run: |
+          set -euo pipefail
+          python tools/p42/p0_native_oracle.py \
+            tools/p42/p0_preregistered_evidence_and_predictions.json \
+            out/p42-p0-native/echo-native.log \
+            out/p42-p0-native/httprouter-native.log \
+            out/p42-p0-native/certification.json | tee out/p42-p0-native/audit.log
+          grep -q P42_P0_SIX_OF_SIX_FROZEN_ORIGINAL_GO_AND_CLASSICAL_COURT_PASS out/p42-p0-native/audit.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p0-frozen-two-native-ecologies-with-classical-challenger
+          path: out/p42-p0-native/
+          retention-days: 90
