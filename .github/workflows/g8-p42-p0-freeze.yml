@@ -1,0 +1,40 @@
+name: G8 LAW-R1-P42-P0 Frozen Jurisdiction and Observer-Contract Gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p0_preregistered_evidence_and_predictions.json'
+      - 'tools/p42/audit_freeze.py'
+      - '.github/workflows/g8-p42-p0-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preregistration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen six-case source/evidence contract and no oracle execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-p0
+          python tools/p42/audit_freeze.py tools/p42/p0_preregistered_evidence_and_predictions.json out/p42-p0/freeze-receipt.json | tee out/p42-p0/freeze.log
+          grep -q 'P42_P0_SIX_CASE_FROZEN_SOURCE_AUTHORITY_AND_OBSERVER_BUDGET_PASS' out/p42-p0/freeze.log
+          sha256sum tools/p42/p0_preregistered_evidence_and_predictions.json tools/p42/audit_freeze.py >out/p42-p0/source-sha256.txt
+          git rev-parse HEAD >out/p42-p0/tested-head.txt
+          test ! -f tools/p42/p0-native-echo/counterfactual_native_test.go
+          test ! -f tools/p42/p0-native-httprouter/counterfactual_native_test.go
+          echo 'P42_P0_NATIVE_ORACLES_ABSENT_AT_FROZEN_GATE' | tee -a out/p42-p0/freeze.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p0-six-case-preregistration-and-evidence-scope
+          path: out/p42-p0/
+          retention-days: 90
