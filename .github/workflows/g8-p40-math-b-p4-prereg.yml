@@ -1,0 +1,72 @@
+name: G8 P40 Math-B-P4 Preregistered Source-AST Admission Forecast Gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p4/extract_source_ast.go'
+      - 'tools/p40-math-b-p4/ast_forecast_gate.py'
+      - 'tools/p40-math-b-p4/preregistered_predictions.json'
+      - '.github/workflows/g8-p40-math-b-p4-prereg.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prospective-forecast-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p40-math-b-p4/original-chi
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: julienschmidt/httprouter
+          ref: 484018016424d215c0b87c42f4c9b57d980fbd00
+          path: tools/p40-math-b-p4/original-httprouter
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p40-math-b-p4/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert exact third-party source commits and pre-test commit receipt
+        run: |
+          set -euo pipefail
+          test "$(git -C tools/p40-math-b-p4/original-chi rev-parse HEAD)" = '167e1e3bd039d060696b99c8da4e876ae04f42c1'
+          test "$(git -C tools/p40-math-b-p4/original-httprouter rev-parse HEAD)" = '484018016424d215c0b87c42f4c9b57d980fbd00'
+          test "$(git -C tools/p40-math-b-p4/original-echo rev-parse HEAD)" = '3882266a3641a36fc2111b48cd597adab1c1ecea'
+          mkdir -p out/p40-p4-prereg
+          git rev-parse HEAD >out/p40-p4-prereg/forecast-commit.txt
+          sha256sum tools/p40-math-b-p4/preregistered_predictions.json tools/p40-math-b-p4/extract_source_ast.go tools/p40-math-b-p4/ast_forecast_gate.py >out/p40-p4-prereg/source-sha256.txt
+      - name: Go AST original maintained source anchors, not HTTP result oracle
+        run: |
+          set -euo pipefail
+          go run tools/p40-math-b-p4/extract_source_ast.go \
+            tools/p40-math-b-p4/original-chi \
+            tools/p40-math-b-p4/original-httprouter \
+            tools/p40-math-b-p4/original-echo \
+            > out/p40-p4-prereg/source-ast-signals.json
+          python tools/p40-math-b-p4/ast_forecast_gate.py \
+            tools/p40-math-b-p4/preregistered_predictions.json \
+            out/p40-p4-prereg/source-ast-signals.json \
+            out/p40-p4-prereg/locked-forecast-receipt.json
+          echo P40_P4_PREREG_FROZEN_BEFORE_NATIVE_HOLDOUT_TESTS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-p4-prereg-ast-anchors-and-locked-forecasts
+          path: out/p40-p4-prereg/
+          retention-days: 90
