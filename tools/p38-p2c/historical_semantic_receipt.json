@@ -1,0 +1,103 @@
+{
+  "study": "EvoNOMOS_G8_P38_P2C",
+  "as_of": "2026-10-10",
+  "role": "RETROSPECTIVE_CALIBRATION_ONLY",
+  "prospective_prediction": null,
+  "independent_holdout": false,
+  "original_source": {
+    "downstream": {
+      "repository": "gofiber/fiber",
+      "main_sha": "56cd561f7d57addc730992c75a8bde59f050c413",
+      "module_evidence": "https://github.com/gofiber/fiber/blob/56cd561f7d57addc730992c75a8bde59f050c413/go.mod"
+    },
+    "upstream": {
+      "repository": "valyala/fasthttp",
+      "module_tag": "v1.75.0",
+      "tag_sha": "818be799bc0b086b5df262d6382bf5875fbd58f4",
+      "parameter_parser": "https://github.com/valyala/fasthttp/blob/818be799bc0b086b5df262d6382bf5875fbd58f4/header.go#L877-L944"
+    }
+  },
+  "historical_events": [
+    {
+      "event": "upstream_public_api_export_proposal",
+      "url": "https://github.com/valyala/fasthttp/pull/1131",
+      "created_at": "2021-10-24T05:30:04Z",
+      "closed_at": "2021-10-25T19:01:10Z",
+      "state": "closed",
+      "merged": false,
+      "reason_evidence": "2021 maintainer comment states expanding public API for simple utility is not warranted; distinct export proposal and not authorizing any new edit"
+    },
+    {
+      "event": "downstream_parser_substitution_pr",
+      "url": "https://github.com/gofiber/fiber/pull/4628",
+      "created_at": "2026-08-21T13:25:50Z",
+      "closed_at": "2026-09-07T08:40:56Z",
+      "state": "closed",
+      "merged": false,
+      "reporting_role": "maintainer_reported_behavior_not_own_go_replay"
+    },
+    {
+      "event": "upstream_parser_truncation_issue",
+      "url": "https://github.com/valyala/fasthttp/issues/2385",
+      "created_at": "2026-09-07T08:40:42Z",
+      "closed_at": "2026-09-13T08:59:00Z",
+      "state": "closed",
+      "resolution": "DOCUMENTATION_ONLY",
+      "resolution_commit_sha": "b38a993a542a8d874b5d06441340d74fca37499a",
+      "reported_diff_stats": {
+        "additions": 5,
+        "deletions": 0
+      },
+      "note": "Commit documents early return without changing parser behavior; issue closed does not imply behavior fixed"
+    },
+    {
+      "event": "natural_cross_repo_future_request_screen",
+      "url": "https://github.com/gofiber/fiber/issues/4605",
+      "created_at": "2026-08-11T10:12:14Z",
+      "state": "open",
+      "role": "POTENTIAL_FUTURE_REQUIREMENT_NOT_SEALED",
+      "label_observed": false
+    }
+  ],
+  "maintainer_reported_six_inputs": [
+    {
+      "input": "text/html; charset=utf-8",
+      "old": "utf-8",
+      "replacement": "utf-8"
+    },
+    {
+      "input": "text/html; foo; charset=utf-8",
+      "old": "utf-8",
+      "replacement": ""
+    },
+    {
+      "input": "text/plain; a=b\"; charset=bad\"; charset=utf-8",
+      "old": "utf-8",
+      "replacement": "bad"
+    },
+    {
+      "input": "text/plain; foo=; charset=utf-8",
+      "old": "utf-8",
+      "replacement": ""
+    },
+    {
+      "input": "text/plain; charset = utf-8",
+      "old": "utf-8",
+      "replacement": ""
+    },
+    {
+      "input": "text/plain; charset=utf-8\"junk",
+      "old": "",
+      "replacement": "utf-8"
+    }
+  ],
+  "review_evidence": "https://github.com/gofiber/fiber/pull/4628#issuecomment-3225824584",
+  "review_comments_endpoint": "https://api.github.com/repos/gofiber/fiber/issues/4628/comments?per_page=40",
+  "labels_not_permitted": [
+    "new_native_evidence",
+    "prospective_win",
+    "all_source_edits_impossible",
+    "strong_classical_rival_defeated"
+  ],
+  "conclusion": "Behavioral disagreement observed in reviewer-specified finite inputs; upstream closed issue by documentation; natural multiowner source history, NOT an independently prospective law or complete repair-path proof."
+}
