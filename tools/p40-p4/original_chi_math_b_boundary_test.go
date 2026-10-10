@@ -137,3 +137,45 @@ func TestP40MathBRegexDisjointnessStillDoesNotGuaranteeRegistration(t *testing.T
   }
   t.Log("P40_MATH_B_ORIGINAL_CHI_DISJOINT_REGEX_SINGLETONS_GLOBAL_REJECTION_BOTH_ORDERS_PASS")
 }
+
+func TestP40MathBP3MethodSplitDoesNotRepairChiMountReservation(t *testing.T) {
+  digitPattern:="/service/{number:[0-9]+}"
+  alphaPattern:="/service/{letter:[a-z]+}"
+  digitChild:=func()chi.Router{
+    r:=chi.NewRouter()
+    r.Get("/item",func(w http.ResponseWriter,_ *http.Request){fmt.Fprint(w,"NUM")})
+    return r
+  }
+  alphaChild:=func()chi.Router{
+    r:=chi.NewRouter()
+    r.Post("/item",func(w http.ResponseWriter,_ *http.Request){fmt.Fprint(w,"ALPHA")})
+    return r
+  }
+  loneN:=originalParent()
+  loneN.Mount(digitPattern,digitChild())
+  request(t,loneN,"/old","unchanged")
+  request(t,loneN,"/service/123/item","NUM")
+  loneA:=originalParent()
+  loneA.Mount(alphaPattern,alphaChild())
+  request(t,loneA,"/old","unchanged")
+  post:=httptest.NewRecorder()
+  loneA.ServeHTTP(post,httptest.NewRequest(http.MethodPost,"/service/abc/item",nil))
+  if post.Code!=200 || strings.TrimSpace(post.Body.String())!="ALPHA" {
+    t.Fatalf("standalone POST child invalid: (%d,%q)",post.Code,post.Body.String())
+  }
+  for i,flip:=range []bool{false,true}{
+    parent:=originalParent()
+    if !flip{parent.Mount(digitPattern,digitChild())}else{parent.Mount(alphaPattern,alphaChild())}
+    var recovered any
+    func(){
+      defer func(){recovered=recover()}()
+      if !flip{parent.Mount(alphaPattern,alphaChild())}else{parent.Mount(digitPattern,digitChild())}
+    }()
+    if recovered==nil || !strings.Contains(fmt.Sprint(recovered),
+      "attempting to Mount() a handler on an existing path") {
+      t.Fatalf("chi method split order %d should not bypass Mount's source reservation: %v",i,recovered)
+    }
+    request(t,parent,"/old","unchanged")
+  }
+  t.Log("P40_MATH_B_P3_CHI_METHOD_SPLIT_DOES_NOT_REPAIR_MOUNT_RESERVATION_PASS")
+}
