@@ -1,0 +1,61 @@
+{
+  "protocol": "EVONOMOS_P41_P3_FIVE_CLASSICAL_REDUCTION_COURT_V1",
+  "scope": "Original Echo v5 pinned route and provider cases; no universal SOLID implication",
+  "originalEcho": "3882266a3641a36fc2111b48cd597adab1c1ecea",
+  "origin": "manually declared classical analogues and source test oracle; NOT an independently blinded prospective competition",
+  "cases": [
+    {
+      "id": "SRP",
+      "nativeToken": "P41_P3_SRP_DISJOINT_ROUTE_RESPONSIBILITY_FRAME_PASS",
+      "nativeDomain": "separate route registrations with old-route observation",
+      "conditional": "no alias to the observed route/source responsibility",
+      "classical": "frame rule or disjoint coordinate update",
+      "lean": "srp_classical_frame",
+      "counterexample": "same coordinate overwritten"
+    },
+    {
+      "id": "OCP",
+      "nativeToken": "P41_P3_OCP_DISJOINT_EXTENSION_FRAME_PASS",
+      "nativeDomain": "new route registered without changing previous route",
+      "conditional": "old and extended routing key disjoint",
+      "classical": "guarded update plus contextual refinement",
+      "lean": "ocp_conditional_old_client_preservation",
+      "counterexample": "P41_P3_OCP_UNRESTRICTED_OVERWRITE_COUNTERTRACE_PASS"
+    },
+    {
+      "id": "LSP",
+      "nativeToken": "P41_P3_LSP_HTTP_ONLY_NOT_ROUTE_IDENTITY_PASS",
+      "nativeDomain": "same HTTP status/body but different actual selected native Echo route",
+      "conditional": "observer population includes selected route when contractual",
+      "classical": "Liskov-Wing observational/behavioral subtyping",
+      "lean": "lsp_contextual_replacement",
+      "counterexample": "response-only observation misses selected route"
+    },
+    {
+      "id": "ISP",
+      "nativeToken": "P41_P3_ISP_BOUNDED_INTERFACE_PROJECTION_PASS",
+      "nativeDomain": "http.Handler port for old client vs full Echo.Router service",
+      "conditional": "client uses only declared narrow port",
+      "classical": "interface projection / weakening",
+      "lean": "isp_context_projection",
+      "counterexample": "no implication of universal optimal interface partition"
+    },
+    {
+      "id": "DIP",
+      "nativeToken": "P41_P3_DIP_SOURCE_INTERFACE_SHAPE_NOT_BEHAVIORAL_CONTRACT_PASS",
+      "nativeDomain": "both original Echo.Router providers typecheck, divergent outputs",
+      "conditional": "provider satisfies contextual behavior obligations beyond signatures",
+      "classical": "data refinement / behavioral subtyping",
+      "lean": "dip_shape_not_behavior",
+      "counterexample": "interface shape is not sufficient to preserve client observation"
+    }
+  ],
+  "expectedNativeTokens": 6,
+  "outcomes": [
+    "classical guarded theories explain scoped positive and negative tests with same named premises",
+    "historical SRP/OCP/LSP/ISP/DIP are not established globally",
+    "genuine independence of A-F still OPEN",
+    "authority C separately required for edits but unavailable historical branch policy",
+    "LAW-R2 NOT_AUTHORIZED"
+  ]
+}
