@@ -113,6 +113,10 @@ The existing full-text Drive PDFs were read at their relevant original sections 
 
 **Critical comparison:** interpreting SRP* as separable edit supports and DIP* as graph factorization omits Parnas's *choice of likely-to-change hidden decisions, users' actual needs and alternative decompositions*. Until these are operationalized and tested against original source maintenance evidence, P40 may formalize part of his classical program but cannot claim to derive or supersede it. The Drive papers already existed in the corpus; no duplicate file was created.
 
+## 7B. P40-MATH-B-P2 maintained-source and Lean court
+
+A new original-go-chi source-boundary [P2 court](P40_MATH_B_P2_AXIOM_INDEPENDENCE_AND_ORIGINAL_CHI_SOURCE_GLUING_COURT.md) checks the independent route namespace, shared-tree-alias and middleware order guards. Most critically, separate chi mounts with **disjoint ASCII numeric vs lowercase alphabetic URL languages** are each accepted with their own old/new clients, but both insertion orders on the same original parent are rejected by its actual trie reservation predicate. Thus language intersection is not a sufficient native source-mount admission test for this pinned library. This is classical implementation-aware CSP, not novelty. The [Lean proof source](../../tools/p40-math-b/lean/P40MathBIndependence.lean) addresses only finite guard-model independence and general future-edit abstraction kernel necessity; its hosted CI status needs independent run verification.
+
 ## 8. Verdict
 
 - **PROVED (classical conditional):** local forward simulation implies scoped finite-trace LSP*, continuation-observation equivalence is the coarsest exact deterministic repair quotient, source-only state projection fails under history-dependent rights.
