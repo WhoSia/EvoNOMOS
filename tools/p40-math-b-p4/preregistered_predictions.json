@@ -1,0 +1,317 @@
+{
+  "contract": "P40_MATH_B_P4_PREREG_V1",
+  "date": "2026-10-10 KST",
+  "target": "source registration success or source rejection in bounded grammar, plus old/new selected HTTP clients",
+  "origins": {
+    "chi": "167e1e3bd039d060696b99c8da4e876ae04f42c1",
+    "httprouter": "484018016424d215c0b87c42f4c9b57d980fbd00",
+    "echo": "3882266a3641a36fc2111b48cd597adab1c1ecea"
+  },
+  "audit": "Forecast labels and edit paths are committed BEFORE prospective native Go test files. AST source anchor checks enforce implementation-specific signals; manually derived bounded rules do not constitute complete semantics.",
+  "cases": [
+    {
+      "id": "CHI-RX-AB",
+      "ecosystem": "chi",
+      "forecast": "reject",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/{digit:[0-9]+}",
+          "probe": "/pros/123/item",
+          "response": "A"
+        },
+        {
+          "method": "POST",
+          "pattern": "/pros/{word:[a-z]+}",
+          "probe": "/pros/abc/item",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "CHI-RX-BA",
+      "ecosystem": "chi",
+      "forecast": "reject",
+      "edits": [
+        {
+          "method": "POST",
+          "pattern": "/pros/{word:[a-z]+}",
+          "probe": "/pros/abc/item",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/{digit:[0-9]+}",
+          "probe": "/pros/123/item",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "CHI-FLAT-AB",
+      "ecosystem": "chi",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/east",
+          "probe": "/pros/east/item",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/west",
+          "probe": "/pros/west/item",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "CHI-FLAT-BA",
+      "ecosystem": "chi",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/west",
+          "probe": "/pros/west/item",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/east",
+          "probe": "/pros/east/item",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "CHI-DUP",
+      "ecosystem": "chi",
+      "forecast": "reject",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/duplicate",
+          "probe": "/pros/duplicate/item",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/duplicate",
+          "probe": "/pros/duplicate/item",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "HR-WS-AB",
+      "ecosystem": "httprouter",
+      "forecast": "reject",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "HR-WS-BA",
+      "ecosystem": "httprouter",
+      "forecast": "reject",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "HR-METHOD-AB",
+      "ecosystem": "httprouter",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "A"
+        },
+        {
+          "method": "POST",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "HR-METHOD-BA",
+      "ecosystem": "httprouter",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "POST",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "HR-FLAT",
+      "ecosystem": "httprouter",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/east/reports",
+          "probe": "/pros/east/reports",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/west/health",
+          "probe": "/pros/west/health",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "HR-DUP",
+      "ecosystem": "httprouter",
+      "forecast": "reject",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/duplicate",
+          "probe": "/pros/duplicate",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/duplicate",
+          "probe": "/pros/duplicate",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "ECHO-WS-AB",
+      "ecosystem": "echo",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "ECHO-WS-BA",
+      "ecosystem": "echo",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "ECHO-METHOD",
+      "ecosystem": "echo",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/:tenant/reports",
+          "probe": "/pros/demo/reports",
+          "response": "A"
+        },
+        {
+          "method": "POST",
+          "pattern": "/pros/public/health",
+          "probe": "/pros/public/health",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "ECHO-FLAT",
+      "ecosystem": "echo",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/east/reports",
+          "probe": "/pros/east/reports",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/west/health",
+          "probe": "/pros/west/health",
+          "response": "B"
+        }
+      ]
+    },
+    {
+      "id": "ECHO-OVERWRITE",
+      "ecosystem": "echo",
+      "forecast": "accept",
+      "edits": [
+        {
+          "method": "GET",
+          "pattern": "/pros/replaced",
+          "probe": "/pros/replaced",
+          "response": "A"
+        },
+        {
+          "method": "GET",
+          "pattern": "/pros/replaced",
+          "probe": "/pros/replaced",
+          "response": "B"
+        }
+      ]
+    }
+  ]
+}
