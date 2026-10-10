@@ -1,0 +1,65 @@
+name: G8 P40 Math-B-P6 Original AST-to-Native-Behavior Boundary Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p40-math-b-p6/**'
+      - '.github/workflows/g8-p40-math-b-p6-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p6-echo-extracted-source-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 3882266a3641a36fc2111b48cd597adab1c1ecea
+          path: tools/p40-math-b-p6/echo/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Enforce original source identity and create evidence directory
+        run: |
+          set -euo pipefail
+          test "$(git -C tools/p40-math-b-p6/echo/original-echo rev-parse HEAD)" = "3882266a3641a36fc2111b48cd597adab1c1ecea"
+          mkdir -p out/p40-math-b-p6
+          printf '%s\n' 'ORIGINAL_ECHO=3882266a3641a36fc2111b48cd597adab1c1ecea' "HARNESS_HEAD=$(git rev-parse HEAD)" >out/p40-math-b-p6/provenance.txt
+      - name: Parse original Go AST and generate executable exact HEAD case
+        run: |
+          set -euo pipefail
+          go run tools/p40-math-b-p6/extract_echo_head.go \
+            tools/p40-math-b-p6/echo/original-echo/router.go \
+            tools/p40-math-b-p6/echo/p6_source_branch_generated.go \
+            out/p40-math-b-p6/original-ast-contract.json | tee out/p40-math-b-p6/extraction.log
+          grep -q 'P40_P6_ORIGINAL_AST_HEAD_BRANCH_GENERATION_PASS' out/p40-math-b-p6/extraction.log
+          sha256sum tools/p40-math-b-p6/echo/p6_source_branch_generated.go tools/p40-math-b-p6/echo/original-echo/router.go >out/p40-math-b-p6/code-sha256.txt
+      - name: Independent native Go eight-state and minimal-repair countertrace court
+        working-directory: tools/p40-math-b-p6/echo
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p40-math-b-p6/native-court.log
+          test "$(grep -c 'P40_P6_SOURCE_AST_NATIVE_BOUNDED_EQUIVALENCE' ../../../out/p40-math-b-p6/native-court.log)" -eq 8
+          test "$(grep -c 'P40_P6_ONE_BIT_REPAIR_CERT' ../../../out/p40-math-b-p6/native-court.log)" -eq 3
+          grep -q 'P40_P6_EIGHT_OF_EIGHT_AST_EXTRACTED_VS_ORIGINAL_ECHO_PASS' ../../../out/p40-math-b-p6/native-court.log
+          grep -q 'P40_P6_ONE_BIT_HEAD_EFFECT_REPAIR_UNIQUE_AND_MINIMAL_PASS' ../../../out/p40-math-b-p6/native-court.log
+          grep -q 'P40_P6_ECHO_ISSUE_2619_ROUTE_IDENTITY_COUNTERTRACE_EXPECT_TAGS_GOT_UPLOADS' ../../../out/p40-math-b-p6/native-court.log
+          echo 'P40_P6_EXECUTABLE_EXTRACTED_AST_8_STATES_REPAIR_AND_COUNTERTRACE_PASS'
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p40-math-b-p6-go-source-proof-observation-court
+          path: |
+            out/p40-math-b-p6/
+            tools/p40-math-b-p6/echo/p6_source_branch_generated.go
+          retention-days: 90
