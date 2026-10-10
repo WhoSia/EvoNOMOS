@@ -2,7 +2,6 @@ package p42echo
 
 import (
  "encoding/json"
- "fmt"
  "net/http"
  "net/http/httptest"
  "testing"
