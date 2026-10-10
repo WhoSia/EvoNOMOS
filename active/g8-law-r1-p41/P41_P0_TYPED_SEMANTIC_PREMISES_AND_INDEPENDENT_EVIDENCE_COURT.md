@@ -84,6 +84,12 @@ Original theory the P41 project must not ignore:
 - **P41-P4 — Prospective Cross-Ecology Falsification:** use real unsettled maintenance issues, freeze predictions before reproducing new outcomes, do not treat previously known issue reporter observations as blind. Match source evidence access across novel-model and strong classical comparator.
 - **P41-P5 — Publication Decision:** mathematical priority PASS only after a precise nonclassically reducible property, kernel proof and source evidence. Otherwise publish a rigorous negative reduction/adequacy result.
 
+## 6A. First P41-P1 original source-reality witness (does not retrofit P0)
+
+[The independent P41-P1 source observation court](P41_P1_SOURCE_ROUTE_IDENTITY_OBSERVATION_AND_AUTHORITY_GATES.md) now has a **new native original Echo** [Actions #38063086233 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38063086233), checked Go-test HEAD `2b5d3e02f97d0881c9047c1599c52d6183741d8c`, original Echo SHA `3882266a3641a36fc2111b48cd597adab1c1ecea`. Two independently source-admitted Echo configurations preserve the same old client and produce the exact same HTTP status `200` and new-client body `SAME_RESPONSE`, yet the actual source-selected handlers are **TAGS** versus **UPLOADS**. The `Context.Path` values disagree: `/v2/*/tags/list` vs `/v2/*/blobs/uploads/:ref`. Artifact `11673374213`, digest `sha256:f845cf8c7ec26591c8f2c8d3fc2ba5530c9242a247f0e382de15f3fc9b1ec11f`.
+
+This independently confirms the P0 `responseOnlyView` underinformativeness in **one native source ecology**, not universal Go semantics or P41-P2 A–F independence. It also proves that an observer enriched with `Context.Path` CAN distinguish these programs; hence the selected context/observer family belongs in the theorem signature. **P41-P1 remains OPEN** for independently sourced legitimate authority and real dependency provider contracts.
+
 ## 7. Explicit P0 closure / P1 entry requirements
 
 P0 bounded completion requires three separate receipts: (i) exact formal candidate signature compiled/kernel checked, (ii) typed empirical vs synthetic evidence matrix independently audited, and (iii) canonical P41 Run + GitHub research contract linked with P40 transfer. If the Lean compiler/provenance CI fails, leave the corresponding gate unverified. P0 completion *does not* complete P41.
