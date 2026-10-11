@@ -36,7 +36,8 @@ def temporallyCompatible (s : PublicSnapshot) : Prop :=
   s.rulesetLastUpdateOrder ≤ s.mergeEventOrder
 
 theorem echo_public_metadata_temporal_order :
-    temporallyCompatible echoObserved := by decide
+    temporallyCompatible echoObserved := by
+  simp [temporallyCompatible, echoObserved]
 
 /- These are separate evidence sources; a CURRENT ruleset's numeric review
    minimum does NOT attest all historical legacy/organization layers. -/
