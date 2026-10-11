@@ -51,12 +51,13 @@ jobs:
           fetch_required pr pulls/3132
           fetch_required events 'issues/3132/events?per_page=100'
           fetch_required reviews 'pulls/3132/reviews?per_page=100'
+          fetch_required changed-files 'pulls/3132/files?per_page=100'
           fetch_required rulesets 'rulesets?includes_parents=true'
           fetch_required ruleset rulesets/24079530
           fetch_optional history 'rulesets/24079530/history?per_page=100'
           fetch_optional classic-protection branches/v4/protection
           git rev-parse HEAD >out/p42-p1/tested-head.txt
-          sha256sum tools/p42/p1/governance_discovery_and_replay_lock.json tools/p42/p1/audit_live_governance.py >out/p42-p1/source-sha256.txt
+          sha256sum tools/p42/p1/governance_discovery_and_replay_lock.json tools/p42/p1/audit_live_governance.py tools/p42/p1/audit_architectural_change.py >out/p42-p1/source-sha256.txt
       - name: Reconstruct what is evidenced and attack checker with five mutations
         shell: bash
         run: |
@@ -72,6 +73,12 @@ jobs:
             out/p42-p1/classic-protection-http.txt \
             out/p42-p1/independent-evidence-receipt.json | tee out/p42-p1/summary.log
           grep -q 'P42_P1_LIVE_RULESET_AND_MERGE_5_NEGATIVE_CONTROLS_BOUNDED_PASS' out/p42-p1/summary.log
+          python tools/p42/p1/audit_architectural_change.py \
+            tools/p42/p1/governance_discovery_and_replay_lock.json \
+            out/p42-p1/pr.json \
+            out/p42-p1/changed-files.json \
+            out/p42-p1/architecture-change-receipt.json | tee -a out/p42-p1/summary.log
+          grep -q 'P42_P1_ORIGINAL_ROUTER_PATCH_FOUR_FILES_AND_THREE_NEGATIVE_CONTROLS_PASS' out/p42-p1/summary.log
           echo 'Historical policy completeness and upstream normative rights remain UNKNOWN' >>out/p42-p1/scope.txt
           echo 'No upstream source / GitHub permissions mutated; all requests GET' >>out/p42-p1/scope.txt
       - if: always()
