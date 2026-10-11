@@ -1,0 +1,82 @@
+name: G8 LAW-R1-P42-P1 Live Governance Ruleset Reconstruction
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p1/**'
+      - '.github/workflows/g8-p42-p1-governance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-source-governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch original GitHub merge, reviews, release branch ruleset
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-p1
+          fetch_required() {
+            local slug="$1"
+            local endpoint="$2"
+            local status
+            status=$(curl -sSL --retry 3 -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -o "out/p42-p1/${slug}.json" -w '%{http_code}' \
+              "https://api.github.com/repos/labstack/echo/$endpoint")
+            echo "$slug required_HTTP=$status" >>out/p42-p1/http-statuses.txt
+            test "$status" = 200
+          }
+          fetch_optional() {
+            local slug="$1"
+            local endpoint="$2"
+            local status
+            status=$(curl -sSL --retry 2 -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -o "out/p42-p1/${slug}-response.json" -w '%{http_code}' \
+              "https://api.github.com/repos/labstack/echo/$endpoint")
+            echo "$status" >"out/p42-p1/${slug}-http.txt"
+            echo "$slug optional_HTTP=$status" >>out/p42-p1/http-statuses.txt
+          }
+          fetch_required pr pulls/3132
+          fetch_required events 'issues/3132/events?per_page=100'
+          fetch_required reviews 'pulls/3132/reviews?per_page=100'
+          fetch_required rulesets 'rulesets?includes_parents=true'
+          fetch_required ruleset rulesets/24079530
+          fetch_optional history 'rulesets/24079530/history?per_page=100'
+          fetch_optional classic-protection branches/v4/protection
+          git rev-parse HEAD >out/p42-p1/tested-head.txt
+          sha256sum tools/p42/p1/governance_discovery_and_replay_lock.json tools/p42/p1/audit_live_governance.py >out/p42-p1/source-sha256.txt
+      - name: Reconstruct what is evidenced and attack checker with five mutations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p42/p1/audit_live_governance.py \
+            tools/p42/p1/governance_discovery_and_replay_lock.json \
+            out/p42-p1/pr.json \
+            out/p42-p1/events.json \
+            out/p42-p1/reviews.json \
+            out/p42-p1/rulesets.json \
+            out/p42-p1/ruleset.json \
+            out/p42-p1/history-http.txt \
+            out/p42-p1/classic-protection-http.txt \
+            out/p42-p1/independent-evidence-receipt.json | tee out/p42-p1/summary.log
+          grep -q 'P42_P1_LIVE_RULESET_AND_MERGE_5_NEGATIVE_CONTROLS_BOUNDED_PASS' out/p42-p1/summary.log
+          echo 'Historical policy completeness and upstream normative rights remain UNKNOWN' >>out/p42-p1/scope.txt
+          echo 'No upstream source / GitHub permissions mutated; all requests GET' >>out/p42-p1/scope.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p1-live-ruleset-merge-and-five-adversarial-controls
+          path: out/p42-p1/
+          retention-days: 90
