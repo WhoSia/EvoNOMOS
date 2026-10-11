@@ -48,7 +48,11 @@
     "classic_branch_protection_at_merge": "UNKNOWN_403",
     "org_level_rules_at_merge": "UNKNOWN",
     "effective_actor_bypass_at_merge": "UNKNOWN",
-    "legal_institutional_mandate": "UNKNOWN"
+    "legal_institutional_mandate": "UNKNOWN",
+    "current_extra_approval_for_unattributed_changes": true,
+    "current_require_code_owner_review": false,
+    "current_observer_can_bypass": "never",
+    "current_bypass_actors_record": "FIELD_NOT_RETURNED_NOT_EVIDENCE_OF_ABSENCE"
   },
   "independent_live_replay_queries": [
     "GET /repos/labstack/echo/pulls/3132",
@@ -60,7 +64,7 @@
     "GET /repos/labstack/echo/branches/v4/protection"
   ],
   "comparison": {
-    "strong_classical": "open-world temporal policy audit: one observed merge + current ruleset + lastUpdated pre merge cannot establish completeness of past policy layers or normative permission",
+    "strong_classical": "Open-world temporally indexed layered policy model: current minimum 0 approvals plus conditionally extra approval does not certify 2026-09-30 state, effective protections/bypass or normative rights",
     "weak_baseline": "treat current required review count 0 and successful merge as permission for every edit (unsound)",
     "safe_conclusion": "MERGE_PLATFORM_OPERATION_OBSERVED__CURRENT_RULESET_OBSERVED__TEMPORAL_COMPATIBLE__HISTORICAL_POLICY_NOT_CERTIFIED",
     "preregistered_after_discovery": "This packet is a disclosure and replay lock made AFTER discovery; no novel unsighted prediction claim."
@@ -78,6 +82,9 @@
     "COMMENTED review events are not APPROVED events",
     "A platform successful merge event is not a demonstration of normative legitimate authority",
     "Do not change upstream source or branch policies",
-    "No new architecture law can be authorized from this governance replay"
+    "No new architecture law can be authorized from this governance replay",
+    "Zero unconditional required approving reviews does not mean no conditional extra approval; require_extra_approval_for_unattributed_changes is true in current ruleset",
+    "current_user_can_bypass=never is a present requesting-account property, not a historical predicate on merge actor vishr",
+    "bypass_actors key absent from public rule response must NOT be interpreted as no bypass actors"
   ]
 }
