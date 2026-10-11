@@ -72,16 +72,31 @@ theorem bare_inline_is_separating_for_three_hypotheses :
   cases x <;> cases y
   all_goals simp_all [distinguish, observe]
 
+theorem same_context_cannot_separate_distinct_worlds
+    (x y : World) (q : Query)
+    (different : x ≠ y) (equalOnQuery : observe x q = observe y q) :
+    ¬ separates [q] := by
+  intro h
+  obtain ⟨query, inSuite, differentTrace⟩ := h x y different
+  have onlyQuery : query = q := by simpa using inSuite
+  subst query
+  exact differentTrace equalOnQuery
+
 theorem no_single_query_separates_all_three_hypotheses (q : Query) :
     ¬ separates [q] := by
-  cases q <;> simp [separates, distinguish, observe]
-  all_goals
-    intro h
-    first
-    | have k := h World.post World.alternate (by decide)
-      simp [observe] at k
-    | have k := h World.pre World.alternate (by decide)
-      simp [observe] at k
+  cases q with
+  | health =>
+      exact same_context_cannot_separate_distinct_worlds
+        .pre .post .health (by decide) (by decide)
+  | bare =>
+      exact same_context_cannot_separate_distinct_worlds
+        .post .alternate .bare (by decide) (by decide)
+  | inlineVerb =>
+      exact same_context_cannot_separate_distinct_worlds
+        .pre .alternate .inlineVerb (by decide) (by decide)
+  | otherSuffix =>
+      exact same_context_cannot_separate_distinct_worlds
+        .post .alternate .otherSuffix (by decide) (by decide)
 
 /- General source-independent, classical contextual-equivalence refinement:
    a richer observation view implies equality of any of its projections.
