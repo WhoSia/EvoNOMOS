@@ -32,7 +32,10 @@
       "router_test.go"
     ],
     "changed_files_count": 4,
-    "router_semantics_description": "Backport of escaped literal colon and inline-verb route syntax behavior to v4; real router architecture maintenance event, not a fabricated edit"
+    "router_semantics_description": "Backport of escaped literal colon and inline-verb route syntax behavior to v4; real router architecture maintenance event, not a fabricated edit",
+    "historical_premerge_first_parent_sha": "5440f99719cc8de4be2ae6abfc8f275302791730",
+    "historical_postmerge_source_sha": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+    "merge_commit_parent_count": 1
   },
   "rule_discovery": {
     "source_repo": "labstack/echo",
@@ -97,6 +100,8 @@
     "current_user_can_bypass=never is a present requesting-account property, not a historical predicate on merge actor vishr",
     "bypass_actors key absent from public rule response must NOT be interpreted as no bypass actors",
     "The current PR base.sha in GitHub API must not be represented as the historical base SHA at merge time without additional evidence",
-    "Observed router patch and CI test files show a real architecture edit; no assertion is made that its runtime semantic outcomes were independently reproduced in P42-P1"
+    "Observed router patch and CI test files show a real architecture edit; no assertion is made that its runtime semantic outcomes were independently reproduced in P42-P1",
+    "Historical source before/after anchor comes from the observed merge commit's actual parent relation, NOT the potentially moving PR.base.sha",
+    "The first-parent source transition 5440f997 -> f085ffbe is a concrete next P42-P2 old/new test pair; these versions have not been native-Go behavior compared in P42-P1"
   ]
 }
