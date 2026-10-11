@@ -1,6 +1,9 @@
 name = "P42EvidenceJudgement"
 version = "0.1.0"
-defaultTargets = ["P42EvidenceJudgement"]
+defaultTargets = ["P42EvidenceJudgement", "P42HistoricalAuthorityNonidentifiability"]
 
 [[lean_lib]]
 name = "P42EvidenceJudgement"
+
+[[lean_lib]]
+name = "P42HistoricalAuthorityNonidentifiability"
