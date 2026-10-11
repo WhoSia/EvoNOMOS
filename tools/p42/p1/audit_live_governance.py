@@ -60,8 +60,8 @@ def evidence_check(lock, pr, events, reviews, rulesets, ruleset):
     count=rules["pull_request"].get("parameters",{}).get("required_approving_review_count")
     if count!=declared["current_required_approving_review_count"]:
         raise ValueError("current required review count changed")
-    if ruleset.get("created_at")!=declared["created_at"] or ruleset.get("updated_at")!=declared["updated_at"]:
-        raise ValueError("current rule metadata timestamp changed")
+    if when(ruleset.get("created_at"))!=when(declared["created_at"]) or when(ruleset.get("updated_at"))!=when(declared["updated_at"]):
+        raise ValueError("rule metadata instant mismatch: live "+repr((ruleset.get("created_at"),ruleset.get("updated_at")))+" expected "+repr((declared["created_at"],declared["updated_at"])))
     born,updated,merged=when(ruleset["created_at"]),when(ruleset["updated_at"]),when(pr["merged_at"])
     if born>updated or updated>merged:
         raise ValueError("ruleset metadata is not ordered before the merge")
