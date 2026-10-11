@@ -22,7 +22,17 @@
         "state": "COMMENTED",
         "submitted_at": "2026-09-29T22:15:33Z"
       }
-    ]
+    ],
+    "pull_title": "fix(router): handle escaped colons and inline verbs in v4",
+    "pull_head_sha": "499f5639f31c8e780bb58da1785beffcaf56b3e0",
+    "changed_files": [
+      "route_path.go",
+      "route_syntax_test.go",
+      "router.go",
+      "router_test.go"
+    ],
+    "changed_files_count": 4,
+    "router_semantics_description": "Backport of escaped literal colon and inline-verb route syntax behavior to v4; real router architecture maintenance event, not a fabricated edit"
   },
   "rule_discovery": {
     "source_repo": "labstack/echo",
@@ -85,6 +95,8 @@
     "No new architecture law can be authorized from this governance replay",
     "Zero unconditional required approving reviews does not mean no conditional extra approval; require_extra_approval_for_unattributed_changes is true in current ruleset",
     "current_user_can_bypass=never is a present requesting-account property, not a historical predicate on merge actor vishr",
-    "bypass_actors key absent from public rule response must NOT be interpreted as no bypass actors"
+    "bypass_actors key absent from public rule response must NOT be interpreted as no bypass actors",
+    "The current PR base.sha in GitHub API must not be represented as the historical base SHA at merge time without additional evidence",
+    "Observed router patch and CI test files show a real architecture edit; no assertion is made that its runtime semantic outcomes were independently reproduced in P42-P1"
   ]
 }
