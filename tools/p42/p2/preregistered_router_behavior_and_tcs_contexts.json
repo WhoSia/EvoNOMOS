@@ -1,0 +1,109 @@
+{
+  "protocol": "EVONOMOS_G8_LAW_R1_P42_P2_PRE_NATIVE_BEHAVIOR_FREEZE_V1",
+  "official_paragraph_name": "P42-P2 — Source-Revision–Indexed Behavioral Counterfactuals & Observer Completeness: Native Router Grammar Interventions, Before/After Client Traces, Causal Repair Certificates & Classical Contextual Refinement",
+  "research_reframing": "TCS observational equivalence, separating contexts, finite partition refinement, source-indexed transducer semantics. No arbitrary list of OO quasi-axioms.",
+  "status": "FROZEN_BEFORE_P42_P2_NATIVE_GO_TESTS",
+  "context": {
+    "repository": "labstack/echo",
+    "original_module": "github.com/labstack/echo/v4",
+    "pre_sha": "5440f99719cc8de4be2ae6abfc8f275302791730",
+    "post_sha": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+    "parent_relation": "pre is sole parent of post commit",
+    "source_code_read_only": true,
+    "actual_merged_pr": 3132,
+    "edited_source_files": [
+      "route_path.go",
+      "router.go",
+      "route_syntax_test.go",
+      "router_test.go"
+    ],
+    "description": "Real v4 escaped-colon inline-verb router grammar correction; source changed before discovery; our client test is synthetic, not real production traffic"
+  },
+  "fixture": {
+    "registration": "GET /r/:name\\\\:cancel in original Echo v4, GET /health",
+    "observer_columns": [
+      "HTTP status",
+      "HTTP body",
+      "X-Evo-Handler header",
+      "actual handler identifier",
+      "Context.Path route template",
+      "ParamNames",
+      "ParamValues",
+      "Param(name)",
+      "handler invocation count"
+    ],
+    "health_handler_response": "health",
+    "diagnostic_handler_response": "concatenate handler param names and Param(name); route identity recorded",
+    "masked_handler_response": "MASKED fixed body; preserve hidden param observation separately"
+  },
+  "frozen_predictions": [
+    {
+      "case": "health",
+      "method": "GET",
+      "path": "/health",
+      "before_http_status": 200,
+      "after_http_status": 200,
+      "source_claim": "old unaffected"
+    },
+    {
+      "case": "bare",
+      "method": "GET",
+      "path": "/r/foo",
+      "before_http_status": 200,
+      "after_http_status": 404,
+      "source_claim": "old escaped colon part of param name; new inline verb required"
+    },
+    {
+      "case": "inline",
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "before_http_status": 200,
+      "after_http_status": 200,
+      "source_claim": "new names/param differ; before had legacy param name"
+    },
+    {
+      "case": "other",
+      "method": "GET",
+      "path": "/r/foo:other",
+      "before_http_status": 200,
+      "after_http_status": 404,
+      "source_claim": "old generic segment vs new literal suffix"
+    },
+    {
+      "case": "masked-inline",
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "before_http_status": 200,
+      "after_http_status": 200,
+      "before_body": "MASKED",
+      "after_body": "MASKED",
+      "hidden_param_trace_expected_to_differ": true,
+      "source_claim": "same response projection but different parameter binding is possible"
+    }
+  ],
+  "classical_reference_model": {
+    "name": "classical source-aware observational equivalence and finite context partition refinement",
+    "evidence_access": "same exact commit pair, same v4 router grammar, same finite request suite as EvoNOMOS",
+    "expected": "preserve health; bare and other changed; inline status preserved but parsed parameter changes; masked client coarse response indistinguishable but internal semantics differ",
+    "comparator_execution": "mathematical suite evaluator (not an independent unseen historical prediction system)",
+    "predicted_novel_superiority": false
+  },
+  "tcs_scope": {
+    "worlds": "pre and post original, plus separately hypothetical third implementation world for minimal separating-basis theorem",
+    "source_to_lean_simulation_proven": false,
+    "finite_context_reach": "only 5 named frozen probes plus reference source tests, no all-client or all-input equivalence",
+    "historical_authority": "UNKNOWN; no claim PR was illegitimate",
+    "distinguishing_definition": "a client context distinguishes programs if declared observation differs",
+    "observational_quotient": "programs equivalent iff all selected context observations equal; projection forgets hidden parameters",
+    "minimality_does_not_mean": "smallest universal test suite for all Echo programs"
+  },
+  "claims_not_authorized": [
+    "new fundamental OO law",
+    "new general mathematical theorem beyond classical contextual equivalence",
+    "causality identified in arbitrary downstream callers",
+    "all Go router contexts preserved/violated",
+    "historical institutionally legitimate right to merge",
+    "newly unseen prospective software issue prediction",
+    "LAW-R2 promotion"
+  ]
+}
