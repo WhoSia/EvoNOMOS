@@ -1,0 +1,37 @@
+name: G8 LAW-R1-P42-P2 Historical Echo TCS Client Freeze
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json'
+      - 'tools/p42/p2/audit_freeze.py'
+      - '.github/workflows/g8-p42-p2-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen-clients:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: No Go oracle existed before the manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-p2-freeze
+          python tools/p42/p2/audit_freeze.py tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json out/p42-p2-freeze/freeze.json
+          test ! -f tools/p42/p2-native/counterfactual_source_test.go
+          git rev-parse HEAD >out/p42-p2-freeze/source-head.txt
+          sha256sum tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json >out/p42-p2-freeze/manifest.sha256
+          echo P42_P2_CLIENT_ORACLE_ABSENT_BEFORE_NATIVE_TESTS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p2-five-context-source-trace-preregistration
+          path: out/p42-p2-freeze/
+          retention-days: 90
