@@ -75,6 +75,6 @@ def main():
    "new_fundamental_OO_law_proven":False
   }
   out.write_text(json.dumps(receipt,indent=2,sort_keys=True)+"\n")
-  print("P42_P1_ORIGINAL_ROUTER_PATCH_FOUR_FILES_AND_THREE_NEGATIVE_CONTROLS_PASS")
+  print("P42_P1_REAL_ARCHITECTURAL_PARENT_CHILD_AND_FOUR_MUTANTS_PASS")
 
 if __name__=="__main__":main()
