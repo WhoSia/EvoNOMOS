@@ -77,7 +77,7 @@ This is classical **contextual equivalence and refinement of observation kernels
 
 **Critical evidence boundary**: the third world is mathematical, **not** a third historical Echo version. “Two queries are minimal” applies to this three-hypothesis finite family, NOT the two actual source revisions (where one distinguishing request is enough) and NOT arbitrary Echo programs. These are classical finite separation facts rather than new axioms.
 
-The independent Lean 4.34.1 kernel receipt must be checked for exact source HEAD before labeling this mathematical court VERIFIED; no unverified success should be written into the report.
+**Independent Lean 4.34.1 kernel VERIFIED:** [GitHub Actions #38133411294 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38133411294), checked exact proof HEAD `15c7ee28895ba91c8b6c53cc9bfac9e27e747ea7`, artifact `11700301485`, SHA-256 `e340d6d0a070731587214f26c07f16c015e6365811c356cc60f4cb3e93eaf38b`. The existing P42 proof workflow's 7-job Lake build explicitly compiled `P42ContextualSeparation` and independently ran `leanchecker` successfully. The theorem `bare_inline_is_separating_for_three_hypotheses` and the derived `no_single_query_separates_all_three_hypotheses` apply **only to the specified three-world family**, one world of which is hypothetical. Earlier [#38133230543 FAILED](https://github.com/WhoSia/EvoNOMOS/actions/runs/38133230543) because a Lean proof script attempted an `intro` on an already simplified goal; a revised, explicit equal-observation obstruction lemma gave an independently checked proof without changing the intended mathematical claim.
 
 ## 4. Classical reduction and genuine next theoretical frontier
 
@@ -96,4 +96,4 @@ The independent Lean 4.34.1 kernel receipt must be checked for exact source HEAD
 
 **NEXT work within P42-P2:** require a source-realized *fault domain* of alternative repairs/implementations, an independently fixed observer family and prospective distinguishing tests; attempt finite-state abstraction with a simulation or failure certificate; measure whether additional source contexts genuinely refine partitions or merely duplicate existing witnesses. For actual PRE vs POST alone, a single request `/r/foo` already distinguishes them by HTTP status; do not present the two-probe theorem for the synthetic three-world domain as evidence that two are needed for this real pair.
 
-**P42-P2 status: bounded native-Go court PASS, full TCS source-to-Lean bridge OPEN, independent kernel receipt pending verification. P42 RUNNING; LAW-R2 NOT_AUTHORIZED.**
+**P42-P2 status: bounded original historical Echo v4 source before/after court VERIFIED (#38133360441) and finite observational TCS Lean kernel VERIFIED (#38133411294). Scope: P42-P2 first original-source/finite-theory court BOUNDED_PASS; P42-P2 further source-realized fault domains, all-context operational semantics and source-to-Lean bridge remain OPEN. P42 RUNNING; LAW-R2 NOT_AUTHORIZED.**
