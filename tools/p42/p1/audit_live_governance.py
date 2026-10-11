@@ -60,6 +60,14 @@ def evidence_check(lock, pr, events, reviews, rulesets, ruleset):
     count=rules["pull_request"].get("parameters",{}).get("required_approving_review_count")
     if count!=declared["current_required_approving_review_count"]:
         raise ValueError("current required review count changed")
+    pull_params=rules["pull_request"]["parameters"]
+    if pull_params.get("require_extra_approval_for_unattributed_changes") is not True:
+        raise ValueError("current conditional unattributed-change approval rule missing")
+    if pull_params.get("require_code_owner_review") is not False:
+        raise ValueError("current codeowner review flag unexpectedly changed")
+    if ruleset.get("current_user_can_bypass")!=declared["current_observer_can_bypass"]:
+        raise ValueError("present API observer bypass indication changed")
+
     if when(ruleset.get("created_at"))!=when(declared["created_at"]) or when(ruleset.get("updated_at"))!=when(declared["updated_at"]):
         raise ValueError("rule metadata instant mismatch: live "+repr((ruleset.get("created_at"),ruleset.get("updated_at")))+" expected "+repr((declared["created_at"],declared["updated_at"])))
     born,updated,merged=when(ruleset["created_at"]),when(ruleset["updated_at"]),when(pr["merged_at"])
@@ -70,6 +78,8 @@ def evidence_check(lock, pr, events, reviews, rulesets, ruleset):
       "current_ruleset_updated_before_merge":updated<merged,
       "current_ruleset_applies_to_v4_now":("refs/heads/v4" in conditions),
       "current_ruleset_required_approvals":count,
+      "current_conditional_extra_approval_for_unattributed_changes":True,
+      "current_bypass_actor_list_visibility":"NOT_CLAIMED_COMPLETE",
       "merge_timeline_independently_agrees":True,
       "observed_reviews_all_COMMENTED":all(r["state"]=="COMMENTED" for r in reviews),
     }
