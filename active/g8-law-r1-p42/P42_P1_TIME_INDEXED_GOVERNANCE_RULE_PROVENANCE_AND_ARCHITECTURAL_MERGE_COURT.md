@@ -73,7 +73,7 @@ The final hosted CI artifact contains raw public GitHub REST records, SHA-256 ha
 
 The two historic-world counterexamples are deliberately **synthetic**; there is no finding of unauthorized or illegitimate action by `vishr` or any other identified person. The theorem is a classical information-sufficiency limit in an explicit model, not a claim of universal novelty, temporal-logic incompleteness or kernel-certified GitHub policy semantics.
 
-**Lean 4.34.1 independent kernel status:** verify against exact hosted Actions run, no source-to-GitHub semantics compiler or complete historical authorization inference is claimed.
+**Lean 4.34.1 independent kernel VERIFIED:** [GitHub Actions #38132126187 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38132126187), checked complete P42 Lean source HEAD `0cc59672376a597a9048be69ed58a55097e0bdab`, artifact `11699507417`, SHA-256 `11ab2af1dab84ce71626e4ed88925a6b93b6e745ec3f4443b4633dc04823cc5d`. Earlier [#38132059621 failed](https://github.com/WhoSia/EvoNOMOS/actions/runs/38132059621) because Lean could not synthesize a decidability instance for the opaque `temporallyCompatible` predicate using `decide`; the correction explicitly unfolded the predicate with `simp` without changing the mathematical statement. No source-to-GitHub semantics compiler or complete historical authorization inference is claimed.
 
 ## 5. Against the strongest classical and legal/organizational rival
 
@@ -89,4 +89,4 @@ The real software-science contribution here is **admissible evidence discipline*
 - **B2 Source-to-behavior:** execute an independent, pinned before/after experiment on PR #3132's parser and inline verbs without modifying upstream or conflating test fixtures with historically observed production clients.
 - **F and P42-P4:** source-grounded provider dependencies and genuinely previously unseen issues, with equal-information strong classical prospective rival; original P41-P4/P5 publication debt remains OPEN.
 
-**P42-P1 scientific verdict: real PR and currently visible release Ruleset temporally linked; true complete historical permission still UNKNOWN. P42 remains RUNNING, LAW-R2 NOT_AUTHORIZED.**
+**P42-P1 scientific verdict: real PR and currently visible release Ruleset temporally linked; governance/source replay and eight negative controls VERIFIED in CI #38132348692; restricted authority non-identifiability Lean kernel VERIFIED in CI #38132126187. P42-P1 CLOSED_AS_BOUNDED_OPEN_WORLD_GOVERNANCE_COURT; true complete historical permission still UNKNOWN, and no new OO law follows. P42 remains RUNNING, LAW-R2 NOT_AUTHORIZED.**
