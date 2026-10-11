@@ -28,6 +28,7 @@ jobs:
         with:
           repository: labstack/echo
           ref: f085ffbe8f99de165bd920746920000ab56bd6bc
+          fetch-depth: 2
           path: tools/p42/p2-native/post-original-echo
           persist-credentials: false
       - uses: actions/setup-go@v5
