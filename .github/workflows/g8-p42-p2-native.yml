@@ -1,0 +1,92 @@
+name: G8 LAW-R1-P42-P2 Historical Echo v4 Behavioral Transducer Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-native/**'
+      - 'tools/p42/p2/audit_native_contexts.py'
+      - '.github/workflows/g8-p42-p2-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-before-after-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 5440f99719cc8de4be2ae6abfc8f275302791730
+          path: tools/p42/p2-native/pre-original-echo
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: f085ffbe8f99de165bd920746920000ab56bd6bc
+          path: tools/p42/p2-native/post-original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reproduce frozen ancestor and exact actual historical Git commits
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-p2-native
+          freeze=27311aa94e95c645d38f447be9a402b18f048163
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json >out/p42-p2-native/original-freeze.json
+          cmp tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json out/p42-p2-native/original-freeze.json
+          if git cat-file -e "$freeze":tools/p42/p2-native/counterfactual_source_test.go 2>/dev/null; then
+            echo NATIVE_TEST_PREDATES_FREEZE
+            exit 19
+          fi
+          test "$(git -C tools/p42/p2-native/pre-original-echo rev-parse HEAD)" = 5440f99719cc8de4be2ae6abfc8f275302791730
+          test "$(git -C tools/p42/p2-native/post-original-echo rev-parse HEAD)" = f085ffbe8f99de165bd920746920000ab56bd6bc
+          test "$(git -C tools/p42/p2-native/post-original-echo rev-parse HEAD^)" = 5440f99719cc8de4be2ae6abfc8f275302791730
+          python tools/p42/p2/audit_freeze.py tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json out/p42-p2-native/freeze-audit.json
+          git rev-parse HEAD >out/p42-p2-native/tested-head.txt
+          sha256sum tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json tools/p42/p2-native/counterfactual_source_test.go tools/p42/p2-native/pre-original-echo/router.go tools/p42/p2-native/post-original-echo/router.go tools/p42/p2-native/post-original-echo/route_path.go >out/p42-p2-native/source-sha256.txt
+          echo P42_P2_HISTORICAL_SOURCE_PARENT_AND_PREREG_ANCESTRY_PASS
+      - name: Native before-source Echo v4 context queries
+        working-directory: tools/p42/p2-native
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+          P42_SOURCE_REVISION: pre
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p42-p2-native/pre-original-go.log
+      - name: Native after-source Echo v4 context queries
+        working-directory: tools/p42/p2-native
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+          P42_SOURCE_REVISION: post
+        run: |
+          set -euo pipefail
+          go mod edit -replace=github.com/labstack/echo/v4=./post-original-echo
+          go test -mod=mod -count=1 -v . | tee ../../../out/p42-p2-native/post-original-go.log
+      - name: Source-aware classical contextual quotient and frozen prediction oracle
+        run: |
+          set -euo pipefail
+          python tools/p42/p2/audit_native_contexts.py \
+            tools/p42/p2/preregistered_router_behavior_and_tcs_contexts.json \
+            out/p42-p2-native/pre-original-go.log \
+            out/p42-p2-native/post-original-go.log \
+            out/p42-p2-native/behavioral-court.json | tee out/p42-p2-native/verdict.log
+          grep -q P42_P2_ACTUAL_PRE_POST_ECHO_5_CONTEXTS_10_NATIVE_TRACES_AND_HIDDEN_BINDING_PASS out/p42-p2-native/verdict.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p2-original-echo-historical-behavioral-contexts
+          path: out/p42-p2-native/
+          retention-days: 90
