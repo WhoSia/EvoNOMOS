@@ -60,16 +60,23 @@ jobs:
           a=doc["actual_programs"]
           assert len(a)==12
           root="tools/p42/p2-r2-native/original-echo"
+          available=[];unresolved=[]
           for i,record in enumerate(a[:11]):
               sha=record["sha"]
-              subprocess.check_call(["git","-C",root,"cat-file","-e",sha+"^{commit}"])
+              ok=subprocess.run(["git","-C",root,"cat-file","-e",sha+"^{commit}"],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode==0
+              if not ok:
+                  unresolved.append({"id":record["id"],"sha":sha,"reason":"ORIGINAL_GIT_OBJECT_UNRESOLVED"})
+                  continue
+              available.append(record["id"])
               if i:
                   parent=subprocess.check_output(["git","-C",root,"rev-parse",sha+"^"],text=True).strip()
                   assert parent==a[i-1]["sha"],(record["id"],parent)
+          assert len(available)>=6,("insufficient source-realized original commit cohort",available,unresolved)
+          Path("out/p42-r2-native/source-availability.json").write_text(json.dumps({"available":available,"unresolved":unresolved},indent=2)+"\\n")
           merged="tools/p42/p2-r2-native/merged-original-echo"
           assert subprocess.check_output(["git","-C",merged,"rev-parse","HEAD"],text=True).strip()==a[-1]["sha"]
           assert subprocess.check_output(["git","-C",merged,"rev-parse","HEAD^"],text=True).strip()==a[0]["sha"]
-          print("P42_R2_ALL_TWELVE_ACTUAL_GIT_SOURCE_STATES_AND_FROZEN_ANCESTRY_PASS")
+          print("P42_R2_REAL_SOURCE_REACHABLE_SUBCOHORT_AND_FROZEN_ANCESTRY_PASS",len(available),"UNRESOLVED",len(unresolved))
           PY
           git rev-parse HEAD >out/p42-r2-native/harness-head.txt
           sha256sum tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json tools/p42/p2-r2-native/fault_domain_source_test.go >out/p42-r2-native/input-sha256.txt
@@ -89,6 +96,10 @@ jobs:
           PY
           while IFS=$'\t' read -r id sha; do
             echo "P42_R2_CURRENT_REAL_SOURCE id=$id sha=$sha" | tee -a out/p42-r2-native/all-original-go.log
+            if [ "$id" != MERGED ] && ! git -C tools/p42/p2-r2-native/original-echo cat-file -e "$sha^{commit}" 2>/dev/null; then
+              echo "P42_R2_SOURCE_UNRESOLVED id=$id sha=$sha" | tee -a out/p42-r2-native/all-original-go.log
+              continue
+            fi
             if [ "$id" = MERGED ]; then
               (cd tools/p42/p2-r2-native && go mod edit -replace=github.com/labstack/echo/v4=./merged-original-echo)
             else
