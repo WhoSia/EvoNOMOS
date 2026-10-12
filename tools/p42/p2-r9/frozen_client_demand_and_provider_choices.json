@@ -1,0 +1,68 @@
+{
+  "protocol": "P42_P2_R9_REAL_CLIENT_CONTRACT_AND_REPAIR_PREFERENCE_FREEZE_V1",
+  "title": "P42-P2-R9 — Demand-Indexed Ownership Protocols and Repair-Option Reversals: Actual gRPC Client Obligations, Typable Alias Countermodels, Sequential Reuse & Contextual Repair Value",
+  "base": {
+    "repo": "grpc/grpc-go",
+    "commit": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+    "interface": "mem.BufferPool",
+    "readonly": true
+  },
+  "context": "R8 type-compatible adapter and aliasing provider; compare original shipped NopBufferPool against independently synthesized alternatives",
+  "hypotheses": [
+    {
+      "id": "default-nop",
+      "source": "original grpc mem.NopBufferPool",
+      "type": true,
+      "outstanding_independence": true,
+      "put_accounting": false
+    },
+    {
+      "id": "legacy-adapter",
+      "source": "R8 own bridge",
+      "type": true,
+      "outstanding_independence": true,
+      "put_accounting": true
+    },
+    {
+      "id": "shared-provider",
+      "source": "R8 own alias implementation",
+      "type": true,
+      "outstanding_independence": false,
+      "put_accounting": false
+    }
+  ],
+  "requests": [
+    {
+      "id": "two-outstanding-isolation",
+      "sequence": "Get(4) a write 0x41, Get(4) b write 0x42, read a[0]",
+      "accept": [
+        "default-nop",
+        "legacy-adapter"
+      ],
+      "reject": [
+        "shared-provider"
+      ]
+    },
+    {
+      "id": "legacy-return-accounting",
+      "sequence": "Get(4), write 0x5e, Put, inspect legacy backend Put record",
+      "accept": [
+        "legacy-adapter"
+      ],
+      "reject": [
+        "default-nop",
+        "shared-provider"
+      ]
+    }
+  ],
+  "claims": [
+    "Different clients generate incomparable selected implementation acceptance sets",
+    "Combined demand yields only legacy adapter among these three finite candidates",
+    "No method-shape-only decision function resolves client behavior",
+    "No benchmark of runtime cost or GC",
+    "No assertion real gRPC client demanded backend accounting",
+    "No universal minimal source patch or new architectural law"
+  ],
+  "classical": "behavioral subtyping, separation/ownership reasoning, finite constraint satisfaction; equal observer data; no novelty victory",
+  "status": "FROZEN_BEFORE_R9_GO_TESTS"
+}
