@@ -111,7 +111,7 @@ theorem both_method_sites_necessary_for_this_repair_grammar
     (getRepaired putRepaired : Bool)
     (h : poolSignatureRepair getRepaired putRepaired = true) :
     getRepaired = true ∧ putRepaired = true := by
-  exact Bool.and_eq_true.mp h
+  cases getRepaired <;> cases putRepaired <;> simp_all [poolSignatureRepair]
 
 theorem one_method_repair_insufficient :
     poolSignatureRepair true false = false ∧
