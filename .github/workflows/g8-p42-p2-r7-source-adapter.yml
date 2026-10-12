@@ -1,0 +1,53 @@
+name: G8 LAW-R1-P42-P2-R7 Actual Historical gRPC Adapter Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r7/grpc-adapter/**'
+      - '.github/workflows/g8-p42-p2-r7-source-adapter.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-grpc-adapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r7/grpc-adapter/grpc-post-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Exact original post-source and independent client adapter
+        working-directory: tools/p42/p2-r7/grpc-adapter
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          test "$(git -C grpc-post-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          mkdir -p ../../../../out/p42-r7-adapter
+          go test -mod=mod -count=1 -v . | tee ../../../../out/p42-r7-adapter/native-go.log
+          grep -q P42_R7_POST_GRPC_LEGACY_POOL_ADAPTER_NATIVE_COMPILE_AND_SELECTED_ROUNDTRIP_PASS ../../../../out/p42-r7-adapter/native-go.log
+          git -C grpc-post-original status --porcelain >../../../../out/p42-r7-adapter/upstream-status.txt
+          test ! -s ../../../../out/p42-r7-adapter/upstream-status.txt
+      - name: Source/provenance certificate
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD >out/p42-r7-adapter/tested-head.txt
+          sha256sum tools/p42/p2-r7/grpc-adapter/source_adapter_test.go tools/p42/p2-r7/grpc-adapter/grpc-post-original/mem/buffer_pool.go >out/p42-r7-adapter/source-sha256.txt
+          printf '%s\n' 'REAL_POST_GRPC_INTERFACE_COMPILES' 'SELECTED_GET_PUT_ROUNDTRIP_PRESERVED' 'OTHER_PROGRAM_EFFECTS_NOT_PROVED' 'SOURCE_EDIT_COST_DEPENDS_ON_DECLARED_ATOM' 'LAW_R2_NOT_AUTHORIZED' >out/p42-r7-adapter/scope.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r7-real-post-grpc-pool-adapter-typed-and-roundtrip
+          path: out/p42-r7-adapter/
+          retention-days: 90
