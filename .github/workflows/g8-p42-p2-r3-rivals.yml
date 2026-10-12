@@ -1,0 +1,73 @@
+name: P42 RAVEL-R3 Initial-Demand-Matched Architecture Rival Go Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r3-native/**'
+      - 'tools/p42/p2-r3/verify_architecture_rivals.py'
+      - '.github/workflows/g8-p42-p2-r3-rivals.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-rival:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: f085ffbe8f99de165bd920746920000ab56bd6bc
+          path: tools/p42/p2-r3-native/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Preserve pre-outcome rival specification and original source pin
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r3
+          freeze=3a1bac88d9cb4668b6dd5f7c41152e8de36f0d29
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r3/frozen_initially_matched_rival_architectures.json >out/p42-r3/frozen-original.json
+          cmp tools/p42/p2-r3/frozen_initially_matched_rival_architectures.json out/p42-r3/frozen-original.json
+          if git cat-file -e "$freeze":tools/p42/p2-r3-native/structural_rivals_source_test.go 2>/dev/null; then
+            echo RIVAL_ORACLE_WRITTEN_BEFORE_FROZEN_DEMANDS
+            exit 8
+          fi
+          test "$(git -C tools/p42/p2-r3-native/original-echo rev-parse HEAD)" = f085ffbe8f99de165bd920746920000ab56bd6bc
+          git rev-parse HEAD >out/p42-r3/tested-head.txt
+          sha256sum tools/p42/p2-r3/frozen_initially_matched_rival_architectures.json tools/p42/p2-r3-native/structural_rivals_source_test.go >out/p42-r3/source-hashes.txt
+          echo P42_R3_ORIGINAL_ROUTER_SOURCE_AND_INITIAL_DEMAND_SPEC_PRESEALED
+      - name: Execute competing source assemblies through original Echo v4
+        shell: bash
+        working-directory: tools/p42/p2-r3-native
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+          P42_R3_ORIGINAL_SOURCE_SHA: f085ffbe8f99de165bd920746920000ab56bd6bc
+        run: |
+          set -euo pipefail
+          go test -mod=mod -run '^TestR3SourceRealizedTemporalRivals$' -count=1 -v . | tee ../../../out/p42-r3/original-rivals-go.log
+      - name: Strict source/behavior/temporal-cost verification with no scalarization
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r3/verify_architecture_rivals.py \
+            tools/p42/p2-r3/frozen_initially_matched_rival_architectures.json \
+            out/p42-r3/original-rivals-go.log \
+            out/p42-r3/architecture-rivals-receipt.json | tee out/p42-r3/result.log
+          grep -q P42_R3_GENUINE_SOURCE_BOUNDARY_RIVALS_INITIAL_EQUAL_LATER_MAINTENANCE_TRADEOFF_PASS out/p42-r3/result.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r3-initially-equivalent-source-boundary-architecture-rivals
+          path: out/p42-r3/
+          retention-days: 90
