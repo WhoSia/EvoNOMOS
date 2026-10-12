@@ -1,0 +1,68 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R10_HISTORICAL_GRPC_CONSUMER_SOURCE_EDIT_FREEZE_V1",
+  "status": "FROZEN_BEFORE_R10_NATIVE_FIXTURE_OR_WORKFLOW",
+  "scope": "Historical in-repository grpc-go consumer; not independently maintained third-party 2024 client",
+  "upstream": {
+    "repo": "grpc/grpc-go",
+    "commit": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+    "paths": {
+      "mem/buffer_pool.go": "c37c58c0233ec0f468563463a8726fcfcc9c5d31",
+      "mem/buffers.go": "975ceb71853da3445d1cba07053ab0b3484773fe",
+      "internal/transport/http2_client.go": "ff84a3216922e10e492f8d137d5d5f042efc0f2d",
+      "internal/transport/http2_server.go": "9a42644787a6420f87fd4fdf9d38f682fcb9feb9"
+    }
+  },
+  "original_consumer": "mem.Copy([]byte, mem.BufferPool) in original mem/buffers.go, with NewBuffer reference-counting and Free; original HTTP2 transport calls mem.Copy for received frame payloads",
+  "native_fixture_output_dir": "tools/p42/p2-r10-native",
+  "selected_source_edit_grammar": {
+    "base": "source-authored shared-backing pool and root provider wiring (not original grpc bug)",
+    "provider_repair": "replace shared provider Get body with fresh per-acquisition allocation; leave root wiring untouched",
+    "adapter_repair": "add safe legacy Get/Put adapter and change root wiring to select it; underlying authored old backend gives independent outstanding slices",
+    "nop_repair": "change root wiring to original grpc mem.NopBufferPool, leaving shared provider untouched"
+  },
+  "observer": {
+    "size": 2048,
+    "threshold_scope": "above pinned original 1024-byte pooling threshold",
+    "sequences": "mem.Copy(make([]byte,2048) filled 0x41,pool) held live; mem.Copy(2048 bytes filled 0x42,pool) held live; verify first ReadOnlyData()[0], then Free both",
+    "accounts": "after two Buffer.Free calls inspect provider Put record or underlying legacy backend Put count (research-declared optional requirement, not universal grpc rule)",
+    "expected": [
+      {
+        "candidate": "base_shared",
+        "compile": true,
+        "first_byte": 66,
+        "isolation": false,
+        "return_account": true
+      },
+      {
+        "candidate": "provider_repair",
+        "compile": true,
+        "first_byte": 65,
+        "isolation": true,
+        "return_account": true
+      },
+      {
+        "candidate": "adapter_repair",
+        "compile": true,
+        "first_byte": 65,
+        "isolation": true,
+        "return_account": true
+      },
+      {
+        "candidate": "nop_repair",
+        "compile": true,
+        "first_byte": 65,
+        "isolation": true,
+        "return_account": false
+      }
+    ]
+  },
+  "formal_baseline": "Source-aware typechecking + alias/ownership lifetime analysis + constrained source-edit reachability; no blind predictive advantage presumed",
+  "claims_excluded": [
+    "No shipped gRPC defect attributed",
+    "No actual third-party 2024 pool consumer asserted",
+    "No generalized ownership proof for all buffer sizes, goroutines or schedules",
+    "No real maintainer permission inferred",
+    "No global minimal patch across unbounded Go",
+    "No new TCS law without classical rivalry"
+  ]
+}
