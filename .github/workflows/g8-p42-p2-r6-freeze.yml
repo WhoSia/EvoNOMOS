@@ -1,0 +1,37 @@
+name: P42 R6 Historical Interface Source Frozen Predictions
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json'
+      - 'tools/p42/p2-r6/audit_freeze.py'
+      - '.github/workflows/g8-p42-p2-r6-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert original compiler test oracle has not been authored
+        run: |
+          set -euo pipefail
+          mkdir -p out/r6-freeze
+          python tools/p42/p2-r6/audit_freeze.py tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json out/r6-freeze/receipt.json
+          test ! -f tools/p42/p2-r6/chi-client/chi_legacy_test.go
+          test ! -f tools/p42/p2-r6/grpc-client/grpc_pool_legacy_test.go
+          git rev-parse HEAD >out/r6-freeze/tested-head.txt
+          sha256sum tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json >out/r6-freeze/source.sha256
+          echo R6_REAL_UPSTREAM_COMPILER_ORACLE_ABSENT_AT_PREREG
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r6-two-upstream-interface-prereg
+          path: out/r6-freeze
+          retention-days: 90
