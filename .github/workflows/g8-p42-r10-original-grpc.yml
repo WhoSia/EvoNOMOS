@@ -1,0 +1,81 @@
+name: G8 P42-P2-R10 Historical gRPC Consumer Repair-Path Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r10/**'
+      - 'tools/p42/p2-r10-native/**'
+      - '.github/workflows/g8-p42-r10-original-grpc.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-grpc-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r10-native/grpc-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Verify historical source identity and honest prereg chronology
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r10
+          freeze=c8d8199d63e9c2f4e2e4e7fd2f1435fccd3e5079
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r10/frozen_historical_grpc_consumer_and_repair_graph.json > out/p42-r10/frozen-at-ancestor.json
+          cmp out/p42-r10/frozen-at-ancestor.json tools/p42/p2-r10/frozen_historical_grpc_consumer_and_repair_graph.json
+          if git cat-file -e "$freeze":tools/p42/p2-r10-native/make_source_variants.py 2>/dev/null; then echo PRETEST_FIXTURE_EXISTED; exit 9; fi
+          if git cat-file -e "$freeze":.github/workflows/g8-p42-r10-original-grpc.yml 2>/dev/null; then echo PRETEST_WORKFLOW_EXISTED; exit 9; fi
+          test "$(git -C tools/p42/p2-r10-native/grpc-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          test "$(git -C tools/p42/p2-r10-native/grpc-original hash-object mem/buffer_pool.go)" = c37c58c0233ec0f468563463a8726fcfcc9c5d31
+          test "$(git -C tools/p42/p2-r10-native/grpc-original hash-object mem/buffers.go)" = 975ceb71853da3445d1cba07053ab0b3484773fe
+          test "$(git -C tools/p42/p2-r10-native/grpc-original hash-object internal/transport/http2_client.go)" = ff84a3216922e10e492f8d137d5d5f042efc0f2d
+          test "$(git -C tools/p42/p2-r10-native/grpc-original hash-object internal/transport/http2_server.go)" = 9a42644787a6420f87fd4fdf9d38f682fcb9feb9
+          grep -q '^func Copy(data \[\]byte, pool BufferPool) Buffer' tools/p42/p2-r10-native/grpc-original/mem/buffers.go
+          grep -q 's.write(recvMsg{buffer: mem.Copy(f.Data(), pool)})' tools/p42/p2-r10-native/grpc-original/internal/transport/http2_client.go
+          grep -q 's.write(recvMsg{buffer: mem.Copy(f.Data(), pool)})' tools/p42/p2-r10-native/grpc-original/internal/transport/http2_server.go
+          git rev-parse HEAD | tee out/p42-r10/tested-evonomos-head.txt
+          sha256sum tools/p42/p2-r10/frozen_historical_grpc_consumer_and_repair_graph.json tools/p42/p2-r10-native/make_source_variants.py > out/p42-r10/sha256.txt
+          echo R10_HISTORICAL_2024_GRPC_CONSUMER_AND_PRESEAL_PASS
+      - name: Materialize typed source patch alternatives
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r10-native/make_source_variants.py | tee out/p42-r10/source-edits.log
+          cp tools/p42/p2-r10-native/r10_materialization_receipt.json out/p42-r10/materialization.json
+      - name: Execute unchanged original grpc mem.Copy and Buffer lifetime code
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          (cd tools/p42/p2-r10-native && go test -mod=mod -count=1 -v ./generated/...) | tee out/p42-r10/native-original-grpc.log
+          grep -q 'R10_NATIVE name=base_shared first=66 isolated=false returned=2' out/p42-r10/native-original-grpc.log
+          grep -q 'R10_NATIVE name=provider_repair first=65 isolated=true returned=2' out/p42-r10/native-original-grpc.log
+          grep -q 'R10_NATIVE name=adapter_repair first=65 isolated=true returned=2' out/p42-r10/native-original-grpc.log
+          grep -q 'R10_NATIVE name=nop_repair first=65 isolated=true returned=0' out/p42-r10/native-original-grpc.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("out/p42-r10/materialization.json").read_text())
+          expected={"base_shared":[],"provider_repair":["provider.go"],"adapter_repair":["adapter.go","root.go"],"nop_repair":["root.go"]}
+          assert len(r)==4 and all(row["changed_source_paths"]==expected[row["candidate"]] for row in r)
+          PY
+          echo R10_ORIGINAL_GRPC_FOUR_SOURCE_STATES_TWO_OBLIGATIONS_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r10-historical-grpc-consumer-source-repair-court
+          path: out/p42-r10/
+          retention-days: 90
