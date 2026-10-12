@@ -49,6 +49,19 @@ jobs:
           git rev-parse HEAD | tee out/p42-r10/tested-evonomos-head.txt
           sha256sum tools/p42/p2-r10/frozen_historical_grpc_consumer_and_repair_graph.json tools/p42/p2-r10-native/make_source_variants.py > out/p42-r10/sha256.txt
           echo R10_HISTORICAL_2024_GRPC_CONSUMER_AND_PRESEAL_PASS
+          # R10-P2 boundary + classical model addendum frozen before new test.
+          addendum=226c431cef0bef41ab33add883397d1a67955849
+          git merge-base --is-ancestor "$addendum" HEAD
+          git show "$addendum":tools/p42/p2-r10/frozen_threshold_region_and_classical_rival.json > out/p42-r10/frozen-boundary-ancestor.json
+          cmp out/p42-r10/frozen-boundary-ancestor.json tools/p42/p2-r10/frozen_threshold_region_and_classical_rival.json
+          if git show "$addendum":tools/p42/p2-r10-native/make_source_variants.py | grep -q TestHistoricalPoolingThresholdBoundary; then
+            echo BOUNDARY_NATIVE_ORACLE_BEFORE_ADDENDUM_FREEZE;exit 13
+          fi
+          if git cat-file -e "$addendum":tools/p42/p2-r10/source_region_classical_audit.py 2>/dev/null;then
+            echo CLASSICAL_RIVAL_CODE_BEFORE_FREEZE;exit 14
+          fi
+          sha256sum tools/p42/p2-r10/frozen_threshold_region_and_classical_rival.json tools/p42/p2-r10/source_region_classical_audit.py >> out/p42-r10/sha256.txt
+          echo R10_P2_BOUNDARY_AND_RIVAL_PRESEAL_PASS
       - name: Materialize typed source patch alternatives
         run: |
           set -euo pipefail
@@ -73,6 +86,19 @@ jobs:
           assert len(r)==4 and all(row["changed_source_paths"]==expected[row["candidate"]] for row in r)
           PY
           echo R10_ORIGINAL_GRPC_FOUR_SOURCE_STATES_TWO_OBLIGATIONS_PASS
+          for candidate in base_shared provider_repair adapter_repair nop_repair;do
+            grep -q "R10_BOUNDARY name=$candidate size=1024 first=65 returned=0" out/p42-r10/native-original-grpc.log
+          done
+          grep -q 'R10_BOUNDARY name=base_shared size=1025 first=66 returned=2' out/p42-r10/native-original-grpc.log
+          grep -q 'R10_BOUNDARY name=provider_repair size=1025 first=65 returned=2' out/p42-r10/native-original-grpc.log
+          grep -q 'R10_BOUNDARY name=adapter_repair size=1025 first=65 returned=2' out/p42-r10/native-original-grpc.log
+          grep -q 'R10_BOUNDARY name=nop_repair size=1025 first=65 returned=0' out/p42-r10/native-original-grpc.log
+          echo R10_P2_GRPC_REAL_THRESHOLD_1024_1025_ORACLE_PASS
+      - name: Source-aware classical allocation-region and lifetime competitor
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r10/source_region_classical_audit.py tools/p42/p2-r10-native/grpc-original tools/p42/p2-r10-native/generated out/p42-r10/native-original-grpc.log out/p42-r10/source-region-classical-comparison.json | tee out/p42-r10/classical-audit.log
+          grep -q 'R10_CLASSICAL_MATCH_12_OF_12_AND_FOUR_NEGATIVE_CONTROLS_PASS' out/p42-r10/classical-audit.log
       - if: always()
         uses: actions/upload-artifact@v4
         with:
