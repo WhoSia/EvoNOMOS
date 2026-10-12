@@ -1,0 +1,62 @@
+name: G8 LAW-R1-P42-P2-R8 Native Buffer Ownership Counterexample
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r8-native/**'
+      - '.github/workflows/g8-p42-r8-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-grpc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r8-native/grpc-post-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Pre-execution frozen-contract and pristine-source gates
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r8
+          freeze=e01bd79fa408d18520ec3a504819fd39da29db38
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r8/frozen_ownership_fault_domain.json >out/p42-r8/frozen-first.json
+          cmp out/p42-r8/frozen-first.json tools/p42/p2-r8/frozen_ownership_fault_domain.json
+          if git cat-file -e "$freeze":tools/p42/p2-r8-native/ownership_test.go 2>/dev/null; then
+            echo GO_ORACLE_BEFORE_FREEZE;exit 9
+          fi
+          test "$(git -C tools/p42/p2-r8-native/grpc-post-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          python3 tools/p42/p2-r8/audit_freeze.py tools/p42/p2-r8/frozen_ownership_fault_domain.json
+          git rev-parse HEAD >out/p42-r8/tested-head.txt
+          sha256sum tools/p42/p2-r8-native/ownership_test.go tools/p42/p2-r8/frozen_ownership_fault_domain.json >out/p42-r8/source-sha256.txt
+      - name: Selected original grpc BufferPool source type and ownership tests
+        working-directory: tools/p42/p2-r8-native
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee ../../../out/p42-r8/original-native.log
+          grep -q 'name=normal-adapter typechecks=true outstanding_isolated=true' ../../../out/p42-r8/original-native.log
+          grep -q 'name=shared-alias-provider typechecks=true outstanding_isolated=false' ../../../out/p42-r8/original-native.log
+          grep -q 'name=identity-roundtrip typechecks=true put_mutation_preserved=true' ../../../out/p42-r8/original-native.log
+          echo P42_R8_ORIGINAL_GRPC_BOTH_TYPED_BUT_ALIAS_SEPARATED_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r8-historical-grpc-buffer-aliasing-native-court
+          path: out/p42-r8/
+          retention-days: 90
