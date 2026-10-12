@@ -74,9 +74,6 @@ def main():
   for selected in minima[kind]:
    reduced=sorted([sorted(g) for g in classes(rows,versions,selected,kind)])
    assert reduced==g0,("not a separating subset",kind,selected)
-  for size in range(len(minima[kind][0])):
-   assert not any(len(picks)==size and
-       all([sig(rows[a][c],kind) != sig(rows[b][c],kind) for c in picks] != [] for a,b in []) for picks in [] )
  # Demand vector: concrete independently frozen old/new requests, never a scalar.
  demand={}
  for v in versions:
