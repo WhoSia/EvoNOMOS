@@ -1,0 +1,95 @@
+name: P42 R6 Actual Heroku External Consumer against Historical Chi
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r6/frozen_heroku_actual_external_consumer.json'
+      - 'tools/p42/p2-r6/audit_external_consumer.py'
+      - '.github/workflows/g8-p42-p2-r6-external.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  external-heroku-cross-temporal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: heroku/x
+          ref: 59fc5216e297df6368fbf4e214bc91c7bb64a8ed
+          path: tools/p42/p2-r6/heroku-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 7957c0d4ddaee560a01110145dbf2809ffdb6663
+          path: tools/p42/p2-r6/chi-pre
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: tools/p42/p2-r6/chi-post
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check real independent consumer and pre-execution snapshot
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r6-heroku
+          freeze=90fa41b8cd07666fc731f21e60434f72c928f98c
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r6/frozen_heroku_actual_external_consumer.json >out/p42-r6-heroku/ancestor-frozen.json
+          cmp out/p42-r6-heroku/ancestor-frozen.json tools/p42/p2-r6/frozen_heroku_actual_external_consumer.json
+          test "$(git -C tools/p42/p2-r6/heroku-source rev-parse HEAD)" = 59fc5216e297df6368fbf4e214bc91c7bb64a8ed
+          test "$(git -C tools/p42/p2-r6/chi-pre rev-parse HEAD)" = 7957c0d4ddaee560a01110145dbf2809ffdb6663
+          test "$(git -C tools/p42/p2-r6/chi-post rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          git rev-parse HEAD >out/p42-r6-heroku/tested-head.txt
+          sha256sum tools/p42/p2-r6/heroku-source/hmiddleware/logger.go tools/p42/p2-r6/heroku-source/hmiddleware/logger_test.go tools/p42/p2-r6/frozen_heroku_actual_external_consumer.json >out/p42-r6-heroku/inputs.sha256
+          echo R6_EXTERNAL_HEROKU_ANCHOR_AND_TWO_CHI_ORIGINAL_SOURCE_REVISIONS_PASS
+      - name: Execute actual independent Heroku middleware test suite with each original chi revision
+        shell: bash
+        env:
+          GOTOOLCHAIN: auto
+        run: |
+          set -euo pipefail
+          for version in pre post; do
+            mkdir -p "out/p42-r6-heroku/${version}-workspace"
+            ( cd "out/p42-r6-heroku/${version}-workspace" && \
+                go work init "$GITHUB_WORKSPACE/tools/p42/p2-r6/heroku-source" \
+                             "$GITHUB_WORKSPACE/tools/p42/p2-r6/chi-${version}" )
+            set +e
+            ( cd tools/p42/p2-r6/heroku-source && \
+              GOWORK="$GITHUB_WORKSPACE/out/p42-r6-heroku/${version}-workspace/go.work" \
+              go test -count=1 -v ./hmiddleware ) >"out/p42-r6-heroku/${version}.log" 2>&1
+            exitstatus=$?
+            set -e
+            printf '%s\t%s\n' "$version" "$exitstatus" >>out/p42-r6-heroku/status.tsv
+            echo "R6_TRUE_EXTERNAL_HEROKU_SOURCE_${version}_GO_EXIT=${exitstatus}"
+          done
+      - name: Do not self-award compatibility without genuine Go test outcomes
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r6/audit_external_consumer.py \
+            tools/p42/p2-r6/frozen_heroku_actual_external_consumer.json \
+            out/p42-r6-heroku/status.tsv \
+            out/p42-r6-heroku/pre.log \
+            out/p42-r6-heroku/post.log \
+            out/p42-r6-heroku/external-source-compatibility.json | tee out/p42-r6-heroku/audit.log
+          grep -q P42_R6_HEROKU_EXTERNAL_CONSUMER_RECEIPT_TWO_PASSES out/p42-r6-heroku/audit.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r6-authentic-heroku-client-chi-cross-temporal-evidence
+          path: out/p42-r6-heroku/
+          retention-days: 90
