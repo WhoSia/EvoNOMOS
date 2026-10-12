@@ -1,0 +1,60 @@
+{
+  "protocol": "P42_P2_R8_TYPED_VS_OBSERVATIONAL_REPAIR_PREREG_V1",
+  "status": "FROZEN_BEFORE_NATIVE_TEST",
+  "title": "P42-P2-R8 — Behavioral Repair Refinement beyond Interface Cutsets: Historical gRPC Buffer Ownership, Alias-Sensitive Client Contexts, Source-Realizable Counterexamples & Two-Level Minimality",
+  "base": {
+    "repo": "grpc/grpc-go",
+    "commit": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+    "interface": "mem.BufferPool",
+    "methods": [
+      "Get(int) *[]byte",
+      "Put(*[]byte)"
+    ],
+    "source_read_only": true
+  },
+  "cases": [
+    {
+      "id": "normal-adapter",
+      "typechecks": true,
+      "isolated_while_outstanding": true,
+      "after_put_reusable": true,
+      "reason": "adapter passes independent underlying []byte slices through pointer wrappers"
+    },
+    {
+      "id": "shared-alias-provider",
+      "typechecks": true,
+      "isolated_while_outstanding": false,
+      "reason": "one shared backing store returned to distinct outstanding clients"
+    },
+    {
+      "id": "identity-roundtrip",
+      "typechecks": true,
+      "exact_bytes_returned": true,
+      "reason": "legacy pool Put receives mutation through adapter"
+    }
+  ],
+  "fixed_contexts": [
+    {
+      "id": "outstanding-two-buffers",
+      "steps": "Get(4) A; write A[0]=0x41; Get(4) B; write B[0]=0x42; re-read A[0]",
+      "expected_safe_A": 65,
+      "expected_alias_A": 66
+    },
+    {
+      "id": "roundtrip",
+      "steps": "Get(4); set [0]=0x5e; Put; inspect legacy pool",
+      "expected_legacy_put_first_byte": 94
+    }
+  ],
+  "classical_rival": "Go structural method sets plus separation/ownership-style distinct outstanding buffer observation; source-aware same evidence",
+  "limits": [
+    "A concrete aliasing failure of an author-created provider does NOT imply an upstream gRPC implementation bug",
+    "The interface doc encourages reuse but no unbounded protocol/ownership semantics is formally proven",
+    "One adapter declaration cost is relative to an explicit edit grammar, not universal source patch minimum",
+    "Do not claim linear ownership enforced by Go types",
+    "No empirical allocation/performance improvement shown",
+    "Original source package is read-only and exact SHA pinned",
+    "No unseen historical client forecast; trial probes manually designed before execution",
+    "LAW-R2 NOT_AUTHORIZED"
+  ]
+}
