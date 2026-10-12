@@ -1,0 +1,23 @@
+{
+  "protocol": "P42_P2_R2_POST_FREEZE_SOURCE_LOCATOR_ERRATUM_V1",
+  "status": "UNMODIFIED_FREEZE_PLUS_INDEPENDENT_LOCATOR_PATCH",
+  "frozen_commit": "b3711fbbbc30f128a6e5d2eedd42f723458aebcc",
+  "frozen_path": "tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json",
+  "affected_id": "C3",
+  "frozen_transcription": "358c2e8c9efd52ed18e0a7fc91332e2f3cb9b05",
+  "corrected_original_commit": "358c2e8c9efd52ed18e0a7fc91332e2f3fcb9b05",
+  "independent_source_witness": {
+    "successor": "9e3f23dd0a161018c9b1f142322975640222c9de",
+    "successor_git_parent": "358c2e8c9efd52ed18e0a7fc91332e2f3fcb9b05",
+    "corrected_commit_parent": "7d355b881d1af005f7e038b9b561a6613b935d05",
+    "github_commit_endpoint": "https://api.github.com/repos/labstack/echo/commits/358c2e8c9efd52ed18e0a7fc91332e2f3fcb9b05"
+  },
+  "cause": "One-character missing f in 40-hex Git SHA in first frozen document; original source exists. Initial object-not-found inference was incorrect.",
+  "temporal_claim": "This is an after-preregistration source identifier correction, NOT an untouched source-identity preregistration. All 16 client contexts, source order, hypotheses and observation fields remain frozen.",
+  "conditions": [
+    "Do not modify the initial frozen file",
+    "Do not promote an unverified source SHA",
+    "Fetch the corrected original object from upstream and verify both parent and child before execution",
+    "Disclose the correction in report and Notion"
+  ]
+}
