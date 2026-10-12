@@ -44,13 +44,17 @@ def exact_minimum(rows,versions,ctx_ids,kind):
  return solutions
 
 def main():
- if len(sys.argv)!=4:raise SystemExit("usage judge.py frozen.json original-go.log receipt.json")
- freeze_path,trace_path,out=map(Path,sys.argv[1:])
+ if len(sys.argv)!=5:raise SystemExit("usage judge.py frozen.json original-go.log locator-errata.json receipt.json")
+ freeze_path,trace_path,errata_path,out=map(Path,sys.argv[1:])
  manifest=json.loads(freeze_path.read_text())
+ errata=json.loads(errata_path.read_text())
+ assert errata["protocol"]=="P42_P2_R2_POST_FREEZE_SOURCE_LOCATOR_ERRATUM_V1"
+ assert manifest["actual_programs"][3]["sha"]==errata["frozen_transcription"]
  text=trace_path.read_text()
  frozen_versions=[v["id"] for v in manifest["actual_programs"]]
  ctx_ids=[c["id"] for c in manifest["contexts"]]
  expected_shas={v["id"]:v["sha"] for v in manifest["actual_programs"]}
+ expected_shas[errata["affected_id"]]=errata["corrected_original_commit"]
  unresolved=[]
  for line in text.splitlines():
   m=re.search(r"P42_R2_SOURCE_UNRESOLVED id=(\\w+) sha=([0-9a-f]{40})",line)
@@ -114,6 +118,9 @@ def main():
  result={
   "protocol":"P42_R2_VERIFIED_REAL_SOURCE_SUBCOHORT_16_CONTEXT_PARTITION_COURT",
   "frozen_manifest_sha256":hashlib.sha256(freeze_path.read_bytes()).hexdigest(),
+  "post_freeze_source_locator_erratum_sha256":hashlib.sha256(errata_path.read_bytes()).hexdigest(),
+  "source_identifier_untouched_since_prereg":False,
+  "source_identifier_erratum_verified_from_parent_child":True,
   "original_source_trace_sha256":hashlib.sha256(trace_path.read_bytes()).hexdigest(),
   "historical_original_commit_candidates":12,
   "historical_go_revisions":len(versions),"frozen_context_count":16,
