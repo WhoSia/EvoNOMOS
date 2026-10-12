@@ -1,0 +1,23 @@
+name: G8 P42-P2-R9 Client Demand Pretest Freeze
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r9/frozen_client_demand_and_provider_choices.json'
+      - 'tools/p42/p2-r9/audit_freeze.py'
+      - '.github/workflows/g8-p42-r9-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          set -euo pipefail
+          python tools/p42/p2-r9/audit_freeze.py tools/p42/p2-r9/frozen_client_demand_and_provider_choices.json
+          test ! -f tools/p42/p2-r9-native/demand_options_test.go
+          git rev-parse HEAD
