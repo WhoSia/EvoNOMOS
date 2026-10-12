@@ -1,0 +1,28 @@
+name: G8 LAW-R1-P42-P2-R8 Ownership Fault-Domain Preregistration
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r8/frozen_ownership_fault_domain.json'
+      - 'tools/p42/p2-r8/audit_freeze.py'
+      - '.github/workflows/g8-p42-r8-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r8/audit_freeze.py tools/p42/p2-r8/frozen_ownership_fault_domain.json
+          test ! -e tools/p42/p2-r8-native/ownership_test.go
+          mkdir -p out/r8
+          git rev-parse HEAD >out/r8/freeze-head.txt
+          sha256sum tools/p42/p2-r8/frozen_ownership_fault_domain.json >out/r8/sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r8-preregistered-ownership-fault-domain
+          path: out/r8/
