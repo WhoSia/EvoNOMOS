@@ -1,0 +1,207 @@
+{
+  "protocol": "EVONOMOS_G8_LAW_R1_P42_P2_R6_CROSS_ECOLOGY_HISTORICAL_SOURCE_FREEZE_V1",
+  "title": "P42-P2-R6 — Cross-Ecology Capability-Propagation Cutsets & Demand-Indexed Program Refinement: Historical Interface Changes, External Consumer Compatibility, Independent Classical Predictors & Minimal Source-Repair Certificates",
+  "date": "2026-10-12",
+  "status": "FROZEN_BEFORE_R6_NATIVE_CLIENT_ORACLE",
+  "r5_basis": {
+    "r5_manifest": "tools/p42/p2-r5/frozen_capability_demand_matrix.json",
+    "r5_native_run": 38207862662,
+    "r5_lean_run": 38208092970
+  },
+  "upstreams": [
+    {
+      "repo": "go-chi/chi",
+      "pr": 926,
+      "merge_utc": "2024-06-28T14:29:28Z",
+      "pre": "7957c0d4ddaee560a01110145dbf2809ffdb6663",
+      "post": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+      "file": "middleware/wrap_writer.go",
+      "interface": "middleware.WrapResponseWriter",
+      "change": "ADD_REQUIRED_METHOD",
+      "before_contract": "Status,BytesWritten,Tee,Unwrap,http.ResponseWriter",
+      "after_contract": "same plus Discard()",
+      "declared_minimal_structural_repair_atoms": 1
+    },
+    {
+      "repo": "grpc/grpc-go",
+      "pr": 7356,
+      "merge_utc": "2024-08-21T21:11:39Z",
+      "pre": "7e12068baffd8e6328e99d901409cd49d0edebf6",
+      "post": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+      "files": [
+        "encoding/encoding.go",
+        "encoding/encoding_v2.go",
+        "mem/buffer_pool.go"
+      ],
+      "interface_changes": [
+        {
+          "name": "encoding.Codec",
+          "change": "PRESERVED_UNCHANGED",
+          "method_names": [
+            "Marshal",
+            "Unmarshal",
+            "Name"
+          ]
+        },
+        {
+          "name": "encoding.CodecV2",
+          "change": "NEW_PARALLEL_INTERFACE",
+          "after_only": true,
+          "method_names": [
+            "Marshal",
+            "Unmarshal",
+            "Name"
+          ]
+        },
+        {
+          "name": "mem.BufferPool",
+          "change": "TWO_METHOD_SIGNATURE_REPLACEMENT",
+          "before": "Get(int) []byte, Put([]byte)",
+          "after": "Get(int) *[]byte, Put(*[]byte)",
+          "declared_minimal_structural_repair_atoms": 2
+        }
+      ]
+    }
+  ],
+  "external_source_witnesses": [
+    {
+      "repository": "heroku/x",
+      "ref": "59fc5216e297df6368fbf4e214bc91c7bb64a8ed",
+      "path": "hmiddleware/logger.go",
+      "observation": "Consumer uses middleware.WrapResponseWriter type assertion and NewWrapResponseWriter factory, calls Status() and BytesWritten(), does NOT instantiate its own implementation",
+      "historical_2024_customer_status": "NOT_VERIFIED",
+      "native_external_project_compiled": false
+    },
+    {
+      "repository": "cortexproject/cortex",
+      "ref": "1c18027a4e3ca8aea1a8ffbf2570184db1d4e30d",
+      "path": "pkg/cortexpb/codec.go",
+      "observation": "Actual independent CodecV2 implementation and mem.BufferPool pointer Get/Put consumer at pinned source, may postdate 2024",
+      "historical_2024_customer_status": "NOT_VERIFIED",
+      "native_external_project_compiled": false
+    },
+    {
+      "repository": "milvus-io/milvus",
+      "ref": "023e356a8b609057c456cbdba9a84d9fd207a56f",
+      "path": "pkg/util/resource/codec_buffer_pool.go",
+      "observation": "Actual independent pointer-buffer pool provider implements mem.BufferPool at pinned source; not validated at 2024 event time",
+      "historical_2024_customer_status": "NOT_VERIFIED",
+      "native_external_project_compiled": false
+    }
+  ],
+  "frozen_cases": [
+    {
+      "id": "chi-legacy-provider",
+      "module": "chi",
+      "tag": "chi_legacy",
+      "pre_compile": true,
+      "post_compile": false,
+      "semantic": "old custom WrapResponseWriter loses structural conformance after new Discard method"
+    },
+    {
+      "id": "chi-repaired-provider",
+      "module": "chi",
+      "tag": "chi_repaired",
+      "pre_compile": true,
+      "post_compile": true,
+      "semantic": "an extra Discard method repairs type conformance, not automatically intended discard behavior"
+    },
+    {
+      "id": "chi-feature-client",
+      "module": "chi",
+      "tag": "chi_feature",
+      "pre_compile": false,
+      "post_compile": true,
+      "semantic": "new client invokes Discard; after writer factory supports discard-to-tee output"
+    },
+    {
+      "id": "grpc-legacy-pool",
+      "module": "grpc",
+      "tag": "grpc_pool_legacy",
+      "pre_compile": true,
+      "post_compile": false,
+      "semantic": "legacy []byte Get/Put provider no longer conforms to BufferPool"
+    },
+    {
+      "id": "grpc-pointer-pool",
+      "module": "grpc",
+      "tag": "grpc_pool_pointer",
+      "pre_compile": false,
+      "post_compile": true,
+      "semantic": "new *[]byte signatures typed after change"
+    },
+    {
+      "id": "grpc-legacy-codec",
+      "module": "grpc",
+      "tag": "grpc_codec_legacy",
+      "pre_compile": true,
+      "post_compile": true,
+      "semantic": "unchanged encoding.Codec retains external client structural compatibility"
+    },
+    {
+      "id": "grpc-v2-codec",
+      "module": "grpc",
+      "tag": "grpc_codec_v2",
+      "pre_compile": false,
+      "post_compile": true,
+      "semantic": "new parallel encoding.CodecV2 exists only after merge"
+    }
+  ],
+  "algebra": {
+    "atom": "source-level Go interface method declaration/signature alignment, NOT hours/lines changed",
+    "chi_required_set_pre": [
+      "Status",
+      "BytesWritten",
+      "Tee",
+      "Unwrap",
+      "http.ResponseWriter"
+    ],
+    "chi_required_set_post": [
+      "Status",
+      "BytesWritten",
+      "Tee",
+      "Unwrap",
+      "Discard",
+      "http.ResponseWriter"
+    ],
+    "grpc_old_pool": [
+      "Get(int) []byte",
+      "Put([]byte)"
+    ],
+    "grpc_new_pool": [
+      "Get(int) *[]byte",
+      "Put(*[]byte)"
+    ],
+    "old_codec": "signature retained across revisions",
+    "cut_definition": "source edit-set intersects each failed interface-method satisfaction obligation; restrict allowed edit atom to provider method implementation signatures; no architecture-wide global minimality",
+    "consumer_classes": [
+      "provider-constructor",
+      "interface-typed old client",
+      "new-feature client",
+      "factory-based existing client"
+    ],
+    "hypotheses": [
+      "Adding a method to an existing interface can invalidate an external implementation even when its old consumer call sites do not use new method",
+      "A factory-based consumer does not incur a source edit if factory output conforms and it calls only stable methods",
+      "Parallel interface introduction preserves legacy Codec compatibility while permitting CodecV2 clients only postchange",
+      "Replacing method signatures changes a provider's structural obligation, independent of nominal method count (2 before, 2 after)",
+      "Classical Go method-set structural subtyping and hypergraph hitting sets explain all observed conformance outcomes; no novel advantage claimed"
+    ]
+  },
+  "predicted_compiler_diagnostic_fragments": {
+    "chi-legacy-provider": "missing method Discard",
+    "chi-feature-client": "Discard undefined",
+    "grpc-legacy-pool": "wrong type for method Get",
+    "grpc-pointer-pool": "wrong type for method Get",
+    "grpc-v2-codec": "undefined: encoding.CodecV2"
+  },
+  "nonclaims": [
+    "Not a truly blind prospective PR test: historical patch contents were consulted during discovery",
+    "Existing external consumers are independent-source witnesses at supplied pinned snapshots, not verified contemporaneous 2024 snapshots",
+    "Native generated consumer programs are researcher-authored against genuine unchanged historical upstream libraries",
+    "Do not conflate minimal source method-type signature repair with semantically correct behavior or full code editing effort",
+    "Do not claim vendor/third-party consumers were compiled unless independent native CI actually did so",
+    "No source-to-Lean Go compiler semantics completeness theorem",
+    "No automatic P43 promotion or LAW-R2 authorization"
+  ]
+}
