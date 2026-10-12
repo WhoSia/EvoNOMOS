@@ -55,6 +55,7 @@ jobs:
           set -euo pipefail
           go mod edit -replace=github.com/labstack/echo/v4=./r2-original-echo
           while read -r label sha; do
+            git -C r2-original-echo fetch -q --no-tags origin "$sha"
             git -C r2-original-echo checkout --detach -q "$sha"
             test "$(git -C r2-original-echo rev-parse HEAD)" = "$sha"
             P42_R2_VERSION="$label" go test -mod=mod -count=1 -run '^TestP42R2AuthenticRevisionFaultDomain$' -v . | tee "../../../out/p42-p2-r2/$label.log"
