@@ -48,8 +48,18 @@ def main():
  freeze_path,trace_path,out=map(Path,sys.argv[1:])
  manifest=json.loads(freeze_path.read_text())
  text=trace_path.read_text()
- versions=[v["id"] for v in manifest["actual_programs"]]
+ frozen_versions=[v["id"] for v in manifest["actual_programs"]]
  ctx_ids=[c["id"] for c in manifest["contexts"]]
+ expected_shas={v["id"]:v["sha"] for v in manifest["actual_programs"]}
+ unresolved=[]
+ for line in text.splitlines():
+  m=re.search(r"P42_R2_SOURCE_UNRESOLVED id=(\\w+) sha=([0-9a-f]{40})",line)
+  if m:
+   vid,sha=m.groups()
+   assert vid in expected_shas and expected_shas[vid]==sha
+   unresolved.append(vid)
+ assert len(set(unresolved))==len(unresolved),unresolved
+ versions=[x for x in frozen_versions if x not in unresolved]
  rows={v:{} for v in versions}
  for line in text.splitlines():
   m=re.search(r'P42_R2_OBS\s+(\{[^\n\r]*\})',line)
@@ -61,7 +71,9 @@ def main():
    frozen=next(x for x in manifest["contexts"] if x["id"]==c)
    assert (v["scenario"],v["method"],v["path"])==(frozen["scenario"],frozen["method"],frozen["path"])
    rows[rev][c]=v
- assert len(versions)==12 and len(ctx_ids)==16
+ assert len(frozen_versions)==12 and len(ctx_ids)==16
+ assert len(versions)>=6
+ assert len(unresolved)+len(versions)==12
  for v in versions:
   assert len(rows[v])==16,(v,len(rows[v]),set(ctx_ids)-set(rows[v]))
  groups={}
@@ -100,10 +112,14 @@ def main():
    "fine_changes":[c for c in ctx_ids if sig(rows[a][c],"FULL")!=sig(rows[b][c],"FULL")],
   })
  result={
-  "protocol":"P42_R2_12_REAL_SOURCE_REVISION_16_CONTEXT_PARTITION_MINIMUM_COURT",
+  "protocol":"P42_R2_VERIFIED_REAL_SOURCE_SUBCOHORT_16_CONTEXT_PARTITION_COURT",
   "frozen_manifest_sha256":hashlib.sha256(freeze_path.read_bytes()).hexdigest(),
   "original_source_trace_sha256":hashlib.sha256(trace_path.read_bytes()).hexdigest(),
-  "historical_go_revisions":12,"frozen_context_count":16,"native_go_trace_count":192,
+  "historical_original_commit_candidates":12,
+  "historical_go_revisions":len(versions),"frozen_context_count":16,
+  "native_go_trace_count":len(versions)*len(ctx_ids),
+  "unresolved_original_commit_ids":unresolved,
+  "unresolved_original_commit_shas":{x:expected_shas[x] for x in unresolved},
   "http_observation_partitions":groups["HTTP"],
   "full_observation_partitions":groups["FULL"],
   "http_number_of_observation_classes":len(groups["HTTP"]),
@@ -122,6 +138,7 @@ def main():
   "historical_original_go_samples_grounded":True,
   "prereg_test_prior_to_oracles":True,
   "fully_original_source_variants_not_synthetic":True,
+  "full_frozen_fault_domain_realized":len(unresolved)==0,
   "different_OO_architectural_rivals_compared":False,
   "true_prospective_unseen_future_demand":False,
   "complete_Go_to_Lean_semantics":False,
@@ -132,7 +149,7 @@ def main():
  }
  out.parent.mkdir(parents=True,exist_ok=True)
  out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
- print("P42_R2_12_ORIGINAL_SOURCE_16_CONTEXT_192_NATIVE_TRACES_PARTITION_COURT_PASS")
+ print("P42_R2_VERIFIED_ORIGINAL_SOURCE_SUBCOHORT_AND_FINITE_PARTITION_COURT_PASS",len(versions),"UNRESOLVED",len(unresolved))
  print(json.dumps({k:result[k] for k in ("http_number_of_observation_classes","full_number_of_observation_classes","source_relative_exact_minimum_http_context_count","source_relative_exact_minimum_full_context_count","source_relative_lex_first_http_suite","source_relative_lex_first_full_suite")},ensure_ascii=False))
  print("INCOMPARABLE_ORIGINAL_REVISIONS",len(pareto_incomparable))
 if __name__=="__main__":main()
