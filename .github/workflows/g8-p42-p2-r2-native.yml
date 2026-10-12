@@ -117,7 +117,7 @@ jobs:
             tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json \
             out/p42-r2-native/all-original-go.log \
             out/p42-r2-native/exact-source-court.json | tee out/p42-r2-native/summary.log
-          grep -q 'P42_R2_12_ORIGINAL_SOURCE_16_CONTEXT_192_NATIVE_TRACES_PARTITION_COURT_PASS' out/p42-r2-native/summary.log
+          grep -q 'P42_R2_VERIFIED_ORIGINAL_SOURCE_SUBCOHORT_AND_FINITE_PARTITION_COURT_PASS' out/p42-r2-native/summary.log
       - if: always()
         uses: actions/upload-artifact@v4
         with:
