@@ -57,7 +57,12 @@ jobs:
           import json,subprocess
           from pathlib import Path
           doc=json.loads(Path("tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json").read_text())
-          a=doc["actual_programs"]
+          a=[dict(x) for x in doc["actual_programs"]]
+          amendment=json.loads(Path("tools/p42/p2-r2/source_locator_errata.json").read_text())
+          assert amendment["protocol"]=="P42_P2_R2_POST_FREEZE_SOURCE_LOCATOR_ERRATUM_V1"
+          assert a[3]["id"]=="C3" and a[3]["sha"]==amendment["frozen_transcription"]
+          assert len(a[3]["sha"])==39 and len(amendment["corrected_original_commit"])==40
+          a[3]["sha"]=amendment["corrected_original_commit"]
           assert len(a)==12
           root="tools/p42/p2-r2-native/original-echo"
           available=[];unresolved=[]
@@ -79,7 +84,7 @@ jobs:
           print("P42_R2_REAL_SOURCE_REACHABLE_SUBCOHORT_AND_FROZEN_ANCESTRY_PASS",len(available),"UNRESOLVED",len(unresolved))
           PY
           git rev-parse HEAD >out/p42-r2-native/harness-head.txt
-          sha256sum tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json tools/p42/p2-r2-native/fault_domain_source_test.go >out/p42-r2-native/input-sha256.txt
+          sha256sum tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json tools/p42/p2-r2/source_locator_errata.json tools/p42/p2-r2-native/fault_domain_source_test.go >out/p42-r2-native/input-sha256.txt
       - name: Test all original historical Echo Go revisions in declaration order
         shell: bash
         env:
@@ -91,6 +96,9 @@ jobs:
           import json
           from pathlib import Path
           doc=json.loads(Path("tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json").read_text())
+          amendment=json.loads(Path("tools/p42/p2-r2/source_locator_errata.json").read_text())
+          assert doc["actual_programs"][3]["sha"]==amendment["frozen_transcription"]
+          doc["actual_programs"][3]["sha"]=amendment["corrected_original_commit"]
           for r in doc["actual_programs"]:
               print(r["id"],r["sha"],sep="\t")
           PY
@@ -116,6 +124,7 @@ jobs:
           python tools/p42/p2-r2/exact_original_fault_domain_court.py \
             tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json \
             out/p42-r2-native/all-original-go.log \
+            tools/p42/p2-r2/source_locator_errata.json \
             out/p42-r2-native/exact-source-court.json | tee out/p42-r2-native/summary.log
           grep -q 'P42_R2_VERIFIED_ORIGINAL_SOURCE_SUBCOHORT_AND_FINITE_PARTITION_COURT_PASS' out/p42-r2-native/summary.log
       - if: always()
