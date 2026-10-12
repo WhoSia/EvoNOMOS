@@ -1,0 +1,37 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R6_EXTERNAL_CONSUMER_CROSS_TEMPORAL_PREREG_V1",
+  "status": "FROZEN_BEFORE_EXTERNAL_PROJECT_GO_COMPILATION",
+  "upstream_project": "go-chi/chi",
+  "original_release_commits": {
+    "before": "7957c0d4ddaee560a01110145dbf2809ffdb6663",
+    "after": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00"
+  },
+  "consumer": {
+    "repository": "heroku/x",
+    "commit": "59fc5216e297df6368fbf4e214bc91c7bb64a8ed",
+    "real_source": "hmiddleware/logger.go",
+    "real_tests": "hmiddleware/logger_test.go",
+    "module": "github.com/heroku/x",
+    "historical_2024_version_status": "UNKNOWN",
+    "source_is_unchanged_in_CI": true
+  },
+  "forecast": {
+    "go_test_package": "./hmiddleware",
+    "using_before_chi_source": "COMPILE_AND_TEST_SUCCESS",
+    "using_after_chi_source": "COMPILE_AND_TEST_SUCCESS",
+    "reason": "Real Heroku client constructs via chi factory or wraps existing writer and only calls stable Status/BytesWritten/Unwrap, does not implement required WrapResponseWriter interface itself"
+  },
+  "controls": {
+    "no_external_upstream_modification": true,
+    "go_workspace_outside_external_repos": true,
+    "if_failed_due_dependencies_or_unrelated_source": "TECHNICAL_HOLD not source API conformance failure",
+    "if_failed_due_chi_interface": "Record genuine incompatibility without after-the-fact prediction editing",
+    "go_toolchain": "1.25",
+    "strong_classical_rival": "source-aware method sets + caller factory/topology predicts compatibility in both versions"
+  },
+  "limits": [
+    "Cross-temporal test uses a pinned external project source snapshot potentially years AFTER upstream 2024 interface change; no claim its 2024 source had this form",
+    "Compile/test pass on a current frozen consumer is not a proof of zero migration burden for all external consumers",
+    "Only one external consumer originally compiled if this specific CI passes; Cortex and Milvus source witnesses remain source-only"
+  ]
+}
