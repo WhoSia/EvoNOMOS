@@ -83,3 +83,55 @@ Potential meaningful future theorem: establish sufficient—and where possible n
 - Next scientific gate: a historically genuine independently maintained 2024 consumer; source-to-ownership/lifetime model with actual checked simulation or falsifying trace; independent equal-information classical analyzer; demand sequences that produce non-nested repair option sets or real cost-vector preference reversals.
 
 **Canonical owner: P42 RUNNING. R10 is an evidence-building work unit, not a general TCS theorem. P43 HOLD. LAW-R2 NOT_AUTHORIZED.**
+
+---
+
+## 7. Hosted original-Go receipts: R10 R1 is SUCCESS
+
+[First hosted original-gRPC Actions #38223510662 — SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38223510662); tested EvoNOMOS commit 8f780a1d252a1bc1881cd892370e46e631956d8d, job 114725264857, artifact 11735457125, artifact ZIP SHA-256 93b8c920a23d3b813003f669679b57229f900605172a63d3d9890e5cbef2b10d.
+
+GitHub job logs confirm original upstream commit/file identities, registration of both genuine HTTP/2 mem.Copy call sites, frozen pretest ancestry, and actual Go tests for all four distinct researcher-authored candidate source trees.
+
+| Source candidate | Two live 2048B copies: first observed byte | Authored backend return count | Changed authored source files |
+| --- | ---: | ---: | --- |
+| base_shared | 0x42 | 2 | none |
+| provider_repair | 0x41 | 2 | provider.go |
+| adapter_repair | 0x41 | 2 | adapter.go + root.go |
+| nop_repair | 0x41 | 0 | root.go |
+
+The shared provider's isolation FAIL is an intended, correctly detected negative-control observation, **not** an upstream gRPC defect or GitHub Actions failure. No patch-cost minimality is established outside the declared edit grammar.
+
+## 8. R10-P2: frozen pooling threshold and original-Go contextual discontinuity
+
+[Second sealed hypothesis manifest](../../tools/p42/p2-r10/frozen_threshold_region_and_classical_rival.json) was committed at 226c431cef0bef41ab33add883397d1a67955849, **after** first R10 Go PASS and **before** authoring the new threshold tests and independent source-region model. The second workflow verifies that antecedent ordering and the unchanged freeze bytes.
+
+[Original-Go and equal-input classical validation #38323501620 — SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38323501620). Exact tested HEAD 00cc93dd9064db0c8aa79b89660c1005c5cb6077, job 115056746384, artifact 11779622864, ZIP SHA-256 1a66585e161c1eb4d16f0368e626f43f622c85d479328b9ab838766861e50f2d.
+
+Pinned grpc-go has pooling threshold **1024 bytes**. The original mem.Copy function returns a separately copied SliceBuffer at sizes <= 1024; at sizes > 1024 it calls the supplied pool.Get, copies into that region, and returns a reference-counted Buffer whose eventual Free calls pool.Put. The following are actual Go runtime observations:
+
+| Candidate | 1024B: first byte / returns | 1025B: first byte / returns | 2048B: first byte / returns |
+| --- | --- | --- | --- |
+| base_shared | 0x41 / 0 | 0x42 / 2 | 0x42 / 2 |
+| provider_repair | 0x41 / 0 | 0x41 / 2 | 0x41 / 2 |
+| adapter_repair | 0x41 / 0 | 0x41 / 2 | 0x41 / 2 |
+| nop_repair | 0x41 / 0 | 0x41 / 0 | 0x41 / 0 |
+
+**Restricted semantic claim:** for these two still-outstanding mem.Copy operations and fixed 0x41/0x42 payloads, the shared-backed provider destroys independence only on the original pooled branch; if pooling is bypassed or the selected provider allocates a fresh region for each outstanding acquisition, the selected first-byte interference vanishes. This is a precise case-specific explanation derived from 2024 source, not a general alias-safety theorem for all Go programs, goroutines, release orders, or schedules.
+
+## 9. Equal-information classical competitor: full finite adequacy, not originality
+
+[Classical source-region and lifetime audit](../../tools/p42/p2-r10/source_region_classical_audit.py) reads exactly the pinned original 2024 grpc source (Copy, NewBuffer, Free, Nop Get, pooling threshold) and the same Go source trees for the provider, adapter, and composition-root edits. It extracts only a **declared restricted syntax grammar**, deriving regions named slice-copy, shared or fresh; it predicts first bytes and return counts **before** comparing with runtime log lines.
+
+**12 of 12** source-state × size predictions exactly matched both frozen expectations and independent original Go runtime outputs. Four adversarial controls passed: changing shared Get into a fresh allocation changes the predicted outcome; changing root selection to original Nop changes accounting; an unrecognized provider statement causes abstention; and tampering with the original Copy pool.Get link causes abstention.
+
+It is not a general-purpose classical Go points-to solver nor a formally proved abstraction theorem. Nevertheless, even this bounded **classical allocation-region / alias / lifetime mechanism explains all observed distinctions** without new EvoNOMOS-specific axioms. Strong classical adequacy survives; novel theory superiority is NOT proven.
+
+## 10. Scope-relative repair graph and rights boundary
+
+Fix the declared one-step source-repair grammar: P = change provider Get (one authored source file), A = add legacy adapter + modify root (two files), N = choose original Nop at root (one file). For the selected 1024B isolation-only requirement, the baseline itself already passes; **zero edits** are necessary. For a 1025B isolation-only requirement, P, A, and N satisfy the selected observation while the baseline does not. For 1025B isolation plus the **research-only migrated-legacy-backend return-count requirement**, P and A survive but N does not.
+
+Under hypothetical local fixture editing rights, provider-only rights leave P; root-only rights leave N for isolation and no candidate for both demands; root+new-file rights leave A for both demands even when original provider source is not writable. These are source-edit grammar scenarios, **not verified 2024 gRPC maintainers' authorization history**.
+
+No global shortest patch, runtime or labor cost result, full source-to-Lean simulation, independent externally maintained contemporaneous 2024 consumer cohort, or empirical architecture-preference reversal follows from these observations.
+
+**Scientific verdict:** R10 original gRPC four-source Go PASS; R10-P2 12/12 original-Go/classical cross-check PASS; four fail-closed source mutation controls PASS; **classical theory sufficient for all observations**. P42 RUNNING, P43 HOLD, LAW-R2 NOT_AUTHORIZED.
