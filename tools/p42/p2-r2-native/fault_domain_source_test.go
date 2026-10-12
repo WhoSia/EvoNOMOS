@@ -51,10 +51,11 @@ var specs=[]ContextSpec{
 }
 func traceOne(sp ContextSpec) (o Observation) {
  o=Observation{Revision:os.Getenv("P42_R2_REVISION"),ID:sp.ID,Scenario:sp.Scenario,Method:sp.Method,Path:sp.Path}
+ requestStarted:=false
  defer func(){
   if r:=recover();r!=nil {
    o.PanicClass=fmt.Sprintf("%T",r)
-   if o.Status==0{o.RegistrationPanicked=true}else{o.RequestPanicked=true}
+   if requestStarted {o.RequestPanicked=true}else{o.RegistrationPanicked=true}
   }
  }()
  e:=echo.New()
@@ -105,6 +106,7 @@ func traceOne(sp ContextSpec) (o Observation) {
  }
  rec:=httptest.NewRecorder()
  req:=httptest.NewRequest(sp.Method,sp.Path,nil)
+ requestStarted=true
  e.ServeHTTP(rec,req)
  o.Status=rec.Code;o.Body=rec.Body.String();o.Header=rec.Header().Get("X-P42-R2")
  return
