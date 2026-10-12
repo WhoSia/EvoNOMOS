@@ -152,7 +152,7 @@ theorem threshold_when_partial_cost_exceeds_one
     (arrivals weight : Nat) (h : 1 < arrivals * weight) :
     segregatedSurface arrivals weight <
       bundleSurface arrivals weight := by
-  exact Nat.succ_lt_succ h
+  simpa [segregatedSurface, bundleSurface, Nat.add_comm] using (Nat.succ_lt_succ h)
 
 /- Explicit non-novelty: this is a bounded incidence-constraint model, not a
    discovery of a universal new OO/SOLID axiom or any historical actual cost. -/
