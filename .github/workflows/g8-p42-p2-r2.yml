@@ -1,0 +1,80 @@
+name: G8 LAW-R1-P42-P2-R2 Authentic Git Fault Domain
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r2/**'
+      - 'tools/p42/p2-native/authentic_history_fault_domain_test.go'
+      - '.github/workflows/g8-p42-p2-r2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-revisions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: f085ffbe8f99de165bd920746920000ab56bd6bc
+          fetch-depth: 0
+          path: tools/p42/p2-native/r2-original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen predecessor and authentic source SHA set
+        shell: bash
+        run: |
+          set -euo pipefail
+          freeze=bed60915a424020ac61c836b296ae07d1c29d2b7
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r2/authentic_history_fault_domain.json > /tmp/pre-native-r2.json
+          cmp /tmp/pre-native-r2.json tools/p42/p2-r2/authentic_history_fault_domain.json
+          if git cat-file -e "$freeze":tools/p42/p2-native/authentic_history_fault_domain_test.go 2>/dev/null; then exit 12; fi
+          mkdir -p out/p42-p2-r2
+          git rev-parse HEAD > out/p42-p2-r2/harness-head.txt
+          sha256sum tools/p42/p2-r2/authentic_history_fault_domain.json tools/p42/p2-native/authentic_history_fault_domain_test.go >out/p42-p2-r2/inputs.sha256
+          echo P42_R2_HISTORY_REVISIONS_FROZEN_BEFORE_TEST_CODE
+      - name: Run 6 original Echo history revisions x 8 fixed contexts
+        shell: bash
+        working-directory: tools/p42/p2-native
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go mod edit -replace=github.com/labstack/echo/v4=./r2-original-echo
+          while read -r label sha; do
+            git -C r2-original-echo checkout --detach -q "$sha"
+            test "$(git -C r2-original-echo rev-parse HEAD)" = "$sha"
+            P42_R2_VERSION="$label" go test -mod=mod -count=1 -run '^TestP42R2AuthenticRevisionFaultDomain$' -v . | tee "../../../out/p42-p2-r2/$label.log"
+          done <<'VERSIONS'
+          baseline 5440f99719cc8de4be2ae6abfc8f275302791730
+          first-fix 3f3770a030965f7c8092444d70239f5c5c7001d1
+          backtrack 358c2e8c9efd52ed18e0a7fc91332e2f3fcb9b05
+          wildcard-retry 89c1ce19eabf95fa476cb43ce5bca687a9309b14
+          last-pr-head 499f5639f31c8e780bb58da1785beffcaf56b3e0
+          merged f085ffbe8f99de165bd920746920000ab56bd6bc
+          VERSIONS
+      - name: Determine authentic source partitions and exact minimum context suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r2/minimum_context_court.py tools/p42/p2-r2/authentic_history_fault_domain.json out/p42-p2-r2 out/p42-p2-r2/finite-partitions.json | tee out/p42-p2-r2/audit.log
+          grep -q 'P42_R2_AUTHENTIC_HISTORY_CONTEXT_PARTITIONS_AND_MINIMUM_SET_COVER_PASS' out/p42-p2-r2/audit.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p2-r2-authentic-history-six-revisions-eight-contexts
+          path: out/p42-p2-r2/
+          retention-days: 90
