@@ -1,6 +1,6 @@
 name = "P42EvidenceJudgement"
 version = "0.1.0"
-defaultTargets = ["P42EvidenceJudgement", "P42HistoricalAuthorityNonidentifiability", "P42ContextualSeparation", "P42DemandIndexedRepairGeometry", "P42CapabilityObligationGeometry"]
+defaultTargets = ["P42EvidenceJudgement", "P42HistoricalAuthorityNonidentifiability", "P42ContextualSeparation", "P42DemandIndexedRepairGeometry", "P42CapabilityObligationGeometry", "P42HistoricalInterfaceCuts"]
 
 [[lean_lib]]
 name = "P42EvidenceJudgement"
@@ -16,3 +16,6 @@ name = "P42DemandIndexedRepairGeometry"
 
 [[lean_lib]]
 name = "P42CapabilityObligationGeometry"
+
+[[lean_lib]]
+name = "P42HistoricalInterfaceCuts"
