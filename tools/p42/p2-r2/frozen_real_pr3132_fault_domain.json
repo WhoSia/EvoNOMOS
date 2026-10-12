@@ -1,0 +1,206 @@
+{
+  "protocol": "EVONOMOS_P42_P2_RAVEL_R2_HISTORICAL_ORIGINAL_SOURCE_FAULT_DOMAIN_FREEZE_V1",
+  "phase": "P42-P2-R2",
+  "origin_decision": "Primary explanation: same-demand competitive OO structural boundaries, future change propagation and S/L/C/A/Q sign/Pareto reversal; TCS test selection is auxiliary.",
+  "limitation": "These twelve real original commits evolve one architecture, so this cohort does NOT compare DIRECT/INVERT nor BUNDLE/SPLIT.",
+  "history_kind": "REAL_UPSTREAM_ORIGINAL_PR_3132_COMMIT_CHAIN",
+  "source_repo": "labstack/echo",
+  "pr_number": 3132,
+  "source_code_readonly": true,
+  "actual_programs": [
+    {
+      "id": "PRE",
+      "sha": "5440f99719cc8de4be2ae6abfc8f275302791730"
+    },
+    {
+      "id": "C1",
+      "sha": "3f3770a030965f7c8092444d70239f5c5c7001d1"
+    },
+    {
+      "id": "C2",
+      "sha": "7d355b881d1af005f7e038b9b561a6613b935d05"
+    },
+    {
+      "id": "C3",
+      "sha": "358c2e8c9efd52ed18e0a7fc91332e2f3cb9b05"
+    },
+    {
+      "id": "C4",
+      "sha": "9e3f23dd0a161018c9b1f142322975640222c9de"
+    },
+    {
+      "id": "C5",
+      "sha": "b6f374666ed5fe4284ed3fad7175002a32e580a5"
+    },
+    {
+      "id": "C6",
+      "sha": "89c1ce19eabf95fa476cb43ce5bca687a9309b14"
+    },
+    {
+      "id": "C7",
+      "sha": "0641c51a00f8c5c704562e61844939375d3b4199"
+    },
+    {
+      "id": "C8",
+      "sha": "4b22adde7878a942945ca4c33949ab5ef72ceb1a"
+    },
+    {
+      "id": "C9",
+      "sha": "63cf6590e4ac9b04757e6d561d5cb2f1fae6a4f2"
+    },
+    {
+      "id": "C10",
+      "sha": "499f5639f31c8e780bb58da1785beffcaf56b3e0"
+    },
+    {
+      "id": "MERGED",
+      "sha": "f085ffbe8f99de165bd920746920000ab56bd6bc"
+    }
+  ],
+  "contexts": [
+    {
+      "id": "health",
+      "scenario": "health_only",
+      "method": "GET",
+      "path": "/health",
+      "moderator": "stable"
+    },
+    {
+      "id": "inline_basic",
+      "scenario": "inline_only",
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "moderator": "new-demand"
+    },
+    {
+      "id": "inline_bare",
+      "scenario": "inline_only",
+      "method": "GET",
+      "path": "/r/foo",
+      "moderator": "legacy-admission"
+    },
+    {
+      "id": "inline_other",
+      "scenario": "inline_only",
+      "method": "GET",
+      "path": "/r/foo:other",
+      "moderator": "legacy-admission"
+    },
+    {
+      "id": "generic_other",
+      "scenario": "inline_plus_generic",
+      "method": "GET",
+      "path": "/r/foo:other",
+      "moderator": "port-interaction"
+    },
+    {
+      "id": "generic_cancel",
+      "scenario": "inline_plus_generic",
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "moderator": "port-interaction"
+    },
+    {
+      "id": "order_cancel_rev",
+      "scenario": "generic_then_inline",
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "moderator": "registration-order"
+    },
+    {
+      "id": "backtrack_generic",
+      "scenario": "backtrack",
+      "method": "GET",
+      "path": "/r/a:vq/other",
+      "moderator": "search-fallback"
+    },
+    {
+      "id": "backtrack_verb",
+      "scenario": "backtrack",
+      "method": "GET",
+      "path": "/r/a:v/q/end",
+      "moderator": "search-fallback"
+    },
+    {
+      "id": "wildcard_interaction",
+      "scenario": "wildcard",
+      "method": "GET",
+      "path": "/r/a:x/info",
+      "moderator": "wildcard-priority"
+    },
+    {
+      "id": "complex_param",
+      "scenario": "complex",
+      "method": "GET",
+      "path": "/r/foo",
+      "moderator": "legacy-name"
+    },
+    {
+      "id": "leaf_path",
+      "scenario": "leaf",
+      "method": "GET",
+      "path": "/files/a/b",
+      "moderator": "param-leaf"
+    },
+    {
+      "id": "encoded_colon",
+      "scenario": "inline_plus_generic",
+      "method": "GET",
+      "path": "/r/foo%3Acancel",
+      "moderator": "URL-escaping"
+    },
+    {
+      "id": "method_fallback",
+      "scenario": "method_mix",
+      "method": "POST",
+      "path": "/r/foo:cancel",
+      "moderator": "verb-method"
+    },
+    {
+      "id": "wildcard_backtrack",
+      "scenario": "wildcard_post_get",
+      "method": "GET",
+      "path": "/r/a:v/q",
+      "moderator": "method-plus-wildcard"
+    },
+    {
+      "id": "method_405",
+      "scenario": "only_post_inline",
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "moderator": "method-not-allowed"
+    }
+  ],
+  "context_count": 16,
+  "source_before": "5440f99719cc8de4be2ae6abfc8f275302791730",
+  "source_merge": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+  "observer_fields": [
+    "panic_class",
+    "status",
+    "body",
+    "header",
+    "handler_id",
+    "template",
+    "param_names",
+    "param_values",
+    "bound_name",
+    "handler_calls"
+  ],
+  "tests": [
+    "Compute actual-source full trace partition and HTTP-only partition",
+    "Compute exact minimum context subset that preserves each selected partition, count tied minimizers",
+    "Compare demands for old route reachability and new inline-verb binding correctness separately, without scalar scores",
+    "Track source diffs and code locations independently from semantic test outcomes"
+  ],
+  "predeclared_hypotheses": [
+    "Distinct historical commits may be observationally equivalent under this 16-case suite",
+    "Some commits could be incomparable under old/new demand obligations",
+    "One unchanged response can hide a semantic parameter-binding divergence",
+    "Source-aware classical Myhill-Nerode and set-cover theory likely explains finite distinguishing suites"
+  ],
+  "classical_competitor": "finite observational equivalence, set-cover/hitting-set, non-scalar Pareto order",
+  "prospective_blind_unseen": false,
+  "go_to_lean_full_refinement": false,
+  "historical_upstream_edit_rights": "UNKNOWN",
+  "law_r2_authorized": false
+}
