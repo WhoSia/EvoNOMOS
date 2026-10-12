@@ -1,0 +1,35 @@
+name: P42 R5 Frozen Go Capability Obligation Study
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r5/frozen_capability_demand_matrix.json'
+      - 'tools/p42/p2-r5/audit_freeze.py'
+      - '.github/workflows/g8-p42-p2-r5-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate pretest frozen 16 case forecasts with no Go harness yet
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r5-freeze
+          test ! -f tools/p42/p2-r5/make_native_cases.py
+          python tools/p42/p2-r5/audit_freeze.py tools/p42/p2-r5/frozen_capability_demand_matrix.json out/p42-r5-freeze/receipt.json
+          git rev-parse HEAD >out/p42-r5-freeze/head.txt
+          sha256sum tools/p42/p2-r5/frozen_capability_demand_matrix.json >out/p42-r5-freeze/freeze.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r5-16-source-interface-case-freeze
+          path: out/p42-r5-freeze/
+          retention-days: 90
