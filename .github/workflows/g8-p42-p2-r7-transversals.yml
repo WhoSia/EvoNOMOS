@@ -1,0 +1,35 @@
+name: G8 LAW-R1-P42-P2-R7 Typed Obligation Hypergraph Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r7/**'
+      - '.github/workflows/g8-p42-p2-r7-transversals.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-typed-cutsets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exhaustively enumerate all source edit repair subsets and reject nonminimal ones
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r7
+          python tools/p42/p2-r7/audit_transversals.py tools/p42/p2-r7/frozen_typed_obligation_cutsets.json out/p42-r7/certificate.json | tee out/p42-r7/status.txt
+          grep -q 'P42_R7_EXHAUSTIVE_TYPED_OBLIGATION_HYPERGRAPH_CLASSICAL_TRANSVERSAL_PASS' out/p42-r7/status.txt
+          sha256sum tools/p42/p2-r7/frozen_typed_obligation_cutsets.json tools/p42/p2-r7/audit_transversals.py >out/p42-r7/input-sha256.txt
+          git rev-parse HEAD >out/p42-r7/tested-head.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r7-finite-classical-typed-cutset-enumeration
+          path: out/p42-r7/
+          retention-days: 90
