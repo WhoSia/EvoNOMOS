@@ -1,0 +1,302 @@
+{
+  "protocol": "EVONOMOS_G8_LAW_R1_P42_P2_R5_CAPABILITY_OBLIGATION_COURT_FROZEN_V1",
+  "title": "P42-P2-R5 — Capability-Obligation Coupling & Demand-Correlation Geometry: Source-Realized Interface Boundaries, Consumer-Specific Conformance, Change-Propagation Cuts & Conditional Pareto Reversals",
+  "version": "R5-FROZEN_BEFORE_GO_GENERATOR_AND_NATIVE_OUTCOMES",
+  "date": "2026-10-12",
+  "scientific_owner": "P42-P2 TCS, source-realized demand-indexed repair geometry",
+  "design": {
+    "original_upstream": "Go 1.25 native compiler and method-set language semantics; locally authored isolated Go source, NOT original Echo maintainer designs",
+    "matrix": [
+      "BUNDLE_DIRECT",
+      "BUNDLE_PORT",
+      "SEGREGATE_DIRECT",
+      "SEGREGATE_PORT"
+    ],
+    "demand_semantics": {
+      "R": "Replace READ backend by read-only provider; preserve EXPORT0",
+      "X": "Replace EXPORT backend by export-only provider; preserve READ0",
+      "RX": "Two separate partial replacement providers; both READ1/EXPORT1",
+      "C": "One coordinated full provider for both capabilities; READ1/EXPORT1"
+    },
+    "original_current_behavior": "Two consumers must always produce READ0 and EXPORT0 from Core provider",
+    "consumer_shape": {
+      "DIRECT": "read consumer argument concrete Core pointer; adapting it to another concrete provider requires one source signature edit per replaced consumer",
+      "PORT": "read/export consumers accept an interface; source signature remains identical after substitution"
+    },
+    "port_shape": {
+      "BUNDLE": "both client interfaces demand Read and Export on each injected provider (one combined interface declaration)",
+      "SEGREGATE": "one narrow Read capability interface and one narrow Export capability interface (two declarations)"
+    },
+    "fix_grammar": {
+      "provider_implementation": "R and X partial provider classes introduce their single useful capability method; C introduces two methods in a combined provider; these common demand-input source files are included in source artifact but separately tracked from propagated obligations",
+      "wiring": "each replaced consumer needs one composition-root expression edit",
+      "consumer": "DIRECT consumer argument type changes to match concrete replacement (one edit per replaced consumer)",
+      "obligation": "BUNDLE_PORT requires an extra irrelevant method on each partial provider to satisfy a broader interface; obligations are Go-compiler checked, not inferred from labels",
+      "out_of_scope": "arbitrary method changes, true deployment modification, method-body developer hours, performance and design of real historic Go projects"
+    },
+    "cost_vector_axes": [
+      "birth_interface_declarations",
+      "new_provider_useful_methods",
+      "consumer_signature_edits",
+      "composition_wiring_edits",
+      "forced_irrelevant_methods",
+      "old_client_contract_preserved"
+    ],
+    "edit_unit": "one explicitly located declared source site alteration; NOT lines of total code, engineering time or a universal atomic Go edit",
+    "negative_compiler_contract": "for BUNDLE_PORT demand R X RX, remove forced irrelevant methods; original Go type-checker must reject with missing method; the positive repaired source must compile",
+    "correlated_demand": "C is one full provider meeting both capabilities; RX are two independent partial providers. Same client output, different provider capability distribution",
+    "preregistered_classical_rival": "Classical structural subtyping/method set satisfaction and source-aware dependency cut counting with exactly same source and demands; may explain all cases",
+    "crossover_calculus": "PORT bundle has one initial interface declaration; PORT segregated has two. In a one-shot future mix P(partial)=p and P(coordinated)=1-p, late forced-method weight w, BP minus SP cost = -1 + p*w for R/X mix (each one partial provider). These p,w hypothetical and unmeasured.",
+    "nonclaims": [
+      "No full lifecycle developer effort benchmark",
+      "not independent original upstream module architecture competition",
+      "no new nonclassical TCS theorem just for edit-site counting",
+      "interface splitting never claimed universally optimal",
+      "unknown historical authority unchanged",
+      "LAW-R2 NOT_AUTHORIZED"
+    ]
+  },
+  "predictions": [
+    {
+      "id": "BUNDLE_DIRECT_R",
+      "architecture": "BUNDLE_DIRECT",
+      "demand": "R",
+      "expected": {
+        "consumer_signature_edits": 1,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT0",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_DIRECT_X",
+      "architecture": "BUNDLE_DIRECT",
+      "demand": "X",
+      "expected": {
+        "consumer_signature_edits": 1,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ0",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_DIRECT_RX",
+      "architecture": "BUNDLE_DIRECT",
+      "demand": "RX",
+      "expected": {
+        "consumer_signature_edits": 2,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 4,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_DIRECT_C",
+      "architecture": "BUNDLE_DIRECT",
+      "demand": "C",
+      "expected": {
+        "consumer_signature_edits": 2,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 4,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_PORT_R",
+      "architecture": "BUNDLE_PORT",
+      "demand": "R",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 1,
+        "touched_sites": 2,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT0",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_PORT_X",
+      "architecture": "BUNDLE_PORT",
+      "demand": "X",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 1,
+        "touched_sites": 2,
+        "expected_read": "READ0",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_PORT_RX",
+      "architecture": "BUNDLE_PORT",
+      "demand": "RX",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 2,
+        "touched_sites": 4,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "BUNDLE_PORT_C",
+      "architecture": "BUNDLE_PORT",
+      "demand": "C",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_DIRECT_R",
+      "architecture": "SEGREGATE_DIRECT",
+      "demand": "R",
+      "expected": {
+        "consumer_signature_edits": 1,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT0",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_DIRECT_X",
+      "architecture": "SEGREGATE_DIRECT",
+      "demand": "X",
+      "expected": {
+        "consumer_signature_edits": 1,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ0",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_DIRECT_RX",
+      "architecture": "SEGREGATE_DIRECT",
+      "demand": "RX",
+      "expected": {
+        "consumer_signature_edits": 2,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 4,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_DIRECT_C",
+      "architecture": "SEGREGATE_DIRECT",
+      "demand": "C",
+      "expected": {
+        "consumer_signature_edits": 2,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 4,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_PORT_R",
+      "architecture": "SEGREGATE_PORT",
+      "demand": "R",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 1,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT0",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_PORT_X",
+      "architecture": "SEGREGATE_PORT",
+      "demand": "X",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 1,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 1,
+        "expected_read": "READ0",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_PORT_RX",
+      "architecture": "SEGREGATE_PORT",
+      "demand": "RX",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    },
+    {
+      "id": "SEGREGATE_PORT_C",
+      "architecture": "SEGREGATE_PORT",
+      "demand": "C",
+      "expected": {
+        "consumer_signature_edits": 0,
+        "composition_wiring_edits": 2,
+        "forced_irrelevant_methods": 0,
+        "touched_sites": 2,
+        "expected_read": "READ1",
+        "expected_export": "EXPORT1",
+        "compilation": "PASS",
+        "original_go_language_feature": "method-set structural conformance and concrete argument compatibility"
+      }
+    }
+  ],
+  "post_freeze_go_source_oracle_exists": false
+}
