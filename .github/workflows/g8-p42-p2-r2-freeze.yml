@@ -1,0 +1,36 @@
+name: P42 RAVEL-R2 Original-Source Fault-Domain Prereg
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json
+      - tools/p42/p2-r2/audit_freeze.py
+      - .github/workflows/g8-p42-p2-r2-freeze.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prior-to-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Certify original historical programs, observer cases and absence of tests
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r2-freeze
+          python tools/p42/p2-r2/audit_freeze.py tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json out/p42-r2-freeze/certificate.json
+          test ! -f tools/p42/p2-r2-native/fault_domain_source_test.go
+          echo NATIVE_ORACLE_SOURCE_NOT_WRITTEN_BEFORE_FREEZE
+          git rev-parse HEAD >out/p42-r2-freeze/head.txt
+          sha256sum tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json >out/p42-r2-freeze/prereg.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r2-real-history-12x16-prereg
+          path: out/p42-r2-freeze/
+          retention-days: 90
