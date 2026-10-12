@@ -1,0 +1,115 @@
+name: P42 R6 Original Chi and gRPC Cross-Ecology Interface Compiler Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r6/chi-client/**'
+      - 'tools/p42/p2-r6/grpc-client/**'
+      - 'tools/p42/p2-r6/audit_native_compiler.py'
+      - '.github/workflows/g8-p42-p2-r6-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-golang-interface-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 7957c0d4ddaee560a01110145dbf2809ffdb6663
+          path: tools/p42/p2-r6/chi-pre
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: tools/p42/p2-r6/chi-post
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 7e12068baffd8e6328e99d901409cd49d0edebf6
+          path: tools/p42/p2-r6/grpc-pre
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r6/grpc-post
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check pre-native forecast ancestor and four original Git trees
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r6-native/logs
+          freeze=096aca61ea7c5f56c0919dfa3a8bb35930128815
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json >out/p42-r6-native/original-frozen.json
+          cmp tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json out/p42-r6-native/original-frozen.json
+          if git cat-file -e "$freeze":tools/p42/p2-r6/chi-client/chi_legacy_test.go 2>/dev/null; then echo BAD_PRETEST_ORACLE_CHI;exit 11;fi
+          if git cat-file -e "$freeze":tools/p42/p2-r6/grpc-client/grpc_pool_legacy_test.go 2>/dev/null; then echo BAD_PRETEST_ORACLE_GRPC;exit 12;fi
+          test "$(git -C tools/p42/p2-r6/chi-pre rev-parse HEAD)" = 7957c0d4ddaee560a01110145dbf2809ffdb6663
+          test "$(git -C tools/p42/p2-r6/chi-post rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C tools/p42/p2-r6/grpc-pre rev-parse HEAD)" = 7e12068baffd8e6328e99d901409cd49d0edebf6
+          test "$(git -C tools/p42/p2-r6/grpc-post rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          python tools/p42/p2-r6/audit_freeze.py tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json out/p42-r6-native/freeze-audit.json
+          git rev-parse HEAD >out/p42-r6-native/tested-head.txt
+          sha256sum tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json tools/p42/p2-r6/chi-client/*_test.go tools/p42/p2-r6/grpc-client/*_test.go >out/p42-r6-native/harness-sha256.txt
+          echo R6_TWO_HISTORICAL_PROJECTS_FOUR_IMMUTABLE_SOURCE_VERSIONS_PRETEST_LOCK_PASS
+      - name: Native Go versioned client method-set and execution jury
+        shell: bash
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          run_case(){
+            local case_name="$1" repo="$2" version="$3" tag="$4" directory="tools/p42/p2-r6/${2}-client"
+            local path="out/p42-r6-native/logs/${case_name}-${version}.log"
+            set +e
+            ( cd "$directory" && go test -mod=mod -count=1 -tags "$tag" -v . ) > "$path" 2>&1
+            local status=$?
+            set -e
+            printf '%s\t%s\t%s\t%s\n' "$case_name" "$repo" "$version" "$status" >>out/p42-r6-native/statuses.tsv
+            echo "${case_name}/${version}: go_exit=${status}"
+          }
+          for revision in pre post; do
+            ( cd tools/p42/p2-r6/chi-client && go mod edit "-replace=github.com/go-chi/chi/v5=../chi-${revision}" )
+            run_case chi-legacy-provider chi "$revision" chi_legacy
+            run_case chi-repaired-provider chi "$revision" chi_repaired
+            run_case chi-feature-client chi "$revision" chi_feature
+            ( cd tools/p42/p2-r6/grpc-client && go mod edit "-replace=google.golang.org/grpc=../grpc-${revision}" )
+            run_case grpc-legacy-pool grpc "$revision" grpc_pool_legacy
+            run_case grpc-pointer-pool grpc "$revision" grpc_pool_pointer
+            run_case grpc-legacy-codec grpc "$revision" grpc_codec_legacy
+            run_case grpc-v2-codec grpc "$revision" grpc_codec_v2
+          done
+          echo R6_SEVEN_COMPILER_CONTRACTS_TWO_HISTORICAL_REVISIONS_EXECUTED
+      - name: Compare fourteen actual typechecking results to frozen predictions and classical method sets
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r6/audit_native_compiler.py \
+            tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json \
+            out/p42-r6-native/statuses.tsv \
+            out/p42-r6-native/logs \
+            out/p42-r6-native/compilation-receipt.json | tee out/p42-r6-native/verdict.log
+          grep -q 'P42_R6_HISTORICAL_CHI_GRPC_NATIVE_14_OF_14_AND_CLASSICAL_REDUCTION_PASS' out/p42-r6-native/verdict.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r6-cross-ecology-original-source-go-methodset-court
+          path: out/p42-r6-native/
+          retention-days: 90
