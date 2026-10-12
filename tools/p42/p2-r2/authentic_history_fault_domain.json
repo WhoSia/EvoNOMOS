@@ -1,0 +1,101 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R2_AUTHENTIC_FAULT_DOMAIN_FREEZE_V1",
+  "phase": "P42-P2-R2",
+  "name": "Historical Revision Fault Domain & Contextual Distinguishability",
+  "source": "labstack/echo PR #3132 actual first-parent development commits (not synthetic mutations)",
+  "pre": "5440f99719cc8de4be2ae6abfc8f275302791730",
+  "variants": [
+    {
+      "id": "baseline",
+      "sha": "5440f99719cc8de4be2ae6abfc8f275302791730",
+      "origin": "actual PR merge parent"
+    },
+    {
+      "id": "first-fix",
+      "sha": "3f3770a030965f7c8092444d70239f5c5c7001d1",
+      "origin": "actual PR commit 1"
+    },
+    {
+      "id": "backtrack",
+      "sha": "358c2e8c9efd52ed18e0a7fc91332e2f3fcb9b05",
+      "origin": "actual PR commit 3"
+    },
+    {
+      "id": "wildcard-retry",
+      "sha": "89c1ce19eabf95fa476cb43ce5bca687a9309b14",
+      "origin": "actual PR commit 6"
+    },
+    {
+      "id": "last-pr-head",
+      "sha": "499f5639f31c8e780bb58da1785beffcaf56b3e0",
+      "origin": "actual PR commit 10"
+    },
+    {
+      "id": "merged",
+      "sha": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+      "origin": "actual merged result"
+    }
+  ],
+  "contexts": [
+    {
+      "id": "health",
+      "path": "/health",
+      "case": "control"
+    },
+    {
+      "id": "bare",
+      "path": "/r/foo",
+      "case": "compatibility"
+    },
+    {
+      "id": "inline",
+      "path": "/r/foo:cancel",
+      "case": "name-binding"
+    },
+    {
+      "id": "other",
+      "path": "/r/foo:other",
+      "case": "acceptance"
+    },
+    {
+      "id": "generic-fallback",
+      "path": "/r/a:vq/other",
+      "case": "backtracking"
+    },
+    {
+      "id": "inline-split",
+      "path": "/r/a:v/q/end",
+      "case": "verb-routing"
+    },
+    {
+      "id": "wildcard-fallback",
+      "path": "/r/a:v/q",
+      "case": "wildcard"
+    },
+    {
+      "id": "mixed-param",
+      "path": "/r/a:x/q",
+      "case": "static/verb"
+    }
+  ],
+  "observer_fields": [
+    "status",
+    "body",
+    "handler",
+    "template",
+    "param_names",
+    "param_values",
+    "name",
+    "handler_count"
+  ],
+  "oracle": "empirical unsupervised observational partition; do not predeclare equivalence classes, compute after actual go and flag contrary behavior; source/fixture definitions frozen before run",
+  "classical_comparator": "plain observational equivalence and greedy minimum test hitting set over observed distinct revision pairs",
+  "claims": [
+    "historical revisions are real intermediate implementations, not fabricated mutants",
+    "fault domain restricted to these six specific historical snapshots",
+    "the original author's tests informed candidate contexts; no blind prospective claim",
+    "minimality finite set cover only, not universal theorem for Echo",
+    "all source under read-only checkouts",
+    "no newly discovered TCS law claimed"
+  ]
+}
