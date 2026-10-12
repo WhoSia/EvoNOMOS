@@ -1,0 +1,138 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R7_TYPED_OBLIGATION_CUTSET_COURT_V1",
+  "name": "P42-P2-R7 — Demand-Indexed Typed Obligation Hypergraphs & Repair-Policy Duality: Original Interface Revisions, Minimal Hitting Sets, Consumer-Specific Compatibility and Classical Adequacy",
+  "status": "DECLARED_MODEL_BEFORE_R7_CI",
+  "ancestor_r6": "tools/p42/p2-r6/frozen_cross_ecology_interface_matrix.json",
+  "history": {
+    "chi": {
+      "pre": "7957c0d4ddaee560a01110145dbf2809ffdb6663",
+      "post": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+      "change": "ADD_REQUIRED_METHOD"
+    },
+    "grpc": {
+      "pre": "7e12068baffd8e6328e99d901409cd49d0edebf6",
+      "post": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+      "changes": [
+        "TYPED_SIGNATURE_SUBSTITUTION",
+        "OPT_IN_PARALLEL_CODEC"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "chi-implementor",
+      "real_source": "go-chi/chi",
+      "obligations": [
+        "Discard()"
+      ],
+      "repair_atoms": [
+        "addDiscardMethod",
+        "adapterImplementor",
+        "replaceProvider"
+      ],
+      "coverage": {
+        "addDiscardMethod": [
+          "Discard()"
+        ],
+        "adapterImplementor": [
+          "Discard()"
+        ],
+        "replaceProvider": [
+          "Discard()"
+        ]
+      },
+      "restricted_atoms": [
+        "addDiscardMethod"
+      ],
+      "expected_global_minimal": [
+        [
+          "addDiscardMethod"
+        ],
+        [
+          "adapterImplementor"
+        ],
+        [
+          "replaceProvider"
+        ]
+      ],
+      "expected_restricted_minimum": 1
+    },
+    {
+      "id": "grpc-old-bufferpool",
+      "real_source": "grpc/grpc-go",
+      "obligations": [
+        "Get(int) *[]byte",
+        "Put(*[]byte)"
+      ],
+      "repair_atoms": [
+        "editGetSignature",
+        "editPutSignature",
+        "wholeProviderAdapter",
+        "replacePoolProvider"
+      ],
+      "coverage": {
+        "editGetSignature": [
+          "Get(int) *[]byte"
+        ],
+        "editPutSignature": [
+          "Put(*[]byte)"
+        ],
+        "wholeProviderAdapter": [
+          "Get(int) *[]byte",
+          "Put(*[]byte)"
+        ],
+        "replacePoolProvider": [
+          "Get(int) *[]byte",
+          "Put(*[]byte)"
+        ]
+      },
+      "restricted_atoms": [
+        "editGetSignature",
+        "editPutSignature"
+      ],
+      "expected_global_minimal": [
+        [
+          "wholeProviderAdapter"
+        ],
+        [
+          "replacePoolProvider"
+        ],
+        [
+          "editGetSignature",
+          "editPutSignature"
+        ]
+      ],
+      "expected_restricted_minimum": 2
+    },
+    {
+      "id": "grpc-old-codec",
+      "real_source": "grpc/grpc-go",
+      "obligations": [],
+      "repair_atoms": [],
+      "coverage": {},
+      "restricted_atoms": [],
+      "expected_global_minimal": [
+        []
+      ],
+      "expected_restricted_minimum": 0
+    }
+  ],
+  "scope": {
+    "covered_by_original_go": "Go compiler R6 14/14 establishes compatibility statuses, not feasibility of every hypothetical adapter or provider replacement",
+    "theorem_domain": "finite explicitly constructed obligation hypergraph only",
+    "witness_disclaimers": [
+      "No source-built adapter implementations have been tested for R7",
+      "One-call source replacement cost does not necessarily correspond to one Go edit or runtime correctness",
+      "Methods must be typed full signatures; counts/names alone are insufficient",
+      "Minimal hitting sets are classical set cover / hypergraph transversal, not a new law",
+      "External consumer snapshots from 2026 are not contemporary 2024 client history"
+    ],
+    "actual_external_consumer_commit_dates": {
+      "heroku_x": "2026-08-18T17:31:48Z",
+      "cortex": "2026-10-12T00:54:38Z"
+    },
+    "strong_classical_competitor": "precise Go structural conformance plus finite hypergraph transversal; expected full parity",
+    "novel_universal_law": false,
+    "LAW_R2": false
+  }
+}
