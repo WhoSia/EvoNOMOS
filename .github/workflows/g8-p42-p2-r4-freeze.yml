@@ -1,0 +1,42 @@
+name: G8 LAW-R1-P42-P2-R4 Frozen Demand Edit Game
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r4/frozen_demand_edit_game.json'
+      - '.github/workflows/g8-p42-p2-r4-freeze.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate frozen source and demand families before executing new code
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r4-freeze
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('tools/p42/p2-r4/frozen_demand_edit_game.json').read_text())
+          assert x['protocol']=='EVONOMOS_P42_P2_R4_FROZEN_DEMAND_INDEXED_SOURCE_EDIT_GAME_V1'
+          assert x['pretest_status']=='FROZEN_BEFORE_NEW_R4_GO_SOURCE_FILES'
+          assert len(x['frozen_sequences'])==6
+          assert {a['id'] for a in x['frozen_sequences']}=={'L','N','LN','NL','LL','NN'}
+          assert not Path('tools/p42/p2-r4-native/states/single/routes.go').exists()
+          assert not Path('tools/p42/p2-r4-native/states/split/routes.go').exists()
+          assert x['upstream_original']['read_only'] is True
+          print('P42_R4_FROZEN_DEMAND_GAME_BEFORE_GO_ORACLES_PASS')
+          PY
+          git rev-parse HEAD >out/p42-r4-freeze/ancestor.txt
+          sha256sum tools/p42/p2-r4/frozen_demand_edit_game.json >out/p42-r4-freeze/manifest.sha256
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r4-demand-game-pre-native-frozen
+          path: out/p42-r4-freeze/
+          retention-days: 90
