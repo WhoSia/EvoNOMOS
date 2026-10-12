@@ -1,0 +1,58 @@
+name: G8 P42-P2-R9 Original gRPC Demand-Indexed Repair Options
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r9-native/**'
+      - '.github/workflows/g8-p42-r9-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  grpc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r9-native/grpc-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Historical source and frozen prediction ancestry
+        run: |
+          set -euo pipefail
+          freeze=a69f7e59c82f68314e81665e6e88260ab57d699f
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r9/frozen_client_demand_and_provider_choices.json > /tmp/frozen.json
+          cmp /tmp/frozen.json tools/p42/p2-r9/frozen_client_demand_and_provider_choices.json
+          if git cat-file -e "$freeze":tools/p42/p2-r9-native/demand_options_test.go 2>/dev/null;then exit 7;fi
+          test "$(git -C tools/p42/p2-r9-native/grpc-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          python tools/p42/p2-r9/audit_freeze.py tools/p42/p2-r9/frozen_client_demand_and_provider_choices.json
+          git rev-parse HEAD
+      - name: Original grpc BufferPool API and observer tests
+        working-directory: tools/p42/p2-r9-native
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v . | tee /tmp/r9.log
+          grep -q 'name=default-nop type=true isolated=true legacy_accounted=false' /tmp/r9.log
+          grep -q 'name=legacy-adapter type=true isolated=true legacy_accounted=true' /tmp/r9.log
+          grep -q 'name=shared-provider type=true isolated=false legacy_accounted=false' /tmp/r9.log
+          echo P42_R9_THREE_PROVIDERS_TWO_DEMANDS_CONTEXTUAL_ACCEPTANCE_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r9-three-providers-two-different-client-demands
+          path: /tmp/r9.log
+          retention-days: 90
