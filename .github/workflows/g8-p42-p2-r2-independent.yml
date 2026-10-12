@@ -1,0 +1,65 @@
+name: P42 RAVEL-R2 Independent TCS and Source-Geometry Postseal
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/p42/p2-r2/independent_source_geometry_and_minima.py
+      - .github/workflows/g8-p42-p2-r2-independent.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  independent-minimum-and-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 499f5639f31c8e780bb58da1785beffcaf56b3e0
+          fetch-depth: 11
+          path: tools/p42/p2-r2-original-history
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve immutable prior original Go execution artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r2-postseal/source
+          gh run download 38201312245 --repo WhoSia/EvoNOMOS \
+            --name p42-r2-twelve-historic-real-echo-source-versions-sixteen-client-contexts \
+            --dir out/p42-r2-postseal/source
+          test -s out/p42-r2-postseal/source/all-original-go.log
+          test -s out/p42-r2-postseal/source/exact-source-court.json
+          test "$(cat out/p42-r2-postseal/source/harness-head.txt)" = e9d796b12b54665a6be76a8c91b5b80e0e3270d8
+          cmp tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json out/p42-r2-postseal/source/frozen-from-original-commit.json
+          echo P42_R2_NATIVE_ORIGINAL_GO_ARTIFACT_RETRIEVED_WITH_PREREG_EVIDENCE
+      - name: Compute independent complete partition minimum and real source lifecycle geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r2/independent_source_geometry_and_minima.py \
+            tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json \
+            tools/p42/p2-r2/source_locator_errata.json \
+            out/p42-r2-postseal/source/all-original-go.log \
+            out/p42-r2-postseal/source/exact-source-court.json \
+            tools/p42/p2-r2-original-history \
+            out/p42-r2-postseal/independent-certificate.json \
+            | tee out/p42-r2-postseal/independent-verdict.log
+          grep -q 'P42_R2_INDEPENDENT_12_ORIGINAL_COMMITS_SOURCE_GEOMETRY_MINIMUM_PARETO_PASS' out/p42-r2-postseal/independent-verdict.log
+          git rev-parse HEAD >out/p42-r2-postseal/independent-code-head.txt
+          sha256sum tools/p42/p2-r2/independent_source_geometry_and_minima.py tools/p42/p2-r2/source_locator_errata.json >out/p42-r2-postseal/source-hashes.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r2-independent-minimum-and-source-change-geometry
+          path: out/p42-r2-postseal/
+          retention-days: 90
