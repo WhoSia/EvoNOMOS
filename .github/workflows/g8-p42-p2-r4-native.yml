@@ -1,0 +1,73 @@
+name: G8 LAW-R1-P42-P2-R4 Original Echo Source Repair Game
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r4-native/**'
+      - 'tools/p42/p2-r4/audit_repair_game.py'
+      - '.github/workflows/g8-p42-p2-r4-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-two-architecture-demand-game:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: f085ffbe8f99de165bd920746920000ab56bd6bc
+          path: tools/p42/p2-r4-native/original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert research freeze ancestry and unchanged original Go router
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r4
+          freeze=5fa5cf2c752dd490b8735ecb2b931ce62b69acfd
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r4/frozen_demand_edit_game.json >out/p42-r4/frozen-ancestor.json
+          cmp tools/p42/p2-r4/frozen_demand_edit_game.json out/p42-r4/frozen-ancestor.json
+          if git cat-file -e "$freeze":tools/p42/p2-r4-native/states/single/routes.go 2>/dev/null; then echo SOURCE_PRETEST_GATE_FAILURE; exit 10; fi
+          if git cat-file -e "$freeze":tools/p42/p2-r4-native/states/split/routes.go 2>/dev/null; then echo SOURCE_PRETEST_GATE_FAILURE; exit 11; fi
+          test "$(git -C tools/p42/p2-r4-native/original-echo rev-parse HEAD)" = f085ffbe8f99de165bd920746920000ab56bd6bc
+          git rev-parse HEAD >out/p42-r4/harness-head.txt
+          sha256sum tools/p42/p2-r4/frozen_demand_edit_game.json tools/p42/p2-r4-native/states/single/routes.go tools/p42/p2-r4-native/states/split/routes.go >out/p42-r4/inputs.sha256
+          echo P42_R4_SOURCE_PRECOMMIT_UNCHANGED_UPSTREAM_AND_REVISION_GATE_PASS
+      - name: Run native original Echo Go over source edit game
+        working-directory: tools/p42/p2-r4-native
+        env:
+          P42_R4_ECHO_SHA: f085ffbe8f99de165bd920746920000ab56bd6bc
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          go test -mod=mod -count=1 -v ./... | tee ../../../out/p42-r4/native-original-go.log
+      - name: Independently verify original-source delta and exhaustive game minimality
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r4/audit_repair_game.py \
+            tools/p42/p2-r4/frozen_demand_edit_game.json \
+            tools/p42/p2-r4-native/states/single/routes.go \
+            tools/p42/p2-r4-native/states/split/routes.go \
+            out/p42-r4/native-original-go.log \
+            out/p42-r4/repair-game-receipt.json | tee out/p42-r4/verification.log
+          grep -q P42_R4_128_ORIGINAL_ECHO_TRACES_12_EXHAUSTIVE_MIN_EDIT_PATHS_PASS out/p42-r4/verification.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r4-original-go-future-repair-paths-and-minimality
+          path: out/p42-r4/
+          retention-days: 90
