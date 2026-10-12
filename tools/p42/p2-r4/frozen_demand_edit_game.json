@@ -1,0 +1,239 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R4_FROZEN_DEMAND_INDEXED_SOURCE_EDIT_GAME_V1",
+  "date": "2026-10-12",
+  "title": "P42-P2-R4 — Demand-Indexed Repair Transition Systems: Source-Realized Option Fibers, Non-Congruence of Present Behavioral Quotients, Order-Sensitive Change Paths & Conditional Lifecycle Reversal",
+  "pretest_status": "FROZEN_BEFORE_NEW_R4_GO_SOURCE_FILES",
+  "origin": "Only source-grounded architecture structure interacting with future requirement stream qualifies; response distinguishability is auxiliary",
+  "upstream_original": {
+    "repository": "labstack/echo",
+    "ref": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+    "read_only": true
+  },
+  "source_states": {
+    "SINGLE": {
+      "description": "original Echo with one verb route",
+      "extra_route_registrations": 1,
+      "old_contract": "GET /health => health, GET /r/foo:cancel => new:foo"
+    },
+    "SPLIT": {
+      "description": "same original Echo with same verb route plus generic fallback",
+      "extra_route_registrations": 2,
+      "old_contract": "identical to SINGLE for the two D0 requests"
+    }
+  },
+  "source_edit_grammar": {
+    "ADD_FALLBACK": "SINGLE => SPLIT; exactly one added original-Echo route registration in authored Go source",
+    "REMOVE_FALLBACK": "SPLIT => SINGLE; delete exactly the same route registration",
+    "NOOP": "state remains identical",
+    "reversible": true,
+    "proof_scope": "only these two locally authored source assemblies, not all Go edits"
+  },
+  "demand_alphabet": {
+    "L": {
+      "label": "legacy restore",
+      "requests": [
+        {
+          "path": "/r/foo",
+          "status": 200,
+          "body": "legacy:foo"
+        },
+        {
+          "path": "/r/foo:other",
+          "status": 200,
+          "body": "legacy:foo:other"
+        }
+      ],
+      "required_state": "SPLIT"
+    },
+    "N": {
+      "label": "deny generic requests",
+      "requests": [
+        {
+          "path": "/r/foo",
+          "status": 404
+        },
+        {
+          "path": "/r/foo:other",
+          "status": 404
+        }
+      ],
+      "required_state": "SINGLE"
+    }
+  },
+  "old_clients": [
+    {
+      "path": "/health",
+      "status": 200,
+      "body": "health"
+    },
+    {
+      "path": "/r/foo:cancel",
+      "status": 200,
+      "body": "new:foo"
+    }
+  ],
+  "frozen_sequences": [
+    {
+      "id": "L",
+      "stream": [
+        "L"
+      ],
+      "paths": {
+        "SINGLE": [
+          "SINGLE",
+          "SPLIT"
+        ],
+        "SPLIT": [
+          "SPLIT",
+          "SPLIT"
+        ]
+      },
+      "edit_count": {
+        "SINGLE": 1,
+        "SPLIT": 0
+      }
+    },
+    {
+      "id": "N",
+      "stream": [
+        "N"
+      ],
+      "paths": {
+        "SINGLE": [
+          "SINGLE",
+          "SINGLE"
+        ],
+        "SPLIT": [
+          "SPLIT",
+          "SINGLE"
+        ]
+      },
+      "edit_count": {
+        "SINGLE": 0,
+        "SPLIT": 1
+      }
+    },
+    {
+      "id": "LN",
+      "stream": [
+        "L",
+        "N"
+      ],
+      "paths": {
+        "SINGLE": [
+          "SINGLE",
+          "SPLIT",
+          "SINGLE"
+        ],
+        "SPLIT": [
+          "SPLIT",
+          "SPLIT",
+          "SINGLE"
+        ]
+      },
+      "edit_count": {
+        "SINGLE": 2,
+        "SPLIT": 1
+      }
+    },
+    {
+      "id": "NL",
+      "stream": [
+        "N",
+        "L"
+      ],
+      "paths": {
+        "SINGLE": [
+          "SINGLE",
+          "SINGLE",
+          "SPLIT"
+        ],
+        "SPLIT": [
+          "SPLIT",
+          "SINGLE",
+          "SPLIT"
+        ]
+      },
+      "edit_count": {
+        "SINGLE": 1,
+        "SPLIT": 2
+      }
+    },
+    {
+      "id": "LL",
+      "stream": [
+        "L",
+        "L"
+      ],
+      "paths": {
+        "SINGLE": [
+          "SINGLE",
+          "SPLIT",
+          "SPLIT"
+        ],
+        "SPLIT": [
+          "SPLIT",
+          "SPLIT",
+          "SPLIT"
+        ]
+      },
+      "edit_count": {
+        "SINGLE": 1,
+        "SPLIT": 0
+      }
+    },
+    {
+      "id": "NN",
+      "stream": [
+        "N",
+        "N"
+      ],
+      "paths": {
+        "SINGLE": [
+          "SINGLE",
+          "SINGLE",
+          "SINGLE"
+        ],
+        "SPLIT": [
+          "SPLIT",
+          "SINGLE",
+          "SINGLE"
+        ]
+      },
+      "edit_count": {
+        "SINGLE": 0,
+        "SPLIT": 1
+      }
+    }
+  ],
+  "cost_policy": {
+    "initial_S_single": 1,
+    "initial_S_split": 2,
+    "late_action_count": "number of add/remove source registration operations; 0 for no-op; not human-hours or full patch churn",
+    "cost_is_vector": "keep initial source registrations, subsequent edit count, final source registrations and client-preservation separately; no single calibrated S/L/C/A/Q score",
+    "conditional_sensitivity_not_measured": "for a one-shot legacy probability p, denial probability 1-p and hypothetical late edit weight w, cost_single=1+p*w, cost_split=2+(1-p)*w, split preferred iff (2p-1)*w>1; not estimated p or w",
+    "asymmetric_policy": "if w=2, p>0.75 is a possible mathematical threshold, not empirical forecasting evidence"
+  },
+  "formal_claims": [
+    "present D0 behavior equivalence DOES NOT determine minimum source edit count under future demand",
+    "opposite one-step demands produce opposite conditional late edit preference",
+    "source-edit action applicability cannot be reconstructed from frozen D0 observations alone",
+    "sequence order LN versus NL changes number of edits per initial architecture",
+    "historical source structure is not replaced by arbitrary synthetic alternate worlds"
+  ],
+  "classic_rivals": [
+    "finite labeled transition systems and demand games",
+    "DeltaCCS delta-oriented variability-aware congruence",
+    "featured transition systems",
+    "classical source-aware guarded CSP/shortest-path dynamic programming",
+    "Parnas information hiding and real options"
+  ],
+  "limits": [
+    "new two-state authored source assemblies are real Go using unchanged upstream router, NOT historical maintainer design alternatives",
+    "source-state transitions are independently verified finite source patches, NOT a universal Go edit calculus",
+    "no novelty claim over standard graph shortest paths, dynamic programming or featured transition systems",
+    "historical upstream rights UNKNOWN; no writes to labstack/echo",
+    "no quantified real developer productivity or runtime performance",
+    "LAW-R2 NOT_AUTHORIZED"
+  ]
+}
