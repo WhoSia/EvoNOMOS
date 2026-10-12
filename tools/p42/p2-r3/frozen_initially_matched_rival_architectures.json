@@ -1,0 +1,105 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R3_INITIAL_DEMAND_MATCHED_SOURCE_ARCHITECTURE_RIVALS_FREEZE_V1",
+  "status": "FROZEN_BEFORE_NATIVE_RIVAL_GO_TEST",
+  "source_repo": "labstack/echo",
+  "unchanged_original_sha": "f085ffbe8f99de165bd920746920000ab56bd6bc",
+  "stage": "P42-P2-R3_ORIGIN_RETURN_STRUCTURAL_INTERVENTION",
+  "explanation": "The original project asks when actual OO architecture boundaries win, fail or reverse under later requirements. This tests time-indexed route-boundary installation vs later repair, not a new universal SOLID law.",
+  "rival_architectures": [
+    {
+      "id": "SINGLE",
+      "source_registration_graph": [
+        "GET /r/:name\\\\:cancel"
+      ],
+      "initial_extra_source_surface": 1,
+      "requires_late_edit_for_legacy": true
+    },
+    {
+      "id": "SPLIT",
+      "source_registration_graph": [
+        "GET /r/:name\\\\:cancel",
+        "GET /r/:name"
+      ],
+      "initial_extra_source_surface": 2,
+      "requires_late_edit_for_legacy": false
+    },
+    {
+      "id": "SPLIT_REVERSE",
+      "source_registration_graph": [
+        "GET /r/:name",
+        "GET /r/:name\\\\:cancel"
+      ],
+      "initial_extra_source_surface": 2,
+      "requires_late_edit_for_legacy": false
+    },
+    {
+      "id": "SINGLE_REPAIRED",
+      "source_registration_graph": [
+        "GET /r/:name\\\\:cancel",
+        "GET /r/:name"
+      ],
+      "initial_extra_source_surface": 2,
+      "late_extra_source_edits": 1
+    }
+  ],
+  "frozen_initial_demand": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "want_status": 200,
+      "want_body": "health"
+    },
+    {
+      "method": "GET",
+      "path": "/r/foo:cancel",
+      "want_status": 200,
+      "want_body": "new:foo"
+    }
+  ],
+  "frozen_possible_late_demand": [
+    {
+      "method": "GET",
+      "path": "/r/foo",
+      "want_status": 200,
+      "want_body": "legacy:foo"
+    },
+    {
+      "method": "GET",
+      "path": "/r/foo:other",
+      "want_status": 200,
+      "want_body": "legacy:foo:other"
+    }
+  ],
+  "declared_frame": [
+    "actual registered route",
+    "HTTP status",
+    "HTTP body",
+    "X-Rival handler identity",
+    "handler-call count",
+    "Context.Param(name)"
+  ],
+  "costs_separate": {
+    "S": "actual number of route registrations in source architecture at each phase (not function points)",
+    "L": "number of additional authored source registration operations to handle late demand (not engineering hours or actual upstream patch lines)",
+    "C": "named old/new client capability requirements and conformance only; no full bundled interface burden inferred",
+    "A": "local user-authorized research fixture only, historical upstream merge permission UNKNOWN",
+    "Q": "native pinned original Echo router actual HTTP behavior"
+  },
+  "before_execution_hypotheses": [
+    "Both SINGLE and SPLIT have exactly equal declared initial client results.",
+    "SINGLE uses one router registration in initial source; SPLIT uses two.",
+    "For late legacy clients, SINGLE fails until adding a sibling generic handler; SPLIT works without later source edit.",
+    "After late repair, SINGLE_REPAIRED and SPLIT satisfy same declared clients. Under no late demand, SINGLE retains strictly smaller initial registration surface.",
+    "Total source route registrations under late demand become equal; no overall lifecycle scalar-winner or strict full-life sign reversal is presumed.",
+    "Registration order of generic and literal-inline route is a separate possible source moderator; verify in original source rather than assuming commutation."
+  ],
+  "rival_type": "source-realized AUTHOR-DEFINED ARCHITECTURE ASSEMBLIES using unchanged original upstream router; NOT original maintainer alternatives",
+  "classically_explainable": "basic real-options tradeoff, source-edit timing, frame and contextual refinement; no prior-art superiority claimed",
+  "prohibits": [
+    "claim full SOLID derivation",
+    "claim independent historical architect choice",
+    "claim net life-cycle superiority from one extra route",
+    "scalarize S/L/C/A/Q",
+    "LAW-R2"
+  ]
+}
