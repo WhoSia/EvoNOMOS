@@ -55,6 +55,16 @@ can hold **within the declared finite repair language**. It is wrong to claim a 
 
 This verifier independently validates the finite **combinatorial statements**, **not** native feasibility, source patch count, time cost or semantic correctness. R6 Go CI, which is separate, remains the original source evidence for the interface compatibility mechanism. The classical Go method-set model and classical hitting set theory explain all current results; no novel TCS advantage claimed.
 
+### 3B. New native adapter feasibility — one source-level adapter, two typed obligations
+
+The formerly **abstract** gRPC `wholeProviderAdapter` cover now has a **real source-checkable witness**: [the R7 source adapter](../../tools/p42/p2-r7/grpc-adapter/source_adapter_test.go) wraps an author-defined legacy `Get(int) []byte; Put([]byte)` pool, re-exposes `Get(int) *[]byte; Put(*[]byte)`, and is accepted as the original **2024 postchange `mem.BufferPool`**.
+
+[Independent original gRPC POST source CI #38212706462 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38212706462), exact test harness HEAD `1207f14f2a64d9d8b822f9fd4ef7f2f135d1bf7f`, artifact **`11729912314`** SHA-256 **`841e2997c2ff702b9f54d82e9c3287705be2a234af38dd7b40d9296951d8b9ae`**.
+
+This native Go fixture uses an unchanged checkout of `grpc/grpc-go` at POST `9ab8b62505c85a5e03be1ae97949e960e24b6d4f`, a compile-time `var _ mem.BufferPool = (*adaptedPool)(nil)` interface assertion and a selected roundtrip test. It observed a 4-byte get, mutated its first byte, returned it and verified that the old pool received the same contents with exactly one get/put call each.
+
+**Evidence promotion:** source-realizability of a *single adapter declaration covering both signature mismatches* is verified for this specific Go client fixture. **Still open:** whether this one repair atom is globally smaller than edits to both method signatures in patch bytes, edits across real external consumers, allocated memory, alias/ownership semantics, concurrency, pooling reuse or performance. A one-atom repair is a **grammar-level cost**, not a universal one-line patch or semantically complete `mem.BufferPool` refinement.
+
 ### 4. Structural fault-domain rather than arbitrary OO axiomatization
 
 The more promising EvoNOMOS direction is to work with a source-constrained **fault domain** (ℱ) whose candidate repair operators are backed by source-realized patches. Four distinctions matter:
@@ -68,10 +78,10 @@ For a genuine additional structural discovery, preregister a fault domain built 
 
 ### 5. Open gates
 
-1. **R7-P2 source realizability:** write and compile original pinned Go adapters/provider replacements (not stubs alone), and classify structural compatibility separately from `Discard`/pointer pool runtime semantics. Recompute any minimum only after explicitly verifying what counts as an edit atom.
+1. **R7-P2 source realizability:** the single legacy `[]byte`-to-`*[]byte` post-gRPC adapter is now **native VERIFIED** for a selected Get/Put roundtrip (#38212706462). Next independently test the remaining provider substitutions and more demanding buffer aliasing/reuse semantics; compute repair minima only with explicit source-edit costs.
 2. **Historical consumer cohort:** locate read-only 2024 effective historical client commits, inspect and compile their actual interfaces where available. Do not label 2026 snapshots contemporaneous.
 3. **Independent consumer demand:** construct source-aware dependency/consumer graph and verify graph edges against real imported interface types and original method calls—not only authored toy callers.
 4. **Fault-domain minimal distinguishing suite:** use multiple original source-checkable repair variants and independently preregistered old/new client tests. Finite minimality must have an explicit fault domain and cost model.
 5. **Formal strength:** if appropriate, verify source-to-finite-interface abstraction and constrained repair minimality in Lean, but require a real source-to-model bridge before inferring global Go results.
 
-**R7 current verdict: finite classical typed-obligation repair geometry VERIFIED; real R6 cross-ecology interface behavior retained; abstract adapter feasibility, historic contemporaneous external consumers and source-to-model completeness OPEN. P42 RUNNING; LAW-R2 NOT_AUTHORIZED.**
+**R7 current verdict: finite classical typed-obligation repair geometry VERIFIED; real R6 cross-ecology interface behavior retained; a native single-adapter structural and selected roundtrip witness exists, while global patch-cost, other alternative adapter feasibility, historic contemporaneous external consumers and source-to-model completeness remain OPEN. P42 RUNNING; LAW-R2 NOT_AUTHORIZED.**
