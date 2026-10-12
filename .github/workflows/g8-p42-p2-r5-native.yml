@@ -1,0 +1,91 @@
+name: P42 R5 Native Go Capability and Change Propagation Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r5/make_native_cases.py'
+      - 'tools/p42/p2-r5/audit_native_go.py'
+      - '.github/workflows/g8-p42-p2-r5-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-four-by-four:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Assert frozen prediction ancestor and no native Go generator at freeze
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r5-native
+          freeze=16bf17a36bdc38852228b36dae8ca37764173de9
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r5/frozen_capability_demand_matrix.json >out/p42-r5-native/manifest-at-freeze.json
+          cmp tools/p42/p2-r5/frozen_capability_demand_matrix.json out/p42-r5-native/manifest-at-freeze.json
+          if git cat-file -e "$freeze":tools/p42/p2-r5/make_native_cases.py 2>/dev/null; then echo GENERATOR_EXISTED_BEFORE_PREDICTION_FREEZE; exit 7; fi
+          python tools/p42/p2-r5/audit_freeze.py tools/p42/p2-r5/frozen_capability_demand_matrix.json out/p42-r5-native/frozen-audit.json
+          git rev-parse HEAD >out/p42-r5-native/source-head.txt
+          sha256sum tools/p42/p2-r5/*.py tools/p42/p2-r5/*.json >out/p42-r5-native/inputs.sha256
+          echo P42_R5_IRREVERSIBLE_16_CASE_PRE_NATIVE_FREEZE_PASS
+      - name: Generate compilable Go source and native compiler-negative control programs
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r5/make_native_cases.py --manifest tools/p42/p2-r5/frozen_capability_demand_matrix.json --out out/p42-r5-native/generated
+      - name: Compile and run four native Go baseline states plus 16 demand source variants
+        shell: bash
+        env:
+          GO111MODULE: 'on'
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          root=Path("out/p42-r5-native/generated")
+          evidence={"baseline":{},"positive":{},"negative":{}}
+          for d in sorted((root/"baselines").iterdir()):
+              p=subprocess.run(["go","run","."],cwd=d,text=True,capture_output=True,check=True)
+              evidence["baseline"][d.name]=json.loads(p.stdout)
+          for d in sorted((root/"cases").iterdir()):
+              p=subprocess.run(["go","run","."],cwd=d,text=True,capture_output=True,check=True)
+              evidence["positive"][d.name]=json.loads(p.stdout)
+          for d in sorted((root/"negative").iterdir()):
+              p=subprocess.run(["go","build","."],cwd=d,text=True,capture_output=True)
+              if p.returncode == 0:
+                  raise AssertionError("missing unrelated BUNDLE method unexpectedly typechecked: "+d.name)
+              diagnostic=p.stderr + p.stdout
+              if "missing method" not in diagnostic:
+                  raise AssertionError("wrong Go typecheck rejection for "+d.name+": "+diagnostic)
+              evidence["negative"][d.name]={"build_rejected":True,"diagnostic":diagnostic.strip()}
+          Path("out/p42-r5-native/native-outcomes.json").write_text(json.dumps(evidence,indent=2,sort_keys=True)+"\n")
+          print("P42_R5_REAL_GO_4_BASELINE_16_DEMAND_AND_3_REJECTED_PARTIAL_BUNDLE_CASES")
+          PY
+      - name: Independently inspect source edits and compare 16 frozen forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r5/audit_native_go.py \
+            tools/p42/p2-r5/frozen_capability_demand_matrix.json \
+            out/p42-r5-native/generated \
+            out/p42-r5-native/native-outcomes.json \
+            out/p42-r5-native/source-court.json | tee out/p42-r5-native/source-verdict.log
+          grep -q 'P42_R5_ALL_16_REAL_GO_COMPILED_CASES_3_NEGATIVE_TYPECHECKS_AND_SITE_AUDIT_PASS' out/p42-r5-native/source-verdict.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r5-go-four-architecture-sixteen-demand-compiler-court
+          path: out/p42-r5-native/
+          retention-days: 90
