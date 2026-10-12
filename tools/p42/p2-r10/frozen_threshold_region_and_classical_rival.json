@@ -1,0 +1,80 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R10_P2_BOUNDARY_REGION_CLASSICAL_RIVAL_FREEZE_V1",
+  "parent_run": {
+    "id": 38223510662,
+    "job": 114725264857,
+    "artifact": 11735457125,
+    "digest": "sha256:93b8c920a23d3b813003f669679b57229f900605172a63d3d9890e5cbef2b10d",
+    "status": "SUCCESS"
+  },
+  "upstream": {
+    "repo": "grpc/grpc-go",
+    "sha": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+    "pool_threshold_bytes": 1024
+  },
+  "predictions": [
+    {
+      "size": 1024,
+      "observed_first": {
+        "base_shared": 65,
+        "provider_repair": 65,
+        "adapter_repair": 65,
+        "nop_repair": 65
+      },
+      "returned_puts": {
+        "base_shared": 0,
+        "provider_repair": 0,
+        "adapter_repair": 0,
+        "nop_repair": 0
+      }
+    },
+    {
+      "size": 1025,
+      "observed_first": {
+        "base_shared": 66,
+        "provider_repair": 65,
+        "adapter_repair": 65,
+        "nop_repair": 65
+      },
+      "returned_puts": {
+        "base_shared": 2,
+        "provider_repair": 2,
+        "adapter_repair": 2,
+        "nop_repair": 0
+      }
+    },
+    {
+      "size": 2048,
+      "observed_first": {
+        "base_shared": 66,
+        "provider_repair": 65,
+        "adapter_repair": 65,
+        "nop_repair": 65
+      },
+      "returned_puts": {
+        "base_shared": 2,
+        "provider_repair": 2,
+        "adapter_repair": 2,
+        "nop_repair": 0
+      }
+    }
+  ],
+  "classical_rival": {
+    "input": "Exact 2024 original grpc mem/buffers.go and buffer_pool.go plus generated Go source for provider Get, legacy adapter Get and selected root wiring; avoid feeding runtime logs/labels to predictor",
+    "strategy": "Restricted syntax-extracted symbolic allocation-region and ownership-lifetime analysis. On unrecognized source grammar abstain (no unsupported general-Go soundness).",
+    "mutation_controls": [
+      "unknown provider body -> ABSTAIN",
+      "remove original mem.Copy pool.Get -> ABSTAIN",
+      "change shared Get to fresh make -> observed alias classification flips",
+      "replace root selection with original Nop -> accounting classification flips"
+    ],
+    "expected_relation": "Model should match original Go on all 12 finite source/context configurations; no claimed independent novelty"
+  },
+  "limitations": [
+    "Not a third-party 2024 consumer cohort",
+    "Not a Go full-abstraction theorem",
+    "No concurrency freedom",
+    "No global source patch minimum",
+    "No measured performance or engineering labor"
+  ]
+}
