@@ -1,0 +1,115 @@
+name: P42 RAVEL-R2 Original Historical Echo 12x16 Structural Fault Domain
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r2-native/**'
+      - 'tools/p42/p2-r2/exact_original_fault_domain_court.py'
+      - '.github/workflows/g8-p42-p2-r2-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-fault-domain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 499f5639f31c8e780bb58da1785beffcaf56b3e0
+          fetch-depth: 11
+          path: tools/p42/p2-r2-native/original-echo
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: f085ffbe8f99de165bd920746920000ab56bd6bc
+          fetch-depth: 2
+          path: tools/p42/p2-r2-native/merged-original-echo
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enforce temporal pretest freeze, source ancestry and full original commit chain
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r2-native
+          freeze=b3711fbbbc30f128a6e5d2eedd42f723458aebcc
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json >out/p42-r2-native/frozen-from-original-commit.json
+          cmp tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json out/p42-r2-native/frozen-from-original-commit.json
+          if git cat-file -e "$freeze":tools/p42/p2-r2-native/fault_domain_source_test.go 2>/dev/null; then
+            echo HISTORIC_OBSERVATION_WRITTEN_BEFORE_FREEZE
+            exit 6
+          fi
+          python tools/p42/p2-r2/audit_freeze.py tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json out/p42-r2-native/freeze-audit.json
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          doc=json.loads(Path("tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json").read_text())
+          a=doc["actual_programs"]
+          assert len(a)==12
+          root="tools/p42/p2-r2-native/original-echo"
+          for i,record in enumerate(a[:11]):
+              sha=record["sha"]
+              subprocess.check_call(["git","-C",root,"cat-file","-e",sha+"^{commit}"])
+              if i:
+                  parent=subprocess.check_output(["git","-C",root,"rev-parse",sha+"^"],text=True).strip()
+                  assert parent==a[i-1]["sha"],(record["id"],parent)
+          merged="tools/p42/p2-r2-native/merged-original-echo"
+          assert subprocess.check_output(["git","-C",merged,"rev-parse","HEAD"],text=True).strip()==a[-1]["sha"]
+          assert subprocess.check_output(["git","-C",merged,"rev-parse","HEAD^"],text=True).strip()==a[0]["sha"]
+          print("P42_R2_ALL_TWELVE_ACTUAL_GIT_SOURCE_STATES_AND_FROZEN_ANCESTRY_PASS")
+          PY
+          git rev-parse HEAD >out/p42-r2-native/harness-head.txt
+          sha256sum tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json tools/p42/p2-r2-native/fault_domain_source_test.go >out/p42-r2-native/input-sha256.txt
+      - name: Test all original historical Echo Go revisions in declaration order
+        shell: bash
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          python - <<'PY' >out/p42-r2-native/source-ids.tsv
+          import json
+          from pathlib import Path
+          doc=json.loads(Path("tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json").read_text())
+          for r in doc["actual_programs"]:
+              print(r["id"],r["sha"],sep="\t")
+          PY
+          while IFS=$'\t' read -r id sha; do
+            echo "P42_R2_CURRENT_REAL_SOURCE id=$id sha=$sha" | tee -a out/p42-r2-native/all-original-go.log
+            if [ "$id" = MERGED ]; then
+              (cd tools/p42/p2-r2-native && go mod edit -replace=github.com/labstack/echo/v4=./merged-original-echo)
+            else
+              git -C tools/p42/p2-r2-native/original-echo checkout -q --detach "$sha"
+            fi
+            (
+              cd tools/p42/p2-r2-native
+              P42_R2_REVISION="$id" go test -mod=mod -run '^TestR2RealHistoricalFaultDomain$' -count=1 -timeout=45s -v .
+            ) | tee -a out/p42-r2-native/all-original-go.log
+          done <out/p42-r2-native/source-ids.tsv
+      - name: Compute exact finite observational quotient, Pareto demand vectors and minimum separating family
+        run: |
+          set -euo pipefail
+          python tools/p42/p2-r2/exact_original_fault_domain_court.py \
+            tools/p42/p2-r2/frozen_real_pr3132_fault_domain.json \
+            out/p42-r2-native/all-original-go.log \
+            out/p42-r2-native/exact-source-court.json | tee out/p42-r2-native/summary.log
+          grep -q 'P42_R2_12_ORIGINAL_SOURCE_16_CONTEXT_192_NATIVE_TRACES_PARTITION_COURT_PASS' out/p42-r2-native/summary.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r2-twelve-historic-real-echo-source-versions-sixteen-client-contexts
+          path: out/p42-r2-native/
+          retention-days: 90
