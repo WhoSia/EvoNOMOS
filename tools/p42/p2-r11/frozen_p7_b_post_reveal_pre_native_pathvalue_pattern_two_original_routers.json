@@ -1,0 +1,47 @@
+{
+  "protocol": "EVONOMOS_R11_P7_B_POST_UNSEAL_PRE_NATIVE_ARCHITECTURE_REPAIR_FORECAST_V1",
+  "no_blind_reclassification": "Phase A freeze 79872f3b before discovering merged PR #985/#986. Both fall outside A label vocabulary and MUST count as FIRST_STAGE_ABSTAIN. This B manifest follows public PR body/diff inspection and must never be called a blind holdout.",
+  "heldout_genuine_merged_maintainer_demands": [
+    {
+      "repo": "go-chi/chi",
+      "pr": 985,
+      "user": "catatsuy",
+      "created": "2025-02-23",
+      "merged": "2025-08-15",
+      "feature": "Go http.Request.PathValue(userID) must expose path parameter without accessing chi-private context",
+      "commit": "80d8da2a18da3e307518f6fc3abaac2aa15b4d30",
+      "scope": "example addition; existing implementation may already support it"
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 986,
+      "user": "Gusted",
+      "created": "2025-03-03",
+      "merged": "2025-08-26",
+      "feature": "Go >=1.23 http.Request.Pattern must report actual matched source route template",
+      "commit": "d12cc49622f31a01c6cceea7cdb62f647660102c",
+      "scope": "actual mux.go + build-tag source update and tests"
+    }
+  ],
+  "two_actual_competing_2024_maintained_cores": {
+    "chi": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+    "gorilla": "b4617d0b9670ad14039b2739167fd35a60f557c5"
+  },
+  "test_observer": "register GET /health old body OLD; register GET /users/{userID}; issue request /users/Ada; captured handler-source param='Ada', request.PathValue('userID')='Ada', request.Pattern='/users/{userID}'. Observe actual response and old health on both unmodified original routers.",
+  "prereg_before_native_matrix": {
+    "chi_raw_old": "PASS",
+    "gorilla_raw_old": "PASS",
+    "chi_raw_pathvalue": "PASS",
+    "gorilla_raw_pathvalue": "FAIL_EMPTY",
+    "chi_raw_request_pattern": "FAIL_EMPTY",
+    "gorilla_raw_request_pattern": "FAIL_EMPTY",
+    "chi_research_route_context_adapter": "PASS_ALL_DECLARED_D0_D985_D986",
+    "gorilla_research_route_context_adapter": "PASS_ALL_DECLARED_D0_D985_D986"
+  },
+  "exact_adapter_grammar": "Research-authored per-route function wrapping real core handler, without upstream edits, reading core's own matched param via chi.URLParam or gorilla.Vars and setting req.SetPathValue plus req.Pattern; this is an opt-in client-side/context rewrite with added source wrapper and client adoption, NOT an originally accepted maintainer change nor exhaustive minimal patch",
+  "expected_counters": "Both raw original cores build/serve old HTTP 200 and handler count exactly 1; Go 1.23+ required for Pattern and PathValue; no backend source modifications in native tests",
+  "cost_labels": "Count research-authored changed fixture lines, added adapter functions, explicit source code touched, and matched semantic runtime benchmark ns/byte/alloc on same host; time sign ABSTAIN, original upstream rights UNKNOWN, no claimed measured human labor. Actual Chi #986 upstream files cost separately: 4 files including tests with build-tag dispatch.",
+  "equal_info_classical_baseline": "Source-aware classical routing/matched-context projection must get real core source and explicit http.Request API, plus exact PR problem. Predict same matrix; if HARC predicts identical labels, no new discriminatory advantage. CCR2 / Iris / DimSum are strongest literature competitors, but do not claim executing Rocq/Coq.",
+  "timing": "Phase B after reading PR body and patch, before creating any R11-P7 native Go fixtures",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
