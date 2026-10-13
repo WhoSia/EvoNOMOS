@@ -1,0 +1,13 @@
+{
+  "protocol": "R11_P8_EVENT_ORIGINAL_TAG_NAME_CORRIGENDUM",
+  "immutable_initial_preseal": "2fb5c96ed05ffc0b26e1e7e440d3ed7857a12bd3",
+  "wrong_locator": "primus/eventemitter3 ref v5.0.1 returns 404, tag absent",
+  "correct_locator": "primus/eventemitter3 ref 5.0.1 resolves; package.json original version 5.0.1",
+  "actual_original_source_blobs": {
+    "index_js": "6ea485c40a694deb72801fcd0048a3c44de95403",
+    "package_json": "47843d2e2d22c5bf1d514b1edc8edd56798289d4"
+  },
+  "outcome_seal": "The 4 event behavior predictions in the initial preseal remain byte-for-byte unchanged. Only tag locator corrected after tag resolution; before original Node execution.",
+  "known_external_author_summary": "EventEmitter3 readme explains discrepancies; external behavior hypothesis is documentation-informed, not blind algorithm prediction.",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
