@@ -1,0 +1,62 @@
+{
+  "protocol": "R11_P8_CLOSED_COHORT_IDS_FROZEN_BEFORE_ANY_PR_BODY_DIFF_REVIEW",
+  "preseal": "2fb5c96ed05ffc0b26e1e7e440d3ed7857a12bd3",
+  "selection_order": "GitHub query sort created asc (search returned no created_at field; observed numeric order monotonically increasing; do not assert tie-break proven)",
+  "strata": [
+    {
+      "repo": "go-chi/chi",
+      "state": "merged",
+      "count_query": 11,
+      "selected": [
+        985,
+        986
+      ],
+      "leaked_prior_P7": [
+        985,
+        986
+      ],
+      "blind_eligible": []
+    },
+    {
+      "repo": "go-chi/chi",
+      "state": "closed_unmerged",
+      "count_query_at_least": 25,
+      "selected": [
+        1026,
+        1028
+      ],
+      "blind_eligible": [
+        1026,
+        1028
+      ]
+    },
+    {
+      "repo": "gorilla/mux",
+      "state": "merged",
+      "count_query": 0,
+      "fallbacks": [
+        "path:0",
+        "any:0"
+      ],
+      "selected": [],
+      "blind_eligible": []
+    },
+    {
+      "repo": "gorilla/mux",
+      "state": "closed_unmerged",
+      "count_query": 3,
+      "selected": [
+        782,
+        801
+      ],
+      "blind_eligible": [
+        782,
+        801
+      ]
+    }
+  ],
+  "survivorship_warning": "Exact cohort has 2 prior known Chi merged, 4 actually unread closed-unmerged, no Gorilla merged; do not estimate universal acceptance likelihood. Closed-unmerged may include rejected/abandoned/not-merged for other reasons, not infer rationale.",
+  "blind_eligible_n": 4,
+  "minimum_for_global_rank": 3,
+  "source_contents_not_viewed_for_four_selected": true
+}
