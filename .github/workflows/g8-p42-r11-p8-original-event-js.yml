@@ -1,0 +1,54 @@
+name: P42 R11 P8 Original JavaScript Event Paradigm Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p8_*'
+      - 'tools/p42/p2-r11-event/**'
+      - '.github/workflows/g8-p42-r11-p8-original-event-js.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-node-and-ee3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: primus/eventemitter3
+          ref: 5.0.1
+          path: tools/p42/p2-r11-event/original-eventemitter3
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Check frozen behavioral forecast, locator erratum and true original source
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p8
+          freeze=2fb5c96ed05ffc0b26e1e7e440d3ed7857a12bd3
+          fix=ea100bb0e56d95f0f5028b0e33eb4035006c0227
+          git merge-base --is-ancestor "$freeze" HEAD
+          git merge-base --is-ancestor "$fix" HEAD
+          git show "$freeze":tools/p42/p2-r11/frozen_p8_unknown_pr_strata_rank_and_new_event_paradigm.json > out/p42-r11-p8/original-frozen-event-hypothesis.json
+          cmp out/p42-r11-p8/original-frozen-event-hypothesis.json tools/p42/p2-r11/frozen_p8_unknown_pr_strata_rank_and_new_event_paradigm.json
+          ! git cat-file -e "$freeze":tools/p42/p2-r11-event/r11_p8_native_original_event_emitter_court.cjs 2>/dev/null
+          git -C tools/p42/p2-r11-event/original-eventemitter3 rev-parse HEAD | tee out/p42-r11-p8/original-eventemitter3-commit.txt
+          test "$(git -C tools/p42/p2-r11-event/original-eventemitter3 hash-object index.js)" = 6ea485c40a694deb72801fcd0048a3c44de95403
+          test "$(git -C tools/p42/p2-r11-event/original-eventemitter3 hash-object package.json)" = 47843d2e2d22c5bf1d514b1edc8edd56798289d4
+          git -C tools/p42/p2-r11-event/original-eventemitter3 status --porcelain | tee out/p42-r11-p8/original-source-unchanged.txt
+          test ! -s out/p42-r11-p8/original-source-unchanged.txt
+          node -v | tee out/p42-r11-p8/node-native-runtime-version.txt
+          echo R11_P8_ORIGINAL_JS_SOURCE_BLOBS_AND_PRESEAL_PASS
+      - name: Execute the two originally evolved event systems with old and future contracts
+        env: {R11_P8_ORIGINAL_EVENTEMITTER3_DIR: './tools/p42/p2-r11-event/original-eventemitter3'}
+        run: |
+          set -eu
+          node tools/p42/p2-r11-event/r11_p8_native_original_event_emitter_court.cjs | tee out/p42-r11-p8/native-javascript-event-forecast.log
+          grep -q R11_P8_TWO_ORIGINAL_EVENT_PARADIGM_OLD_CONTRACT_EQUIVALENCE_FUTURE_DEMAND_REVERSAL_PASS out/p42-r11-p8/native-javascript-event-forecast.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p8-original-node-and-eventemitter3-native-event-contracts
+          path: out/p42-r11-p8/
