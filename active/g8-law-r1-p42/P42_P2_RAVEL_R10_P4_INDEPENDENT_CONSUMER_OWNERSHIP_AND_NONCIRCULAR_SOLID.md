@@ -119,3 +119,42 @@ Do **not** write 'Thanos's release mode is better' or 'Nop mode is better'. The 
 4. If the strongest classical theory predicts the same result, **retain as classical adequacy**, do not promote to novel SOLID or EvoNOMOS law.
 
 **Closure verdict:** R10-P4 SOURCE-REAL-INDEPENDENT-CONSUMERS PASS; scoped ownership contract difference and cross-module byte noninterference PASS; equal-source classical analyzer PASS; meaningful new mathematical/software-design law remains **UNIDENTIFIED**. P42 RUNNING · P43 HOLD · LAW-R2 NOT_AUTHORIZED.
+
+
+## 7. R10-P4-MATH-A: an exact minimal observer refinement, not a universal SOLID axiom
+
+**Post-outcome mathematical analysis (not preregistered).** Take the **exact two original Thanos build configurations** \(a_0\) (default) and \(a_1\) (\`slicelabels\`) under the **single, 2048-byte original gRPC Buffer context** \(c^\*\). A Go counting-pool input, the later original OTel codec outputs, and the declared release sequence are fixed, as described above.
+
+Write \(\beta(a)\) for the returned byte sequence, \(\chi(a)\in\{0,1\}\) for existence of the returned cleanup callback, and \(\rho(a)\in\{0,1\}\) for whether the origin counting pool receives exactly one Put after the specified source-Free-then-if-available-cleanup sequence.
+
+The actual original-Go observations establish
+
+\[
+\begin{aligned}
+\beta(a_0)&=\beta(a_1),\\
+(\chi(a_0),\rho(a_0))&=(1,1),\\
+(\chi(a_1),\rho(a_1))&=(0,0).
+\end{aligned}
+\]
+
+**Proposition — byte-only prediction impossibility on the two-state fixed support.** For this test support \(U=\{a_0,a_1\}\), there exists no function \(g\) satisfying \(\rho(a)=g(\beta(a))\) for all \(a\in U\). Proof: equal input \(\beta(a_0)=\beta(a_1)\) would require equal \(g\) outputs, contradicting the observed unequal \(\rho\). Thus the byte-output quotient is strictly coarser than the quotient sufficient to decide the declared ownership-return requirement. The single extra bit \(\chi\) **does** distinguish these two exact source states, so one additional binary distinction is necessary and sufficient on \(U\) (not for all programs, requirements or ownership policies).
+
+In kernel language,
+
+\[
+\ker(\beta,\chi)\ \subsetneq\ \ker(\beta)
+\]
+
+on this registered support. The mathematical inference is ordinary factorization/observational equivalence; the contribution is an authentic **cross-repository software consumer witness** with the source and execution identities pinned.
+
+**Guarded composition frame (classical).** Let \(T_A,T_B\) be local trace sets and \(\pi_A,\pi_B\) their projections to the same **ownership-complete shared interface alphabet** \(\Sigma\). Under an explicitly validated compositional semantics
+\[
+T_{A\otimes B}=\{(x,y)\in T_A\times T_B:\pi_A(x)=\pi_B(y)\},
+\]
+and refinements \(T'_A\subseteq T_A\), \(T'_B\subseteq T_B\), it follows immediately that \(T'_{A\otimes B}\subseteq T_{A\otimes B}\). Proof: every synchronized pair from the smaller product is already a synchronized pair from the larger product. **But** this implication is only as adequate as the interface trace alphabet and the exact pullback assumption. If \(\Sigma\) omits release/borrow-transfer events that the client can observe later, the premise that \(\pi\) is ownership-complete is false. In our test, \(\beta\) alone is an explicit counterexample to treating that projection as ownership-complete.
+
+This has a precise relevance to LSP and DIP *without assuming either*: a source-level interface or emitted byte trace is not a sufficient abstraction for substitution in a client whose contract observes later release behavior. The proper object of refinement must include such events, or the result must be explicitly scoped to clients that never observe them.
+
+**Non-circularity test:** The predicates \(\chi\), \(\rho\), the trace pullback and preservation rule were defined in the programming semantics without mentioning any SOLID label. LSP/DIP can be interpreted **afterward** as restricted policy families within those semantics. This is a defensible translation and a falsification of output-only sufficiency, **not** a derivation of all five SOLID principles as universal or mutually exhaustive design laws. Classical contextual refinement, reference counting and separation/ownership logic remain sufficient explanations on all verified evidence.
+
+**Decision for next court:** Do not create a new axiomatic framework merely to restate this proposition. Obtain genuinely independent future maintenance demands with two adequate, implementable structural alternatives, preregister a discriminating observable that source-aware classical rivals cannot trivially reproduce, and evaluate actual lifecycle outcomes or repair-option survival under the same information budget.
