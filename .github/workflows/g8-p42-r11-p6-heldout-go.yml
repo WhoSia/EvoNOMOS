@@ -1,0 +1,63 @@
+name: P42 R11 P6 Unseen grpc-go Release Temporal Holdout
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p6_unseen_grpc_release_temporal_holdout.json'
+      - '.github/workflows/g8-p42-r11-p6-heldout-go.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  heldout-original-grpc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Checkout previously unseen original grpc-go release tag
+        uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: v1.78.0
+          path: tools/p42/p2-r11-go/original-unseen-v1-78
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: tools/p42/p2-r11-go/original-unseen-v1-78/go.mod
+          cache: false
+      - name: Verify provenance, time-ordered freeze and input test fixture
+        run: |
+          set -eu
+          mkdir -p out/p42-r11
+          sealed=b118c55cbc21037129a774ee2996c74dc9708957
+          git merge-base --is-ancestor "$sealed" HEAD
+          git show "$sealed":tools/p42/p2-r11/frozen_p6_unseen_grpc_release_temporal_holdout.json > out/p42-r11/p6-frozen-previously-unseen.json
+          cmp out/p42-r11/p6-frozen-previously-unseen.json tools/p42/p2-r11/frozen_p6_unseen_grpc_release_temporal_holdout.json
+          ! git cat-file -e "$sealed":.github/workflows/g8-p42-r11-p6-heldout-go.yml 2>/dev/null
+          dir=tools/p42/p2-r11-go/original-unseen-v1-78
+          git -C "$dir" rev-parse HEAD | tee out/p42-r11/p6-original-release-head.txt
+          git -C "$dir" log -1 --format="%H %an <%ae> %as" | tee out/p42-r11/p6-original-release-meta.txt
+          git -C "$dir" hash-object mem/buffers.go | tee out/p42-r11/p6-original-mem-blob.txt
+          git -C "$dir" hash-object codec.go | tee out/p42-r11/p6-original-codec-blob.txt
+          cp tools/p42/p2-r11-go/r11_p4_buffer_repair_external_test.go "$dir/mem/evonomos_p42_r11_p6_test.go"
+          cp tools/p42/p2-r11-go/r11_p4_codec_bridge_external_test.go "$dir/evonomos_p42_r11_p6_test.go"
+          echo R11_P6_GENUINELY_UNSEEN_RELEASE_SOURCE_CUSTODY_PASS
+      - name: Test original release hidden mem-pool predictions without modifications
+        working-directory: tools/p42/p2-r11-go/original-unseen-v1-78
+        env: {R11_P4_EXPECT_SHORT_LONG_POOL: '1'}
+        run: |
+          set -eu
+          go test ./mem -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p6-actual-source-mem.log"
+          echo R11_P6_UNSEEN_RELEASE_CAPACITY_POOL_INVARIANT_PASS
+      - name: Test original release hidden codec-callsite predictions
+        working-directory: tools/p42/p2-r11-go/original-unseen-v1-78
+        env: {R11_P4_EXPECT_SHORT_LONG_POOL: '1'}
+        run: |
+          set -eu
+          go test . -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p6-actual-source-codec.log"
+          echo R11_P6_UNSEEN_RELEASE_CODEC_OBSERVER_INVARIANT_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p6-genuinely-unseen-grpc-v1-78-0-release
+          path: out/p42-r11/
