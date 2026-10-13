@@ -62,6 +62,15 @@ jobs:
           fi
           sha256sum tools/p42/p2-r10/frozen_threshold_region_and_classical_rival.json tools/p42/p2-r10/source_region_classical_audit.py >> out/p42-r10/sha256.txt
           echo R10_P2_BOUNDARY_AND_RIVAL_PRESEAL_PASS
+          # R10-P3 signed original-old/future-demand path freeze before all source paths.
+          p3freeze=117b9ba0f0f12b4358e6011a00e4c9aa77f02b7d
+          git merge-base --is-ancestor "$p3freeze" HEAD
+          git show "$p3freeze":tools/p42/p2-r10/frozen_p3_multistep_source_repair_paths.json > out/p42-r10/frozen-p3-first.json
+          cmp out/p42-r10/frozen-p3-first.json tools/p42/p2-r10/frozen_p3_multistep_source_repair_paths.json
+          if git cat-file -e "$p3freeze":tools/p42/p2-r10-native/make_multistep_snapshots.py 2>/dev/null;then echo P3_FIXTURE_BEFORE_PRESEAL;exit 31;fi
+          if git cat-file -e "$p3freeze":tools/p42/p2-r10/verify_multistep_paths.py 2>/dev/null;then echo P3_VERIFIER_BEFORE_PRESEAL;exit 32;fi
+          sha256sum tools/p42/p2-r10/frozen_p3_multistep_source_repair_paths.json tools/p42/p2-r10-native/make_multistep_snapshots.py tools/p42/p2-r10/verify_multistep_paths.py >> out/p42-r10/sha256.txt
+          echo R10_P3_MULTISTEP_PATH_PRESEAL_PASS
       - name: Materialize typed source patch alternatives
         run: |
           set -euo pipefail
@@ -99,6 +108,39 @@ jobs:
           set -euo pipefail
           python3 tools/p42/p2-r10/source_region_classical_audit.py tools/p42/p2-r10-native/grpc-original tools/p42/p2-r10-native/generated out/p42-r10/native-original-grpc.log out/p42-r10/source-region-classical-comparison.json | tee out/p42-r10/classical-audit.log
           grep -q 'R10_CLASSICAL_MATCH_12_OF_12_AND_FOUR_NEGATIVE_CONTROLS_PASS' out/p42-r10/classical-audit.log
+      - name: Materialize preregistered original-Go multi-step source patch states
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r10-native/make_multistep_snapshots.py | tee out/p42-r10/p3-source-snapshots.log
+          cp tools/p42/p2-r10-native/paths/snapshot_manifest.json out/p42-r10/p3-source-snapshot-manifest.json
+      - name: Execute unchanged original gRPC client at six source checkpoints
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          (cd tools/p42/p2-r10-native && go test -mod=mod -count=1 -v ./paths/states/...) | tee out/p42-r10/p3-native-original-grpc-path-states.log
+          for state in baseline adapter_prepared adapter_selected provider_repaired nop_selected nop_adapter_prepared;do
+            grep -q "R10_P3_STATE id=$state " out/p42-r10/p3-native-original-grpc-path-states.log
+          done
+          echo R10_P3_SIX_ORIGINAL_GRPC_SOURCE_STATES_NATIVE_PASS
+      - name: Original Go rejects root-first adapter missing source
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          if (cd tools/p42/p2-r10-native && go test -mod=mod ./paths/invalid/unprepared_adapter_root) >out/p42-r10/p3-invalid-source-compile.log 2>&1;then
+            echo R10_P3_EXPECTED_COMPILE_FAILURE_MISSING;exit 41
+          fi
+          grep -Eq 'undefined: legacyPool|undefined: legacyAdapter' out/p42-r10/p3-invalid-source-compile.log
+          echo R10_P3_ORIGINAL_GO_ROOT_FIRST_COMPILE_COUNTEREXAMPLE_PASS
+      - name: Equal-information classic observer-path model and edit atom audit
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r10/verify_multistep_paths.py tools/p42/p2-r10-native/grpc-original out/p42-r10/p3-native-original-grpc-path-states.log out/p42-r10/p3-invalid-source-compile.log out/p42-r10/p3-classical-and-native-paths.json | tee out/p42-r10/p3-classical-path-audit.log
+          grep -q R10_P3_SIX_PATHS_SAME_ENDPOINT_DIFFERENT_PREFIX_SAFETY_CLASSICAL_PASS out/p42-r10/p3-classical-path-audit.log
+          echo R10_P3_NATIVE_AND_CLASSICAL_PATH_COMPOSITION_PASS
       - if: always()
         uses: actions/upload-artifact@v4
         with:
