@@ -1,0 +1,54 @@
+name: P42 R11 P8C Authentic Merged Chi Alternative Context Clone Repair
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p8c_actual_upstream_chi_repair_replacement_genealogy.json'
+      - 'tools/p42/p2-r11-go/r11_p8c_real_merged_chi_clone_test.go'
+      - '.github/workflows/g8-p42-r11-p8c-real-maintainer-clone-go.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  real-maintainer-merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 15767233591fd4267ae99d05299fa3807c375cdd
+          path: tools/p42/p2-r11-go/p8c-original-merged-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: tools/p42/p2-r11-go/p8c-original-merged-chi/go.mod
+          cache: false
+      - name: Assert real maintainer merge SHA and original post-reveal pre-native history seal
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p8c
+          frozen=737788644cc0b597446a4b21be727e09317a88d8
+          git merge-base --is-ancestor "$frozen" HEAD
+          git show "$frozen":tools/p42/p2-r11/frozen_p8c_actual_upstream_chi_repair_replacement_genealogy.json > out/p42-r11-p8c/maintainer-history-pre-native.json
+          cmp out/p42-r11-p8c/maintainer-history-pre-native.json tools/p42/p2-r11/frozen_p8c_actual_upstream_chi_repair_replacement_genealogy.json
+          ! git cat-file -e "$frozen":tools/p42/p2-r11-go/r11_p8c_real_merged_chi_clone_test.go 2>/dev/null
+          dir=tools/p42/p2-r11-go/p8c-original-merged-chi
+          test "$(git -C "$dir" rev-parse HEAD)" = 15767233591fd4267ae99d05299fa3807c375cdd
+          git -C "$dir" hash-object context.go | tee out/p42-r11-p8c/original-context-source-blob.txt
+          git -C "$dir" log -1 --format="%H %an <%ae> %as" | tee out/p42-r11-p8c/original-merge-identity.txt
+          test -z "$(git -C "$dir" status --porcelain)"
+          cp tools/p42/p2-r11-go/r11_p8c_real_merged_chi_clone_test.go "$dir/evonomos_p42_r11_p8c_test.go"
+      - name: Original maintainer 2026 upstream clone implementation, old clients, and existing regression
+        working-directory: tools/p42/p2-r11-go/p8c-original-merged-chi
+        run: |
+          set -eu
+          go test . -run 'TestR11P8OriginalMergedMaintainerContextClone|TestContext_Clone' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p8c/upstream-original-clone-tests.log"
+          go test -race . -run 'TestR11P8OriginalMergedMaintainerContextClone|TestContext_Clone' -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p8c/upstream-original-clone-race.log"
+          echo R11_P8C_REAL_MAINTAINER_MERGED_CONTEXT_CLONE_AND_SOURCE_HISTORY_NATIVE_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p8c-original-chi-maintainer-approved-clone-repair
+          path: out/p42-r11-p8c/
