@@ -94,4 +94,28 @@ Read Notion EvoNOMOS Literature Harvest F15, F19, F20–F27, F31, F66–F71, F77
 
 **New primary scientific goal:** prospective claims that discriminate equal-info source-aware classical rivals for *unseen demand ecologies and actual costed owner-constrained path frontiers*, including negative controls, rejected/abandoned requests, and at least one truly independent functional/event-driven program. If strong rivals continue predicting equally, the honest output may be a rigorously integrated but **attributed, non-novel** mathematical framework for architectural decision-making, not a fabricated alternative universal law.
 
+## 8. Final native and equal-information classical independent score; initial failure retained
+
+The added equal-input classical scoreboard is [GitHub Actions #38342988184, completed SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38342988184), job 115117926339; artifact 11788045071, ZIP SHA256 b46f0bb00b511caed2edffb6c7cbba2117d41aa1f5b4af112a720112f95b0a3b. It produced the machine-readable source-observed 4-world / 8-field predicted-state equality grid and the actual 4-demand × 2-original-core × 2-rights-regime finite repair-cost frontier. The source-aware classical baseline matches the 4 native worlds (all 8 declared observer fields), and the frontier coincides with the HARC source-state reasoning. This baseline script was **implemented after** the first native source run, although its source-aware prediction facts agree with the separately frozen Phase-B matrix: it is a transparent post-outcome equal-information **adequacy check**, not an independent pre-outcome model head-to-head or Rocq CCR2 mechanization.
+
+Its predecessor [CI #38342751573 FAILED](https://github.com/WhoSia/EvoNOMOS/actions/runs/38342751573) exclusively because the scorer split a nested route-template string containing braces as though it were the end of the Go struct display. Both original Go source tests and benchmark had passed. Only the scorer's regex was repaired in WhoSia commit 2f722aca; no original core files, source fixtures or Phase-A/B seals changed.
+
+The final run's six native benchmark repetitions on one host were:
+- Chi + authored client adapter ns/op [538.4, 565.9, 534.3, 542.0, 553.6, 546.6], median 544.3ns, 1492B/op, 13 allocs/op.
+- Gorilla + authored client adapter ns/op [843.6, 841.7, 847.7, 844.1, 860.7, 858.5], median 845.9ns, 2276B/op, 19 allocs/op.
+
+Absolute values differ markedly from the first source-run's medians 1036.5 and 1643.0ns/op; same direction but **not stable absolute latency**. This does not identify a universal, source-intrinsic routing algorithm advantage; setup, single host, source-specific adapters, request class and benchmark harness matter. None is a measured developer source-maintenance person-hour.
+
+### A repair sufficiency quotient, with explicit limits
+
+Let the old-client observation be o0(H), and the future authorized repair-distance function be m(H,d,Gamma). Native P7 yields o0(H_Chi)=o0(H_Gorilla)=200/OLD/once for the declared client, but for the independently revealed PathValue demand and permitted one-adapter grammar,
+
+    m(H_Chi,d985,Gamma+)=0 != 1=m(H_Gorilla,d985,Gamma+).
+
+Therefore no function f of **this old-client observation alone** can reproduce that edit-distance observable on both histories. This is a concrete source-backed failure of factorization through the selected old-client quotient (P33 F15/F31 classical observation kernel lemma). It is **not** a failure of a full source graph metric with access to methods, nor of an equally informed source-aware classical router model.
+
+For the history-enriched deterministic finite action system, suppose a projection π preserves the goal predicate, protected-client safety, each legal action availability, each action cost-vector and the successor π-class. Induction on path length proves every bounded feasible cost frontier factors through π. This is a classical cost-preserving transition-system congruence/bisimulation argument, not newly discovered algebra. A nontrivial EvoNOMOS accomplishment would be extracting a much smaller π from source with a prospectively validated guarantee and meaningful program-family scope. The source frontends' semantic soundness, historical GitHub effective rule scopes and truly unknown future change frequencies remain unverified.
+
+Finally distinguish online demands: knowing each future demand only when it is revealed gives the flexibility condition **for every future demand d, there exists a safe permissible repair path π_d**. This is weaker than **there exists one universal single path π that succeeds for all possible demands d**. The quantifier asymmetry is classical logic, but it prevents misuse of "open for extension" as a promise of one implementation that satisfies mutually incompatible policies without later branching. Endpoints, staged repairs and willingness/permission to change at the relevant time are different coordinates.
+
 **Current:** Real original core and client native PASS, source-aware classical adequate, first phase strictly ABSTAIN, second phase PASS, rights beyond past public integration UNKNOWN. P42 RUNNING · P43 HOLD · LAW-R2 NOT_AUTHORIZED.
