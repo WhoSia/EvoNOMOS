@@ -1,0 +1,36 @@
+name: P42 R11 P8 Actual PR Survivorship and Structural Product Theorem Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p8_actual_merged_unmerged_pr_census_and_repair_genealogy.json'
+      - 'tools/p42/p2-r11/p8_censored_pr_proposal_graph_and_product_frontier.py'
+      - '.github/workflows/g8-p42-r11-p8-structural-audit.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compare original locked PR IDs and census; calculate costed repair product
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p8-structural
+          first=2fb5c96ed05ffc0b26e1e7e440d3ed7857a12bd3
+          population=1f56fe49e9fd525673c082a5691923d23caa5d79
+          git merge-base --is-ancestor "$first" HEAD
+          git merge-base --is-ancestor "$population" HEAD
+          git show "$first":tools/p42/p2-r11/frozen_p8_unknown_pr_strata_rank_and_new_event_paradigm.json > out/p42-r11-p8-structural/first-unseen-source-forecasts.json
+          git show "$population":tools/p42/p2-r11/frozen_p8_actual_four_strata_ids_before_pr_content.json > out/p42-r11-p8-structural/first-locked-candidate-ids.json
+          cmp out/p42-r11-p8-structural/first-unseen-source-forecasts.json tools/p42/p2-r11/frozen_p8_unknown_pr_strata_rank_and_new_event_paradigm.json
+          cmp out/p42-r11-p8-structural/first-locked-candidate-ids.json tools/p42/p2-r11/frozen_p8_actual_four_strata_ids_before_pr_content.json
+          python3 tools/p42/p2-r11/p8_censored_pr_proposal_graph_and_product_frontier.py | tee out/p42-r11-p8-structural/censoring-and-theorem.log
+          grep -q R11_P8_SELECTED_PUBLIC_PR_SURVIVORSHIP_GENEALOGY_AND_CLASSICAL_REPAIR_PRODUCT_FINITE_PASS out/p42-r11-p8-structural/censoring-and-theorem.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p8-original-unmerged-pr-survivorship-source-math
+          path: out/p42-r11-p8-structural/
