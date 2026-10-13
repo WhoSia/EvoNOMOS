@@ -1,0 +1,100 @@
+{
+  "protocol": "R11_P8_REAL_PUBLIC_PR_ATTEMPT_CENSUS_AND_PROPOSAL_GENEALOGY_POST_SOURCE",
+  "selection_freeze": "1f56fe49e9fd525673c082a5691923d23caa5d79",
+  "sample_bias": "Deterministic first-two per 2025-2026 repo/status route query, NOT probability sample. Two early Chi merged PRs 985/986 already seen P7 and excluded from genuine blind score; Gorilla merged stratum empty. No population merge probability.",
+  "sample": [
+    {
+      "repo": "go-chi/chi",
+      "pr": 985,
+      "state": "MERGED",
+      "source_kind": "EXAMPLE_AND_DOC",
+      "demand": "PathValue document example",
+      "cluster": "pathvalue_docs",
+      "known_pre_P8": true,
+      "approval_observed": true
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 986,
+      "state": "MERGED",
+      "source_kind": "PRODUCTION_SOURCE",
+      "demand": "Go Request.Pattern publication",
+      "cluster": "pattern",
+      "known_pre_P8": true,
+      "approval_observed": true
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1026,
+      "state": "CLOSED_UNMERGED",
+      "source_kind": "DOC_ONLY",
+      "demand": "With middleware doc clarification",
+      "cluster": "with_docs",
+      "known_pre_P8": false,
+      "reason": "maintainer found wording ambiguous and closed",
+      "approval_observed": false
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1028,
+      "state": "CLOSED_UNMERGED",
+      "source_kind": "PRODUCTION_SOURCE",
+      "demand": "retain route context beyond request lifetime",
+      "cluster": "context_lifetime",
+      "known_pre_P8": false,
+      "reason": "reviewer proposed alternative copy/Clone; later alternative #1033 and merged #1157",
+      "approval_observed": false
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 782,
+      "state": "CLOSED_UNMERGED",
+      "source_kind": "PRODUCTION_SOURCE",
+      "demand": "opt-in URL query parameter separator policy",
+      "cluster": "query_separator_781",
+      "known_pre_P8": false,
+      "reason": "APPROVED by klauspost, original author self-closed citing lack of maintainer response",
+      "approval_observed": true
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 801,
+      "state": "CLOSED_UNMERGED",
+      "source_kind": "PRODUCTION_SOURCE",
+      "demand": "opt-in URL query parameter separator policy",
+      "cluster": "query_separator_781",
+      "known_pre_P8": false,
+      "reason": "no PR discussion reason observed; treat closure reason UNKNOWN",
+      "approval_observed": false
+    }
+  ],
+  "post_selection_actual_repair_genealogy": {
+    "not_sampled_but_linked": [
+      {
+        "repo": "go-chi/chi",
+        "pr": 1033,
+        "state": "CLOSED_UNMERGED",
+        "author": "BlakeWilliams",
+        "replaces": 1028,
+        "description": "deep copy Clone API; later superseded by #1157"
+      },
+      {
+        "repo": "go-chi/chi",
+        "pr": 1157,
+        "state": "MERGED",
+        "author": "VojtechVitek",
+        "merge_sha": "15767233591fd4267ae99d05299fa3807c375cdd",
+        "replaces": 1033,
+        "closes": [
+          1028,
+          1033
+        ],
+        "description": "original PR Clone implementation plus reviewed contract requirement: copy while request active, detach parentCtx"
+      }
+    ],
+    "canonical_true_upstream_native_CI": "https://github.com/WhoSia/EvoNOMOS/actions/runs/38347552697",
+    "original_pre_patch_baseline_CI": "https://github.com/WhoSia/EvoNOMOS/actions/runs/38347247721",
+    "genealogy_type": "proposal/review/merge graph NOT sequence of three accepted main source commits"
+  },
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
