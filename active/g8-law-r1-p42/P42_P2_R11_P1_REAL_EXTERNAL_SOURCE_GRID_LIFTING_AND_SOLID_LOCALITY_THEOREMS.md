@@ -1,5 +1,7 @@
 # EvoNOMOS Generation VIII LAW-R1-P42-P2-R11-P1 — Independent Go Ownership Source, Interleaving-Grid Repair Theorems, Contextual Refinement and Non-Circular SOLID Interpretability
 
+> **CURRENT SOURCE/LITERATURE CORRECTION (2026-10-13):** The four original CCR 2.0, Simuliris, Iris and DimSum PDFs formerly marked missing below were acquired, independently inspected and normalized to Research OS Drive 10_PAPERS; [R11-P2 canonical revised rival audit](P42_P2_R11_P2_HISTORY_SENSITIVE_AUTHORITY_RUBY_GO_PRIMARY_RIVAL_COURT.md) supersedes the historical missing-paper ledger. F2 iff statement below has a newly explicit stepwise-refinement premise; plain safety requires a weaker F_e^safe predicate. P43 HOLD, LAW-R2 NOT_AUTHORIZED.
+
 **Status:** P42 RUNNING; R11-P1 BOUNDED NATIVE ORIGINAL GO PASS; mathematical results below are explicit conditional theorems and classical constructions, not general-Go mechanized proofs or novel software design laws. P43 HOLD, LAW-R2 NOT_AUTHORIZED.
 
 ## I. Scientific result and independent source custody
@@ -178,7 +180,7 @@ F_e(a) := \{b \mid
 
 This gives an exact greatest rely-support set under the powerset order; it does not guarantee that the set is source-locally inferable, decidable for arbitrary Go, unique under changing semantics, or novel against weakest preconditions, separation-logic frames and relational residuals.
 
-**F2 (exact safe all-shuffle source-edit criterion).** Given owner A's fixed source chain a0 -> ... -> am and owner B's fixed chain b0 -> ... -> bn, assume the source state after i A-edits and j B-edits is independent of the chosen interleaving (the rectangular path-independence hypothesis). Suppose the initial link is safe. Then *every syntactically possible source-edit shuffle* is permitted, buildable and safe at all intermediate steps **if and only if**
+**F2 (exact safe all-shuffle source-edit criterion).** Given owner A's fixed source chain a0 -> ... -> am and owner B's fixed chain b0 -> ... -> bn, assume the source state after i A-edits and j B-edits is independent of the chosen interleaving (the rectangular path-independence hypothesis). Suppose the initial link is safe. Then *every syntactically possible source-edit shuffle* is permitted, buildable and old-client-safe **AND each individual edit satisfies the declared client trace-refinement relation** at all intermediate steps **if and only if**
 
 \[
 \boxed{
@@ -188,7 +190,9 @@ This gives an exact greatest rely-support set under the powerset order; it does 
 }
 \]
 
-**Proof.** The first family checks every A-incrementing grid edge with exact source, destination, rights and old-client trace requirements; the second checks all B-incrementing edges. By previously proved G2 each complete shuffle consists entirely of these allowed edges, proving sufficiency. Conversely, each grid edge lies on some monotone complete shuffle; if every shuffle is safe, that edge has its full rely/frame property. QED.
+**Proof.** The first family checks every A-incrementing grid edge with exact source, destination, rights and old-client trace requirements; the second checks all B-incrementing edges. By previously proved G2 each complete shuffle consists entirely of these allowed edges, proving sufficiency. Conversely, each grid edge lies on some monotone complete shuffle; if every shuffle satisfies the stronger stepwise-refinement contract, that edge has the full rely/frame property. QED.
+
+**F2 erratum and boundary (2026-10-13):** An earlier formulation claimed that the displayed F_e condition was necessary merely for *all-shuffle old-client safety*, but F_e additionally demands **stepwise trace refinement between neighboring source states**. Pure safety does not entail that stronger relation. For exactly old-client-safe shuffles, define F_e^safe by **removing the stepwise trace-refinement conjunct** and the same edge-by-edge G2 equivalence is valid. This repairs the necessity direction without altering the recorded Go/Ruby observations. The sufficiency direction of the stronger F2 was valid all along.
 
 **Complexity result within the assumptions.** Instead of enumerating binomial(m+n,m) complete edit schedules, the rule requires m(n+1)+n(m+1)=2mn+m+n individual proof obligations. Verification complexity of any one trace obligation is *not* bounded by this count. If simultaneous edits, owner-right changes, or shared state make the linked state depend on edit order, the grid coordinates no longer represent states uniquely. Then the theorem does not apply: a history-enriched source transition system is required and the polynomial count may disappear.
 
