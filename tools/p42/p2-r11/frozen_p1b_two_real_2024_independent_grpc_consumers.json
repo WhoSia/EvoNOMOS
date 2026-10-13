@@ -1,0 +1,63 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P1B_TWO_GENUINE_CONTEMPORANEOUS_2024_GRC_GO_CLIENTS_PRESEAL_V1",
+  "date": "2026-10-13",
+  "original_producer": {
+    "repo": "grpc/grpc-go",
+    "sha": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+    "go_module": "google.golang.org/grpc"
+  },
+  "clients": [
+    {
+      "repo": "moby/buildkit",
+      "sha": "41a0a0c37d0bd66d97203d3895750ff96c015548",
+      "date": "2024-10-03",
+      "path": "util/grpcutil/encoding/proto/proto.go",
+      "blob": "9aa156cf27e9ed004e1899c803fe86442409b902",
+      "package_name": "proto",
+      "kind": "actual independent CodecV2 consumer",
+      "api": [
+        "encoding.RegisterCodecV2",
+        "mem.NewBuffer",
+        "mem.DefaultBufferPool",
+        "mem.IsBelowBufferPoolingThreshold",
+        "mem.BufferSlice.MaterializeToBuffer"
+      ],
+      "expected_compiles": true
+    },
+    {
+      "repo": "authzed/spicedb",
+      "sha": "44372c1c020b9ce7e40b704951b59f1529f6fe1a",
+      "date": "2024-09-18",
+      "path": "pkg/proto/dispatch/v1/01_codec.go",
+      "blob": "d72e4e4feb59d46379d06e86053881deae124665",
+      "package_name": "dispatchv1",
+      "kind": "actual independent vtproto CodecV2 consumer",
+      "api": [
+        "mem.NewBuffer",
+        "mem.DefaultBufferPool",
+        "mem.BufferSlice.MaterializeToBuffer",
+        "mem.IsBelowBufferPoolingThreshold"
+      ],
+      "expected_compiles": true
+    }
+  ],
+  "expected_go_tests": [
+    "Copy full original historical client source byte-for-byte into isolated Go packages without editing original consumers or grpc.",
+    "Add research-authored vtproto mock message to invoke original CodecV2 Marshal/Unmarshal at payload sizes 1024 and 2048 and verify byte-perfect payload, buffered lifetime Free.",
+    "Check source from each original 2024 client commit is exact commit + blob identity, and producer grpc repo exact 2024 ref.",
+    "Both original source client Go packages compile and tests succeed with original grpc-go.",
+    "Original external client test observations do not justify real production mutation or a general conditional design advantage.",
+    "Compare two consumer implementations under same information; classical protobuf encoding/mem alias model must predict observations."
+  ],
+  "classical_rivals": [
+    "gRPC original CodecV2/mem API contract",
+    "ordinary Go types and upstream protocol tests",
+    "CCR1/CCR2 context refinements"
+  ],
+  "limits": [
+    "Original upstream consumers compiled in isolated source package; full original project test suite not run",
+    "Mock vtproto messages are research-authored, not actual project message structs",
+    "No real owner rights or production multi-repo coordinated edit",
+    "No new theorem solely from positive Go execution"
+  ]
+}
