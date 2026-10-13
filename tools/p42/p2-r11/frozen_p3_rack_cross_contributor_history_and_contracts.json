@@ -1,0 +1,77 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P3_REAL_MULTI_CONTRIBUTOR_MAINTAINED_RACK_SOURCE_SEMANTIC_CONTRACTS_V1",
+  "publication_status": "preseal-before-native-execution; commit patches and original source have ALREADY been inspected before preregistration; not a blind forecasting claim",
+  "repository": "rack/rack",
+  "observed_public_main_chain": [
+    {
+      "sha": "00229670c88053daaa2ca7e43a74d32db5c47abf",
+      "github_author": "jeremyevans",
+      "file": "lib/rack/builder.rb",
+      "blob": "992bf059b3fd6d43217dd80a152cac44be8a6731",
+      "what": "coverage, ruby2_keywords compatibility mark kept, old builder return and old API"
+    },
+    {
+      "sha": "444dc8a130663159ed490f25948b73ff9b5fbba0",
+      "github_author": "ioquatix",
+      "file": "lib/rack/builder.rb",
+      "blob": "9faeffb7868021d17fad26118b426a6bd1819d53",
+      "what": "real commit #2094 adds Builder keyword options, keeps previous Ruby caller contract"
+    },
+    {
+      "sha": "c0255283d55452b36193f7f82c283f6a3d8736e1",
+      "github_author": "ioquatix",
+      "file": "lib/rack/builder.rb",
+      "blob": "29d124913b9a9c904ce8d3d0501b4feaf4f163ff",
+      "what": "real commit #2355 explicitly returns nil from DSL use/run/map"
+    }
+  ],
+  "ancestry": "002 -> 444 -> c025 are selected time-ordered mainline commits in a chain with intervening commits (002->444 170; 444->c025 164); not falsely described as immediate adjacent commits",
+  "authority_observation": "commits accepted into a public repo main history. GitHub author is known; maintainer group membership, CODEOWNERS and legal patch rights are NOT established from this.",
+  "source_program_native_ruby_predictions": {
+    "earliest_002": {
+      "legacy_Rack_Builder_run_to_app": "PASS",
+      "builder_options_api": "ABSENT",
+      "run_returns_app_identity": true,
+      "run_returns_nil": false
+    },
+    "mid_444": {
+      "legacy_Rack_Builder_run_to_app": "PASS",
+      "builder_options_api": "PRESENT",
+      "run_returns_app_identity": true,
+      "run_returns_nil": false
+    },
+    "late_c025": {
+      "legacy_Rack_Builder_run_to_app": "PASS",
+      "builder_options_api": "PRESENT",
+      "run_returns_app_identity": false,
+      "run_returns_nil": true
+    },
+    "runtime": "hosted Ruby 3.3; any failure due to unsupported old dependency must be reported as failure, not silently replaced"
+  },
+  "declared_client_ecologies": [
+    {
+      "id": "legacy_void_context",
+      "observer": "call run, ignore expression value, build Rack 200 app",
+      "expected": "all three pass"
+    },
+    {
+      "id": "keyword_extensible_context",
+      "observer": "Builder.new(foo: :bar).options[:foo]==:bar",
+      "expected": "mid and late pass; early fails"
+    },
+    {
+      "id": "old_expressive_return_context",
+      "observer": "b.run(app).equal?(app)",
+      "expected": "early and mid pass; late fails (research-authored observer, historically existing client unproven)"
+    },
+    {
+      "id": "command_dsl_return_context",
+      "observer": "b.run(app).nil?",
+      "expected": "late passes; early and mid fail; supported by actual Rack #2355 change and upstream tests"
+    }
+  ],
+  "candidate_reversal": "old_expressive_return chooses mid over late, command_dsl_return chooses late over mid; old legacy consumer unaffected. No resource/cost empirical dominance asserted.",
+  "rival_prediction": "plain versioned source + Ruby observable contracts predicts everything; no evidence yet of beating strong classical theories CCR2, Iris, DimSum, trace refinement",
+  "general_math_target": "language-neutral authority-conditioned repair reachability and separating-boundary theorem from independent operational prerequisites; SOLID restricted corollaries under explicit adequate assumptions; no categorical claim that all SOLID slogans are universally laws",
+  "release_gate": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
