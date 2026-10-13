@@ -1,0 +1,65 @@
+name: P42 R11 P8 Original Go Context Lifetime PR1028 Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p8b_postreveal_context_lifetime_source_forecast.json'
+      - 'tools/p42/p2-r11-go/r11_p8_*'
+      - '.github/workflows/g8-p42-r11-p8-context-lifetime-go.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-two-routers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: tools/p42/p2-r11-go/p8-original-chi
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: tools/p42/p2-r11-go/p8-original-gorilla
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23.12', cache: false}
+      - name: Verify separate Phase A and Phase B freeze with original source custody
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p8
+          a=2fb5c96ed05ffc0b26e1e7e440d3ed7857a12bd3
+          b=fbc122d11c9a6847614416c879534e6c7e81cf58
+          git merge-base --is-ancestor "$a" HEAD
+          git merge-base --is-ancestor "$b" HEAD
+          git show "$b":tools/p42/p2-r11/frozen_p8b_postreveal_context_lifetime_source_forecast.json > out/p42-r11-p8/p8b-freeze.json
+          cmp out/p42-r11-p8/p8b-freeze.json tools/p42/p2-r11/frozen_p8b_postreveal_context_lifetime_source_forecast.json
+          ! git cat-file -e "$b":tools/p42/p2-r11-go/r11_p8_chi_original_context_lifetime_test.go 2>/dev/null
+          test "$(git -C tools/p42/p2-r11-go/p8-original-chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C tools/p42/p2-r11-go/p8-original-gorilla rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          git -C tools/p42/p2-r11-go/p8-original-chi hash-object mux.go | tee out/p42-r11-p8/original-chi-mux-blob.txt
+          git -C tools/p42/p2-r11-go/p8-original-gorilla hash-object mux.go | tee out/p42-r11-p8/original-gorilla-mux-blob.txt
+          cp tools/p42/p2-r11-go/r11_p8_chi_original_context_lifetime_test.go tools/p42/p2-r11-go/p8-original-chi/evonomos_p42_r11_p8_test.go
+          cp tools/p42/p2-r11-go/r11_p8_gorilla_original_retained_vars_test.go tools/p42/p2-r11-go/p8-original-gorilla/evonomos_p42_r11_p8_test.go
+      - name: Run original pooled Chi post-response route-state retention audit
+        working-directory: tools/p42/p2-r11-go/p8-original-chi
+        run: |
+          set -eu
+          go test . -run TestR11P8 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p8/chi-context-lifetime.log"
+          echo R11_P8_CHI_POOLED_SOURCE_LIFETIME_RESEARCH_CONSUMER_TEST_PASS
+      - name: Run original Gorilla retained-vars cross-request semantics audit
+        working-directory: tools/p42/p2-r11-go/p8-original-gorilla
+        run: |
+          set -eu
+          go test . -run TestR11P8 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p8/gorilla-context-lifetime.log"
+          echo R11_P8_GORILLA_SOURCE_CONTEXT_RETAINED_TEST_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p8-original-chi-gorilla-lifetime-external-unmerged-demand
+          path: out/p42-r11-p8/
