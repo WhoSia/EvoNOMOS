@@ -1,0 +1,20 @@
+{
+  "protocol": "EVONOMOS_R11_P6_UNSEEN_LATER_GRPC_RELEASE_NATIVE_GENERALIZATION_PRESEAL_V1",
+  "target": {
+    "repo": "grpc/grpc-go",
+    "ref": "v1.78.0",
+    "release_status": "target ref named BEFORE reading any target source code or patch; existence or actual SHA not yet confirmed"
+  },
+  "training_source": "2024-10-24 f8e5d8f704180341e3f1034bc503a324d05d91dc and 2024-11-18 ee3fb2982c88000782b36591c81bf7067ac1f2c0 only",
+  "heldout_source_reads_before_freeze": "NONE. Source of target v1.78.0 has not been inspected at freeze. Neither PR patches in target release nor target mem/codec files inspected.",
+  "fixed_native_predictions": {
+    "P1": "for a nonnil pool len=512 cap=2048 threshold=1024, original mem.NewBuffer(data,pool).Free will call pool.Put exactly once",
+    "P2": "for a nonnil pool len=512 cap=512 threshold=1024, original mem.NewBuffer(...).Free will call pool.Put zero times",
+    "P3": "for nil pool same bytes with mem.NewBuffer(&data,nil) and mem.SliceBuffer(data), Free no-op on underlying bytes",
+    "P4": "legacy grpc codecV0Bridge remains callable by old-compatible Codec, marshalling and unmarshalling authored string retains contents; if API removed, mark P4 interface transport inapplicable/FAIL, not pass",
+    "P5": "source still presents the described mem pool-governance mechanism; real runtime source and exact release tag SHA included in returned court"
+  },
+  "forecast_kind": "real temporal release holdout of bounded invariants, NOT blind relative architecture cost ranking and NOT prediction of unknown commit diff",
+  "strict_falsifier": "any observed mismatch, unavailable API, or unavailable tag flagged transparently; no fixture retuning without new labeled P6-R2",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
