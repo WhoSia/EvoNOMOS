@@ -69,6 +69,11 @@ jobs:
             grep -q "R11_P3_NATIVE_ORIGINAL_RACK_$(echo "$phase" | tr '[:lower:]' '[:upper:]')_PREDICTIONS_MATCH" "out/p42-r11/$phase-native.log"
           done
           echo R11_P3_REAL_MULTICONTRIBUTOR_SOURCE_HISTORY_RETURN_CONTRACT_REVERSAL_PASS
+      - name: Post-evidence real-source contract-promise and universal separator audit
+        run: |
+          set -eu
+          python3 tools/p42/p2-r11/check_p5_contract_evolution_court.py | tee out/p42-r11/p5-contract-observation-audit.log
+          grep -q R11_P5_NATIVE_GROUNDED_CONTRACT_SCOPE_ANTITONICITY_AND_SEPARATOR_FINITE_PASS out/p42-r11/p5-contract-observation-audit.log
       - name: Upload records
         if: always()
         uses: actions/upload-artifact@v4
