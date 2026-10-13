@@ -1,0 +1,50 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P4_ORIGINAL_GRPC_GO_MULTICONTRIBUTOR_BUFFER_CONTRACT_PRESEAL_V1",
+  "preseal_truth": "Original PR descriptions and patches have been inspected; predictions sealed before new native Go execution but are NOT information-blind forecasts",
+  "accepted_public_commit_chain": [
+    {
+      "sha": "3c2a44dca314f5c762c4fe11f2ea89dfc52b0167",
+      "author": "raghav-stripe",
+      "date": "2024-02-15",
+      "files": [
+        "internal/transport/http_util.go",
+        "dialoptions.go",
+        "server.go"
+      ],
+      "feature": "write pool size uses exactly configured size instead of doubling"
+    },
+    {
+      "sha": "f8e5d8f704180341e3f1034bc503a324d05d91dc",
+      "author": "PapaCharlie",
+      "date": "2024-10-24",
+      "files": [
+        "mem/buffers.go",
+        "mem/buffers_test.go"
+      ],
+      "feature": "pooling decision uses cap rather than len"
+    },
+    {
+      "sha": "ee3fb2982c88000782b36591c81bf7067ac1f2c0",
+      "author": "ash2k",
+      "date": "2024-11-18",
+      "files": [
+        "codec.go",
+        "preloader.go",
+        "rpc_util.go"
+      ],
+      "feature": "use mem.SliceBuffer directly where pool=nil"
+    }
+  ],
+  "adjacency": "Selected ordered relevant commits, NOT immediate adjacent Git commits. Cross-module call path transport write pool -> mem.NewBuffer -> nil-pool codec wrapper.",
+  "source_unchanged_contract": "Go original source files taken from exact commits. Test-only additional Go files permitted. For pre-f8 source compare actual HEAD^ parent mem/buffers.go byte blob and compile same parent revision, not a manually rewritten approximation.",
+  "native_predictions": {
+    "before_f8_small_len_large_cap": "length=512 capacity=2048 threshold=1024 nonnil pool: NewBuffer(...).Free does NOT call pool.Put (old source)",
+    "after_f8_small_len_large_cap": "length=512 capacity=2048 threshold=1024 nonnil pool: NewBuffer(...).Free DOES call pool.Put",
+    "after_f8_small_capacity": "len=512 cap=512 nonnil pool: NewBuffer(...).Free does NOT call pool.Put",
+    "no_pool_two_forms": "mem.NewBuffer(&slice,nil) and mem.SliceBuffer(slice) preserve bytes, Len, Free noop, at both Oct and Nov revisions",
+    "real_codec": "existing grpc original legacy codecV0Bridge from Oct and Nov Marshals same payload with v0 Codec before/after Nov direct SliceBuffer change; no latency gain claim"
+  },
+  "external_authority_status": "GitHub commits merged on main and PR merge acceptance (#7702, #7827) observable; no proof of author organizational/legal authority beyond repository merge",
+  "scientific_claim_limit": "Native bounded empirical source and cross-module repair; distinct maintainers. No language-neutral mechanized soundness, no proof of novel SOLID law, no measured performance dominance.",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
