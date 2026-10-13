@@ -1,0 +1,101 @@
+name: P42 R11 P9 Real Contributor Alternative Repairs Matched-Base Go Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p9_original_chi_two_author_patch_strategies_shared_base.json'
+      - 'tools/p42/p2-r11-go/r11_p9_*'
+      - '.github/workflows/g8-p42-r11-p9-original-contributor-alternatives.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  actual-original-patch-alternatives:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: BlakeWilliams/chi
+          ref: 516f1f2eb0fa25f2c142f2e863ae64c4591d7b6c
+          path: tools/p42/p2-r11-go/p9-author-poison
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: BlakeWilliams/chi
+          ref: 72d2a6e789be26b6f952988614f3f0670a9c5717
+          path: tools/p42/p2-r11-go/p9-author-clone
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 15767233591fd4267ae99d05299fa3807c375cdd
+          path: tools/p42/p2-r11-go/p9-accepted-reviewed-clone
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.24.3', cache: false}
+      - name: Audit pre-native frozen two real original PR heads and accepted source SHA
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p9
+          freeze=a511f7f0b8195de0cf7a5c326687f1e067473780
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r11/frozen_p9_original_chi_two_author_patch_strategies_shared_base.json > out/p42-r11-p9/p9-freeze-before-native-source-test.json
+          cmp out/p42-r11-p9/p9-freeze-before-native-source-test.json tools/p42/p2-r11/frozen_p9_original_chi_two_author_patch_strategies_shared_base.json
+          ! git cat-file -e "$freeze":tools/p42/p2-r11-go/r11_p9_author_original_poison_test.go 2>/dev/null
+          poison=tools/p42/p2-r11-go/p9-author-poison
+          clone=tools/p42/p2-r11-go/p9-author-clone
+          accepted=tools/p42/p2-r11-go/p9-accepted-reviewed-clone
+          test "$(git -C "$poison" rev-parse HEAD)" = 516f1f2eb0fa25f2c142f2e863ae64c4591d7b6c
+          test "$(git -C "$clone" rev-parse HEAD)" = 72d2a6e789be26b6f952988614f3f0670a9c5717
+          test "$(git -C "$accepted" rev-parse HEAD)" = 15767233591fd4267ae99d05299fa3807c375cdd
+          test "$(git -C "$poison" hash-object context.go)" = fc01e1065a008bf9d80904d057d6fcc56f69745e
+          test "$(git -C "$clone" hash-object context.go)" = f710e56cf026a1e73a6e11369d392629c347a46b
+          for branch in poison clone accepted; do
+            if test "$branch" = poison; then dir="$poison"; elif test "$branch" = clone; then dir="$clone"; else dir="$accepted"; fi
+            git -C "$dir" hash-object context.go | tee "out/p42-r11-p9/$branch-original-context-blob.txt"
+            git -C "$dir" log -1 --format="%H %an <%ae> %as" | tee "out/p42-r11-p9/$branch-original-commit-identity.txt"
+            test -z "$(git -C "$dir" status --porcelain)"
+          done
+          cp tools/p42/p2-r11-go/r11_p9_author_original_poison_test.go "$poison/evonomos_p42_r11_p9_test.go"
+          cp tools/p42/p2-r11-go/r11_p9_author_original_clone_test.go "$clone/evonomos_p42_r11_p9_test.go"
+          cp tools/p42/p2-r11-go/r11_p9_original_clone_parent_context_internal_test.go "$clone/evonomos_p42_r11_p9_internal_test.go"
+          cp tools/p42/p2-r11-go/r11_p9_original_clone_parent_context_internal_test.go "$accepted/evonomos_p42_r11_p9_internal_test.go"
+          echo R11_P9_GENUINE_ORIGINAL_AUTHORIAL_PATCH_IDENTITIES_COMMON_BASE_PRESEAL_PASS
+      - name: Test exact contributor unmerged pooled-context poisoning source
+        working-directory: tools/p42/p2-r11-go/p9-author-poison
+        run: |
+          set -eu
+          go test . -run 'TestR11P9OriginalUnmergedPoisonStrategy|TestServerPoisonedContext' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/author-poison-original-native.log"
+          go test -race . -run 'TestR11P9OriginalUnmergedPoisonStrategy' -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/author-poison-original-race.log"
+          echo R11_P9_ACTUAL_AUTHOR_POISON_ROUTE_RETENTION_NATIVE_PASS
+      - name: Test exact contributor unmerged full-context cloning source and retained parent
+        working-directory: tools/p42/p2-r11-go/p9-author-clone
+        env: {R11P9_EXPECT_DETACH: '0'}
+        run: |
+          set -eu
+          go test . -run 'TestR11P9OriginalUnmergedCloneStrategy|TestR11P9AuthorialCloneParentContextRetention|TestContext_Clone' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/author-clone-original-native.log"
+          go test -race . -run 'TestR11P9OriginalUnmergedCloneStrategy|TestR11P9AuthorialCloneParentContextRetention' -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/author-clone-original-race.log"
+          echo R11_P9_ACTUAL_AUTHOR_CLONE_ROUTE_RETENTION_AND_PARENT_REFERENCE_NATIVE_PASS
+      - name: Test actual subsequently merged source fixes parent-context retention
+        working-directory: tools/p42/p2-r11-go/p9-accepted-reviewed-clone
+        env: {R11P9_EXPECT_DETACH: '1'}
+        run: |
+          set -eu
+          go test . -run 'TestR11P9AuthorialCloneParentContextRetention|TestContext_Clone' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/accepted-merged-original-native.log"
+          go test -race . -run 'TestR11P9AuthorialCloneParentContextRetention|TestContext_Clone' -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/accepted-merged-original-race.log"
+          echo R11_P9_ACTUAL_UPSTREAM_MERGED_REVIEWER_RESOURCE_FRAME_FIX_PASS
+      - name: Descriptive same-host two original contributor branch repair cost, counterbalanced
+        run: |
+          set -eu
+          for branch in poison clone clone poison; do
+            if test "$branch" = poison; then dir=tools/p42/p2-r11-go/p9-author-poison; else dir=tools/p42/p2-r11-go/p9-author-clone; fi
+            (cd "$dir" && go test . -run '^$' -bench BenchmarkR11P9OriginalContributor -benchmem -benchtime=100ms -count=3) | tee -a "out/p42-r11-p9/bench-$branch.log"
+          done
+          echo R11_P9_ORIGINAL_AUTHORIAL_ALTERNATIVE_PATCH_RESOURCE_COST_REPLICATION_COMPLETE
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p9-two-original-same-base-author-contributed-alternatives-and-reviewed-merge
+          path: out/p42-r11-p9/
