@@ -1,0 +1,43 @@
+{
+  "protocol": "R11_P9_REAL_AUTHORIAL_ALTERNATIVE_SOURCE_PR_HEADS_MATCHED_BASE_BEFORE_NATIVE",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED",
+  "epistemic_timing": "Both maintainer-authored PR diffs and branch ref/blob inspected BEFORE this freeze; these are preregistered *native executions*, not true blind future-source predictions.",
+  "repository": "go-chi/chi",
+  "upstream_original_common_base": "de0d16e6d23092aeef0b6e78f146799369160651",
+  "actual_two_alternatives": [
+    {
+      "pr": 1028,
+      "author": "BlakeWilliams",
+      "head_repo": "BlakeWilliams/chi",
+      "head": "516f1f2eb0fa25f2c142f2e863ae64c4591d7b6c",
+      "design": "Context.PreventReuse, disables returning request Context to sync.Pool",
+      "context_blob": "fc01e1065a008bf9d80904d057d6fcc56f69745e"
+    },
+    {
+      "pr": 1033,
+      "author": "BlakeWilliams",
+      "head_repo": "BlakeWilliams/chi",
+      "head": "72d2a6e789be26b6f952988614f3f0670a9c5717",
+      "design": "Context.Clone copies slices; original pooled Context remains pool eligible",
+      "context_blob": "f710e56cf026a1e73a6e11369d392629c347a46b"
+    }
+  ],
+  "reviewed_accepted": {
+    "pr": 1157,
+    "author": "VojtechVitek",
+    "original_merge": "15767233591fd4267ae99d05299fa3807c375cdd",
+    "design": "integrates revised Clone, explicitly detaches parentCtx and bounds clone-before-handler-end"
+  },
+  "expected_existing_client": "GET /users/Ada and /users/Bob still return 200 OLD, handler executed twice in both authentic PR branches",
+  "future_demand": "after Ada's handler completes and then Bob's handler executes, client keeps Ada routing URLParam('id') as Ada using each author's intended public API within the handler",
+  "fixed_predictions": {
+    "poison": "first route Context pointer tagged PreventReuse during handler, retains Ada after second request; second distinct pointer",
+    "clone": "first route context Clone() inside handler, clone remains Ada after second; live pooled raw pointer may show Bob but not assumed deterministic",
+    "critical_resource_review": "PR1033 Clone implementation retains parentCtx reference in clone, accepted PR1157 detaches parentCtx (known from read actual diffs); this will be confirmed by same-package original-Go fixture",
+    "old": "normal health / route handler contract stable across original PR heads",
+    "allocation_cost_rank": "ABSTAIN on speed/allocation order; measure same runner and same real source branches; performance sign not preregistered, not assert causal architecture difference because changes to source implementations and hardware"
+  },
+  "rights": "Two authorial original PR heads not merged; only #1157 integrated. Tests may be added in sandbox checker with unchanged original production source. Neither author ownership of fork implies accepted mainline authority.",
+  "rivals": "ordinary Go alias/escape/pooling semantics and CCR2/Iris frames receive same original source; no exclusivity claim.",
+  "scientific_new_result_target": "causally isolate *demand-level resolution* and type of resource effect under two real author-written patches from a shared base, rather than conflating PR closed state with feasibility"
+}
