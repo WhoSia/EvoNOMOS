@@ -1,0 +1,91 @@
+name: G8 P42-R10-P4 Independent Thanos OTEL Consumer Ownership Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r10/frozen_p4_independent_consumer_and_noncircular_solid.json'
+      - 'tools/p42/p2-r10-native/make_independent_consumer_fixtures.py'
+      - '.github/workflows/g8-p42-r10-p4-independent-consumers.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independently-maintained-consumers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r10-native/grpc-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Audit freeze and cross-version scope
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r10-p4
+          freeze=48b9930211b7e9d93bd4b14ab7b5079a190c4a8d
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r10/frozen_p4_independent_consumer_and_noncircular_solid.json >out/p42-r10-p4/frozen-at-ancestor.json
+          cmp out/p42-r10-p4/frozen-at-ancestor.json tools/p42/p2-r10/frozen_p4_independent_consumer_and_noncircular_solid.json
+          if git cat-file -e "$freeze":tools/p42/p2-r10-native/make_independent_consumer_fixtures.py 2>/dev/null;then echo FIXTURE_BEFORE_PRESEAL;exit 21;fi
+          test "$(git -C tools/p42/p2-r10-native/grpc-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          git rev-parse HEAD >out/p42-r10-p4/tested-evonomos-head.txt
+          echo R10_P4_ORIGINAL_GRPC_2024_AND_EXTERNAL_CONSUMERS_NONCONTEMPORANEOUS_CONTRACT
+      - name: Fetch byte-exact independently maintained consumer source from pinned commits
+        run: |
+          set -euo pipefail
+          cd tools/p42/p2-r10-native
+          mkdir -p external/thanos external/otelgrpc
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/thanos-io/thanos/f1e0bbc906c54ca138466bd3095c3f61bf31368d/pkg/extgrpc/codec_stringlabels.go -o external/thanos/codec_stringlabels.go
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/thanos-io/thanos/f1e0bbc906c54ca138466bd3095c3f61bf31368d/pkg/extgrpc/codec_slicelabels.go -o external/thanos/codec_slicelabels.go
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/open-telemetry/opentelemetry-collector/e838d926f0e018e3503886923a27d42a35c4bdad/pdata/internal/otelgrpc/encoding.go -o external/otelgrpc/encoding.go
+          test "$(git hash-object external/thanos/codec_stringlabels.go)" = 6268c8a351d5b74a362774197602be10debd922c
+          test "$(git hash-object external/thanos/codec_slicelabels.go)" = 7819a41abc34dbb9983c61882f0883d6dbcef79d
+          test "$(git hash-object external/otelgrpc/encoding.go)" = 4f3bfdb6cccf2fdd845f82e256f74910b084395f
+          sha256sum external/thanos/codec_stringlabels.go external/thanos/codec_slicelabels.go external/otelgrpc/encoding.go > ../../../out/p42-r10-p4/original-consumer-file-sha256.txt
+          echo R10_P4_TWO_INDEPENDENT_UPSTREAMS_THREE_BLOB_IDENTITIES_PASS
+      - name: Materialize authored test shims without modifying external source
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r10-native/make_independent_consumer_fixtures.py
+          cd tools/p42/p2-r10-native
+          test "$(git hash-object external/thanos/codec_stringlabels.go)" = 6268c8a351d5b74a362774197602be10debd922c
+          test "$(git hash-object external/thanos/codec_slicelabels.go)" = 7819a41abc34dbb9983c61882f0883d6dbcef79d
+          test "$(git hash-object external/otelgrpc/encoding.go)" = 4f3bfdb6cccf2fdd845f82e256f74910b084395f
+      - name: Actual original Go with original Thanos default and OpenTelemetry source
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+          R10_P4_TH_TAG: default
+        run: |
+          set -euo pipefail
+          (cd tools/p42/p2-r10-native && go test -mod=mod -count=1 -v ./external/...) | tee out/p42-r10-p4/default-original-go.log
+          grep -q 'R10_P4_REAL_SOURCE_CROSS_MODULE variant=default thanos_first=65 otel_first=67 otel_second=68 callback=true thanos_put=1' out/p42-r10-p4/default-original-go.log
+          grep -q 'R10_P4_REAL_SOURCE_MULTIFRAGMENT variant=default observed=65 length=2048 callback=true' out/p42-r10-p4/default-original-go.log
+          echo R10_P4_DEFAULT_ORIGINAL_CONSUMER_SEMANTICS_PASS
+      - name: Actual original Go with original Thanos slicelabels and OpenTelemetry source
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+          R10_P4_TH_TAG: slicelabels
+        run: |
+          set -euo pipefail
+          (cd tools/p42/p2-r10-native && go test -tags slicelabels -mod=mod -count=1 -v ./external/...) | tee out/p42-r10-p4/slicelabels-original-go.log
+          grep -q 'R10_P4_REAL_SOURCE_CROSS_MODULE variant=slicelabels thanos_first=65 otel_first=67 otel_second=68 callback=false thanos_put=0' out/p42-r10-p4/slicelabels-original-go.log
+          grep -q 'R10_P4_REAL_SOURCE_MULTIFRAGMENT variant=slicelabels observed=65 length=2048 callback=false' out/p42-r10-p4/slicelabels-original-go.log
+          echo R10_P4_SLICELABELS_ORIGINAL_CONSUMER_SEMANTICS_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r10-p4-two-independent-source-consumer-ownership-court
+          path: out/p42-r10-p4/
+          retention-days: 90
