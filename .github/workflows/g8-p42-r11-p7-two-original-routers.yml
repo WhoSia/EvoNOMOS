@@ -1,0 +1,84 @@
+name: P42 R11 P7 Two Original Go Routers Later Independent Maintainer Demand Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p7_*'
+      - 'tools/p42/p2-r11-go/r11_p7_*'
+      - '.github/workflows/g8-p42-r11-p7-two-original-routers.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  matched-original-routers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: tools/p42/p2-r11-go/p7-original-chi
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: gorilla/mux
+          ref: b4617d0b9670ad14039b2739167fd35a60f557c5
+          path: tools/p42/p2-r11-go/p7-original-gorilla
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23.12', cache: false}
+      - name: Assert both freezes precede authored native source and original core hashes
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p7
+          original=79872f3b44cbe4740d9304795870fb626c8c9c4b
+          subsequent=2a4062d3c76b561a66ecfbe9fb44c21dc1f0df01
+          git merge-base --is-ancestor "$original" HEAD
+          git merge-base --is-ancestor "$subsequent" HEAD
+          git show "$original":tools/p42/p2-r11/frozen_p7_two_original_routers_unread_maintainer_demands_and_equal_rivals.json > out/p42-r11-p7/p7-unread-phase-A.json
+          cmp out/p42-r11-p7/p7-unread-phase-A.json tools/p42/p2-r11/frozen_p7_two_original_routers_unread_maintainer_demands_and_equal_rivals.json
+          git show "$subsequent":tools/p42/p2-r11/frozen_p7_b_post_reveal_pre_native_pathvalue_pattern_two_original_routers.json > out/p42-r11-p7/p7-phase-B-native.json
+          cmp out/p42-r11-p7/p7-phase-B-native.json tools/p42/p2-r11/frozen_p7_b_post_reveal_pre_native_pathvalue_pattern_two_original_routers.json
+          ! git cat-file -e "$subsequent":tools/p42/p2-r11-go/r11_p7_chi_original_router_test.go 2>/dev/null
+          ! git cat-file -e "$subsequent":tools/p42/p2-r11-go/r11_p7_gorilla_original_router_test.go 2>/dev/null
+          test "$(git -C tools/p42/p2-r11-go/p7-original-chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C tools/p42/p2-r11-go/p7-original-gorilla rev-parse HEAD)" = b4617d0b9670ad14039b2739167fd35a60f557c5
+          git -C tools/p42/p2-r11-go/p7-original-chi ls-files | sort | sha256sum > out/p42-r11-p7/original-chi-tracked-manifest.txt
+          git -C tools/p42/p2-r11-go/p7-original-gorilla ls-files | sort | sha256sum > out/p42-r11-p7/original-gorilla-tracked-manifest.txt
+          git -C tools/p42/p2-r11-go/p7-original-chi hash-object mux.go > out/p42-r11-p7/original-chi-core-mux-blob.txt
+          git -C tools/p42/p2-r11-go/p7-original-gorilla hash-object mux.go > out/p42-r11-p7/original-gorilla-core-mux-blob.txt
+          cp tools/p42/p2-r11-go/r11_p7_chi_original_router_test.go tools/p42/p2-r11-go/p7-original-chi/evonomos_p42_r11_p7_test.go
+          cp tools/p42/p2-r11-go/r11_p7_gorilla_original_router_test.go tools/p42/p2-r11-go/p7-original-gorilla/evonomos_p42_r11_p7_test.go
+          echo R11_P7_PHASE_A_ABSTAIN_AND_PHASE_B_SOURCE_FROZEN_BEFORE_NATIVE_CONFIRMED
+      - name: Real original Chi core phase B native client and bounded repair
+        working-directory: tools/p42/p2-r11-go/p7-original-chi
+        run: |
+          set -eu
+          go test . -run TestR11P7 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p7/chi-p7-native.log"
+          go test -race . -run TestR11P7 -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p7/chi-p7-race.log"
+          echo R11_P7_ORIGINAL_CHI_NATIVE_CLIENT_AND_REPAIR_PASS
+      - name: Real original Gorilla core phase B native client and bounded repair
+        working-directory: tools/p42/p2-r11-go/p7-original-gorilla
+        run: |
+          set -eu
+          go test . -run TestR11P7 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p7/gorilla-p7-native.log"
+          go test -race . -run TestR11P7 -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p7/gorilla-p7-race.log"
+          echo R11_P7_ORIGINAL_GORILLA_NATIVE_CLIENT_AND_REPAIR_PASS
+      - name: Bench phase B same-runner counterbalanced core orders
+        run: |
+          set -eu
+          for phase in chi gorilla gorilla chi; do
+            if test "$phase" = chi; then
+              (cd tools/p42/p2-r11-go/p7-original-chi && go test . -run '^$' -bench BenchmarkR11P7 -benchmem -benchtime=100ms -count=3) | tee -a out/p42-r11-p7/p7-bench-chi.log
+            else
+              (cd tools/p42/p2-r11-go/p7-original-gorilla && go test . -run '^$' -bench BenchmarkR11P7 -benchmem -benchtime=100ms -count=3) | tee -a out/p42-r11-p7/p7-bench-gorilla.log
+            fi
+          done
+          echo R11_P7_EQUAL_FUNCTIONAL_REQUEST_NATIVE_RESOURCE_COST_REPEATS_COMPLETED
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p7-real-two-routers-unread-upstream-demand-source-audit
+          path: out/p42-r11-p7/
