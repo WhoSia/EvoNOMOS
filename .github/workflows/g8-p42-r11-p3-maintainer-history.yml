@@ -1,0 +1,77 @@
+name: P42 R11 P3 Native Real Rack Multi-Contributor Contract Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p3_rack_cross_contributor_history_and_contracts.json'
+      - 'tools/p42/p2-r11-native/r11_p3_original_multimaintainer_rack.rb'
+      - '.github/workflows/g8-p42-r11-p3-maintainer-history.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  real-maintained-ruby:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Checkout early original Rack contributor source
+        uses: actions/checkout@v4
+        with:
+          repository: rack/rack
+          ref: 00229670c88053daaa2ca7e43a74d32db5c47abf
+          path: tools/p42/p2-r11-native/history-early
+          sparse-checkout: lib/rack
+          persist-credentials: false
+      - name: Checkout mid original Rack contributor source
+        uses: actions/checkout@v4
+        with:
+          repository: rack/rack
+          ref: 444dc8a130663159ed490f25948b73ff9b5fbba0
+          path: tools/p42/p2-r11-native/history-mid
+          sparse-checkout: lib/rack
+          persist-credentials: false
+      - name: Checkout late original Rack contributor source
+        uses: actions/checkout@v4
+        with:
+          repository: rack/rack
+          ref: c0255283d55452b36193f7f82c283f6a3d8736e1
+          path: tools/p42/p2-r11-native/history-late
+          sparse-checkout: lib/rack
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with: {ruby-version: '3.3'}
+      - name: Preseal precedence, original full source blob identities and independent contributor names
+        run: |
+          set -eu
+          mkdir -p out/p42-r11
+          preseal=9404a5328b3e0a47c75df1da7dea5decabed2669
+          git merge-base --is-ancestor "$preseal" HEAD
+          git show "$preseal":tools/p42/p2-r11/frozen_p3_rack_cross_contributor_history_and_contracts.json > out/p42-r11/p3_frozen_original.json
+          cmp out/p42-r11/p3_frozen_original.json tools/p42/p2-r11/frozen_p3_rack_cross_contributor_history_and_contracts.json
+          ! git cat-file -e "$preseal":tools/p42/p2-r11-native/r11_p3_original_multimaintainer_rack.rb 2>/dev/null
+          for spec in 'early 00229670c88053daaa2ca7e43a74d32db5c47abf 992bf059b3fd6d43217dd80a152cac44be8a6731' 'mid 444dc8a130663159ed490f25948b73ff9b5fbba0 9faeffb7868021d17fad26118b426a6bd1819d53' 'late c0255283d55452b36193f7f82c283f6a3d8736e1 29d124913b9a9c904ce8d3d0501b4feaf4f163ff'; do
+            set -- $spec
+            slot="$1"; commit="$2"; blob="$3"
+            dir="tools/p42/p2-r11-native/history-$slot"
+            test "$(git -C "$dir" rev-parse HEAD)" = "$commit"
+            test "$(git -C "$dir" hash-object lib/rack/builder.rb)" = "$blob"
+            git -C "$dir" log -1 --format="%H %an <%ae> %as" | tee "out/p42-r11/$slot-author.txt"
+          done
+          echo R11_P3_TWO_DISTINCT_REAL_CONTRIBUTORS_SOURCE_BLOB_AUTHORITY_CUSTODY_PASS
+      - name: Run original three version native Ruby contract court
+        run: |
+          set -eu
+          for phase in early mid late; do
+            ruby -I "tools/p42/p2-r11-native/history-$phase/lib" tools/p42/p2-r11-native/r11_p3_original_multimaintainer_rack.rb "$phase" | tee "out/p42-r11/$phase-native.log"
+            grep -q "R11_P3_NATIVE_ORIGINAL_RACK_$(echo "$phase" | tr '[:lower:]' '[:upper:]')_PREDICTIONS_MATCH" "out/p42-r11/$phase-native.log"
+          done
+          echo R11_P3_REAL_MULTICONTRIBUTOR_SOURCE_HISTORY_RETURN_CONTRACT_REVERSAL_PASS
+      - name: Upload records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p3-original-multicontributor-rack-native-execution
+          path: out/p42-r11/
