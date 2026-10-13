@@ -1,7 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict');
 const EventEmitter = require('node:events').EventEmitter;
-const EventEmitter3 = require(process.env.R11_P8_ORIGINAL_EVENTEMITTER3_DIR + '/index.js');
+const EventEmitter3 = require(require('node:path').resolve(process.env.R11_P8_ORIGINAL_EVENTEMITTER3_DIR, 'index.js'));
 
 function observe(Emitter, name) {
   const old = new Emitter();
