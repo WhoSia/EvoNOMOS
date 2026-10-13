@@ -1,0 +1,18 @@
+{
+  "protocol": "R11_P8B_CONTEXT_LIFETIME_POST_REVEAL_PRE_NATIVE",
+  "prior_pr_content_revealed": true,
+  "source_known": {
+    "chi": "go-chi/chi@67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+    "gorilla": "gorilla/mux@b4617d0b9670ad14039b2739167fd35a60f557c5"
+  },
+  "demand": "Keep old 200 OLD GET response while retaining source-provided route params for request A after a sequential B request has been served.",
+  "phase_a_status": "Unknown PR types, global architecture rank untestable under frozen one-handler-adapter grammar, NO blind source-sign victory.",
+  "phase_b_prediction": {
+    "chi": "With sequential reuse of same pointer from sync.Pool, held chi routing context for A mutates or resets upon B; classify conditional on observed pointer alias, do not require deterministic reuse at every run.",
+    "gorilla": "Retained gorilla mux.Vars map for A keeps original value after B even when new request handled; no core context pool.",
+    "bounded_repair": "Explicit consumer snapshot/copy of necessary values before end of A request restores future observer in Chi; ordinary use only, not historical actual upstream patch."
+  },
+  "permissions": "Both original libraries untouched; not equate closed-unmerged PR with invalid authority; source code patch rights unknown.",
+  "classical": "ordinary alias/lifetime analysis given same source predicts results.",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
