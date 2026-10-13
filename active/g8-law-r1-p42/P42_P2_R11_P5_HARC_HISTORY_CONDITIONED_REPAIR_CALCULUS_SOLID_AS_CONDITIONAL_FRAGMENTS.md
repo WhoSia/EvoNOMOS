@@ -87,13 +87,13 @@ An architecture A conditionally dominates B for demand family D only when it has
 
 Suppose a program decomposes as a protected environment C linked to replaceable extension E through port I. Assume:
 1. All protected client observations of the linked program **factor through** the observed interface history: for each declared client K, \(Obs_K(C\oplus_I E)=f_{C,K}(Tr_I(E))\). This factors the FULL relevant trace, including return values, errors, pool/lifetime actions or concurrency effects where clients can see them—not merely response values.
-2. A proposed replacement E' has \(Tr_I(E')=Tr_I(E)\) on all protected histories; **or** a suitable contextual refinement order \(\preceq_I\) preserved by every \(f_{C,K}\).
-3. The source/linking operation is valid, the right to edit E but not C is proved under Gamma at the relevant step, and intermediate old-client and resource invariants hold.
+2. A permitted **finite staged edit path** \(E=E_0\to E_1\to\cdots\to E_n=E'\) satisfies, **at every intermediate prefix**, \(Tr_I(E_j)=Tr_I(E)\) on all protected histories; **or** a contextual trace refinement order \(\preceq_I\) preserved by every \(f_{C,K}\). This is an independently checkable interface event condition, NOT an old-client-safety hypothesis.
+3. The source/linking operations build at each stage, the right to edit E but not C is evidenced under Gamma at each relevant step, and independent resource/frame invariants hold. **Do not assume protected old-client correctness: that is the conclusion derived from premises (1) and (2).**
 4. E' satisfies a separately specified independent future demand d, and edits are entirely confined to E.
 
 **Then** the linked future program \(C\oplus_I E'\) preserves every protected old client, meets d, and has a legitimate repair path requiring zero source edits in C.
 
-**Proof:** By interface trace preservation/refinement and factorization, each protected client observation is unchanged/refined. Step (3) supplies admissible source/edit/resource obligations. Step (4) establishes the final goal; the support condition prevents edits to C. Concatenating legitimate staged edits proves reachability. QED.
+**Proof:** For each prefix j and client K, factorization gives \(Obs_K(C\oplus_I E_j)=f_{C,K}(Tr_I(E_j))\). The interface preservation/refinement in (2), and monotonicity of the client transformer if using refinement, yields the protected old-client condition at **each** prefix, without assuming it. Step (3) supplies independently evidenced admissible source/edit/resource obligations. Step (4) establishes the final goal; the support condition prevents edits to C. Concatenating legitimate staged edits proves reachability. QED.
 
 **Important:** This is a standard contextual-replacement/frame argument, compatible with CCR 2.0 Enhanced VC, Iris and DimSum, NOT a new proof-superiority claim. It has scientific content only once port completeness, rights and implementation facts can be extracted from genuine source. For Ruby, require/prepend, reflection and method_missing can break naive static port mediation. For Go, pool-return events show that data-only port descriptions are incomplete.
 
