@@ -1,0 +1,219 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R10_P3_SOURCE_LIFETIME_PATH_COMPOSITION_PRESEAL_V1",
+  "scientific_question": "Does a repair endpoint satisfying future buffer-isolation demands imply an admissible source-edit path preserving preexisting clients at every intermediate checkpoint? Compare actual 2024 grpc mem.Copy execution with strongest equal-source classical observer-quotient graph.",
+  "original_grpc_sha": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+  "existing_verified_p2_run": 38323501620,
+  "scope": "Author-created pool/provider/adapter/root implementation inserted beneath authentic unchanged historical grpc mem.Copy/Buffer.Free; no claims of production grpc bugs, independent third-party consumers or actual historical permission.",
+  "base_source": "tools/p42/p2-r10-native/make_source_variants.py source definitions; generated Go files included in CI artifact",
+  "old_observers": [
+    {
+      "id": "small_copy",
+      "size": 1024,
+      "first_byte": 65,
+      "return_count": 0
+    },
+    {
+      "id": "legacy_accounting",
+      "size": 2048,
+      "return_count": 2
+    }
+  ],
+  "future_observer": {
+    "id": "large_copy_isolated",
+    "size": 2048,
+    "first_byte": 65
+  },
+  "nodes": [
+    {
+      "id": "baseline",
+      "root": "shared",
+      "provider": "shared",
+      "adapter": false,
+      "compile": true,
+      "old": true,
+      "future": false,
+      "expected": {
+        "small": [
+          65,
+          0
+        ],
+        "large": [
+          66,
+          2
+        ]
+      }
+    },
+    {
+      "id": "adapter_prepared",
+      "root": "shared",
+      "provider": "shared",
+      "adapter": true,
+      "compile": true,
+      "old": true,
+      "future": false,
+      "expected": {
+        "small": [
+          65,
+          0
+        ],
+        "large": [
+          66,
+          2
+        ]
+      }
+    },
+    {
+      "id": "adapter_selected",
+      "root": "adapter",
+      "provider": "shared",
+      "adapter": true,
+      "compile": true,
+      "old": true,
+      "future": true,
+      "expected": {
+        "small": [
+          65,
+          0
+        ],
+        "large": [
+          65,
+          2
+        ]
+      }
+    },
+    {
+      "id": "provider_repaired",
+      "root": "shared",
+      "provider": "fresh",
+      "adapter": false,
+      "compile": true,
+      "old": true,
+      "future": true,
+      "expected": {
+        "small": [
+          65,
+          0
+        ],
+        "large": [
+          65,
+          2
+        ]
+      }
+    },
+    {
+      "id": "nop_selected",
+      "root": "nop",
+      "provider": "shared",
+      "adapter": false,
+      "compile": true,
+      "old": false,
+      "future": true,
+      "expected": {
+        "small": [
+          65,
+          0
+        ],
+        "large": [
+          65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "nop_adapter_prepared",
+      "root": "nop",
+      "provider": "shared",
+      "adapter": true,
+      "compile": true,
+      "old": false,
+      "future": true,
+      "expected": {
+        "small": [
+          65,
+          0
+        ],
+        "large": [
+          65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "unprepared_adapter_root",
+      "root": "adapter",
+      "provider": "shared",
+      "adapter": false,
+      "compile": false,
+      "old": false,
+      "future": false,
+      "expected": null
+    }
+  ],
+  "paths": [
+    {
+      "id": "adapter_first_valid",
+      "nodes": [
+        "baseline",
+        "adapter_prepared",
+        "adapter_selected"
+      ],
+      "valid": true,
+      "endpoint": true
+    },
+    {
+      "id": "provider_local_valid",
+      "nodes": [
+        "baseline",
+        "provider_repaired"
+      ],
+      "valid": true,
+      "endpoint": true
+    },
+    {
+      "id": "nop_old_regression",
+      "nodes": [
+        "baseline",
+        "nop_selected"
+      ],
+      "valid": false,
+      "endpoint": true
+    },
+    {
+      "id": "nop_detour_endpoint_same",
+      "nodes": [
+        "baseline",
+        "nop_selected",
+        "nop_adapter_prepared",
+        "adapter_selected"
+      ],
+      "valid": false,
+      "endpoint": true
+    },
+    {
+      "id": "root_first_compile_break",
+      "nodes": [
+        "baseline",
+        "unprepared_adapter_root",
+        "adapter_selected"
+      ],
+      "valid": false,
+      "endpoint": true
+    },
+    {
+      "id": "adapter_preparation_only",
+      "nodes": [
+        "baseline",
+        "adapter_prepared"
+      ],
+      "valid": false,
+      "endpoint": false
+    }
+  ],
+  "atomic_edits": "Each valid edge changes exactly one researcher-authored source path by content: add adapter.go, rewrite root.go, or rewrite provider.go. A path is safe iff every checkpoint compiles and preserves both fixed old observer obligations, and the endpoint meets the later new isolation observer. Paths with endpoint false are not successful deliveries.",
+  "conditions": [
+    "No claim of compositional semantic equivalence for arbitrary future demands or arbitrary inputs",
+    "An ordinary safety invariant is closed under paths iff it holds at every intermediate vertex; endpoint checking is weaker",
+    "This can be expressed by finite classical transition systems, observer projections, source-aware constraint solving; no unique EvoNOMOS law is presumed",
+    "The example is historical-original-consumer grounded but candidate pools/root/client demands are authored laboratory fixtures"
+  ]
+}
