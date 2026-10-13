@@ -1,0 +1,47 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P2_HISTORY_SENSITIVE_AUTHORITY_AND_RUBY_GO_LANGUAGE_CONTRAST_PRESEAL_V1",
+  "freeze_context": "Four original PDFs imported 00->10 and first-page examined; R11-P1/P1B Go PASS; new Ruby tests not yet written",
+  "source_custody": {
+    "repo": "rack/rack",
+    "path": "lib/rack/builder.rb",
+    "before": "af9e278ffd9024f325e595f18bace4f9b7e931d7",
+    "after": "444dc8a130663159ed490f25948b73ff9b5fbba0",
+    "before_blob": "80c073148e6a52bc9deeb1219b8e873f610fbe92",
+    "after_blob": "9faeffb7868021d17fad26118b426a6bd1819d53",
+    "actual_change": "Author ioquatix; in 2023 Ruby Rack::Builder gains keyword **options and attr :options, while no-options old code remains valid",
+    "native_tests": [
+      "before old no-options Rack::Builder.new with legacy to_app PASS",
+      "before new keyword options not obtainable from Builder.options (NOT SUPPORTED)",
+      "after old no-options roundtrip PASS",
+      "after new keyword options visible as builder.options[:foo]==:bar PASS"
+    ]
+  },
+  "ruby_native_model": {
+    "models": "Two researcher-authored Ruby Module#prepend interventions on method fetch, independently owned Ruby RubySourceModule A=Trim, B=Guard; original base Owner=Core; Ruby ancestor ordering changes when order changes",
+    "old_demand": "fetch('2') == 'ok' in both orders",
+    "lenient_future": "fetch(' 2 ') == 'ok' only Trim outer",
+    "strict_future": "fetch(' 2 ') == 'rejected' only Guard outer",
+    "source_set_invariant": "Same three Ruby method bodies and module definitions, different load/prepend event history",
+    "expected": [
+      "Guard then Trim: Trim outer, lenient future PASS, strict future FAIL",
+      "Trim then Guard: Guard outer, lenient future FAIL, strict future PASS",
+      "Active owner grant revoked between two edits makes step unpermitted even with unchanged code and old behavior",
+      "Real Ruby reflection ancestors and source_location measure method lookup changes"
+    ],
+    "claimed_limitations": [
+      "Actual source commit before/after is Rack maintainer historical original, isolated native run using original repo source, not cross-company coordinated patch",
+      "Ruby Module#prepend patches are authored falsifiers, not claimed to exist in Rack",
+      "Ruby dynamically resolved call graph not captured by static local source tree alone",
+      "None of these imply formal language-independent soundness or better-than-CCR proof"
+    ]
+  },
+  "classical_competitors": [
+    "Ruby ancestor lookup method precedence",
+    "trace refinement with contexts",
+    "CCR 2.0 relational separation logic",
+    "Iris RA and frame preservation",
+    "DimSum language-to-language interfaces",
+    "Simuliris concurrency-aware relation"
+  ],
+  "gate": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
