@@ -1,0 +1,73 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R11_SOURCE_INDEPENDENT_CONSUMERS_AND_CONTEXTUAL_COMPOSITION_FREEZE_V1",
+  "date": "2026-10-13",
+  "parent": "R10-P3 verified original Go 38328471520",
+  "external_source_witnesses": [
+    {
+      "repo": "cortexproject/cortex",
+      "path": "pkg/cortexpb/codec.go",
+      "pin": "UNVERIFIED_DATE_DEFAULT_BRANCH",
+      "kind": "live separately maintained codec",
+      "observations": [
+        "pool.Get/Put for large messages",
+        "mem.NewBuffer transfers release ownership",
+        "ReleasableMessage.RegisterBuffer extends lifetime",
+        "non-releasable messages choose Nop pool"
+      ],
+      "native_test": "NOT_RUN"
+    },
+    {
+      "repo": "googleapis/google-cloud-go",
+      "ref": "37f936ac9d69e173da0ba4123e382c52b2dd741f",
+      "path": "storage/client_test.go",
+      "kind": "separately maintained gRPC Storage integration tests",
+      "observations": [
+        "testBufferPool:Get records allocated bytes",
+        "Put records released bytes",
+        "TestReadCodecLeaksEmulated requires allocation and release bytes equal"
+      ],
+      "native_test": "NOT_RUN"
+    },
+    {
+      "repo": "milvus-io/milvus",
+      "ref": "4610a590c49ee5d15b81d8d10d3ef15853458745",
+      "path": "pkg/util/resource/codec_buffer_pool.go",
+      "kind": "independently maintained buffer pool implementation",
+      "observations": [
+        "pooled dirty byte slices",
+        "size-tier Get/Put",
+        "consumers must overwrite visible bytes before publication"
+      ],
+      "native_test": "NOT_RUN"
+    }
+  ],
+  "research_explanandum": "When do owner-separated source edits preserve multiple independently maintained client obligations and when does a seemingly SOLID-inspired interface/adapter boundary improve or obstruct safe future evolution?",
+  "theoretical_hypotheses": [
+    "H1: Disjoint source edit files alone are insufficient for composition when source traces share ownership-release or publication interfaces.",
+    "H2: Conditional contextual refinements compose under matching ownership transfer and frame/rely-guarantee assumptions; stale or unspecified frame assumptions invalidate any automatic gluing.",
+    "H3: If both direct and adapter architectures admit same initial client contracts, future changes touching only one implementation may favor direct; changes affecting independent consumers with different lifetime contracts may favor adapter; either preference depends on explicit admissible patches and actual observed effort, not on principle labels."
+  ],
+  "classical_rivals": [
+    "Conditional Contextual Refinement (CCR, POPL 2023 DOI 10.1145/3571232)",
+    "separation logic and frame rule",
+    "rely-guarantee reasoning",
+    "trace refinement and bisimulation",
+    "finite CSP/graph repair search",
+    "conventional static call/alias analysis"
+  ],
+  "forced_nonclaims": [
+    "No claim all three external repos compiled with 2024 grpc yet",
+    "No validated 2024 file dating for external repos",
+    "No genuinely measured architecture advantage yet",
+    "No novel theorem in classical compositional refinement",
+    "SOLID not formalized canonically; five proposed restricted predicates must be expressly chosen"
+  ],
+  "planned_gates": [
+    "Source provenance and ref age audit",
+    "Frozen consumer-directed behavioral oracles before edits",
+    "Two actual architecture variants with independently executable consumers",
+    "All intermediate source states including failure routes",
+    "Equal-information classical comparator",
+    "Independent held-out source predictions before outcome reveal"
+  ]
+}
