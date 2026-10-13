@@ -144,3 +144,56 @@ Strictness against a **bounded-local SOLID signature** follows from Theorem K on
 **Different available material:** Sangiorgi lecture notes on bisimulation are indexed in Drive, but they do not replace a full original concurrency/ownership paper. Other software architecture papers may already be in Drive; no universal absence is claimed without searching them by their titles/DOIs.
 
 **Scientific disposition:** R11-P1 exact-source Go test **PASS**; G1/G2/L/K have explicit conditional proofs and finite model checks, but their mechanism is **CLASSICALLY ADEQUATE**, not a new derived OO law. Genuine real-world architecture-value reversal and general Go source-to-formal-semantics certification remain OPEN. P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED.
+
+
+## X. P1B update: genuine independently maintained 2024 consumer source executed
+
+Earlier R11-P0 historical negatives apply only to the selected contemporary Cortex, Google Cloud Storage and Milvus files. A *different* independent historical source cohort was subsequently found and tested successfully:
+
+- [moby/buildkit 2024-10-03 original source](https://github.com/moby/buildkit/blob/41a0a0c37d0bd66d97203d3895750ff96c015548/util/grpcutil/encoding/proto/proto.go), ref 41a0a0c37d0bd66d97203d3895750ff96c015548, source blob 9aa156cf27e9ed004e1899c803fe86442409b902.
+- [authzed/spicedb 2024-09-18 original source](https://github.com/authzed/spicedb/blob/44372c1c020b9ce7e40b704951b59f1529f6fe1a/pkg/proto/dispatch/v1/01_codec.go), ref 44372c1c020b9ce7e40b704951b59f1529f6fe1a, source blob d72e4e4feb59d46379d06e86053881deae124665.
+- Same unmodified original grpc-go producer ref 9ab8b62505c85a5e03be1ae97949e960e24b6d4f.
+
+P1B independent prediction/source freeze commit b30daf54aa11916e7b21df037114355a55740569, preceding generator or CI. [Frozen P1B contract](../../tools/p42/p2-r11/frozen_p1b_two_real_2024_independent_grpc_consumers.json), [byte-exact original-source materializer](../../tools/p42/p2-r11-native/make_two_original_2024_codec_clients.py), [hosted Actions #38334505205 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/38334505205), job 115091455208, artifact 11783888662, ZIP SHA256 f5bf2453e1810a5196cac87a075d91e5714df85a6978c4319234a398800dbaaa.
+
+Both real 2024 CodecV2 source files were imported byte-identically and successfully compiled against exactly the original 2024 grpc-go source. Original source implementations each successfully marshalled and unmarshalled research-authored 1,024-byte and 2,048-byte vtproto-compatible message instances, four native roundtrips total, PASS. The tests use authentic maintained *consumer implementations* but research-authored test messages and an isolated Go module. The full original projects' suites and any real owner-separated production patch were NOT tested.
+
+The older claim that *no contemporaneous independently maintained consumer exists* is now **superseded for this new BuildKit/SpiceDB cohort**. The older selected Cortex/Storage/Milvus cohort's exact-2024 limitation remains in effect.
+
+## XI. Theorem F: greatest rely-frame support and polynomial grid verification
+
+Let A be one owner's state, B the context/partner owner's state, and e:a -> a' be a genuine authorized source edit. Consider a partial linking operation and an independently specified set of existing client trace contracts I. Define the full contextual safe rely support:
+
+\[
+F_e(a) := \{b \mid
+\operatorname{Linked}(a,b) \land I(a \otimes b)
+\land \operatorname{AuthorizedBuildable}(e,a,b)
+\land \operatorname{Linked}(a',b) \land I(a'\otimes b)
+\land \operatorname{TraceRefines}_C(a'\otimes b,a\otimes b)\}.
+\]
+
+**F1 (greatest permissible environment / weakest sufficient rely assumption).** A partner-state set R guarantees this edit is enabled, preserves the interface/client contract and satisfies the selected trace refinement for every partner b in R **if and only if** R is a subset of F_e(a).
+
+**Proof.** Expand the definition of F_e(a) and the universal condition over R. Every b in R must have all the defining properties, precisely expressing R subset F_e(a). Any strict extension outside F_e(a) contains a direct failing frame witness. QED.
+
+This gives an exact greatest rely-support set under the powerset order; it does not guarantee that the set is source-locally inferable, decidable for arbitrary Go, unique under changing semantics, or novel against weakest preconditions, separation-logic frames and relational residuals.
+
+**F2 (exact safe all-shuffle source-edit criterion).** Given owner A's fixed source chain a0 -> ... -> am and owner B's fixed chain b0 -> ... -> bn, assume the source state after i A-edits and j B-edits is independent of the chosen interleaving (the rectangular path-independence hypothesis). Suppose the initial link is safe. Then *every syntactically possible source-edit shuffle* is permitted, buildable and safe at all intermediate steps **if and only if**
+
+\[
+\boxed{
+\forall i<m,\,\forall j\le n:\ b_j\in F_{e_i}(a_i)
+\quad\land\quad
+\forall j<n,\,\forall i\le m:\ a_i\in F_{f_j}(b_j).
+}
+\]
+
+**Proof.** The first family checks every A-incrementing grid edge with exact source, destination, rights and old-client trace requirements; the second checks all B-incrementing edges. By previously proved G2 each complete shuffle consists entirely of these allowed edges, proving sufficiency. Conversely, each grid edge lies on some monotone complete shuffle; if every shuffle is safe, that edge has its full rely/frame property. QED.
+
+**Complexity result within the assumptions.** Instead of enumerating binomial(m+n,m) complete edit schedules, the rule requires m(n+1)+n(m+1)=2mn+m+n individual proof obligations. Verification complexity of any one trace obligation is *not* bounded by this count. If simultaneous edits, owner-right changes, or shared state make the linked state depend on edit order, the grid coordinates no longer represent states uniquely. Then the theorem does not apply: a history-enriched source transition system is required and the polynomial count may disappear.
+
+The mathematically demanding *open* task is to derive source-observable, owner-checkable **sufficient conditions for frame-support stability** across edits without presupposing the very design property being explained. Source interpretation must compete directly against CCR 1.0 and **CCR 2.0** (original PDF not yet in Drive), Iris, and independently verifiable trace/interface refinement; none is defeated by this elementary set-theoretic theorem.
+
+## XII. Research status after source and theory update
+
+R11-P1 original third-party provider PASS plus R11-P1B two genuine 2024 independently maintained original consumer Go code paths PASS. G1/G2/L/K/F1/F2 are explicitly scoped mathematical theorems/proof schemas, NOT a certified semantic preservation theorem for arbitrary Go source, a new architecture law, or a real maintainer edit-labor study. The next remaining hard gate is history-aware source contract extraction, original-owner patch sequence composition, and prospectively predicted architecture preference reversal under independent genuine demands. P42 RUNNING / P43 HOLD / LAW-R2 NOT_AUTHORIZED.
