@@ -99,6 +99,21 @@ jobs:
           grep -q R11_P1_THREE_EXTERNAL_PROVIDER_GO_STATES_ONE_COMPILER_NEGATIVE_AND_TYPED_PATHS_PASS out/p42-r11/p1-classical-audit.log
           sha256sum tools/p42/p2-r11/frozen_p1_independent_milvus_provider_typed_source_paths.json tools/p42/p2-r11-native/milvus-original/pkg/util/resource/codec_buffer_pool.go tools/p42/p2-r11/verify_p1_source_ownership_paths.py > out/p42-r11/checksums.txt
           echo R11_P1_BOUNDED_EXTERNAL_GO_CLASSICAL_ADEQUACY_PASS
+      - name: Exhaustive two-owner grid and unbounded locality classical model check
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r11/check_owner_gluing_locality.py | tee out/p42-r11/p1-finite-theorem-audit.log
+          grep -q R11_P1_256_TWO_OWNER_MODELS_32_LOCALITY_WITNESSES_PASS out/p42-r11/p1-finite-theorem-audit.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("out/p42-r11/p1-finite-mathematical-court.json").read_text())
+          assert x["valuations_total"]==256
+          assert x["locality_radius_witnesses"]==32
+          assert x["one_safe_one_unsafe_same_endpoint"]>0
+          assert x["final_compiles_but_forbidden_prefix_contexts"]>0
+          PY
+          echo R11_P1_CLASSICAL_OWNER_GRID_AND_LOCALITY_FINITE_PASS
       - if: always()
         uses: actions/upload-artifact@v4
         with:
