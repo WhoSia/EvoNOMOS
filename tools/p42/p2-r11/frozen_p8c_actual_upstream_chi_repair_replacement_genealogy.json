@@ -1,0 +1,39 @@
+{
+  "protocol": "R11_P8C_POST_SOURCE_DISCOVERY_PRE_NATIVE_UPSTREAM_CHI_MAINTAINER_REPAIR_GENEALOGY",
+  "pre_source_corpus_seal": "2fb5c96ed05ffc0b26e1e7e440d3ed7857a12bd3",
+  "found_independent_third_party_history": [
+    {
+      "pr": 1028,
+      "created": "2025-10-23",
+      "author": "BlakeWilliams",
+      "status": "CLOSED_UNMERGED",
+      "proposal": "PreventReuse - never pool request Context after handler"
+    },
+    {
+      "pr": 1033,
+      "created": "2025-11-05",
+      "author": "BlakeWilliams",
+      "status": "CLOSED_UNMERGED",
+      "proposal": "Context.Clone and deep-copy reference fields replacing #1028"
+    },
+    {
+      "pr": 1157,
+      "created": "2026-08-20",
+      "author": "VojtechVitek",
+      "status": "MERGED",
+      "merge_sha": "15767233591fd4267ae99d05299fa3807c375cdd",
+      "proposal": "Integration of revised Clone with lifetime precondition and parentCtx detachment"
+    }
+  ],
+  "status_warning": "A proposal graph, not three consecutive main source patches. Original PR 1028/1033 code was not upstream merged; only 1157 entered main. Neither PR closure equals technical impossibility.",
+  "source_original": "go-chi/chi@67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+  "actual_integrated_source": "go-chi/chi@15767233591fd4267ae99d05299fa3807c375cdd",
+  "post_source_read_pre_native_predictions": {
+    "old_2024": "No exported Context.Clone; native original captures context pointer that may alias second request; no maintained post-response alias guarantee",
+    "new_2026": "Original merged Context.Clone exists; calling it INSIDE handler before return produces old Ada routing param after later Bob request, with own source copy; original raw context may be pooled and mutable. Test upstream TestContext_Clone also PASS.",
+    "unmodified_old": "Both revisions retain GET /users/Ada and GET /users/Bob with original HTTP 200 OLD twice.",
+    "rights": "Actual branch reviewer/merge record evidenced; not complete protected-branch rules. The test adds only a fixture to unmodified upstream repo."
+  },
+  "new_law_test": "Full demand-implementation graph contains more history than binary PR merged flag. No proof HARC beats standard git/process provenance + separation logic.",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
