@@ -12,7 +12,7 @@ def parse_observations(repo):
     line=next((v for v in s.splitlines() if needle in v),None)
     if not line:
         raise AssertionError("Native original source assertion missing: "+repo)
-    hit=re.search(r"raw=\{(.*?)\}\s+repaired=\{(.*?)\}",line)
+    hit=re.search(r"raw=\{(.*?)\}\s+repaired=\{(.*)\}\s*$",line)
     if not hit:
         raise AssertionError("Wrong native result schema "+repo)
     def record(v):
