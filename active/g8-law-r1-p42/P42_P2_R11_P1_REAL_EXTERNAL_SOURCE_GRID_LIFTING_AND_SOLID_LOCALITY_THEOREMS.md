@@ -132,7 +132,7 @@ Strictness against a **bounded-local SOLID signature** follows from Theorem K on
 
 ## IX. Literature acquisition ledger, actual Drive inventory checked
 
-**CONFIRMED and reviewed original complete PDF:** Song et al. (2023) CCR 1.0, DOI \`10.1145/3571232\`, transferred to canonical Drive \`10_PAPERS\` under normalized scholarly filename. No duplicate title/DOI original was found in searches.
+**CONFIRMED and reviewed original complete PDF:** Song et al. (2023) CCR 1.0, DOI \`10.1145/3571232\`, transferred to canonical Drive \`10_PAPERS\` under normalized scholarly filename. **Duplicate bytes identified:** An additional same-title original `3571232.pdf` was subsequently discovered in Drive `00_INTAKE` at file ID `16x-GJJkXiXljEbO3SD0wL8L_S0Zxzj5u`. Its complete 31-page PDF has the **same SHA-256 `e41b6418faffbe1b7666727eaa53abf849138300fa9e600914721cc08d5e3828`** as canonical 10_PAPERS file `13Ghr7KUsITAJnkDngPoh2tT2jn5JbkMy`. The extra copy was preserved in 00_INTAKE and renamed `DUPLICATE_NOT_CANONICAL`; it was not deleted or promoted.
 
 **NOT FOUND as separately stored original PDF by title/DOI search** (web discoverability is not Drive ownership or proof of reading):
 
