@@ -1,0 +1,57 @@
+{
+  "protocol": "EVONOMOS_R11_P7_HISTORICALLY_PROSPECTIVE_DEMAND_BEFORE_REVEAL_20261013_V1",
+  "title": "Prospective Architecture-Repair Dominance under Independent Demand and Maintainer Authority",
+  "freeze_kind": "Future third-party upstream PR requirements UNREAD before this public WhoSia seal; repository, eligibility rule, two actual architectures and hard abstention specified before discovery",
+  "actual_competing_architectures": [
+    {
+      "id": "CHI_CORE",
+      "repo": "go-chi/chi",
+      "ref": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+      "architecture": "radix/tree routing with path-priority; exposed map-oriented HeaderRouter in middleware"
+    },
+    {
+      "id": "GORILLA_CORE",
+      "repo": "gorilla/mux",
+      "ref": "b4617d0b9670ad14039b2739167fd35a60f557c5",
+      "architecture": "ordered route slice, regex-based matcher and registration chronology"
+    }
+  ],
+  "same_declared_old_client": "a GET handler registered for a noncolliding static /r11-p7/health path responds 200 and literal OLD; count exactly once and stable body; registration must be valid on BOTH original cores; any failure or missing clean setup is non-admission",
+  "cutoff_policy": "architecture source snapshots predate selected upstream PR requirement. The histories and upstream tests must be kept separate from author-created adaptations and from actual project rights.",
+  "heldout_source_selection": {
+    "repository": "go-chi/chi",
+    "frozen_query": "repo:go-chi/chi is:pr is:merged created:2025-01-01..2026-09-15 route",
+    "sort": "created",
+    "order": "asc",
+    "topn": 25,
+    "sampling": "Select the first TWO results by created_at ascending (tie-break by PR number). Do not inspect issue/PR body, patch or test source until this exact manifest is committed. If <2, select all; if 0, deterministic fallback query replaces route with path, same date and sorting. No cherry-picked replacements thereafter.",
+    "eligibility": "Real maintainer proposal accepted (merged) and later than pinned sources. If mismatch with routers, classify OOD rather than changing selection; infer request from PR body and actual changed original tests after lock."
+  },
+  "predeclared_prediction_labels": {
+    "DISJOINT_ROUTE": "Both original cores expected to admit separate noncolliding route and preserve old health client with ONE registration. Nonunique minimal path patch ignored.",
+    "CHRONOLOGY_OVERLAP": "For exact distinct overlapping path patterns, original Chi radial specificity vs Gorilla first-match chronological order expected to disagree on at least one submitted pattern or order. If actual holdout patterns differ materially ABSTAIN.",
+    "DUPLICATE_EXACT": "A second registration same HTTP method and exact path may overwrite or error; exact behavior MUST be measured on both cores, direction NOT predicted and class treated ABSTAIN for sign.",
+    "ESCAPING_OR_DECODING": "No comparative sign prediction. Need inspect actual handler-visible params, escaping and pattern grammar. Mark PREDECLARED_ABSTAIN rather than retrospectively favoring a framework.",
+    "OTHER": "PREDECLARED_ABSTAIN; no performance victory claim"
+  },
+  "source_cost_vector": "For every valid source route, count initial registrations, modified original production files, add-on source files, operator actions, client migration, failed old contracts, original-run Go allocations+ns per comparable request; unknown review hours, institution rights, and historical effort report separately and as UNKNOWN, never impute zero.",
+  "strong_rivals_equal_input": [
+    "CLASSICAL_I: source-aware HTTP route precedence + accepted input LTS / selected-client trace refinement",
+    "CLASSICAL_II: state machine reachability and constrained set-valued repair frontier / model checking",
+    "CCR_2_0: conditional contextual refinement and enhanced vertical composition applied as a proof schema; actual Rocq instantiation not supplied",
+    "IRIS: resource ownership/frame and dynamic event tracing as a proof schema; actual Coq instantiation not supplied",
+    "DIMSUM: language-independent event linking/simulation as a proof schema; actual Coq instantiation not supplied",
+    "REAL_OPTIONS: Sullivan et al. 2001 alternative repair options and expense-aware legal edit paths"
+  ],
+  "independent_oracle_method": "Read actual merged third-party PR tests and requirements after lock; first observed TEST-file paths yield demand features, label before running any added research oracle. No claim a reviewer-approved PR proves exclusive actor source ownership.",
+  "disqualifiers": [
+    "independent PR unread rule breached",
+    "incompatible old-client oracle",
+    "source difference from pinned original without declaring research add-on",
+    "upstream maintainer approval inferred from merge alone",
+    "picking a nicer heldout issue after seeing results",
+    "source-aware classical baseline deprived of HARC inputs",
+    "declaring all-context LSP from two HTTP requests"
+  ],
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
