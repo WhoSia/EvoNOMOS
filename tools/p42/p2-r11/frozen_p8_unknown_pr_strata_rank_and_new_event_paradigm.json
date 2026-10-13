@@ -1,0 +1,51 @@
+{
+  "protocol": "EvoNOMOS_R11_P8_UNREAD_MERGED_CLOSED_UNMERGED_TWO_SOURCE_ARCHITECTURES_AND_EVENT_JS",
+  "date": "2026-10-13",
+  "unseen_corpus_rule": "Freeze now BEFORE looking at any future PR content/title/patch in either repo or original EventEmitter3 v5.0.1 source. Existing Chi/Gorilla 2024 and P7 PR985/986 knowledge declared leakage.",
+  "arms": [
+    {
+      "id": "Chi",
+      "repo": "go-chi/chi",
+      "sha": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+      "known": "trie, chi.URLParam, PathValue"
+    },
+    {
+      "id": "Gorilla",
+      "repo": "gorilla/mux",
+      "sha": "b4617d0b9670ad14039b2739167fd35a60f557c5",
+      "known": "ordered list, Vars/CurrentRoute/GetPathTemplate"
+    }
+  ],
+  "queries": [
+    "repo:go-chi/chi is:pr is:merged created:2025-01-01..2026-09-15 route",
+    "repo:go-chi/chi is:pr is:closed is:unmerged created:2025-01-01..2026-09-15 route",
+    "repo:gorilla/mux is:pr is:merged created:2025-01-01..2026-09-15 route",
+    "repo:gorilla/mux is:pr is:closed is:unmerged created:2025-01-01..2026-09-15 route"
+  ],
+  "selection": "Two earliest by actual created_at ascending, ties by PR number. If 0 in any stratum, deterministic fallback use path then no keyword, same repo/date/status. Missing strata not hand-filled; admit shortage. Lock actual PR numbers BEFORE reading body/diff. Any previously seen #985/#986 scored LEAKAGE.",
+  "preexisting_architecture_rank_hypotheses": {
+    "global": "Among at least 3 eligible common-oracle requests, original Chi requires <= one-adapter edit count of original Gorilla in >=60%, and >=1 strict. Less than 3 -> UNDERPOWERED. Contrary observations -> FALSIFIED.",
+    "type_rules": {
+      "pathvalue": "Chi strict better if demanded standard Request.PathValue under source-known compatible registration",
+      "registration_chronology": "Gorilla strict better when old source route registration provenance required and available",
+      "request_pattern": "tie under one per-route adapter and exact matched template accessible",
+      "disjoint_route": "tie if both accept registration",
+      "unknown": "ABSTAIN without hindsight class invention"
+    }
+  },
+  "cost": "Only zero or one source-local client wrapper added while upstream core unchanged; not a global source patch minimum or human labor; unsupported broader requests OOD/ABSTAIN.",
+  "bias": "Merged-only survivorship handled by sampling closed-unmerged too. Not all closed-unmerged are rejected; approval and outcome need independent evidence. No causal estimator from selected PRs.",
+  "rival": "Equal source facts to source-aware guarded route automata, classical refinement and real-options; CCR2/Iris/DimSum theoretical strongest, no unsupported formal tool runs.",
+  "new_paradigm": {
+    "actual_original": "Node.js core events.EventEmitter versus primus/eventemitter3@v5.0.1 in Node22; source not yet inspected",
+    "old": "on('tick', handler), emit('tick',2) calls handler once with 2 and reports listener exists",
+    "forecasts": {
+      "error_without_listener": "Node throws Error; EventEmitter3 emit returns false without throwing",
+      "newListener": "Node emits automatic meta-event when registering callback; EventEmitter3 does not",
+      "once": "both once callback exactly one invocation for two emits",
+      "listener_order": "both two ordinary listeners in insertion order"
+    },
+    "limits": "Event-driven semantics and old trace only, no proof of general JS+Go source compiler soundness."
+  },
+  "state": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
