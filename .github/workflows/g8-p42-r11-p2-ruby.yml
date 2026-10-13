@@ -54,6 +54,11 @@ jobs:
           ruby tools/p42/p2-r11-native/history_sensitive_ruby_court.rb | tee out/p42-r11/ruby-history.log
           grep -q R11_P2_RUBY_OLD_PRESERVED_LENIENT_STRICT_PRECEDENCE_REVERSAL_PASS out/p42-r11/ruby-history.log
           grep -q R11_P2_TEMPORAL_AUTHORIZATION_REVOCATION_NEGATIVE_PASS out/p42-r11/ruby-history.log
+      - name: Finite history congruence information certificate
+        run: |
+          set -eu
+          python3 tools/p42/p2-r11/check_history_quotient.py | tee out/p42-r11/p2-history-quotient.log
+          grep -q R11_P2_FOUR_HISTORY_STATES_TWO_BIT_MINIMAL_QUOTIENT_PASS out/p42-r11/p2-history-quotient.log
       - if: always()
         uses: actions/upload-artifact@v4
         with:
