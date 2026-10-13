@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/p42/p2-r11/frozen_p7_*'
       - 'tools/p42/p2-r11-go/r11_p7_*'
+      - 'tools/p42/p2-r11/p7_equal_information_classical_native_frontier.py'
       - '.github/workflows/g8-p42-r11-p7-two-original-routers.yml'
   workflow_dispatch:
 permissions: {contents: read}
@@ -77,6 +78,11 @@ jobs:
             fi
           done
           echo R11_P7_EQUAL_FUNCTIONAL_REQUEST_NATIVE_RESOURCE_COST_REPEATS_COMPLETED
+      - name: Independently rescore equal-information classical rival, edit-path budget and original Go cost
+        run: |
+          set -eu
+          python3 tools/p42/p2-r11/p7_equal_information_classical_native_frontier.py | tee out/p42-r11-p7/p7-equal-info-classical-score.log
+          grep -q R11_P7_REAL_TWO_CORES_POST_REVEAL_PRE_NATIVE_MATRIX_PASSED__EQUAL_INFORMATION_CLASSICAL_PREDICTS_ALL__PHASE_A_ABSTAIN out/p42-r11-p7/p7-equal-info-classical-score.log
       - if: always()
         uses: actions/upload-artifact@v4
         with:
