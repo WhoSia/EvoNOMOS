@@ -91,3 +91,26 @@ A standard **labelled transition system + invariants / observer projection + cla
 A reasonable next thesis target is a **semantic interface condition sufficient for the composition of independently owned, context-qualified safe edits** that can yield source-grounded prospective predictions on multiple independently maintained real applications, and that competes head-to-head with contextual refinement, rely-guarantee/separation logic, bisimulation and constraint/path planning. Do not manufacture an unneeded new axiom.
 
 **Scientific stage: R10-P3 BOUNDED PASS; P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED.**
+
+
+## 7. Founding-context audit and scientific drift boundary
+
+This section records a synthesis of EvoNOMOS research direction, not a reproduction of private chat transcripts.
+
+**Original question.** A widely taught software-design principle, including SOLID, is a human-authored recommendation rather than a universally established axiom. The research seeks testable, context-conditional structural explanations for when a concrete design intervention improves software evolution, when it does not, and why its advantages may reverse.
+
+**Research development and recurring course corrections.**
+
+1. The initial program treated architecture interventions as rival actions with explicit prior clients, prospective changes, comparators, and lifecycle outcomes. The point was to explain consequences, not to rank design slogans.
+2. Large experimental, measurement, and evidence-governance programs exposed genuine pitfalls, but stronger verification machinery did not automatically yield a new software-design result.
+3. Subsequent work prioritized theoretical computer science, especially source-level repair relations, observational equivalence, restricted permissions, minimal distinguishing contexts, and compositional source semantics. Concrete maintained programs are independent falsifiers, not substitutes for the mathematical question.
+4. More recent source-grounded courts separated observed behavior from potential future repair alternatives. A successful test establishes only its scoped behavioral prediction; novelty depends on predictions that strong classical theory does not already explain.
+
+**Two non-interchangeable kinds of context.**
+
+- Historical/epistemic context explains the motivating question, past failed premises, why the research changed methods, and which competitor explanations remain undefeated.
+- Software-semantic context specifies source, client observers, requirements and their timing, module boundaries, permitted source edits, owner rights, repair histories, and multiobjective consequences.
+
+**Consequences for R10-P3.** An identical final source can be reached by paths with different intermediate compilability and preservation of existing client contracts. Native Go confirmed the declared cases; standard source-region analysis and finite transition-system invariants predicted them all. The experiment therefore supplies a useful concrete bridge between real source edits and path-based semantics, but does not establish a new conditional OO/SOLID law.
+
+**Research guardrail.** Future promotion requires a falsifiable structural claim that distinguishes genuine competing design actions and predicts a material software-engineering consequence. A new formalism, green CI, a finite path example, or a reconstructed SOLID label is not enough. Strong classical rivals must receive equivalent source/context information. Maintain P42 RUNNING, P43 HOLD and LAW-R2 NOT_AUTHORIZED until the required independent evidence exists.
