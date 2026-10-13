@@ -1,0 +1,85 @@
+name: P42 R11 P4 Native grpc-go Real Maintainer Buffer Repairs
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p4_grpc_real_contributor_buffer_repair.json'
+      - 'tools/p42/p2-r11-go/**'
+      - '.github/workflows/g8-p42-r11-p4-go.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-grpc-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Checkout original grpc-go October 2024 maintainer revision
+        uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: f8e5d8f704180341e3f1034bc503a324d05d91dc
+          path: tools/p42/p2-r11-go/original-oct
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Checkout original grpc-go November 2024 maintainer revision
+        uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: ee3fb2982c88000782b36591c81bf7067ac1f2c0
+          path: tools/p42/p2-r11-go/original-nov
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23', cache: false}
+      - name: Verify preseal, exact history and preserve source byte integrity
+        run: |
+          set -eu
+          mkdir -p out/p42-r11
+          sealed=74b56dd7eeec8ec95596d12bc0662236badb7365
+          git merge-base --is-ancestor "$sealed" HEAD
+          git show "$sealed":tools/p42/p2-r11/frozen_p4_grpc_real_contributor_buffer_repair.json > out/p42-r11/p4-frozen.json
+          cmp out/p42-r11/p4-frozen.json tools/p42/p2-r11/frozen_p4_grpc_real_contributor_buffer_repair.json
+          ! git cat-file -e "$sealed":tools/p42/p2-r11-go/r11_p4_buffer_repair_external_test.go 2>/dev/null
+          test "$(git -C tools/p42/p2-r11-go/original-oct rev-parse HEAD)" = f8e5d8f704180341e3f1034bc503a324d05d91dc
+          test "$(git -C tools/p42/p2-r11-go/original-nov rev-parse HEAD)" = ee3fb2982c88000782b36591c81bf7067ac1f2c0
+          for x in oct nov; do
+            dir="tools/p42/p2-r11-go/original-$x"
+            git -C "$dir" log -1 --format="%H %an <%ae> %as" | tee "out/p42-r11/p4-original-$x-author.txt"
+            git -C "$dir" hash-object mem/buffers.go | tee "out/p42-r11/p4-original-$x-buffer-blob.txt"
+            cp tools/p42/p2-r11-go/r11_p4_buffer_repair_external_test.go "$dir/mem/evonomos_p42_r11_p4_test.go"
+            cp tools/p42/p2-r11-go/r11_p4_codec_bridge_external_test.go "$dir/evonomos_p42_r11_p4_test.go"
+          done
+          echo R11_P4_GRPC_ORIGINAL_MAINLINE_BLOB_AND_PRESEAL_PASS
+      - name: Original October maintainer repair after correction
+        working-directory: tools/p42/p2-r11-go/original-oct
+        env: {R11_P4_EXPECT_SHORT_LONG_POOL: '1'}
+        run: |
+          set -eu
+          go test ./mem -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p4-oct-post-mem.log"
+          go test . -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p4-oct-codec.log"
+          echo R11_P4_GRPC_OCT_NATIVE_CAPACITY_REPAIR_AND_CODEC_PASS
+      - name: Real previous-source negative control (before the October maintainer patch)
+        working-directory: tools/p42/p2-r11-go/original-oct
+        env: {R11_P4_EXPECT_SHORT_LONG_POOL: '0'}
+        run: |
+          set -eu
+          git show HEAD^:mem/buffers.go > mem/buffers.go
+          test "$(git hash-object mem/buffers.go)" = "$(git rev-parse HEAD^:mem/buffers.go)"
+          go test ./mem -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p4-oct-parent-negative.log"
+          echo R11_P4_GRPC_ORIGINAL_PARENT_LENGTH_UNDERPOOL_NEGATIVE_PASS
+      - name: Original November different maintainer calls no-pool buffer directly
+        working-directory: tools/p42/p2-r11-go/original-nov
+        env: {R11_P4_EXPECT_SHORT_LONG_POOL: '1'}
+        run: |
+          set -eu
+          go test ./mem -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p4-nov-mem.log"
+          go test . -run TestR11P4 -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11/p4-nov-codec.log"
+          grep -Fq 'mem.SliceBuffer(data)' codec.go
+          echo R11_P4_GRPC_NOV_OTHER_MAINTAINER_ORIGINAL_SOURCE_NATIVE_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p4-original-go-cross-maintainer-pooling-and-codec
+          path: out/p42-r11/
