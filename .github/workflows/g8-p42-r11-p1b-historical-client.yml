@@ -1,0 +1,106 @@
+name: G8 P42-R11-P1B Two Original Independent 2024 gRPC Client Codecs
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/**'
+      - 'tools/p42/p2-r11-native/**'
+      - '.github/workflows/g8-p42-r11-p1b-historical-client.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-independent-consumers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r11-native/grpc-original
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: moby/buildkit
+          ref: 41a0a0c37d0bd66d97203d3895750ff96c015548
+          path: tools/p42/p2-r11-native/buildkit-original
+          filter: blob:none
+          sparse-checkout: |
+            util/grpcutil/encoding/proto/proto.go
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: authzed/spicedb
+          ref: 44372c1c020b9ce7e40b704951b59f1529f6fe1a
+          path: tools/p42/p2-r11-native/spicedb-original
+          filter: blob:none
+          sparse-checkout: |
+            pkg/proto/dispatch/v1/01_codec.go
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Preregister and validate three 2024 Go source identities
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p1b
+          freeze=b30daf54aa11916e7b21df037114355a55740569
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r11/frozen_p1b_two_real_2024_independent_grpc_consumers.json > out/p42-r11-p1b/presealed-original.json
+          cmp out/p42-r11-p1b/presealed-original.json tools/p42/p2-r11/frozen_p1b_two_real_2024_independent_grpc_consumers.json
+          if git cat-file -e "$freeze":tools/p42/p2-r11-native/make_two_original_2024_codec_clients.py 2>/dev/null;then echo R11_P1B_TEST_BEFORE_SEAL;exit 10;fi
+          test "$(git -C tools/p42/p2-r11-native/grpc-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          test "$(git -C tools/p42/p2-r11-native/buildkit-original rev-parse HEAD)" = 41a0a0c37d0bd66d97203d3895750ff96c015548
+          test "$(git -C tools/p42/p2-r11-native/spicedb-original rev-parse HEAD)" = 44372c1c020b9ce7e40b704951b59f1529f6fe1a
+          test "$(git -C tools/p42/p2-r11-native/buildkit-original hash-object util/grpcutil/encoding/proto/proto.go)" = 9aa156cf27e9ed004e1899c803fe86442409b902
+          test "$(git -C tools/p42/p2-r11-native/spicedb-original hash-object pkg/proto/dispatch/v1/01_codec.go)" = d72e4e4feb59d46379d06e86053881deae124665
+          echo R11_P1B_THREE_ORIGINAL_2024_CODE_SOURCE_REFS_AND_PRESEAL_PASS
+      - name: Materialize byte-exact original third-party client source without edits
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r11-native/make_two_original_2024_codec_clients.py tools/p42/p2-r11-native/buildkit-original/util/grpcutil/encoding/proto/proto.go tools/p42/p2-r11-native/spicedb-original/pkg/proto/dispatch/v1/01_codec.go | tee out/p42-r11-p1b/materialization.log
+          cmp tools/p42/p2-r11-native/buildkit-original/util/grpcutil/encoding/proto/proto.go tools/p42/p2-r11-native/clients/buildkit/original_codec.go
+          cmp tools/p42/p2-r11-native/spicedb-original/pkg/proto/dispatch/v1/01_codec.go tools/p42/p2-r11-native/clients/spicedb/original_codec.go
+          cat > tools/p42/p2-r11-native/go.mod <<EOF
+          module example.org/evonomos-p42-r11-historical-consumer
+
+          go 1.23
+
+          require (
+            google.golang.org/grpc v1.67.0
+            github.com/pkg/errors v0.9.1
+          )
+
+          replace google.golang.org/grpc => $GITHUB_WORKSPACE/tools/p42/p2-r11-native/grpc-original
+          EOF
+          echo R11_P1B_TWO_ORIGINAL_EXTERNAL_CONSUMER_BYTES_EXACT_PASS
+      - name: Independently run 2024 BuildKit and SpiceDB real Codecs with 2024 original gRPC
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          (cd tools/p42/p2-r11-native && go test -mod=mod -count=1 -v ./clients/...) | tee out/p42-r11-p1b/original-go-two-consumers.log
+          for client in buildkit spicedb;do
+            for size in 1024 2048;do
+              grep -q "R11_P1B_ORIGINAL_EXTERNAL_CODEC_CLIENT name=$client size=$size old_2024_grpc=true marshal=true unmarshal=true" out/p42-r11-p1b/original-go-two-consumers.log
+            done
+          done
+          echo R11_P1B_ORIGINAL_2024_TWO_INDEPENDENT_CLIENTS_FOUR_NATIVE_ROUNDTRIPS_PASS
+      - name: Seal independent original source and Go run receipts
+        if: always()
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD > out/p42-r11-p1b/evonomos-tested-head.txt
+          sha256sum tools/p42/p2-r11/frozen_p1b_two_real_2024_independent_grpc_consumers.json tools/p42/p2-r11-native/buildkit-original/util/grpcutil/encoding/proto/proto.go tools/p42/p2-r11-native/spicedb-original/pkg/proto/dispatch/v1/01_codec.go > out/p42-r11-p1b/sha256.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p1b-two-original-2024-grpc-consumer-codecs
+          path: out/p42-r11-p1b/
