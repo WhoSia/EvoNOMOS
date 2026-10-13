@@ -1,0 +1,94 @@
+{
+  "protocol": "EVONOMOS_P42_P2_R10_P4_INDEPENDENT_CLIENT_OWNERSHIP_AND_CONDITIONAL_SOLID_PRESEAL_V1",
+  "scope": "Noncontemporaneous interoperability: original grpc-go 2024 pinned library plus byte-identical source from two separately maintained repositories at specifically pinned commits (not claimed 2024 clients).",
+  "grpc": {
+    "repo": "grpc/grpc-go",
+    "commit": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f"
+  },
+  "external": [
+    {
+      "repo": "thanos-io/thanos",
+      "commit": "f1e0bbc906c54ca138466bd3095c3f61bf31368d",
+      "files": [
+        {
+          "path": "pkg/extgrpc/codec_stringlabels.go",
+          "blob": "6268c8a351d5b74a362774197602be10debd922c",
+          "build": "!slicelabels"
+        },
+        {
+          "path": "pkg/extgrpc/codec_slicelabels.go",
+          "blob": "7819a41abc34dbb9983c61882f0883d6dbcef79d",
+          "build": "slicelabels"
+        }
+      ]
+    },
+    {
+      "repo": "open-telemetry/opentelemetry-collector",
+      "commit": "e838d926f0e018e3503886923a27d42a35c4bdad",
+      "files": [
+        {
+          "path": "pdata/internal/otelgrpc/encoding.go",
+          "blob": "4f3bfdb6cccf2fdd845f82e256f74910b084395f"
+        }
+      ]
+    }
+  ],
+  "observed_api": "Original grpc mem.BufferSlice.MaterializeToBuffer returns original single input Buffer with extra Ref; for multi-buffer input it copies to selected pool. Both Thanos branches return exactly source-defined []byte/cleanup while original OTEL CodecV2 Marshal uses own pool and returned mem.BufferSlice.",
+  "contracts": [
+    {
+      "id": "C_bytes",
+      "description": "retained bytes equal originals for two simultaneously live independent client packages",
+      "expected_default": true,
+      "expected_slicelabels": true
+    },
+    {
+      "id": "C_thanos_explicit_cleanup",
+      "description": "caller receives callable cleanup for single 2048-byte source-ref and using it after source.Free triggers exactly one lab-authored trackingPool Put",
+      "expected_default": true,
+      "expected_slicelabels": false
+    },
+    {
+      "id": "C_no_cleanup_callback",
+      "description": "Thanos module returns nil cleanup as explicitly implemented under slicelabels tag",
+      "expected_default": false,
+      "expected_slicelabels": true
+    },
+    {
+      "id": "C_otel_codec_independence",
+      "description": "Original OTEL codec used with two outstanding author-defined otelEncoder payloads preserves first bytes and lengths until both free",
+      "expected_default": true,
+      "expected_slicelabels": true
+    }
+  ],
+  "predictions": [
+    {
+      "tag": "default",
+      "singlefragment_input_size": 2048,
+      "cleanup_present": true,
+      "after_source_free_before_cleanup_put": 0,
+      "after_final_cleanup_put": 1,
+      "byte_first": 65,
+      "otel_first": 67
+    },
+    {
+      "tag": "slicelabels",
+      "singlefragment_input_size": 2048,
+      "cleanup_present": false,
+      "after_source_free_before_cleanup_put": 0,
+      "after_final_cleanup_put": 0,
+      "byte_first": 65,
+      "otel_first": 67
+    }
+  ],
+  "alternative_strong_classical": "exact Go reference count and borrow-release semantics, separation logic ownership/frame rule, contextual refinement, source-generated build-tag variants and standard module composition; equal source/contract info, predict exact same observations, no novelty assumed",
+  "nonclaims": [
+    "No upstream Thanos defect attributed",
+    "No 2024 external Thanos or OTel contemporaneity inferred",
+    "No production external deployment or live RPC tested",
+    "No safety of all strings/codec inputs or concurrency schedules inferred",
+    "No globally optimal architecture or labor/performance measured",
+    "No theorem that all SOLID follows from OO",
+    "No cross-ecosystem scientific law from one source snapshot"
+  ],
+  "research_question": "Which actual independent consumer context refines source-level ownership behavior, and when does a non-circular semantic projection of source/observer/lifetime interactions support restricted SOLID-type policies without universal prescriptions?"
+}
