@@ -1,0 +1,101 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P1_INDEPENDENT_REAL_PROVIDER_AND_TYPED_EDIT_PATH_PRESPEC_V1",
+  "base": "R11-P0 source theory and CCR 2023 original PDF normalized to 10_PAPERS",
+  "orig_grpc_repo": "grpc/grpc-go",
+  "orig_grpc_sha": "9ab8b62505c85a5e03be1ae97949e960e24b6d4f",
+  "ext_repo": "milvus-io/milvus",
+  "ext_sha": "4610a590c49ee5d15b81d8d10d3ef15853458745",
+  "ext_original_path": "pkg/util/resource/codec_buffer_pool.go",
+  "date_guard": "External original is independent maintained-source in 2026; ABSENT from repo path history as of 2024-12-31, so explicitly not historical contemporaneous 2024 consumer",
+  "milestones": [
+    {
+      "name": "direct",
+      "files": [
+        "codec_buffer_pool.go",
+        "root.go"
+      ],
+      "old": true,
+      "new": false,
+      "build": true
+    },
+    {
+      "name": "guard_prepared",
+      "files": [
+        "codec_buffer_pool.go",
+        "root.go",
+        "guard.go"
+      ],
+      "old": true,
+      "new": false,
+      "build": true
+    },
+    {
+      "name": "guard_selected",
+      "files": [
+        "codec_buffer_pool.go",
+        "root.go",
+        "guard.go"
+      ],
+      "old": true,
+      "new": true,
+      "build": true
+    },
+    {
+      "name": "root_first",
+      "files": [
+        "codec_buffer_pool.go",
+        "root.go"
+      ],
+      "old": false,
+      "new": false,
+      "build": false
+    }
+  ],
+  "paths": [
+    {
+      "name": "guard_then_select",
+      "states": [
+        "direct",
+        "guard_prepared",
+        "guard_selected"
+      ],
+      "safe": true
+    },
+    {
+      "name": "select_without_guard",
+      "states": [
+        "direct",
+        "root_first",
+        "guard_selected"
+      ],
+      "safe": false
+    },
+    {
+      "name": "do_nothing",
+      "states": [
+        "direct"
+      ],
+      "safe": false
+    }
+  ],
+  "test_obligations": [
+    "gRPC 2024 mem.Copy(2048) twice with Milvus original BufferPool implementation, each outstanding buffer independent; raw external provider never edited",
+    "old client: 2048B fully initialized payload yields correct 2048B content and Buffer.Free across all compiled states",
+    "future client: 1024B payload encoded in 2048B buffer must have 1024B zero suffix even when BufferPool.Get yields byte 0x99. Dirty input is RESEARCH-AUTHORED adversarial provider allowed by original mem.BufferPool interface, not measurement of Milvus unsafe behavior",
+    "compiled guard-selected variant passes future client; direct and prepared states do not; root_first rejected by real Go compile",
+    "Each safe linked source transition changes one researcher-authored file and retains real original external Milvus provider and 2024 grpc implementation",
+    "all source snapshots generated after freeze; CI validates exact pinned upstream historical SHA and original external Milvus copy"
+  ],
+  "rivals": [
+    "Classical heap ownership + frame rule",
+    "CCR 1.0 and 2.0 conditional contextual refinement",
+    "Rely-guarantee and ordinary Go structural type checking",
+    "Finite labelled transition system path invariants"
+  ],
+  "exclusions": [
+    "No real external client package test: only byte-exact external provider implementation extracted to independent test module",
+    "No production defect",
+    "No real original maintainer rights",
+    "No measured team labor or genuine architecture superiority"
+  ]
+}
