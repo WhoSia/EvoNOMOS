@@ -1,0 +1,106 @@
+name: G8 P42-R11-P1 Original External Milvus Pool plus Historical gRPC Source Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/**'
+      - 'tools/p42/p2-r11-native/**'
+      - '.github/workflows/g8-p42-r11-p1-external-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independently-maintained-go-provider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: grpc/grpc-go
+          ref: 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          path: tools/p42/p2-r11-native/grpc-original
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: milvus-io/milvus
+          ref: 4610a590c49ee5d15b81d8d10d3ef15853458745
+          path: tools/p42/p2-r11-native/milvus-original
+          filter: blob:none
+          sparse-checkout: |
+            pkg/util/resource/codec_buffer_pool.go
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache: false
+      - name: Check prereg chronology and exact Go source custody
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11
+          freeze=2ebb6644b4ad8409050baff99f12a3af998f786e
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r11/frozen_p1_independent_milvus_provider_typed_source_paths.json > out/p42-r11/preseal-original.json
+          cmp out/p42-r11/preseal-original.json tools/p42/p2-r11/frozen_p1_independent_milvus_provider_typed_source_paths.json
+          if git cat-file -e "$freeze":tools/p42/p2-r11-native/make_original_external_source_states.py 2>/dev/null;then echo R11_FIXTURE_BEFORE_FREEZE;exit 11;fi
+          if git cat-file -e "$freeze":tools/p42/p2-r11/verify_p1_source_ownership_paths.py 2>/dev/null;then echo R11_CHECKER_BEFORE_FREEZE;exit 12;fi
+          test "$(git -C tools/p42/p2-r11-native/grpc-original rev-parse HEAD)" = 9ab8b62505c85a5e03be1ae97949e960e24b6d4f
+          test "$(git -C tools/p42/p2-r11-native/milvus-original rev-parse HEAD)" = 4610a590c49ee5d15b81d8d10d3ef15853458745
+          git -C tools/p42/p2-r11-native/milvus-original hash-object pkg/util/resource/codec_buffer_pool.go | tee out/p42-r11/original-milvus-file-blob.txt
+          git rev-parse HEAD | tee out/p42-r11/evonomos-head.txt
+          echo R11_P1_SOURCE_CHRONOLOGY_AND_TWO_REPO_IDENTITY_PASS
+      - name: Prepare byte-exact external source and three staged consumer programs
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r11-native/make_original_external_source_states.py tools/p42/p2-r11-native/milvus-original/pkg/util/resource/codec_buffer_pool.go | tee out/p42-r11/materialize.log
+          for state in direct guard_prepared guard_selected;do
+            cmp tools/p42/p2-r11-native/milvus-original/pkg/util/resource/codec_buffer_pool.go "tools/p42/p2-r11-native/states/$state/codec_buffer_pool.go"
+          done
+          cat > tools/p42/p2-r11-native/go.mod <<EOF
+          module example.org/evonomos-p42-r11-external
+
+          go 1.23
+
+          require google.golang.org/grpc v1.67.0
+
+          replace google.golang.org/grpc => $GITHUB_WORKSPACE/tools/p42/p2-r11-native/grpc-original
+          EOF
+          echo R11_P1_ORIGINAL_EXTERNAL_SOURCE_BYTE_IDENTICAL_PASS
+      - name: Execute actual original grpc and external Milvus provider with client observations
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          (cd tools/p42/p2-r11-native && go test -mod=mod -count=1 -v ./states/...) | tee out/p42-r11/p1-go.log
+          grep -q 'R11_P1_STATE id=direct old=true future=false' out/p42-r11/p1-go.log
+          grep -q 'R11_P1_STATE id=guard_prepared old=true future=false' out/p42-r11/p1-go.log
+          grep -q 'R11_P1_STATE id=guard_selected old=true future=true' out/p42-r11/p1-go.log
+          test "$(grep -c 'R11_P1_EXTERNAL_MILVUS_ORIGINAL_SOURCE_WITH_GRPC_2024_PASS' out/p42-r11/p1-go.log)" -ge 3
+          echo R11_P1_ORIGINAL_MILVUS_GO_COMPILES_AND_2024_GRPC_OBSERVATIONS_PASS
+      - name: Confirm original Go compiler rejects invalid source edit ordering
+        env:
+          GOWORK: 'off'
+          GOTOOLCHAIN: 'auto'
+        run: |
+          set -euo pipefail
+          if (cd tools/p42/p2-r11-native && go test -mod=mod ./invalid/root_first) > out/p42-r11/p1-invalid-compile.log 2>&1;then
+            echo R11_P1_WRONG_ORDER_UNEXPECTED_COMPILATION;exit 15
+          fi
+          grep -q 'undefined: writeZeroed' out/p42-r11/p1-invalid-compile.log
+          echo R11_P1_REAL_GO_ROOT_FIRST_NEGATIVE_PASS
+      - name: Equal-information classical path audit and original-source provenance
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r11/verify_p1_source_ownership_paths.py tools/p42/p2-r11-native/milvus-original/pkg/util/resource/codec_buffer_pool.go out/p42-r11/p1-go.log out/p42-r11/p1-invalid-compile.log out/p42-r11/p1-classical-paths.json | tee out/p42-r11/p1-classical-audit.log
+          grep -q R11_P1_THREE_EXTERNAL_PROVIDER_GO_STATES_ONE_COMPILER_NEGATIVE_AND_TYPED_PATHS_PASS out/p42-r11/p1-classical-audit.log
+          sha256sum tools/p42/p2-r11/frozen_p1_independent_milvus_provider_typed_source_paths.json tools/p42/p2-r11-native/milvus-original/pkg/util/resource/codec_buffer_pool.go tools/p42/p2-r11/verify_p1_source_ownership_paths.py > out/p42-r11/checksums.txt
+          echo R11_P1_BOUNDED_EXTERNAL_GO_CLASSICAL_ADEQUACY_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p1-original-external-source-go-and-classical-audit
+          path: out/p42-r11/
