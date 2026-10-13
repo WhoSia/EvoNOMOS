@@ -1,0 +1,61 @@
+name: G8 P42 R11 P2 Rack Ruby History Court
+on:
+  push:
+    branches: [main]
+    paths: ['tools/p42/p2-r11/**','tools/p42/p2-r11-native/history_sensitive_ruby_court.rb','.github/workflows/g8-p42-r11-p2-ruby.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ruby-court:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: rack/rack
+          ref: af9e278ffd9024f325e595f18bace4f9b7e931d7
+          path: tools/p42/p2-r11-native/rack-before
+          sparse-checkout: lib/rack
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: rack/rack
+          ref: 444dc8a130663159ed490f25948b73ff9b5fbba0
+          path: tools/p42/p2-r11-native/rack-after
+          sparse-checkout: lib/rack
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with: {ruby-version: '3.3'}
+      - name: Check prereg and original Rack commits
+        run: |
+          set -eu
+          mkdir -p out/p42-r11
+          freeze=eb6667249c1b393be172cae405af812ab9fcca55
+          git merge-base --is-ancestor "$freeze" HEAD
+          git show "$freeze":tools/p42/p2-r11/frozen_p2_ruby_source_history_authority_preseal.json > out/p42-r11/frozen.json
+          cmp out/p42-r11/frozen.json tools/p42/p2-r11/frozen_p2_ruby_source_history_authority_preseal.json
+          ! git cat-file -e "$freeze":tools/p42/p2-r11-native/history_sensitive_ruby_court.rb 2>/dev/null
+          test "$(git -C tools/p42/p2-r11-native/rack-before hash-object lib/rack/builder.rb)" = 80c073148e6a52bc9deeb1219b8e873f610fbe92
+          test "$(git -C tools/p42/p2-r11-native/rack-after hash-object lib/rack/builder.rb)" = 9faeffb7868021d17fad26118b426a6bd1819d53
+          echo R11_P2_RACK_SOURCE_HISTORY_PRESEAL_PASS
+      - name: Native original Rack source before change
+        run: |
+          set -eu
+          ruby -I tools/p42/p2-r11-native/rack-before/lib -rrack/builder -e 'b=Rack::Builder.new;b.run(->(env){[200,{},["ok"]]});raise unless b.to_app.call({})[0]==200;raise if b.respond_to?(:options);puts "R11_P2_RACK_BEFORE_OLD_PASS_NEW_ABSENT"' | tee out/p42-r11/rack-before.log
+      - name: Native original Rack source after change
+        run: |
+          set -eu
+          ruby -I tools/p42/p2-r11-native/rack-after/lib -rrack/builder -e 'b=Rack::Builder.new(foo: :bar);raise unless b.options[:foo]==:bar;b.run(->(env){[200,{},["ok"]]});raise unless b.to_app.call({})[0]==200;puts "R11_P2_RACK_AFTER_OLD_NEW_PASS"' | tee out/p42-r11/rack-after.log
+      - name: Native Ruby source-history and rights countermodel
+        run: |
+          set -eu
+          ruby tools/p42/p2-r11-native/history_sensitive_ruby_court.rb | tee out/p42-r11/ruby-history.log
+          grep -q R11_P2_RUBY_OLD_PRESERVED_LENIENT_STRICT_PRECEDENCE_REVERSAL_PASS out/p42-r11/ruby-history.log
+          grep -q R11_P2_TEMPORAL_AUTHORIZATION_REVOCATION_NEGATIVE_PASS out/p42-r11/ruby-history.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p2-ruby-native-historical-rack-evidence
+          path: out/p42-r11/
