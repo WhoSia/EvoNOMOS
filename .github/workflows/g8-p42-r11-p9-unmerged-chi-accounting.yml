@@ -1,0 +1,77 @@
+name: P42 R11 P9 Actual Unmerged Chi Middleware Accounting Source Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p9b_after_pr_reveal_before_original_native_double_accounting.json'
+      - 'tools/p42/p2-r11-go/r11_p9_chi_unmerged_bytes_accounting_test.go'
+      - '.github/workflows/g8-p42-r11-p9-unmerged-chi-accounting.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  authentic-original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: tools/p42/p2-r11-go/p9-original-chi
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: refs/pull/1093/head
+          path: tools/p42/p2-r11-go/p9-contributor-pr1093
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Verify original preregistration and real source code identities
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p9
+          a=1d7fc5955534ac4c48c8542d59eae68bdc1224e9
+          b=cdd50d9aa52e6156850edf68f541efd385802703
+          c=a7ea1f36c523c1ea1b3625922ceaa79389597405
+          git merge-base --is-ancestor "$a" HEAD
+          git merge-base --is-ancestor "$b" HEAD
+          git merge-base --is-ancestor "$c" HEAD
+          git show "$a":tools/p42/p2-r11/frozen_p9_submission_time_censoring_and_unseen_pr_cohort.json > out/p42-r11-p9/p9-before-PR-disclosure.json
+          git show "$b":tools/p42/p2-r11/frozen_p9_actual_cohort_ids_before_contents.json > out/p42-r11-p9/p9-ID-lock.json
+          git show "$c":tools/p42/p2-r11/frozen_p9b_after_pr_reveal_before_original_native_double_accounting.json > out/p42-r11-p9/p9-b-preread-go-test-predictions.json
+          cmp out/p42-r11-p9/p9-before-PR-disclosure.json tools/p42/p2-r11/frozen_p9_submission_time_censoring_and_unseen_pr_cohort.json
+          cmp out/p42-r11-p9/p9-ID-lock.json tools/p42/p2-r11/frozen_p9_actual_cohort_ids_before_contents.json
+          cmp out/p42-r11-p9/p9-b-preread-go-test-predictions.json tools/p42/p2-r11/frozen_p9b_after_pr_reveal_before_original_native_double_accounting.json
+          ! git cat-file -e "$c":tools/p42/p2-r11-go/r11_p9_chi_unmerged_bytes_accounting_test.go 2>/dev/null
+          old=tools/p42/p2-r11-go/p9-original-chi
+          pr=tools/p42/p2-r11-go/p9-contributor-pr1093
+          test "$(git -C "$old" rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C "$old" hash-object middleware/wrap_writer.go)" = bf27088189308595146ac333aaf3fe448c90955b
+          test "$(git -C "$pr" hash-object middleware/wrap_writer.go)" = 34b0d8cc8bf4ca4c3970c26fefc9d0690245ebe3
+          git -C "$pr" rev-parse HEAD | tee out/p42-r11-p9/unmerged-contributor-source-head.txt
+          git -C "$pr" log -1 --format="%H %an <%ae> %as" | tee out/p42-r11-p9/unmerged-source-author.txt
+          cp tools/p42/p2-r11-go/r11_p9_chi_unmerged_bytes_accounting_test.go "$old/middleware/evonomos_p42_r11_p9_test.go"
+          cp tools/p42/p2-r11-go/r11_p9_chi_unmerged_bytes_accounting_test.go "$pr/middleware/evonomos_p42_r11_p9_test.go"
+          echo R11_P9_TRUE_UNMERGED_PRENATIVE_SOURCE_PROVENANCE_PASS
+      - name: Old original Chi 2024 inherited accounting double-update
+        env: {R11P9_SOURCE_PHASE: old}
+        working-directory: tools/p42/p2-r11-go/p9-original-chi
+        run: |
+          set -eu
+          go test ./middleware -run '^TestR11P9' -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/old-native.log"
+          echo R11_P9_OLD_ORIGINAL_SOURCE_22_BYTE_ACCOUNTING_PASS
+      - name: Actual 2026 third-party unmerged PR source fixes bookkeeping, not upstream accepted
+        env: {R11P9_SOURCE_PHASE: unmerged}
+        working-directory: tools/p42/p2-r11-go/p9-contributor-pr1093
+        run: |
+          set -eu
+          go test ./middleware -run '^TestR11P9' -v -count=1 | tee "$GITHUB_WORKSPACE/out/p42-r11-p9/unmerged-native.log"
+          echo R11_P9_REAL_UNMERGED_SOURCE_11_BYTE_ACCOUNTING_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p9-real-unmerged-changed-source-and-retained-old-client
+          path: out/p42-r11-p9/
