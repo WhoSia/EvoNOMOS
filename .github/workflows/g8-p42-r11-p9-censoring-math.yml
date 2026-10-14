@@ -1,0 +1,42 @@
+name: P42 R11 P9 Prospective PR Coverage and Censored Repair Identification Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p9_actual_2026_PR_holdout_reveal_status_and_original_Go_evidence.json'
+      - 'tools/p42/p2-r11/p9_holdout_censoring_and_finite_filtration_court.py'
+      - '.github/workflows/g8-p42-r11-p9-censoring-math.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-PR-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Verify blind preseal and cohort ID lock are true ancestors
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p9
+          source=1d7fc5955534ac4c48c8542d59eae68bdc1224e9
+          ids=cdd50d9aa52e6156850edf68f541efd385802703
+          go=a7ea1f36c523c1ea1b3625922ceaa79389597405
+          for sha in "$source" "$ids" "$go"; do git merge-base --is-ancestor "$sha" HEAD; done
+          git show "$source":tools/p42/p2-r11/frozen_p9_submission_time_censoring_and_unseen_pr_cohort.json > out/p42-r11-p9/true-pre-reveal-hypotheses.json
+          git show "$ids":tools/p42/p2-r11/frozen_p9_actual_cohort_ids_before_contents.json > out/p42-r11-p9/true-IDs-before-PR-text.json
+          git show "$go":tools/p42/p2-r11/frozen_p9b_after_pr_reveal_before_original_native_double_accounting.json > out/p42-r11-p9/go-pre-test-source-forecast.json
+          cmp out/p42-r11-p9/true-pre-reveal-hypotheses.json tools/p42/p2-r11/frozen_p9_submission_time_censoring_and_unseen_pr_cohort.json
+          cmp out/p42-r11-p9/true-IDs-before-PR-text.json tools/p42/p2-r11/frozen_p9_actual_cohort_ids_before_contents.json
+          cmp out/p42-r11-p9/go-pre-test-source-forecast.json tools/p42/p2-r11/frozen_p9b_after_pr_reveal_before_original_native_double_accounting.json
+          echo R11_P9_TRUE_BLIND_COHORT_SOURCE_CUSTODY_PASS
+      - name: Finite actual-PR cohort rank coverage, prequential leakage, and unknown-rights countermodel
+        run: |
+          set -eu
+          python3 tools/p42/p2-r11/p9_holdout_censoring_and_finite_filtration_court.py | tee out/p42-r11-p9/p9-censoring-math.log
+          grep -q R11_P9_TRUE_UNSEEN_2026_PR_RANK_COVERAGE_ZERO_OF_SIX__NATIVE_UNMERGED_SOURCE_REPAIRS_ACCOUNTING__CENSORING_LEAKAGE_PROOFS_PASS out/p42-r11-p9/p9-censoring-math.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p9-real-unseen-pr-observation-censoring-and-mathematical-audit
+          path: out/p42-r11-p9/
