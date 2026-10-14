@@ -1,0 +1,58 @@
+{
+  "protocol": "R11_P9_B_LOCKED_ACTUAL_PR_IDENTIFIERS_BEFORE_TITLE_BODY_DIFF",
+  "preseal": "1d7fc5955534ac4c48c8542d59eae68bdc1224e9",
+  "retrieval": "GitHub search PRs creation-ascending, all statuses, 2026-05-01..2026-09-15, top four per repo, unchanged original query",
+  "source_sets": [
+    {
+      "repo": "go-chi/chi",
+      "ids": [
+        1092,
+        1093,
+        1094,
+        1095
+      ],
+      "urls": [
+        "https://github.com/go-chi/chi/pull/1092",
+        "https://github.com/go-chi/chi/pull/1093",
+        "https://github.com/go-chi/chi/pull/1094",
+        "https://github.com/go-chi/chi/pull/1095"
+      ],
+      "preknown": []
+    },
+    {
+      "repo": "gorilla/mux",
+      "ids": [
+        801,
+        802,
+        803,
+        806
+      ],
+      "urls": [
+        "https://github.com/gorilla/mux/pull/801",
+        "https://github.com/gorilla/mux/pull/802",
+        "https://github.com/gorilla/mux/pull/803",
+        "https://github.com/gorilla/mux/pull/806"
+      ],
+      "preknown": [
+        801
+      ]
+    },
+    {
+      "repo": "primus/eventemitter3",
+      "ids": [
+        284
+      ],
+      "urls": [
+        "https://github.com/primus/eventemitter3/pull/284"
+      ],
+      "preknown": []
+    }
+  ],
+  "total_selected": 9,
+  "preseen_ids": [
+    "gorilla/mux#801",
+    "go-chi/chi#1157 (not selected)"
+  ],
+  "unseen_candidate_count": 8,
+  "honesty": "GitHub search exposes display URLs, not issue.number in this connector projection; parse exact numeric ID from source-returned /pull/{id} URL. Search does not explicitly give actual created timestamp; check after lock. No candidate PR body/title/diff read before this file."
+}
