@@ -1,0 +1,109 @@
+{
+  "protocol": "EvoNOMOS_P42_R11_P9_C_OBSERVED_HOLDOOUT_COHORT_AFTER_SOURCE_REVEAL",
+  "prereg": "1d7fc5955534ac4c48c8542d59eae68bdc1224e9",
+  "ids_seal": "cdd50d9aa52e6156850edf68f541efd385802703",
+  "observed_as_of": "2026-10-14",
+  "sample_description": "Top 4 PRs in each repo created May 1 to Sep 15 2026 sorted oldest first; all original GitHub PR states, not independent uniform population sample.",
+  "records": [
+    {
+      "repo": "go-chi/chi",
+      "pr": 1092,
+      "original_status": "CLOSED_UNMERGED",
+      "type": "CONNECT_AUTHORITY_FORM_MIDDLEWARE",
+      "component": "middleware CleanPath",
+      "known_before_prereg": false,
+      "domain": "runtime",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1093,
+      "original_status": "CLOSED_UNMERGED",
+      "type": "WRITER_TEE_ACCOUNTING_DUPLICATION",
+      "component": "middleware httpFancyWriter",
+      "known_before_prereg": false,
+      "domain": "runtime",
+      "source_forecast_eligible": false,
+      "source_native": "PASS_ORIGINAL_2024_22_VS_UNMERGED_2026_11"
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1094,
+      "original_status": "CLOSED_UNMERGED",
+      "type": "PANIC_LOGGER_NOCOLOR_PROPAGATION",
+      "component": "middleware logging/recoverer",
+      "known_before_prereg": false,
+      "domain": "runtime",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1095,
+      "original_status": "OPEN",
+      "type": "HEAD_ALLOW_HEADER_POLICY",
+      "component": "middleware GetHead",
+      "known_before_prereg": false,
+      "domain": "runtime",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 801,
+      "original_status": "CLOSED_UNMERGED",
+      "type": "QUERY_SEPARATOR_POLICY",
+      "component": "core matcher",
+      "known_before_prereg": true,
+      "domain": "runtime",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 802,
+      "original_status": "CLOSED_UNMERGED",
+      "type": "REPEATED_METHODS_MATCHER_UNION",
+      "component": "route methods",
+      "known_before_prereg": false,
+      "domain": "runtime",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 803,
+      "original_status": "CLOSED_UNMERGED",
+      "type": "REGEXP_NIL_RECEIVER_GUARD",
+      "component": "route regexp",
+      "known_before_prereg": false,
+      "domain": "runtime",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 806,
+      "original_status": "OPEN",
+      "type": "GITHUB_ACTIONS_SHA_PINNING",
+      "component": "CI configuration",
+      "known_before_prereg": false,
+      "domain": "operations",
+      "source_forecast_eligible": false
+    },
+    {
+      "repo": "primus/eventemitter3",
+      "pr": 284,
+      "original_status": "OPEN",
+      "type": "GIT_REMOTE_METADATA_HTTPS",
+      "component": "package.json",
+      "known_before_prereg": false,
+      "domain": "package_metadata",
+      "source_forecast_eligible": false
+    }
+  ],
+  "source_grounding": {
+    "real_unmerged_pr": "https://github.com/go-chi/chi/pull/1093",
+    "native_run": "https://github.com/WhoSia/EvoNOMOS/actions/runs/38522200806",
+    "fixture": "tools/p42/p2-r11-go/r11_p9_chi_unmerged_bytes_accounting_test.go",
+    "actual_old_original_blob": "bf27088189308595146ac333aaf3fe448c90955b",
+    "actual_pr_head_blob": "34b0d8cc8bf4ca4c3970c26fefc9d0690245ebe3",
+    "real_source_test_contract": "Both: 200 status, body and tee 'hello world' 11 bytes. Old BytesWritten=22, unmerged proposal BytesWritten=11. PR proposal not official accepted mainline."
+  },
+  "interpretation": "Zero eligible newly revealed runtime PR demands under strict original one-route-client-adapter grammar. No original pre-disclosure Chi/Gorilla sign-prediction success or novel law. Do not treat open/closed-unmerged as rejected or technical failure, or reuse PRs as independent samples if one demand is shared."
+}
