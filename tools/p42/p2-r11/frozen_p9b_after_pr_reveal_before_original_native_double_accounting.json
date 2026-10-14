@@ -1,0 +1,38 @@
+{
+  "protocol": "R11_P9_B_REAL_UNMERGED_CHI_HTTP_BODY_ACCOUNTING_DOUBLE_UPDATE_AFTER_REVEAL_PRE_NATIVE",
+  "P9_phase_A_seal": "1d7fc5955534ac4c48c8542d59eae68bdc1224e9",
+  "P9_actual_unread_id_lock": "cdd50d9aa52e6156850edf68f541efd385802703",
+  "source_arcs": [
+    {
+      "repo": "go-chi/chi",
+      "ref": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+      "file": "middleware/wrap_writer.go",
+      "blob": "bf27088189308595146ac333aaf3fe448c90955b",
+      "role": "real pre-2026 original source"
+    },
+    {
+      "repo": "go-chi/chi",
+      "ref": "refs/pull/1093/head",
+      "file": "middleware/wrap_writer.go",
+      "blob": "34b0d8cc8bf4ca4c3970c26fefc9d0690245ebe3",
+      "role": "original unmerged third-party contributor PR source, NOT accepted mainline"
+    }
+  ],
+  "future_PR": {
+    "number": 1093,
+    "author": "c-tonneslan",
+    "state": "CLOSED_UNMERGED",
+    "description": "wrapper with tee delegates io.Copy to basicWriter.Write, which already counts written bytes, and ReadFrom increments count second time"
+  },
+  "forecast_native_before_own_fixture": {
+    "old_original": "httpFancyWriter.ReadFrom 11 bytes with Tee: returned 11, streamed body 11, tee body 11, BytesWritten 22",
+    "unmerged_proposed": "identical response bytes and tee bytes, BytesWritten exactly 11",
+    "common_old_observer": "sent body and Tee sink equal 11 byte payload, both implementations pass",
+    "new_consumer_contract": "BytesWritten()==physically sent length, only proposed source passes",
+    "source_original_scope": "No upstream source edited in place; tests injected only as separate Go _test.go file. PR head source may be untrusted in its governance status, no phantom merged claims."
+  },
+  "complexity_explanation": "Shared semantic counter modified by nested calls: Write increments byte count, ReadFrom increments same bytes. Single-output trace equivalence insufficient; accounting observation must include write event multiplicity, no independent frame.",
+  "strong_rival": "Classical source-level call graph + labeled trace composition predicts double update exactly at equal information; HARC novelty not expected.",
+  "schedule": "Frozen AFTER reading actual #1093 diff and original/source blobs, BEFORE native fixture/test run; do not claim blind PR-demand rank",
+  "status": "P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
