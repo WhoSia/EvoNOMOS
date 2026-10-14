@@ -1,0 +1,38 @@
+{
+  "protocol": "EvoNOMOS_G8_P42_R11_P9_A_PROSPECTIVE_SOURCE_PREDICTION_AND_CAUSAL_LABEL_FILTRATION",
+  "seal_date": "2026-10-14",
+  "source_original": "Khatoonabadi et al. ACM TOSEM 2023 Article 15, DOI 10.1145/3530785, actual PDF in Research OS 10_PAPERS (Drive ID 1aGFGmoG8cnlDXUb0IUyzWhrXhTceWyF_)",
+  "literature_gates": {
+    "reference_cohort": 265325, "heuristic_abandoned": 4450,
+    "manual_reason_sample": 354, "positive_label_validation": 100, "false_positives": 7,
+    "warning": "7/100 is observed precision error of paper's own heuristic on a manually checked subset, NOT global PR/Chi/Gorilla error, and not a license for naive correction.",
+    "early_features": ["PR initial description","known contributor past experience","project historical state"],
+    "future_leakage_excluded_at_submission": ["final number of reviews","future review sentiment","elapsed time until closure","ultimate merge decision"]
+  },
+  "heldout_PR_cohorts": {
+    "queries": [
+      "repo:go-chi/chi is:pr created:2026-05-01..2026-09-15",
+      "repo:gorilla/mux is:pr created:2026-05-01..2026-09-15",
+      "repo:primus/eventemitter3 is:pr created:2026-05-01..2026-09-15"
+    ],
+    "take": "first 4 created-ascending results per repo, irrespective of merged/open/closed status; if fewer, take all and report shortage; no alternate top-up; lock PR IDs before opening PR titles/bodies/diffs",
+    "known_leakage": ["go-chi/chi#1157","go-chi/chi#1028","go-chi/chi#1033"],
+    "source_arms": ["Chi@67be7d9cafdaeb4e04e887ff78d09e030ee43b00","Gorilla@b4617d0b9670ad14039b2739167fd35a60f557c5","Node.js22 core EventEmitter","EventEmitter3@5.0.1"],
+    "prospective_rules": {
+      "route PathValue": "Chi strict better for bounded one client-adapter operation",
+      "route Pattern": "tie under one client adapter",
+      "request context post-return, no snapshot": "Gorilla advantage in prior bounded original-source test",
+      "disjoint static route": "tie",
+      "event error must throw": "Node",
+      "event error must not throw": "EventEmitter3",
+      "event newListener required": "Node",
+      "docs only": "not eligible for architecture rank",
+      "everything else": "ABSTAIN; never recode after reveal"
+    },
+    "thresholds": "Require >=2 unseen, non-doc, source-admissible, independently clustered demands and >=30 percent coverage among such demands; otherwise UNDERPOWERED/LOW_COVERAGE. No forced global ranking. Report selective accuracy separately from coverage.",
+    "timepoint": "t0 source/PR-submission variables only; t1 review-progress additionally has review information observed by t1; t2 final merged/closed outcome is only a label.",
+    "original_go_JS_cases": "Native 2024 Chi/Gorilla and original JS event systems tested in R11-P7/P8; not evidence all future requested features are supported.",
+    "rival": "Source-aware costed classic LTS, classical conditional contextual refinement and real options, CCR2/Iris/DimSum/Simuliris literature; equal observational/rights data.",
+    "governance": "No upstream exclusive rights assumed; no paywalled PDF claimed read; P42 RUNNING P43 HOLD LAW-R2 NOT_AUTHORIZED"
+  }
+}
