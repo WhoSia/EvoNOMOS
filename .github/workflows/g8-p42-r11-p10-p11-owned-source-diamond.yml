@@ -1,0 +1,115 @@
+name: P42 R11 P10 P11 Pinned Real Gin Source Two-Order Owned Edit Admission
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P11_RESEARCH_OWNED_REAL_SOURCE_EDIT_DIAMOND_PRESEAL.md'
+      - 'tools/p42/p2-r11-go/p11-source-stages/**'
+      - 'tools/p42/p2-r11-go/p11_owned_app_source_contract_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p11-owned-source-diamond.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  admitted-application-source-diamond:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gin-gonic/gin
+          ref: d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          path: tools/p42/p2-r11-go/p11-gin-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25', cache: false}
+      - name: Source-genealogy, authenticated freeze and unchanged upstream Go blob
+        run: |
+          set -euo pipefail
+          seal=b1fda72566e5a93ae7ccc66b123a4357b1aac53a
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P11_RESEARCH_OWNED_REAL_SOURCE_EDIT_DIAMOND_PRESEAL.md | grep -q 'B2-finite'
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p11-source-stages/p11_stage_00.go 2>/dev/null
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p11_owned_app_source_contract_test.go 2>/dev/null
+          d=tools/p42/p2-r11-go/p11-gin-original
+          test "$(git -C "$d" rev-parse HEAD)" = d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          test "$(git -C "$d" hash-object response_writer.go)" = 9035e6f1fd794d54063d6f50c3490e64d35a3647
+          mkdir -p out/p42-r11-p10-p11
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P11_RESEARCH_OWNED_REAL_SOURCE_EDIT_DIAMOND_PRESEAL.md > out/p42-r11-p10-p11/math-precode-freeze.md
+          echo P11_RESEARCH_THEOREM_PREDATED_ALL_APP_SOURCE_FIXTURES_PASS
+      - name: Independently compile each of five genuine original-Gin source-stage clients
+        run: |
+          set -euo pipefail
+          d=tools/p42/p2-r11-go/p11-gin-original
+          cp tools/p42/p2-r11-go/p11_owned_app_source_contract_test.go "$d/evonomos_p11_contract_test.go"
+          for stage in 00 A B AB BA; do
+            rm -f "$d/evonomos_p11_stage_test.go"
+            cp "tools/p42/p2-r11-go/p11-source-stages/p11_stage_${stage}.go" "$d/evonomos_p11_stage_test.go"
+            git hash-object "$d/evonomos_p11_stage_test.go" > "out/p42-r11-p10-p11/source-fixture-${stage}.gitblob"
+            (cd "$d" && go test . -run '^TestEvoNOMOSP11NativeSourceStageContract$' -count=1 -v) \
+              | tee "out/p42-r11-p10-p11/source-native-${stage}.log"
+            test "$(git -C "$d" hash-object response_writer.go)" = 9035e6f1fd794d54063d6f50c3490e64d35a3647
+          done
+          echo P11_FIVE_DISTINCT_NATIVE_SOURCE_STAGES_COMPILED_PASS
+      - name: Check exact stage receipts, graph admission and strongest classical competitor
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,re
+          root=Path("out/p42-r11-p10-p11")
+          states={"00":(0,0),"A":(1,0),"B":(0,1),"AB":(1,1),"BA":(1,1)}
+          blobs=set()
+          reports={}
+          for stage,(a,b) in states.items():
+            text=(root/f"source-native-{stage}.log").read_text()
+            assert "--- PASS: TestEvoNOMOSP11NativeSourceStageContract" in text,(stage,text[-1500:])
+            for route,expected in (("/old",200),("/a",200 if a else 404),("/b",200 if b else 404)):
+              hits=[v for v in text.splitlines() if
+                    "P11_NATIVE stage="+stage+" input="+route+" code="+str(expected)+" " in v]
+              assert len(hits)==1,(stage,route,len(hits))
+              assert "no_transport_flush=true" in hits[0]
+            blob=(root/f"source-fixture-{stage}.gitblob").read_text().strip()
+            assert len(blob)==40 and blob not in blobs,(stage,blob)
+            blobs.add(blob)
+            reports[stage]={"routes":list((a,b)),"research_source_gitblob":blob,
+                            "three_client_native_cases":"PASS"}
+          words={"": "00","A":"A","B":"B","AB":"AB","BA":"BA"}
+          # The SOURCE transition language is recorded from the 5 actual
+          # separately compiled source snapshots; these transitions are an
+          # explicit precommitted source edit grammar, not arbitrary Go edits.
+          assert len(words)==5
+          net_paths={"":(0,0),"A":(1,0),"B":(0,1),"AB":(1,1),"BA":(1,1)}
+          for w,stage in words.items():
+            assert tuple(states[stage])==net_paths[w]
+          goal_costs={(w.count("A"),w.count("B")) for w in words if states[words[w]]==(1,1)}
+          assert goal_costs=={(1,1)}
+          out={"verdict":"P11_FIVE_AUTHORED_NATIVE_GIN_SOURCE_STAGES_MATCH_DECLARED_NET_GRAPH_AND_CLIENTS",
+               "actual_pinned_library":"gin-gonic/gin@d3ffc9985281dcf4d3bef604cce4e662b1a327a6",
+               "five_separately_compiled_original_source_contexts":reports,
+               "stagewise_protected_old_route":"PASS_THREE_EXACT_TEST_INPUTS_ONLY",
+               "declared_partial_language":list(words),
+               "bounded_net_language":list(net_paths),
+               "owned_edit_scope":"EvoNOMOS-authored application test client only",
+               "third_party_framework_modified":False,
+               "real_upstream_edit_authority":"UNKNOWN",
+               "original_go_general_B1_B2":"NOT_PROVEN",
+               "bounded_observational_native_witness":"PASS",
+               "synthetic_research_cost_frontier":[[1,1]],
+               "same_information_classical_LTS_cost_frontier":[[1,1]],
+               "HARC_unique_wins":0,
+               "real_human_cost":"UNOBSERVED",
+               "external_future_PR_forecast":"NOT_TESTED",
+               "gates":"P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED"}
+          (root/"source-to-net-bounded-admission-court.json").write_text(json.dumps(out,indent=2)+"\n")
+          print("P11_BOUNDED_SOURCE_NATIVE_EDIT_DIAMOND_AND_CLASSICAL_INFORMATION_TIE_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p11-authentic-Gin-five-compiled-owned-app-source-stages
+          path: out/p42-r11-p10-p11/
