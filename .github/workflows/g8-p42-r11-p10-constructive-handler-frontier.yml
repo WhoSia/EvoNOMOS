@@ -1,0 +1,68 @@
+name: P42 R11 P10 Bounded Authorized Gin Echo One-Handler Repair Frontiers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p2_gin_echo_one_handler_repair_contract.json'
+      - 'tools/p42/p2-r11-go/p10_*one_handler_repair_test.go'
+      - '.github/workflows/g8-p42-r11-p10-constructive-handler-frontier.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+jobs:
+  two-independent-real-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gin-gonic/gin
+          ref: d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          path: tools/p42/p2-r11-go/p10-gin-original-repair
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 86d0223c7aa39b865a9452de3479897fcb5a3939
+          path: tools/p42/p2-r11-go/p10-echo-original-repair
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25', cache: false}
+      - name: Frozen before candidate and exact genuine source provenance
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-repairs
+          seal=8b570b1964286ef5d7c07e7799eaaa93ef2f6e87
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p2_gin_echo_one_handler_repair_contract.json > out/p42-r11-p10-repairs/prereg-before-constructive-code.json
+          cmp out/p42-r11-p10-repairs/prereg-before-constructive-code.json tools/p42/p2-r11/frozen_p10_p2_gin_echo_one_handler_repair_contract.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_gin_one_handler_repair_test.go 2>/dev/null
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_echo_one_handler_repair_test.go 2>/dev/null
+          a=tools/p42/p2-r11-go/p10-gin-original-repair
+          b=tools/p42/p2-r11-go/p10-echo-original-repair
+          test "$(git -C "$a" rev-parse HEAD)" = d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          test "$(git -C "$b" rev-parse HEAD)" = 86d0223c7aa39b865a9452de3479897fcb5a3939
+          test "$(git -C "$a" hash-object response_writer.go)" = 9035e6f1fd794d54063d6f50c3490e64d35a3647
+          test "$(git -C "$b" hash-object response.go)" = 4da729c4786898ddb2dc361c19a303e55d149540
+          cp tools/p42/p2-r11-go/p10_gin_one_handler_repair_test.go "$a/evonomos_p42_r11_p10_repair_test.go"
+          mkdir -p "$b/evonomos-p10-client"
+          cp tools/p42/p2-r11-go/p10_echo_one_handler_repair_test.go "$b/evonomos-p10-client/evonomos_p42_r11_p10_repair_test.go"
+          echo P10_SOURCE_AND_CONSTRUCTIVE_PRESEAL_PASS
+      - name: Native Gin research-owned one-handler fail-fast repair
+        working-directory: tools/p42/p2-r11-go/p10-gin-original-repair
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP10GinFailFast' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-repairs/gin-one-handler.log"
+      - name: Native Echo research-owned one-handler graceful repair
+        working-directory: tools/p42/p2-r11-go/p10-echo-original-repair
+        run: |
+          set -euo pipefail
+          go test ./evonomos-p10-client -run '^TestEvoNOMOSP10EchoGraceful' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-repairs/echo-one-handler.log"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-two-authored-handler-repair-original-source-court
+          path: out/p42-r11-p10-repairs/
