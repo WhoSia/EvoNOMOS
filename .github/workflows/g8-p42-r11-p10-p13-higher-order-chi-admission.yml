@@ -1,0 +1,76 @@
+name: P42 R11 P10 P13 Genuine Chi Higher-Order Source Admission
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P13_HIGHER_ORDER_SOURCE_ADMISSION_AND_BINARY_CONFLICT_COURT.md'
+      - 'tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p13-higher-order-chi-admission.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  original-chi-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p42/p2-r11-go/p13-chi-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25', cache: false}
+      - name: Research-first seal and pristine upstream source guards
+        run: |
+          set -euo pipefail
+          seal=d18eebcc69b92bfe90b6ab0cca26f3b58726206f
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P13_HIGHER_ORDER_SOURCE_ADMISSION_AND_BINARY_CONFLICT_COURT.md > p13-theory-frozen.md
+          grep -q 'P13-T2' p13-theory-frozen.md
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go 2>/dev/null
+          orig=tools/p42/p2-r11-go/p13-chi-original
+          test "$(git -C "$orig" rev-parse HEAD)" = 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          grep -Fq 'mx.tree.findPattern(pattern+"*") || mx.tree.findPattern(pattern+"/*")' "$orig/mux.go"
+          grep -Fq 'func (n *node) findPattern(pattern string) bool {' "$orig/tree.go"
+          test -z "$(git -C "$orig" diff -- mux.go tree.go)"
+          mkdir -p out/p42-r11-p10-p13
+          cp p13-theory-frozen.md out/p42-r11-p10-p13/theory-before-native-test.md
+          cp tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go "$orig/evonomos_p13_higher_order_source_test.go"
+          echo P13_ORIGINAL_CHI_AND_PRECODE_RESEARCH_FREEZE_PASS
+      - name: Run exact 259 native Go original source registration programs
+        working-directory: tools/p42/p2-r11-go/p13-chi-original
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP13OriginalChiHigherOrderMountAdmission$' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p13/original-chi-native.log"
+      - name: Preserve native evidence and test declared control validity
+        if: always()
+        run: |
+          set -euo pipefail
+          src=tools/p42/p2-r11-go/p13-chi-original/out/p42-r11-p10-p13/source-native-higher-order-census.json
+          if test -f "$src"; then
+            cp "$src" out/p42-r11-p10-p13/
+            python3 - <<'PY'
+          import json
+          d=json.load(open("out/p42-r11-p10-p13/source-native-higher-order-census.json"))
+          assert d["expected_programs"]==259==len(d["cases"])
+          assert all(c["old_client_safe"] for c in d["cases"])
+          assert d["no_generalized_source_claim"] is True
+          print("P13_259_SOURCE_EVIDENCE_ARCHIVED", "triples",len(d["all_order_triples_admitted"]),
+          "triple_only",len(d["pairwise_possible_but_triple_rejected"]),
+          "binary_mismatches",len(d["binary_graph_vs_triple_mismatches"]),
+          "control_falsifiers",d["presealed_control_falsifiers"])
+          PY
+          else
+            echo "No native JSON; investigate source test compilation/log" >&2
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p13-original-chi-259-source-permutation-census
+          path: out/p42-r11-p10-p13/
