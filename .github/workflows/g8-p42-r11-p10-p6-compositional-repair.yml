@@ -1,0 +1,53 @@
+name: P42 R11 P10 P6 Compositional Repair Rights and Ordered Effect Countermodels
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p6_compositional_rights_effect_repair_preseal.json'
+      - 'tools/p42/p2-r11/p10_p6_compositional_repair_rights_countermodels.py'
+      - '.github/workflows/g8-p42-r11-p10-p6-compositional-repair.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  finite-product-and-shared-resource:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify mathematical preseal predates the finite proof checker
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p6
+          seal=0bd8043e8134d78f098532677d003739d533a763
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p6_compositional_rights_effect_repair_preseal.json > out/p42-r11-p10-p6/frozen-math-contract.json
+          cmp out/p42-r11-p10-p6/frozen-math-contract.json tools/p42/p2-r11/frozen_p10_p6_compositional_rights_effect_repair_preseal.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11/p10_p6_compositional_repair_rights_countermodels.py 2>/dev/null
+          echo P10_P6_MATH_PRESEAL_PASS
+      - name: Exhaustively check finite strong repair bisimulation and two missing hypotheses
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_p6_compositional_repair_rights_countermodels.py
+          python3 tools/p42/p2-r11/p10_p6_compositional_repair_rights_countermodels.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("out/p42-r11-p10-p6/composition-math-countermodels.json")
+          d=json.loads(p.read_text())
+          assert d["component_states_checked"]==64
+          assert d["shared_global_budget_states"]==12
+          assert d["complete_rights_effect_quotient_strong_bisimilar"] is True
+          assert d["rights_omitting_quotient_bisimilar"] is False
+          assert d["shared_one_token_joint_repair"]=="IMPOSSIBLE_IN_DECLARED_GRAMMAR"
+          assert d["different_ordered_effect_traces_same_final_components"]==2
+          assert d["gates"].endswith("LAW-R2 NOT_AUTHORIZED")
+          print("P10_P6_COMPOSITION_PROOF_AND_RIGHTS_TRACING_NEGATIVE_CONTROLS_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p6-finite-composition-and-countermodel-certificate
+          path: out/p42-r11-p10-p6/
