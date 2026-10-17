@@ -1,3 +1,5 @@
+> **HISTORICAL DUPLICATE / SUPERSEDED WITHOUT EXECUTING P14 TEST.** Audit on 2026-10-18 found that the exact all-3,588-histories eight-HTTP-probe conjecture had already been presealed and native-tested at P13-R3: [actual GitHub Actions #39049148534 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39049148534). Furthermore P13-R4 [#39050169558 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39050169558) certified 0/1/infinity goal costs, and P13-R5 [#39052413257 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39052413257) covered 1,215 original source paths and 384 composite goals. This file is retained AS AN AUDIT RECORD only and is not a prospective new P14 study; no redundant checker should be written. New question is disclosure-before/after-repair quantifier order and robust viability with explicit information constraints.
+
 # EvoNOMOS P42 R11-P10-P14 — Full-History Source/Client Factorization (Precode Research Freeze)
 
 2026-10-18. P42 RUNNING, P43 HOLD, LAW-R2 NOT_AUTHORIZED.
