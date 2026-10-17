@@ -1,0 +1,72 @@
+name: P42 R11 P10 P13 R4 Source-Native Minimal Repair Cost Zero One Infinity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P13_R4_FROZEN_MINIMAL_REPAIR_COST_ZERO_ONE_INFINITY_THEOREM.md'
+      - 'tools/p42/p2-r11-go/p13_r4_original_chi_minimal_owned_edit_cost_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p13-r4-source-native-repair-cost.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-chi-rights-and-cost-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p42/p2-r11-go/p13-r4-original-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Check research theory frozen before execution and real original maintained source invariant
+        run: |
+          set -euo pipefail
+          seal=41b8be8e7e7463f679505a727951239cf04ef3a9
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10-p13-r4
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P13_R4_FROZEN_MINIMAL_REPAIR_COST_ZERO_ONE_INFINITY_THEOREM.md > out/p42-r11-p10-p13-r4/frozen-mathematical-repair-forecast.md
+          cmp out/p42-r11-p10-p13-r4/frozen-mathematical-repair-forecast.md active/g8-law-r1-p42/P42_P2_R11_P10_P13_R4_FROZEN_MINIMAL_REPAIR_COST_ZERO_ONE_INFINITY_THEOREM.md
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p13_r4_original_chi_minimal_owned_edit_cost_test.go 2>/dev/null
+          orig=tools/p42/p2-r11-go/p13-r4-original-chi
+          test "$(git -C "$orig" rev-parse HEAD)" = 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          grep -Fq 'mx.tree.findPattern(pattern+"*") || mx.tree.findPattern(pattern+"/*")' "$orig/mux.go"
+          test -z "$(git -C "$orig" diff -- mux.go tree.go)"
+          cp tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go "$orig/evonomos_p13_helper_test.go"
+          cp tools/p42/p2-r11-go/p13_r2_original_chi_new_client_effect_test.go "$orig/evonomos_p13_r2_client_helper_test.go"
+          cp tools/p42/p2-r11-go/p13_r4_original_chi_minimal_owned_edit_cost_test.go "$orig/evonomos_p13_r4_source_cost_test.go"
+          echo P13_R4_MATH_PRECODE_FREEZE_AND_ORIGINAL_CHI_OWNER_BOUNDARY_PASS
+      - name: Run 32 original Chi Q strata times 3 source variants plus source-native source repair attempts
+        working-directory: tools/p42/p2-r11-go/p13-r4-original-chi
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP13R4OriginalChiSyntheticMinimumSourceRepairCosts$' -count=1 -timeout=12m -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p13-r4/go-source-cost.log"
+      - name: Audit and preserve source receipt even when hypothesis is falsified
+        if: always()
+        run: |
+          set -euo pipefail
+          f=tools/p42/p2-r11-go/p13-r4-original-chi/out/p42-r11-p10-p13-r4/original-chi-96-worlds-minimum-repair-cost.json
+          if test -s "$f"; then
+            cp "$f" out/p42-r11-p10-p13-r4/
+            python3 - <<'PY'
+          import json
+          z=json.load(open("out/p42-r11-p10-p13-r4/original-chi-96-worlds-minimum-repair-cost.json"))
+          assert z["theory_frozen_commit"]=="41b8be8e7e7463f679505a727951239cf04ef3a9"
+          assert z["original_source_commit"]=="167e1e3bd039d060696b99c8da4e876ae04f42c1"
+          assert z["worlds"]==len(z["cases"])
+          print("P13_R4_NATIVE_REPAIR_RECEIPT",z["verdict"],
+              "worlds",z["worlds"],"E0",z["e_to_f_rejected"],
+              "F0",z["f_to_e_rejected"],"failures",z["failures"])
+          PY
+          else
+            echo "No R4 source JSON exists, check compiler/test logs" >&2
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p13-r4-96-real-source-unit-repair-costs-and-obstruction
+          path: out/p42-r11-p10-p13-r4/
