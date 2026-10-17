@@ -1,0 +1,166 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P1_16_REAL_PR_IDS_SOURCE_PRESEALED_COARSE_REVEAL",
+  "seal_sha": "35a3c8980206d38b4f65c508650336a453ecfbdd",
+  "preread_rule": "16 PR IDs sealed before titles/descriptions/diffs; class labels created only AFTER seal and must not be passed off as pre-exposure prediction",
+  "observed_as_of": "2026-10-17",
+  "sample": "First 8 per repo created-ascending in 2026-08-20..2026-09-30; convenience original PR collection not a representative population or 16 iid demands",
+  "status_counts": {
+    "CLOSED_UNMERGED": 6,
+    "OPEN": 5,
+    "MERGED": 5
+  },
+  "record_count": 16,
+  "behavior_or_api_or_resource_count": 12,
+  "unique_within_repo_behavior_clusters": 9,
+  "certified_pre_exposure_cross_framework_rank_eligibility": 0,
+  "certified_cross_framework_matched_native_comparisons_from_unseen_PRs": 0,
+  "interpretation": "PR headline/body classification is post-reveal descriptive; original Gin-Echo Flush source-conditioned native success is independent research-authored future policy, NOT a blind forecast of these PRs. Some analogous demands such as ingress body limits appear in both ecosystems, but exact same-old-clients/same-goal/same-rights source equivalence not certified, so ABSTAIN.",
+  "no_label_leakage": "Merged/open/closed-unmerged are observed timeline outcomes, not rejection, technical impossibility or future-at-submission features",
+  "records": [
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4811,
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "gin_header_timeout",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4812,
+      "status_as_of_2026_10_17": "OPEN",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "gin_header_timeout",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4813,
+      "status_as_of_2026_10_17": "OPEN",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "gin_nil_postform",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4814,
+      "status_as_of_2026_10_17": "MERGED",
+      "frozen_taxonomy_domain": "documentation",
+      "demand_cluster": "gin_docs_comments",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4815,
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "frozen_taxonomy_domain": "documentation",
+      "demand_cluster": "gin_readme_link",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4816,
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "gin_nil_postform",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4817,
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "frozen_taxonomy_domain": "resource_or_lifetime",
+      "demand_cluster": "gin_binding_body_limit",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "gin-gonic/gin",
+      "pr": 4819,
+      "status_as_of_2026_10_17": "MERGED",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "gin_skipped_nodes_reset",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3067,
+      "status_as_of_2026_10_17": "MERGED",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "echo_csrf_config",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3069,
+      "status_as_of_2026_10_17": "OPEN",
+      "frozen_taxonomy_domain": "API_semantic",
+      "demand_cluster": "echo_generic_param",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3070,
+      "status_as_of_2026_10_17": "MERGED",
+      "frozen_taxonomy_domain": "CI_or_metadata",
+      "demand_cluster": "echo_go_1_27_ci",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3072,
+      "status_as_of_2026_10_17": "OPEN",
+      "frozen_taxonomy_domain": "resource_or_lifetime",
+      "demand_cluster": "echo_body_limit_reader",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3073,
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "frozen_taxonomy_domain": "resource_or_lifetime",
+      "demand_cluster": "echo_body_limit_reader",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3074,
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "frozen_taxonomy_domain": "runtime_protocol",
+      "demand_cluster": "echo_forwarded_header",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3075,
+      "status_as_of_2026_10_17": "OPEN",
+      "frozen_taxonomy_domain": "API_semantic",
+      "demand_cluster": "echo_generic_context_value",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    },
+    {
+      "repo": "labstack/echo",
+      "pr": 3076,
+      "status_as_of_2026_10_17": "MERGED",
+      "frozen_taxonomy_domain": "other",
+      "demand_cluster": "echo_rate_limit_refactor",
+      "admissible_for_original_pre_PR_GinEcho_Flush_rank": false,
+      "reason": "No preregistered equal-contract native matched-source repair rank for this PR demand; no cross-framework rank claim"
+    }
+  ],
+  "release_gate": "P42 RUNNING; R11-P10-P1 REVEAL/CLASSIFICATION RECORDED; P43 HOLD; LAW-R2 NOT_AUTHORIZED"
+}
