@@ -1,0 +1,31 @@
+{
+  "protocol": "EvoNOMOS_P42_R11_P9Q_CHI1095_CONDITIONAL_OPTIONAL_METHOD_SET_REPAIR_V1",
+  "freeze_date": "2026-10-17",
+  "epistemic_status": "POST_PATCH_SOURCE_READ_AND_POST_NATIVE_COUNTEREXAMPLE: independent constructive follow-up; not a blind prospective unseen-demand test",
+  "derived_from_ci": "https://github.com/WhoSia/EvoNOMOS/actions/runs/39014842576",
+  "base_proposal_commit": "9c6e3a8414e8968222cda63aa3297703d5c5f37a",
+  "proposal_get_head_go_blob": "55edec16dfa0abb630772d60c3e3b3da804aa5f6",
+  "candidate_source_edit": "Replace exactly two call sites constructing getHeadAllowWriter with conditional function selecting a core writer with no Flush when original writer lacks http.Flusher and a core+delegated-Flusher writer when original has it; no upstream edits",
+  "test_contracts": [
+    {
+      "case": "GET under original Flusher-supported httptest.ResponseRecorder",
+      "expected_http_200": true,
+      "expected_old_client_flusher": true
+    },
+    {
+      "case": "GET under interface-only wrapper lacking Flusher",
+      "expected_http_200": true,
+      "expected_old_client_flusher": false
+    },
+    {
+      "case": "POST against GET-only route, proposed Allow HEAD fix",
+      "expected_405": true,
+      "allow_get": true,
+      "allow_head": true
+    }
+  ],
+  "mathematical_claim": "For a single static Go dynamic concrete wrapper type, its http.Flusher type assertion is constant across underlying values. Exact preservation for both with/without-Flusher inputs requires at least two observable concrete method-set shapes, when clients directly use w.(http.Flusher). This counting result is classical and scope-limited.",
+  "strong_rival": "Go method sets, interface composition, net/http.ResponseController (Unwrap-based capability alternative), ordinary decorator/adapter and classical contextual equivalence",
+  "limitations": "Only direct Flusher assertion among optional interfaces; does not establish preservation of Hijacker, ReaderFrom, Pusher or all HTTP streaming semantics; not general source edit minimality or acceptance; R11-P10 still unopened",
+  "release_gate": "P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED"
+}
