@@ -1,0 +1,38 @@
+name: P42 R11 P10 P4 Sealed New Chi Mux PRs and Equal-Information Abstention
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p4_source_ast_equal_information_rival_and_unread_prs.json'
+      - 'tools/p42/p2-r11/p10_p4_actual_chi_mux_16_unread_pr_reveal_and_eligibility.json'
+      - 'tools/p42/p2-r11/p10_p4_actual_pr_sealed_eligibility_court.py'
+      - '.github/workflows/g8-p42-r11-p10-p4-new-pr-holdout.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+jobs:
+  preread-source-freeze-vs-actual-holdout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Authenticate pre-disclosure frozen cohort and test abstention
+        run: |
+          set -euo pipefail
+          seal=f2c663787d13c55dfcdbbdf3934de6a8d0426d2b
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10-p4
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p4_source_ast_equal_information_rival_and_unread_prs.json > out/p42-r11-p10-p4/original-before-PR-titles-freeze.json
+          cmp out/p42-r11-p10-p4/original-before-PR-titles-freeze.json tools/p42/p2-r11/frozen_p10_p4_source_ast_equal_information_rival_and_unread_prs.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11/p10_p4_actual_chi_mux_16_unread_pr_reveal_and_eligibility.json 2>/dev/null
+          python3 -m py_compile tools/p42/p2-r11/p10_p4_actual_pr_sealed_eligibility_court.py
+          python3 tools/p42/p2-r11/p10_p4_actual_pr_sealed_eligibility_court.py | tee out/p42-r11-p10-p4/pr-eligibility-run.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p10-p4-real-frozen-16-PR-original-records-and-censored-zero-rank
+          path: out/p42-r11-p10-p4/
