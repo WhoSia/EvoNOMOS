@@ -1,0 +1,53 @@
+name: P42 R11 P10 P8 History Residual Source Factorization and Finite-Monitor Mathematics
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p10_p8_history_residual_finite_monitor_court.py'
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P8_HISTORY_RESIDUAL_FACTORIZATION_AND_FINITE_MONITOR_BOUNDARY.md'
+      - '.github/workflows/g8-p42-r11-p10-p8-history-residual-court.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  finite-math-proof-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Verify research mathematical preseal before checker
+        run: |
+          set -eu
+          seal=235c32e0a25f85905a3273a8fc73550450602574
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P8_HISTORY_RESIDUAL_FACTORIZATION_AND_FINITE_MONITOR_BOUNDARY.md | grep -q 'P8-T3'
+          if git cat-file -e "$seal":tools/p42/p2-r11/p10_p8_history_residual_finite_monitor_court.py 2>/dev/null; then
+            echo "ERROR: checker existed at pre-code research freeze" >&2
+            exit 1
+          fi
+          echo P8_MATH_QUESTION_PRESEALED_BEFORE_CHECKER_PASS
+      - name: Run exact authored theorem witness fixture
+        run: |
+          set -eu
+          python3 tools/p42/p2-r11/p10_p8_history_residual_finite_monitor_court.py | tee p8-history-test.log
+          grep -q PASS_AUTHORED_FINITE_PAST_MONITOR_AND_NONREGULAR_RESIDUAL_WITNESSES p8-history-test.log
+          grep -q P8_SOURCE_4_HISTORY_PRODUCT_5_REACH_16_PAST_ORDER_SPLIT_PASS p8-history-test.log
+          grep -q P8_NONREGULAR_BALANCED_RESIDUAL_DISTINCTIONS_156_AND_PROOF_PRESEALED_PASS p8-history-test.log
+          python3 - <<'PY'
+          import json
+          p="out/p42-r11-p10-p8/history-residual-monitor-court.json"
+          d=json.load(open(p))
+          assert d["finite_source_worlds"] == 4
+          assert d["source_plus_past_monitor_reachable_worlds"] == 5
+          assert d["pairwise_distinguishing_ordered_prefixes"] == 156
+          assert d["original_go_source_G1_G7_certified"] is False
+          assert d["independent_architecture_repair_prediction"] == "NOT_ATTEMPTED"
+          print("P8_MACHINE_READABLE_THEORY_SCOPE_AUDIT_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p8-authored-history-residual-and-classical-monitor-proof
+          path: |
+            out/p42-r11-p10-p8/
+            p8-history-test.log
