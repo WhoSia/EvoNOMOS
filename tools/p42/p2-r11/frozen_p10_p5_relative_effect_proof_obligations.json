@@ -1,0 +1,43 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P5_RELATIVE_EFFECT_AND_REPAIR_ABSTRACTION_OBLIGATION_PRESEAL",
+  "date": "2026-10-17",
+  "origin": "Mathematical successor to P10-P4/P4Q: source to effect transitions and right-indexed repair",
+  "status": "P42 RUNNING; R11-P10-P5 mathematical obligation study opened; P43 HOLD; LAW-R2 NOT_AUTHORIZED",
+  "pair": [
+    {
+      "repo": "go-chi/chi",
+      "commit": "b1c9ab47626cc46b34393ad4d35779c4363c4e1e",
+      "path": "middleware/wrap_writer.go",
+      "blob": "6c2b5d59bf8ed78e6c595856d3ef114253fa7ad2"
+    },
+    {
+      "repo": "go-chi/chi",
+      "commit": "9b3e51c349f3fa6cf120ae786a2835e89e81da2e",
+      "path": "middleware/wrap_writer.go",
+      "blob": "2fdd9c44e3d3b98ebbead5b9e0287ea855efc163"
+    }
+  ],
+  "intended_extract": "AST on genuine old and merged Chi source: four Flush implementations; base original direct underlying Flush vs actual merged delegate through basicWriter.flush with discard guard; retain unresolved mayWriteHeader/alias/receiver resolution obligations instead of pretending proven whole source",
+  "mathematical_obligations": [
+    "OBS: abstract projected old-client effects and independent demand observations are sound relative to declared concrete semantics",
+    "STEP_FORWARD: every authorized concrete source edit has cost-and-effect-matching abstract transition",
+    "STEP_BACK: each abstract repair path can be lifted to a concrete authorized and executable repair path at no worse cost with relevant protected clients",
+    "RIGHTS: source ownership evidence and admissible edit grammar, UNKNOWN must block certification",
+    "COST: synthetic edit/review units versus human labor explicitly differentiated",
+    "COMPOSITION: frame/port noninterference is proved, not assumed from interface declarations",
+    "RIVAL: both arms same source facts, client contracts, owner rights, edit actions and costs"
+  ],
+  "theorems": [
+    "Sound forward simulation gives abstract optimistic reachable edit costs but exact Pareto order requires vector dominance discipline",
+    "Bidirectional path lifting plus matching labelled cost yields equality of attainable cost sets and thus Pareto frontiers",
+    "A post-source-read finite AST verifier is a scoped program proof obligation discharge, not a blind new demand test or novel TCS theorem"
+  ],
+  "prospective_pair": "Independent Gin/Echo original frameworks with ONLY explicitly researcher-owned application adapters, not upstream source rights; common new client demand must be frozen before first execution and graded against identical information classical cost-LTS. If cannot certify, ABSTAIN.",
+  "no_claims": [
+    "new universal SOLID law",
+    "source-to-all-Go soundness",
+    "repository owner permissions inferred from GitHub",
+    "real engineering time inferable from count of handler changes",
+    "novel mathematical priority solely for classic simulation theorems"
+  ]
+}
