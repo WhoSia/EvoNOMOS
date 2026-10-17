@@ -1,0 +1,71 @@
+name: P42 R11 P9Q Original Chi Contributor Capability Refinement Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p9q_chi1095_optional_interface_capability_court.json'
+      - 'tools/p42/p2-r11-go/r11_p9q_chi1095_optional_capability_test.go'
+      - '.github/workflows/g8-p42-r11-p9q-chi1095-optional-capability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  paired-original-go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: f975af0cb10cbefaccf0422385420fe62722d648
+          path: tools/p42/p2-r11-go/p9q-1095-original
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 9c6e3a8414e8968222cda63aa3297703d5c5f37a
+          path: tools/p42/p2-r11-go/p9q-1095-proposal
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25', cache: false}
+      - name: Verify pre-native predictions and pinned original source blobs
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p9q-1095
+          seal=668ed4ff2f9c9c430f477093bd115abe1c8b8fb3
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p9q_chi1095_optional_interface_capability_court.json > out/p42-r11-p9q-1095/frozen-source-prediction.json
+          cmp out/p42-r11-p9q-1095/frozen-source-prediction.json tools/p42/p2-r11/frozen_p9q_chi1095_optional_interface_capability_court.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/r11_p9q_chi1095_optional_capability_test.go 2>/dev/null
+          old=tools/p42/p2-r11-go/p9q-1095-original
+          pr=tools/p42/p2-r11-go/p9q-1095-proposal
+          test "$(git -C "$old" rev-parse HEAD)" = f975af0cb10cbefaccf0422385420fe62722d648
+          test "$(git -C "$pr" rev-parse HEAD)" = 9c6e3a8414e8968222cda63aa3297703d5c5f37a
+          test "$(git -C "$old" hash-object middleware/get_head.go)" = d4606d8be6db20534136b1dcdafaae3b361c23a7
+          test "$(git -C "$pr" hash-object middleware/get_head.go)" = 55edec16dfa0abb630772d60c3e3b3da804aa5f6
+          for src in "$old" "$pr"; do
+            cp tools/p42/p2-r11-go/r11_p9q_chi1095_optional_capability_test.go "$src/middleware/evonomos_p42_r11_p9q_1095_test.go"
+          done
+          echo PRE_NATIVELY_SEALED_SOURCE_IDENTITIES_PASS
+      - name: Native original Chi source, old client has Flush
+        env: {R11P9Q_SOURCE_PHASE: original}
+        working-directory: tools/p42/p2-r11-go/p9q-1095-original
+        run: |
+          set -eu
+          go test ./middleware -run '^TestR11P9QChi1095' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p9q-1095/old-native.log"
+      - name: Native actual unmerged contributor source, Allow fixed but Flush erased
+        env: {R11P9Q_SOURCE_PHASE: proposal}
+        working-directory: tools/p42/p2-r11-go/p9q-1095-proposal
+        run: |
+          set -eu
+          go test ./middleware -run '^TestR11P9QChi1095' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p9q-1095/proposal-native.log"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p9q-real-chi-1095-optional-capability-source-court
+          path: out/p42-r11-p9q-1095/
