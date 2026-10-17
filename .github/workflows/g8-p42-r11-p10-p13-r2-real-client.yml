@@ -1,0 +1,74 @@
+name: P42 R11 P10 P13 R2 Original Chi Customer-Effect Quotient Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P13_R2_FROZEN_CUSTOMER_EFFECT_QUOTIENT_SEPARATION.md'
+      - 'tools/p42/p2-r11-go/p13_r2_original_chi_new_client_effect_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p13-r2-real-client.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  original-chi-real-client-observation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p42/p2-r11-go/p13-r2-original-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Verify source and new client contract both fixed before test code
+        run: |
+          set -euo pipefail
+          seal=7d8bc1c1ed45cc764e3b7efca9dd30750fcdaff8
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10-p13-r2
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P13_R2_FROZEN_CUSTOMER_EFFECT_QUOTIENT_SEPARATION.md > out/p42-r11-p10-p13-r2/precode-frozen-client-contract.md
+          cmp out/p42-r11-p10-p13-r2/precode-frozen-client-contract.md active/g8-law-r1-p42/P42_P2_R11_P10_P13_R2_FROZEN_CUSTOMER_EFFECT_QUOTIENT_SEPARATION.md
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p13_r2_original_chi_new_client_effect_test.go 2>/dev/null
+          orig=tools/p42/p2-r11-go/p13-r2-original-chi
+          test "$(git -C "$orig" rev-parse HEAD)" = 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          grep -Fq 'mx.tree.findPattern(pattern+"*") || mx.tree.findPattern(pattern+"/*")' "$orig/mux.go"
+          test -z "$(git -C "$orig" diff -- mux.go tree.go)"
+          cp tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go "$orig/evonomos_p13_source_helpers_test.go"
+          cp tools/p42/p2-r11-go/p13_r2_original_chi_new_client_effect_test.go "$orig/evonomos_p13_r2_client_effect_test.go"
+          echo P13_R2_ORIGINAL_SOURCE_AND_RESEARCH_PRECODE_FREEZE_PASS
+      - name: Run 64 real original source consumer contexts and preserve old client at every stage
+        working-directory: tools/p42/p2-r11-go/p13-r2-original-chi
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP13R2OriginalChiCustomerEffectSplit$' -count=1 -timeout=8m -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p13-r2/go-original-client-effect.log"
+      - name: Preserve source evidence even when hypothesis is falsified
+        if: always()
+        run: |
+          set -euo pipefail
+          src=tools/p42/p2-r11-go/p13-r2-original-chi/out/p42-r11-p10-p13-r2/source-native-real-client-effect-court.json
+          if test -f "$src"; then
+            cp "$src" out/p42-r11-p10-p13-r2/
+            python3 - <<'PY'
+          import json
+          z=json.load(open("out/p42-r11-p10-p13-r2/source-native-real-client-effect-court.json"))
+          assert z["source_cases"]==64 and len(z["cases"])==64
+          assert z["frozen_theory_commit"]=="7d8bc1c1ed45cc764e3b7efca9dd30750fcdaff8"
+          assert z["original_source_commit"]=="167e1e3bd039d060696b99c8da4e876ae04f42c1"
+          print("P13_R2_ORIGINAL_CLIENT_EVIDENCE_PRESERVED",
+                "E_F_distinguished",z["fully_distinguished_e_f_pairs"],
+                "client_falsifiers",z["total_prediction_failures"])
+          PY
+          else
+            echo "P13-R2 output missing; inspect compilation/test logs" >&2
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p13-r2-original-chi-64-source-new-client-effects
+          path: out/p42-r11-p10-p13-r2/
