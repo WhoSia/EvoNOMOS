@@ -1,0 +1,100 @@
+{
+  "protocol": "EVONOMOS_G8_P42_R11_P10_P4_SOURCE_AST_EXTRACTOR_EQUAL_INFORMATION_CLASSICAL_RIVAL_PRECONTENT_FREEZE",
+  "frozen_on": "2026-10-17",
+  "gates": "P42 RUNNING; R11-P10-P4 active; P43 HOLD; LAW-R2 NOT_AUTHORIZED",
+  "stage_order": [
+    "freeze exact cohort IDs and source extraction grammar",
+    "write independent AST-only static extractor and native read-only CI",
+    "score structure and classical baseline with EXACT same source capabilities, native receipts, rights and demand",
+    "reveal ALL selected PR contents only after freeze; no posthoc winner"
+  ],
+  "source_inputs": [
+    {
+      "repo": "gin-gonic/gin",
+      "commit": "d3ffc9985281dcf4d3bef604cce4e662b1a327a6",
+      "path": "response_writer.go",
+      "git_blob": "9035e6f1fd794d54063d6f50c3490e64d35a3647",
+      "type": "responseWriter"
+    },
+    {
+      "repo": "labstack/echo",
+      "commit": "86d0223c7aa39b865a9452de3479897fcb5a3939",
+      "path": "response.go",
+      "git_blob": "4da729c4786898ddb2dc361c19a303e55d149540",
+      "type": "Response"
+    }
+  ],
+  "cohort": {
+    "inclusion": "first eight PRs created ascending in 2026-09-15 through 2026-10-10 inclusive, state=all from each repo; titles/bodies/diffs were NOT opened before sealing",
+    "selection_queries": [
+      "go-chi/chi",
+      "gorilla/mux"
+    ],
+    "selected": [
+      {
+        "repo": "go-chi/chi",
+        "ids": [
+          1180,
+          1181,
+          1182,
+          1183,
+          1184,
+          1185,
+          1186,
+          1187
+        ]
+      },
+      {
+        "repo": "gorilla/mux",
+        "ids": [
+          813,
+          814,
+          815,
+          816,
+          817,
+          818,
+          819,
+          820
+        ]
+      }
+    ],
+    "leakage": "Previous R11-P9 and P10 Gin Echo PRs are NOT an unseen cohort. This chosen CHI/MUX window does not overlap previously revealed 9 P9 PRs, but external prior exposure through other chats could not be ruled out. No selected PR title/body read THIS TURN before seal."
+  },
+  "source_extractor_contract": {
+    "derived_by_Go_parser_only": [
+      "declarations of outer wrapper methods",
+      "presence of a direct http.Flusher assertion within Flush AST",
+      "call to http.NewResponseController within Flush AST",
+      "presence of panic call within Flush AST",
+      "actual raw SHA256 plus pinned Git blob SHA1"
+    ],
+    "not_inferable": [
+      "semantic all-client safety",
+      "actual Flush runtime outcome absent native probe",
+      "right to edit upstream code or merge PR",
+      "human repair cost",
+      "unknown downstream client behavior",
+      "completeness of arbitrary pointer alias/concurrency effects"
+    ],
+    "trust_label": "STATIC_SYNTAX_EVIDENCE; NEED NATIVE WITNESS. Rights=UNKNOWN if not explicitly from research-owned test."
+  },
+  "judge_models": {
+    "HARC_RC": {
+      "inputs": "exact same trusted syntax/native/rights/client evidence as classical",
+      "mechanism": "rights/capability-indexed strong bisimulation quotient and declared-stage edit-grammar costs; abstain if rights/certification/goal unknown"
+    },
+    "CLASSICAL_CTLS": {
+      "inputs": "exact same trusted syntax/native/rights/client evidence as HARC_RC",
+      "mechanism": "full-information labelled transition-system dynamic-programming reachability with exact cost labels; abstain under same evidence limits"
+    },
+    "fairness": "No extra hidden project knowledge or post-PR status for HARC; compare coverage/selective accuracy only on eligibility certified before reveal; report expected tie unless a genuine distinct prediction was pre-committed."
+  },
+  "prospective_PR_grammar": {
+    "eligible_for_two_architecture_ranking": "A selected PR's independent functionality can be phrased as a single complete, executable old-client-safe http.ResponseWriter optional-capability (Flusher, Hijacker, Unwrap) demand on BOTH locked 2026-03 Gin and 2026-04 Echo original sources with rights restricted to research-owned handler; no changing SOURCE implementations; type assertion AND actual effects specified.",
+    "otherwise": "ABSTAIN. Even if a PR is runtime-related, no automatic eligibility. Do not use merged/open/closed as source-feasibility label.",
+    "dedup": "one demand per upstream issue/behavior; duplicate PRs clustered; do not select only favourable PRs",
+    "grade": "Both HARC_RC and CLASSICAL_CTLS receive exactly the same case input and can return an identical repair-frontier result or same abstention. Unverified rights/effect => both UNKNOWN",
+    "experimental_status": "Source-conditioned, not genuinely future-created PR forecast: cohort existed before freeze but content unread. No prospective deployed work or human effort inference."
+  },
+  "novelty_threshold": "No claim of original universal SOLID theory. Need source-certified adequate abstraction plus prereg source-repair forecasts that beat equal-information classical model on new independent domains; otherwise classical adequacy accepted."
+}
