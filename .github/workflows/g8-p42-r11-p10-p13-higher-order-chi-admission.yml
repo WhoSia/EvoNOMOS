@@ -62,8 +62,8 @@ jobs:
           assert all(c["old_client_safe"] for c in d["cases"])
           assert d["no_generalized_source_claim"] is True
           print("P13_259_SOURCE_EVIDENCE_ARCHIVED", "triples",len(d["all_order_triples_admitted"]),
-          "triple_only",len(d["pairwise_possible_but_triple_rejected"]),
-          "binary_mismatches",len(d["binary_graph_vs_triple_mismatches"]),
+          "triple_only",len(d["pairwise_possible_but_triple_rejected"] or []),
+          "binary_mismatches",len(d["binary_graph_vs_triple_mismatches"] or []),
           "control_falsifiers",d["presealed_control_falsifiers"])
           PY
           else
