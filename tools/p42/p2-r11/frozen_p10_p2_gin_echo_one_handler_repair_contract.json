@@ -1,0 +1,41 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P2_BOUNDED_HANDLER_ADAPTER_REPAIR_PRESEAL",
+  "as_of": "2026-10-17",
+  "knowledge": "Original Gin/Echo Go native runs already passed; frozen PR text now revealed. This P2 candidate is a separate AFTER-SOURCE-AND-REVEAL constructive forecast, NOT blind future PR prediction.",
+  "originals": {
+    "gin": "d3ffc9985281dcf4d3bef604cce4e662b1a327a6",
+    "echo": "86d0223c7aa39b865a9452de3479897fcb5a3939"
+  },
+  "rights_and_cost": "Research controls ONLY handler code attached via public router API. A handler rewrite is ONE normalized edit; zero edits retains baseline source; no third-party framework modifications permitted. Cost is synthetic source-change count, NOT maintainer time, team approvals or bytes changed.",
+  "old_client": "GET /old -> 200 old preserved independently",
+  "predictions": [
+    {
+      "architecture": "Gin",
+      "demand": "unsupported Flush must fail visibly, supported Flush must work",
+      "baseline_no_edit": false,
+      "candidate_one_handler_replacement": true,
+      "candidate_strategy": "inspect underlying Gin responseWriter via Unwrap, check optional Flusher and panic on unavailable, else delegate"
+    },
+    {
+      "architecture": "Echo",
+      "demand": "unsupported Flush must not fail, supported Flush must work",
+      "baseline_no_edit": false,
+      "candidate_one_handler_replacement": true,
+      "candidate_strategy": "unwrap Echo Response writer, conditionally call Flush only for supported underlying writer; suppress unsupported operation at app-handler boundary"
+    }
+  ],
+  "proof_scope": "Given admissible grammar {unchanged handler, one research-owned replacement}, baseline invalid + one replacement valid => minimum number of changed handler units exactly 1 for each opposing demand. Does not imply universal source repair optimum or equal engineering cost.",
+  "fatal_failures": [
+    "isolated native Go fails",
+    "upstream pinned blob differs",
+    "one control output old status/body differs",
+    "unsupported/supported behavior deviates",
+    "proposal source or old framework was edited directly"
+  ],
+  "rivals": [
+    "ordinary Go type assertions",
+    "http.ResponseController/Unwrap",
+    "classical source-aware repair planning"
+  ],
+  "gates": "P42 RUNNING; R11-P10 bounded; P43 HOLD; LAW-R2 NOT_AUTHORIZED"
+}
