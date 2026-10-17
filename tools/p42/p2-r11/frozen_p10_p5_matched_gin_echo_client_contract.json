@@ -1,0 +1,88 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P5_INDEPENDENT_MAINTAINED_FRAMEWORK_COMMON_PROSPECTIVE_CLIENT_CONTRACT",
+  "date": "2026-10-17",
+  "stage": "P42 RUNNING R11-P10-P5 bounded prospective authored demand, P43 HOLD LAW-R2 NOT_AUTHORIZED",
+  "epistemic": "Source-conditioned: original Gin/Echo public APIs and prior Flush/Unwrap tests already studied. This is a NEW RESEARCH-AUTHORED CLIENT CONTRACT fixed BEFORE new native test/code, NOT an unknown upstream maintainer PR, NOT blinded source.",
+  "independent_actual_source": [
+    {
+      "repo": "gin-gonic/gin",
+      "commit": "d3ffc9985281dcf4d3bef604cce4e662b1a327a6",
+      "blob": "9035e6f1fd794d54063d6f50c3490e64d35a3647"
+    },
+    {
+      "repo": "labstack/echo",
+      "commit": "86d0223c7aa39b865a9452de3479897fcb5a3939",
+      "blob": "4da729c4786898ddb2dc361c19a303e55d149540"
+    }
+  ],
+  "rights_provenance": "ONLY research-owned application router registration and handler source inside EvoNOMOS, not Gin/Echo upstream source. GitHub WhoSia attributed commit is custody of authored client test, not maintainer source edit authority.",
+  "protected_old_client": "GET /old gives status 200 and exact body old, all tested input writer classes",
+  "new_common_future_contract": {
+    "path": "GET /capability",
+    "response_code": 200,
+    "body": "probe",
+    "header": "X-EvoNOMOS-Underlying-Flusher",
+    "value_if_underlying_flusher": "present",
+    "value_if_not": "absent",
+    "forbidden_effect": "actual downstream httptest.ResponseRecorder.Flushed must remain false on /capability",
+    "writer_classes": [
+      "stdlib httptest.ResponseRecorder with http.Flusher",
+      "research-owned interface-only wrapper over same recorder lacking http.Flusher"
+    ],
+    "input_fidelity": "The handler must inspect underlying original writer through the framework's Unwrap, not simply assert Flusher on the framework wrapper."
+  },
+  "allowed_repair_language": [
+    "E0 no change to app, no /capability route",
+    "E1 add exactly one research-owned app route handler using public stable API; no changes in framework"
+  ],
+  "vector_cost": {
+    "E0": [
+      0,
+      0
+    ],
+    "E1": [
+      1,
+      1
+    ]
+  },
+  "cost_semantics": "Number of changed research-owned handler units plus invented 1 review-unit token, not real human time",
+  "source_conditioned_forecast": {
+    "Gin": {
+      "baseline_contract": false,
+      "one_owned_handler_edit": true,
+      "min_frontier": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "Echo": {
+      "baseline_contract": false,
+      "one_owned_handler_edit": true,
+      "min_frontier": [
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  },
+  "strong_classical_comparator": "Exact cost-labelled source-aware transition system receives same source API info, writer class, own edit grammar and old/new contract; expected tie and report no new theory priority",
+  "failure_conditions": [
+    "wrong source/blob identities",
+    "old GET diverges",
+    "baseline already has route",
+    "new /capability falsely reports underlying capability",
+    "actual downstream Flush event occurs",
+    "either written test fails",
+    "Go upstream source modified or rights inferred",
+    "CI pipeline hides failing Go test"
+  ],
+  "limits": [
+    "Only two original source versions and two writer input classes",
+    "Only one new research-authored contract not independent third-party unknown PR",
+    "Native tests do not prove all old production clients or edit authority outside owned handlers",
+    "No inference about generic SOLID optimality"
+  ]
+}
