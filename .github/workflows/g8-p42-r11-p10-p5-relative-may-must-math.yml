@@ -1,0 +1,39 @@
+name: P42 R11 P10 P5 Relative May Must Effect Abstraction Formal Finite Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p10_p5_relative_may_must_repair_sandwich.py'
+      - '.github/workflows/g8-p42-r11-p10-p5-relative-may-must-math.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  source-grounded-finite-math:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: All sixteen finite states, negative quotient and positive simulation controls
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_p5_relative_may_must_repair_sandwich.py
+          python3 tools/p42/p2-r11/p10_p5_relative_may_must_repair_sandwich.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("out/p42-r11-p10-p5/may-must-finite-proof.json").read_text())
+          assert x["incomplete_quotient_goal_violating_fibers"]>0
+          assert x["incomplete_quotient_is_strong_bisimulation"] is False
+          assert x["effect_complete_quotient_is_strong_bisimulation"] is True
+          assert x["rights_not_certified_for_real_upstream"]=="UNKNOWN"
+          assert x["mathematical_priority"]=="CLASSICAL"
+          print("P10_P5_FINITE_MAY_MUST_REPAIR_PROOF_AND_RIGHTS_UNKNOWN_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p5-relative-proof-optimism-vs-witness-control
+          path: out/p42-r11-p10-p5/
