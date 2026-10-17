@@ -1,0 +1,78 @@
+name: P42 R11 P10 P13 R5 Composite Client Source Repair and Option Loss
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P13_R5_COMPOSITE_CLIENT_GOAL_OPTION_LOSS_SOURCE_REPAIR_COURT.md'
+      - 'tools/p42/p2-r11-go/p13_r5_original_chi_composite_customer_goal_repair_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p13-r5-composite-repair.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  prospectively-frozen-composite-client-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p42/p2-r11-go/p13-r5-original-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Research question and predictions sealed before any implementation
+        run: |
+          set -euo pipefail
+          seal=32c6dd611edc70b88dd9aee816ee4c9e80c35354
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10-p13-r5
+          source=active/g8-law-r1-p42/P42_P2_R11_P10_P13_R5_COMPOSITE_CLIENT_GOAL_OPTION_LOSS_SOURCE_REPAIR_COURT.md
+          git show "$seal":"$source" > out/p42-r11-p10-p13-r5/frozen-prospective-mathematics.md
+          cmp "$source" out/p42-r11-p10-p13-r5/frozen-prospective-mathematics.md
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p13_r5_original_chi_composite_customer_goal_repair_test.go 2>/dev/null
+          orig=tools/p42/p2-r11-go/p13-r5-original-chi
+          test "$(git -C "$orig" rev-parse HEAD)" = 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          grep -Fq 'mx.tree.findPattern(pattern+"*") || mx.tree.findPattern(pattern+"/*")' "$orig/mux.go"
+          test -z "$(git -C "$orig" diff -- mux.go tree.go)"
+          cp tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go "$orig/evonomos_p13_admission_helper_test.go"
+          cp tools/p42/p2-r11-go/p13_r2_original_chi_new_client_effect_test.go "$orig/evonomos_p13_r2_client_helper_test.go"
+          cp tools/p42/p2-r11-go/p13_r5_original_chi_composite_customer_goal_repair_test.go "$orig/evonomos_p13_r5_native_composite_cost_test.go"
+          echo P13_R5_RESEARCH_FIRST_PRESEAL_AND_PINNED_ORIGINAL_CHI_PASS
+      - name: Native Go source 1215 paths and prospective 384 composite customer-cost predictions
+        working-directory: tools/p42/p2-r11-go/p13-r5-original-chi
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP13R5OriginalChiCompositeCustomerAndExactRepairOptions$' -count=1 -timeout=18m -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p13-r5/go-native-stdout.log"
+      - name: Independently inspect machine-readable source receipts
+        if: always()
+        run: |
+          set -euo pipefail
+          f=tools/p42/p2-r11-go/p13-r5-original-chi/out/p42-r11-p10-p13-r5/source-native-1215-paths-composite-repair-cost.json
+          if test -s "$f"; then
+            cp "$f" out/p42-r11-p10-p13-r5/
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("out/p42-r11-p10-p13-r5/source-native-1215-paths-composite-repair-cost.json").read_text())
+          assert d["frozen_math_commit"]=="32c6dd611edc70b88dd9aee816ee4c9e80c35354"
+          assert d["maintained_chi_commit"]=="167e1e3bd039d060696b99c8da4e876ae04f42c1"
+          assert d["worlds"]==len(d["world_costs"])
+          assert d["reachable_pairs"]==len(d["actual_paths"])
+          assert d["forecast_cells"]==d["worlds"]*4
+          assert d["negative_controls"]==64
+          assert d["limits"].startswith("Research-owned")
+          print("P13_R5_RAW_SOURCE_RECEIPT_AUDIT",d["verdict"],d["worlds"],d["reachable_pairs"],d["forecast_cells"],d["disagreements"],d["source_or_old_failures"])
+          assert d["verdict"]=="PASS_P13_R5_ORIGINAL_CHI_1215_FUTURE_REPAIRS_384_COMPOSITE_GOALS",d["first_failures"]
+          PY
+          else
+            echo 'Original-source receipt missing: native source test or checkout failed' >&2
+            exit 1
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p13-r5-pinned-original-chi-1215-source-paths-and-384-new-composite-goal-costs
+          path: out/p42-r11-p10-p13-r5/
