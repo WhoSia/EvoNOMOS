@@ -1,0 +1,44 @@
+name: P42 R11 P10 Structural Repair Quotient and SOLID Fragment Finite Math
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p10_structural_repair_quotient_court.py'
+      - '.github/workflows/g8-p42-r11-p10-repair-quotient-math.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+jobs:
+  finite-logic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12', cache: 'pip'}
+      - name: Finite source-rights model and deliberately failing quotients
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_structural_repair_quotient_court.py
+          python3 tools/p42/p2-r11/p10_structural_repair_quotient_court.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("out/p42-r11-p10/p10-repair-quotient-court.json")
+          d=json.loads(p.read_text())
+          assert d["http_only_quotient"] is False
+          assert d["capability_without_edit_rights"] is False
+          assert d["full_context_repair_quotient"] is True
+          assert d["novel_universal_law"]=="NOT_ESTABLISHED"
+          assert d["frontiers"]["has_capability"]==[[0,0]]
+          assert d["frontiers"]["may_edit_to_gain"]==[[1,1]]
+          assert d["frontiers"]["no_edit_right"]==[]
+          print("P10_CLASSICAL_REPAIR_CONGRUENCE_NEGATIVE_POSITIVE_CONTROL_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-repair-quotient-classical-court
+          path: out/p42-r11-p10/
