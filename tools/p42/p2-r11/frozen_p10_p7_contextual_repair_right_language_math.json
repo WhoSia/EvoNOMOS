@@ -1,0 +1,112 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P7_RESEARCH_FIRST_CONTEXTUAL_REPAIR_CONGRUENCE_PRESEAL",
+  "date": "2026-10-17",
+  "direction": "Mathematics determines which engineering certificates are necessary. Do not build an AST feature extractor unless a theorem makes that feature necessary. Existing R11-P6 and G1-G7 retained.",
+  "research_question": "What is the coarsest sound future-repair quotient for a fixed class of observable clients, edit rights, costed edit words, stagewise safety and external contexts?",
+  "priority_antecedents": [
+    {
+      "author": "Patrick and Radhia Cousot",
+      "year": 1977,
+      "claim": "local abstract soundness to global fixpoint consistency, widening/narrowing",
+      "doi": "10.1145/512950.512973",
+      "original_archive": "Drive 10_PAPERS two verified original formats"
+    },
+    {
+      "author": "Ranzato and Tapparo",
+      "year": 2004,
+      "claim": "strong-preservation as abstract-domain completeness and minimal refinements",
+      "doi": "10.1007/978-3-540-24725-8_3",
+      "verify": "public abstract/open paper; not full-reading credit"
+    },
+    {
+      "author": "Giacobazzi and Ranzato",
+      "year": 2006,
+      "claim": "state-set semantics may be incomplete relative to trace semantics",
+      "doi": "10.1016/j.ic.2006.01.001",
+      "verify": "public abstract; not full-reading credit"
+    },
+    {
+      "author": "classical automata",
+      "claim": "Myhill-Nerode right-congruence and Mealy/weighted automata bisimulation",
+      "priority": "CLASSICAL; do not claim P7 theorem novel"
+    }
+  ],
+  "fixed_model": {
+    "source": "P6 factorized two independently owned edit spots; 5-bit authored finite rights/output/tag system",
+    "bits": [
+      "installed_A",
+      "installed_B",
+      "right_A",
+      "right_B",
+      "irrelevant_tag"
+    ],
+    "states": 32,
+    "edits": [
+      {
+        "name": "A",
+        "precondition": "installed_A=0 and right_A=1",
+        "cost": [
+          1,
+          0
+        ],
+        "event": "A",
+        "effect": "install A; consume right_A"
+      },
+      {
+        "name": "B",
+        "precondition": "installed_B=0 and right_B=1",
+        "cost": [
+          0,
+          1
+        ],
+        "event": "B",
+        "effect": "install B; consume right_B"
+      }
+    ],
+    "output": "installed_A, installed_B",
+    "stagewise_safety": "All declared edits preserve this toy model's old-client contracts by design; does NOT establish any actual Go old-client safety",
+    "rights": "hypothetical toy authorization; real upstream maintainer rights UNKNOWN",
+    "receipt": "partial map from every finite labeled edit word to complete stepwise (action,event,exact vector cost) receipts and terminal output. Blocked words map BOTTOM",
+    "demand_language": "all terminal-state goals over the 4 installed-output pairs, plus tests over complete admissible edit receipt traces and exact vector sums; fixed rights/edit grammar",
+    "class_count_predictions": {
+      "source_states": 32,
+      "source_outputs_only": 4,
+      "full_right_observation_tuples_without_tag": 16,
+      "coarsest_full_future_receipt_right_congruence": 9
+    }
+  },
+  "negative_controls": [
+    {
+      "id": "SOURCE_ONLY_RIGHTS_IMPOSSIBILITY",
+      "reason": "same source/AST and protected client output can have different external owner authorization. Future repairability differs; no source-only predictor correct on both."
+    },
+    {
+      "id": "SATURATED_TOTAL_COST_NOT_RIGHT_CONGRUENCE",
+      "reason": "global budget cap=1 makes edit 'a' cost 1 hide whether residual 'b' cost is 0 or 1; initial right languages agree, but successor languages differ."
+    },
+    {
+      "id": "STATIC_OUTPUT_QUOTIENT_UNSOUND",
+      "reason": "same installed output but one state allows edit A while other denies it"
+    },
+    {
+      "id": "EDIT_RIGHT_NONFACTORING",
+      "reason": "P6 global shared edit token counterexample survives; present 9 classes only under factorized toy grammar."
+    }
+  ],
+  "formal_hypotheses": [
+    "Deterministic partial edit transition system with a fixed action alphabet",
+    "Exact per-step event/weight receipts, blocked-word observability and initial output",
+    "Future client/demand language restricted to declared terminal observations and full receipts",
+    "Rights and stagewise old-client preservation included in the partial transition relation, not silently inferred from AST",
+    "Absolute vector cost monoid N^k and full receipts, not prematurely saturated accumulated scalar cost"
+  ],
+  "claims_to_check": [
+    "Equality of full edit-word receipt functions is a right-congruence for authorized action suffixes and admits a canonical minimal deterministic quotient (classical residual-language theorem).",
+    "Nine equivalence classes in authored 32-state finite rights/output/tag system, independently verified by word enumeration and partition refinement.",
+    "Every fixed-demand cost frontier over the declared observables is constant within each quotient block, but the quotient need not be minimal for any single demand.",
+    "Prematurely saturated cumulative-cost equivalence need not be right-congruent; retain residual cost/remaining budget in source state or per-step traces.",
+    "No architecture-source-only finite feature projection can guarantee future rights-sensitive repair forecasts where source-independent authority varies."
+  ],
+  "prospective_real_source_gate": "Do not present 32-state theorem as automatically sourced from Go. Next source fragment must certify edit-owner rights G6, stagewise client traces G4/G5, exact cost labels G7 and Go transfer G1-G3 before predicting external future demands.",
+  "phase": "P42 RUNNING R11-P10-P7 bounded mathematical question; P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
