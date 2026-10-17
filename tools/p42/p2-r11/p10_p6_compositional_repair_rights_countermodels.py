@@ -92,7 +92,7 @@ def main():
       "lifting_obligations":"factorized rights, frame noninterference, action/cost matching, effect-trace composition",
       "scope":"authored finite abstract semantics; no arbitrary third-party Go source soundness",
       "classical_rivals":"Cousot POPL 1977, effectful compositional semantics and weighted transition systems",
-      "novel_universal_SOLD":"NOT_ESTABLISHED",
+      "novel_universal_SOLID":"NOT_ESTABLISHED",
       "gates":"P42 RUNNING, P43 HOLD, LAW-R2 NOT_AUTHORIZED"
     }
     out=Path('out/p42-r11-p10-p6/composition-math-countermodels.json')
