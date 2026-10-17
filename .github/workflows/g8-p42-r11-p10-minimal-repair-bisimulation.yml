@@ -1,0 +1,41 @@
+name: P42 R11 P10 Minimal Source-Rights Repair Quotient Automata Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p10_minimal_cost_bisimulation_partition.py'
+      - 'tools/p42/p2-r11/p10_structural_repair_quotient_court.py'
+      - '.github/workflows/g8-p42-r11-p10-minimal-repair-bisimulation.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+jobs:
+  exact-finite-coarsest-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Enumerate all 4,140 source-rights state partitions, certify quotient
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_minimal_cost_bisimulation_partition.py
+          python3 tools/p42/p2-r11/p10_minimal_cost_bisimulation_partition.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("out/p42-r11-p10/p10-coarsest-repair-bisimulation.json").read_text())
+          assert x["coarsest_strong_cost_bisimulation_class_count"]==4
+          assert x["all_set_partitions_checked"]==4140
+          assert x["partition_refinement_class_count_history"]==[2,4]
+          assert x["novelty"]=="NOT_CLAIMED"
+          print("P10_EXHAUSTIVE_MINIMAL_BISIMULATION_VALIDATED")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p10-fully-enumerated-minimal-strong-repair-quotient
+          path: out/p42-r11-p10/
