@@ -1,0 +1,42 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P6_COMPOSITIONAL_RIGHTS_EFFECT_REPAIR_FREEZE",
+  "date": "2026-10-17",
+  "papers": [
+    {
+      "source": "Cousot and Cousot POPL 1977",
+      "drive_id": "1hZfipMMYFSwpOVx4ZuhAIvkzt4jDptIl",
+      "sha256": "a7a0b70a69487ea4952df8a7dff2eecd3f5efdf00232319ebb4e9056225e2b35",
+      "pages": 15,
+      "edition": "text-searchable"
+    },
+    {
+      "source": "Cousot and Cousot POPL 1977",
+      "drive_id": "1IH6ZPnHQ35RCCdLbrRhxh_gl87SxUrK3",
+      "sha256": "5d2956eed13b2d40f6e15c2087fb870c3dea54a332fe46ee07cea608ca417238",
+      "pages": 16,
+      "edition": "conference-cover facsimile"
+    }
+  ],
+  "question": "When do local source-to-effect simulations lift through component composition to authorized repair paths and cost vectors?",
+  "postulates": [
+    "local cost-labelled simulation",
+    "independent step frames",
+    "factored authorization",
+    "compositional client traces",
+    "nonnegative vector cost homomorphism"
+  ],
+  "predictions": [
+    "with frames and factored rights, local simulations lift for asynchronous composition",
+    "with backward witness lifting, abstract repair paths realize actual authorized repairs",
+    "global shared budget one forbids two edits even though each is locally repairable",
+    "order-sensitive client traces distinguish two edit schedules with same final state"
+  ],
+  "controls": {
+    "independent": "two independent edit tokens allow repair A and B, cost (1,1)",
+    "shared": "one common edit token blocks goal both A and B",
+    "ordered": "A then B and B then A have same terminal state but different ordered event traces"
+  },
+  "rival": "Classical Cousot 1977 local/global consistency, frame reasoning, labelled bisimulation and separation logic, equal information",
+  "novelty": "NOT_CLAIMED",
+  "gates": "P42 RUNNING; R11-P10-P6 bounded; P43 HOLD; LAW-R2 NOT_AUTHORIZED"
+}
