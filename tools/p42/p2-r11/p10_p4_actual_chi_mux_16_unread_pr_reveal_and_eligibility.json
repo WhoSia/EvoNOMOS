@@ -1,0 +1,205 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P10_P4_16_ACTUALLY_UNREAD_PR_REVEAL_AND_STRICT_CLASSICAL_MATCHED_NEGATIVE",
+  "sealed_prior_to_reading": "f2c663787d13c55dfcdbbdf3934de6a8d0426d2b",
+  "observed_on": "2026-10-17",
+  "disclosure": "PR IDs fixed from created timestamps with state=all. All titles/bodies read only after freeze. Some same problem THEMES already appeared in P9 earlier: record leakage, do not promote them as genuine independent demand novelty.",
+  "sample_summary": {
+    "PR_count": 16,
+    "status_counts": {
+      "OPEN": 11,
+      "CLOSED_UNMERGED": 4,
+      "MERGED": 1
+    },
+    "selected_repo_count": 2,
+    "distinct_post_reveal_demand_clusters": 15,
+    "previously_known_theme_PR_count": 5,
+    "prereg_matched_GinEcho_architecture_rank_eligible": 0,
+    "correct_outcome": "ABSTAIN_COVERAGE_ZERO_NOT_ACCURACY_ZERO"
+  },
+  "interpretation": "Chi 1185 adds Flush-discard side-effect obligation, which cannot be inferred from the outer Gin/Echo Flusher method set alone; shared terminology does not establish common port, rights, or postcondition. Echo/Gin source-and-native HARC and classical baseline both ABSTAIN from using these PRs for a two-architecture source repair-cost ranking.",
+  "paired_original_repair_metadata": {
+    "gin_echo_source_ci": "https://github.com/WhoSia/EvoNOMOS/actions/runs/39019143681",
+    "test_client_research_authored": true,
+    "source_owner_rights": "UNKNOWN",
+    "human_cost": "UNKNOWN"
+  },
+  "not_a_source_law": true,
+  "records": [
+    {
+      "repo": "go-chi/chi",
+      "pr": 1180,
+      "source_url": "https://github.com/go-chi/chi/pull/1180",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "chi_regex_tail_byte",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1181,
+      "source_url": "https://github.com/go-chi/chi/pull/1181",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "chi_head_allow_405",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": true,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1182,
+      "source_url": "https://github.com/go-chi/chi/pull/1182",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "chi_content_encoding_tokens",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1183,
+      "source_url": "https://github.com/go-chi/chi/pull/1183",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "resource_or_lifetime",
+      "post_reveal_demand_cluster": "chi_reused_middleware_alias",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1184,
+      "source_url": "https://github.com/go-chi/chi/pull/1184",
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "chi_requestid_stacking",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1185,
+      "source_url": "https://github.com/go-chi/chi/pull/1185",
+      "status_as_of_2026_10_17": "MERGED",
+      "post_reveal_domain": "resource_or_lifetime",
+      "post_reveal_demand_cluster": "chi_discard_flush_effect",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1186,
+      "source_url": "https://github.com/go-chi/chi/pull/1186",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "chi_regexp_empty_suffix",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "go-chi/chi",
+      "pr": 1187,
+      "source_url": "https://github.com/go-chi/chi/pull/1187",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "chi_redirect_mount_prefix",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 813,
+      "source_url": "https://github.com/gorilla/mux/pull/813",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_query_duplicate_value_match",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 814,
+      "source_url": "https://github.com/gorilla/mux/pull/814",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "API_semantic",
+      "post_reveal_demand_cluster": "mux_headers_introspection",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 815,
+      "source_url": "https://github.com/gorilla/mux/pull/815",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_repeated_methods",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": true,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 816,
+      "source_url": "https://github.com/gorilla/mux/pull/816",
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_nil_route_regexp",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": true,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 817,
+      "source_url": "https://github.com/gorilla/mux/pull/817",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_ipv6_host_port",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 818,
+      "source_url": "https://github.com/gorilla/mux/pull/818",
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_semicolon_query_separator",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": true,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 819,
+      "source_url": "https://github.com/gorilla/mux/pull/819",
+      "status_as_of_2026_10_17": "OPEN",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_url_alternation_anchor",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": false,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    },
+    {
+      "repo": "gorilla/mux",
+      "pr": 820,
+      "source_url": "https://github.com/gorilla/mux/pull/820",
+      "status_as_of_2026_10_17": "CLOSED_UNMERGED",
+      "post_reveal_domain": "runtime_protocol",
+      "post_reveal_demand_cluster": "mux_semicolon_query_separator",
+      "related_problem_theme_known_from_preexisting_P9_or_P9Q": true,
+      "pre_registered_gin_echo_dual_architecture_optional_interface_goal_certified": false,
+      "why_not_certified": "Different specific source owners and cross-repository protocol; no identical complete Gin/Echo old-client+new-demand+research-owned handler rights native witness in the precommitted grammar."
+    }
+  ]
+}
