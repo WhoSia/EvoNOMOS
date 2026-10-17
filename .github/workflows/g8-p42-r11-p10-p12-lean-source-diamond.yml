@@ -1,0 +1,46 @@
+name: P42 R11 P10 P12 Lean Coenabled Source-Net Diamond Admission
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11-lean-p12/**'
+      - '.github/workflows/g8-p42-r11-p10-p12-lean-source-diamond.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mathematical-kernel-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Theory-before-proof preseal and no sorry or axioms
+        run: |
+          set -euo pipefail
+          seal=d01c1300bd6dc0450286fdfdc91865d2928ac181
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P12_COENABLED_DIAMOND_ADMISSION_AND_SOURCE_BOUNDARY_FACTORIZATION.md | grep -q 'P12-T2'
+          ! git cat-file -e "$seal":tools/p42/p2-r11-lean-p12/P12SourceDiamond.lean 2>/dev/null
+          if grep -nE '^[[:space:]]*(axiom|sorry|admit)([[:space:]]|$)|:= by[[:space:]]*sorry' tools/p42/p2-r11-lean-p12/*.lean; then exit 13; fi
+          echo P12_THEORY_PRECEDES_LEAN_CODE_SOURCE_ADMISSION_GATE_PASS
+      - name: Lean 4 actual build and independent checker
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: tools/p42/p2-r11-lean-p12
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          leanchecker: 'true'
+      - name: Source and epistemic receipt
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p12
+          sha256sum tools/p42/p2-r11-lean-p12/P12SourceDiamond.lean tools/p42/p2-r11-lean-p12/lakefile.toml tools/p42/p2-r11-lean-p12/lean-toolchain >out/p42-r11-p10-p12/lean-sha256.txt
+          printf '%s\n' 'P12_LEAN_MATH_KERNEL_PASS_B1_B2_AS_HYPOTHESES' 'Native Go source semantics and permissions NOT certified by this Lean code' >out/p42-r11-p10-p12/scope-verdict.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p12-saturated-language-missing-diamond-and-net-lifting-kernel
+          path: out/p42-r11-p10-p12/
