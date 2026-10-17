@@ -1,0 +1,58 @@
+name: P42 R11 P10 P7 Future Repair Right Congruence Research Court
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p7_contextual_repair_right_language_math.json'
+      - 'tools/p42/p2-r11/p10_p7_future_repair_right_languages.py'
+      - '.github/workflows/g8-p42-r11-p10-p7-right-congruence.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  full-right-language-and-negative-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original question and claims frozen before checker source
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p7
+          seal=0e2387faec0a8fe214c0c72d78eb22d948950f80
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p7_contextual_repair_right_language_math.json > out/p42-r11-p10-p7/original-research-question-precode.json
+          cmp out/p42-r11-p10-p7/original-research-question-precode.json tools/p42/p2-r11/frozen_p10_p7_contextual_repair_right_language_math.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11/p10_p7_future_repair_right_languages.py 2>/dev/null
+          echo P10_P7_RESEARCH_QUESTION_PRECEDES_DEVELOPMENT_PASS
+      - name: Exhaustively validate full right residuals, coarsest quotient and two refutations
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_p7_future_repair_right_languages.py
+          python3 tools/p42/p2-r11/p10_p7_future_repair_right_languages.py | tee out/p42-r11-p10-p7/full-court-stdout.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("out/p42-r11-p10-p7/right-language-classes-proof.json").read_text())
+          f=json.loads(Path("out/p42-r11-p10-p7/original-research-question-precode.json").read_text())
+          assert z["synthetic_source_states"]==f["fixed_model"]["states"]==32
+          assert z["canonical_receipt_right_language_classes"]==f["fixed_model"]["class_count_predictions"]["coarsest_full_future_receipt_right_congruence"]==9
+          assert z["independent_partition_refinement_classes"]==9
+          assert z["observable_only_classes"]==4
+          assert z["all_goal_subsets_checked"]==16
+          assert z["source_only_predicts_external_rights"].startswith("NO")
+          assert z["premature_saturating_total_cost_right_congruence"] is False
+          assert z["actual_go_source_rights_certified"] is False
+          assert z["original_design_law"]=="NOT_PROVEN"
+          print("P10_P7_PRESEALED_MATH_FINDINGS_INDEPENDENT_CONTRACT_ASSERTIONS_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p7-original-question-right-language-proof-and-negative-controls
+          path: out/p42-r11-p10-p7/
