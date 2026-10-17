@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/p42/p2-r11/frozen_p10_p4q_chi1185_discard_flusher_event_contract.json'
       - 'tools/p42/p2-r11-go/p10_p4q_chi1185_discard_flush_effect_test.go'
+      - 'tools/p42/p2-r11/p10_p4q_original_chi_effect_nonfactorization_proof.py'
       - '.github/workflows/g8-p42-r11-p10-p4q-chi1185-event-effect.yml'
   workflow_dispatch:
 
@@ -62,6 +63,11 @@ jobs:
         run: |
           set -euo pipefail
           go test ./middleware -run '^TestEvoNOMOSP10P4Q' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p4q/merged-source-native.log"
+      - name: Extract real original-Go nonfactorization witness into formal proof report
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_p4q_original_chi_effect_nonfactorization_proof.py
+          python3 tools/p42/p2-r11/p10_p4q_original_chi_effect_nonfactorization_proof.py             --old out/p42-r11-p10-p4q/old-source-native.log             --merged out/p42-r11-p10-p4q/merged-source-native.log             --out out/p42-r11-p10-p4q/real-go-nonfactorization-certificate.json
       - if: always()
         uses: actions/upload-artifact@v4
         with:
