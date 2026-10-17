@@ -1,0 +1,77 @@
+name: P42 R11 P10 P13 R3 Original Chi 3588 Order Joint Client and Repair Quotient Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P13_R3_FROZEN_JOINT_CLIENT_FUTURE_REPAIR_PERMUTATION_HYPOTHESIS.md'
+      - 'tools/p42/p2-r11-go/p13_r3_original_chi_all_legal_order_client_quotient_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p13-r3-3588-all-order-joint-client.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-chi-3588-native-branch-client-requests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p42/p2-r11-go/p13-r3-original-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Verify mathematical hypothesis fixed before all-order real source test, maintained source pinned
+        run: |
+          set -euo pipefail
+          seal=f763a90bceb9b5fd44aeb45164234278636d9dab
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10-p13-r3
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P13_R3_FROZEN_JOINT_CLIENT_FUTURE_REPAIR_PERMUTATION_HYPOTHESIS.md > out/p42-r11-p10-p13-r3/frozen-precode-math.md
+          cmp out/p42-r11-p10-p13-r3/frozen-precode-math.md active/g8-law-r1-p42/P42_P2_R11_P10_P13_R3_FROZEN_JOINT_CLIENT_FUTURE_REPAIR_PERMUTATION_HYPOTHESIS.md
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p13_r3_original_chi_all_legal_order_client_quotient_test.go 2>/dev/null
+          orig=tools/p42/p2-r11-go/p13-r3-original-chi
+          test "$(git -C "$orig" rev-parse HEAD)" = 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          grep -Fq 'mx.tree.findPattern(pattern+"*") || mx.tree.findPattern(pattern+"/*")' "$orig/mux.go"
+          test -z "$(git -C "$orig" diff -- mux.go tree.go)"
+          cp tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go "$orig/evonomos_p13_helpers_test.go"
+          cp tools/p42/p2-r11-go/p13_r2_original_chi_new_client_effect_test.go "$orig/evonomos_p13_r2_helpers_test.go"
+          cp tools/p42/p2-r11-go/p13_r3_original_chi_all_legal_order_client_quotient_test.go "$orig/evonomos_p13_r3_all_order_client_test.go"
+          echo P13_R3_REAL_SOURCE_PRECODE_FROZEN_AND_OWNED_APP_ONLY_PASS
+      - name: Evaluate 3588 source-native legal histories x eight finite HTTP probes
+        working-directory: tools/p42/p2-r11-go/p13-r3-original-chi
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP13R3OriginalChiAllLegalOrdersJointFutureClientQuotient$' -count=1 -timeout=25m -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p13-r3/original-chi-go-3588.log"
+      - name: Preserve actual native source evidence even after refutation
+        if: always()
+        run: |
+          set -euo pipefail
+          src=tools/p42/p2-r11-go/p13-r3-original-chi/out/p42-r11-p10-p13-r3/original-chi-all-legal-order-client-effects.json
+          if test -s "$src"; then
+            cp "$src" out/p42-r11-p10-p13-r3/
+            python3 - <<'PY'
+          import json
+          p="out/p42-r11-p10-p13-r3/original-chi-all-legal-order-client-effects.json"
+          z=json.load(open(p))
+          assert z["frozen_theory_commit"]=="f763a90bceb9b5fd44aeb45164234278636d9dab"
+          assert z["maintained_source_commit"]=="167e1e3bd039d060696b99c8da4e876ae04f42c1"
+          assert z["actual_legal_histories"]==len(z["cases"])
+          assert len(z["selected_http_alphabet"])==8
+          print("P13_R3_ORIGINAL_GO_NATIVE_EVIDENCE",
+              "histories",z["actual_legal_histories"],
+              "supports",z["distinct_installed_sets"],
+              "differentials",z["same_support_client_effect_mismatches"],
+              "EF",z["e_f_pair_source_http_separations"],
+              "verdict",z["verdict"])
+          PY
+          else
+            echo "P13 R3 native JSON not produced; inspect compilation or job logs" >&2
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p13-r3-original-chi-all-3588-eight-http-source-evidence
+          path: out/p42-r11-p10-p13-r3/
