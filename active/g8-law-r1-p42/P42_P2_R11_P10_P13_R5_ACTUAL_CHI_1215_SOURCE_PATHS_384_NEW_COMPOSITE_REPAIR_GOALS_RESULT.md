@@ -66,6 +66,25 @@ Thus future client repairability for another request is **NOT monotone under leg
 
 This is a promising explanatory primitive underneath **conditional** OCP/DIP/SRP-like guidance: abstraction boundaries matter insofar as they preserve multiple authorized future repair continuations. No universal SOLID proof or novel conditional cost theorem is claimed.
 
+## 3A. Conditional goal-option spectrum antitonicity (classical reachability theorem)
+
+Fix an endpoint-only future goal family \(\mathcal G\) defined on the **same** source client observation semantics, with no extra past-time obligations, and an authorized **prefix-closed** edit transition relation. Define
+\[
+\Gamma_{\mathcal G}(X)=\{g\in\mathcal G:\exists\text{ a legally protected finite source edit path }X\to^* Y,\ g(O(Y))\}.
+\]
+Then if \(X\to^*Y\) is a legitimate source edit path,
+\[
+\boxed{\Gamma_{\mathcal G}(Y)\subseteq\Gamma_{\mathcal G}(X)}.
+\]
+**Proof.** Every goal attainable from Y along a legal suffix is attainable from X by concatenating the already valid X→Y source path with that suffix. The client safety and authority contract must remain valid at both stages; for a past-dependent new client query, the state must include a correct history monitor or the assertion is not licensed. This is classical reachability closure, not a newly invented design law.
+
+For the ACTUALLY source-tested source grammar, choose \(\mathcal G=\{g_E,g_F,g_{CD},g_{EC},g_{FD},g_{EF}\}\) using the R4 single-goal and R5 conjunctive original HTTP-client contracts. For all 32 independent T⊆Q:
+- \(\Gamma(T,none)=\{g_E,g_F,g_{CD},g_{EC},g_{FD}\}\), exactly **5** goals achievable after a legal finite suffix;
+- \(\Gamma(T,E)=\{g_E,g_{CD},g_{EC}\}\), exactly **3**;
+- \(\Gamma(T,F)=\{g_F,g_{CD},g_{FD}\}\), exactly **3**.
+
+The lost goal options are not derived from arbitrary survey-defined SOLID labels; they are exact predicate outcomes on maintained original Chi router events within the original one-shot grammar. The counts 5/3 concern only the six predeclared contracts. The **minimal cost** to an individual goal need not be monotone even though the **set of reachable goals** is antitone; an edit can reduce V_g to zero while eliminating other goals. This separates *local progress on a present demand* from *preservation of future legitimate repair alternatives*. To decide whether preserving options is desirable one must additionally specify the probability/priority/deadline of those alternative future requirements.
+
 ## 4. What this DOES NOT show and the next honest source challenge
 
 - The original Go source was unchanged, but *1,215 compiled distinct source file snapshots* was **not** the experiment; these are 1,215 actual router registration traces executed in one native Go test.
