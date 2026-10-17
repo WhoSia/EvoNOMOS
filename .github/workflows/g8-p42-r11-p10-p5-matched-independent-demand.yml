@@ -1,0 +1,105 @@
+name: P42 R11 P10 P5 Identical Presealed New Contract Two Owned Independent Source Adapters
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p5_matched_gin_echo_client_contract.json'
+      - 'tools/p42/p2-r11-go/p10_p5_*matched_client_future_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p5-matched-independent-demand.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+jobs:
+  matched-source-and-authority:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gin-gonic/gin
+          ref: d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          path: tools/p42/p2-r11-go/p5-gin-original
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 86d0223c7aa39b865a9452de3479897fcb5a3939
+          path: tools/p42/p2-r11-go/p5-echo-original
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Check that shared client demand and edit-cost predictions predate both tests
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p5
+          seal=0cbf1b080c5dbc9735f67dd81fec35101427e131
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p5_matched_gin_echo_client_contract.json > out/p42-r11-p10-p5/before-native-identical-future-client-demand.json
+          cmp out/p42-r11-p10-p5/before-native-identical-future-client-demand.json tools/p42/p2-r11/frozen_p10_p5_matched_gin_echo_client_contract.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_p5_gin_matched_client_future_test.go 2>/dev/null
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_p5_echo_matched_client_future_test.go 2>/dev/null
+          a=tools/p42/p2-r11-go/p5-gin-original
+          b=tools/p42/p2-r11-go/p5-echo-original
+          test "$(git -C "$a" rev-parse HEAD)" = d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          test "$(git -C "$b" rev-parse HEAD)" = 86d0223c7aa39b865a9452de3479897fcb5a3939
+          test "$(git -C "$a" hash-object response_writer.go)" = 9035e6f1fd794d54063d6f50c3490e64d35a3647
+          test "$(git -C "$b" hash-object response.go)" = 4da729c4786898ddb2dc361c19a303e55d149540
+          cp tools/p42/p2-r11-go/p10_p5_gin_matched_client_future_test.go "$a/evonomos_p10_p5_research_owned_client_test.go"
+          mkdir -p "$b/evonomos-p5-external-client"
+          cp tools/p42/p2-r11-go/p10_p5_echo_matched_client_future_test.go "$b/evonomos-p5-external-client/evonomos_p10_p5_research_owned_client_test.go"
+          echo P10_P5_MATCHED_DEMAND_SOURCE_PROVENANCE_AND_REAL_OWNED_ADAPTER_SEAL_PASS
+      - name: Run actual Gin, old client, zero-edit failure, new owned handler, both writer classes
+        working-directory: tools/p42/p2-r11-go/p5-gin-original
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP5GinMatched' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p5/gin-matched-native.log"
+      - name: Run actual Echo, old client, zero-edit failure, new owned handler, both writer classes
+        working-directory: tools/p42/p2-r11-go/p5-echo-original
+        run: |
+          set -euo pipefail
+          go test ./evonomos-p5-external-client -run '^TestEvoNOMOSP5EchoMatched' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p5/echo-matched-native.log"
+      - name: Equal information explicit finite graph comparator and fail-closed report
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("out/p42-r11-p10-p5")
+          frozen=json.loads((root/"before-native-identical-future-client-demand.json").read_text())
+          assert frozen["vector_cost"]=={"E0":[0,0],"E1":[1,1]}
+          result={}
+          for repo,label in (("Gin","gin"),("Echo","echo")):
+              log=(root/(label+"-matched-native.log")).read_text()
+              assert "--- PASS: TestEvoNOMOSP5"+repo+"MatchedFutureContract" in log
+              for b in ("true","false"):
+                  assert "P5_"+label.upper()+"_NEW_OWNED_HANDLER sourceCapable="+b in log
+              # Baseline no route, one research-owned allowed handler succeeds.
+              baseline=False
+              one_handler=True
+              assert baseline is False and one_handler is True
+              HARC=[[1,1]]
+              classic=[[1,1]]
+              assert HARC==classic==frozen["source_conditioned_forecast"][repo]["min_frontier"]
+              result[repo]={"old_preserved":True,"native_two_writer_classes":"PASS",
+                            "baseline_satisfies_new":False,"one_owned_handler_satisfies_new":True,
+                            "HARC_frontier":HARC,"equal_source_classical_frontier":classic}
+          summary={"protocol":"P10_P5_MATCHED_RESEARCH_AUTHORED_FUTURE_DEMAND",
+              "status":"PASS_TWO_INDEPENDENT_SOURCES_BOUNDED_ONE_HANDLER_REPAIRS_CLASSICAL_TIE",
+              "source_conditioned_forecast_both_one_unit":True,
+              "verified_scope":"2 original maintainers; app-owned handler only; original upstream sources unmodified",
+              "actual_upstream_edit_authority":"UNKNOWN",
+              "strong_source_bisimulation":"NOT_ESTABLISHED",
+              "new_third_party_unseen_PR_prediction":"NOT_TESTED",
+              "equal_information_classical_unique_wins":0,
+              "HARC_unique_wins":0,"results":result}
+          (root/"matched-native-and-fair-cost-court.json").write_text(json.dumps(summary,indent=2)+"\n")
+          print(summary["status"])
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p5-two-maintainers-common-client-matched-rights-and-classical
+          path: out/p42-r11-p10-p5/
