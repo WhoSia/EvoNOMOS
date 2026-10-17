@@ -1,0 +1,72 @@
+name: P42 R11 P10 P5 Authentic Source-to-Effect Proof Obligation Extraction
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p5_relative_effect_proof_obligations.json'
+      - 'tools/p42/p2-r11-go/p10_p5_chi_source_effect_obligations.go'
+      - '.github/workflows/g8-p42-r11-p10-p5-chisource-obligations.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+jobs:
+  pinned-source-syntax-and-open-obligations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: b1c9ab47626cc46b34393ad4d35779c4363c4e1e
+          path: tools/p42/p2-r11-go/p5-chi-original
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 9b3e51c349f3fa6cf120ae786a2835e89e81da2e
+          path: tools/p42/p2-r11-go/p5-chi-merged
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Verify freeze and actual maintained source Git objects
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p5
+          seal=43b906a629e0ba8df22ea85a47067453a9d1c2d4
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p5_relative_effect_proof_obligations.json > out/p42-r11-p10-p5/pre-extractor-frozen-protocol.json
+          cmp out/p42-r11-p10-p5/pre-extractor-frozen-protocol.json tools/p42/p2-r11/frozen_p10_p5_relative_effect_proof_obligations.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_p5_chi_source_effect_obligations.go 2>/dev/null
+          a=tools/p42/p2-r11-go/p5-chi-original
+          b=tools/p42/p2-r11-go/p5-chi-merged
+          test "$(git -C "$a" rev-parse HEAD)" = b1c9ab47626cc46b34393ad4d35779c4363c4e1e
+          test "$(git -C "$b" rev-parse HEAD)" = 9b3e51c349f3fa6cf120ae786a2835e89e81da2e
+          test "$(git -C "$a" hash-object middleware/wrap_writer.go)" = 6c2b5d59bf8ed78e6c595856d3ef114253fa7ad2
+          test "$(git -C "$b" hash-object middleware/wrap_writer.go)" = 2fdd9c44e3d3b98ebbead5b9e0287ea855efc163
+          echo P10_P5_ORIGINAL_CODE_AND_PRE_EXTRACTOR_FREEZE_PASS
+      - name: Derive syntax guarded sink evidence and unresolved semantic obligations
+        run: |
+          set -euo pipefail
+          go run tools/p42/p2-r11-go/p10_p5_chi_source_effect_obligations.go \
+            -old tools/p42/p2-r11-go/p5-chi-original/middleware/wrap_writer.go \
+            -merged tools/p42/p2-r11-go/p5-chi-merged/middleware/wrap_writer.go \
+            -out out/p42-r11-p10-p5/ast-proof-obligations.json | tee out/p42-r11-p10-p5/ast-extractor.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("out/p42-r11-p10-p5/ast-proof-obligations.json").read_text())
+          assert d["original"]["direct_sink_methods"]==4
+          assert d["merged"]["helper_delegated_methods"]==4
+          assert d["merged"]["guarded_underlying_sink"] is True
+          assert len(d["unresolved"])==7
+          assert d["verdict"]=="SOURCE_AST_PATTERN_CERTIFIED_GLOBAL_SEMANTICS_UNPROVEN"
+          print("P10_P5_SEVEN_ACTUAL_SOURCE_TO_EFFECT_PROOF_OBLIGATIONS_EXTRACTED")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p5-genuine-chi-ast-guarded-effect-proof-obligations
+          path: out/p42-r11-p10-p5/
