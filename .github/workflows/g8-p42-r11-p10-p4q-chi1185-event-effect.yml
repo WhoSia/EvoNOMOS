@@ -1,0 +1,69 @@
+name: P42 R11 P10 P4Q Genuine Chi 1185 Discard Flush Effect Nonfactorization
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p4q_chi1185_discard_flusher_event_contract.json'
+      - 'tools/p42/p2-r11-go/p10_p4q_chi1185_discard_flush_effect_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p4q-chi1185-event-effect.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  original-source-transition-effect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: b1c9ab47626cc46b34393ad4d35779c4363c4e1e
+          path: tools/p42/p2-r11-go/p10-p4q-chi-old
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 9b3e51c349f3fa6cf120ae786a2835e89e81da2e
+          path: tools/p42/p2-r11-go/p10-p4q-chi-merged
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25', cache: false}
+      - name: Verify content-seen but PRE-new-native hypothesis and pinned authentic file objects
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p4q
+          seal=516f4efeb0393c98ce20399bc15fc90606b8bc3b
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p4q_chi1185_discard_flusher_event_contract.json > out/p42-r11-p10-p4q/post-reveal-pre-native-freeze.json
+          cmp out/p42-r11-p10-p4q/post-reveal-pre-native-freeze.json tools/p42/p2-r11/frozen_p10_p4q_chi1185_discard_flusher_event_contract.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_p4q_chi1185_discard_flush_effect_test.go 2>/dev/null
+          old=tools/p42/p2-r11-go/p10-p4q-chi-old
+          new=tools/p42/p2-r11-go/p10-p4q-chi-merged
+          test "$(git -C "$old" rev-parse HEAD)" = b1c9ab47626cc46b34393ad4d35779c4363c4e1e
+          test "$(git -C "$new" rev-parse HEAD)" = 9b3e51c349f3fa6cf120ae786a2835e89e81da2e
+          test "$(git -C "$old" hash-object middleware/wrap_writer.go)" = 6c2b5d59bf8ed78e6c595856d3ef114253fa7ad2
+          test "$(git -C "$new" hash-object middleware/wrap_writer.go)" = 2fdd9c44e3d3b98ebbead5b9e0287ea855efc163
+          cp tools/p42/p2-r11-go/p10_p4q_chi1185_discard_flush_effect_test.go "$old/middleware/evonomos_p10_p4q_chi1185_test.go"
+          cp tools/p42/p2-r11-go/p10_p4q_chi1185_discard_flush_effect_test.go "$new/middleware/evonomos_p10_p4q_chi1185_test.go"
+          echo P10_P4Q_ACTUAL_TWO_CHI_SOURCE_IDENTITIES_PASS
+      - name: Old real upstream source forwards discarded flush to transport
+        working-directory: tools/p42/p2-r11-go/p10-p4q-chi-old
+        env: {P10P4Q_CHI_SOURCE_PHASE: baseline}
+        run: |
+          set -euo pipefail
+          go test ./middleware -run '^TestEvoNOMOSP10P4Q' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p4q/old-source-native.log"
+      - name: Real merged third-party source suppresses transport flush under Discard
+        working-directory: tools/p42/p2-r11-go/p10-p4q-chi-merged
+        env: {P10P4Q_CHI_SOURCE_PHASE: merged}
+        run: |
+          set -euo pipefail
+          go test ./middleware -run '^TestEvoNOMOSP10P4Q' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p4q/merged-source-native.log"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p4q-original-chi-1185-discard-flush-effect-traces
+          path: out/p42-r11-p10-p4q/
