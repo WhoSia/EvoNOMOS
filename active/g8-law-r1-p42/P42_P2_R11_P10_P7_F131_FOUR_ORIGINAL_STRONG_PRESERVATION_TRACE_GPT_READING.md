@@ -1,6 +1,6 @@
 # EvoNOMOS P42 R11-P10-P7 — F131: Four Original Strong-Preservation & Trace-Semantics Papers — Verified Custody, Deep Reading, and Repair-Language Implications
 
-**2026-10-17 | Source custody: 00_INTAKE → 10_PAPERS COMPLETE for 4/4 | Full source-level reading of all four PDFs | P42 RUNNING · P43 HOLD · LAW-R2 NOT_AUTHORIZED**
+**2026-10-17 | Source custody: 00_INTAKE → 10_PAPERS COMPLETE for 4/4 | Paper-wide structural review and direct theorem/proof inspection of all four PDFs | P42 RUNNING · P43 HOLD · LAW-R2 NOT_AUTHORIZED**
 
 ## A. What was actually received and preserved?
 
