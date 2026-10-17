@@ -16,6 +16,14 @@ def Hfull (w : List Bool) : Prop :=
   w = [] ∨ w = [false] ∨ w = [true] ∨
   w = [false, true] ∨ w = [true, false]
 
+instance (w : List Bool) : Decidable (Hblocked w) := by
+  unfold Hblocked
+  infer_instance
+
+instance (w : List Bool) : Decidable (Hfull w) := by
+  unfold Hfull
+  infer_instance
+
 theorem blocked_empty : Hblocked [] := by decide
 theorem blocked_a : Hblocked [false] := by decide
 theorem blocked_b : Hblocked [true] := by decide
