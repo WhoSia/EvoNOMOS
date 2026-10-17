@@ -1,0 +1,6 @@
+name = "P12SourceDiamond"
+version = "0.1.0"
+defaultTargets = ["P12SourceDiamond"]
+
+[[lean_lib]]
+name = "P12SourceDiamond"
