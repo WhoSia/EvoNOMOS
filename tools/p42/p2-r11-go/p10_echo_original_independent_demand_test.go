@@ -15,7 +15,7 @@ func TestEvoNOMOSP10EchoOptionalFlushClient(t *testing.T) {
  e.ServeHTTP(w, httptest.NewRequest("GET","/old",nil))
  if w.Code!=200 || w.Body.String()!="old" { t.Fatalf("old contract %d %q",w.Code,w.Body.String()) }
  e2:=New()
- e2.GET("/flush",func(c *Context) error {c.Response().Flush();return c.String(200,"after")})
+ e2.GET("/flush",func(c *Context) error {c.Response().(http.Flusher).Flush();return c.String(200,"after")})
  inner:=httptest.NewRecorder()
  var restricted http.ResponseWriter=&evonomosP10BasicWriter{ResponseWriter:inner}
  if _,ok:=restricted.(http.Flusher);ok {t.Fatal("unexpected input interface")}
