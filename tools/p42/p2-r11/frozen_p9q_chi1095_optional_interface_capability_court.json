@@ -1,0 +1,55 @@
+{
+  "protocol": "EVONOMOS_P42_R11_P9Q_CHI1095_SOURCE_INSPECTION_CONDITIONED_CAPABILITY_FALSIFICATION_V1",
+  "freeze_date": "2026-10-17",
+  "epistemic_label": "AFTER_READING_UPSTREAM_CONTRIBUTOR_PATCH; BEFORE_NEW_NATIVE_GO_COMPARISON. NOT FUTURE_PR_BLIND, NOT ARCHITECTURE_RANK_FORECAST",
+  "historical_baseline": {
+    "repo": "go-chi/chi",
+    "ref": "f975af0cb10cbefaccf0422385420fe62722d648",
+    "file": "middleware/get_head.go"
+  },
+  "historical_proposal": {
+    "pr": "https://github.com/go-chi/chi/pull/1095",
+    "ref": "9c6e3a8414e8968222cda63aa3297703d5c5f37a",
+    "file": "middleware/get_head.go",
+    "upstream_status_at_source_read": "OPEN/UNMERGED; subject to later change"
+  },
+  "client_contracts": {
+    "old_required": "GET /only-get with standard http.ResponseWriter that additionally implements http.Flusher must retain Flusher capability when routed to user handler; old code forwards recorder unchanged",
+    "new_requested": "POST /only-get with registered GET route should yield HTTP 405 and Allow advertising GET+HEAD; HEAD is implicitly supported under GetHead",
+    "preserve": "GET /only-get remains 200, response payload stable"
+  },
+  "predictions": [
+    {
+      "scenario": "GET_FLUSHER_CAPABILITY",
+      "original": true,
+      "proposed": false,
+      "proof_idea": "Proposed getHeadAllowWriter embeds http.ResponseWriter interface and exposes only Write/WriteHeader; optional Flush method of underlying dynamic value not promoted through interface-typed embedding."
+    },
+    {
+      "scenario": "POST_ALLOW_HEAD_ON_405",
+      "original": false,
+      "proposed": true,
+      "proof_idea": "Contributor source intercepts WriteHeader(405), checks Allow containing GET, and adds HEAD."
+    },
+    {
+      "scenario": "GET_RESPONSE_STATUS_AND_BODY_UNCHANGED",
+      "original": true,
+      "proposed": true
+    }
+  ],
+  "null_control": "Construct GET request without requiring optional interface: old and proposed output must match",
+  "falsifiers": [
+    "Original run loses Flusher already",
+    "Proposed wrapper exposes Flusher via another original middleware layer",
+    "HTTP 405 does not traverse GetHead middleware",
+    "Source snapshots differ from specified commit SHA"
+  ],
+  "classical_rivals": [
+    "Go method sets/embedding semantics",
+    "HTTP ResponseWriter optional interface contracts",
+    "contextual refinement with client capability set",
+    "source-aware repair costed LTS"
+  ],
+  "claimed_result": "If native outcomes match, this is one real contributor-proposed repair with an old-client optional-capability regression, not original Chi defect or general SOLID law.",
+  "hold_gates": "P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED; R11-P10 NOT OPENED"
+}
