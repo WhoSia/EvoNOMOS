@@ -63,10 +63,44 @@ def main():
             else:
                 assert a and b,("passthrough control failed",mechanism)
     assert len(witness)==2
+    # Exhaustively derive the least observed source features necessary to
+    # predict the actual native transport event, not a hand-chosen quotient.
+    from itertools import combinations
+    source_worlds=[]
+    for (revision,discard,invocation),transport in sorted(obs.items()):
+        source_worlds.append({
+            "revision":revision,
+            "discard":discard,
+            "invocation":invocation,
+            "method_has_flusher":True,
+            "wrapper_status":200,
+            "body_bytes":0,
+            "transport_flush":transport,
+        })
+    coordinates=("revision","discard","invocation",
+                 "method_has_flusher","wrapper_status","body_bytes")
+    sufficient=[]
+    for k in range(len(coordinates)+1):
+        for subset in combinations(coordinates,k):
+            fibers={}
+            for world in source_worlds:
+                key=tuple(world[c] for c in subset)
+                fibers.setdefault(key,set()).add(world["transport_flush"])
+            if all(len(vals)==1 for vals in fibers.values()):
+                sufficient.append(subset)
+    minimal=[c for c in sufficient if not any(
+        set(other)<set(c) for other in sufficient)]
+    assert minimal==[("revision","discard")],minimal
+    # Both dimensions are necessary on the observed complete 2x2x2 grid.
+    assert ("revision",) not in sufficient and ("discard",) not in sufficient
     out={
       "verdict":"P10_P4Q_AUTHENTIC_SOURCE_EFFECT_NONFACTORING_WITNESS_PASS",
       "projector":"wrapper Go method set + tested HTTP status/body/counter + explicit Discard state + invocation form, EXCLUDING source-dependent transport effect",
       "counterexample":witness,
+      "tested_worlds":len(source_worlds),
+      "tested_candidate_coordinate_subsets":2**len(coordinates),
+      "minimal_effect_predicting_feature_sets":[list(c) for c in minimal],
+      "minimality_domain":"ONLY 8 tested real Go source-state-invocation combinations and listed candidate input features; no arbitrary program equivalence",
       "classical_proof":"Same projected input but different required event observation refutes existence of a deterministic projection-only event predictor for this pair. Adding revision/effect policy distinguishes them.",
       "code_provenance":"Original Chi baseline b1c9ab47626cc46b34393ad4d35779c4363c4e1e vs real merged contributed head 9b3e51c349f3fa6cf120ae786a2835e89e81da2e; exact Git blobs verified by workflow",
       "source_read_before_native":True,
