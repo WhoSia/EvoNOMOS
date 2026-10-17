@@ -1,0 +1,43 @@
+{
+  "protocol": "EvoNOMOS_P42_R11_P10_P4Q_POST_REVEAL_CHI1185_EFFECT_TRACE_NONFACTORING_FREEZE",
+  "status": "AFTER_PR_CONTENT_READ_BEFORE_NEW_NATIVE_REPRO; NOT_BLIND_UNSEEN_DEMAND",
+  "date": "2026-10-17",
+  "actual_PR": "https://github.com/go-chi/chi/pull/1185",
+  "original_source": {
+    "repo": "go-chi/chi",
+    "commit": "b1c9ab47626cc46b34393ad4d35779c4363c4e1e",
+    "path": "middleware/wrap_writer.go",
+    "blob": "6c2b5d59bf8ed78e6c595856d3ef114253fa7ad2"
+  },
+  "actual_merged_contributed_source": {
+    "repo": "go-chi/chi",
+    "commit": "9b3e51c349f3fa6cf120ae786a2835e89e81da2e",
+    "path": "middleware/wrap_writer.go",
+    "blob": "2fdd9c44e3d3b98ebbead5b9e0287ea855efc163",
+    "PR_MERGED": "2026-09-18T11:51:54Z"
+  },
+  "old_client_observations": [
+    "ResponseWriter wrap exposes http.Flusher in both",
+    "Status() tracks 200 from implicit flush",
+    "ResponseRecorder body unchanged empty without writes"
+  ],
+  "new_demand": "When WrapResponseWriter.Discard() has been invoked, subsequent Flush must not invoke underlying ResponseRecorder.Flush; without Discard, it must still do so",
+  "predictions": [
+    {
+      "source": "original",
+      "discard_true_underlying_flushed": true,
+      "discard_false_underlying_flushed": true
+    },
+    {
+      "source": "merged_contributor",
+      "discard_true_underlying_flushed": false,
+      "discard_false_underlying_flushed": true
+    }
+  ],
+  "claim": "Even equal interface method sets plus selected HTTP output observations do not determine transport Flush events. Must extend source abstraction with state-dependent effect traces. This is classical contextual/effect semantics.",
+  "native_probe": "Research-authored Go test injected unchanged in both original checkouts and run with environment SOURCE_PHASE. Pin commit/hash for independent third-party source.",
+  "existing_extractor_limit": "Gin/Echo AST-only extractor returns semantic UNKNOWN, correctly refuses proof by method signature alone",
+  "rights": "Upstream producer source edits not authorized for researcher in this comparison; actual upstream merge is historical evidence only. We only author test file in ephemeral checkout.",
+  "limits": "No general proof of all network transports/timings; no new TCS priority; no HARC win against equal-information classical effect LTS",
+  "gates": "P42 RUNNING; R11-P10-P4Q within bounded study; P43 HOLD LAW-R2 NOT_AUTHORIZED"
+}
