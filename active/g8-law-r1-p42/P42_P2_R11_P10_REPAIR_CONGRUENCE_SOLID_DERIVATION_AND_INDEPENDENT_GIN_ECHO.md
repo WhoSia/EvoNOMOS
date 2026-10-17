@@ -87,7 +87,7 @@ Next high-value test is bounded source-owner adapter repair for both opposing po
 
 [Actual Gin old source plus research one-handler repair](../../tools/p42/p2-r11-go/p10_gin_one_handler_repair_test.go): if underlying ResponseWriter exposed by original Gin's Unwrap lacks Flusher, the researcher-owned handler signals unsupported capability; when present it delegates to original Gin Flush; old GET200/old survives. [Actual Echo old source plus research one-handler repair](../../tools/p42/p2-r11-go/p10_echo_one_handler_repair_test.go): the researcher-owned handler unwraps the original Echo response and calls Flush only when the underlying source writer actually supports it; old GET200/old survives.
 
-[Native original pinned GitHub Actions #39017870170 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39017870170), with both source SHA256-equivalent Git blobs verified, strict pipefail, independent Go tests and native logs:
+[Native original pinned GitHub Actions #39017870170 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39017870170), with both pinned original source Git blob SHA-1 identities verified, strict pipefail, independent Go tests and native logs:
 - Gin FAIL-FAST demand: original no-edit Gin failed the demand (NO_PANIC), one research-owned handler edit passes (PANIC on unsupported Flush; supported writer passes).
 - Echo GRACEFUL demand: original no-edit Echo failed the demand (PANIC), one research-owned handler edit passes (NO_PANIC on unsupported Flush; supported writer passes).
 - Neither original framework source was edited. The required research handler was added as a test-only application adaptation.
