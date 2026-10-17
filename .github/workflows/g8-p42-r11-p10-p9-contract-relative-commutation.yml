@@ -1,0 +1,59 @@
+name: P42 R11 P10 P9 Contract-Relative Repair Commutation Research Court
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P9_CONTRACT_RELATIVE_REPAIR_COMMUTATION_AND_TRACE_QUOTIENT.md'
+      - 'tools/p42/p2-r11/p10_p9_contract_relative_commutation_court.py'
+      - '.github/workflows/g8-p42-r11-p10-p9-contract-relative-commutation.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  contextual-partial-order-quotient:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Confirm pre-implementation mathematical hypotheses are immutable ancestors
+        run: |
+          set -eu
+          seal=0d0d434ffc17788ae82bd7c9a93f9319295727d4
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P9_CONTRACT_RELATIVE_REPAIR_COMMUTATION_AND_TRACE_QUOTIENT.md | grep -q 'P9-T5'
+          if git cat-file -e "$seal":tools/p42/p2-r11/p10_p9_contract_relative_commutation_court.py 2>/dev/null; then
+            echo 'ERROR: preseal contains checker, research-before-development ordering violated' >&2
+            exit 1
+          fi
+          echo P9_RESEARCH_BEFORE_DEVELOPMENT_ANCESTRY_PASS
+      - name: Execute theorem-specific finite contextual independence checker
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p10-p9
+          python3 -m py_compile tools/p42/p2-r11/p10_p9_contract_relative_commutation_court.py
+          python3 tools/p42/p2-r11/p10_p9_contract_relative_commutation_court.py | tee out/p42-r11-p10-p9/p9-stdout.log
+          grep -q PASS_FOUR_FROZEN_MODES_CONTRACT_RELATIVE_TRACE_QUOTIENT out/p42-r11-p10-p9/p9-stdout.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          z=json.loads(Path("out/p42-r11-p10-p9/contract-relative-commutation-proof.json").read_text())
+          assert z["research_theorem_precode_commit"]=="0d0d434ffc17788ae82bd7c9a93f9319295727d4"
+          assert z["all_words_including_illegal_checked"]==40
+          assert z["source_terminal_predicates_exhaustively_checked"]==256
+          exp={"N":(16,8,3,8),"H":(9,6,2,6),"K":(16,8,2,10),"C":(16,8,2,10)}
+          for mode,(leg,src,ind,quot) in exp.items():
+            v=z["modes"][mode]
+            assert(v["legal_words"],v["source_endpoints"],len(v["language_safe_static_independence"]),v["adjacent_swap_reachable_quotient_classes"])==(leg,src,ind,quot),(mode,v)
+          assert len(z["arbitrary_singleton_client_distinguishing_witnesses"])==3
+          assert z["real_source_G1_G7_certified"] is False
+          assert z["third_party_maintainer_edit_authority_verified"] is False
+          assert z["new_independent_architecture_repair_rank"]=="NOT_ATTEMPTED"
+          print("P9_PRESEALED_EXPECTATION_AND_SCIENTIFIC_HOLDS_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p9-four-theory-modes-source-history-right-cost-proof
+          path: out/p42-r11-p10-p9/
