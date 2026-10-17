@@ -1,0 +1,39 @@
+name: P42 R11 P10 Actual Precontent PR Holdout and Censoring Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_gin_echo_independent_source_precontent_pr_court.json'
+      - 'tools/p42/p2-r11/p10_actual_gin_echo_16_PR_precontent_holdout_reveal_and_clustering.json'
+      - 'tools/p42/p2-r11/p10_precontent_pr_censoring_clustering_audit.py'
+      - '.github/workflows/g8-p42-r11-p10-holdout-censoring.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  all-prs-no-prediction-retrofit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Check original pre-content commit, exact 16 IDs, duplicate clusters and non-admission
+        run: |
+          set -euo pipefail
+          seal=35a3c8980206d38b4f65c508650336a453ecfbdd
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10
+          git show "$seal":tools/p42/p2-r11/frozen_p10_gin_echo_independent_source_precontent_pr_court.json > out/p42-r11-p10/frozen-preread-cohort.json
+          cmp out/p42-r11-p10/frozen-preread-cohort.json tools/p42/p2-r11/frozen_p10_gin_echo_independent_source_precontent_pr_court.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11/p10_actual_gin_echo_16_PR_precontent_holdout_reveal_and_clustering.json 2>/dev/null
+          python3 -m py_compile tools/p42/p2-r11/p10_precontent_pr_censoring_clustering_audit.py
+          python3 tools/p42/p2-r11/p10_precontent_pr_censoring_clustering_audit.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p10-original-unread-id-freeze-and-all-real-PR-censoring-court
+          path: out/p42-r11-p10/
