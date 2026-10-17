@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/p42/p2-r11/frozen_p10_gin_echo_independent_source_precontent_pr_court.json'
       - 'tools/p42/p2-r11-go/p10_*original_independent_demand_test.go'
+      - 'tools/p42/p2-r11-go/p10_echo_external_client_source_test.go'
       - '.github/workflows/g8-p42-r11-p10-gin-echo-independent-source.yml'
   workflow_dispatch:
 
@@ -49,18 +50,19 @@ jobs:
           test "$(git -C "$a" hash-object response_writer.go)" = 9035e6f1fd794d54063d6f50c3490e64d35a3647
           test "$(git -C "$b" hash-object response.go)" = 4da729c4786898ddb2dc361c19a303e55d149540
           cp tools/p42/p2-r11-go/p10_gin_original_independent_demand_test.go "$a/evonomos_p42_r11_p10_native_test.go"
-          cp tools/p42/p2-r11-go/p10_echo_original_independent_demand_test.go "$b/evonomos_p42_r11_p10_native_test.go"
+          mkdir -p "$b/evonomos-p10-client"
+          cp tools/p42/p2-r11-go/p10_echo_external_client_source_test.go "$b/evonomos-p10-client/evonomos_p42_r11_p10_native_test.go"
           echo PRE_NATIVE_INDEPENDENT_SOURCE_AND_FROZEN_PR_IDS_PASS
       - name: Gin pinned original source, no-flush graceful case
         working-directory: tools/p42/p2-r11-go/p10-gin-original
         run: |
-          set -eu
+          set -euo pipefail
           go test . -run '^TestEvoNOMOSP10OriginalGin' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10/gin-native.log"
       - name: Echo pinned original source, no-flush fail-fast case
         working-directory: tools/p42/p2-r11-go/p10-echo-original
         run: |
-          set -eu
-          go test . -run '^TestEvoNOMOSP10Echo' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10/echo-native.log"
+          set -euo pipefail
+          go test ./evonomos-p10-client -run '^TestEvoNOMOSP10Echo' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10/echo-native.log"
       - if: always()
         uses: actions/upload-artifact@v4
         with:
