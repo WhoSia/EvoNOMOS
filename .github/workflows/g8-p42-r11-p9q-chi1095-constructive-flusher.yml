@@ -1,0 +1,57 @@
+name: P42 R11 P9Q Constructive Chi 1095 Optional Capability Repair
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p9q_chi1095_conditional_flusher_repair_v1.json'
+      - 'tools/p42/p2-r11-go/r11_p9q_chi1095_construct*'
+      - '.github/workflows/g8-p42-r11-p9q-chi1095-constructive-flusher.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-constructive-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 9c6e3a8414e8968222cda63aa3297703d5c5f37a
+          path: tools/p42/p2-r11-go/p9q-1095-research-repair
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25', cache: false}
+      - name: Confirm freeze predates constructive code and original contributor source is pinned
+        run: |
+          set -eu
+          mkdir -p out/p42-r11-p9q-1095-repair
+          seal=3118d233782eb27afb81d5bc67782568acb2c342
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p9q_chi1095_conditional_flusher_repair_v1.json > out/p42-r11-p9q-1095-repair/contract.json
+          cmp out/p42-r11-p9q-1095-repair/contract.json tools/p42/p2-r11/frozen_p9q_chi1095_conditional_flusher_repair_v1.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/r11_p9q_chi1095_construct_conditional_flusher.py 2>/dev/null
+          repo=tools/p42/p2-r11-go/p9q-1095-research-repair
+          test "$(git -C "$repo" rev-parse HEAD)" = 9c6e3a8414e8968222cda63aa3297703d5c5f37a
+          test "$(git -C "$repo" hash-object middleware/get_head.go)" = 55edec16dfa0abb630772d60c3e3b3da804aa5f6
+          python3 tools/p42/p2-r11-go/r11_p9q_chi1095_construct_conditional_flusher.py "$repo"
+          cp tools/p42/p2-r11-go/r11_p9q_chi1095_constructive_repair_test.go "$repo/middleware/evonomos_p42_r11_p9q_constructive_test.go"
+          git -C "$repo" diff -- middleware/get_head.go > out/p42-r11-p9q-1095-repair/research-source-edit.patch
+          test -s out/p42-r11-p9q-1095-repair/research-source-edit.patch
+          echo FROZEN_CONDITIONAL_METHOD_SHAPE_REPAIR_CONTRACT_PASS
+      - name: Real proposed source plus research-added conditional wrapper, Go native
+        working-directory: tools/p42/p2-r11-go/p9q-1095-research-repair
+        run: |
+          set -eu
+          go test ./middleware -run '^TestR11P9QChi1095ConditionalRepair' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p9q-1095-repair/native-contracts.log"
+          echo R11_P9Q_CONSTRUCTIVE_OPTIONAL_FLUSHER_REPAIR_NATIVE_PASS
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r11-p9q-chi1095-author-edited-source-repair-and-client-contracts
+          path: out/p42-r11-p9q-1095-repair/
