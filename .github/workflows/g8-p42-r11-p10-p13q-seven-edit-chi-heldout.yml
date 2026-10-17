@@ -1,0 +1,71 @@
+name: P42 R11 P10 P13 Q Frozen Seven-Edit Original Chi Long-Word Holdout
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'active/g8-law-r1-p42/P42_P2_R11_P10_P13_Q_FROZEN_BINARY_GRAPH_SEVEN_EDIT_LONG_WORD_HOLDOUT.md'
+      - 'tools/p42/p2-r11-go/p13_q_original_chi_seven_edit_length_holdout_test.go'
+      - '.github/workflows/g8-p42-r11-p10-p13q-seven-edit-chi-heldout.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  original-source-length-generalization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          path: tools/p42/p2-r11-go/p13q-original-chi
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - name: Verify source and math preseal before heldout length code
+        run: |
+          set -euo pipefail
+          seal=ae04d558f8ed834901000a3baa521f87ed0910d6
+          git merge-base --is-ancestor "$seal" HEAD
+          mkdir -p out/p42-r11-p10-p13q
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P13_Q_FROZEN_BINARY_GRAPH_SEVEN_EDIT_LONG_WORD_HOLDOUT.md > out/p42-r11-p10-p13q/frozen-p13q-forecast.md
+          cmp out/p42-r11-p10-p13q/frozen-p13q-forecast.md active/g8-law-r1-p42/P42_P2_R11_P10_P13_Q_FROZEN_BINARY_GRAPH_SEVEN_EDIT_LONG_WORD_HOLDOUT.md
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p13_q_original_chi_seven_edit_length_holdout_test.go 2>/dev/null
+          orig=tools/p42/p2-r11-go/p13q-original-chi
+          test "$(git -C "$orig" rev-parse HEAD)" = 167e1e3bd039d060696b99c8da4e876ae04f42c1
+          grep -Fq 'mx.tree.findPattern(pattern+"*") || mx.tree.findPattern(pattern+"/*")' "$orig/mux.go"
+          test -z "$(git -C "$orig" diff -- mux.go tree.go)"
+          cp tools/p42/p2-r11-go/p13_original_chi_higher_order_source_test.go "$orig/evonomos_p13_higher_order_source_test.go"
+          cp tools/p42/p2-r11-go/p13_q_original_chi_seven_edit_length_holdout_test.go "$orig/evonomos_p13q_full_length_heldout_test.go"
+          echo P13_Q_ORIGINAL_CHI_FROZEN_RESEARCH_BEFORE_HELDOUT_CODE_PASS
+      - name: Perform all 13440 new source words with stagewise protected client
+        working-directory: tools/p42/p2-r11-go/p13q-original-chi
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP13QFullSevenEditLengthHoldout$' -count=1 -timeout=12m -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p13q/p13q-native-logs.txt"
+      - name: Preserve source-native receipts even on falsification
+        if: always()
+        run: |
+          set -euo pipefail
+          src=tools/p42/p2-r11-go/p13q-original-chi/out/p42-r11-p10-p13q/all-13440-real-source-edits.json
+          if test -f "$src"; then
+            cp "$src" out/p42-r11-p10-p13q/
+            python3 - <<'PY'
+          import json
+          z=json.load(open("out/p42-r11-p10-p13q/all-13440-real-source-edits.json"))
+          assert z["all_holdout_words"]==13440
+          assert len(z["words"])==13440
+          assert z["frozen_theory_commit"]=="ae04d558f8ed834901000a3baa521f87ed0910d6"
+          assert z["source_pinned_commit"]=="167e1e3bd039d060696b99c8da4e876ae04f42c1"
+          assert all(row["stagewise_old_client_ok"] for row in z["words"])
+          print("P13_Q_NATIVE_COURT_EVIDENCE_PRESERVED",[(q["length"],q["observed_accepted"],q["prediction_errors"]) for q in z["summaries"]])
+          PY
+          else
+            echo "No Go output receipt; inspect compiler/runner log" >&2
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p13q-real-chi-13440-permutation-forecast-holdout
+          path: out/p42-r11-p10-p13q/
