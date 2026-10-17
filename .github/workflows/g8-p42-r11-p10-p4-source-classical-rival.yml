@@ -1,0 +1,102 @@
+name: P42 R11 P10 P4 Source AST Evidence and Equal-Information Classical Rival
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/frozen_p10_p4_source_ast_equal_information_rival_and_unread_prs.json'
+      - 'tools/p42/p2-r11-go/p10_p4_pinned_wrapper_ast_extractor.go'
+      - 'tools/p42/p2-r11/p10_p4_equal_information_harc_classical.py'
+      - '.github/workflows/g8-p42-r11-p10-p4-source-classical-rival.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  strict-source-certificate-and-fair-rival:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: gin-gonic/gin
+          ref: d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          path: tools/p42/p2-r11-go/p10-p4-gin-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: labstack/echo
+          ref: 86d0223c7aa39b865a9452de3479897fcb5a3939
+          path: tools/p42/p2-r11-go/p10-p4-echo-source
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.25',cache: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify original source identities and pre-native pre-PR-text freeze
+        run: |
+          set -euo pipefail
+          mkdir -p out/p42-r11-p10-p4
+          seal=f2c663787d13c55dfcdbbdf3934de6a8d0426d2b
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":tools/p42/p2-r11/frozen_p10_p4_source_ast_equal_information_rival_and_unread_prs.json > out/p42-r11-p10-p4/pre-source-extractor-prediction-and-unread-pr-freeze.json
+          cmp out/p42-r11-p10-p4/pre-source-extractor-prediction-and-unread-pr-freeze.json tools/p42/p2-r11/frozen_p10_p4_source_ast_equal_information_rival_and_unread_prs.json
+          ! git cat-file -e "$seal":tools/p42/p2-r11-go/p10_p4_pinned_wrapper_ast_extractor.go 2>/dev/null
+          ! git cat-file -e "$seal":tools/p42/p2-r11/p10_p4_equal_information_harc_classical.py 2>/dev/null
+          a=tools/p42/p2-r11-go/p10-p4-gin-source
+          b=tools/p42/p2-r11-go/p10-p4-echo-source
+          test "$(git -C "$a" rev-parse HEAD)" = d3ffc9985281dcf4d3bef604cce4e662b1a327a6
+          test "$(git -C "$b" rev-parse HEAD)" = 86d0223c7aa39b865a9452de3479897fcb5a3939
+          test "$(git -C "$a" hash-object response_writer.go)" = 9035e6f1fd794d54063d6f50c3490e64d35a3647
+          test "$(git -C "$b" hash-object response.go)" = 4da729c4786898ddb2dc361c19a303e55d149540
+          cp tools/p42/p2-r11-go/p10_gin_original_independent_demand_test.go "$a/evonomos_p10_base_test.go"
+          cp tools/p42/p2-r11-go/p10_gin_one_handler_repair_test.go "$a/evonomos_p10_repair_test.go"
+          mkdir -p "$b/evonomos-p10-client"
+          cp tools/p42/p2-r11-go/p10_echo_external_client_source_test.go "$b/evonomos-p10-client/evonomos_p10_base_test.go"
+          cp tools/p42/p2-r11-go/p10_echo_one_handler_repair_test.go "$b/evonomos-p10-client/evonomos_p10_repair_test.go"
+          echo P10_P4_SOURCE_PROVENANCE_UNREAD_PR_PRESEAL_PASS
+      - name: AST-only evidence extraction without claiming source-authority or semantic completeness
+        run: |
+          set -euo pipefail
+          go run tools/p42/p2-r11-go/p10_p4_pinned_wrapper_ast_extractor.go \
+            -gin tools/p42/p2-r11-go/p10-p4-gin-source \
+            -echo tools/p42/p2-r11-go/p10-p4-echo-source \
+            -out out/p42-r11-p10-p4/source-ast-evidence.json | tee out/p42-r11-p10-p4/ast-extraction.log
+      - name: Independent original Gin old and one-handler-native tests
+        working-directory: tools/p42/p2-r11-go/p10-p4-gin-source
+        run: |
+          set -euo pipefail
+          go test . -run '^TestEvoNOMOSP10(OriginalGin|GinFailFast)' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p4/gin-native.log"
+      - name: Independent original Echo old and one-handler-native tests
+        working-directory: tools/p42/p2-r11-go/p10-p4-echo-source
+        run: |
+          set -euo pipefail
+          go test ./evonomos-p10-client -run '^TestEvoNOMOSP10Echo(External|Graceful)' -count=1 -v | tee "$GITHUB_WORKSPACE/out/p42-r11-p10-p4/echo-native.log"
+      - name: Compare HARC with full-information classical LTS, reject unknown permissions
+        run: |
+          set -euo pipefail
+          python3 -m py_compile tools/p42/p2-r11/p10_p4_equal_information_harc_classical.py
+          python3 tools/p42/p2-r11/p10_p4_equal_information_harc_classical.py \
+            --evidence out/p42-r11-p10-p4/source-ast-evidence.json \
+            --gin-baseline out/p42-r11-p10-p4/gin-native.log \
+            --gin-repair out/p42-r11-p10-p4/gin-native.log \
+            --echo-baseline out/p42-r11-p10-p4/echo-native.log \
+            --echo-repair out/p42-r11-p10-p4/echo-native.log \
+            --out out/p42-r11-p10-p4/equal-information-classical-court.json | tee out/p42-r11-p10-p4/rival-court.log
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("out/p42-r11-p10-p4/equal-information-classical-court.json").read_text())
+          assert d["n_cases"]==4 and d["ties"]==4
+          assert d["harc_unique_wins"]==0 and d["classic_unique_wins"]==0
+          assert d["original_source_authority"].startswith("UNKNOWN")
+          assert d["novel_design_law"]=="NOT_PROVEN"
+          print("P10_P4_INDEPENDENT_SOURCE_CLASSICAL_EQUAL_INFORMATION_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-r11-p10-p4-source-facts-native-evidence-and-fair-classical-rival
+          path: out/p42-r11-p10-p4/
