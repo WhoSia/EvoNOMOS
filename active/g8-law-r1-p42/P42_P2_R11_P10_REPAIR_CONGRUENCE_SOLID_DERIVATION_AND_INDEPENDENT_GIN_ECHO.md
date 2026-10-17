@@ -79,3 +79,30 @@ No assumption that these are 16 distinct runtime demands, or that a Gin-specific
 Next high-value test is bounded source-owner adapter repair for both opposing policies under a frozen identical edit unit, followed by a correctly censored reveal of all 16 PR IDs. No P43 / LAW-R2 promotion.
 
 **P42 RUNNING · R11-P10-P0 BOUNDED · P43 HOLD · LAW-R2 NOT_AUTHORIZED.**
+
+
+## 8. P10-P2 update — exact matched one-handler repair frontiers (2026-10-17)
+
+[Constructive prerequisite contract 8b570b19](https://github.com/WhoSia/EvoNOMOS/commit/8b570b1964286ef5d7c07e7799eaaa93ef2f6e87) was frozen **after** reading the original source and PR texts, but **before** writing and running the new candidate tests. The independent edit authority in this particular laboratory is narrow and observable: the researcher owns exactly the application-level handler attached to each framework via its *public* router API, **not** the upstream maintained source. A no-edit action has cost 0, replacing a handler has normalized cost 1. This is a bounded, deliberately constructed edit grammar, not real human effort/maintainer reviews.
+
+[Actual Gin old source plus research one-handler repair](../../tools/p42/p2-r11-go/p10_gin_one_handler_repair_test.go): if underlying ResponseWriter exposed by original Gin's Unwrap lacks Flusher, the researcher-owned handler signals unsupported capability; when present it delegates to original Gin Flush; old GET200/old survives. [Actual Echo old source plus research one-handler repair](../../tools/p42/p2-r11-go/p10_echo_one_handler_repair_test.go): the researcher-owned handler unwraps the original Echo response and calls Flush only when the underlying source writer actually supports it; old GET200/old survives.
+
+[Native original pinned GitHub Actions #39017870170 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39017870170), with both source SHA256-equivalent Git blobs verified, strict pipefail, independent Go tests and native logs:
+- Gin FAIL-FAST demand: original no-edit Gin failed the demand (NO_PANIC), one research-owned handler edit passes (PANIC on unsupported Flush; supported writer passes).
+- Echo GRACEFUL demand: original no-edit Echo failed the demand (PANIC), one research-owned handler edit passes (NO_PANIC on unsupported Flush; supported writer passes).
+- Neither original framework source was edited. The required research handler was added as a test-only application adaptation.
+
+Thus **within exactly the two-element normalized action grammar** and the two tested request modes the smallest number of changed application handler units is 1 in each reverse direction; for the other policy the baseline cost is 0. This establishes a **demand-dependent zero-versus-one bounded repair frontier reversal** under research-owned handler rights, **not** universal architecture optimality or empirically measured source ownership/team cost. It does not prove all old clients, HTTP optional methods, concurrency or lifetime behavior are preserved.
+
+## 9. P10-P1 post-seal 16 real PR reveal — negative prospective architecture rank
+
+[Original 16 PR records after IDs were sealed](../../tools/p42/p2-r11/p10_actual_gin_echo_16_PR_precontent_holdout_reveal_and_clustering.json) and [automated exact-ID, clustering, censoring checker](../../tools/p42/p2-r11/p10_precontent_pr_censoring_clustering_audit.py). The genuine 2026-08/09 original PR sample yields:
+- 16 distinct PRs, but only **12 runtime/API/resource** PRs after excluding two documentation, one CI, one refactor-only record.
+- **Nine clustered runtime/API/resource demands**, not 12 independent proposals: e.g. Gin read-header timeout (#4811/#4812), Gin nil-request PostForm (#4813/#4816), and Echo body-limit reader (#3072/#3073) are paired/related submissions. Selected PR status as at 2026-10-17: **5 MERGED, 5 OPEN, 6 CLOSED_UNMERGED**.
+- Real independently exposed new themes include request-body ingestion limit (Gin #4817, Echo #3072/#3073), panic-free form access, router pooled skip-stack lifetime, CSRF config validation, Forwarded header, Go1.27 parameter API. Similar-sounding themes are **not** automatically the same formal client contract across both frameworks. No equal-old-contract, same-demand, identical adapter-rights native rank comparison was pre-frozen for them.
+- The original pre-PR-text Gin/Echo predictive grammar froze source-conditioned **Flush policy**, not a transfer forecast for those 9 future demand clusters. Therefore **0 certified matched two-architecture rank predictions on the unseen PR demands**. Accuracy is **NOT ESTIMABLE**; do not convert this to a 0% hit rate. Original P9's **0/6** also remains unchanged.
+- [Read-only #39017951228 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/39017951228) independently rehashes frozen ID list from commit 35a3c898, ensures post-reveal file did not exist at freeze, checks all 16 IDs, 9 demand clusters, status censoring and 0 rank eligibility.
+
+**Theory disposition:** RC1/RC2 and the five conditional SOLID fragments remain exact classical TCS deductions under their stated hypotheses; the two real maintained Go source families validate one pre-native **source-conditioned** preference reversal and one bounded, post-reveal authored repair-path reversal, but independent genuinely unforeseen source-repair ranking remains unsolved. This is meaningful experimental structure but **NOT a new general software design law**. Next attack must preregister a common portable demand grammar and its exact client/rights semantics *before* opening another cohort; equal-information source-aware classical rivals should score the same baseline.
+
+**P42 RUNNING · R11-P10-P2 BOUNDED (NO LAW PROMOTION) · P43 HOLD · LAW-R2 NOT_AUTHORIZED.**
