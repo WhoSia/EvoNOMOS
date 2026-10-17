@@ -1,0 +1,99 @@
+{
+  "protocol": "EVONOMOS_G8_P42_R11_P10_P0_INDEPENDENT_SOURCE_AND_PRECONTENT_PR_FREEZE_V1",
+  "date": "2026-10-17",
+  "stage": "R11-P10-P0 OPEN AS STUDY; P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED",
+  "honesty": "Source of historic Gin/Echo (before May 2026) read, original PR #4811 etc title/body/diff NOT YET READ. Later Go native outcomes NOT YET RUN. This is a real source-conditioned prediction, not an unseen-source prediction, nor original October14 P9 cohort success.",
+  "repositories": [
+    {
+      "repo": "gin-gonic/gin",
+      "source_commit": "d3ffc9985281dcf4d3bef604cce4e662b1a327a6",
+      "source_date": "2026-03-16",
+      "go_mod": "github.com/gin-gonic/gin",
+      "source_files": {
+        "gin.go": "2e033bf3477101b55ec464a501da1cc6420b4ada",
+        "response_writer.go": "9035e6f1fd794d54063d6f50c3490e64d35a3647",
+        "routergroup.go": "TO_VERIFY_IN_CI"
+      },
+      "sample": [
+        4811,
+        4812,
+        4813,
+        4814,
+        4815,
+        4816,
+        4817,
+        4819
+      ]
+    },
+    {
+      "repo": "labstack/echo",
+      "source_commit": "86d0223c7aa39b865a9452de3479897fcb5a3939",
+      "source_date": "2026-04-27",
+      "go_mod": "github.com/labstack/echo/v5",
+      "source_files": {
+        "echo.go": "5e706f8bd6e989efc18c493a401973b2b00dfcd1",
+        "response.go": "4da729c4786898ddb2dc361c19a303e55d149540"
+      },
+      "sample": [
+        3067,
+        3069,
+        3070,
+        3072,
+        3073,
+        3074,
+        3075,
+        3076
+      ]
+    }
+  ],
+  "sample_rules": {
+    "window": "2026-08-20T00:00:00Z .. 2026-09-30T23:59:59Z",
+    "selection": "First eight created-ascending PRs for each repo using unfiltered state=all; based on IDs and created timestamps only. Do not select by outcome, title or change type. Independently maintained upstream repositories but both Go HTTP frameworks; transfer beyond this domain not claimed.",
+    "source_before_pr_text": "Use GitHub API pulls collection to sort IDs and creation times only; no title/body/diff inspected before seal",
+    "n": 16
+  },
+  "pre_go_predictions": {
+    "common_old_client": "GET /fixed =>200 with body 'old' for both original Gin and Echo, via research-authored direct public router API and httptest.NewRecorder",
+    "new_demand_no_flusher_graceful": "When app invokes framework response Flush() on a basic-only ResponseWriter without http.Flusher, do not panic; Gin PASS, Echo FAIL (Echo Flush delegates ResponseController.Flush then panics ErrNotSupported)",
+    "new_demand_no_flusher_failfast": "When app invokes framework response Flush() on a basic-only ResponseWriter without http.Flusher, it must visibly fail by panic; Echo PASS, Gin FAIL. Whether this is desirable depends on declared client contract.",
+    "with_flusher_reliability": "On input writer httptest.ResponseRecorder implements http.Flusher, both frameworks must execute Flush without panic; Gin and Echo PASS",
+    "old_client_unchanged": "No source changes to either framework; exactly one request/route old GET200 body equal."
+  },
+  "finite_model": {
+    "primitives": [
+      "source node",
+      "owner edit relation",
+      "protected client contexts",
+      "request history",
+      "runtime capability method sets",
+      "resource effects",
+      "future demand",
+      "nonnegative vector edit costs"
+    ],
+    "not_primitives": [
+      "SOLID",
+      "successful repairs",
+      "desired preference order"
+    ],
+    "conditional_theorems": [
+      "Capabilities under fixed concrete method-set require distinct observable dynamic type class per observed signature",
+      "Staged port frame lifting with source-derived factoring and rights yields old-client-safe extension (classical)",
+      "Repair eligibility shrinks monotonically as protected client demands increase, holding state/rights fixed",
+      "Local noninterference plus independent edits gives bounded SRP/OCP/ISP/DIP/LSP corollaries; not unconditional full SOLID"
+    ],
+    "strong_rival": "Full source-aware Go method sets plus classical typed transition-system repair, CCR2/Iris/DimSum/Simuliris; receive same pre-go source/observations/rights as proposed framework; expected all source-conditioned predictions to match (no novelty)."
+  },
+  "pr_after_seal_rule": {
+    "eligible_if": "After seal reveal PR text, classify without hindsight into exactly one of runtime_protocol, resource_or_lifetime, API_semantic, concurrency, documentation, CI_or_metadata, other. Record all regardless of support; do not change cohort or pre-Go class predictions",
+    "architecture_rank_if": "Only if independent new demand is reproducibly stated as same postcondition for BOTH Gin and Echo with same old-client contracts and research-owned app adapter rights, and source-pinned native tests are completed. Otherwise ABSTAIN.",
+    "coverage_reporting": "eligible / unseen runtime demands; clustered shared demands count once; no success rate when none eligible. Avoid hindsight forecasts.",
+    "rights": "Only research-owned adapter edits allowed (not claiming upstream maintainer authorization). Heldout PRs may be project-specific; don't invent cross-framework equivalence."
+  },
+  "limitations": [
+    "Read original Git source, not blinded from historical implementation",
+    "Go Flush behavior will be checked on research-authored client/writer",
+    "No actual human time/effort or maintainer rights measured",
+    "Both frameworks may compile with go1.25+ deps, native run not yet observed",
+    "R11-P10-P0 is admission to an experiment, not R11-P10 scientific PASS"
+  ]
+}
