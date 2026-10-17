@@ -1,0 +1,45 @@
+name: P42 R11 P10 P14 Source-Derived Disclosure Order Math
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/p42/p2-r11/p10_p14_disclosure_order_option_court.py'
+      - '.github/workflows/g8-p42-r11-p10-p14-disclosure-order.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  mathematical-proof-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Verify theory was committed before implementation
+        run: |
+          set -euo pipefail
+          seal=57849a70de6377244ec2f4c4f9331182bfdfd47a
+          git merge-base --is-ancestor "$seal" HEAD
+          git show "$seal":active/g8-law-r1-p42/P42_P2_R11_P10_P14_DISCLOSURE_ORDER_REPAIR_OPTIONS_SOURCE_GRAPH_MATH.md | grep -q P14-T2
+          ! git cat-file -e "$seal":tools/p42/p2-r11/p10_p14_disclosure_order_option_court.py 2>/dev/null
+          echo P14_RESEARCH_FIRST_PRECODE_FREEZE_PASS
+      - name: Exhaustive source-derived finite disclosure/option mathematics
+        run: |
+          set -euo pipefail
+          python3 tools/p42/p2-r11/p10_p14_disclosure_order_option_court.py
+          python3 - <<'PY'
+          import json
+          p="out/p42-r11-p10-p14/disclosure-order-option-court.json"
+          x=json.load(open(p))
+          assert (x["worlds"],x["source_reachable_ordered_pairs"])==(96,1215)
+          assert x["none_worlds_with_both_adaptive_goals_feasible"]==32
+          assert x["forced_E_or_F_before_reveal_nonadaptive_winning_worlds"]==0
+          assert x["perfect_revelation_before_commit_winning_worlds"]==32
+          assert x["option_antitonicity_all_96_squared"] is True
+          assert x["gates"]=="P42 RUNNING; P43 HOLD; LAW-R2 NOT_AUTHORIZED"
+          print("P14_SOURCE_CERTIFIED_GRAPH_MATH_BOUNDED_PASS")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p42-p14-source-derived-quantifier-order-math
+          path: out/p42-r11-p10-p14/
