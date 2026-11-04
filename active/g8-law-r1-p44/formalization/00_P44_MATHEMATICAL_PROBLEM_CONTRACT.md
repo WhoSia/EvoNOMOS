@@ -11,10 +11,13 @@ Let P be a set of typed, versioned program artifacts. Let E be an admissible env
 A trace can record inputs, externally visible outputs, exceptions, temporal order, divergence, resource effects, or state transitions. The semantical universe must state finite/infinite trace choice, fairness and undefined-behavior assumptions. Original Go source soundness is a separate proof obligation.
 
 ## F2. Observer-indexed equivalence
-An observer family O is a typed collection of context/trace projections o:Trace→Obs_o. Define:
-  Obs_O(p,e) = {o(t) | t∈Tr(p,e), o∈O}
-with indices preserved (i.e. avoid accidental union that forgets which observer produced which event). For a fixed declared context family E0⊆E,
-  p ≡_(O,E0) q  iff  for all e∈E0, all o∈O, the sets of observed values agree.
+An observer family O is a typed collection of context/trace projections o:Trace→Obs_o, with **joint** vector projection:
+  vecO(t) = (o(t))_(o∈O).
+Define the *joint observation set* for each environment:
+  JObs_O(p,e) = { vecO(t) | t∈Tr(p,e) }.
+For a fixed declared context family E0⊆E:
+  p ≡_(O,E0) q  iff  for every e∈E0, JObs_O(p,e)=JObs_O(q,e).
+The joint representation is essential: merely asserting separate marginal sets {o(t):t∈Tr(p,e)} match for each observer loses cross-observer correlations. Example: program A admits traces (0,0),(1,1) and B admits (0,1),(1,0); each individual bit has observed set {0,1} in both, yet the joint observations differ. If the client contract is itself indexed by explicit request and trace fields, O must preserve their same-run grouping, temporal correlation and schedule constraints.
 For deterministic finite HTTP probes, the indices are (method, encoded target, headers, execution layer, schedule, result field). For nondeterministic concurrency, sampled observation equality is **not** universal equivalence.
 
 If O⊆O', then ≡_(O',E0) refines (is a subset of) ≡_(O,E0), under shared trace semantics. A finite passing probe suite only establishes a finite-observer result for the executions actually controlled.
