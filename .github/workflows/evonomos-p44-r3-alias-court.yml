@@ -29,9 +29,10 @@ jobs:
         run: |
           go version
           cd native
-          go mod download -json github.com/go-chi/chi/v5@v5.1.0
-          go mod verify
-          go list -m -json all
+          go mod download -json github.com/go-chi/chi/v5@v5.1.0 | tee chi_download.json
+          grep -F '"Sum": "h1:acVI1TYaD+hhedDJ3r54HyA6sExp3HfXq7QWEEY/xMw="' chi_download.json
+          grep -F '"GoModSum": "h1:DslCQbL2OYiznFReuXYUmQ2hGd1aDpCnlMNITLSKoi8="' chi_download.json
+          go list -m -json github.com/go-chi/chi/v5
       - name: "Local application-owned semantic reference"
         run: |
           cd core
