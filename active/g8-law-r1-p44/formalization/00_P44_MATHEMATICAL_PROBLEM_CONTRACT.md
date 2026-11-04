@@ -1,0 +1,69 @@
+# P44 — Mathematical Problem Contract (candidate v0.1, 2026-11-04)
+
+**Status: DEFINITION AND PROOF-OBLIGATION WORK, NOT NEW LAW.** P44 stays open until the mathematical objects, comparable rights, observation semantics, target demand language, feasible paths, costs, evidence and classical rival can be specified with counterexamples. R1–R3 source outcomes are retained but are not substitutes for these definitions.
+
+## F0. Levels of discourse
+Distinguish (I) the actual source/runtime semantics, (II) the **specified** observer/rights/demand experiment, (III) analysis algorithm and certificate, and (IV) the empirical statement that code and human organizations behave as modeled. Do not turn a finite test of II into a global result about I, or a formal theorem about II into an empirical result about IV.
+
+## F1. Implementations, environment and traces
+Let P be a set of typed, versioned program artifacts. Let E be an admissible environment/context set, including dependency versions, upstream API behavior, scheduler and middleware composition assumptions. Let Sigma be the program state space. For p∈P and e∈E, define a possibly nondeterministic trace semantics:
+  Tr(p,e) ⊆ Trace.
+A trace can record inputs, externally visible outputs, exceptions, temporal order, divergence, resource effects, or state transitions. The semantical universe must state finite/infinite trace choice, fairness and undefined-behavior assumptions. Original Go source soundness is a separate proof obligation.
+
+## F2. Observer-indexed equivalence
+An observer family O is a typed collection of context/trace projections o:Trace→Obs_o. Define:
+  Obs_O(p,e) = {o(t) | t∈Tr(p,e), o∈O}
+with indices preserved (i.e. avoid accidental union that forgets which observer produced which event). For a fixed declared context family E0⊆E,
+  p ≡_(O,E0) q  iff  for all e∈E0, all o∈O, the sets of observed values agree.
+For deterministic finite HTTP probes, the indices are (method, encoded target, headers, execution layer, schedule, result field). For nondeterministic concurrency, sampled observation equality is **not** universal equivalence.
+
+If O⊆O', then ≡_(O',E0) refines (is a subset of) ≡_(O,E0), under shared trace semantics. A finite passing probe suite only establishes a finite-observer result for the executions actually controlled.
+
+## F3. Client obligations and preservation
+Represent a protected client contract C as a predicate over the observable trace family with an explicit quantifier over environments and schedules:
+  Safe_(C,O,E0)(p) ∈ {true,false}.
+The contract can include temporal constraints (e.g. capture(A) before update(B) before response(A)); ordinary status-only contract is insufficient.
+
+For modification histories and multiple demand disclosure events use k∈{0,...,n}, and a contract family C_k = C_0 ∧ d_1 ∧ ... ∧ d_k (assuming demands are compatible). The requirement 'all old clients safe' may refer to C_0 throughout, and 'all previously accepted demands safe' to C_k at each stage. Explicitly distinguish staged activation of demand constraints from *retroactively* requiring D_n at the original state.
+
+## F4. Authority-sensitive, typed edit relation
+A right is an authorization token with actor, owned component, permitted operation, precondition and affected boundary (not merely a string such as 'can edit'). Let π be a policy. Define:
+  p --[a,π,δ,c]--> p'
+when concrete edit δ by actor a is authorized by π, yields source p', and has nonnegative cost vector c∈R^m_{>=0}. Define E_π as the resulting labeled directed graph.
+
+Do not infer a full permitted transition relation by enumerating one chosen three-switch or one app-owned edit grammar. Source ownership, third-party license, dependency upgrades and compile validity are part of an admissibility predicate. Non-authorization must not be mistaken for formal infeasibility in a broader owner model.
+
+## F5. Safe repair paths
+For starting state p, future demand d and protected contract C, a finite **strict-prefix-safe** path is
+  h=(p=p_0, δ_1, p_1, ..., δ_l, p_l)
+such that all transitions belong to E_π, Safe_(C,O,E0)(p_i)=true for every i=0,...,l, and p_l satisfies d. Distinguish strict internal-prefix safety from deployment-checkpoint safety; continuous source editing may not be deployable at every keystroke, so the granularity must be specified.
+
+For a staged demand sequence d_1,...,d_n, define grouped history h=(h_1,...,h_n), with h_k ending at p^(k) satisfying C_0 and all d_j, j≤k, and every edit prefix of h_k satisfying the currently protected obligations C_{k-1}. At stage completion activate d_k; after that stage's edits C_k becomes protected. A simultaneous path-level rather than per-demand model is necessary when demands conflict or priorities change.
+
+## F6. Cost, Pareto front and nonidentifiability of effort
+Define a cost vector c(h)=(synthetic source-edit units, review burden, test coverage burden, deployment/operational risk, *measured developer effort if actually observed*, ...). Costs require units, accumulation rule and missing-data markers. Additivity is **an explicit model assumption**, not a fact of human maintenance. For nonnegative scalar path costs:
+  K(p,d;π,C,O,E0) = inf{ c(h) : h safe and realizes d } ∈ [0,∞].
+The infimum of empty set is +∞. For vector costs use the attainable set and its Pareto-minimal elements; there need not be a unique total 'best architecture'.
+A constructive execution path with validated cost U proves K≤U **relative to the declared relation and observer**, never K=U. A lower bound needs complete coverage of all cheaper permitted paths or a sound lower-bound abstraction.
+
+## F7. Structural comparison is conditional
+Two initial structures p and q are eligible for a fair comparison if p≡_(O,E0)q, the future demand and protected-observer interpretations are aligned, permission sets are mapped with actor/ownership preservation, and cost units are comparable. A claim:
+  K(p,d;π_p,C) < K(q,d;π_q,C)
+is conditional on all these. It does not imply global architecture supremacy, superiority for every demand, or greater human productivity. If initial normalization differs, report both future incremental cost and total cost including normalization.
+
+## F8. Source certificate, checker, classical baseline
+A proposed source certificate Γ is a finite artifact containing source/dependency IDs, relevant observations, modification rights, program-derived dependency/effect claims, an admissible path or a sound obstruction, cost evidence, and a machine-checkable proof object. A checker V(Γ,p,d,π,C,O) reports PROVED / REFUTED / UNKNOWN; UNKNOWN must not be silently treated as REFUTED. A meaningful soundness theorem must say what PROVED entails in the **actual** source semantics. Finite tests are evidence but alone do not discharge universal soundness.
+
+Challenge: is there a certificate class whose sound checking, size, compositional reuse, or prospective cost under bounded compute is better than a strong **equal-information** classical separation-logic / contextual-refinement / alias-effect / exact finite-search baseline? If both prove the same claims at comparable cost, record a classical tie.
+
+## F9. Formal questions to close within P44
+Q1: What trace/context and observation universe is fixed, and which remain unknown?
+Q2: What is the exact universe of authorized edits (including source revisions, actor rights, patch granularity)?
+Q3: Does stagewise contract preservation quantify all source edit steps or deployment checkpoints?
+Q4: Which costs are measurable, and how are missing/uncertain components represented?
+Q5: Can Γ imply a source-sound feasibility upper witness, and under what assumptions a lower bound?
+Q6: Under which relation between architectures can source-repair simulation lift along arbitrary finite paths?
+Q7: Which claims are classical immediate consequences, and what genuinely nontrivial source-level or algorithmic problem remains?
+Q8: What observations falsify the model in an independent maintained-repository cohort?
+
+**Completion rule:** a P44 mathematical formulation is complete only when all F0–F9 receive explicit definitions, assumptions, countermodels, proof targets, and an externally reviewable rivalry/novelty audit. No future P45, no LAW-R2 promotion merely from naming these definitions.
