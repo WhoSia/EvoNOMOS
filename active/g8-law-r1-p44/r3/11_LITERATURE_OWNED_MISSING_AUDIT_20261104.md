@@ -32,3 +32,20 @@ L. Clarke et al. (2000), *Counterexample-Guided Abstraction Refinement*, DOI htt
 - Reading Iris or Simuliris already owned can give a modern concurrent separation-logic basis; acquiring Reynolds/Yang/Calcagno is for foundational originality audit, not an excuse to call their results new.
 - SWE-bench is a practical task sampling pattern, NOT a proof that one can measure human time from commit timestamps.
 - None of these 'missing' items has been newly downloaded or moved during this audit; status is searchable filenames only.
+
+
+## 2026-11-04 later intake reconciliation — SUPERSEDES six earlier filename-missing flags
+
+The original earlier inventory was accurate at its check time, but **six freshly uploaded raw PDFs were subsequently detected, authenticated, renamed and moved in-place** from Research OS 00_INTAKE Literature Radar to canonical 10_PAPERS. Metadata readback verified each item and target parent. This addendum supersedes the earlier missing status for:
+- Reynolds (2002) — now [10_PAPERS original](https://drive.google.com/file/d/1lct1uFqvvOq1iSaQYodJipso_sOiDjHh/view).
+- Yang & O'Hearn (2002) — [10_PAPERS original](https://drive.google.com/file/d/1ECH2Ken1wR-y7Y5H0ZeuGv1NW1Y6EhZX/view).
+- Calcagno et al. (2009) — [10_PAPERS original](https://drive.google.com/file/d/1pO5rUHggdq1FFBzU_bOkFokK7E2WvNuA/view).
+- Flanagan & Godefroid (2005) — [10_PAPERS original](https://drive.google.com/file/d/1MwWcM8m_pQj-2AKJBS8gWp0SOY1FFCTz/view).
+- Clarke et al. (2000) CAV original — [10_PAPERS original](https://drive.google.com/file/d/1UcYLstqgxKnIzQHId469gEB61C_ersTc/view).
+- Clarke et al. (2003) JACM expanded journal version — [10_PAPERS original](https://drive.google.com/file/d/1UxXFDnQk7kZT4CLoYy7X-k3qG9Tbdc7J/view).
+
+The 2000 and 2003 CEGAR papers are distinct publications and must NOT be collapsed as byte duplicates. The earlier CEGAR missing line that referred only to 2000 is now filled; the 2003 journal version is an additional acquired source.
+
+**Still unconfirmed by title searches** (do not claim absent from every archive): Musuvathi et al. (2007) CHESS; Jimenez et al. (2024) SWE-bench; Ouyang et al. (2024) real/artificial APR benchmark; Sjøberg et al. (2005) controlled-experiment survey; O'Hearn (2020) Incorrectness Logic; Hannemann & Kiczales (2002) pattern implementations; Petke et al. (2024) patch-overfitting study. Existing Drive files for Iris, Simuliris, CCR, APR survey, Parnas and Prechelt remain owned and should not be duplicated.
+
+[Detailed original reading/source gate](https://github.com/WhoSia/EvoNOMOS/blob/research/law-r1-p44-r3-stateful-alias-court/active/g8-law-r1-p44/formalization/07_SIX_ORIGINAL_PAPERS_INGESTION_READING_20261104.md).
