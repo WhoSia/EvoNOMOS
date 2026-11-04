@@ -1,0 +1,43 @@
+name: EvoNOMOS P44-R1 Native Source-Matched Court
+
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-*'
+    paths:
+      - 'active/g8-law-r1-p44/r1/**'
+      - '.github/workflows/evonomos-p44-r1-source-matched.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: p44-r1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  native-chi-stdlib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/r1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Pinned original module evidence
+        run: |
+          go version
+          go mod download -json github.com/go-chi/chi/v5@v5.1.0
+          go mod verify
+          go list -m -json all
+      - name: Native paired source test
+        run: go test -count=1 -v ./...
+      - name: Go vet
+        run: go vet ./...
+      - name: Race
+        run: go test -count=1 -race ./...

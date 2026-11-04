@@ -1,0 +1,55 @@
+name: EvoNOMOS P44-R2 Frozen Original-Source Demand Court
+
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-*'
+    paths:
+      - 'active/g8-law-r1-p44/r2/**'
+      - '.github/workflows/evonomos-p44-r2-frozen-demand.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: p44-r2-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-and-classical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/r2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Pinned Chi native source and checksum
+        run: |
+          go version
+          go mod download -json github.com/go-chi/chi/v5@v5.1.0
+          go mod verify
+          go list -m -json all
+      - name: Test frozen demand sequence and all route permutations
+        run: go test -count=1 -v ./...
+      - name: Vet original-source pair
+        run: go vet ./...
+      - name: Race original-source pair
+        run: go test -count=1 -race ./...
+      - name: "Formal classical rival: test, vet, race"
+        run: |
+          cd formal
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...
+      - name: "Source-aware Go AST rival: test, vet, race"
+        run: |
+          cd static
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...
