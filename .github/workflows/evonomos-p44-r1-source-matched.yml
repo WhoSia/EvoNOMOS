@@ -9,6 +9,10 @@ on:
       - '.github/workflows/evonomos-p44-r1-source-matched.yml'
   workflow_dispatch:
 
+concurrency:
+  group: p44-r1-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
