@@ -1,0 +1,40 @@
+name: EvoNOMOS R24 Original Chi Paired Court
+
+on:
+  push:
+    branches:
+      - 'research/p43-r24-*'
+    paths:
+      - 'active/g8-law-r1-p43/r24/paired/**'
+      - '.github/workflows/evonomos-r24-chi-paired.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-original-pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p43/r24/paired
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Capture toolchain and module provenance
+        run: |
+          go version
+          go env GOOS GOARCH GOPROXY GOSUMDB
+          go mod download -json github.com/go-chi/chi/v5@v5.1.0
+          go mod verify
+          go list -m -json all
+      - name: Original-source paired native court and stagewise repair
+        run: go test -count=1 -v ./...
+      - name: Vet source pair
+        run: go vet ./...
+      - name: Race source pair
+        run: go test -count=1 -race ./...
