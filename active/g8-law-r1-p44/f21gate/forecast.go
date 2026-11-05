@@ -38,6 +38,7 @@ func EvaluateForecast(r ForecastReceipt)(Grade,error){
  if r.BaselineObservedAt.IsZero()||r.PredictorFrozenAt.IsZero()||r.DemandCreatedAt.IsZero()||r.DemandDisclosedAt.IsZero()||r.PredictionSealedAt.IsZero(){return Unverified,errors.New("incomplete clock evidence")}
  if r.DemandCreatedAt.After(r.DemandDisclosedAt){return Unverified,errors.New("creation after disclosure")}
  if r.BaselineObservedAt.After(r.PredictorFrozenAt){return Unverified,errors.New("source inspected after policy freeze")}
+ if r.PredictionSealedAt.Before(r.PredictorFrozenAt){return Unverified,errors.New("prediction sealed before model freeze")}
  if !r.PredictorFrozenAt.Before(r.DemandCreatedAt){return Backtest,nil}
  if r.OutcomeSeenBeforePrediction||(!r.OutcomeDisclosedAt.IsZero()&&!r.PredictionSealedAt.Before(r.OutcomeDisclosedAt)){return Historical,nil}
  if r.Mode==DemandBlind {
