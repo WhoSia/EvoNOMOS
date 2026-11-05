@@ -18,3 +18,15 @@ L. Run a mathematical review with an independent critic and ensure that final lo
 Current status: A–F are preliminary **proposed definitions**, G partial lemmas and countermodels, H–J unresolved original contribution, K partial targeted text reads, L internal correction of marginal observer flaw. Thus **mathematical formulation NOT COMPLETE**; P44 remains appropriate and must not be promoted to P45 solely for naming the framework.
 
 Immediate next math project: source-indexed abstract repair certificates with soundness/precision and a conservative rights transformation, plus an exact classic finite-search comparator. Inspect CCR and Simuliris technical proof sections before originality claims.
+
+## 2026-11-05 extension — time-indexed mathematical closure criteria
+
+M. Fix the information filtration (what the editor may observe at each release/checkpoint), demand-disclosure and commitment order before using any online-repair claim. A path found with all future demands already known is an OFFLINE witness, not a nonanticipating policy certificate.
+
+N. Prove that later repair paths preserve the accepted prior-stage contract C1 at **every protected checkpoint**; distinguish first-stage release endpoints from all nodes satisfying the feature predicate. Countermodel and negative control in online/game_test.go.
+
+O. Do not transport an existential CEGAR path-overapproximation into a two-player strategy-winning theorem. System edit moves require actual implementability; environment demands need sound coverage, and the strategy must be executable with permitted information.
+
+P. Read full Pnueli–Rosner reactive synthesis and Borodin–El-Yaniv online computation sources before any novelty assertion; their bibliographic records were verified, but their full original texts were not acquired in Drive during this research unit.
+
+**Closure remains OPEN.** The finite Go example and negative controls are classical reference tests, not whole-source checks. The root P44 research target remains permission/observer/source-indexed certificates under revealed future demands, with an optional nonanticipation extension for genuine precommitment workloads.
