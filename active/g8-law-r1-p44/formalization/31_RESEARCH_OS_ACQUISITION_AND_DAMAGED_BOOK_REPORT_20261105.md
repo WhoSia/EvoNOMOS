@@ -9,3 +9,7 @@
 Research progress: original White §3.1 6-tuple, §3.3 edge constraints, §2.5 model drift, §6.4 validity limitations read; Borodin contents NOT studied from damaged PDF. Avoid confusing bibliographic familiarity with original-text inspection.
 
 Current open literature need: a verified readable edition of Borodin & El-Yaniv 1998 (target 11_BOOKS) and an exact theorem/proof/algorithm audit of White 2014 plus its 2009 predecessor. Do not invent additional missing titles without fresh search.
+
+## 2026-11-05 further non-destructive recoverability check
+
+The original 21.5-MB PDF was kept unchanged on Drive and checked in a temporary local copy. Ghostscript 10.05.1 pdfwrite conversion technically returned exit status 0, but produced only a 56-KB output and many Page drawing error warnings; its first four extracted pages had no text. Therefore the converter exit code is NOT evidence of successfully repairing the book. The generated local candidate was NOT uploaded to Drive or treated as canonical. No page-by-page book content study or reliable edition check is possible from the existing damaged PDF. **Maintain intact original under 00_INTAKE HOLD until a readable, provenance-verified edition exists.**
