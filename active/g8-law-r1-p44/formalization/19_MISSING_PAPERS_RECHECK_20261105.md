@@ -23,3 +23,10 @@ P2: Hannemann & Kiczales (2002), Design Pattern Implementation in Java and Aspec
 P2: Evolving Feature Model Configurations in Software Product Lines (2014), Journal of Systems and Software, DOI https://doi.org/10.1016/j.jss.2013.10.010; no matching title.
 
 No files were moved in this research unit because no newly acquired pertinent paper was found by the specific queries. All acquisition entries are title-metadata candidates rather than byte-level inventory statements.
+
+
+## 2026-11-05 later intake correction — eight sources now OWNED
+
+After the historical search above, eight previously missing original PDFs were newly detected in Research OS 00_INTAKE, read in original-text extraction, renamed and MOVED IN PLACE. Seven are now in canonical Drive 10_PAPERS, and MSR CHESS technical report in 11_SOURCES. Each destination parent and exact canonical filename was independently reread. Original PDFs: Pnueli/Rosner 1989, O'Hearn Incorrectness Logic 2020, Musuvathi/Qadeer/Ball CHESS 2007, Jimenez SWE-bench 2024, Ouyang/Yang/Zhang APR benchmarking 2024, Petke et al. patch overfitting 2024, Sjøberg et al. controlled experiments 2005, Hannemann/Kiczales patterns 2002. **Do not repeat these eight as missing.** Read/source ledger: [21_NEW_EIGHT_PAPERS_CANONICAL_READING_20261105.md](21_NEW_EIGHT_PAPERS_CANONICAL_READING_20261105.md).
+
+Still not found in accessible Drive title/author metadata: Borodin & El-Yaniv 1998 *Online Computation and Competitive Analysis* (book; 11_BOOKS if acquired), and White et al. 2014 *Evolving Feature Model Configurations in Software Product Lines* (JSS 87, 119-136; DOI 10.1016/j.jss.2013.10.010). The latter is HIGH PRIORITY because the original public paper already models multi-step software feature configurations, feature drift, and CSP-based optimization; see 25_MULTI_STEP_FEATURE_CONFIGURATION_PRIOR_ART_THREAT_20261105.md. No new book or latter paper was added; exact-title missing is not absolute byte absence. Earlier snapshot is retained for audit chronology.
