@@ -1,8 +1,6 @@
 package branchcourt
 import("errors";"os";"os/exec";"path/filepath";"strconv";"testing")
-const fixture=`package fixture
-func Legacy() string{return "stable"}
-func Future(flag bool) string{if flag{return "off"}; return "on"}`
+const fixture="package fixture\nfunc Legacy() string{return \"stable\"}\nfunc Future(flag bool) string{if flag{return \"off\"};return \"on\"}\n"
 func TestCompleteSourceRightsAndExactClassicalCost(t *testing.T){
  p:=Policy{Allowed:[]string{"off","on","beta"}};g,e:=Enumerate(fixture,p)
  if e!=nil{t.Fatal(e)}
@@ -27,26 +25,17 @@ func TestMarginalOutputSetsCannotCertifyJointInputContract(t *testing.T){
  for _,flag:=range []bool{false,true}{
   old,oa,e:=Observe(original,flag);if e!=nil{t.Fatal(e)}
   newer,ob,e:=Observe(swapped,flag);if e!=nil{t.Fatal(e)}
-  if old!=newer||oa==ob{t.Fatalf("joint observer missing regression flag=%v",flag)}
+  if old!=newer||oa==ob{t.Fatalf("joint observer missed regression flag=%v",flag)}
  }
  t.Log("JOINT_CONTRACT marginal_sets_equal=true input_output_mapping_regressed=true")
 }
 func TestRejectSourceGrammarAndRightsEscape(t *testing.T){
  bad:=[]string{
-  "//go:build ignore
-"+fixture,
-  fixture+"
-//go:linkname Future runtime.hidden
-",
-  `package fixture
-func Legacy() string{return "stable"}
-func Future(flag bool) string{if !flag{return "off"};return "on"}`,
-  `package fixture
-func Legacy() string{return "stable"}
-func Future(flag bool) string{if flag{return "off"}else{return "on"};return "off"}`,
-  fixture+"
-func Extra() string{return "other"}
-",
+  "//go:build ignore\n"+fixture,
+  fixture+"\n//go:linkname Future runtime.hidden\n",
+  "package fixture\nfunc Legacy() string{return \"stable\"}\nfunc Future(flag bool) string{if !flag{return \"off\"};return \"on\"}",
+  "package fixture\nfunc Legacy() string{return \"stable\"}\nfunc Future(flag bool) string{if flag{return \"off\"}else{return \"on\"};return \"off\"}",
+  fixture+"\nfunc Extra() string{return \"other\"}\n",
  }
  for _,source:=range bad{if _,e:=Parse(source);!errors.Is(e,ErrGrammar){t.Fatalf("unmodeled input accepted %v",e)}}
  if _,e:=Rewrite(fixture,Policy{Allowed:[]string{"off","on"}},State{"other","on"});!errors.Is(e,ErrRight){t.Fatal(e)}
@@ -55,20 +44,13 @@ func TestActualNativeGoRunAcrossNineVersions(t *testing.T){
  g,e:=Enumerate(fixture,Policy{Allowed:[]string{"off","on","beta"}});if e!=nil{t.Fatal(e)}
  for state,source:=range g.Sources{
   directory:=t.TempDir()
-  if e:=os.WriteFile(filepath.Join(directory,"go.mod"),[]byte("module fixturerun
-
-go 1.23
-"),0644);e!=nil{t.Fatal(e)}
+  if e:=os.WriteFile(filepath.Join(directory,"go.mod"),[]byte("module fixturerun\n\ngo 1.23\n"),0644);e!=nil{t.Fatal(e)}
   if e:=os.WriteFile(filepath.Join(directory,"fixture.go"),[]byte(source),0644);e!=nil{t.Fatal(e)}
-  check:="package fixture
-import "testing"
-func TestSource(t *testing.T){if Legacy()!="stable"{t.Fatal("legacy")};if Future(true)!="+strconv.Quote(state.T)+"{t.Fatal("true")};if Future(false)!="+strconv.Quote(state.F)+"{t.Fatal("false")}}
-"
+  check:="package fixture\nimport \"testing\"\nfunc TestSource(t *testing.T){if Legacy()!=\"stable\"{t.Fatal(\"legacy\")};if Future(true)!="+strconv.Quote(state.T)+"{t.Fatal(\"true\")};if Future(false)!="+strconv.Quote(state.F)+"{t.Fatal(\"false\")}}\n"
   if e:=os.WriteFile(filepath.Join(directory,"fixture_test.go"),[]byte(check),0644);e!=nil{t.Fatal(e)}
   cmd:=exec.Command("go","test","-count=1","./...")
   cmd.Dir=directory;cmd.Env=append(os.Environ(),"GOWORK=off")
-  output,e:=cmd.CombinedOutput();if e!=nil{t.Fatalf("Go runtime failed for %+v: %v
-%s",state,e,output)}
+  output,e:=cmd.CombinedOutput();if e!=nil{t.Fatalf("Go runtime failed for %+v: %v\n%s",state,e,output)}
  }
  t.Log("NATIVE_BRANCH_GO all_nine_generated_sources_compiled_and_ran=true")
 }
