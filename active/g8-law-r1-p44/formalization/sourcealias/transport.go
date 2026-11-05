@@ -1,12 +1,11 @@
 package sourcealias
 
 import (
- "bytes"
  "crypto/sha256"
  "encoding/hex"
  "errors"
- "go/format"
  "go/parser"
+ "go/scanner"
  "go/token"
  "strconv"
 )
@@ -15,7 +14,7 @@ var ErrCertificateIntegrity=errors.New("certificate receipt does not match trust
 var ErrUnsupportedSource=errors.New("source not valid in the closed single-file grammar")
 type Status string
 const (
- Reused Status="REUSED_EXACT_AST"
+ Reused Status="REUSED_EXACT_TOKEN_SEQUENCE"
  Invalidated Status="INVALIDATED_SOURCE_CHANGED"
  Unknown Status="UNKNOWN_UNSUPPORTED_SOURCE"
 )
@@ -27,20 +26,28 @@ type Certificate struct{
 }
 type Seal struct{EvidenceDigest string}
 
-// CanonicalDigest uses the standard Go parser and formatter.
-// This permits whitespace-formatting changes only, NOT semantic source edits,
-// renaming of identifiers, new compiler directives or additional files.
+// CanonicalDigest hashes the exact Go lexer token sequence, including
+// implicit semicolon tokens but excluding whitespace. Full-file parser first
+// rejects comments, build tags and malformed Go. A matching token sequence
+// implies matching parsed syntax within the original fixed build environment.
+// This does NOT prove alpha-renaming/semantic equivalence.
 func CanonicalDigest(src string)(string,error){
  fs:=token.NewFileSet()
  file,err:=parser.ParseFile(fs,"fixture.go",src,parser.AllErrors|parser.ParseComments)
- if err!=nil || len(file.Comments)!=0{return "",ErrUnsupportedSource}
- var buf bytes.Buffer
- if err:=format.Node(&buf,fs,file);err!=nil{return "",err}
- sum:=sha256.Sum256(buf.Bytes())
- return hex.EncodeToString(sum[:]),nil
+ if err!=nil||file==nil||len(file.Comments)!=0{return "",ErrUnsupportedSource}
+ var scan scanner.Scanner
+ scan.Init(fs.AddFile("lex.go",-1,len(src)),[]byte(src),nil,0)
+ h:=sha256.New()
+ for{
+  _,tok,lit:=scan.Scan()
+  if tok==token.EOF{break}
+  // Explicitly length-prefix token lexical content to avoid ambiguity.
+  entry:=strconv.Itoa(int(tok))+":"+strconv.Itoa(len(lit))+":"+lit+";"
+  _,_=h.Write([]byte(entry))
+ }
+ return hex.EncodeToString(h.Sum(nil)),nil
 }
 func evidenceBytes(c Certificate)string{
- // Explicit unambiguous length-prefixing, even if future strings contain '|'
  return strconv.Itoa(len(c.CanonicalSourceDigest))+":"+c.CanonicalSourceDigest+
   ":"+strconv.FormatBool(c.Shared)+
   ":"+strconv.Itoa(len(c.LegacyAfterWrite))+":"+c.LegacyAfterWrite+
@@ -50,19 +57,18 @@ func evidenceDigest(c Certificate)string{
  s:=sha256.Sum256([]byte(evidenceBytes(c)))
  return hex.EncodeToString(s[:])
 }
-// Issue performs an exact, typed source reanalysis once. The resulting receipt
-// must be anchored by a TRUSTED external artifact store or verified issuer.
-// A caller-created forged certificate+receipt is not authenticated by hashing.
+// Issue performs exact typed closed-grammar analysis. Its Seal must be pinned
+// separately by a trusted external source: hashes are NOT authentication.
 func Issue(src string)(Certificate,Seal,error){
  facts,err:=Analyze(src);if err!=nil{return Certificate{},Seal{},err}
  digest,err:=CanonicalDigest(src);if err!=nil{return Certificate{},Seal{},err}
  c:=Certificate{CanonicalSourceDigest:digest,Shared:facts.Shared,LegacyAfterWrite:facts.LegacyAfterWrite,FutureAfterWrite:facts.FutureAfterWrite}
  return c,Seal{EvidenceDigest:evidenceDigest(c)},nil
 }
-// Verify reuses the previously anchored source-derived facts ONLY when the
-// entire parsed source AST canonically matches the original source. Changes
-// to even harmless identifiers invalidate this conservative exact-cache.
-// It does NOT repeat go/types, but does reparse and format the whole file.
+// Verify is conservative: it trusts prior typed source analysis only if a
+// valid externally anchored certificate and exact token sequence match.
+// Source token changes invalidate even when a full classical analyzer could
+// prove equivalence. It parses and lexes but does not run go/types.
 func Verify(src string,c Certificate,expectedTrustedSeal Seal)(Status,error){
  if evidenceDigest(c)!=expectedTrustedSeal.EvidenceDigest{return Unknown,ErrCertificateIntegrity}
  digest,err:=CanonicalDigest(src)
