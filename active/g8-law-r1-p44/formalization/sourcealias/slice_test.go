@@ -5,6 +5,7 @@ import (
  "os"
  "os/exec"
  "path/filepath"
+ "strconv"
  "strings"
  "testing"
 )
@@ -79,7 +80,7 @@ func TestF19NativeGoCompilesAndRunsChangedAuxiliary(t *testing.T){
    if err:=os.WriteFile(filepath.Join(dir,"fixture.go"),[]byte(pair.Core),0644);err!=nil{t.Fatal(err)}
    if err:=os.WriteFile(filepath.Join(dir,"aux.go"),[]byte(pair.Auxiliary),0644);err!=nil{t.Fatal(err)}
    test:="package fixture\nimport \"testing\"\nfunc TestNative(t *testing.T){c:=Build();Write(c);if c.Legacy.Value!="+
-    `"\""`+ground.LegacyAfterWrite+`"\""`+ "{t.Fatal(\"legacy\")};if c.Future.Value!=\"new\"{t.Fatal(\"future\")};if Aux()!="+v+"{t.Fatal(\"aux\")}}\n"
+    strconv.Quote(ground.LegacyAfterWrite)+ "{t.Fatal(\"legacy\")};if c.Future.Value!=\"new\"{t.Fatal(\"future\")};if Aux()!="+v+"{t.Fatal(\"aux\")}}\n"
    if err:=os.WriteFile(filepath.Join(dir,"fixture_test.go"),[]byte(test),0644);err!=nil{t.Fatal(err)}
    cmd:=exec.Command("go","test","-count=1","./...");cmd.Dir=dir;cmd.Env=append(os.Environ(),"GOWORK=off")
    out,err:=cmd.CombinedOutput();if err!=nil{t.Fatalf("native source failed shared=%v aux=%s: %v\n%s",shared,v,err,out)}
