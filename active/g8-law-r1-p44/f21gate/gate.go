@@ -41,10 +41,11 @@ func Classify(r Receipt) (Grade,error) {
  if r.Project=="" || r.PredictionID=="" || r.SelectorID=="" { return Unverified,errors.New("missing provenance identity") }
  if !sha40.MatchString(r.BaselineTreeSHA) || !sha40.MatchString(r.PredictorSourceSHA) { return Historical,errors.New("invalid pinned SHA") }
  if r.PredictionSealedAt.IsZero() || r.DemandDisclosedAt.IsZero() || r.SourceSeenAt.IsZero() || r.DemandCreatedAt.IsZero() { return Historical,errors.New("missing UTC chronology") }
- if !r.DemandCreatedAt.Before(r.DemandDisclosedAt) {return Unverified,errors.New("demand created at or after disclosure")}
+ if r.DemandCreatedAt.After(r.DemandDisclosedAt) {return Unverified,errors.New("demand created at or after disclosure")}
  if r.SourceSeenAt.After(r.PredictionSealedAt) {return Historical,errors.New("baseline observed after prediction seal")}
  if r.DemandSubjectSeenBeforeSeal || r.PatchOrOutcomeSeenBeforeSeal || !r.PredictionSealedAt.Before(r.DemandDisclosedAt) {return Historical,nil}
- if !r.LiveFutureDemand || !r.PredictionSealedAt.Before(r.DemandCreatedAt) {return Backtest,nil}
+ if !r.PredictionSealedAt.Before(r.DemandCreatedAt) {return Backtest,nil}
+ if !r.LiveFutureDemand {return Unverified,nil}
  if !(r.IndependentSelectorVerified && r.BaselineBuildVerified && r.RightsVerified && r.OldClientContractFrozen && r.ClassicalCompetitorFrozen) {return Unverified,nil}
  return ProspectiveEligible,nil
 }
