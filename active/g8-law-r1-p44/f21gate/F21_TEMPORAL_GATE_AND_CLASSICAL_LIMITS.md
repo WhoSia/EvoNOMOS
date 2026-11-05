@@ -21,3 +21,9 @@ Do NOT count prospective prediction accuracy until a genuinely independent later
 
 ## Verdict
 LOCAL F21 EVIDENCE GATE PASS; REMOTE WORKFLOW WRITE BLOCKED; F21 PROSPECTIVE COHORT NONE; CLASSICAL NONANTICIPATION PRINCIPLE; NO ADDITIONAL SOFTWARE EVOLUTION LAW; G1–G7 OPEN; LAW-R2 HOLD.
+
+
+## 2026-11-05 F21 follow-up scientific correction
+The initial classifier confused a missing-verified-rights LIVE candidate with a historical C4 backtest, and accepted some contradictory timestamp arrangements. These are corrected on research branch in two separate follow-up commits. The local matched Go 1.23.2 package ran 15 chronology tests plus 5 score tests, go vet, and -race, all PASS. The exact newly committed GitHub versions have NOT been verified in remote GitHub Actions; do not upgrade to NATIVE_REMOTE_PASS. The score package prevents `NOT_FOUND` from being treated as impossibility and avoids using unresolved outcome cases in adjudicated prediction accuracy. Full comparator design and denominator rules appear in [F21 adjudication and baseline protocol](F21_ADJUDICATION_AND_EQUAL_INFORMATION_RIVAL_PROTOCOL.md).
+
+Future demand examples remain ZERO; the previous C3 three-upstream replay remains retrospective. Neither the new class name nor a manually asserted timestamp makes a prospective issue authentic. Continue to hold LAW-R2 and G1–G7.
