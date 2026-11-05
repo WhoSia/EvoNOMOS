@@ -70,3 +70,28 @@ Q7: Which claims are classical immediate consequences, and what genuinely nontri
 Q8: What observations falsify the model in an independent maintained-repository cohort?
 
 **Completion rule:** a P44 mathematical formulation is complete only when all F0–F9 receive explicit definitions, assumptions, countermodels, proof targets, and an externally reviewable rivalry/novelty audit. No future P45, no LAW-R2 promotion merely from naming these definitions.
+
+## 2026-11-05 amendment — F10. Future information and online repair strategies
+
+The fixed-demand minimum cost K(p,d) defined above is **offline / clairvoyant** with respect to d: it optimizes after the full demand is revealed. This is a valid source repair problem but does NOT by itself define the actor's ability to handle an unknown future requirement after an earlier release.
+
+Explicitly index demand disclosure time and legal decision information:
+- time k: already accepted contract C_k and source release checkpoint q_k;
+- information I_k: all legitimately observed past demands, source changes and client effects, NOT hidden future d_{k+1},...;
+- environment legal choices D_{k+1}(I_k) and an authorized editing actor policy σ(I_k,d_{k+1}) subject to the specified ordering of disclosure versus edit;
+- required progress and deadline/checkpoint semantics.
+
+In the simplest two-round case a stage-one commitment s must be chosen before the future demand d is revealed. The key distinct statements are:
+  OfflineCover := forall d exists an eligible first-stage commitment s_d and a protected future repair;
+  OnlineCommitWin := exists one eligible commitment s such that forall d a stage-one-contract-preserving repair exists from s.
+The latter implies the former; not conversely. This is a CLASSICAL online-game quantifier distinction. If first commitment can be delayed until after disclosure, the difference can disappear. If rollback/cross repairs are authorized, they must be included in the edit relation; inferring infeasibility from an artificially restricted grammar is invalid.
+
+For arbitrary finite multi-round settings a valid policy must be history-dependent but nonanticipating. Costs may be worst-case, distributional or competitive to an offline oracle under explicitly declared environmental assumptions; do not silently use a ratio if offline optimum is zero.
+
+## 2026-11-05 amendment — F11. Alternating source abstraction
+
+The ordinary CEGAR-style lower bound for one disclosed fixed demand uses a sound overapproximation of all admissible existential repair paths with cost projection. For an online winning strategy the system chooses edits EXISTENTIALLY while the environment chooses future demands UNIVERSALLY. An overapproximation that invents **system** edits may produce false winning claims, and adding **environment** demands may produce false losing claims.
+
+Therefore a strategy certificate requires a separate alternating source-game simulation: every environment action must be represented, every abstract system move actually implementable by the authorized concrete source editor, activated contracts maintained at every prefix, an adequate information relation for nonanticipating policies, and eventual progress requirements. Simple state/path overapproximation from F6/F8 is NOT enough to certify source-level winning.
+
+[Formal finite source-state countermodel and adversarial review](09_INFORMATION_TIMING_AND_ONLINE_REPAIR.md); [alternating-abstraction polarity](11_ALTERNATING_ABSTRACTION_POLARITY_PROOF_GATE.md); [verified finite Go CI court](13_ONLINE_FINITE_GAME_CI_VERDICT_20261105.md). These are classical semantic distinctions, not G1–G7 closure or a LAW-R2 result. The main P44 target remains source-sound allowed repair under joint client observations and precise rights; online semantics is an optional extension only when forced early commitment is empirically grounded.
