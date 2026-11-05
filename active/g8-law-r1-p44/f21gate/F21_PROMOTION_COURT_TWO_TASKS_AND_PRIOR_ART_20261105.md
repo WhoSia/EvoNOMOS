@@ -41,3 +41,6 @@ Keep the previously presealed go-chi/chi future issue sampling rule (first 5 iss
 6. If no independent viable case survives, report ZERO and revisit cohort selection. Do not cherry-pick.
 
 Methodology promotion only; scientific law remains HOLD.
+
+## Post-court R3 — model-freeze ordering red test
+A third independent temporal counterexample was reproduced: the first version of typed `EvaluateForecast` incorrectly accepted a DEMAND_BLIND prediction time preceding its own model-freeze time. Added a red test, then enforced `predictor_frozen_at <= prediction_sealed_at`. Corrected local Go1.23.2 package now **32 tests**, vet, and race PASS. Earlier 31-test claim remains a true intermediate state, not the final version. This strengthens procedural validity, not prospective outcome evidence. External CI and authentic future prediction stay HOLD; LAW-R2 unchanged.
