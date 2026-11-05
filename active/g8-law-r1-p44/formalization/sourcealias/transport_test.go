@@ -54,7 +54,7 @@ func TestHarmlessIdentifierRenameIsConservativelyInvalidated(t *testing.T){
  revised:=strings.ReplaceAll(src,"Legacy:p,Future:p","Legacy:p,Future:p")
  revised=strings.ReplaceAll(revised,"p:=&Cell","another:=&Cell")
  revised=strings.ReplaceAll(revised,"Legacy:p,Future:p","Legacy:another,Future:another")
- if _,err:=Analyze(revised);err==nil{t.Fatal("current closed grammar must reject identifier rename until grammar expanded")}
+ renamed,err:=Analyze(revised);if err!=nil||!renamed.Shared||renamed.LegacyAfterWrite!="new"{t.Fatalf("renamed source not semantically equivalent in allowed grammar: %+v %v",renamed,err)}
  status,err:=Verify(revised,cert,seal)
  if err!=nil||status!=Invalidated{t.Fatalf("rename should invalidate source AST cache %s %v",status,err)}
  t.Log("CERT_CONSERVATIVE_FALSE_INVALIDATION identifier_rename_not_reusable=true")
