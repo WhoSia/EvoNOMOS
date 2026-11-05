@@ -1,0 +1,13 @@
+# P44 F16 — shared heap aliasing is a classical challenge, not a new structural law
+
+2026-11-05. The F16 Go experiment uses **actual Go heap pointers** and two client references, not the fully source-parsed edit grammar of F14/F15. The finite state graph is separately and explicitly declared. Calling its BFS output a whole-Go certified source edit minimum would be invalid.
+
+Source fixture: type Cell struct{ Value string }, Clients{Legacy,Future *Cell}; functions Shared(initial) allocate one Cell and point both clients at it; Detached(initial) allocates two different Cells with equal values; WriteFuture writes Future.Value; SplitFuture creates a new Future Cell preserving its old value. Initial joint observations (Legacy.Value,Future.Value) equal (stable,stable) for both structures.
+
+If the two pointers are aliased, WriteFuture(new) modifies the same heap cell, therefore the legacy client changes from stable to new. It is UNSAFE relative to old contract Legacy.Value=stable. If pointers are disjoint, writing the future cell to new preserves the legacy value. In the *declared* two-edit grammar {split, write-future}, shared source requires split then write, cost 2; separated source needs only write, cost 1. A naive future-only local write estimate predicts cost 1 for both and is UNSOUND for aliasing. A complete classical pointer-equality and exact BFS analysis correctly predicts both: **classical TIE**, no EAC novelty.
+
+Classical precedent directly includes Reynolds (2002) separation logic and O'Hearn, Yang & Reynolds (2009) separation/information hiding (DOI 10.1145/1498926.1498929). The frame property requires disjoint heaps or appropriate ownership invariant; aliasing invalidates unqualified "local source edit means independent effect" reasoning. Separating conjunction and alias effects must be an equal-information STRONG rival, not a strawman.
+
+The F16 finite graph does NOT derive the set of permitted app source edits from the Go AST. SplitFuture and WriteFuture are two **declared runtime/structural operations** with synthetic unit costs, not measured real code patches or rights. Native Go tests validate memory-effects for these operations; no general edit language or full source proof.
+
+What is learned about the original ambition: equal initial customer observations alone do not identify future safe edit costs unless permission/alias structure is included. Yet this fact is already captured by classical heap and separation logics. Next open challenge: derive and independently certify an ownership/alias-aware edit grammar from real source and measure whether the certificate transports across maintenance revisions more efficiently than classical analysis. No new LAW-R2; G1–G7 OPEN.
