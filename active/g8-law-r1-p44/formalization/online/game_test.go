@@ -1,10 +1,12 @@
 package online
-import ("testing";"reflect")
 
-func constructed() Game {
+import ("reflect";"testing")
+
+func constructed()Game{
  return Game{
   Start:"s",
-  Stage1:map[string]bool{"a":true,"b":true},
+  Stage1:map[string]bool{"a":true,"b":true,"ax":true,"by":true},
+  Checkpoint:map[string]bool{"a":true,"b":true},
   Safe:map[string]bool{"s":true,"a":true,"b":true,"ax":true,"by":true},
   Edges:map[string][]Transition{
    "s":{{To:"a",Cost:1,Authorized:true},{To:"b",Cost:1,Authorized:true}},
@@ -17,12 +19,12 @@ func constructed() Game {
   },
  }
 }
-func TestEachFutureHasOfflineSafeRepairButNoOnlineCommitment(t *testing.T){
+func TestOfflinePerFutureDoesNotGuaranteeNonanticipatingStrategy(t *testing.T){
  g:=constructed()
- if c:=g.Commitments(); !reflect.DeepEqual(c,[]string{"a","b"}){t.Fatal(c)}
+ if c:=g.Commitments();!reflect.DeepEqual(c,[]string{"a","b"}){t.Fatal(c)}
  o:=g.OfflinePerFuture()
- if !o["x"]||!o["y"]{t.Fatalf("offline requirement failed: %v",o)}
- if ok,s:=g.OnlineWinning();ok{t.Fatalf("unexpected online winning precommitment: %s",s)}
+ if !o["x"]||!o["y"]{t.Fatalf("offline future fails: %v",o)}
+ if ok,s:=g.OnlineWinning();ok{t.Fatalf("nonanticipating policy should fail: %s",s)}
  t.Logf("OFFLINE_ALL=true ONLINE_WIN=false FAILURES=%v",g.CandidateFutureFailures())
 }
 func TestCommonCommitmentMakesOnlineWin(t *testing.T){
@@ -30,21 +32,27 @@ func TestCommonCommitmentMakesOnlineWin(t *testing.T){
  g.Edges["a"]=append(g.Edges["a"],Transition{To:"by",Cost:2,Authorized:true})
  if ok,s:=g.OnlineWinning();!ok||s!="a"{t.Fatalf("expected winning a: %v %q",ok,s)}
 }
-func TestUnapprovedOrUnsafeShortcutCannotFakePolicy(t *testing.T){
+func TestUnauthorizedOrUnsafeShortcutCannotFakePolicy(t *testing.T){
  g:=constructed()
  g.Edges["a"]=append(g.Edges["a"],Transition{To:"by",Cost:0,Authorized:false})
- g.Edges["b"]=append(g.Edges["b"],Transition{To:"ax",Cost:0,Authorized:false})
- if ok,_:=g.OnlineWinning();ok{t.Fatal("unapproved path admitted")}
+ if ok,_:=g.OnlineWinning();ok{t.Fatal("unauthorized path accepted")}
  g.Edges["a"]=append(g.Edges["a"],Transition{To:"u",Cost:0,Authorized:true})
  g.Edges["u"]=[]Transition{{To:"by",Cost:0,Authorized:true}}
  g.Safe["u"]=false
- if ok,_:=g.OnlineWinning();ok{t.Fatal("unsafe intermediate admitted")}
+ if ok,_:=g.OnlineWinning();ok{t.Fatal("unsafe intermediate accepted")}
 }
-func TestInformationTimingMatters(t *testing.T){
+func TestEarlierAcceptedContractMustSurviveLaterRepair(t *testing.T){
  g:=constructed()
- // If both futures are disclosed before the first commitment, each can
- // choose its own path; only the FORCED early decision creates the gap.
+ g.Safe["u"]=true
+ g.Edges["a"]=append(g.Edges["a"],Transition{To:"u",Cost:0,Authorized:true})
+ g.Edges["u"]=[]Transition{{To:"by",Cost:0,Authorized:true}}
+ if !g.Reach("a",g.Futures[1].Goal,false){t.Fatal("unprotected path should exist")}
+ if g.Reach("a",g.Futures[1].Goal,true){t.Fatal("stage-one contract regressed but path accepted")}
+ if ok,_:=g.OnlineWinning();ok{t.Fatal("false online winner through contract regression")}
+}
+func TestDecisionTimingNotOnlyGraphReachability(t *testing.T){
+ g:=constructed()
  for _,w:=range g.Futures{
-  if !g.Reach("s",w.Goal){t.Fatalf("%s unreachable from first source",w.Name)}
+  if !g.Reach("s",w.Goal,false){t.Fatalf("%s unreachable before disclosure",w.Name)}
  }
 }
