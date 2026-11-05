@@ -1,6 +1,6 @@
 package sourcecourt
 
-import ("errors";"strings";"testing")
+import ("errors";"strings";"testing";"os";"os/exec";"path/filepath";"strconv")
 
 const fixture=`package fixture
 func Legacy() string { return "stable" }
@@ -71,4 +71,23 @@ func TestSourceCommentsAndBuildTagsAreOutsideGrammar(t *testing.T){
   if _,e:=Parse(source);!errors.Is(e,ErrOutsideGrammar){t.Fatalf("comment or build directive accepted: %v",e)}
  }
  t.Log("SOURCE_GRAMMAR_COMMENTS excluded_build_and_link_directives=true")
+}
+
+func TestActualGoCompilerExecutesAllEnumeratedSourceStates(t *testing.T){
+ policy:=Policy{Allowed:[]string{"off","on","beta"}}
+ graph,e:=Enumerate(fixture,policy)
+ if e!=nil{t.Fatal(e)}
+ for _,value:=range policy.Allowed{
+  directory:=t.TempDir()
+  if e:=os.WriteFile(filepath.Join(directory,"go.mod"),[]byte("module fixturetest\\n\\ngo 1.23\\n"),0644);e!=nil{t.Fatal(e)}
+  if e:=os.WriteFile(filepath.Join(directory,"fixture.go"),[]byte(graph.States[value]),0644);e!=nil{t.Fatal(e)}
+  testSource:="package fixture\\nimport \\"testing\\"\\nfunc TestRuntime(t *testing.T){if Legacy()!=\\"stable\\"{t.Fatal(\\"legacy regression\\")}; if Future()!="+strconv.Quote(value)+"{t.Fatal(\\"future regression\\")}}\\n"
+  if e:=os.WriteFile(filepath.Join(directory,"fixture_test.go"),[]byte(testSource),0644);e!=nil{t.Fatal(e)}
+  cmd:=exec.Command("go","test","-count=1","./...")
+  cmd.Dir=directory
+  cmd.Env=append(os.Environ(),"GOWORK=off")
+  output,e:=cmd.CombinedOutput()
+  if e!=nil{t.Fatalf("source state %q did not compile/run: %v\\n%s",value,e,output)}
+  t.Logf("NATIVE_GO_FRAGMENT_COMPILE_RUN literal=%s result=PASS",value)
+ }
 }
