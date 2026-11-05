@@ -101,3 +101,17 @@ Therefore a strategy certificate requires a separate alternating source-game sim
 For a fixed, complete, finite, permission-labelled safe source-edit graph, define a state abstraction alpha preserving initial release, disclosure stage, old-client safety and demand goals. Require every authorized safe same-stage concrete edit of cost c to have an authorized abstract image edit with the same rights label and cost no greater than c. Induction over path length then maps every concrete admissible path into an abstract path without increased cost. Consequently abstract optimum L is at most concrete optimum K; a separately verified concrete safe path costing U yields L <= K <= U. This is a classical weighted forward-simulation lemma.
 
 The test checker only validates the supplied finite graph. A missing permitted source edit can lower the actual source optimum and invalidate conclusions about all real source patches. Completeness of source-to-graph extraction, source-level Safe/Goal meaning and actual permission identities remain open proof obligations. This existential path abstraction is not a certificate of an alternating winning policy (see F11). Linked evidence: 15_EDGE_LOCAL_REPAIR_SIMULATION_THEOREM_20261105.md and 20_EDGE_LOCAL_CERTIFICATE_CI_VERDICT_20261105.md. No new law; G1-G7 OPEN.
+
+## F13. Safety and incorrectness evidence have opposite approximation directions (2026-11-05)
+
+Fix one versioned source release, a declared environment and joint trace observer, and the currently active customer contract C. Let T be the feasible observed trace set.
+
+* A sound overapproximation U with T subset U, and C(t) for **every** t in U, certifies universal source safety.
+* A sound underapproximation W with W subset T, and some actual t in W violating C, certifies a reachable client-contract failure.
+* In every other case, unless additional proof exists, the verdict is UNKNOWN; neither empty tests nor a spurious abstract error establishes a universal or existential source claim.
+
+This is conventional correctness/incorrectness logic; in particular O'Hearn's 2020 original text already studies underapproximate reachable errors. The implementation in evidence/oracle.go proves only the consistency of these rules in a **supplied finite trace universe**. Its certification flags do not self-authenticate real source traces.
+
+For a staged source repair sequence, every protected deployment checkpoint needs a universal safety certificate to claim the entire path safe; a certified bad checkpoint refutes THAT path, not every possible repair. Source-edit graph completeness, right ownership, cost and completeness of runtime trace exploration are independent proof obligations. Do not use the existential source edit F12 abstraction to establish this universal runtime property without separate quantified semantics.
+
+Source reading and Drive canonical intake: 21_NEW_EIGHT_PAPERS_CANONICAL_READING_20261105.md. Detailed conditional evidence gate: 22_OVER_UNDER_EVIDENCE_TRIVALENT_REPAIR_GATE_20261105.md. General G1–G7 source soundness and LAW-R2 still OPEN.
