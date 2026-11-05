@@ -26,3 +26,7 @@ The restriction to a finite **declared** language/rights domain is an advantage 
 ## Classical competition
 
 White et al. (2014) already solve abstract stage configuration constraints and path cost with CSP. For this restricted source language, an equal-information exact classical state-graph search is likely sufficient and may be faster than an elaborate certificate. Record TIE where appropriate. Source-derived proof obligation and true observer semantics are the only present reason for this controlled experiment.
+
+## 2026-11-05 adversarial source-semantics correction
+
+The first AST grammar sketch did not explicitly prohibit comments or Go build directives. This is unsafe: a text file with a syntactically identical pair of constant-return functions may contain a build directive or other compiler-significant comment that changes whether or how it participates in a build, invalidating simple AST-body-based runtime claims. The actual Parse function was tightened to use parser.ParseComments and REJECT any comment groups. This deliberately excludes also harmless comments (sound but restrictive) and Go //go:build, //go:linkname directives. A named negative test checks this restriction. The theorem now applies to a **comment-free, single-file, fixed build context** only. The post-correction GitHub CI result must be checked separately before claiming final pass; the earlier pass predates this fix.
