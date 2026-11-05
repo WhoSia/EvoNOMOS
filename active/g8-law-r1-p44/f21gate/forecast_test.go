@@ -16,3 +16,5 @@ func TestMissingExternalSealIsHold(t *testing.T){r:=fixtureConditional();r.SealE
 func TestLateModelFreezeIsBacktest(t *testing.T){r:=fixtureConditional();r.PredictorFrozenAt=r.DemandCreatedAt.Add(time.Minute);g,_:=EvaluateForecast(r);if g!=Backtest{t.Fatal(g)}}
 func TestPredictionAfterKnownOutcomeIsHistorical(t *testing.T){r:=fixtureConditional();r.OutcomeDisclosedAt=r.PredictionSealedAt;g,_:=EvaluateForecast(r);if g!=Historical{t.Fatal(g)}}
 func TestPreDisclosureConditionalRejected(t *testing.T){r:=fixtureConditional();r.PredictionSealedAt=r.DemandDisclosedAt.Add(-time.Minute);g,e:=EvaluateForecast(r);if g!=Unverified||e==nil{t.Fatalf("%v %v",g,e)}}
+
+func TestBlindForecastCannotPrecedePolicyFreeze(t *testing.T){r:=fixtureConditional();r.Mode=DemandBlind;r.PredictionSealedAt=r.PredictorFrozenAt.Add(-time.Minute);g,e:=EvaluateForecast(r);if e==nil||g!=Unverified{t.Fatalf("accepted predating model freeze: %v %v",g,e)}}
