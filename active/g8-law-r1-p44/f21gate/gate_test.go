@@ -18,7 +18,10 @@ func TestUnfrozenRivalIsNotProspective(t *testing.T){r:=valid();r.ClassicalCompe
 func TestInvalidSHARejected(t *testing.T){r:=valid();r.BaselineTreeSHA="bad";_,e:=Classify(r);if e==nil {t.Fatal("accepted invalid SHA")}}
 func TestSourceAfterPredictionRejected(t *testing.T){r:=valid();r.SourceSeenAt=day("2026-11-05T11:00:00Z");_,e:=Classify(r);if e==nil{t.Fatal("accepted reverse chronology")}}
 func TestMissingReceiptRejected(t *testing.T){r:=valid();r.PredictionID="";_,e:=Classify(r);if e==nil{t.Fatal("accepted missing ID")}}
-func TestInvalidDemandChronologyRejected(t *testing.T){r:=valid();r.DemandCreatedAt=r.DemandDisclosedAt;_,e:=Classify(r);if e==nil{t.Fatal("accepted impossible chronology")}}
+func TestInvalidDemandChronologyRejected(t *testing.T){r:=valid();r.DemandCreatedAt=r.DemandDisclosedAt.Add(time.Hour);_,e:=Classify(r);if e==nil{t.Fatal("accepted impossible chronology")}}
 
 func TestMissingBuildIsHold(t *testing.T){r:=valid();r.BaselineBuildVerified=false;g,_:=Classify(r);if g!=Unverified{t.Fatal(g)}}
 func TestCreatedAfterDisclosedRejectedEvenForBacktest(t *testing.T){r:=valid();r.LiveFutureDemand=false;r.DemandCreatedAt=r.DemandDisclosedAt.Add(time.Hour);_,e:=Classify(r);if e==nil{t.Fatal("accepted impossible chronology")}}
+
+func TestPublicIssueCreationEqualsDisclosure(t *testing.T){r:=valid();r.DemandDisclosedAt=r.DemandCreatedAt;g,e:=Classify(r);if e!=nil||g!=ProspectiveEligible{t.Fatalf("ordinary public GitHub issue: %v %v",g,e)}}
+func TestFutureDemandFalseLiveFlagHolds(t *testing.T){r:=valid();r.LiveFutureDemand=false;g,e:=Classify(r);if e!=nil||g!=Unverified{t.Fatalf("future demand cannot become retrospective: %v %v",g,e)}}
