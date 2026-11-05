@@ -60,3 +60,15 @@ func TestUnapprovedEditAndDuplicatePolicyRejected(t *testing.T){
 func TestCurrentSourceMustBeInPermittedDomain(t *testing.T){
  if _,e:=Enumerate(fixture,Policy{Allowed:[]string{"on","beta"}});!errors.Is(e,ErrUnauthorized){t.Fatal(e)}
 }
+
+func TestSourceCommentsAndBuildTagsAreOutsideGrammar(t *testing.T){
+ cases:=[]string{
+  "//go:build ignore\n"+fixture,
+  fixture+"\n//go:linkname Future internal.runtimeFoo\n",
+  fixture+"\n// A seemingly harmless comment still lies outside this closed grammar.\n",
+ }
+ for _,source:=range cases{
+  if _,e:=Parse(source);!errors.Is(e,ErrOutsideGrammar){t.Fatalf("comment or build directive accepted: %v",e)}
+ }
+ t.Log("SOURCE_GRAMMAR_COMMENTS excluded_build_and_link_directives=true")
+}
