@@ -9,7 +9,7 @@ import (
 type ObserverKind string
 const (
  RoutePattern ObserverKind="route-pattern"
- AllowHeader ObserverKind="allow-methods-configured"
+ AllowedMethodsHelper ObserverKind="internal-allowed-methods"
  InternalPanic ObserverKind="internal-panic-text"
 )
 type OriginalCase struct {
@@ -38,9 +38,9 @@ func (c OriginalCase) Validate() error {
  }
  if _,err:=time.Parse(time.RFC3339,c.AuthoredUTC);err!=nil{return ErrEvidence}
  switch c.Observer {
- case RoutePattern,AllowHeader:
+ case RoutePattern:
   if !c.PublicAPI{return ErrEvidence}
- case InternalPanic:
+ case AllowedMethodsHelper,InternalPanic:
   if c.PublicAPI{return ErrEvidence}
  default:return ErrEvidence
  }
