@@ -31,3 +31,7 @@ Let D contain m distinct strings and let initial legacy output be ℓ. The `m` a
 - New source program fragments could be introduced only with explicit expanded grammar and new proof obligations; do not silently extend the theorem.
 
 Implementation: [sourcecourt/source.go](sourcecourt/source.go), [sourcecourt/source_test.go](sourcecourt/source_test.go). CI verdict only after original GitHub run readback.
+
+## 2026-11-05 adversarial source-semantics correction
+
+The first AST grammar sketch did not explicitly prohibit comments or Go build directives. This is unsafe: a text file with a syntactically identical pair of constant-return functions may contain a build directive or other compiler-significant comment that changes whether or how it participates in a build, invalidating simple AST-body-based runtime claims. The actual Parse function was tightened to use parser.ParseComments and REJECT any comment groups. This deliberately excludes also harmless comments (sound but restrictive) and Go //go:build, //go:linkname directives. A named negative test checks this restriction. The theorem now applies to a **comment-free, single-file, fixed build context** only. The post-correction GitHub CI result must be checked separately before claiming final pass; the earlier pass predates this fix.
