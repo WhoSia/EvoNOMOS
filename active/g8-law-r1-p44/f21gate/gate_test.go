@@ -9,13 +9,16 @@ func valid() Receipt {return Receipt{Project:"synthetic-independent",BaselineTre
 func TestProspectiveOnlyEligibilityNotAccuracy(t *testing.T){r:=valid();g,e:=Classify(r);if e!=nil||g!=ProspectiveEligible {t.Fatalf("%v %v",g,e)}}
 func TestKnownIssueSubjectCannotBeProspective(t *testing.T){r:=valid();r.DemandSubjectSeenBeforeSeal=true;g,_:=Classify(r);if g!=Historical {t.Fatal(g)}}
 func TestPatchLeakCannotBeProspective(t *testing.T){r:=valid();r.PatchOrOutcomeSeenBeforeSeal=true;g,_:=Classify(r);if g!=Historical {t.Fatal(g)}}
-func TestRevealedBeforeSealCannotBeProspective(t *testing.T){r:=valid();r.DemandDisclosedAt=r.PredictionSealedAt;g,_:=Classify(r);if g!=Historical{t.Fatal(g)}}
+func TestRevealedBeforeSealCannotBeProspective(t *testing.T){r:=valid();r.DemandDisclosedAt=r.PredictionSealedAt;r.DemandCreatedAt=r.PredictionSealedAt.Add(-time.Hour);g,_:=Classify(r);if g!=Historical{t.Fatal(g)}}
 func TestArchivedDemandIsBacktest(t *testing.T){r:=valid();r.DemandCreatedAt=day("2024-01-01T00:00:00Z");r.LiveFutureDemand=false;g,_:=Classify(r);if g!=Backtest{t.Fatal(g)}}
-func TestAbsentIndependentSelectorIsNotProspective(t *testing.T){r:=valid();r.IndependentSelectorVerified=false;g,_:=Classify(r);if g!=Backtest{t.Fatal(g)}}
-func TestAbsentRightsIsNotProspective(t *testing.T){r:=valid();r.RightsVerified=false;g,_:=Classify(r);if g!=Backtest{t.Fatal(g)}}
-func TestUnfrozenOldClientIsNotProspective(t *testing.T){r:=valid();r.OldClientContractFrozen=false;g,_:=Classify(r);if g!=Backtest{t.Fatal(g)}}
-func TestUnfrozenRivalIsNotProspective(t *testing.T){r:=valid();r.ClassicalCompetitorFrozen=false;g,_:=Classify(r);if g!=Backtest{t.Fatal(g)}}
+func TestAbsentIndependentSelectorIsNotProspective(t *testing.T){r:=valid();r.IndependentSelectorVerified=false;g,_:=Classify(r);if g!=Unverified{t.Fatal(g)}}
+func TestAbsentRightsIsNotProspective(t *testing.T){r:=valid();r.RightsVerified=false;g,_:=Classify(r);if g!=Unverified{t.Fatal(g)}}
+func TestUnfrozenOldClientIsNotProspective(t *testing.T){r:=valid();r.OldClientContractFrozen=false;g,_:=Classify(r);if g!=Unverified{t.Fatal(g)}}
+func TestUnfrozenRivalIsNotProspective(t *testing.T){r:=valid();r.ClassicalCompetitorFrozen=false;g,_:=Classify(r);if g!=Unverified{t.Fatal(g)}}
 func TestInvalidSHARejected(t *testing.T){r:=valid();r.BaselineTreeSHA="bad";_,e:=Classify(r);if e==nil {t.Fatal("accepted invalid SHA")}}
 func TestSourceAfterPredictionRejected(t *testing.T){r:=valid();r.SourceSeenAt=day("2026-11-05T11:00:00Z");_,e:=Classify(r);if e==nil{t.Fatal("accepted reverse chronology")}}
 func TestMissingReceiptRejected(t *testing.T){r:=valid();r.PredictionID="";_,e:=Classify(r);if e==nil{t.Fatal("accepted missing ID")}}
 func TestInvalidDemandChronologyRejected(t *testing.T){r:=valid();r.DemandCreatedAt=r.DemandDisclosedAt;_,e:=Classify(r);if e==nil{t.Fatal("accepted impossible chronology")}}
+
+func TestMissingBuildIsHold(t *testing.T){r:=valid();r.BaselineBuildVerified=false;g,_:=Classify(r);if g!=Unverified{t.Fatal(g)}}
+func TestCreatedAfterDisclosedRejectedEvenForBacktest(t *testing.T){r:=valid();r.LiveFutureDemand=false;r.DemandCreatedAt=r.DemandDisclosedAt.Add(time.Hour);_,e:=Classify(r);if e==nil{t.Fatal("accepted impossible chronology")}}
