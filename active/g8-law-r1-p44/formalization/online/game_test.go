@@ -56,3 +56,27 @@ func TestDecisionTimingNotOnlyGraphReachability(t *testing.T){
   if !g.Reach("s",w.Goal,false){t.Fatalf("%s unreachable before disclosure",w.Name)}
  }
 }
+
+func TestAbstractExtraSystemEditProducesSpuriousOnlineWinningClaim(t *testing.T){
+ concrete:=constructed()
+ if ok,_:=concrete.OnlineWinning();ok{t.Fatal("concrete must be losing")}
+ // The abstract model invents one *system* edit not present in concrete.
+ // Existential system overapproximation is UNSOUND for proving winning.
+ abstract:=constructed()
+ abstract.Edges["a"]=append(abstract.Edges["a"],Transition{To:"by",Cost:0,Authorized:true})
+ if ok,s:=abstract.OnlineWinning();!ok||s!="a"{t.Fatalf("expected spurious abstract winning policy, got %v %s",ok,s)}
+ t.Log("POLARITY system-overapprox=false-positive-winning")
+}
+func TestAbstractExtraEnvironmentDemandProducesSpuriousLosingClaim(t *testing.T){
+ concrete:=constructed()
+ concrete.Edges["a"]=append(concrete.Edges["a"],Transition{To:"by",Cost:1,Authorized:true})
+ if ok,_:=concrete.OnlineWinning();!ok{t.Fatal("concrete winner absent")}
+ // Overapproximating the environment's allowable demands with a new
+ // impossible z may be conservative for verifying WIN but can produce
+ // spurious LOSING verdicts.
+ abstract:=concrete
+ abstract.Futures=append([]World{},concrete.Futures...)
+ abstract.Futures=append(abstract.Futures,World{Name:"z",Goal:map[string]bool{"zgoal":true}})
+ if ok,_:=abstract.OnlineWinning();ok{t.Fatal("expected spurious loss under extra environment demand")}
+ t.Log("POLARITY environment-overapprox=false-negative-winning")
+}
