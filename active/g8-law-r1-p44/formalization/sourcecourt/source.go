@@ -38,8 +38,8 @@ func literal(fn *ast.FuncDecl)(string,error){
 // No import, variable, extra declaration, side-effect, alias or hidden call.
 func Parse(source string)(Program,error){
  fset:=token.NewFileSet()
- file,e:=parser.ParseFile(fset,"fixture.go",source,parser.AllErrors)
- if e!=nil||file.Name.Name!="fixture"||len(file.Decls)!=2{return Program{},ErrOutsideGrammar}
+ file,e:=parser.ParseFile(fset,"fixture.go",source,parser.AllErrors|parser.ParseComments)
+ if e!=nil||file.Name.Name!="fixture"||len(file.Decls)!=2||len(file.Comments)!=0{return Program{},ErrOutsideGrammar}
  vals:=map[string]string{}
  for _,d:=range file.Decls{
   fn,ok:=d.(*ast.FuncDecl)
