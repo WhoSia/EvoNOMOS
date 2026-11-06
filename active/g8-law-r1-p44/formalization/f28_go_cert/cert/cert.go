@@ -15,7 +15,7 @@ import (
 
 var ErrHold = errors.New("HOLD: source or permits not independently certified")
 type Case struct { Filename string; Source []byte; Future string }
-type Receipt struct { SourceSHA256, Legacy, A, B, Scope, Assumption string }
+type Receipt struct { Grade, SourceSHA256, Legacy, A, B, Scope, Assumption string }
 
 func Check(a,b Case, actorA,actorB string, grantA,grantB bool)(Receipt,error){
  if !grantA || !grantB || actorA=="" || actorB=="" {return Receipt{},fmt.Errorf("%w: absent grant",ErrHold)}
@@ -23,7 +23,7 @@ func Check(a,b Case, actorA,actorB string, grantA,grantB bool)(Receipt,error){
  old,x,err:=parseA(a.Source);if err!=nil{return Receipt{},err}
  y,err:=parseB(b.Source);if err!=nil{return Receipt{},err}
  h:=sha256.New();h.Write([]byte("a.go\x00"));h.Write(a.Source);h.Write([]byte("\x00b.go\x00"));h.Write(b.Source)
- return Receipt{hex.EncodeToString(h.Sum(nil)),old,x,y,"exactly two source files with literal-only functions","caller grants supplied, NOT independently verified"},nil
+ return Receipt{"STRUCTURE_ONLY_UNVERIFIED_SCOPE_AND_GRANTS",hex.EncodeToString(h.Sum(nil)),old,x,y,"exactly two source files with literal-only functions","caller grants supplied, NOT independently verified"},nil
 }
 func parseA(data []byte)(string,string,error){
  values,err:=parse(data);if err!=nil{return "","",err}
