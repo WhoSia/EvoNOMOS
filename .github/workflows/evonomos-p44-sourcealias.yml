@@ -1,0 +1,34 @@
+name: EvoNOMOS P44 F17-F19 Source Alias and Certificate Court
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/formalization/sourcealias/**'
+      - '.github/workflows/evonomos-p44-sourcealias.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p44-sourcealias-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  original-source-alias:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/sourcealias
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Extract alias from typed Go source, reject unmodeled effects, execute native Go fixtures
+        run: |
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...
+          go test -run '^NoF18UnitTestWillHaveThisName' -bench 'BenchmarkF1[89]' -benchtime=200x -benchmem ./...

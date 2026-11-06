@@ -1,0 +1,33 @@
+name: P44 F28 Closed Go Source Grammar
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/formalization/f28_go_cert/**'
+      - '.github/workflows/p44-f28-closed-go-source.yml'
+  pull_request:
+    paths:
+      - 'active/g8-law-r1-p44/formalization/f28_go_cert/**'
+      - '.github/workflows/p44-f28-closed-go-source.yml'
+permissions:
+  contents: read
+jobs:
+  closed-go-fragment:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/f28_go_cert
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+      - name: Source-level closed fragment and adversarial receipt
+        run: |
+          set -euo pipefail
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -race -count=1 ./...

@@ -1,0 +1,33 @@
+name: EvoNOMOS P44 F20 Historical Original Upstream Court
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/f20/**'
+      - '.github/workflows/evonomos-p44-f20-historical-cohort.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p44-f20-historical-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  historical-parent-post:
+    name: Original source ${{ matrix.cohort }} historical fix
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        cohort: [chi, httprouter, gin]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Source-receipted chronological upstream before/after test
+        env:
+          COHORT: ${{ matrix.cohort }}
+        run: bash active/g8-law-r1-p44/f20/run_historical_native.sh
