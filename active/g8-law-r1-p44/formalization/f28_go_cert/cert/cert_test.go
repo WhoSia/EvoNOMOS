@@ -18,3 +18,5 @@ func TestCostBoth(t *testing.T){n,e:=RepairCost("a0","b0",[]string{"A=new","B=ne
 func TestCostOrder(t *testing.T){for _,w:=range [][]string{{"B=new","A=new"},{"A=new","A=new","B=new"}}{n,e:=RepairCost("a0","b0",w);if e!=nil||n!=2{t.Fatal(n,e)}}}
 func TestCostZero(t *testing.T){n,e:=RepairCost("new","new",[]string{"B=new","A=new"});if e!=nil||n!=0{t.Fatal(n,e)}}
 func TestUnknownDemand(t *testing.T){_,e:=RepairCost("a0","b0",[]string{"unknown"});if !errors.Is(e,ErrHold){t.Fatal(e)}}
+
+func TestReceiptExplicitlyUnverified(t *testing.T){r,e:=valid(a,b);if e!=nil||r.Grade!="STRUCTURE_ONLY_UNVERIFIED_SCOPE_AND_GRANTS"{t.Fatal(r.Grade,e)}}
