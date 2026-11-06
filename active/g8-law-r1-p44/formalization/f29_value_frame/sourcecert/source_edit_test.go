@@ -33,3 +33,18 @@ func TestTwoStagePatchPath(t *testing.T){
  bc,e2:=CheckLiteralEdit(y,z,"B",true,true)
  if e1!=nil||e2!=nil||ab.Cost+bc.Cost!=2||bc.After.Legacy!="old"||bc.After.Left!="new"||bc.After.Right!="new"{t.Fatal(ab,bc,e1,e2)}
 }
+
+func TestSourceEditCommutativityWitness(t *testing.T){
+ start:=write(t,a,b)
+ l:=strings.Replace(a,"\"a0\"","\"new\"",1)
+ r:=strings.Replace(b,"\"b0\"","\"new\"",1)
+ afterA:=write(t,l,b)
+ afterB:=write(t,a,r)
+ targetA:=write(t,l,r)
+ targetB:=write(t,l,r)
+ for _,e:=range []struct{from,to,port string}{{start,afterA,"A"},{afterA,targetA,"B"},{start,afterB,"B"},{afterB,targetB,"A"}}{
+  if _,err:=CheckLiteralEdit(e.from,e.to,e.port,true,true);err!=nil{t.Fatal(err)}
+ }
+ x,errX:=CheckDir(targetA,true,true);y,errY:=CheckDir(targetB,true,true)
+ if errX!=nil||errY!=nil||x.ScopeSHA256!=y.ScopeSHA256||x.Left!="new"||x.Right!="new"{t.Fatal(x,y,errX,errY)}
+}
