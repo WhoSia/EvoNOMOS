@@ -29,18 +29,16 @@ jobs:
       - name: Native external original Go dependencies
         working-directory: active/g8-law-r1-p44/f34_original_router_capability
         run: |
-          go mod tidy
           go mod download
+          go mod verify
           go list -m all
-          printf '%s\n' '--- GENERATED GO.SUM BEGIN ---'
-          cat go.sum
-          printf '%s\n' '--- GENERATED GO.SUM END ---'
+          git diff --exit-code -- go.mod go.sum
       - name: Vet
         working-directory: active/g8-law-r1-p44/f34_original_router_capability
-        run: go vet ./...
+        run: go vet -mod=readonly ./...
       - name: Native tests and bounded original-router capabilities
         working-directory: active/g8-law-r1-p44/f34_original_router_capability
-        run: go test -count=1 -v ./...
+        run: go test -mod=readonly -count=1 -v ./...
       - name: Race test original router concurrency
         working-directory: active/g8-law-r1-p44/f34_original_router_capability
-        run: go test -race -count=1 ./...
+        run: go test -mod=readonly -race -count=1 ./...
