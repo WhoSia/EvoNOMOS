@@ -79,7 +79,7 @@ func MinDemandEventCost(g Graph,start string,word []string)(int,error){
   if cur.k==len(word){return cur.price,nil}
   for _,e:=range g.Out[cur.state]{
    if e.Demand!=word[cur.k]{continue}
-   if cur.price>math.MaxInt-e.Cost{return 0,fmt.Errorf("%w: cost overflow",ErrHold)}
+   if cur.price>=math.MaxInt-e.Cost{return 0,fmt.Errorf("%w: cost overflow",ErrHold)}
    nk:=key{e.To,cur.k+1};v:=cur.price+e.Cost
    if old,ok:=d[nk];!ok||v<old{d[nk]=v;heap.Push(&q,&node{e.To,cur.k+1,v})}
   }
