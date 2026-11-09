@@ -1,0 +1,46 @@
+name: P44 Structural Law Return Independent Pflag Source
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/pflag_owner_composition/**'
+      - '.github/workflows/p44-source-law-pflag.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  owner-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Exact source and runtime
+        run: |
+          git rev-parse HEAD
+          go version
+      - name: Initial trusted module sum generation
+        working-directory: active/g8-law-r1-p44/structural_law_return/pflag_owner_composition
+        run: |
+          go mod tidy
+          go mod download
+          go list -m all
+          go mod verify
+          echo '--- GO SUMS ---'
+          cat go.sum
+      - name: Source vet
+        working-directory: active/g8-law-r1-p44/structural_law_return/pflag_owner_composition
+        run: go vet -mod=readonly ./...
+      - name: Execute original source owner composition tests
+        working-directory: active/g8-law-r1-p44/structural_law_return/pflag_owner_composition
+        run: go test -mod=readonly -count=1 -v ./...
+      - name: Concurrent race build
+        working-directory: active/g8-law-r1-p44/structural_law_return/pflag_owner_composition
+        run: go test -mod=readonly -race -count=1 ./...
