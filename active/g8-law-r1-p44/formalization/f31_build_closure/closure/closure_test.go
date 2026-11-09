@@ -72,7 +72,7 @@ func TestSymlinkRefused(t *testing.T){
 func TestExtraGlobalAndCrossCallHOLD(t *testing.T){
  for _,s:=range []string{
   sourceA+"var shared=&Left{Value:\"unsafe\"}\n",
-  strings.Replace(sourceA,"return p.Value","return FutureB()",1),
+  strings.Replace(sourceA,"p := &Left{Value: \"a0\"}; return p.Value","return FutureB()",1),
  }{
   dir:=setup(t);modify(t,dir,"a.go",s);expectHold(t,dir)
  }
