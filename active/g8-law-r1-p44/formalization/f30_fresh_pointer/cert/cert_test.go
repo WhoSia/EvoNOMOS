@@ -111,8 +111,8 @@ func TestFourNativeFreshPointerVariants(t *testing.T){
  }}
 }
 func TestSharedPointerCounterexampleInRealGo(t *testing.T){
- a="package fixture\ntype Left struct {Value string}\nvar shared = &Left{Value:\"a0\"}\nfunc Legacy() string{return \"old\"}\nfunc FutureA() string{return shared.Value}\n"
- b="package fixture\ntype Right struct{Value string}\nfunc FutureB() string{shared.Value=\"new\";return shared.Value}\n"
+ a:="package fixture\ntype Left struct {Value string}\nvar shared = &Left{Value:\"a0\"}\nfunc Legacy() string{return \"old\"}\nfunc FutureA() string{return shared.Value}\n"
+ b:="package fixture\ntype Right struct{Value string}\nfunc FutureB() string{shared.Value=\"new\";return shared.Value}\n"
  mustHold(t,a,b)
  native(t,write(t,a,b),"","",true)
 }
