@@ -107,3 +107,10 @@ func TestFocusedWitnessNamesMissingBEdit(t *testing.T){
  w,found,err:=FirstUnliftableEdit(m)
  if err!=nil||!found||w.ConcreteState!="closed"||w.AbstractState!="x0"||w.AbstractEdge.Demand!="B"||w.AbstractEdge.Cost!=2{t.Fatal(w,found,err)}
 }
+
+func TestSentinelCollisionCannotBeMisreadAsImpossibility(t *testing.T){
+ g:=Graph{Initial:"s",Observations:map[string]string{"s":"old"},Out:map[string][]Edge{
+  "s":{{Actor:"owner",Demand:"A",Cost:math.MaxInt,To:"s"}},
+ }}
+ if _,err:=MinDemandEventCost(g,"s",[]string{"A"});!errors.Is(err,ErrHold){t.Fatal(err)}
+}
