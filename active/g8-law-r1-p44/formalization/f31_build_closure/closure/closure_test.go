@@ -87,3 +87,12 @@ func TestFrozenSHAChangesWithLiteral(t *testing.T){
  if old.FrozenSHA256==next.FrozenSHA256||old.ASTSourceSHA256==next.ASTSourceSHA256||
    next.A!="new"||next.B!="b0"{t.Fatal("source change not bound")}
 }
+
+func TestCompilerBuildIsNotRepairFrameCertificate(t *testing.T){
+ root:=setup(t)
+ // This is valid Go and go build accepts it, but A now depends on B.
+ coupled:=strings.Replace(sourceA,"return p.Value","return FutureB()",1)
+ modify(t,root,"a.go",coupled)
+ if _,e:=runGo(root,"build",".");e!=nil{t.Fatalf("Go compiler should accept cross-port code: %v",e)}
+ expectHold(t,root)
+}
