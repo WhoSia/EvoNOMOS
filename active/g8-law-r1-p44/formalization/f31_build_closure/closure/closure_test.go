@@ -91,7 +91,7 @@ func TestFrozenSHAChangesWithLiteral(t *testing.T){
 func TestCompilerBuildIsNotRepairFrameCertificate(t *testing.T){
  root:=setup(t)
  // This is valid Go and go build accepts it, but A now depends on B.
- coupled:=strings.Replace(sourceA,"return p.Value","return FutureB()",1)
+ coupled:=strings.Replace(sourceA,"p := &Left{Value: \"a0\"}; return p.Value","return FutureB()",1)
  modify(t,root,"a.go",coupled)
  if _,e:=runGo(root,"build",".");e!=nil{t.Fatalf("Go compiler should accept cross-port code: %v",e)}
  expectHold(t,root)
