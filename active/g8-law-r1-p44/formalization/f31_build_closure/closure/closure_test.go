@@ -96,3 +96,11 @@ func TestCompilerBuildIsNotRepairFrameCertificate(t *testing.T){
  if _,e:=runGo(root,"build",".");e!=nil{t.Fatalf("Go compiler should accept cross-port code: %v",e)}
  expectHold(t,root)
 }
+
+func TestBuildCanIgnoreHiddenTaggedFile(t *testing.T){
+ root:=setup(t)
+ modify(t,root,"ignored.go","//go:build never\npackage fixture\nfunc Shadow() string{return \"x\"}\n")
+ // The compiler is allowed to ignore this. Complete source certificates aren't.
+ if _,e:=runGo(root,"build",".");e!=nil{t.Fatalf("expected successful ordinary build: %v",e)}
+ expectHold(t,root)
+}
