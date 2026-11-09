@@ -101,3 +101,9 @@ func TestAll256TwoStateRefinements(t *testing.T){
  if cases!=256||passed!=81||comparisons!=2430{t.Fatalf("coverage: %d/%d/%d",cases,passed,comparisons)}
  t.Logf("256 entire graphs enumerated, %d with certificates, %d word costs equal",passed,comparisons)
 }
+
+func TestFocusedWitnessNamesMissingBEdit(t *testing.T){
+ m:=HiddenRightCounterexample()
+ w,found,err:=FirstUnliftableEdit(m)
+ if err!=nil||!found||w.ConcreteState!="closed"||w.AbstractState!="x0"||w.AbstractEdge.Demand!="B"||w.AbstractEdge.Cost!=2{t.Fatal(w,found,err)}
+}
