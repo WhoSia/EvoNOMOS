@@ -93,7 +93,7 @@ func HiddenRightCounterexample()Abstraction{
  }}
  c:=Graph{Initial:"open",Observations:map[string]string{"open":"old","closed":"old","repaired":"old"},Out:map[string][]Edge{
   "open":{{Actor:"a-owner",Demand:"A",Cost:1,To:"closed"},{Actor:"b-owner",Demand:"B",Cost:2,To:"repaired"}},
-  "closed":{},"repaired":{},
+  "closed":{{Actor:"a-owner",Demand:"A",Cost:1,To:"closed"}},"repaired":{},
  }}
  return Abstraction{Abstract:a,Concrete:c,Alpha:map[string]string{"open":"x0","closed":"x0","repaired":"x1"}}
 }
