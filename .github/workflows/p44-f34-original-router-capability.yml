@@ -29,8 +29,12 @@ jobs:
       - name: Native external original Go dependencies
         working-directory: active/g8-law-r1-p44/f34_original_router_capability
         run: |
+          go mod tidy
           go mod download
           go list -m all
+          printf '%s\n' '--- GENERATED GO.SUM BEGIN ---'
+          cat go.sum
+          printf '%s\n' '--- GENERATED GO.SUM END ---'
       - name: Vet
         working-directory: active/g8-law-r1-p44/f34_original_router_capability
         run: go vet ./...
