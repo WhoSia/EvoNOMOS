@@ -26,15 +26,13 @@ jobs:
         run: |
           git rev-parse HEAD
           go version
-      - name: Initial trusted module sum generation
+      - name: Pinned dependency verification
         working-directory: active/g8-law-r1-p44/structural_law_return/pflag_owner_composition
         run: |
-          go mod tidy
           go mod download
           go list -m all
           go mod verify
-          echo '--- GO SUMS ---'
-          cat go.sum
+          git diff --exit-code -- go.mod go.sum
       - name: Source vet
         working-directory: active/g8-law-r1-p44/structural_law_return/pflag_owner_composition
         run: go vet -mod=readonly ./...
