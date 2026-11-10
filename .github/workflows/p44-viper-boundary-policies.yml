@@ -39,3 +39,6 @@ jobs:
       - name: Concurrent race checks
         working-directory: active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries
         run: go test -mod=readonly -race -count=1 ./...
+      - name: Bounded exploratory initial-read benchmark (not lifetime labor)
+        working-directory: active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries
+        run: go test -mod=readonly -run '^$' -bench '^BenchmarkRead' -benchtime=2000x -count=3 -benchmem ./...
