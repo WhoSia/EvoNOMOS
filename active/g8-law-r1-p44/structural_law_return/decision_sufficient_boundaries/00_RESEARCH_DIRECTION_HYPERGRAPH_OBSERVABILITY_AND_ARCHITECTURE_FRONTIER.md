@@ -148,3 +148,16 @@ Primary public works reviewed via abstract/source landing and earlier original E
 **NEXT EXPERIMENTAL GATE:** perform independent source-level bounded old/new client policy-action R0/R1 experiments **before proposing R2's high-IPC complexity**; preregister actual source contracts and scope; model real permitted actions and costs; validate changes across independent later user demands. If actual coding agents are unavailable, do not manufacture a scripted-maintainer effect.
 
 **P44 OPEN / G1–G7 OPEN / LAW-R2 HOLD.**
+
+
+## 8. Bounded conflict witness proposition and practical finite DP (second verified increment)
+
+For **K available actions** and a finite fiber of contexts, every *inclusion-minimal* set of contexts with empty intersection of optimal-action sets has cardinality **at most K**.
+
+**Elementary proof:** let S be inclusion-minimal conflicting. For each context i∈S, the intersection of optimizer sets over S\{i} is nonempty; pick an action a_i from it. Since the full intersection is empty, a_i must be absent from the optimizer set of i. If a_i=a_j for different i,j, then the same action is, by construction, both present and absent from Opt(i) (because a_j is optimal in every context other than j); contradiction. Thus i↦a_i is injective into K actions, and |S|≤K. This is a **standard finite-set/Helly-style observation**, not a claim of original mathematical priority.
+
+**Sharpness:** for K contexts and K actions, define Opt(i)=A\{i}. Any K−1 contexts share one optimizer; all K do not. Hence a K-way incompatibility can exist without any (K−1)-way incompatibility. This generalizes the three-context counterexample and makes it unsafe to inspect pairwise source-change contexts alone.
+
+**Computational consequence:** [shortest-conflict-witness DP](short_witness_dp.py) covers the finite K-action space using bit masks of excluded actions. It maintains the smallest context subset realizing each action-exclusion mask; at most 2^K states per input context. Its complexity is O(N K 2^K) with N contexts and K actions, returning either a shortest conflicting witness (size at most K) or None. The full weighted-transversal hypergraph lower bound may still be expensive and this DP alone does not compute it. [Five additional tests](test_short_witness_dp.py) verify the tight K=2..8 construction, no-conflict cases and 1,080 seeded random K=2..5 context families against exhaustive brute-force optimal witnesses.
+
+**Important limitation:** This algorithm assumes **the optimal-action subsets have already been given**. It cannot derive source-specific allowed repairs, identify authentic future demand classes, or compute actual coding labor. The hoped-for transformative result would be a *sound and compact source-analysis pipeline* delivering these sets under contracts and owner rights, not the finite DP itself.
