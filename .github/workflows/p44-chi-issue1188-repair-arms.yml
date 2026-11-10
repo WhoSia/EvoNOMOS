@@ -1,0 +1,54 @@
+name: P44 Chi Issue1188 Two Original Source Repair Arms
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/independent_issue_1188/**'
+      - '.github/workflows/p44-chi-issue1188-repair-arms.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-source-arm:
+    strategy:
+      fail-fast: false
+      matrix:
+        arm: [inline, helper]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Fetch exact unchanged prior Chi original source
+        run: |
+          git init -q /tmp/chi-issue1188-arm
+          git -C /tmp/chi-issue1188-arm fetch --no-tags --depth=1 https://github.com/go-chi/chi.git 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          git -C /tmp/chi-issue1188-arm checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/chi-issue1188-arm rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+      - name: Apply one research-owned valid source intervention to ephemeral original
+        env:
+          EVO_ARM: ${{ matrix.arm }}
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/independent_issue_1188/apply_source_repair.py --root /tmp/chi-issue1188-arm --arm "$EVO_ARM"
+          cp active/g8-law-r1-p44/structural_law_return/independent_issue_1188/evo_issue1188_contract_test.go /tmp/chi-issue1188-arm/
+          git -C /tmp/chi-issue1188-arm diff --check
+          git -C /tmp/chi-issue1188-arm diff -- tree.go
+      - name: Old and genuine new customer source behavioral acceptance
+        working-directory: /tmp/chi-issue1188-arm
+        run: go test -count=1 -v -run '^TestEvoIssue1188' .
+      - name: Entire original Go source regression test suite
+        working-directory: /tmp/chi-issue1188-arm
+        run: go test -count=1 ./...
+      - name: Standard native Go source vet
+        working-directory: /tmp/chi-issue1188-arm
+        run: go vet ./...
+      - name: Native race tests for Chi core
+        working-directory: /tmp/chi-issue1188-arm
+        run: go test -race -count=1 .
