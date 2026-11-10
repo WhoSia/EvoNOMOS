@@ -49,9 +49,11 @@ jobs:
             echo 'Extra contract failures: inspect before interpretation'
             exit 1
           fi
-      - name: Existing upstream unit tests
+      - name: Existing upstream unit tests (external expected-fail oracle removed)
         working-directory: /tmp/chi-issue1188-original
-        run: go test -count=1 ./...
+        run: |
+          mv evo_issue1188_contract_test.go /tmp/issue1188-external-fixture.go
+          go test -count=1 ./...
       - name: Source vet
         working-directory: /tmp/chi-issue1188-original
         run: go vet ./...
