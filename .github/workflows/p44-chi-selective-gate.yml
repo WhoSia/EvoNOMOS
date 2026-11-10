@@ -36,8 +36,14 @@ jobs:
             --original /tmp/original-chi \
             --seal tools/p35-p5/seals/predictions-2020.json \
             --output /tmp/p35-selective-original-result.json
+      - name: Evaluate corrected classical any-plus-top probability gate
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35/selective_gate_joint_probability.py \
+            --original /tmp/original-chi \
+            --seal tools/p35-p5/seals/predictions-2020.json \
+            --output /tmp/p35-selective-joint-result.json
       - name: Publish non-committing evidence
         uses: actions/upload-artifact@v4
         with:
           name: p35-original-chi-classical-gating
-          path: /tmp/p35-selective-original-result.json
+          path: /tmp/p35-selective-*.json
