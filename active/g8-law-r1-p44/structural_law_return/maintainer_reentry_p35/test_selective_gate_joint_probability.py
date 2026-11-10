@@ -6,7 +6,7 @@ class TwoProbabilityGate(unittest.TestCase):
   model={"Predict":{
    "mux.go":{"B1":"tree.go","B1SeedEvents":2,"B1PairEvents":1},
    "tree.go":{"B1":"mux.go","B1SeedEvents":1,"B1PairEvents":1},
-   "context.go":{"B1":"mux.go","B1SeedEvents":1,"B1PairEvents":0}}}
+   "context.go":{"B1":"tree.go","B1SeedEvents":1,"B1PairEvents":0}}}
   rows=[("x",("mux.go","tree.go")),("y",("mux.go","context.go"))]
   # Use the pure logic without the original training 121 commit asserted oracle.
   result=train_full_gate(rows,model)
