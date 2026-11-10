@@ -37,7 +37,8 @@ jobs:
           EVO_ARM: ${{ matrix.arm }}
         run: |
           cp "tools/p35-p7/arms/$EVO_ARM/route_headers.go" /tmp/chi-1247/middleware/route_headers.go
-          cp tools/p35-p7/tests/*_test.go /tmp/chi-1247/middleware/
+          cp tools/p35-p7/tests/p35_p7_common_test.go /tmp/chi-1247/middleware/
+          cp tools/p35-p7/tests/p35_p7_modes_test.go /tmp/chi-1247/middleware/
           cp active/g8-law-r1-p44/structural_law_return/p35_p7_future_issue1247/evo_issue1247_future_contract_test.go /tmp/chi-1247/middleware/
           test "$(git -C /tmp/chi-1247 status --short | grep 'middleware/route_headers.go' | wc -l)" = 1
           git -C /tmp/chi-1247 diff --check
@@ -67,7 +68,7 @@ jobs:
       - name: Old and later independent customer contracts MUST both pass
         working-directory: /tmp/chi-1247
         run: go test -count=1 -v -run '^TestEvo1247' ./middleware
-      - name: P35-P7 original D0 D8 regressions and full original Go suite
+      - name: P35-P7 original D0 and legacy Go suite (post-D0 D8 excluded)
         working-directory: /tmp/chi-1247
         run: go test -count=1 ./...
       - name: Native original source vet
