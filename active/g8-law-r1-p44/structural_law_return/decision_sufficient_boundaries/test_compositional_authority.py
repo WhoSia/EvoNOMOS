@@ -2,7 +2,7 @@
 from fractions import Fraction as Q
 from itertools import product
 import unittest
-from compositional_authority import Module,binary,risk,oracle,joint
+from compositional_authority import Module,binary,risk,oracle,joint,risk_decomposition
 
 class CompositionalAuthority(unittest.TestCase):
     def test_independent_exact_factorization(self):
@@ -44,6 +44,34 @@ class CompositionalAuthority(unittest.TestCase):
         r=joint(a,b)
         self.assertEqual(r["regret"],Q(0))
         self.assertEqual(r["risk"],Q(1,2))
+    def test_authority_and_information_deficits_are_not_synonyms(self):
+        # Full state signal, but one source action is prohibited in a possible state.
+        a=binary(observations=("a0","a1"),feasible=(frozenset({"0"}),frozenset({"0"})))
+        b=binary(observations=("b0","b1"))
+        d=risk_decomposition(a,b)
+        self.assertEqual(d["authority_deficit"],Q(1,2))
+        self.assertEqual(d["observation_deficit"],Q(0))
+        # Authorized actions exist everywhere; only hidden signal prevents adaptation.
+        hidden=binary()
+        e=risk_decomposition(hidden,b)
+        self.assertEqual(e["authority_deficit"],Q(0))
+        self.assertEqual(e["observation_deficit"],Q(1,2))
+
+    def test_shared_owner_rights_create_pure_authority_deficit(self):
+        a=binary(observations=("a0","a1"))
+        b=binary(observations=("b0","b1"))
+        d=risk_decomposition(a,b,shared_actions={("0","0"),("1","1")})
+        self.assertEqual(d["authority_deficit"],Q(1,2))
+        self.assertEqual(d["observation_deficit"],Q(0))
+        self.assertEqual(d["total_deficit"],Q(1,2))
+
+    def test_no_safe_hidden_permission_policy_is_not_numeric_regret(self):
+        a=binary(feasible=(frozenset({"0"}),frozenset({"1"})))
+        b=binary()
+        d=risk_decomposition(a,b)
+        self.assertEqual(d["status"],"NO_CERTIFIED_UNIFORMLY_AUTHORIZED_POLICY")
+        self.assertNotIn("observation_deficit",d)
+
     def test_exhaust_20736_action_right_and_binary_cost_tables(self):
         options=(frozenset({"0"}),frozenset({"1"}),frozenset({"0","1"}))
         trials=0
