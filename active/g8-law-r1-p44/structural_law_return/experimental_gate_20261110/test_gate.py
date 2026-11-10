@@ -33,6 +33,14 @@ class EvidenceGateTests(unittest.TestCase):
         self.assertTrue(any(s.startswith("MISSING_PREEXISTING_CONTRACT")
                             for s in audit(data)["blocking_conditions"]))
 
+    def test_later_d8_contract_injection_rejected(self):
+        data = copy.deepcopy(self.actual)
+        data["architectures"][0]["other_initial_fixtures"].append(
+            "tools/p35-p7/tests/p35_p7_d8_same_requirement_test.go"
+        )
+        self.assertIn("LATER_CONTRACT_CONTAMINATES_BASELINE:LIVE",
+                      audit(data)["blocking_conditions"])
+
     def test_silent_discard_of_issue_is_not_full_cohort(self):
         data = copy.deepcopy(self.actual)
         data["selected_issue_ids"] = [1247]
