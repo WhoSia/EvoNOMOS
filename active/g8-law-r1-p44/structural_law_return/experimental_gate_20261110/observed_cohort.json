@@ -1,0 +1,51 @@
+{
+  "schema": "evonomos-experimental-eligibility-v1",
+  "study": "P35-P7 Oct9 prior-source vs authentic Oct24/Nov1 later issue stream",
+  "base_upstream_source_commit": "67be7d9cafdaeb4e04e887ff78d09e030ee43b00",
+  "architectures": [
+    {
+      "name": "LIVE",
+      "created_at": "2026-10-09T09:00:27Z",
+      "source_commit": "a47876564d7463b76f7ddbf130a8ac357d6e5691",
+      "source_file_path": "tools/p35-p7/arms/live/route_headers.go",
+      "source_blob_sha": "ad9a2fbc0a30a39475f746068e74e2d3e6c93999",
+      "old_contract_fixture": "tools/p35-p7/tests/p35_p7_common_test.go"
+    },
+    {
+      "name": "SNAPSHOT",
+      "created_at": "2026-10-09T09:00:27Z",
+      "source_commit": "a47876564d7463b76f7ddbf130a8ac357d6e5691",
+      "source_file_path": "tools/p35-p7/arms/snapshot/route_headers.go",
+      "source_blob_sha": "e9ca2c3863d5aa06ef0f0b9d168ddcf184713d75",
+      "old_contract_fixture": "tools/p35-p7/tests/p35_p7_common_test.go"
+    }
+  ],
+  "issues": [
+    {
+      "id": 1241,
+      "created_at": "2026-10-24T18:16:15Z",
+      "category": "opt_in_new_feature",
+      "scored_repair_comparison": false,
+      "issue_url": "https://github.com/go-chi/chi/issues/1241"
+    },
+    {
+      "id": 1247,
+      "created_at": "2026-11-01T01:28:07Z",
+      "category": "existing_behavior_regression",
+      "scored_repair_comparison": true,
+      "issue_url": "https://github.com/go-chi/chi/issues/1247",
+      "native_test_run": "https://github.com/WhoSia/EvoNOMOS/actions/runs/42779140245"
+    }
+  ],
+  "selected_issue_ids": [
+    1241,
+    1247
+  ],
+  "outcomes_known_before_cohort_freeze": true,
+  "postfirst_run_protocol_amendment": true,
+  "maintainer_executions": [],
+  "equal_information_budget_verified": false,
+  "independent_future_prediction": false,
+  "source_owner_rights_verified": false,
+  "note": "No actual independent coding-agent maintenance runs or measured labor. Issue class census is 2 search-observed hits, not population enumeration certification."
+}
