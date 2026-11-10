@@ -31,3 +31,7 @@ A later expected-cost policy threshold may be expressed as `c_capture < P(d_A) L
 - Structural cost measured only as Go production code lines, optional allocations/benchmark if stable, not developer hours or system economics.
 - If original source semantics differ, fail tests rather than adjust claims. Do NOT assert C5, full original Viper SourceOf semantics, or independent future-demand prediction.
 - New scientific insight only if genuinely out-of-sample conditional architecture policy beats strong same-information, same-decision-time rivals. Otherwise classify as useful information-timing mechanism with classical tie.
+
+## PRE-IMPLEMENTATION CORRECTION — 2026-11-10 (before any treatment source creation/CI)
+
+The proposed pair W0: H0=0,H1=1 and W1: H0=1,H1=0 is **not itself an information-indistinguishability witness**, because H1 differs; if an oracle also knew the deterministic flip protocol, it could infer H0. Preserve the initial proposal as historical design record, but use a stronger indistinguishable-at-query witness: **W0 H0=0 → H1=1; W1 H0=1 → H1=1**, identical current env presence and identical token value, but different historical source. Separately test the H0=1→H1=0 path as a robustness case, NOT as proof of observational nonidentifiability. The delayed observer must see only record.value and current environment/config, not a hidden intervention script. This correction occurs before study test code or native execution. Any claim of formal fiber collision relies on the corrected same-H1 pair.
