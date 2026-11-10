@@ -81,3 +81,38 @@ def binary(observations=("unknown","unknown"),feasible=None,losses=None):
     if losses is None:losses=((Q(0),Q(1)),(Q(1),Q(0)))
     return Module(("s0","s1"),("0","1"),(Q(1,2),Q(1,2)),
                   observations,feasible,losses).check()
+
+def risk_decomposition(a,b,joint_p=None,shared_actions=None,extra=None):
+    """Two distinct obstacles: loss from rights and loss from partial observation.
+
+    Equal information is assumed at each benchmark; 'unrestricted oracle'
+    discards permissions but retains the SAME loss and joint-world measure.
+    If no robust fiberwise authorized policy exists, no finite split is claimed.
+    """
+    a.check();b.check()
+    ids=list(product(range(len(a.states)),range(len(b.states))))
+    p={ij:(a.probabilities[ij[0]]*b.probabilities[ij[1]] if joint_p is None
+           else joint_p.get(ij,Q())) for ij in ids}
+    if any(w<0 for w in p.values()) or sum(p.values(),Q())!=1:
+        raise ValueError("invalid joint prior")
+    all_actions=list(product(a.actions,b.actions))
+    def cost(ij,act):
+        i,j=ij;u,v=act
+        return a.losses[i][a.actions.index(u)]+b.losses[j][b.actions.index(v)]+(
+            Q() if extra is None else extra.get((i,j,u,v),Q()))
+    unrestricted=sum((p[ij]*min(cost(ij,x) for x in all_actions)
+                      for ij in ids if p[ij]),Q())
+    restricted=joint(a,b,joint_p=joint_p,shared_actions=shared_actions,extra=extra)
+    if restricted is None or restricted["status"]!="FEASIBLE":
+        return {"status":"NO_CERTIFIED_UNIFORMLY_AUTHORIZED_POLICY",
+                "unrestricted_oracle":unrestricted}
+    authority=restricted["oracle"]-unrestricted
+    observation=restricted["risk"]-restricted["oracle"]
+    if authority<0 or observation<0:
+        raise AssertionError("cost decomposition invariant violated")
+    assert restricted["risk"]-unrestricted==authority+observation
+    return {"status":"FEASIBLE","unrestricted_oracle":unrestricted,
+            "authorized_oracle":restricted["oracle"],
+            "observed_authorized_risk":restricted["risk"],
+            "authority_deficit":authority,"observation_deficit":observation,
+            "total_deficit":authority+observation}
