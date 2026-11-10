@@ -1,0 +1,57 @@
+name: P44 Independent Original Chi Issue1188 Baseline Contract
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/independent_issue_1188/**'
+      - '.github/workflows/p44-chi-issue1188-original-baseline.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-customer-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Fetch original unmodified prior source
+        run: |
+          git init -q /tmp/chi-issue1188-original
+          git -C /tmp/chi-issue1188-original fetch --no-tags --depth=1 https://github.com/go-chi/chi.git 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          git -C /tmp/chi-issue1188-original checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/chi-issue1188-original rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          cp active/g8-law-r1-p44/structural_law_return/independent_issue_1188/evo_issue1188_contract_test.go /tmp/chi-issue1188-original/
+          git -C /tmp/chi-issue1188-original diff --exit-code -- '*.go' go.mod go.sum
+          git -C /tmp/chi-issue1188-original status --short
+      - name: Verify old client source contracts (must pass)
+        working-directory: /tmp/chi-issue1188-original
+        run: go test -count=1 -v -run '^TestEvoIssue1188OldClients$' .
+      - name: Original upstream new-demand regression (expected failure only on named case)
+        working-directory: /tmp/chi-issue1188-original
+        shell: bash
+        run: |
+          set +e
+          go test -count=1 -v -run '^TestEvoIssue1188NewCustomerContract$' . > /tmp/issue1188-baseline.log 2>&1
+          code=$?
+          set -e
+          cat /tmp/issue1188-baseline.log
+          test "$code" -ne 0
+          grep -F 'ISSUE1188_BROKEN_SEGMENT_CONTRACT path="/re/a/b.json" status=200 body="a/b" want=404' /tmp/issue1188-baseline.log
+          if grep -E '^--- FAIL: TestEvoIssue1188NewCustomerContract/.+' /tmp/issue1188-baseline.log | grep -v '/re/a/b.json'; then
+            echo 'Extra contract failures: inspect before interpretation'
+            exit 1
+          fi
+      - name: Existing upstream unit tests
+        working-directory: /tmp/chi-issue1188-original
+        run: go test -count=1 ./...
+      - name: Source vet
+        working-directory: /tmp/chi-issue1188-original
+        run: go vet ./...
