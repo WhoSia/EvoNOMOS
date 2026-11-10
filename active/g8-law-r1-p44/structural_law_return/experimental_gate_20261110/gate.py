@@ -32,6 +32,10 @@ def audit(data: dict[str, Any]) -> dict[str, Any]:
         violations.append("NEED_TWO_ARCHITECTURE_TREATMENTS")
     if len({a.get("name") for a in arms}) != len(arms):
         violations.append("DUPLICATE_ARCHITECTURE_NAME")
+    approved_initial_fixtures = {
+        "tools/p35-p7/tests/p35_p7_common_test.go",
+        "tools/p35-p7/tests/p35_p7_modes_test.go",
+    }
     for arm in arms:
         if not arm.get("source_commit") or len(arm.get("source_commit", "")) != 40:
             violations.append("MISSING_OR_INVALID_ARM_SHA:" + str(arm.get("name")))
@@ -41,6 +45,9 @@ def audit(data: dict[str, Any]) -> dict[str, Any]:
             violations.append("MISSING_ARCHITECTURE_FILE_PATH:" + str(arm.get("name")))
         if not arm.get("old_contract_fixture"):
             violations.append("MISSING_PREEXISTING_CONTRACT:" + str(arm.get("name")))
+        all_initial = [arm.get("old_contract_fixture")] + arm.get("other_initial_fixtures", [])
+        if any(p not in approved_initial_fixtures for p in all_initial):
+            violations.append("LATER_CONTRACT_CONTAMINATES_BASELINE:" + str(arm.get("name")))
     if not issues:
         violations.append("EMPTY_ISSUE_DENOMINATOR")
     if len({i.get("id") for i in issues}) != len(issues):
