@@ -1,0 +1,31 @@
+name: P44 Origin Maintainer Repair-Decision Risk Audit
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35/**'
+      - '.github/workflows/p44-maintainer-repair-risk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-aggregate-decision-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recheck P35 legacy test counts and cost-sensitive decision rules
+        working-directory: active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35
+        run: |
+          python -m unittest discover -p 'test_*.py' -v
+          python selective_repair_decision.py
+      - name: Ensure computation does not require network packages
+        working-directory: active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35
+        run: python -m compileall -q selective_repair_decision.py test_selective_repair_decision.py
