@@ -35,6 +35,10 @@ def audit(data: dict[str, Any]) -> dict[str, Any]:
     for arm in arms:
         if not arm.get("source_commit") or len(arm.get("source_commit", "")) != 40:
             violations.append("MISSING_OR_INVALID_ARM_SHA:" + str(arm.get("name")))
+        if not arm.get("source_blob_sha") or len(arm.get("source_blob_sha", "")) != 40:
+            violations.append("MISSING_ARCHITECTURE_SOURCE_BLOB:" + str(arm.get("name")))
+        if not arm.get("source_file_path"):
+            violations.append("MISSING_ARCHITECTURE_FILE_PATH:" + str(arm.get("name")))
         if not arm.get("old_contract_fixture"):
             violations.append("MISSING_PREEXISTING_CONTRACT:" + str(arm.get("name")))
     if not issues:
