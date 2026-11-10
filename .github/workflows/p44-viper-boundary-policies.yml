@@ -1,0 +1,41 @@
+name: P44 Viper Competing Provenance Boundaries
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries/**'
+      - '.github/workflows/p44-viper-boundary-policies.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-boundary-rivals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Dependency and source evidence
+        working-directory: active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries
+        run: |
+          go version
+          go mod tidy
+          go mod download
+          go mod verify
+          go list -m all
+      - name: Source vet
+        working-directory: active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries
+        run: go vet -mod=readonly ./...
+      - name: Competing architectural source-boundary tests
+        working-directory: active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries
+        run: go test -mod=readonly -count=1 -v ./...
+      - name: Concurrent race checks
+        working-directory: active/g8-law-r1-p44/structural_law_return/viper_competing_boundaries
+        run: go test -mod=readonly -race -count=1 ./...
