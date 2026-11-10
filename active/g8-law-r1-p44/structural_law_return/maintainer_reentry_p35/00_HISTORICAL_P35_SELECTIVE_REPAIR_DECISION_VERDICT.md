@@ -4,7 +4,7 @@
 
 ## A. Why this is a genuine move after the origin review
 
-Archived EvoNOMOS 0.1–0.4 establishes that architecture effects are conditioned on **maintainer, policy information and evaluator**, that raw edit similarity does not estimate maintenance labor, and that principled source-localization hints can help or hurt depending on search/inspection costs. The already-completed [P35-P5 actual original Chi Git history audit](../../../../g8-law-r1-p35/P35_P5_GO_HISTORICAL_PREDICTION_AND_COCHANGE_BOUNDARY.md) supplied an especially important adverse dataset: three tools could rank likely neighboring files but **all automatically produced a false extra-file warning for all 34 actually single-file edits**. A risk-aware choice may be better served by not triggering the repair action at all.
+Archived EvoNOMOS 0.1–0.4 establishes that architecture effects are conditioned on **maintainer, policy information and evaluator**, that raw edit similarity does not estimate maintenance labor, and that principled source-localization hints can help or hurt depending on search/inspection costs. The already-completed [P35-P5 actual original Chi Git history audit](../../../g8-law-r1-p35/P35_P5_GO_HISTORICAL_PREDICTION_AND_COCHANGE_BOUNDARY.md) supplied an especially important adverse dataset: three tools could rank likely neighboring files but **all automatically produced a false extra-file warning for all 34 actually single-file edits**. A risk-aware choice may be better served by not triggering the repair action at all.
 
 This is exactly the two-stage causal decision that many recently published F33/Viper test passes did not inspect:
 - Gate G: should the maintainer inspect/edit any other file?
@@ -46,7 +46,7 @@ B2 with 8 correct source locations has threshold (gamma=beta) **3/34≈8.82%** u
 
 ## D. Native computation / exact provenance
 
-[Source evidence](../../../../g8-law-r1-p35/P35_P5_GO_HISTORICAL_PREDICTION_AND_COCHANGE_BOUNDARY.md) supplies only the counts (13 positives/34 negatives/9,9,8 top-one hits/34 false alerts each). [Executable unit](selective_repair_decision.py) uses Python standard-library exact \`Fraction\`, [six unit tests](test_selective_repair_decision.py). [GitHub CI #42755166798 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/42755166798): checkout, pinned Python 3.12, all six tests, code compilation, runnable arithmetic. This CI does **not** run the original Go Git-history extraction, new Go patch actors, or independent maintenance tasks. No additional behavioral source evidence claimed.
+[Source evidence](../../../g8-law-r1-p35/P35_P5_GO_HISTORICAL_PREDICTION_AND_COCHANGE_BOUNDARY.md) supplies only the counts (13 positives/34 negatives/9,9,8 top-one hits/34 false alerts each). [Executable unit](selective_repair_decision.py) uses Python standard-library exact \`Fraction\`, [six unit tests](test_selective_repair_decision.py). [GitHub CI #42755166798 SUCCESS](https://github.com/WhoSia/EvoNOMOS/actions/runs/42755166798): checkout, pinned Python 3.12, all six tests, code compilation, runnable arithmetic. This CI does **not** run the original Go Git-history extraction, new Go patch actors, or independent maintenance tasks. No additional behavioral source evidence claimed.
 
 ## E. Return to the actual original 0.3 goal — not an extra proxy report
 
