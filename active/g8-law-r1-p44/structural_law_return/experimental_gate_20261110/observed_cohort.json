@@ -9,7 +9,10 @@
       "source_commit": "a47876564d7463b76f7ddbf130a8ac357d6e5691",
       "source_file_path": "tools/p35-p7/arms/live/route_headers.go",
       "source_blob_sha": "ad9a2fbc0a30a39475f746068e74e2d3e6c93999",
-      "old_contract_fixture": "tools/p35-p7/tests/p35_p7_common_test.go"
+      "old_contract_fixture": "tools/p35-p7/tests/p35_p7_common_test.go",
+      "other_initial_fixtures": [
+        "tools/p35-p7/tests/p35_p7_modes_test.go"
+      ]
     },
     {
       "name": "SNAPSHOT",
@@ -17,7 +20,10 @@
       "source_commit": "a47876564d7463b76f7ddbf130a8ac357d6e5691",
       "source_file_path": "tools/p35-p7/arms/snapshot/route_headers.go",
       "source_blob_sha": "e9ca2c3863d5aa06ef0f0b9d168ddcf184713d75",
-      "old_contract_fixture": "tools/p35-p7/tests/p35_p7_common_test.go"
+      "old_contract_fixture": "tools/p35-p7/tests/p35_p7_common_test.go",
+      "other_initial_fixtures": [
+        "tools/p35-p7/tests/p35_p7_modes_test.go"
+      ]
     }
   ],
   "issues": [
