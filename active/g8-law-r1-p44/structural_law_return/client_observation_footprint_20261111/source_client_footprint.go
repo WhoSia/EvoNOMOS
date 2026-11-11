@@ -10,7 +10,6 @@ import (
  "go/parser"
  "go/printer"
  "go/token"
- "os"
  "sort"
  "strings"
 )
