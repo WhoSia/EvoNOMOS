@@ -1,0 +1,46 @@
+name: P44 Real Go Source Finite Repair Grammar
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/source_to_repair_20261111/**'
+      - '.github/workflows/p44-source-repair-grammar.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-action-grammar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pinned real upstream source and exact commit
+        run: |
+          git init -q /tmp/p44-source-grammar-chi
+          git -C /tmp/p44-source-grammar-chi fetch --no-tags --depth=1 https://github.com/go-chi/chi.git 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          git -C /tmp/p44-source-grammar-chi checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/p44-source-grammar-chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git hash-object tools/p35-p7/arms/live/route_headers.go)" = ad9a2fbc0a30a39475f746068e74e2d3e6c93999
+          test "$(git hash-object tools/p35-p7/arms/snapshot/route_headers.go)" = e9ca2c3863d5aa06ef0f0b9d168ddcf184713d75
+      - name: Execute all ten bounded source arms x repair operations
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/source_to_repair_20261111/run_original_source.py \
+            --repo-root "$PWD" \
+            --upstream /tmp/p44-source-grammar-chi \
+            --output /tmp/p44-source-grammar-evidence.json
+      - name: Preserve full original client test and failure evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p44-original-source-finite-repair-grammar
+          path: /tmp/p44-source-grammar-evidence.json
