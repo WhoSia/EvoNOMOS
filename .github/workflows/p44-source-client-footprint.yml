@@ -1,0 +1,49 @@
+name: P44 Restricted Source-Client Observation Footprint
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/client_observation_footprint_20261111/**'
+      - '.github/workflows/p44-source-client-footprint.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actual-source-client-impact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build narrow Go AST microclient impact analyzer
+        run: go build -o /tmp/p44-client-footprint active/g8-law-r1-p44/structural_law_return/client_observation_footprint_20261111/source_client_footprint.go
+      - name: Check all prior immutable Go architecture blobs and five operators
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/client_observation_footprint_20261111/run_impact_court.py \
+            --repo-root "$PWD" \
+            --analyzer /tmp/p44-client-footprint \
+            --output /tmp/p44-client-footprint-result.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/p44-client-footprint-result.json"))
+          assert d["candidate_count"]==10
+          assert d["file_level_may_affect"]==8
+          assert d["ast_direct_may_affect"]==4
+          assert d["limited_direct_preservation_certificates"]==6
+          assert d["known_outcome_reuse"] is True
+          PY
+      - name: Preserve complete AST and prior native behavior audit without bot commits
+        uses: actions/upload-artifact@v4
+        with:
+          name: p44-source-client-observation-footprint
+          path: /tmp/p44-client-footprint-result.json
