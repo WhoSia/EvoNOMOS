@@ -72,3 +72,21 @@ The [exact rational decision threshold calculator](contract_scope_frontier.py) a
 **Research-lead decision:** keep the conditional contract-exposure frontier as a **measurement design and falsifiable candidate**, not a newly discovered law; refuse to inflate source count, provenance, more heuristics, or old bugs into causal progress. The next authentic step must measure (C_s,C_l,q,H), or perform actual independently authored same-contract future tasks across source-matched alternative architectures, with real maintainer actor logs. If no reliable observation of q/H, classify the sign as **unidentified**. Source-to-customer effect analysis should begin with actual public client roots and compare standard Go SSA/dataflow/DRSpaces; do not add more known Chi test fixtures to fake power.
 
 **LAW-R2 HOLD / G1–G7 OPEN.**
+
+## 6. Return to the founding VECTOR objective: source-proxy Pareto, not one invented engineering score
+
+[Parnas (1979), *Designing Software for Ease of Extension and Contraction*](https://drive.google.com/file/d/1XGzB9hq_6wk6aXeVojMo1IeKoKCg704j/view) (original IEEE PDF directly read via Drive) makes the software \`uses\` relation, minimal functional subsets, and minimal extensions explicit. This is a strong prior for architecture as a system of extension/replacement capabilities, not merely file centrality. Source-exposure/compatibility is therefore meaningful, but not original by itself.
+
+The actual 2026 original Go customer tests establish the following **proxy**, not engineering-quality outcomes, for all *route-test-passing* fixed actions (equal for LIVE and SNAPSHOT):
+
+| Patch | Original source syntax sites | OPTIONAL historical direct-client contract violated | New RouteHeaders test passed |
+|---|---:|---:|---|
+| \`constructor\` | 1 | 1 | YES |
+| \`match_lower\` | 1 | 1 | YES |
+| \`route_both\` | 2 | 0 | YES |
+
+On the vector (number of source syntax locations changed, binary violation of the deliberately optional historical direct-client test) **all three patches lie on the weak Pareto frontier**, with \`constructor\` and \`match_lower\` having identical proxy vectors. Under router-only contract (direct behavior not an outcome), \`route_both\` is dominated in syntax-site count by the one-site solutions; under a hard direct-client preservation contract, only \`route_both\` is eligible. [Pareto executable proxy](pareto_proxy.py) and an eighth unit test establish exactly this scope-dependent, mathematically trivial ranking.
+
+*Do not collapse the vector too early.* A larger number of changed syntax sites might cost **less** actual developer time than a subtle shared edit; small code churn can incur unbounded hidden client regressions. Without real labor costs and documented true customer obligations the genuine engineering Pareto relation is unknown. The proxy is an actual source-grounded design-option difference, not verified performance superiority.
+
+**Additional scientific falsifier:** if ordinary source-aware Parnas/DRSpaces, standard Go slicing and classical robust cost choice predict all outcomes with the same information and effort, the correct judgment is classical explanatory equivalence, even if our diagrams and notation appear novel. The next scientific priority is one genuinely independent change distribution and measured maintainer outcomes, not new fixed-cost grid scenarios.
