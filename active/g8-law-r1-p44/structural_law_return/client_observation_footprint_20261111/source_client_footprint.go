@@ -44,7 +44,7 @@ func pureDirect(fn *ast.FuncDecl)bool{
    case *ast.SelectorExpr:
     pkg,ok:=f.X.(*ast.Ident)
     if !ok||pkg.Name!="strings"||
-      !map[string]bool{"IndexByte":true,"HasPrefix":true,"HasSuffix":true}[f.Sel.Name]{
+      !map[string]bool{"IndexByte":true,"HasPrefix":true,"HasSuffix":true,"ToLower":true}[f.Sel.Name]{
        safe=false
     }
    default:safe=false
@@ -54,7 +54,7 @@ func pureDirect(fn *ast.FuncDecl)bool{
    if !ok{safe=false;break}
    switch id.Name{
    case "strings":
-    if !map[string]bool{"IndexByte":true,"HasPrefix":true,"HasSuffix":true}[x.Sel.Name]{safe=false}
+    if !map[string]bool{"IndexByte":true,"HasPrefix":true,"HasSuffix":true,"ToLower":true}[x.Sel.Name]{safe=false}
    case "p":
     if !map[string]bool{"prefix":true,"suffix":true,"wildcard":true}[x.Sel.Name]{safe=false}
    default:safe=false
