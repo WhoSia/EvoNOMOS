@@ -36,3 +36,5 @@ A source-native execution can falsify this prediction. A failure should be retai
 ### Intentionally excluded
 
 No general Unicode proof, no claims about client external use in production, no owner-authorized semantics, no independent agent, no prospective new demand or LAW-R2 promotion. No original source files or previous 10-run receipt changed.
+
+**Pre-execution editorial correction (2026-11-11):** The first draft accidentally wrote `Go*` versus `Gold` as nonmatching; that prefix actually matches. Corrected to `Go*` versus `gold` as the mismatched-case witness, and `Go*` versus `Gold` as matching, BEFORE writing/running the new customer fixture. No outcome examined for this new test before correction.
