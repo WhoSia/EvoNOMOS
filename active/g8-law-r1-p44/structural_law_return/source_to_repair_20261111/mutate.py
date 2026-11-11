@@ -29,7 +29,7 @@ def apply(root,op):
         sites=2
     else:
         old,new=PARENTS[op]
-        expected=2 if op=="remove_lookup_lower" else 1
+        expected=1
         if s.count(old)!=expected:raise ValueError("original source shape drift %s %d"%(op,s.count(old)))
         if op=="remove_lookup_lower":
             # preserve the one closing parenthesis of Header.Get(...)
