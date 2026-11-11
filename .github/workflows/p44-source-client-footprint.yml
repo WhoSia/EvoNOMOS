@@ -42,6 +42,11 @@ jobs:
           assert d["limited_direct_preservation_certificates"]==6
           assert d["known_outcome_reuse"] is True
           PY
+      - name: Adversarial hidden global dependency must force conservative may-affect
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/client_observation_footprint_20261111/test_fail_closed_global.py \
+            --baseline tools/p35-p7/arms/live/route_headers.go \
+            --analyzer /tmp/p44-client-footprint
       - name: Preserve complete AST and prior native behavior audit without bot commits
         uses: actions/upload-artifact@v4
         with:
