@@ -36,7 +36,7 @@ def apply(root,op):
             # source contains strings.ToLower(r.Header.Get(header)), remove outer wrapper only.
             marker="strings.ToLower(r.Header.Get("
             import re
-            t,n=re.subn(r"strings\.ToLower\((r\.Header\.Get\(\w+\))\)",r"\1",s)
+            t,n=re.subn(r"strings\.ToLower\((r\.Header\.Get\([\w.]+\))\)",r"\1",s)
             if n!=1:raise ValueError("unexpected request sites "+str(n))
         else:t=s.replace(old,new,1)
         sites=1
