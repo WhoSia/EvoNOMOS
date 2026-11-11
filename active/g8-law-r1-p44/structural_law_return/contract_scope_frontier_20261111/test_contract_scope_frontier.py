@@ -3,7 +3,15 @@ from itertools import product
 import unittest
 from contract_scope_frontier import Assumptions,NATIVE_BOUNDED_OPTIONS,evaluate
 
+from pareto_proxy import pareto
+
 class SourceAnchoredDecisionTests(unittest.TestCase):
+    def test_native_source_pareto_vector_and_hard_contract(self):
+        self.assertEqual(pareto(),["constructor","match_lower","route_both"])
+        self.assertEqual(pareto(include_direct_risk=False),["constructor","match_lower"])
+        self.assertEqual(pareto(keep_direct_as_hard=True),["route_both"])
+
+
     def test_native_bounded_option_inclusion(self):
         self.assertEqual(NATIVE_BOUNDED_OPTIONS["route_only"],frozenset({"constructor","route_both","match_lower"}))
         self.assertEqual(NATIVE_BOUNDED_OPTIONS["route_plus_direct"],frozenset({"route_both"}))
