@@ -35,6 +35,15 @@ func pureDirect(fn *ast.FuncDecl)bool{
  safe:=true
  ast.Inspect(fn.Body,func(n ast.Node)bool{
   switch x:=n.(type){
+  case *ast.Ident:
+   // In this intentionally tiny pinned Pattern model, any unexpected
+   // identifier could denote a mutable global or imported hidden state.
+   if !map[string]bool{
+     "p":true,"i":true,"value":true,"v":true,"Pattern":true,
+     "prefix":true,"suffix":true,"wildcard":true,"strings":true,
+     "IndexByte":true,"HasPrefix":true,"HasSuffix":true,"ToLower":true,
+     "len":true,"true":true,"false":true,
+   }[x.Name]{safe=false}
   case *ast.GoStmt,*ast.DeferStmt,*ast.SendStmt,*ast.SelectStmt,
        *ast.TypeAssertExpr,*ast.FuncLit:
    safe=false
