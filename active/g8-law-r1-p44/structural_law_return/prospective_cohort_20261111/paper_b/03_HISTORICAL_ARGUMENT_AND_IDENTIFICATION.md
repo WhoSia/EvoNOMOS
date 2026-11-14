@@ -1,0 +1,26 @@
+# Paper B — When Does a Design Rule Lose Its Premises?
+
+2026-11-14 KST. Manuscript argument. LAW-R2 HOLD.
+
+## A history of the premise
+
+Mahoney (2004, pp. 8–9) distinguishes historians asking how software engineering defined itself from engineers looking for a usable past. EvoNOMOS is doing both. The historical question is what a source actually carries forward. The engineering question is whether the retained information justifies a design decision. The [newly shelved article](https://drive.google.com/file/d/1JvfffF0_JsO1N9u5fYwT9GOzKr74qwOW/view) is the IEEE article, 371,196 bytes, with its original Drive ID and destination checked after a metadata-only move.
+
+1. [Meyer 1997, §3.3](https://bertrandmeyer.com/wp-content/upLoads/OOSC2.pdf) treats closure as readiness for use by dependent modules under a stable interface. [Martin 1996, pp. 1 and 6](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf) labels his formulation a paraphrase of Meyer 1988 and explains strategic closure through the choice of likely changes. This establishes two documented emphases; the first-edition wording remains open.
+2. [Spolsky's 2009 excerpt](https://www.joelonsoftware.com/2009/01/31/from-podcast-38/) distinguishes small internal classes from external plugin interfaces. The explicit difference is downstream dependence. The [episode page](https://hanselminutes.com/145/solid-principles-with-uncle-bob-robert-c-martin) dates show #145 to January 5; Hanselman's companion blog post is dated January 8. Date the respective artifacts separately.
+3. [Pehlivan et al. 2025 §III-B](https://arxiv.org/html/2509.03093v1) describe a six-label output task and, for the EXAMPLE condition, a short OCP cue about repeated branches where polymorphism fits. The [versioned package landing page](https://zenodo.org/records/17630171) describes four OCP construction scenarios: payment methods, customer types, notification channels, and export formats. The documentation therefore retains a direction of expected extension. Whether that information reaches the judge in individual calls is a different claim. The archive preview confirms `dataset/groundtruth/ocp_violations.json` exists. Individual rows and serialized requests have not been checked.
+4. [Parnas and Clements 1986](https://www.laputan.org/pub/papers/Fake.pdf) explain why an idealized record can be valuable even when actual design did not follow the ideal process. Their requirement documents help later teams identify what can change. That provides a rival interpretation of compressed examples: shorthand can be useful if the omitted context can be recovered where decisions are made.
+
+## A finite non-identification argument
+
+Fix source S, protected paths B, preserved client behavior C and an admissible edit set A. Let Y(d) be 1 if some edit in A meets demand d and preserves C without modifying B, and 0 otherwise. The review fixture supplies two demands and two file layouts. Consider the deliberately restricted edit set consisting of the two published reference patch candidates for one layout, each evaluated against the corresponding demand. For the operation-based layout, the triangle patch edits render.py, and the label patch is an addition. The same protected source and layout therefore admit opposite outcomes in this declared candidate universe. The shape-owned layout reverses the pattern. This is a construction with fixed candidates, not an exhaustive result about Python edits or a population estimate.
+
+When two observations are identical but the required binary outcomes differ, every deterministic binary rule on the observation gives the same answer to both. In an equally weighted pair it gets at most one of two correct; randomization independent of demand also gives at most one half in expectation. This is an elementary identifiability argument, not a claim of mathematical novelty. A reviewer who states the missing premise or returns conditional answers can retain the distinction. A source-only reviewer could still perform well when the demand is recoverable from its inputs or one type of demand dominates in the population.
+
+## Draft paragraph
+
+A design principle can survive unchanged as a phrase while losing the conditions that once made its application contestable. In Martin's 1996 example, closure depends on which change the designer anticipates. In a benchmark, an OCP label can instead be attached to a code snippet as its expected answer. That operation is justified when the observation supplies enough information to recover the relevant design judgment. A change in the expected extension can otherwise reverse which design protects its existing source. We propose following the premise through three records: the scenario used to construct the example, the exact input sent to the judge, and the evaluator's reason for accepting the answer.
+
+## Falsifiers
+
+Evidence that a scenario's target change and protected client boundary were available in the serialized judge input defeats the strong omission reading for that row. Evidence that those premises are inferable from admissible, documented conventions weakens a missing-text argument. Broader patches can defeat the finite reference comparison and should be recorded as additional witnesses. No fresh model run or actual maintenance outcome was observed in this pass.
