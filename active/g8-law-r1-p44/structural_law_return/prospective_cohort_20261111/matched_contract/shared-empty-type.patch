@@ -1,0 +1,17 @@
+diff --git a/middleware/content_type.go b/middleware/content_type.go
+--- a/middleware/content_type.go
++++ b/middleware/content_type.go
+@@ -32,7 +32,12 @@ func AllowContentType(contentTypes ...string) func(next http.Handler) http.Handle
+ 				return
+ 			}
+ 
+-			s, _, valid := parseCanonicalContentType(r.Header.Get("Content-Type"))
++			raw := r.Header.Get("Content-Type")
++			if raw == "" {
++				w.WriteHeader(http.StatusUnsupportedMediaType)
++				return
++			}
++			s, _, valid := parseCanonicalContentType(raw)
+ 			if _, ok := allowedContentTypes[s]; valid && ok {
+ 				next.ServeHTTP(w, r)
+ 				return

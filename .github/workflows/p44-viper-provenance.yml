@@ -1,0 +1,53 @@
+name: P44 Viper Independent Provenance Decision Experiment
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/viper_provenance/**'
+      - '.github/workflows/p44-viper-provenance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actual-original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ORIGINAL_VIPER_SHA: 394040caccbdf5821fa6839386a35f0fb1b1ee9e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Pin actual original Viper source identity
+        run: |
+          git init -q /tmp/original-viper
+          git -C /tmp/original-viper fetch --no-tags --depth=1 https://github.com/spf13/viper.git "$ORIGINAL_VIPER_SHA"
+          git -C /tmp/original-viper checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/original-viper rev-parse HEAD)" = "$ORIGINAL_VIPER_SHA"
+          go version
+      - name: Put only app-owned test in ephemeral original source
+        run: |
+          cp active/g8-law-r1-p44/structural_law_return/viper_provenance/evo_viper_provenance_test.go /tmp/original-viper/
+          git -C /tmp/original-viper diff --exit-code -- '*.go' go.mod go.sum
+          git -C /tmp/original-viper status --short
+      - name: Verify original dependency sum and test file
+        working-directory: /tmp/original-viper
+        run: |
+          go mod download
+          go mod verify
+          git diff --exit-code -- go.mod go.sum
+      - name: Native original code vet
+        working-directory: /tmp/original-viper
+        run: go vet -mod=readonly .
+      - name: Native independent-issue provenance oracle
+        working-directory: /tmp/original-viper
+        run: go test -mod=readonly -count=1 -v -run '^TestEvo' .
+      - name: Native race original code
+        working-directory: /tmp/original-viper
+        run: go test -mod=readonly -race -count=1 -run '^TestEvo' .

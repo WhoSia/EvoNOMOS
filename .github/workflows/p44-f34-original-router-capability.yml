@@ -1,0 +1,44 @@
+name: P44 F34 Original Router Capability Comparison
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/f34_original_router_capability/**'
+      - '.github/workflows/p44-f34-original-router-capability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-original-routers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Pin source and toolchain identity
+        run: |
+          git rev-parse HEAD
+          go version
+      - name: Native external original Go dependencies
+        working-directory: active/g8-law-r1-p44/f34_original_router_capability
+        run: |
+          go mod download
+          go mod verify
+          go list -m all
+          git diff --exit-code -- go.mod go.sum
+      - name: Vet
+        working-directory: active/g8-law-r1-p44/f34_original_router_capability
+        run: go vet -mod=readonly ./...
+      - name: Native tests and bounded original-router capabilities
+        working-directory: active/g8-law-r1-p44/f34_original_router_capability
+        run: go test -mod=readonly -count=1 -v ./...
+      - name: Race test original router concurrency
+        working-directory: active/g8-law-r1-p44/f34_original_router_capability
+        run: go test -mod=readonly -race -count=1 ./...

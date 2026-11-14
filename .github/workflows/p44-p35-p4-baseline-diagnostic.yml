@@ -1,0 +1,40 @@
+name: P44 P35-P4 baseline equivalence diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/law-r1-p44-r3-stateful-alias-court]
+    paths:
+      - '.github/workflows/p44-p35-p4-baseline-diagnostic.yml'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/p35_p4_missing_content_type_test.go'
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          persist-credentials: false
+      - name: Reproduce the historical tests and compare the missing-header behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash tools/p35-p4/run_native_chi.sh
+          cp active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/p35_p4_missing_content_type_test.go chi/middleware/
+          for arm in independent shared; do
+            rm -f chi/middleware/content_media_parse.go
+            cp tools/p35-p4/arms/"$arm"/*.go chi/middleware/
+            (cd chi && P44_PARSER_ARM="$arm" go test -v -count=1 -run '^TestP44P35P4MissingContentType$' ./middleware)
+          done

@@ -1,0 +1,79 @@
+name: P44 P35-P7 Preexisting Structures Cross Later Chi Issue1247
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/p35_p7_future_issue1247/**'
+      - '.github/workflows/p44-p35p7-future-1247.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixed-prior-architecture:
+    strategy:
+      fail-fast: false
+      matrix:
+        arm: [live, snapshot]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Checkout pinned original Go Chi source
+        run: |
+          git init -q /tmp/chi-1247
+          git -C /tmp/chi-1247 fetch --no-tags --depth=1 https://github.com/go-chi/chi.git 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          git -C /tmp/chi-1247 checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/chi-1247 rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+      - name: Install original Oct 9 structurally different arm plus external customer oracle
+        env:
+          EVO_ARM: ${{ matrix.arm }}
+        run: |
+          cp "tools/p35-p7/arms/$EVO_ARM/route_headers.go" /tmp/chi-1247/middleware/route_headers.go
+          cp tools/p35-p7/tests/p35_p7_common_test.go /tmp/chi-1247/middleware/
+          cp tools/p35-p7/tests/p35_p7_modes_test.go /tmp/chi-1247/middleware/
+          cp active/g8-law-r1-p44/structural_law_return/p35_p7_future_issue1247/evo_issue1247_future_contract_test.go /tmp/chi-1247/middleware/
+          test "$(git -C /tmp/chi-1247 status --short | grep 'middleware/route_headers.go' | wc -l)" = 1
+          git -C /tmp/chi-1247 diff --check
+          sha256sum /tmp/chi-1247/middleware/route_headers.go
+      - name: Old client native functional requirement MUST pass before new demand
+        working-directory: /tmp/chi-1247
+        run: |
+          go test -count=1 -v -run '^TestEvo1247OriginalOldClientContract$' ./middleware
+          go test -count=1 -run '^TestP35P7' ./middleware
+      - name: Later independent issue MUST reproduce expected pre-repair failure
+        working-directory: /tmp/chi-1247
+        shell: bash
+        run: |
+          set +e
+          go test -count=1 -v -run '^TestEvo1247LaterIndependentDemand$' ./middleware >/tmp/evo1247-red.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/evo1247-red.log
+          test "$status" -ne 0
+          grep -F 'EVO1247_NEW_CONTRACT_FAIL case="issue-exact-Gold"' /tmp/evo1247-red.log
+          grep -F 'EVO1247_NEW_CONTRACT_FAIL case="issue-route-any-Gold"' /tmp/evo1247-red.log
+      - name: Apply one shared classical source edit
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/p35_p7_future_issue1247/patch_issue1247_classical.py --root /tmp/chi-1247
+          git -C /tmp/chi-1247 diff --check
+          sha256sum /tmp/chi-1247/middleware/route_headers.go
+      - name: Old and later independent customer contracts MUST both pass
+        working-directory: /tmp/chi-1247
+        run: go test -count=1 -v -run '^TestEvo1247' ./middleware
+      - name: P35-P7 original D0 and legacy Go suite (post-D0 D8 excluded)
+        working-directory: /tmp/chi-1247
+        run: go test -count=1 ./...
+      - name: Native original source vet
+        working-directory: /tmp/chi-1247
+        run: go vet ./...
+      - name: Middleware race checks
+        working-directory: /tmp/chi-1247
+        run: go test -race -count=1 ./middleware

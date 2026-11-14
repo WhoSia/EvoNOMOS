@@ -1,0 +1,33 @@
+name: EvoNOMOS P44 Finite Online Repair Information Game
+
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/formalization/online/**'
+      - '.github/workflows/evonomos-p44-online-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quantifier-and-preservation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/online
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: "Offline vs online repair quantifiers, stagewise regression and negative controls"
+        run: |
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...

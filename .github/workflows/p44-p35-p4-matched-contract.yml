@@ -1,0 +1,55 @@
+name: P44 P35-P4 matched parser contract
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/law-r1-p44-r3-stateful-alias-court]
+    paths:
+      - '.github/workflows/p44-p35-p4-matched-contract.yml'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/matched_contract/**'
+
+permissions:
+  contents: read
+
+jobs:
+  matched-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache: false
+      - uses: actions/checkout@v4
+        with:
+          repository: go-chi/chi
+          ref: 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          path: chi
+          persist-credentials: false
+      - name: Check historical divergence and the matched baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          go version
+          cp tools/p35-p4/tests/acceptance_test.go chi/middleware/p35_p4_acceptance_test.go
+          cp active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/matched_contract/matched_contract_test.go chi/middleware/
+          cp tools/p35-p4/arms/independent/*.go chi/middleware/
+          echo "ARM=independent"
+          (cd chi && go test -count=1 -v -run '^Test(P35P4CanonicalContentPolicy|P44P35P4MatchedContract)$' ./middleware)
+          (cd chi && go test -count=1 ./... && go test -race -count=1 ./middleware)
+          cp tools/p35-p4/arms/shared/*.go chi/middleware/
+          echo "ARM=historical-shared"
+          if (cd chi && go test -count=1 -run '^TestP44P35P4MatchedContract$/^missing_type_with_body$' ./middleware) > "$RUNNER_TEMP/legacy-shared.log" 2>&1; then
+            echo "Historical Shared unexpectedly matches the common contract"
+            exit 1
+          fi
+          cat "$RUNNER_TEMP/legacy-shared.log"
+          grep -F 'status=204 calls=1, want status=415 calls=0' "$RUNNER_TEMP/legacy-shared.log"
+          git -C chi apply "$GITHUB_WORKSPACE/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/matched_contract/shared-empty-type.patch"
+          echo "ARM=normalized-shared"
+          (cd chi && go test -count=1 -v -run '^Test(P35P4CanonicalContentPolicy|P44P35P4MatchedContract)$' ./middleware)
+          (cd chi && go test -count=1 ./... && go test -race -count=1 ./middleware)

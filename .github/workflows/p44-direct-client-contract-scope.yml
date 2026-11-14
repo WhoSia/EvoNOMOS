@@ -1,0 +1,46 @@
+name: P44 Direct Public Pattern Client Contract Scope Court
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/source_to_repair_20261111/**'
+      - '.github/workflows/p44-direct-client-contract-scope.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-contract-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pin original go-chi upstream before external issue
+        run: |
+          git init -q /tmp/evo-direct-scope-chi
+          git -C /tmp/evo-direct-scope-chi fetch --no-tags --depth=1 https://github.com/go-chi/chi.git 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          git -C /tmp/evo-direct-scope-chi checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/evo-direct-scope-chi rev-parse HEAD)" = 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+      - name: Execute frozen five x two source grammar with both customer scopes
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/source_to_repair_20261111/run_direct_contract.py \
+            --repo-root "$PWD" \
+            --upstream /tmp/evo-direct-scope-chi \
+            --output /tmp/evo-direct-scope-receipt.json
+      - name: Preserve native pass and fail evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p44-direct-legacy-source-contract-court
+          path: /tmp/evo-direct-scope-receipt.json
+          if-no-files-found: warn
