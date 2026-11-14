@@ -1,0 +1,64 @@
+{
+  "python": "3.12.14",
+  "legacy_cases": [
+    "book",
+    "journal",
+    "proceedings",
+    "unknown"
+  ],
+  "baseline_rejects_new_report": true,
+  "cases": [
+    {
+      "case": "additive_extension",
+      "added_source_files": [
+        "reports.py"
+      ],
+      "edited_existing_sources": [],
+      "existing_sources_preserved": true,
+      "client_source_unchanged": true,
+      "legacy_contract_preserved": true,
+      "changed_legacy_requests": [],
+      "new_report_supported": true
+    },
+    {
+      "case": "compatible_dispatch_edit",
+      "added_source_files": [],
+      "edited_existing_sources": [
+        "catalog.py"
+      ],
+      "existing_sources_preserved": false,
+      "client_source_unchanged": true,
+      "legacy_contract_preserved": true,
+      "changed_legacy_requests": [],
+      "new_report_supported": true
+    },
+    {
+      "case": "behavior_drift_without_edit",
+      "added_source_files": [
+        "reports.py"
+      ],
+      "edited_existing_sources": [],
+      "existing_sources_preserved": true,
+      "client_source_unchanged": true,
+      "legacy_contract_preserved": false,
+      "changed_legacy_requests": [
+        "book"
+      ],
+      "new_report_supported": true
+    },
+    {
+      "case": "behavior_drift_with_edit",
+      "added_source_files": [],
+      "edited_existing_sources": [
+        "catalog.py"
+      ],
+      "existing_sources_preserved": false,
+      "client_source_unchanged": true,
+      "legacy_contract_preserved": false,
+      "changed_legacy_requests": [
+        "book"
+      ],
+      "new_report_supported": true
+    }
+  ]
+}
