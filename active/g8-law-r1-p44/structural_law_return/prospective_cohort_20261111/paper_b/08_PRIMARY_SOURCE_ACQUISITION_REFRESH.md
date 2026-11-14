@@ -1,10 +1,9 @@
 # Paper B — Primary Sources Still to Acquire
 
-1966 SIMULA and the 1981 HOPL chapter are now held and removed from the missing list.
+1966 SIMULA and the 1981 HOPL chapter are now held. The user also confirmed possession of AreWeSOLID.zip. Its connected file location has not been resolved. Byte verification and the OCP input audit remain pending.
 
 | Priority | Target | Action |
 |---|---|---|
-| 1 | ASE OCP benchmark package | [Versioned ZIP](https://zenodo.org/api/records/17630171/files/AreWeSOLID.zip/content). Save AreWeSOLID.zip unchanged to intake. Expected 76,060,177 bytes and MD5 4c17cf854a55747da202e95d20217cf3. First inspect creation_scenarios.md, groundtruth/ocp_violations.json, actual input/output records and pipeline code. |
 | 1 | Meyer 1988, first edition | [Open Library](https://openlibrary.org/books/OL2033837M/Object-oriented_software_construction) → Borrow if available, or search a library by ISBN 0-13-629049-3. Title page and printed pp. 22–24. |
 | 1 | Dahl, Myhrhaug and Nygaard, October 1968 *Some Uses of the External Class Concept in SIMULA 67* | [Oslo bibliography entry 33](https://www.mn.uio.no/ifi/english/about/ole-johan-dahl/bibliography/) identifies it as NCC document. No verified full-text link found. Seek archival scan by full title and October 1968 Garmisch meeting; p. 157 of held report is a listing, not the document. |
 | 1 | Dahl, Myhrhaug and Nygaard, December 1968 *Some Features of the SIMULA 67 Language* | [WSC archive PDF](https://informs-sim.org/wsc68papers/1968_0007.pdf). Save the scan; visually checked opening and concluding pages, including sections 5–6. |
