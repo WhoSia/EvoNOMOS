@@ -28,4 +28,8 @@ Python 3.12.14 local run. Four patches, 14 functional checks. The two masked and
 
 ## Reading acquisition
 
-Missing means no matching independent copy found in accessible Drive title/author searches; it is not a corpus-wide absence proof. Retain the prior Meyer/Martin/Expression Problem list. Add [Naur & Randell, Garmisch report](https://scrummanager.com/files/nato1968e.pdf), [Buxton & Randell, Rome report](https://homepages.cs.ncl.ac.uk/brian.randell/NATO/nato1969.PDF), [Shaw 1990](https://www.sei.cmu.edu/library/prospects-for-an-engineering-discipline-of-software/), the three 2009 primary reception sources above, [Yanakiev et al. 2025](https://doi.org/10.1016/j.jss.2024.112254), [McMillan 2026](https://arxiv.org/abs/2605.10039), [Investigating the Smells of LLM Generated Code](https://arxiv.org/abs/2510.03029), [A Causal Perspective on Measuring, Explaining and Mitigating Smells in LLM-Generated Code](https://www.microsoft.com/en-us/research/publication/a-causal-perspective-on-measuring-explaining-and-mitigating-smells-in-llm-generated-code/), and [RovoDev Code Reviewer](https://arxiv.org/abs/2601.01129). Gloaguen, Esposito, and Naur's Programming as Theory Building are already held.
+Use the [current acquisition list](./16_CURRENT_ACQUISITION_LIST.md) for the outstanding editions, holding status, and retrieval routes. [Prior acquisition notes](./14_ACQUISITION_STATUS_AFTER_MEYER_RECOVERY.md) preserve the earlier search results.
+
+## Library example
+
+The [library fixture](./meyer_library_case.py) reconstructs the technical-report extension from Meyer 1988. Its four executed candidates distinguish changes to the original files from changes to the observations made by an unchanged caller. See [the historical comparison and results](./15_MEYER_LIBRARY_CLOSURE.md).
