@@ -1,0 +1,28 @@
+# Paper B — Before OCP Became a Code Label
+
+## Manuscript direction
+
+Working title: *Before OCP Became a Code Label: From Extensible Programs to Automated Design Judgment*.
+
+How does the evidence needed for a judgment of extensibility change when the unit of assessment moves from an envisioned modification and a client boundary to a labeled code snippet? The narrow historical chain begins with Meyer's definition and Martin's explicit paraphrase. Earlier language-design and design-rationale sources make the comparison intelligible. The modern archive shows what a particular review task kept in view.
+
+## Readings
+
+| Text and locator | Observation | Role in the argument |
+|---|---|---|
+| [Dahl, Myhrhaug & Nygaard 1968](https://drive.google.com/file/d/1_YGjPQ7nME273QkK1UBDszQpjZpnUV2j/view), printed pp. 29–31 | A class prefix can give a program a vocabulary for a particular problem domain. On p. 31 a virtual machine service is redefined in a subclass. The JOBSHOP example then describes compiling a specialized class and making it available to other programs. The text explicitly makes this dependent on a compiler facility for separately compiled classes. | Contemporary evidence of what extension let users do and which infrastructure it required. |
+| [Kunz & Rittel 1970](https://drive.google.com/file/d/1gpcsD0bDNxFyf2w44SgTrn69RH3Trwhr/view), PDF pp. 6–9, §§7–12 | IBIS distinguishes factual, deontic, explanatory and instrumental questions. When evidence for a position is challenged, the challenge can become an issue in its own right. The three examples were reported as manually operated pilots, with computerization in preparation. | Contemporary evidence of a design-support tradition that kept the question and its reasons inspectable. |
+| [MacLean et al. 1991](https://drive.google.com/file/d/1qzj5Cmz88ZP9jseFVJcUHCtey0ewUCZP/view), pp. 201–205 | QOC provides explicit questions, options and criteria for comparing alternatives. | Prior art for recording alternatives and assessment criteria. |
+| [Meyer 1988](./13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md), pp. 22–25, and [Martin 1996](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf), pp. 1 and 6 | Meyer connects closure to a stable description on which clients can rely. Martin's acknowledged paraphrase emphasizes modification, then conditions strategic closure on particular likely changes. | The documented citation edge. It supports an account of a change of emphasis, including the continuing condition in Martin's own text. |
+| [Hanselman #145](https://hanselminutes.com/145/solid-principles-with-uncle-bob-robert-c-martin), [Spolsky's 2009 excerpt](https://www.joelonsoftware.com/2009/01/31/from-podcast-38/), [Hanselman #150](https://hanselminutes.com/150/uncle-bob-martin-solid-this-time-with-feeling) | The episode record and contemporary reaction establish circulation and controversy. Spolsky gives a concrete context in which contractual interface separation has a payoff: public plugin interfaces. | Evidence of contested reception. Direct wording from the audio and timestamp anchors still need transcription and verification. |
+| [Pehlivan et al. 2025](./18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) | The review archive asks models to identify principle violations. The stored example instructions can name a preferred implementation mechanism. The recorded scaffolds omit a separate change request and protected caller contract. | A traceable instance of operationalizing OCP through classification. |
+
+The SIMULA paper explains why a machine's state and activity belonged together for the simulation it describes. Its job-shop example also shows why the point of extension mattered: people using a compiled domain vocabulary could write new simulations in its terms. The rest of the chain has distinct kinds of evidence. These examples establish neither the priority of SIMULA for every object-oriented idea nor a path of influence from IBIS into Martin. The December SIMULA paper, the October Garmisch contribution and the revised S-22 specification must remain bibliographically distinct.
+
+## Article opening
+
+The open–closed principle names a tension between extending a program and preserving what others can rely on. Bertrand Meyer's library example locates that tension in a concrete task: adding technical reports to a program whose clients already use a stable description. Robert Martin's reformulation signals a change of emphasis by foregrounding modification, while keeping a strategic decision about the changes against which closure is sought. An automated review benchmark supplies a new setting for the phrase. A judge receives code and classifies the violation. What must the judge know about the next change and the existing clients for the classification to warrant a maintenance decision? We trace how those premises are expressed across the sources and use a small executable case to show why they matter.
+
+## Scope and tests of the claim
+
+The preceding [library reconstruction](./15_MEYER_LIBRARY_CLOSURE.md) shows two observable criteria that vary independently for the fixed candidates: existing source can stay identical while observed caller behavior changes, and caller observations can stay identical after a source edit. This gives the paper a falsifiable interpretation of what might be lost when the criterion is compressed. The archive audit is evidence about one benchmark and can be revised if fuller request envelopes expose further task-specific premises. A comparative reception record would qualify any broader claim about how common the compression became. LAW-R2 remains HOLD.

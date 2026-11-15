@@ -11,7 +11,7 @@
 - [Meyer 1997, §3.3](https://bertrandmeyer.com/wp-content/upLoads/OOSC2.pdf) discusses when a stable interface is ready for clients and, for specifications, approved and baselined. [Martin 1996, p. 6](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf) asks designers to choose classes of change against which they seek closure.
 - On 8 January 2009 [Hanselman #145](https://www.hanselman.com/blog/hanselminutes-podcast-145-solid-principles-with-uncle-bob-robert-c-martin) named SOLID explicitly. [Spolsky's excerpt from podcast #38](https://www.joelonsoftware.com/2009/01/31/from-podcast-38/) objects to routine interface proliferation while accepting contractual interface separation for public plugin APIs. [Atwood](https://blog.codinghorror.com/the-ferengi-programmer/) and [Martin's return on #150](https://www.hanselman.com/blog/hanselminutes-podcast-150-uncle-bob-martin-this-time-with-feeling) document a public dispute. These establish a terminus ante quem for circulation of the acronym and criticism of strong readings. The first coinage remains unverified.
 - [GitHub's 6 August 2025 release](https://github.blog/changelog/2025-08-06-copilot-code-review-copilot-instruction-md-support-is-now-generally-available/) documents repository instructions reaching automated review. [Gloaguen et al.](https://www.sri.inf.ethz.ch/publications/gloaguen2026agentsmd) report instruction following and greater inference cost under tested context-file settings, with no task-success improvement in the authors' aggregate summary.
-- [Pehlivan et al., §III-A–C](https://arxiv.org/html/2509.03093v1) use a model to draft examples in named violation categories, human review to refine and validate them, and other LLMs to classify the 240 synthetic snippets. The [replication package DOI](https://doi.org/10.5281/zenodo.17008546) is reported in the paper. Label agreement and independent maintenance outcome are different measurements. The package rows were not audited in this pass. There is no basis here for a training-data explanation or an industry trend.
+- [Pehlivan et al., §III-A–C](https://arxiv.org/html/2509.03093v1) use a model to draft examples in named violation categories, human review to refine and validate them, and other LLMs to classify the 240 synthetic snippets. The [replication package DOI](https://doi.org/10.5281/zenodo.17008546) is reported in the paper. Label agreement and independent maintenance outcome are different measurements. [The later archive audit](./18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) inspects the archived ground truth and stored review prompts. Training-data explanations and industry trends remain open.
 
 ## Executable review fixture
 
@@ -33,3 +33,7 @@ Use the [current acquisition list](./16_CURRENT_ACQUISITION_LIST.md) for the out
 ## Library example
 
 The [library fixture](./meyer_library_case.py) reconstructs the technical-report extension from Meyer 1988. Its four executed candidates distinguish changes to the original files from changes to the observations made by an unchanged caller. See [the historical comparison and results](./15_MEYER_LIBRARY_CLOSURE.md).
+
+## Current manuscript
+
+[Source readings and article opening](./19_BEFORE_OCP_BECAME_A_CODE_LABEL.md) · [Intake and fixity receipt](./17_SIMULA_IBIS_INTAKE_RECEIPT.md) · [Archived review audit](./18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md).
