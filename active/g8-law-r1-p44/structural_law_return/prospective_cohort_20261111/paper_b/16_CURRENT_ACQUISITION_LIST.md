@@ -1,6 +1,6 @@
 # Paper B — Current Acquisition List
 
-Drive lookup date: 2026-11-15 KST, following a direct listing of 00_INTAKE and title checks in the accessible collection. Five priority entries remain. The full Meyer volume is optional.
+Drive lookup date: 2026-11-15 KST, following a direct listing of 00_INTAKE and title checks in the accessible collection. Five priority entries remain after Torgersen intake. The two full-volume rows are optional.
 
 **Already usable.** The Meyer 1988 title and copyright pages and printed pp. 22–25 were recovered from the [00 deposit](https://drive.google.com/file/d/1fnHSKajjYjIJqMEZKaTDHA9XVVdIKB-s/view). See [the passage audit](./13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md). The 1997 second edition, Martin 1996, Garmisch report, 1966 and 1981 SIMULA works, revised S-22, QOC, Perry–Wolf, and the Are We SOLID Yet paper are held. 
 
@@ -13,5 +13,11 @@ Drive lookup date: 2026-11-15 KST, following a direct listing of 00_INTAKE and t
 | 1 · SOLID reception | Hanselminutes #150, *Uncle Bob Martin: SOLID, this time with feeling* | Open the [episode page](https://hanselminutes.com/150/uncle-bob-martin-solid-this-time-with-feeling) and use **download the MP3**. The episode page lists Feb. 18, 2009. The [host announcement](https://www.hanselman.com/blog/hanselminutes-podcast-150-uncle-bob-martin-this-time-with-feeling) is Feb. 19. |
 | 2 · modularity | Parnas, *Information Distribution Aspects of Design Methodology*, IFIP 1971, published 1972 | Save the scanned proceedings article from [UCSD direct PDF](https://cseweb.ucsd.edu/~wgg/CSE218/Parnas-IFIP71-information-distribution.PDF). |
 | 2 · software engineering history | Buxton & Randell (eds., Apr. 1970), *Software Engineering Techniques*, report on the 1969 Rome meeting | Save [Randell's Newcastle PDF](https://homepages.cs.ncl.ac.uk/brian.randell/NATO/nato1969.PDF). The direct fetch timed out during this check. Use the title, editors, and Rome date for a library request if needed. |
-| 2 · formal extensibility | Torgersen (2004), *The Expression Problem Revisited*, ECOOP, pp. 123–146 | Open the [exact Springer chapter](https://link.springer.com/chapter/10.1007/978-3-540-24851-4_6) with institutional access and download the full chapter. Springer distinguishes its preview from the chapter. |
 | Optional · full book preservation | Meyer (1988), *Object-Oriented Software Construction*, first edition | Check [Open Library](https://openlibrary.org/books/OL2033837M/Object-oriented_software_construction) for a loan or search a library for ISBN 0-13-629049-3. The passage required for the present comparison has been recovered. |
+| Optional · original textbook edition | Robert C. Martin, *Agile Software Development: Principles, Patterns, and Practices*, ISBN 0-13-597444-5 | Request the Prentice Hall/Pearson 2003 catalog edition by ISBN. Chapter 9 has already been read in the Pearson international reprint. [KIT catalog](https://katalog.bibliothek.kit.edu/bib/244444) · [Open Library](https://openlibrary.org/books/OL7342830M/Agile_Software_Development_Principles_Patterns_and_Practices) |
+
+## This pass
+
+[Torgersen's full 24-page deposited copy](https://drive.google.com/file/d/1DmU32IVID-snTRka5cTfnuKNrnuDRwhF/view) was verified and filed in 10_PAPERS. Its layout differs from the Springer printing. [Intake receipt and reading](./20_TORGERSEN_EXTENSIBILITY_CRITERIA.md)
+
+[Martin 2000](https://drive.google.com/file/d/1mMu7WCbrBOPZeNbhEnj54Nzfkz8qXkWC/view) and [Parnas 1979](https://drive.google.com/file/d/1XGzB9hq_6wk6aXeVojMo1IeKoKCg704j/view) are already in 10_PAPERS. The [public source chronology](./21_OCP_USENET_AND_EARLY_SOLID_RECEPTION.md) links the contemporary records and the copies consulted.
