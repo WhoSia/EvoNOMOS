@@ -2,7 +2,7 @@
 
 import argparse
 import ast
-from collections import Counter
+from collections import Counter, defaultdict
 from hashlib import file_digest
 import json
 from pathlib import Path
@@ -60,6 +60,33 @@ def inspect_ocp(rows):
     }
 
 
+def inspect_prompts(archive):
+    counts = Counter()
+    templates = defaultdict(set)
+    prefix = ROOT + "completions/test/ocp--"
+    for name in archive.namelist():
+        if not (name.startswith(prefix) and name.endswith("/output_test.jsonl")):
+            continue
+        for line in archive.read(name).splitlines():
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            code = row["input"]
+            prompt = row["prompt"]
+            if not code or prompt.count(code) != 1:
+                raise ValueError(f"Cannot uniquely locate submitted code in {name}")
+            strategy = row["strategy"]
+            counts[strategy] += 1
+            templates[strategy].add(prompt.replace(code, "<SUBMITTED-CODE>", 1))
+    expected = {"default": 192, "ensemble": 192, "example": 192, "smell": 192}
+    if counts != expected:
+        raise ValueError("Unexpected saved OCP prompt inventory")
+    return {
+        strategy: {"rows": count, "distinct_scaffolds": len(templates[strategy])}
+        for strategy, count in sorted(counts.items())
+    }
+
+
 def audit(path):
     with path.open("rb") as source:
         sha256 = file_digest(source, "sha256").hexdigest()
@@ -76,6 +103,7 @@ def audit(path):
         }
         if len(completion_counts) != 16 or set(completion_counts.values()) != {48}:
             raise ValueError("Unexpected OCP completion inventory")
+        prompt_inventory = inspect_prompts(archive)
     return {
         "archive_sha256": sha256,
         "ground_truth_counts": {
@@ -86,6 +114,7 @@ def audit(path):
             for key, rows in by_principle.items()
         },
         "ocp": inspect_ocp(by_principle["ocp"]),
+        "ocp_saved_prompts_by_strategy": prompt_inventory,
         "ocp_completion_file_count": len(completion_counts),
         "ocp_completion_rows_per_file": 48,
     }

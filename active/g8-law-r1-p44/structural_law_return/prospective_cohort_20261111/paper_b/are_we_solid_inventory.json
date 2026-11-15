@@ -51,6 +51,24 @@
       "Shape.get_type"
     ]
   },
+  "ocp_saved_prompts_by_strategy": {
+    "default": {
+      "rows": 192,
+      "distinct_scaffolds": 4
+    },
+    "ensemble": {
+      "rows": 192,
+      "distinct_scaffolds": 8
+    },
+    "example": {
+      "rows": 192,
+      "distinct_scaffolds": 8
+    },
+    "smell": {
+      "rows": 192,
+      "distinct_scaffolds": 4
+    }
+  },
   "ocp_completion_file_count": 16,
   "ocp_completion_rows_per_file": 48
 }
