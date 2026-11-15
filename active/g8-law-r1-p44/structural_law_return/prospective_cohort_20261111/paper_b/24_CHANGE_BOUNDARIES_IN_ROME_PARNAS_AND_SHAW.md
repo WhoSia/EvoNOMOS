@@ -1,0 +1,18 @@
+# Paper B — What the Early Sources Disclose About Change
+
+The evidence supports a chapter organized around three constraints on changing a system. The Rome sessions ask what a program gives up when made portable. Parnas studies which information a group should be able to use when implementing a module. Shaw examines what a language can express and verify at a module boundary. The issues can appear together in a system, but their evidence units differ.
+
+| Source and passage | What the passage establishes |
+|---|---|
+| [Rome conference report](https://drive.google.com/file/d/1YTsGiKHxJD1SwGzqvFiv9bx-p2LPD3xk/view), §§4.1.8 and 4.2, original pagination around pp. 34–35 | Buxton argues that users can want software transport that vendors have little commercial reason to provide. Warshall distinguishes the desired mathematical mapping from commitments about resource allocation. His tape-versus-random-access example motivates the cost of mapping through a common software layer when the machines differ substantially. These are attributed positions in an edited report. |
+| [Parnas, Information Distribution Aspects of Design Methodology](https://drive.google.com/file/d/1-h-UK1O39KP0dGuR12hzByQixmy3EUW6/view), §§2–3 and 6, pp. 339–342 | Connections include the assumptions modules make about one another. The wish to fix the outside specification early can conflict with easy change at the interface. Parnas proposes designing that interface and controlling who receives details expected to change. The documentation must still give each group enough information to do its work. |
+| [Shaw, Abstraction Techniques in Modern Programming Languages](https://drive.google.com/file/d/1drnV2s7WxhAsXAi0L_cgmXy2ZEjwt74U/view), pp. 10–11, 18, 24 and 26 | Shaw makes relevance relative to the reader or user. The p. 18 boxed history places support for abstract data types in a field including SIMULA class constructs, Parnas's decomposition criteria, and work on locality. The closing pages ask how specification methods can express nonfunctional properties such as timing, memory-access patterns, and synchronization. |
+
+## Two documented citation links
+
+1. The bibliography of Parnas's IFIP paper (p. 344) lists Dijkstra's “Structured Programming” in the Rome report. The recovered report contains the named contribution in §7.4, beginning on printed p. 84. This locates a documented source relationship. Parnas's citation does not establish that he adopted Warshall's account of portability or Buxton's account of vendor incentives.
+2. Shaw explicitly cites both NATO reports in her historical overview (p. 11 and references 2–3 on p. 26). The p. 18 box also explicitly cites Parnas's December 1972 CACM decomposition article and Dahl and Hoare's 1972 chapter. In this passage the cited Parnas publication is distinct from the IFIP article recovered in this intake, and the SIMULA reference is distinct from either 1968 document still sought.
+
+## Claim to test against the later OCP texts
+
+A design can stabilize one set of decisions while imposing costs at a different boundary. For a chapter on the making of OCP, compare each text by who can make a change, which details that actor may depend on, and which cost travels across the boundary. For an example, a stable plug-in interface may lower the cost of adding a provider while restricting optimization across the interface. A counterexample would be a common interface whose target-specific implementations preserve all relevant guarantees at negligible cost. Testing the claim means comparing actual mechanisms and explicit conditions in Meyer, Martin, and the early reception, with no inference of direct transmission from thematic similarity alone.
