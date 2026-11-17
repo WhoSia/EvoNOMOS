@@ -16,3 +16,14 @@ Run `python3 meyer_library_case.py` to generate [the JSON results](./meyer_libra
 Within this fixture, preserving existing source and preserving these legacy observations are logically independent given a successful extension. Both properties can be required as separate acceptance conditions. This distinction supplies an example for a short historical position paper about the meanings packed into OCP. The construction uses modern Python composition. The historical example concerns inheritance, separately compiled modules, and the design environment described by Meyer.
 
 In a later review experiment, evaluators can separately report the permitted edits, the caller observations required to remain stable, and whether a given extension passes. An instruction that says only “follow OCP” leaves the scoring criteria underdetermined for this example. Whether a model actually collapses the criteria remains an empirical question.
+
+## The same patch under two observed caller contracts
+
+The 17 November replay with Python 3.12.14 reproduced all four committed outcome rows. Hold the candidate `behavior_drift_without_edit` fixed. Its report output succeeds, and both baseline source files are unchanged. The new provider capitalizes the prefix of the book result. Under an obligation to preserve the journal and proceedings outputs, the candidate passes the behavior comparison. Add the old book output to the obligation and the same candidate fails it. These are the outcomes of projecting the replayed observations onto two declared subsets.
+
+| Declared observations to preserve | Candidate satisfies this obligation |
+|---|---|
+| Journal and proceedings output | Yes |
+| Book, journal, and proceedings output | No |
+
+Martin's drawing example holds a routine fixed and varies the requested change. This comparison holds both the patch and the new demand fixed and varies what an existing caller is entitled to keep. Together they identify two distinct pieces of information a maintenance decision requires. A reader can use this demonstration alongside the observation about row 37 of the archived benchmark. An explicit caller obligation for the removed getter would change what needs checking in that row, without changing the benchmark's own classification target. [Martin's example](./29_MARTIN_1996_STRATEGIC_CLOSURE.md) · [Archive audit](./18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md).
