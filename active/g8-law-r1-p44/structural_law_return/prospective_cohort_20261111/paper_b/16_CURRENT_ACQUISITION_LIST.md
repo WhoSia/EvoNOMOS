@@ -15,10 +15,14 @@ Updated 2026-11-17 KST. The 00 deposit was identified and filed as the Hegna bib
 
 [Step-by-step request guide and email draft](./23_SIMULA_ARCHIVE_REQUEST_GUIDE.md)
 
+For the narrower question of what the 1967 conference actually recommended, request the distinct three-page *Recommendations from the SIMULA 67 Common Base Conference* with legacy BIBSYS **041512464** (Hegna item [36]). The publicly accessible 11-page *Proposals* is a different document. [Primary-source comparison](./28_SIMULA_SEPARATE_COMPILATION_HISTORY.md)
+
 ## Acquired or found in 00
 
 | Material | Drive copy | Alternate download |
 |---|---|---|
+| Dahl & Nygaard (June 1967), *SIMULA 67 Common Base Definition*. | [11_SOURCES](https://drive.google.com/file/d/1pZVRxN-bPrNpMexpYN6jCQREI9qypT6A/view) | [UiO primary scan](https://www.ub.uio.no/fag/informatikk/faglig/dns/dokumenter/commonbasedefinition1967.pdf) |
+| Schwartz (1977), *Parallel Compilation — A Design and Its Application to SIMULA 67*. JPL 77-4. | [11_SOURCES](https://drive.google.com/file/d/1bRnAz0f39fwBICQBJmVOjZ02x0A48vrW/view) | [NASA NTRS PDF](https://ntrs.nasa.gov/api/citations/19770015903/downloads/19770015903.pdf) |
 | Hegna (2016), *Programmeringsspråket Simula*. Library bibliography. | [20_NON_PAPER_SOURCES](https://drive.google.com/file/d/1encqfhM5L_ymofQDuC9PPoFrruRgjVA_/view) | [UiO PDF](https://www.ub.uio.no/fag/naturvitenskap-teknologi/informatikk/faglig/bibliografier/simula.pdf) · [Intake verification](./25_SIMULA_BIBLIOGRAPHY_INTAKE.md) |
 | Parnas (1972), *Information Distribution Aspects of Design Methodology*. Presented at IFIP 1971. | [10_PAPERS](https://drive.google.com/file/d/1-h-UK1O39KP0dGuR12hzByQixmy3EUW6/view) | [UCSD PDF](https://cseweb.ucsd.edu/~wgg/CSE218/Parnas-IFIP71-information-distribution.PDF) |
 | Shaw (1984), *Abstraction Techniques in Modern Programming Languages*. IEEE Software journal scan. | [10_PAPERS](https://drive.google.com/file/d/1drnV2s7WxhAsXAi0L_cgmXy2ZEjwt74U/view) | [Crossref DOI record](https://api.crossref.org/works/10.1109/MS.1984.229453) |
