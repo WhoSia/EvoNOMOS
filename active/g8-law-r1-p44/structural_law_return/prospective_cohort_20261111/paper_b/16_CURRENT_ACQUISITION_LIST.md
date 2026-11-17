@@ -45,3 +45,15 @@ For the narrower question of what the 1967 conference actually recommended, requ
 [Torgersen's full 24-page deposited copy](https://drive.google.com/file/d/1DmU32IVID-snTRka5cTfnuKNrnuDRwhF/view) was verified and filed in 10_PAPERS. Its layout differs from the Springer printing. [Intake receipt and reading](./20_TORGERSEN_EXTENSIBILITY_CRITERIA.md)
 
 [Martin 2000](https://drive.google.com/file/d/1mMu7WCbrBOPZeNbhEnj54Nzfkz8qXkWC/view) and [Parnas 1979](https://drive.google.com/file/d/1XGzB9hq_6wk6aXeVojMo1IeKoKCg704j/view) are already in 10_PAPERS. The [public source chronology](./21_OCP_USENET_AND_EARLY_SOLID_RECEPTION.md) links the contemporary records and the copies consulted.
+
+## Relevant public full texts with no verified Drive copy
+
+An exact-name Drive search plus author/title keyword checks returned no matching file for these works on 2026-11-17 KST. An alternate filename or unchecked folder may still contain a copy. The public text suffices for the current draft.
+
+| Priority | Material | Read for | Public text and DOI |
+|---|---|---|---|
+| Paper B | Bräuer, Plösch, Saft & Körner (2018), *Measuring Object-Oriented Design Principles: The Results of Focus Group-Based Research* | §5.3.4 and Table 11 assess the uncovered aspects of measurable OCP practices. | [Author PDF](https://www.se.jku.at/wp-content/uploads/2018/03/preprint-jss-2018.pdf) · [10.1016/j.jss.2018.03.002](https://doi.org/10.1016/j.jss.2018.03.002) |
+| Paper B | Zhu et al. (2026), *Needle in the Repo: A Benchmark for Maintainability in AI-Generated Repository Edits* | §§2–3 give a comparison with explicit change tasks and functional and structural tests. | [arXiv full text](https://arxiv.org/html/2603.27745v1) · [10.48550/arXiv.2603.27745](https://doi.org/10.48550/arXiv.2603.27745) |
+| Functional value | Cabral et al. (2024), *Investigating the Impact of SOLID Design Principles on Machine Learning Code Understanding* | The controlled experiment tests the SOLID refactoring as a bundle and measures understanding. | [arXiv](https://arxiv.org/abs/2402.05337) · [10.1145/3644815.3644957](https://doi.org/10.1145/3644815.3644957) |
+
+Yanakiev, Lazar & Capiluppi (2025), [industrial SOLID refactoring experience report](https://doi.org/10.1016/j.jss.2024.112254), and [Liskov & Wing (1994)](https://doi.org/10.1145/197320.197383) have Drive copies in 10_PAPERS. [Yanakiev et al. copy](https://drive.google.com/file/d/1AgrvMjuayztaJ9yp6JtYbzeRyOOcGCG3/view) · [Liskov & Wing copy](https://drive.google.com/file/d/1g7ruRxKmmki7ts6fQ09MIOwuYPCeCVvl/view).
