@@ -36,6 +36,13 @@ The [library fixture](./meyer_library_case.py) reconstructs the technical-report
 
 ## Current manuscript
 
+- [v0.2 — Full working manuscript](./35_PAPER_B_DRAFT_V0_2.md). Abstract, historical sources, related measurement work, archived classification, fixed-patch witness and discussion.
+- [v0.1 — Case-led draft](./33_PAPER_B_DRAFT_V0_1.md). Earlier text preserved for comparison.
+- [Version comparison and Korean opening](./36_PAPER_B_REVISION_COMPARISON.md). Proposed choices for the next pass.
+- [Three source readings](./32_THREE_OCP_INSTRUMENTS_CLOSE_READING.md) · [Partial-disclosure replay](./34_MAINTENANCE_JUDGMENT_UNDER_PARTIAL_DISCLOSURE.md).
+
+## Earlier manuscript notes
+
 [Source readings and article opening](./19_BEFORE_OCP_BECAME_A_CODE_LABEL.md) · [Intake and fixity receipt](./17_SIMULA_IBIS_INTAKE_RECEIPT.md) · [Archived review audit](./18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md).
 
 ## OCP before 2009
