@@ -1,6 +1,6 @@
 # Paper B — Current Acquisition List
 
-Updated 2026-11-17 KST. The 00 deposit was identified and filed as the Hegna bibliography. Both exact 1968 records are now identified at the National Library of Norway (NB). Their full texts remain unverified in Drive.
+Updated 2026-11-17 KST after the second intake. Bräuer, Zhu and Cabral were deposited in 00 and filed in 10_PAPERS. The two exact 1968 records are identified at the National Library of Norway (NB). Their full texts remain unverified in Drive.
 
 **Already usable.** The Meyer 1988 title and copyright pages and printed pp. 22–25 were recovered from the [00 deposit](https://drive.google.com/file/d/1fnHSKajjYjIJqMEZKaTDHA9XVVdIKB-s/view). See [the passage audit](./13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md). The 1997 second edition, Martin 1996, Garmisch report, 1966 and 1981 SIMULA works, revised S-22, QOC, Perry–Wolf, and the Are We SOLID Yet paper are held. 
 
@@ -46,14 +46,16 @@ For the narrower question of what the 1967 conference actually recommended, requ
 
 [Martin 2000](https://drive.google.com/file/d/1mMu7WCbrBOPZeNbhEnj54Nzfkz8qXkWC/view) and [Parnas 1979](https://drive.google.com/file/d/1XGzB9hq_6wk6aXeVojMo1IeKoKCg704j/view) are already in 10_PAPERS. The [public source chronology](./21_OCP_USENET_AND_EARLY_SOLID_RECEPTION.md) links the contemporary records and the copies consulted.
 
-## Relevant public full texts with no verified Drive copy
+## Intake completed on 2026-11-17 KST
 
-An exact-name Drive search plus author/title keyword checks returned no matching file for these works on 2026-11-17 KST. An alternate filename or unchecked folder may still contain a copy. The public text suffices for the current draft.
+All three PDFs are in [10_PAPERS — Canonical Literature Commons](https://drive.google.com/drive/folders/1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP).
 
-| Priority | Material | Read for | Public text and DOI |
-|---|---|---|---|
-| Paper B | Bräuer, Plösch, Saft & Körner (2018), *Measuring Object-Oriented Design Principles: The Results of Focus Group-Based Research* | §5.3.4 and Table 11 assess the uncovered aspects of measurable OCP practices. | [Author PDF](https://www.se.jku.at/wp-content/uploads/2018/03/preprint-jss-2018.pdf) · [10.1016/j.jss.2018.03.002](https://doi.org/10.1016/j.jss.2018.03.002) |
-| Paper B | Zhu et al. (2026), *Needle in the Repo: A Benchmark for Maintainability in AI-Generated Repository Edits* | §§2–3 give a comparison with explicit change tasks and functional and structural tests. | [arXiv full text](https://arxiv.org/html/2603.27745v1) · [10.48550/arXiv.2603.27745](https://doi.org/10.48550/arXiv.2603.27745) |
-| Functional value | Cabral et al. (2024), *Investigating the Impact of SOLID Design Principles on Machine Learning Code Understanding* | The controlled experiment tests the SOLID refactoring as a bundle and measures understanding. | [arXiv](https://arxiv.org/abs/2402.05337) · [10.1145/3644815.3644957](https://doi.org/10.1145/3644815.3644957) |
+| Previous name | Original deposited edition and filed copy | Size | Citation |
+|---|---|---:|---|
+| `preprint-jss-2018.pdf` | [Bräuer et al. (2018) — Measuring Object-Oriented Design Principles - The Results of Focus Group-Based Research (Author Preprint).pdf](https://drive.google.com/file/d/1ez5xnadnq_x3ttLln3cvU-G_CNqhxrXS/view) | 3,292,706 bytes | [Journal article DOI](https://doi.org/10.1016/j.jss.2018.03.002) |
+| `2603.27745v1.pdf` | [Zhu et al. (2026) — Needle in the Repo - A Benchmark for Maintainability in AI-Generated Repository Edits — arXiv 2603.27745v1.pdf](https://drive.google.com/file/d/1eJpWy7dYi9COw8dOb3NnVBF_F942Y8OH/view) | 4,051,067 bytes | [arXiv v1](https://arxiv.org/abs/2603.27745v1) · [DOI](https://doi.org/10.48550/arXiv.2603.27745) |
+| `2402.05337v1.pdf` | [Cabral et al. (2024) — Investigating the Impact of SOLID Design Principles on Machine Learning Code Understanding — arXiv 2402.05337v1.pdf](https://drive.google.com/file/d/1Jej4TkYvBj-5IXZ_FUiO62aihMK5MsRf/view) | 615,667 bytes | [arXiv v1](https://arxiv.org/abs/2402.05337v1) · [CAIN DOI](https://doi.org/10.1145/3644815.3644957) |
 
-Yanakiev, Lazar & Capiluppi (2025), [industrial SOLID refactoring experience report](https://doi.org/10.1016/j.jss.2024.112254), and [Liskov & Wing (1994)](https://doi.org/10.1145/197320.197383) have Drive copies in 10_PAPERS. [Yanakiev et al. copy](https://drive.google.com/file/d/1AgrvMjuayztaJ9yp6JtYbzeRyOOcGCG3/view) · [Liskov & Wing copy](https://drive.google.com/file/d/1g7ruRxKmmki7ts6fQ09MIOwuYPCeCVvl/view).
+The Bräuer deposit is the journal author preprint. The Cabral deposit identifies itself as the authors' version of the CAIN paper. Zhu is filed as a preprint. The operation updated names and parent metadata. All three original Drive IDs were found under the destination, and there were no matches for them in intake. Reported sizes and extracted text matched before and after. The verification concerns identity, size and the extracted text.
+
+Yanakiev, Lazar & Capiluppi (2025), [industrial SOLID refactoring experience report](https://doi.org/10.1016/j.jss.2024.112254), and [Liskov & Wing (1994)](https://doi.org/10.1145/197320.197383) also have Drive copies in 10_PAPERS. [Yanakiev et al. copy](https://drive.google.com/file/d/1AgrvMjuayztaJ9yp6JtYbzeRyOOcGCG3/view) · [Liskov & Wing copy](https://drive.google.com/file/d/1g7ruRxKmmki7ts6fQ09MIOwuYPCeCVvl/view).
