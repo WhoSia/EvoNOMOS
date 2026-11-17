@@ -4,7 +4,7 @@
 
 Working title: *Before OCP Became a Code Label: From Extensible Programs to Automated Design Judgment*.
 
-How does the evidence needed for a judgment of extensibility change when the unit of assessment moves from an envisioned modification and a client boundary to a labeled code snippet? The narrow historical chain begins with Meyer's definition and Martin's explicit paraphrase. Earlier language-design and design-rationale sources make the comparison intelligible. The modern archive shows what a particular review task kept in view.
+What does an OCP label license a maintainer to conclude about a proposed change? We trace the move from judgments that specify a modification and a client boundary to one review task that classifies code. The documented citation edge runs from Meyer's definition to Martin's explicit paraphrase. Earlier language-design sources show the work extensibility was meant to enable. The modern archive establishes which premises were separately stated in the inspected task materials.
 
 ## Readings
 
@@ -21,13 +21,19 @@ The SIMULA paper explains why a machine's state and activity belonged together f
 
 ## Early reception and textbook development
 
-[The 1995 Usenet record and its successors](./21_OCP_USENET_AND_EARLY_SOLID_RECEPTION.md) reveal a disagreement within the period of formation. In March Martin included OCP among eleven proposed principles. In June Kyle Brown objected that a Smalltalk developer needs source access to repair or improve a vendor's code. Martin replied that closure concerns whether an extension requires an edit, and acknowledged the limits of anticipation. The 1996 article's stringent formulation and strategic qualification can now be read alongside that earlier clarification. The 2003 chapter makes the premise concrete by changing the requirement from a further shape to ordering already supported shapes. [The 2004 expression-problem paper](./20_TORGERSEN_EXTENSIBILITY_CRITERIA.md) shows that preserving source, avoiding recompilation, and reusing already-created objects had already been specified as different properties in another literature.
+[The 1995 Usenet record and its successors](./21_OCP_USENET_AND_EARLY_SOLID_RECEPTION.md) reveal a disagreement within the period of formation. In March Martin included OCP among eleven proposed principles. In June Kyle Brown objected that a Smalltalk developer needs source access to repair or improve a vendor's code. Martin replied that closure concerns whether an extension requires an edit, and acknowledged the limits of anticipation. The 1996 article's stringent formulation and strategic qualification can now be read alongside that earlier clarification. The 1996 article already makes the premise concrete with a change from adding a shape to ordering the supported shapes (pp. 5–9). The 2003 textbook returns to the example. [The 2004 expression-problem paper](./20_TORGERSEN_EXTENSIBILITY_CRITERIA.md) shows that preserving source, avoiding recompilation, and reusing already-created objects had already been specified as different properties in another literature.
 
 Dated public records place circulation of the SOLID mnemonic by 2007. The 2009 debate is a later reception event. Martin's account of a Feathers email around 2004 comes from his retrospective testimony. The first public use remains open. This chronology replaces any implication that the 2009 exchange introduced the label.
 
 ## Article opening
 
 The open–closed principle names a tension between extending a program and preserving what others can rely on. Bertrand Meyer's library example locates that tension in a concrete task: adding technical reports to a program whose clients already use a stable description. Robert Martin's reformulation signals a change of emphasis by foregrounding modification, while keeping a strategic decision about the changes against which closure is sought. An automated review benchmark supplies a new setting for the phrase. A judge receives code and classifies the violation. What must the judge know about the next change and the existing clients for the classification to warrant a maintenance decision? We trace how those premises are expressed across the sources and use a small executable case to show why they matter.
+
+## Prior work and the historical claim
+
+[Bräuer et al. 2018, §5.3.4 and Table 11](https://doi.org/10.1016/j.jss.2018.03.002) asked focus-group participants how fully measurable design practices captured the principles. OCP had the highest mean assessment of uncovered aspects among the ten principles. [Zhu et al. 2026, §§2–3](https://arxiv.org/html/2603.27745v1) authored concrete repository change scenarios and paired functional tests with structure checks. Its first case keeps specified call sites fixed across several extension steps. These studies show two other ways to give an assessment context or to check what a measurement omits.
+
+The narrower argument is about the use of a label as evidence for a decision. If a maintainer is asked to accept or reject a patch on OCP grounds, they need to know what the patch must add, which old observations it must preserve and which existing boundary the proposal promises to leave untouched. [The new executable comparison](./31_OCP_FIXED_PATCH_DEMAND_AND_CONTRACT.md) holds code and patch fixed and changes the demand and caller contract independently. The maintenance judgment changes. The historical comparison asks how those premises were expressed across texts and in one later review instrument. The comparison alone establishes neither an influence sequence among these instruments nor a frequency of omissions in modern practice.
 
 ## Scope and tests of the claim
 

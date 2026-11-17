@@ -34,3 +34,13 @@ The two lines are proposals for author review. Preserve reactions and their reas
 - The first paragraph can now give the reader two actors to follow: the module that introduces the new type and another module that has been using the old description. After author review, the Martin paragraph can hold one drawing routine fixed across two demands. The case gives the distinction a concrete reason to matter before the benchmark appears. [1996 comparison](./29_MARTIN_1996_STRATEGIC_CLOSURE.md).
 
 Author question for the next revision: should line 3 name closure immediately, or should the paragraph first specify one thing a client needs to keep using?
+
+## Round 3 — carry the client promise into the historical question
+
+Keep Round 2 as a separate draft. A short unit for author review after its three opening lines:
+
+**4.** 기술보고서를 처리할 수 있게 바꾸는 동안, 기존 호출자가 의존해 온 동작도 지켜야 한다면 어떤 모듈을 어디까지 손댈 수 있을까?
+
+**5.** 오늘날 코드에 ‘개방–폐쇄 원칙 위반’이라는 라벨을 붙일 때, 그 라벨로 어떤 변경을 해도 되는지까지 판단할 수 있을까?
+
+Line 4 presents the question raised by putting Meyer's report demand beside client reliance. It is our question about the example. Line 5 makes the evidentiary use of the label the subject of the paper. Preserve the rendering-and-erratum comparison for a later paragraph, where it can give an answer that the code reader can check. [1996 strategic closure](./29_MARTIN_1996_STRATEGIC_CLOSURE.md) · [Fixed-patch comparison](./31_OCP_FIXED_PATCH_DEMAND_AND_CONTRACT.md).
