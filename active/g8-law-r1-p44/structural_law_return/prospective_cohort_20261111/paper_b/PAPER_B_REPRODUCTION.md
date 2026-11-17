@@ -1,6 +1,6 @@
 # Paper B reproducibility notes
 
-Run these commands from the Paper B directory with Python 3.10 or later. The three shape fixtures and two library fixtures execute local examples. The two archive audits read JSON and JSONL without executing archive sources.
+Run these commands from the Paper B directory with Python 3.11 or later (`hashlib.file_digest` is used by the archive inventory). The three shape fixtures and two library fixtures execute local examples. The two archive audits read JSON and JSONL without executing archive sources.
 
 ```sh
 python3 audit_are_we_solid.py /path/to/AreWeSOLID.zip
