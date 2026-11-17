@@ -1,6 +1,6 @@
 # Paper B — Current Acquisition List
 
-Drive lookup date: 2026-11-15 KST. A direct listing of 00_INTAKE and targeted exact-title searches were used. Two priority targets remain without a verified Drive copy.
+Updated 2026-11-17 KST. The 00 deposit was identified and filed as the Hegna bibliography. Both exact 1968 records are now identified at the National Library of Norway (NB). Their full texts remain unverified in Drive.
 
 **Already usable.** The Meyer 1988 title and copyright pages and printed pp. 22–25 were recovered from the [00 deposit](https://drive.google.com/file/d/1fnHSKajjYjIJqMEZKaTDHA9XVVdIKB-s/view). See [the passage audit](./13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md). The 1997 second edition, Martin 1996, Garmisch report, 1966 and 1981 SIMULA works, revised S-22, QOC, Perry–Wolf, and the Are We SOLID Yet paper are held. 
 
@@ -10,8 +10,8 @@ Drive lookup date: 2026-11-15 KST. A direct listing of 00_INTAKE and targeted ex
 
 | Material | Current evidence | How to obtain |
 |---|---|---|
-| Dahl, Myhrhaug & Nygaard (1968), *SIMULA 67 Common Base Language*, NCC Publication S-2 | Historical physical holding recorded by UiO. Item [27] lists 141 numbered pages plus four leaves and the INF holding code. The 1970 revised S-22 is held. | Open the [bibliography PDF](https://www.ub.uio.no/fag/naturvitenskap-teknologi/informatikk/faglig/bibliografier/simula.pdf), search `141 s.`, and request the 1968 **S-2** at the [Informatics Library](https://www.ub.uio.no/english/about/contact-us/). Ask for a current shelfmark and scan terms. |
-| Dahl, Myhrhaug & Nygaard (1968), *Some Uses of the External Class Concept in SIMULA 67*, NR Doc. | Garmisch, October 1968. The held report references the handout on printed p. 157. UiO's bibliography lists it at entry 33. Current physical holdings and online full text remain unverified. | Open the [Dahl bibliography](https://www.mn.uio.no/ifi/english/about/ole-johan-dahl/bibliography/), search the title, and ask [UiO Informatics Library](https://www.ub.uio.no/english/about/contact-us/) about the separate handout. If needed, ask [Norwegian Computing Center](https://nr.no/en/about/) for archival custody or referral. |
+| Dahl, Myhrhaug & Nygaard (1968), *SIMULA 67 Common Base Language*, NCC Publication S-2 | NB holds a 2017 digital reproduction explicitly dated 1968 (141 numbered pages and four leaves, 157 digital page images). The catalogue tags it for Norwegian IP access. | Open the [1968 scan reader](https://urn.nb.no/URN:NBN:no-nb_digibok_2017102708110). From abroad follow the [Bokhylla application](https://www.nb.no/en/access-to-bokhylla-from-abroad/) for reading access. Ask NB or UiO separately about a research copy. [Oria record 999612389924702202](https://www.oria.no/?vid=NB&search=999612389924702202). |
+| Dahl, Myhrhaug & Nygaard (1968), *Some Uses of the External Class Concept in SIMULA 67* | NB national bibliography **norbok/6801101nno** identifies a six-leaf stencil and supplies NCC series number **[S 10]**. Its public metadata contains zero pages and marks the object as non-digital. | Open the [exact catalogue item](https://www.nb.no/items/7d94a1dc051ddb5538c01e344f878f0c) or [metadata](https://api.nb.no/catalog/v1/items/7d94a1dc051ddb5538c01e344f878f0c). Ask NB reading-room staff at **veiledningen@nb.no** about a digital copy of all six leaves, including the first leaf, supporting markings, price and delivery. [Contact](https://www.nb.no/en/reading-rooms/). |
 
 [Step-by-step request guide and email draft](./23_SIMULA_ARCHIVE_REQUEST_GUIDE.md)
 
@@ -19,6 +19,7 @@ Drive lookup date: 2026-11-15 KST. A direct listing of 00_INTAKE and targeted ex
 
 | Material | Drive copy | Alternate download |
 |---|---|---|
+| Hegna (2016), *Programmeringsspråket Simula*. Library bibliography. | [20_NON_PAPER_SOURCES](https://drive.google.com/file/d/1encqfhM5L_ymofQDuC9PPoFrruRgjVA_/view) | [UiO PDF](https://www.ub.uio.no/fag/naturvitenskap-teknologi/informatikk/faglig/bibliografier/simula.pdf) · [Intake verification](./25_SIMULA_BIBLIOGRAPHY_INTAKE.md) |
 | Parnas (1972), *Information Distribution Aspects of Design Methodology*. Presented at IFIP 1971. | [10_PAPERS](https://drive.google.com/file/d/1-h-UK1O39KP0dGuR12hzByQixmy3EUW6/view) | [UCSD PDF](https://cseweb.ucsd.edu/~wgg/CSE218/Parnas-IFIP71-information-distribution.PDF) |
 | Shaw (1984), *Abstraction Techniques in Modern Programming Languages*. IEEE Software journal scan. | [10_PAPERS](https://drive.google.com/file/d/1drnV2s7WxhAsXAi0L_cgmXy2ZEjwt74U/view) | [Crossref DOI record](https://api.crossref.org/works/10.1109/MS.1984.229453) |
 | Buxton & Randell (eds., Apr. 1970), *Software Engineering Techniques*. Rome conference, October 1969. | [20_NON_PAPER_SOURCES](https://drive.google.com/file/d/1YTsGiKHxJD1SwGzqvFiv9bx-p2LPD3xk/view) | At the [Scrum Manager file page](https://www.scrummanager.com/bok/index.php?title=Archivo:Nato1969.PDF), click **Nato1969.PDF**, then the PDF viewer's download icon. [Direct PDF](https://www.scrummanager.com/bok/images/8/83/Nato1969.PDF) · [CiteSeerX text copy](https://citeseerx.ist.psu.edu/document?doi=f62b74c8a07c608b2b0207e1276ba41966f7b6a9&repid=rep1&type=pdf) |
