@@ -20,3 +20,17 @@ The existing English [opening](./19_BEFORE_OCP_BECAME_A_CODE_LABEL.md) begins wi
 - The [Writing Loop source audit](https://app.notion.com/p/3ffef561cf92813a89dbeccc74566e87) records the originating RITHM/C3X discussion and the EvoNOMOS P15 example of a well-developed side paper drifting from its initial question. The present opening remains attached to this paper's problem of determining closure for a particular change. The [SIMULA source work](./26_SIMULA_EXTERNAL_CLASS_WITNESSES.md) supports a later comparison.
 
 The two lines are proposals for author review. Preserve reactions and their reasons before extending the paragraph.
+
+## Round 2 — refine the condition and introduce closure
+
+**1.** 1988년, Bertrand Meyer는 도서관 프로그램에 기술보고서라는 새 자료 유형을 추가하는 예를 들었다.
+
+**2.** 기술보고서에 별도 처리가 필요하면, 자료 유형을 코드에 하나씩 열거해 둔 모듈에도 새 분기를 추가해야 한다.
+
+**3.** Meyer는 다른 모듈이 안정된 명세를 바탕으로 사용할 수 있는 모듈을 ‘닫혀 있다’고 했다.
+
+- Line 2 specifies a decision in the displayed design. A catch-all that already satisfies the new requirement, or a dispatcher that looks up registered cases, shows why simply saying that a module distinguishes types was too broad. Whether any existing caller actually receives the new variant is tied to that caller's task.
+- Line 3 states Meyer's definition on first-edition p. 23. The distinction between the printed definition and our test of observable behavior belongs in the later discussion of the reconstruction. [Primary passage reading](./13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md).
+- The first paragraph can now give the reader two actors to follow: the module that introduces the new type and another module that has been using the old description. After author review, the Martin paragraph can hold one drawing routine fixed across two demands. The case gives the distinction a concrete reason to matter before the benchmark appears. [1996 comparison](./29_MARTIN_1996_STRATEGIC_CLOSURE.md).
+
+Author question for the next revision: should line 3 name closure immediately, or should the paragraph first specify one thing a client needs to keep using?
