@@ -55,7 +55,7 @@ def load_fixed_source(path, source):
     return namespace
 
 
-def evaluate(sources):
+def observe_sources(sources, requests):
     catalog = load_fixed_source("catalog.py", sources["catalog.py"])
     client = load_fixed_source("client.py", sources["client.py"])
     provider = catalog["describe"]
@@ -69,8 +69,12 @@ def evaluate(sources):
         except ValueError as error:
             return ("ValueError", str(error))
 
-    legacy = {key: observe(value) for key, value in LEGACY_REQUESTS.items()}
-    return legacy, observe(NEW_REQUEST)
+    return {key: observe(value) for key, value in requests.items()}
+
+
+def evaluate(sources):
+    observed = observe_sources(sources, LEGACY_REQUESTS | {"technical_report": NEW_REQUEST})
+    return {key: observed[key] for key in LEGACY_REQUESTS}, observed["technical_report"]
 
 
 def check_equal(actual, expected, description):
