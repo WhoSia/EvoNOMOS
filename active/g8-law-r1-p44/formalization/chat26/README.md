@@ -47,3 +47,13 @@ Prior Python 30-test admission only confirms our **metadata gate logic**, not th
 
 
 19. `15_F37_ADAPTER_ORIGINAL_GO_NATIVE_CI_VERDICT.md` — exact native log receipt, eight HTTP adapter cases, method-set and typed-nil negative controls, classical tie; no source-arm future repair. 
+
+## Chat26 R3 — Paper B v17 and P44 source-authority bridge
+
+- [Paper B v17 bilingual complete manuscript](../structural_law_return/prospective_cohort_20261111/paper_b/PAPER_B_BILINGUAL_INTEGRATED_17_20261121.md) separately preserves v16; direct Widyasari/Papotti/Jin–Chen/Ling primary-source rivalry and minimal condition-evidence witnesses integrated in both language versions.
+- [Exact manuscript audit](../structural_law_return/prospective_cohort_20261111/paper_b/audit_paper_b_v17_structure.py) and [independent negative controls](../structural_law_return/prospective_cohort_20261111/paper_b/test_audit_paper_b_v17_structure.py), [GitHub Actions #44912965910](https://github.com/WhoSia/EvoNOMOS/actions/runs/44912965910), exact tested SHA `b17c14f1ff6324693d33677023f9c56981aca183`, six unittest methods and bilingual source audit PASS.
+- [Adversarial paper referee court](../structural_law_return/prospective_cohort_20261111/paper_b/37_PAPER_B_V17_ADVERSARIAL_REVIEW_AND_CLAIM_EVIDENCE_COURT.md), [prospective real review protocol](../structural_law_return/prospective_cohort_20261111/paper_b/38_PAPER_B_PROSPECTIVE_REAL_REVIEW_STUDY_PROTOCOL_OPEN.md) and [v17 CI/editorial evidence receipt](../structural_law_return/prospective_cohort_20261111/paper_b/39_PAPER_B_V17_CI_AND_EDITORIAL_VERDICT.md).
+- [P44 source authority versus observation bridge](16_PAPER_B_SOURCE_AUTHORITY_TO_P44_REPAIR_GATE.md) distinguishes observed Go behavior, asserted requirements and legitimate actor edit authority. No authenticated external F38 source-repair cost or new causal structural law.
+- [Notion v17 complete body](https://app.notion.com/p/41fef561cf9281da9ed2c282695b2c63) under [Paper B workspace](https://app.notion.com/p/41bef561cf9281fa91bcf17a2a45fd8b) with past editions preserved.
+
+**P44 F38 remains OPEN, LAW-R2 HOLD.** The verified manuscript syntax/tests are not proof of empirical prevalence or successful external peer review.
