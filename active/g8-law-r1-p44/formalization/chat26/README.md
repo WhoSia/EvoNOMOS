@@ -41,7 +41,9 @@ The next substantive original-source experiment is F38. No eligible external/bli
 15. `13_F37_HANDLER_CALLBACK_EXTENTIONAL_EQUIVALENCE_AND_LIMITS.md` — conditional HandlerFunc forwarding equivalence and counterexample boundaries.
 16. `f38_candidate_gate.py` + `test_f38_candidate_gate.py` — fail-closed candidate status checker, with correction that Chi #995 is app-owned NONBLIND exploratory; [CI #44911870723](https://github.com/WhoSia/EvoNOMOS/actions/runs/44911870723) **30/30 PASS**.
 17. `14_F37_ADAPTER_EQUIVALENCE_GO_PREEXECUTION_SEAL.md` — pre-code predictions for native Go adapter roundtrips, custom-interface method sets, and typed nil values.
-18. `../f34_original_router_capability/chat26_adapter_semantics_test.go` and `.github/workflows/chat26-f37-adapter-court.yml` — supplementary pinned Go source tests (read-only workflow). CI verdict requires its exact tested SHA and raw logs; this is **NOT F38 task execution**.
+18. `../f34_original_router_capability/chat26_adapter_semantics_test.go` and `.github/workflows/chat26-f37-adapter-court.yml` — supplementary pinned Go source tests (read-only workflow). [native CI #44912007022](https://github.com/WhoSia/EvoNOMOS/actions/runs/44912007022) **SUCCESS** at SHA `ae9b6171515a564a8e7d6bfd29108e6888dd981d`, raw job `136869602878` inspected: Go 1.23.2, dependency checksums, vet, full tests, race PASS. **NOT F38 task execution**.
 
 Prior Python 30-test admission only confirms our **metadata gate logic**, not that an external task is truly blind, that upstream rights were granted, or that source repairs were executed. One intermediate Python workflow failed while classification and tests momentarily disagreed; the failure is preserved, corrected, and not counted as a scientific negative result.
 
+
+19. `15_F37_ADAPTER_ORIGINAL_GO_NATIVE_CI_VERDICT.md` — exact native log receipt, eight HTTP adapter cases, method-set and typed-nil negative controls, classical tie; no source-arm future repair. 
