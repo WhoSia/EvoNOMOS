@@ -1,0 +1,31 @@
+name: EvoNOMOS Go equal-policy two-arm classical rival
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/f34_original_router_capability/chat26_identical_policy_wrapper_rival_test.go'
+      - '.github/workflows/chat26-equal-policy-rival.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  go-equal-policy-rival:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/f34_original_router_capability
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - run: go mod verify
+      - run: go vet -mod=readonly ./...
+      - run: go test -mod=readonly -run TestChat26SameDemandAndEqualInformationWrapperRival -count=1 -v .
+      - run: go test -mod=readonly -count=1 ./...
+      - run: go test -mod=readonly -race -count=1 ./...
