@@ -1,0 +1,50 @@
+name: EvoNOMOS Paper B v19 multi-role and finite-world court
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/PAPER_B_BILINGUAL_INTEGRATED_19_20261122.md'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/paper_b_three_obligation_sensitivity.py'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/test_paper_b_three_obligation_sensitivity.py'
+      - '.github/workflows/paper-b-v19-multirole.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-world-and-manuscript:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Enumerate exact bounded worlds
+        run: |
+          python -m py_compile paper_b_three_obligation_sensitivity.py test_paper_b_three_obligation_sensitivity.py
+          python paper_b_three_obligation_sensitivity.py
+          python -m unittest -v test_paper_b_three_obligation_sensitivity.py
+      - name: Check bilingual manuscript boundaries and distinct units
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('PAPER_B_BILINGUAL_INTEGRATED_19_20261122.md')
+          s=p.read_text(encoding='utf8')
+          assert s.startswith('# Paper B — Bilingual Integrated Manuscript 19')
+          assert s.count('## 한국어 원고')==1
+          assert s.count('## English manuscript')==1
+          assert sum(line.startswith('### ') and len(line)>5 and line[4:5] in '1234567' for line in s.splitlines())==14
+          assert '계약 조건을 하나 더 추가했을 때의 민감도' in s
+          assert 'Sensitivity to an additional binding obligation' in s
+          assert '분류기에 어떤 정보를 주는지' in s
+          assert 'A source-only OCP classifier' in s
+          assert '스물일곱' in s and 'twenty-seven' in s
+          assert '768' in s and '24' in s and '48' in s
+          print('v19 bilingual 7+7 and conditionality audit: PASS')
+          PY
