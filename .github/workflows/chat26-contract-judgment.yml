@@ -22,8 +22,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run Python regression tests
+      - name: Run full bounded Python regression suite
         working-directory: active/g8-law-r1-p44/formalization/chat26
         run: |
-          python -m py_compile contract_judgment.py test_contract_judgment.py
-          python -m unittest -v test_contract_judgment.py
+          python -m py_compile contract_judgment.py decision_certificates.py test_contract_judgment.py test_decision_certificates.py
+          python -m unittest -v test_contract_judgment.py test_decision_certificates.py
