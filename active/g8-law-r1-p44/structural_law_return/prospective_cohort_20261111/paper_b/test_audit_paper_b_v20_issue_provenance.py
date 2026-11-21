@@ -19,7 +19,7 @@ class Version20Provenance(unittest.TestCase):
     def test_fake_f38_success_rejected(self):
         self.assertIn("unsupported_f38_success",check(self.new+"\nprospective F38 success",self.old))
     def test_deleted_english_section_fails(self):
-        self.assertIn("section_order",check(self.new.replace("### 5. When the same patch warrants different decisions","### 5. section removed"),self.old))
+        self.assertIn("section_order",check(self.new.replace("### 5. When the same patch warrants different decisions","Section omitted"),self.old))
     def test_wrong_version_fails(self):
         self.assertIn("version",check(self.new.replace("Manuscript 20","Manuscript 19",1),self.old))
 
