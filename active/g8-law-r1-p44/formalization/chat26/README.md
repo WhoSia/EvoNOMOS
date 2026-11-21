@@ -57,3 +57,13 @@ Prior Python 30-test admission only confirms our **metadata gate logic**, not th
 - [Notion v17 complete body](https://app.notion.com/p/41fef561cf9281da9ed2c282695b2c63) under [Paper B workspace](https://app.notion.com/p/41bef561cf9281fa91bcf17a2a45fd8b) with past editions preserved.
 
 **P44 F38 remains OPEN, LAW-R2 HOLD.** The verified manuscript syntax/tests are not proof of empirical prevalence or successful external peer review.
+
+## Chat26 R4 — Paper B v18 classification-to-action rewrite
+
+- v17 is preserved and [v18 complete Korean/English manuscript](../structural_law_return/prospective_cohort_20261111/paper_b/PAPER_B_BILINGUAL_INTEGRATED_18_20261121.md) is separately versioned.
+- [Pre-edit seal](../structural_law_return/prospective_cohort_20261111/paper_b/40_PAPER_B_V18_CLASSIFICATION_TO_ACTION_PREEDIT_SEAL.md) fixes expected revisions: source/contract/call-path authority bridge; bounded Boolean evidence certificate; §6 focus without P44 Go digression.
+- [Native read-only CI #44914142434](https://github.com/WhoSia/EvoNOMOS/actions/runs/44914142434) verified 7 test cases on source SHA `f1be20560a8b48f0f5384243e0d07f8dca45ce22`; initial CI #44914099685 failed on audit-string assumptions, preserved and corrected.
+- [Detailed source/CI/inference verdict](../structural_law_return/prospective_cohort_20261111/paper_b/41_PAPER_B_V18_SOURCE_AND_CI_VERDICT.md). [Notion v18](https://app.notion.com/p/41fef561cf928115a014dcd55136fc31) created independently and full bilingual content read back. Original v17/v16 remain preserved.
+- Separate evidence bridge remains [16_PAPER_B_SOURCE_AUTHORITY_TO_P44_REPAIR_GATE.md](16_PAPER_B_SOURCE_AUTHORITY_TO_P44_REPAIR_GATE.md); P44 F38 independent real task OPEN; G1–G7 and LAW-R2 HOLD.
+
+**Editorial ceiling:** The study now states more precisely why a correct OCP classification is not by itself an authorized particular-patch rejection. It is not evidence of industry prevalence, novel Boolean inference, actual human review improvements or superiority over equal-information requirements engineering.
