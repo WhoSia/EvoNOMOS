@@ -21,9 +21,10 @@ class ProspectiveCandidateGateTests(unittest.TestCase):
     def test_three_fetched_issues_are_not_f38_results(self):
         self.assertEqual(classify(HISTORICAL_TRIAGE["chi-995"]),
                          Gate.NONBLIND_EXPLORATORY)
-        for key in ("chi-1035", "chi-1263"):
-            self.assertEqual(classify(HISTORICAL_TRIAGE[key]),
-                             Gate.SHARED_UPSTREAM_OUT_OF_SCOPE)
+        self.assertEqual(classify(HISTORICAL_TRIAGE["chi-1035"]),
+                         Gate.NONBLIND_EXPLORATORY)
+        self.assertEqual(classify(HISTORICAL_TRIAGE["chi-1263"]),
+                         Gate.SHARED_UPSTREAM_OUT_OF_SCOPE)
         self.assertTrue(all(not c.original_source_test_executed
                             for c in HISTORICAL_TRIAGE.values()))
 
@@ -60,6 +61,12 @@ class ProspectiveCandidateGateTests(unittest.TestCase):
                          original_source_test_executed=True,
                          source_verdict_independently_checked=True)),
                          Gate.EXECUTED_EVIDENCE_OPEN)
+
+    def test_unverified_executed_case_does_not_promote(self):
+        self.assertEqual(classify(replace(self.ready,
+                         original_source_test_executed=True,
+                         source_verdict_independently_checked=False)),
+                         Gate.EXECUTED_UNVERIFIED)
 
     def test_verified_flag_cannot_replace_execution(self):
         self.assertEqual(classify(replace(self.ready,
