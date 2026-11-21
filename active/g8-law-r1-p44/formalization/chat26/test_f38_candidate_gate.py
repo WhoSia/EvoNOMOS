@@ -19,9 +19,13 @@ class ProspectiveCandidateGateTests(unittest.TestCase):
         )
 
     def test_three_fetched_issues_are_not_f38_results(self):
-        for c in HISTORICAL_TRIAGE.values():
-            self.assertEqual(classify(c), Gate.SHARED_UPSTREAM_OUT_OF_SCOPE)
-            self.assertFalse(c.original_source_test_executed)
+        self.assertEqual(classify(HISTORICAL_TRIAGE["chi-995"]),
+                         Gate.NONBLIND_EXPLORATORY)
+        for key in ("chi-1035", "chi-1263"):
+            self.assertEqual(classify(HISTORICAL_TRIAGE[key]),
+                             Gate.SHARED_UPSTREAM_OUT_OF_SCOPE)
+        self.assertTrue(all(not c.original_source_test_executed
+                            for c in HISTORICAL_TRIAGE.values()))
 
     def test_invalid_issue_url_fails_closed(self):
         self.assertEqual(classify(replace(self.ready, external_url="file:///tmp/test")),
