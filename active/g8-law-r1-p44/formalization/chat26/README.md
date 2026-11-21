@@ -33,3 +33,15 @@ Do **not** report 48 unique codes × 16 retained runs as 768 independent patch s
 The next substantive original-source experiment is F38. No eligible external/blinded matched-architecture task has been selected and executed; maintain a no-claim HOLD until a pre-registered task, comparable rights, old-client oracle, independent source patches, classical rival and measured cost are available.
 
 [Parent P44 Notion RUNNING](https://app.notion.com/p/40eef561cf928155b2cfce0166ead80f).
+
+## Continuation R2 — minimal certificates and F37 source adapter court
+
+13. `12_MINIMAL_DECISION_CERTIFICATES_AND_QUERY_COST.md` — prove minimal ACCEPT/REJECT evidence witnesses and exact two-question costs.
+14. `decision_certificates.py` + `test_decision_certificates.py` — enumerate witness sets and question partitions; [CI #44911592364](https://github.com/WhoSia/EvoNOMOS/actions/runs/44911592364) **20/20 PASS** with job logs.
+15. `13_F37_HANDLER_CALLBACK_EXTENTIONAL_EQUIVALENCE_AND_LIMITS.md` — conditional HandlerFunc forwarding equivalence and counterexample boundaries.
+16. `f38_candidate_gate.py` + `test_f38_candidate_gate.py` — fail-closed candidate status checker, with correction that Chi #995 is app-owned NONBLIND exploratory; [CI #44911870723](https://github.com/WhoSia/EvoNOMOS/actions/runs/44911870723) **30/30 PASS**.
+17. `14_F37_ADAPTER_EQUIVALENCE_GO_PREEXECUTION_SEAL.md` — pre-code predictions for native Go adapter roundtrips, custom-interface method sets, and typed nil values.
+18. `../f34_original_router_capability/chat26_adapter_semantics_test.go` and `.github/workflows/chat26-f37-adapter-court.yml` — supplementary pinned Go source tests (read-only workflow). CI verdict requires its exact tested SHA and raw logs; this is **NOT F38 task execution**.
+
+Prior Python 30-test admission only confirms our **metadata gate logic**, not that an external task is truly blind, that upstream rights were granted, or that source repairs were executed. One intermediate Python workflow failed while classification and tests momentarily disagreed; the failure is preserved, corrected, and not counted as a scientific negative result.
+
