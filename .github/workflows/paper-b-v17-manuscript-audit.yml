@@ -1,0 +1,32 @@
+name: EvoNOMOS Paper B v17 bilingual source and claim audit
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/PAPER_B_BILINGUAL_INTEGRATED_17_20261121.md'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/audit_paper_b_v17_structure.py'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/test_audit_paper_b_v17_structure.py'
+      - '.github/workflows/paper-b-v17-manuscript-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bilingual-manuscript-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout source without write permission
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check v16 preserved and v17 source boundaries
+        working-directory: active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b
+        run: |
+          python -m py_compile audit_paper_b_v17_structure.py test_audit_paper_b_v17_structure.py
+          python audit_paper_b_v17_structure.py
+          python -m unittest -v test_audit_paper_b_v17_structure.py
