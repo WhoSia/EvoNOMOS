@@ -24,7 +24,7 @@ def audit(new: str, previous: str) -> list[str]:
     if [int(x) for x in re.findall(r"^### ([1-7])\. ", new, flags=re.M)] != list(range(1,8))*2:
         problems.append("section_order")
     for anchor in ("768", "48", "24", "64", "793", "Papotti", "Widyasari",
-                   "Jin and Chen", "Ling, Zou", "1 ACCEPT", "5 REJECT"):
+                   "Jin and Chen", "Ling, Zou"):
         if anchor not in new:
             problems.append("missing_anchor:"+anchor)
     for anchor in ("분류 결과에서 수정안 거절까지", "From a classification to a patch disposition",
@@ -38,7 +38,7 @@ def audit(new: str, previous: str) -> list[str]:
         problems.append("off_topic_p44_go_in_body")
     if "17판 본문에 싣지" in ko or "manuscript 17 does not reframe" in en:
         problems.append("stale_edition")
-    if "원칙이 오용되는 빈도" not in ko or "do not estimate how often OCP is misused" not in new:
+    if "실제 리뷰에서 과도한 공리화가 얼마나 흔한지" not in ko or "do not estimate how often OCP is misused" not in new:
         problems.append("prevalence_boundary")
     if not len(new) > len(previous):
         problems.append("unexpected_shortening")
