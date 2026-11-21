@@ -5,6 +5,7 @@ Run these commands from the Paper B directory with Python 3.11 or later (`hashli
 ```sh
 python3 audit_are_we_solid.py /path/to/AreWeSOLID.zip
 python3 audit_are_we_solid_alignment.py /path/to/AreWeSOLID.zip
+python3 audit_ocp_archive_independent_20261121.py /path/to/AreWeSOLID.zip
 python3 meyer_judgment_pair.py
 python3 replay_meyer_disclosure.py
 python3 ocp_case.py check
@@ -18,6 +19,14 @@ The figure command additionally uses Matplotlib. It generates the comparison of 
 ## Archive inputs and reference sources
 
 The inspected archive's SHA-256 is `d2cfbe50dd12d189c0ee2b561a842757fa7483251df9025b602c498b753f0353`. The OCP inventory contains 48 reference pairs, 768 saved records, and 24 exact distinct templates after masking the submitted code. The alignment audit counts exact matches with both sides of the reference pairs, with and without trimming outer whitespace. Both comparisons yielded zero. This test establishes textual matching results in this archive.
+
+## Independent source-only replay of the OCP archive (2026-11-21)
+
+The separately authored [read-only independent script](./audit_ocp_archive_independent_20261121.py), run against SHA-256 `d2cfbe50dd12d189c0ee2b561a842757fa7483251df9025b602c498b753f0353`, generated this [JSON receipt](./OCP_INDEPENDENT_ARCHIVE_AUDIT_20261121.json). It verified **16 OCP JSONL files × 48 saved rows = 768 records**, 48 unique submitted code strings, 24 exact prompts after replacing the single submitted-code occurrence, and 64 distinct model–strategy–language groups each with 12 code strings and one scaffold. No saved submission matched either side of the 48 reference pairs under exact, outer-trim or all-whitespace-removal comparison; no AST-identical code was found among the 12 unique Python submissions and the Python reference sides.
+
+A new qualification: **4 of 12 distinct Python submitted code strings contained 46 Python `COMMENT` tokens in total; none contained a Python AST docstring**. This is a token-count observation on Python code only, not a semantic classification of the comments or a test for contractual intent. The remaining three languages were not subjected to equivalent comment-token analysis. Thus the claim that *masked instructions* contain no per-case change or protected-caller obligation **does not imply that all submitted source code lacks hints about programmer intent**. Archive code is parsed as untrusted data, not executed.
+
+The 768 saved JSONL rows are clustered repeated uses of 48 submitted inputs; they are **not 768 independent patch reviews**. The reference source mismatch establishes only the reported representations; it does not establish code lineage, functional non-equivalence or absence of a shared task. The JSON report contains all counts and parse errors (none on the Python AST comparison).
 
 The saved Python prompt is line 13 (record ID 12) of `AreWeSOLID/dataset/completions/test/ocp--codellama70b-temp0-latest--example/output_test.jsonl`. The getter example is one-based pair 37 of `AreWeSOLID/dataset/groundtruth/ocp_violations.json`.
 
