@@ -1,0 +1,30 @@
+name: EvoNOMOS Chat26 R4 native Go typed-adapter rival
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/f34_original_router_capability/chat26_typed_adapter_rival_test.go'
+      - '.github/workflows/chat26-r4-typed-adapter.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-go-typed-adapter-rival:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/f34_original_router_capability
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - run: go mod verify
+      - run: go vet -mod=readonly ./...
+      - run: go test -mod=readonly -count=1 -v ./...
+      - run: go test -mod=readonly -race -count=1 ./...

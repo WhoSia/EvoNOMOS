@@ -1,0 +1,33 @@
+name: EvoNOMOS P44 F16 Shared Heap Aliasing Court
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/formalization/aliascourt/**'
+      - '.github/workflows/evonomos-p44-aliascourt.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p44-f16-alias-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-go-alias-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/aliascourt
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Original Go heap shared and distinct source behavior
+        run: |
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...

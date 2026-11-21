@@ -1,0 +1,42 @@
+name: P44 Historical Causal-Eligibility Evidence Gate
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/experimental_gate_20261110/**'
+      - '.github/workflows/p44-historical-causal-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-eligibility-negative-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read real 2026-10-09 architecture source blob identities
+        shell: bash
+        run: |
+          test "$(git hash-object tools/p35-p7/arms/live/route_headers.go)" = ad9a2fbc0a30a39475f746068e74e2d3e6c93999
+          test "$(git hash-object tools/p35-p7/arms/snapshot/route_headers.go)" = e9ca2c3863d5aa06ef0f0b9d168ddcf184713d75
+          test "$(git hash-object tools/p35-p7/tests/p35_p7_common_test.go)" = 81f8123d6e24eb92c1ce9529f170be36191dd1c1
+      - name: Ten real-cohort evidence tests
+        working-directory: active/g8-law-r1-p44/structural_law_return/experimental_gate_20261110
+        run: python -m unittest -v test_gate
+      - name: Write strict evidence gate decision
+        working-directory: active/g8-law-r1-p44/structural_law_return/experimental_gate_20261110
+        run: |
+          python gate.py observed_cohort.json --output /tmp/p44-causal-evidence-gate.json
+          python -c 'import json; d=json.load(open("/tmp/p44-causal-evidence-gate.json")); assert d["gate"]=="LAW_R2_HOLD"; assert d["real_maintainer_run_count"]==0; assert d["observed_issue_count"]==2'
+      - name: Preserve real HOLD and obstacles without commit
+        uses: actions/upload-artifact@v4
+        with:
+          name: p44-causal-evidence-gate
+          path: /tmp/p44-causal-evidence-gate.json

@@ -1,0 +1,33 @@
+name: EvoNOMOS P44 Formal Cost Bounds (Finite Reference Court)
+
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/formalization/costbounds/**'
+      - '.github/workflows/evonomos-p44-formal-costbounds.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-reference-proof-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/costbounds
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Finite classical CEGAR repair bounds and countermodels
+        run: |
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...

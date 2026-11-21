@@ -1,0 +1,38 @@
+name: EvoNOMOS P44 F15 Conditional Go Branch Source Court
+
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/formalization/branchcourt/**'
+      - '.github/workflows/evonomos-p44-go-branchcourt.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p44-branchcourt-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  finite-source-branch-rights:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/branchcourt
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Source edits, joint observer and nine native compiler runs
+        run: |
+          go version
+          gofmt -l branch.go branch_test.go
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -count=1 -race ./...

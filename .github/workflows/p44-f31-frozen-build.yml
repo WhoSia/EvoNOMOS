@@ -1,0 +1,34 @@
+name: P44 F31 Frozen Go Build Closure
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/formalization/f31_build_closure/**'
+      - '.github/workflows/p44-f31-frozen-build.yml'
+  pull_request:
+    paths:
+      - 'active/g8-law-r1-p44/formalization/f31_build_closure/**'
+      - '.github/workflows/p44-f31-frozen-build.yml'
+permissions:
+  contents: read
+jobs:
+  frozen-package-court:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/formalization/f31_build_closure
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Frozen compilation closure and original-source AST checks
+        run: |
+          set -euo pipefail
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -race -count=1 ./...

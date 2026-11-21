@@ -1,0 +1,29 @@
+name: EvoNOMOS Chat26 bounded contract judgment
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/formalization/chat26/*.py'
+      - '.github/workflows/chat26-contract-judgment.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  paper-b-judgment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout source without write credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run full bounded Python regression suite
+        working-directory: active/g8-law-r1-p44/formalization/chat26
+        run: |
+          python -m py_compile contract_judgment.py decision_certificates.py f38_candidate_gate.py test_contract_judgment.py test_decision_certificates.py test_f38_candidate_gate.py
+          python -m unittest -v test_contract_judgment.py test_decision_certificates.py test_f38_candidate_gate.py

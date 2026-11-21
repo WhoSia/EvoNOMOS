@@ -1,0 +1,57 @@
+name: P44 Structural Law Zerolog Historical Context Source
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/zerolog_historical_context/**'
+      - '.github/workflows/p44-source-law-zerolog-history.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-replay:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: pre
+            sha: 5eb5f3a76c09eeadc1f2464baf4a4e3f1037c830
+          - arm: post
+            sha: 56591163bce358abdb860d3dad599d3ab440621a
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EVO_ORIGINAL_SOURCE_ARM: ${{ matrix.arm }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Pin original library revision (no fork source edit)
+        env:
+          ORIGINAL_SHA: ${{ matrix.sha }}
+        run: |
+          git init -q /tmp/original-zerolog
+          git -C /tmp/original-zerolog fetch --no-tags --depth=1 https://github.com/rs/zerolog.git "$ORIGINAL_SHA"
+          git -C /tmp/original-zerolog checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/original-zerolog rev-parse HEAD)" = "$ORIGINAL_SHA"
+          go version
+      - name: Install app-owned external test into disposable original checkout
+        run: |
+          cp active/g8-law-r1-p44/structural_law_return/zerolog_historical_context/evo_zerolog_history_test.go /tmp/original-zerolog/
+          git -C /tmp/original-zerolog diff --exit-code -- log.go ctx.go context.go event.go
+          git -C /tmp/original-zerolog status --short
+      - name: Native bounded original Go source vet
+        working-directory: /tmp/original-zerolog
+        run: go vet .
+      - name: Native actual historic source behavioral tests
+        working-directory: /tmp/original-zerolog
+        run: go test -count=1 -v -run '^TestEvo' .
+      - name: Source race and negative-control verification
+        working-directory: /tmp/original-zerolog
+        run: go test -race -count=1 -run '^TestEvo' .

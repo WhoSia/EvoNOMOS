@@ -1,0 +1,30 @@
+name: EvoNOMOS P44 F20 Original Evidence Gate
+on:
+  push:
+    branches:
+      - 'research/law-r1-p44-r3-*'
+    paths:
+      - 'active/g8-law-r1-p44/f20audit/**'
+      - '.github/workflows/evonomos-p44-f20-evidence-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-history-proof-scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/f20audit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Reject historical-as-prospective claims and validate observer scopes
+        run: |
+          go version
+          go test -count=1 -v ./...
+          go vet ./...
+          go test -race -count=1 ./...
