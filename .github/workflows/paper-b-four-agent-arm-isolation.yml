@@ -1,0 +1,29 @@
+name: EvoNOMOS Paper B original P35 four-arm prompt isolation
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/agent_4arm_20261122/**'
+      - '.github/workflows/paper-b-four-agent-arm-isolation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolate-design-advice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/agent_4arm_20261122
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m py_compile audit_prompt_arms.py test_audit_prompt_arms.py
+          python audit_prompt_arms.py
+          python -m unittest -v test_audit_prompt_arms.py
