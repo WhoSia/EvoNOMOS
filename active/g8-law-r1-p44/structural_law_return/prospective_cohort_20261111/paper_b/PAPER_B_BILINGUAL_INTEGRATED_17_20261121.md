@@ -139,6 +139,8 @@ Barr 등(2015)이 정리한 테스트 오라클 문제는 코드 실행과 올�
 
 마틴의 함수가 사각형부터 그린다는 사실만으로는 그 함수를 고쳐야 하는지 알 수 없다. 그 순서를 보장하는 일이 함수의 책임인지 확인해야 한다. 도서관에서도 수정안을 고정한 채 정오표 지원이 필수인 경우에는 거절이 결정됐고, 기술보고서만 필요한 경우에는 책 출력에 관한 약속이 판정을 갈랐다. 특정 OCP 위반이 실제로 수정안 거절을 일으킨 사례를 발견했다는 뜻은 아니다. <b>원칙 위반이라는 평가가 공학적 결정을 뒷받침하려면 무엇을 추가로 확인해야 하는가</b>가 이 논문에서 다룬 질문이다.
 
+실제 검토에서 먼저 확인할 것은 수정안의 새 기능만이 아니라, 요구한 사람이나 합의된 문서가 그 기능을 어느 진입점에서 제공하도록 정했는지다. 그다음 기존 호출자가 의존하는 동작 중 무엇이 보호 대상인지 요구서·API 문서·테스트·호출 코드에서 근거를 찾아야 한다. 이 근거가 둘 이상의 가능한 계약을 남긴다면, 원칙 위반이라는 이름으로 결론을 확정하기보다 계약의 출처와 범위를 묻는 편이 정확하다. 반대로 새로운 요구를 충족하지 못한다는 사실이 이미 확정됐다면, 어떤 기존 계약이 추가로 보호되는지 모두 조사하기 전에 해당 수정안을 거절할 수도 있다. 이러한 질문의 순서는 이 논문의 구성 사례에서 나온 실무적 제안이지, 실제 개발 조직의 효율이 개선됐다는 관측 결과는 아니다.
+
 공개된 사실과 양립하는 명세를 남기고 판정의 일치 여부를 확인하는 절차는 단순한 논리다. 문제는 실제 저장소에서 어떤 요청서, API 문서, 테스트, 호출 코드 또는 합의가 그 명세를 뒷받침하는지다. 이 연구는 한 벤치마크의 저장 입력과 연구자가 구성한 실행 예제만을 다뤘다. 실제 리뷰에서 과도한 공리화가 얼마나 흔한지, 누락된 계약을 어떤 방법으로 모두 찾을 수 있는지는 아직 알지 못한다.
 
 ### 부록 A · 재현 자료
@@ -264,6 +266,8 @@ The presence of a feature is different from <b>its availability along a required
 ### 7. Conclusion
 
 Drawing a square first establishes what a routine does, not whether it must be edited. That depends on whether sorting belongs to the routine's obligations. In our catalog, errata support settled rejection of the fixed patch, while a promise about book output determined the verdict when technical reports alone were required. We did not observe a real OCP label being misused to reject a patch. We asked <b>what additional grounds a design-principle assessment needs before it can justify an engineering decision</b>.
+
+A practical review should first ask not only whether the patch implements a feature but where the request or an authorized agreement requires that feature to be reachable. The reviewer should then locate the source of each protected old-client obligation in requests, API documentation, tests and actual call paths, without automatically treating every observed response as a promise. If those sources leave different legitimate contracts possible, asking who can settle the obligation is more defensible than turning an OCP label into a categorical rejection. Conversely, a demonstrated failure to meet an already binding new demand may reject the fixed patch before every other old-client promise is resolved. This sequence is a recommendation derived from our authored example, not evidence that it reduces actual review costs in an organization.
 
 Keeping the specifications compatible with known facts and checking their verdicts is elementary logic. The unresolved task is to identify the requests, API documentation, tests, callers or agreements that support those specifications in a real repository. Our evidence is confined to one benchmark archive and authored executable examples. We do not know how often over-axiomatization occurs in real reviews or how to recover every missing obligation.
 
