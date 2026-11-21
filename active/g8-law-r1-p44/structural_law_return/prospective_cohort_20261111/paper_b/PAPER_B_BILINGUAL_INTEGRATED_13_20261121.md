@@ -1,0 +1,256 @@
+# Paper B — Bilingual Integrated Manuscript 13 (2026-11-21)
+
+Notion source: https://app.notion.com/p/41fef561cf9281aaa8cfdf0ca6f9b56f
+
+Preserves manuscript 12: https://app.notion.com/p/41bef561cf9281e1864afb74a3bbb4ce
+
+This is an independently edited working copy, not a new empirical study. Source-archived benchmark stratification and interpretation were updated, while original §6 architecture file-count experiments remain preserved in v12.
+
+---
+
+
+통합 원고 13 · 독립 심사 및 원본 아카이브 재감사 반영. <mention url="https://app.notion.com/p/41bef561cf9281e1864afb74a3bbb4ce">Paper B 통합 원고 12 · 한·영 문장 교정</mention>은 별도로 보존한다. 본 판에서 제외한 파일 배치 실험은 12판과 재현 자료에 그대로 있다.
+
+<b>초록 · 집필 시안</b>
+
+개방–폐쇄 원칙 위반이라는 판정은 언제 특정 수정안을 거절할 근거가 되는가? 마이어와 마틴에게 모듈의 닫힘은 안정된 명세와 예상하는 변경을 떠나 성립하는 성질이 아니었다. 그런데 어느 변경을 맡고 어떤 기존 동작을 보존해야 하는지 확인하기 전에 위반 판정만으로 거절을 확정한다면, 설계 조언에 그 전제가 허용하지 않는 권위를 부여하는 셈이다. 우리는 이러한 판정 방식의 위험을 \*\*과도한 공리화(over-axiomatization)\*\*라고 부른다.
+
+한 SOLID 위반 분류 벤치마크의 저장된 OCP 입력 768건을 감사했다. 제출 코드를 가리자 지시문 틀 24개가 남았고, 같은 모델·전략·언어 조합에서 12개 코드에 같은 틀이 사용됐다. 별도로 만든 도서관 프로그램에서는 한 수정안의 동작을 고정하고 적용할 요구와 기존 계약을 바꿨다. 정오표 지원이 필수라면 책 출력의 보존 여부와 무관하게 수정안을 거절할 수 있었다. 기술보고서만 필요할 때는 책 출력을 보장했는지가 판정을 갈랐다.
+
+이 사례들은 실제 리뷰에서 원칙이 오용되는 빈도를 보여 주지는 않는다. 대신 위반이라는 평가를 특정 수정안의 판단 근거로 사용할 때 무엇을 확인해야 하는지, 아직 모르는 사실 가운데 무엇을 물어야 결론이 정해지는지 살펴보는 절차를 제안한다.
+
+<b>Abstract · Working draft</b>
+
+When does a finding that code violates the open–closed principle warrant rejecting a particular patch? For Meyer and Martin, closure depended on stable specifications and anticipated changes. Treating a violation label as sufficient grounds for rejection before establishing what the patch must accomplish or preserve gives conditional design advice more authority than its premises allow. We call this risk in the use of design advice <b>over-axiomatization</b>.
+
+We audited 768 saved OCP records from one SOLID-violation classification benchmark. Masking the submitted code left 24 instruction scaffolds, constant across twelve programs within each model–strategy–language combination. In a separate executable catalog example, we held a patch fixed and varied the demand and the contract with existing callers. Requiring errata was enough to reject the patch regardless of the book-output contract; requiring only technical reports left the verdict dependent on that contract.
+
+These examples do not estimate how often OCP is misused in actual reviews. They instead show what further grounds are needed when a design-principle assessment is used to judge a particular patch, and which question can resolve a verdict when some of those grounds are unknown.
+
+## 한국어 원고
+
+### 1. 서론
+
+로버트 마틴이 1996년에 예로 든 함수는 목록에 들어온 순서대로 도형을 그린다. 삼각형이 자신을 그리는 메서드를 갖고 있으면 이 함수에 손대지 않고 삼각형을 추가할 수 있다. 마틴은 여기에 새 요구를 붙였다. 모든 원을 사각형보다 먼저 그려야 한다. 기존 함수에 사각형으로 시작하는 목록을 넘기면 여전히 사각형부터 그린다.
+
+원을 먼저 놓는 일은 누가 맡았을까? 호출자가 원을 앞에 모아 넘기기로 했다면 함수는 제 일을 한다. 함수가 어떤 목록을 받아도 그 순서를 보장하기로 했다면 고쳐야 한다. 소스에서 그리는 순서를 읽을 수는 있지만, 그 순서가 잘못됐는지는 누가 정렬을 맡았는지에 달려 있다.
+
+마틴의 그리기 함수는 도형을 하나 더 추가할 때는 그대로 둘 수 있었다. 함수에 정렬까지 맡기면 얘기가 달라진다. 우리는 변경 요구와 기존 호출자에 대한 약속을 확인하지 않은 채 OCP 위반이라는 평가만으로 수정안 거절을 확정하는 위험을 <b>과도한 공리화</b>라고 부른다. 이 이름은 원칙 자체가 무조건적인 공리였다는 역사적 주장이 아니라, 원칙을 적용하는 판정 방식에 관한 것이다.
+
+분류 벤치마크의 저장 자료에서 모델에 어떤 지시가 주어졌는지 확인했다. 이어 도서관 예제에서 코드와 수정안을 고정한 채 새 요구와 기존 호출자에게 한 약속을 바꿨다. 도형 예제로 돌아가서는 별도 파일에 넣은 기능을 기존 함수로도 쓸 수 있는지 확인했다.
+
+[Martin 1996, Listing 2와 Strategic Closure](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf#page=6) · [벤치마크 기록 감사](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) · [동일 패치 비교](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/31_OCP_FIXED_PATCH_DEMAND_AND_CONTRACT.md)
+
+### 2. 마이어와 마틴의 개방–폐쇄 원칙
+
+마틴은 1996년 글에서 베르트랑 마이어의 1988년 초판 23쪽을 인용했다. 마이어에게 닫힌 모듈은 다른 모듈이 안정된 명세에 기대어 쓸 수 있는 모듈이다. 그의 도서관 예제에서 자료 유형을 하나씩 구별해 처리하는 프로그램에 기술보고서를 추가하면, 기존 모듈까지 고치거나 다시 컴파일해야 할 수 있다. 새 자료를 처리하는 코드의 위치에 따라 기존 모듈에 손이 가는 범위가 달라진다.
+
+1995년 6월 공개 토론에서 카일 브라운은 잘못 설계된 클래스라면 소스를 고칠 수 있어야 한다고 했다. 마틴은 예상한 확장을 위해 기존 소스를 반드시 고쳐야 하는지를 물었다. 그러려면 어떤 변경이 생길지 미리 짚어야 한다. 2007년 공개 기록에는 다섯 원칙을 묶은 SOLID라는 이름이 나온다. 2009년 인터페이스 논쟁에서는 내부 클래스와 공개 플러그인 API에 서로 다른 조언이 제시됐다. 이 기록은 당시 원칙을 적용하거나 반대할 때 어떤 이유를 제시했는지 보여 준다. SOLID라는 이름이 널리 퍼지면서 적용 조건에 대한 판단이 실제로 변했는지는 별도의 역사적 증거가 필요하다. [1995년 토론](https://groups.google.com/g/comp.lang.c%2B%2B/c/nntTK8eH_Ag/m/uvoJEnDH9zAJ) · [2007년 자료](https://www.infoq.com/news/2007/01/principles-of-agile-design/) · [2009년 논쟁 기록](https://www.joelonsoftware.com/2009/01/31/from-podcast-38/)
+
+마틴은 목록 정렬을 <code>DrawAllShapes</code>가 맡게 했다. 한 구현에서 <code>Circle::Precedes</code>는 상대 도형이 사각형이면 원을 먼저 놓는다. 원과 세 번째 도형의 순서를 정하려면 <code>Circle</code>도 고쳐야 할 수 있다. 반면 도형 종류별 순서를 표에 두면 사각형을 먼저 놓기 위해 표의 두 항목만 바꾸면 된다. 개별 도형을 넓이순으로 그리려면 그 표에 없는 정보가 필요하다.
+
+마틴이 글 후반에 비교한 두 함수는 <code>dynamic_cast</code>를 쓴다. <code>DrawAllShapes</code>의 한 구현은 원과 사각형을 골라 그리고, <code>DrawSquaresOnly</code>는 사각형만 그린다. 둘 다 삼각형을 건너뛴다. 모든 도형을 그려야 할 때는 출력이 하나 빠진 셈이다. 사각형만 그려야 한다면 결과가 맞다. 코드와 프롬프트만 주어진 검토자는 각 함수에 어느 책임이 있는지 어디까지 알 수 있을까?
+
+[Meyer 1988 초판 22–25쪽 대조 기록](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md) · [Martin 1996, 1쪽](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf#page=1) · [Martin 1996, Listings 3–6, 9–10](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf)
+
+### 3. 자료와 방법
+
+분류 결과에 필요한 정보와 수정안의 수용 여부를 정하는 정보는 구별해 조사했다. 첫 번째 작업은 보존된 벤치마크를 읽는 감사이고, 두 번째는 우리가 작성한 패치에 서로 다른 요구와 계약을 대입하는 구성 사례다. 두 자료의 개별 코드나 실제 개발자 판정을 서로 대응시키지는 않았다.
+
+OCP 참조 자료에는 위반 사례와 수정 사례를 묶은 코드 쌍 48개가 있다. 저장 응답은 16개 JSONL 파일에 48행씩, 총 768행이다. 정확한 소스 문자열 기준으로 구별한 제출 코드는 48개이고 각각 16회 나타났다. 각 저장 행에 제출 코드가 프롬프트에 정확히 한 번 들어 있는지 확인한 뒤 공통 표시로 바꿔 나머지 지시문을 비교했다. 정확히 일치하는 지시문 틀은 24개였다. 모델·전략·언어를 고정한 64개 조합 각각에서는 12개 코드에 같은 지시문 틀이 사용됐다. 768행을 독립적인 유지보수 사례 768개로 취급하지 않는다.
+
+지시문에 구체적인 변경 요구나 보호할 기존 호출이 따로 적혀 있는지는 문자열 집계와 구별해 판독했다. 다형성으로 처리할 분기를 찾으라는 지시는 분류의 단서이지만, 삼각형을 추가하라는 개별 요청과는 다르다. 이 판독은 제출 코드를 가린 지시문에 관한 것이며, 코드의 이름과 구조에서 가능한 요구를 유추할 수 있다는 사실까지 부정하지 않는다.
+
+저장된 제출 코드와 48개 참조 쌍의 양쪽 소스를 원문, 양끝 공백 제거, 모든 공백 제거 기준으로 대조했다. Python 코드에 대해서는 구문 트리(AST)도 비교했고, 참조 쌍에서 사라진 공개 메서드 선언을 별도로 확인했다. 이 검사로 메서드의 상속 가능성, 실제 사용 여부, 보호하기로 한 계약을 확정하지는 않는다. 압축 파일 안의 코드 자체는 실행하지 않았다.
+
+도서관 예제에서는 원래 소스와 수정안, 호출 입력, 새 모듈 추가를 허용한 편집 범위를 고정했다. 실제 호출에서 얻은 출력·예외는 실행 관찰로 기록했다. <b>새 요구를 충족하고 적용되는 기존 계약을 보존할 때 승인한다</b>는 기준은 연구자가 정했다. 따라서 §5의 승인·거절은 이 기준과 실행 결과에서 도출한 값이지 외부 심사위원이 내린 판단이 아니다. 일부 정보만 공개된 경우에는 공개된 사실과 양립하는 완전 명세를 남겨 판정이 일치하는지 확인했다.
+
+[원본 ZIP](https://drive.google.com/file/d/12LDcKFBpJRkwH-zYJZ6Uhk9pE3RzgnUe/view) · [확장 감사 코드](https://github.com/WhoSia/EvoNOMOS/commit/38618a38d024351cc41f7c778af5074cb0f39467) · <mention url="https://app.notion.com/p/41fef561cf92812cba98df158627c995">Paper B · Claude 심사 판정 및 원본 ZIP 독립 재감사 (2026-11-21)</mention>
+
+### 4. 벤치마크가 판정에 제공한 정보
+
+Pehlivan 등은 위반 시나리오를 정하고 생성된 코드 예시를 다듬었다. 두 번째 저자가 참조 쌍의 정확성과 일관성을 독립적으로 확인했고, 이견은 논의로 해결했다. 모델의 분류 결과는 그 참조 라벨과 대조했다. OCP 저장 응답의 제출 코드를 가리자 지시문 틀 24개가 남았다. DEFAULT 4개, ENSEMBLE 8개, EXAMPLE 8개, SMELL 4개였다. 전략 간에 동일한 틀은 없었다. 어느 틀에도 개별 변경 요구나 보호할 호출자 계약을 따로 적은 문구는 없었다.
+
+추가 감사에서는 ENSEMBLE과 EXAMPLE에 같은 언어라도 모델별로 두 가지 틀이 쓰였음을 확인했다. <code>gpt-4o-mini</code>와 나머지 세 모델의 지시문이 달랐으며, 정확한 (모델·전략·언어) 조합을 고정하면 12개 코드에 같은 지시가 적용됐다. 저장 코드는 참조 쌍과 모든 공백을 제거해 비교해도 일치하지 않았고, 저장된 Python 192행도 참조 측 Python AST와 같은 경우가 없었다. 이 결과는 코드들이 서로 관련 없는 문제를 다룬다는 의미까지 증명하지 않는다.
+
+Python <code>EXAMPLE</code>의 한 프롬프트는 다형성으로 처리할 만한 반복 분기를 찾으라고 한다. 제출된 <code>AreaCalculator</code>는 도형의 종류를 확인해 원과 사각형의 넓이를 계산한다. 새 도형을 지원한다면 이 분기가 수정 후보가 된다. 다만 그 변경이 실제로 요청됐는지, 넓이 계산을 옮긴 뒤에도 기존 너비 조회를 지원해야 하는지는 지시문에 적혀 있지 않다.
+
+별도 참조 쌍 37번에서는 넓이 계산을 도형 메서드로 옮기면서 <code>Rectangle.get_width</code> 선언을 뺐다. 저장된 제출 코드 가운데 어느 참조 쌍의 수정 전후 소스와도 일치한 것은 없었다. 양끝 공백을 걷어 내도 결과는 같았다. 따라서 37번 쌍은 선언이 빠진 사실을 확인하는 데만 쓴다. 그 삭제를 이유로 수정안을 거절하려면, 기존 호출자에게 너비 조회를 계속 제공하기로 했다는 근거가 필요하다.
+
+<b>표 1. 저장된 입력과 수정안 판정에 필요한 근거.</b>
+
+| 검토할 질문 | 자료에서 확인한 내용 | 수정안 판정에 필요한 근거 |
+| --- | --- | --- |
+| 어떤 정답을 맞히는가 | 원저는 저자들이 검증한 참조 위반 범주에 모델 응답이 얼마나 일치하는지 평가했다. [원저 §III-A, C–D](https://arxiv.org/html/2509.03093v1#S3) | 구체적인 수정안과 승인 기준 |
+| 어떤 기능을 추가해야 하는가 | 저장 Python EXAMPLE은 다형성으로 처리할 만한 반복 분기를 찾도록 했다. 개별 변경 요구는 템플릿에 별도로 적혀 있지 않았다. [대조 코드와 저장 행 위치](https://github.com/WhoSia/EvoNOMOS/commit/f1b8e739de5a868a2526ed6256ba784c6e58ec53) | 실제 요청, 수용 조건, 변경을 맡을 경계 |
+| 어떤 호출을 계속 지원해야 하는가 | 저장 템플릿에는 보호할 호출자 계약이 따로 없었다. 별도의 37번 참조 쌍에서는 너비 getter 선언이 빠졌다. [참조 쌍 감사](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) | 계약의 범위와 근거가 되는 API 문서, 호출 코드, 테스트 또는 합의 |
+| 구현에서 어떤 경계를 바꿀 수 있는가 | 저장 지시는 위반 범주와 설명을 요구한다. 업무상의 파일·인터페이스 보호 범위는 그 지시문에서 확인되지 않는다. [원저 §III-B 및 저장 행](https://arxiv.org/html/2509.03093v1#S3) | 보호할 산출물, 허용된 수정 또는 새 모듈 추가와 같은 경로 |
+
+프롬프트 예시는 저장 JSONL의 13행(ID 12)에 있다. 참조 쌍 37번은 별도 참조 JSON에 있다. [저장 아카이브](https://drive.google.com/file/d/12LDcKFBpJRkwH-zYJZ6Uhk9pE3RzgnUe/view) · [정확 일치 및 양끝 공백 제거 대조](https://github.com/WhoSia/EvoNOMOS/commit/f1b8e739de5a868a2526ed6256ba784c6e58ec53)
+
+[Pehlivan 등 §III](https://arxiv.org/html/2509.03093v1#S3) · [아카이브와 참조 쌍 37 감사](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) · [저장 입력과 참조본 대조 코드](https://github.com/WhoSia/EvoNOMOS/commit/f1b8e739de5a868a2526ed6256ba784c6e58ec53)
+
+Bräuer 등(2018)은 측정 가능한 실천 규칙으로 설계 원칙의 어떤 부분을 포착할 수 있는지 전문가에게 물었다. Cabral 등(2024)은 기계학습 기능을 확장하는 상황에서 SOLID를 적용한 코드에 대해 참가자가 느낀 이해도와 확장 용이성을 조사했다. Zhu 등(2026)은 저장소에 구체적인 변경을 요구하고 기능 테스트와 구조 판정 기준을 적용했다. 다음 절에서는 수정안을 고정하고, 검토자가 알고 있는 요구와 계약에 따라 승인 결론이 달라지는지 살핀다. [Bräuer DOI](https://doi.org/10.1016/j.jss.2018.03.002) · [Cabral DOI](https://doi.org/10.1145/3644815.3644957) · [Zhu arXiv](https://arxiv.org/abs/2603.27745)
+
+### 5. 같은 수정안의 판정이 달라질 때
+
+마이어의 도서관 예제를 작은 프로그램으로 만들었다. <code>client.py</code>는 전달받은 목록 함수로 자료를 출력한다. 수정안은 그 함수에 새 처리를 덧붙이는 <code>reports.py</code>를 추가한다. <code>catalog.py</code>와 <code>client.py</code>의 소스는 그대로다. 수정 후에는 기술보고서가 출력되고 정오표는 계속 거절된다. 기존 책 출력에서는 접두어가 <code>book</code>에서 <code>BOOK</code>으로 바뀐다.
+
+기술보고서만 지원하면 되는 경우를 보자. 책 출력을 그대로 돌려주기로 했다면 접두어가 바뀐 수정안을 거절한다. 책 출력이 계약 밖이라면 같은 수정안을 승인할 수 있다. 표 2는 이 두 계약을 정오표까지 지원해야 하는 경우에도 적용한다. 두 계약 모두 학술지와 학회록의 출력, 그리고 정오표와 별개인 미지원 자료 유형의 거절 동작을 보호한다.
+
+<b>표 2. 같은 수정안에 적용한 요구와 계약.</b>
+
+| 요구 | 기존 책 접두어 보호 | 새 요구 만족 | 기존 계약 보존 | 이 사례의 승인 기준 |
+| --- | --- | --- | --- | --- |
+| 기술보고서 | 아니오 | 예 | 예 | 승인 |
+| 기술보고서 | 예 | 예 | 아니오 | 거절 |
+| 기술보고서와 정오표 | 아니오 | 아니오 | 예 | 거절 |
+| 기술보고서와 정오표 | 예 | 아니오 | 아니오 | 거절 |
+
+“정오표도 지원해야 한다”는 사실이 확인되면 표 2의 아래 두 행이 남는다. 둘 다 거절이다. 책 계약까지 확인할 필요는 없다. “기술보고서만 필요하다”는 사실을 알면 위 두 행이 남는다. 하나는 승인, 하나는 거절이다. 이때 확인할 것은 기존 책 출력이 보호 대상인지다.
+
+실제 명세가 검토하는 경우들 가운데 하나라는 전제에서 이 절차가 성립한다. 공개된 사실과 맞는 행이 없다면 명세 후보와 공개된 사실부터 다시 대조해야 한다. 두 판정이 모두 남으면 현재 정보만으로는 어느 경우에도 맞는 한 가지 판정을 내릴 수 없다. 검토자는 조건부 판정을 제시하거나 결론을 보류할 수 있다. 부록 A에는 요구와 계약의 공개 여부를 조합한 아홉 경우를 실었다.
+
+같은 편집 범위에서 더 강한 요구도 충족할 수 있는지 확인하기 위해 두 번째 수정안을 실행했다. 새 모듈 하나로 기술보고서와 정오표를 모두 처리했고 기존 책 출력도 보존했다. 표 2에서 검토 중인 수정안이 거절되더라도, 같은 범위에서 다른 수정안을 찾을 수 있다. 다른 사례에서도 가능한 명세와 각각의 근거를 명시하면, 보류된 판정을 확정하기 위해 다음에 무엇을 확인할지 알 수 있다.
+
+[네 조합의 재현](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/31_OCP_FIXED_PATCH_DEMAND_AND_CONTRACT.md) · [정보 공개 조건별 결과](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/34_MAINTENANCE_JUDGMENT_UNDER_PARTIAL_DISCLOSURE.md)
+
+### 6. 기존 호출 경로도 요구의 일부일 때
+
+완성된 수정안을 승인할지 판단하는 일과 서로 다른 설계가 앞으로 어떤 편집 비용을 낳는지 비교하는 일은 다르다. 여기서는 앞의 질문에 해당하는 관찰만 남긴다. 도형 렌더링에 새 옵션을 더했을 때 새 함수에서는 대괄호 출력이 가능했지만, 기존 함수에 <code>bracketed=True</code>를 넘기면 인자를 거절했다. 요구가 새 진입점에서 옵션을 제공하는 것이라면 기능은 구현됐다. 기존 호출자도 같은 옵션을 사용해야 한다면 요구를 충족하지 못한다.
+
+새 기능이 있다는 사실과 <b>요구된 호출 경로에서 쓸 수 있다는 사실</b>은 다르다. 도형별·연산별 구조와 기존 파일 수정 수에 관한 비교는 별도의 설계 선택 문제이므로 <mention url="https://app.notion.com/p/41bef561cf9281e1864afb74a3bbb4ce">Paper B 통합 원고 12 · 한·영 문장 교정</mention> 및 [실행 기록](https://github.com/WhoSia/EvoNOMOS/commit/0ede7b241c8f9f50436be9703561bb9e7cc9fb8b)에 원형 그대로 보존했다.
+
+### 7. 결론
+
+마틴의 함수가 사각형부터 그린다는 사실만으로는 그 함수를 고쳐야 하는지 알 수 없다. 그 순서를 보장하는 일이 함수의 책임인지 확인해야 한다. 도서관에서도 수정안을 고정한 채 정오표 지원이 필수인 경우에는 거절이 결정됐고, 기술보고서만 필요한 경우에는 책 출력에 관한 약속이 판정을 갈랐다. 특정 OCP 위반이 실제로 수정안 거절을 일으킨 사례를 발견했다는 뜻은 아니다. <b>원칙 위반이라는 평가가 공학적 결정을 뒷받침하려면 무엇을 추가로 확인해야 하는가</b>가 이 논문에서 다룬 질문이다.
+
+공개된 사실과 양립하는 명세를 남기고 판정의 일치 여부를 확인하는 절차는 단순한 논리다. 문제는 실제 저장소에서 어떤 요청서, API 문서, 테스트, 호출 코드 또는 합의가 그 명세를 뒷받침하는지다. 이 연구는 한 벤치마크의 저장 입력과 연구자가 구성한 실행 예제만을 다뤘다. 실제 리뷰에서 과도한 공리화가 얼마나 흔한지, 누락된 계약을 어떤 방법으로 모두 찾을 수 있는지는 아직 알지 못한다.
+
+### 부록 A · 재현 자료
+
+§3–§4의 감사는 보관된 ZIP의 JSON과 JSONL을 읽는다. §5–§6은 이 연구에서 만든 예제를 실행한다. 재현 자료에는 아카이브 SHA-256, Python 3.11 이상에서 쓸 명령, 저장 행과 참조 쌍의 위치가 있다. 아래 표는 §5의 아홉 판정이다. 그림 1의 소스와 출력은 캡션 아래에 연결했다.
+
+[재현 자료 및 명령 / Reproduction notes](https://github.com/WhoSia/EvoNOMOS/commit/ed443890f0b5f9b171d68d010b605e7cefec7f14)
+
+‘미공개’인 항목의 값은 두 가지 모두 가능하다. 공개된 정보와 맞는 행에 승인과 거절이 모두 남으면 보류다.
+
+| 공개된 요구 | 책 접두어 보호 제외 | 책 접두어 보호 포함 | 책 접두어 계약 미공개 |
+| --- | --- | --- | --- |
+| 기술보고서 | 승인 | 거절 | 보류 |
+| 기술보고서와 정오표 | 거절 | 거절 | 거절 |
+| 요구 미공개 | 보류 | 거절 | 보류 |
+
+## English manuscript
+
+### 1. Introduction
+
+In 1996 Robert Martin described a function that draws shapes in the order it receives them. A triangle can be added without touching the function if the triangle supplies its own drawing method. Then Martin changes the task. Every circle must be drawn before any square. Give the function a list that begins with a square and it still draws the square first.
+
+Who was supposed to put the circles first? If the caller agreed to sort the list, the routine does its job. If the routine must guarantee that order for any list, it needs an edit. The source tells us what gets drawn first. The agreement tells us whether that is a problem.
+
+Martin’s drawing routine could stay as it was when the task was to add a shape. Making it responsible for sorting changes that judgment. We use <b>over-axiomatization</b> for the risk of treating an OCP violation label as sufficient grounds to reject a patch without establishing the governing change and caller obligations. This is a claim about the use of advice, not a historical claim that OCP became a formal axiom.
+
+We inspect a classification benchmark’s archive to see what instructions its models received. In a separate catalog example we keep the code and patch fixed while varying the request and the promises to existing callers. We then return to drawing to test whether a feature added in a separate file can be reached through the original function.
+
+[Martin 1996, Listing 2 and Strategic Closure](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf#page=6) · [Benchmark archive audit](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) · [Fixed-patch comparison](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/31_OCP_FIXED_PATCH_DEMAND_AND_CONTRACT.md)
+
+### 2. The open–closed principle in Meyer and Martin
+
+Martin attributed the principle to Bertrand Meyer, citing page 23 of the 1988 first edition. For Meyer, a closed module has a stable specification that other modules can rely on. His library example gives this a practical meaning. If a catalog handles publication types one by one, adding technical reports can require editing or recompiling existing modules. Where the new code goes affects how much of the existing system must change.
+
+In a June 1995 public exchange, Kyle Brown argued that developers had to be able to fix a badly designed class. Martin asked whether an anticipated extension had to require an edit to existing source. That answer still depends on which changes can be anticipated. The public record uses SOLID for the five principles by 2007. A 2009 discussion gave different advice for internal classes and public plugin APIs. These records show particular uses and objections. They do not establish that circulation of the SOLID label caused the governing conditions to change. [Contemporary exchange](https://groups.google.com/g/comp.lang.c%2B%2B/c/nntTK8eH_Ag/m/uvoJEnDH9zAJ) · [2007 report](https://www.infoq.com/news/2007/01/principles-of-agile-design/) · [2009 exchange](https://www.joelonsoftware.com/2009/01/31/from-podcast-38/)
+
+Martin made <code>DrawAllShapes</code> responsible for sorting. In one implementation <code>Circle::Precedes</code> checks the other shape and puts a circle before a square. Deciding where a third shape belongs relative to a circle can require an edit to <code>Circle</code>. Placing the order of types in a table lets squares go first with a swap of two entries. Sorting individual shapes by area would require information that the table does not hold.
+
+Later in the article Martin compares two uses of <code>dynamic_cast</code>. One version of <code>DrawAllShapes</code> draws circles and squares, and <code>DrawSquaresOnly</code> draws squares alone. Both skip a triangle. A triangle left undrawn is a missed output when the task is to draw all shapes. When the task is to draw squares, skipping it is correct. How much of that responsibility can a reviewer determine from code and a prompt?
+
+[Meyer 1988, first edition, pp. 22–25](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/13_MEYER_FIRST_EDITION_PASSAGE_RECOVERY.md) · [Martin 1996, p. 1](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf#page=1) · [Martin 1996, Listings 3–6, 9–10](https://www.cs.utexas.edu/~downing/papers/OCP-1996.pdf)
+
+### 3. Materials and methods
+
+We separated the information used to classify code from the information needed to accept a patch. The first part audits saved benchmark inputs; the second applies requirements and caller contracts that we specified to a patch we built. We did not match the archive submissions to the catalog patch or to actual reviewers' decisions.
+
+The OCP reference material contains 48 before-and-after code pairs. Sixteen saved JSONL files each contain 48 records, yielding 768 rows. Exact source-string comparison found 48 distinct submitted programs, each appearing sixteen times. We checked that each prompt contained its submitted code exactly once, replaced it with a common marker, and grouped the remaining instruction text by exact equality. The result was 24 scaffolds. Within each of 64 model–strategy–language combinations, the scaffold was constant across twelve programs. The 768 records are repeated submissions, not independent maintenance cases.
+
+We separately read the masked instructions for case-specific change requests and protected caller commitments. An instruction to identify repeated branches where polymorphism might fit is a classification cue, not a request to support a new shape. We inspected only the text outside the submitted code; names, comments and code structure may still give other clues.
+
+We compared saved submissions with both reference sides under exact text, trimming outer whitespace and removing all whitespace. For Python we also compared syntax trees, and separately identified method declarations removed from the reference revisions. These tests do not establish whether inherited methods remain available or whether callers were promised a behavior. We read code as archive data and did not execute it.
+
+For the catalog, we fixed the baseline, patch, input calls and permissible edit boundary, ran the calls, and recorded output or exceptions. <b>We defined acceptance</b> as meeting the new demand and preserving the applicable contract. The Section 5 verdicts follow from these authored criteria and the observed behavior; they are not independent human review decisions. With partial disclosure, we retained the complete specifications compatible with known facts and checked whether the verdicts agreed.
+
+[Archived ZIP](https://drive.google.com/file/d/12LDcKFBpJRkwH-zYJZ6Uhk9pE3RzgnUe/view) · [Extended audit](https://github.com/WhoSia/EvoNOMOS/commit/38618a38d024351cc41f7c778af5074cb0f39467)
+
+### 4. What the benchmark gives the reviewer
+
+Pehlivan et al. chose violation scenarios and refined the generated examples. A second author independently checked the reference pairs for correctness and consistency, and the authors resolved disagreements through discussion. The benchmark compares model classifications with the resulting labels. After masking submitted code in the OCP records, we found 24 distinct templates: four DEFAULT, eight ENSEMBLE, eight EXAMPLE and four SMELL. No two strategies shared a template string. None of the templates separately stated the requested change or protected caller contract for an individual case.
+
+An additional check found model-dependent scaffolds for ENSEMBLE and EXAMPLE even within a language: <code>gpt-4o-mini</code> differed from the other three models. Holding model, strategy and language fixed left one scaffold shared across twelve programs. No submission matched a reference side after removing all whitespace; no saved Python AST among 192 rows matched a Python reference AST. These checks do not establish semantic independence or source lineage.
+
+One Python <code>EXAMPLE</code> prompt directs the reviewer to repeated branches where polymorphism might fit. The submitted <code>AreaCalculator</code> branches on shape type to calculate the area of a circle or rectangle. If a new shape is needed, that branch is a place to look. The prompt leaves open whether such a change was requested and whether the rectangle’s width query must survive a move of the area calculation.
+
+The separate reference pair 37 moves area calculation onto the shapes and drops the declaration of <code>Rectangle.get_width</code>. None of the code saved as model submissions matched either side of any reference pair. Trimming outer whitespace yielded the same result. Pair 37 establishes that a declaration was removed. Turning that removal into grounds for rejecting a patch would require evidence that callers could rely on keeping the width query.
+
+<b>Table 1. Evidence in the saved material and evidence needed to assess a patch.</b>
+
+| Question | Evidence in the saved material | Evidence for a patch decision |
+| --- | --- | --- |
+| What counts as a correct answer? | The benchmark compares model responses with the violation labels verified by its authors. | The proposed edit and the criteria for acceptance. |
+| Which behavior should be added? | The saved Python EXAMPLE prompt points to repeated branching where polymorphism would fit. The templates state no separate request for an individual case. | The actual request, its acceptance conditions, and the boundary responsible for it. |
+| What do existing callers rely on? | The templates state no separate caller contract. The distinct reference pair 37 loses the width getter declaration. | The scope of the commitment and supporting API documentation, client code, tests, or agreement. |
+| What may the implementation change? | The instructions ask for a violation category and an explanation. They do not specify protected implementation files or interfaces. | The protected artifacts and permitted changes, including whether a new module may be added. |
+
+The prompt example is in JSONL line 13 (record ID 12). Pair 37 is in a separate reference JSON file. [Archived material](https://drive.google.com/file/d/12LDcKFBpJRkwH-zYJZ6Uhk9pE3RzgnUe/view) · [Source comparison](https://github.com/WhoSia/EvoNOMOS/commit/f1b8e739de5a868a2526ed6256ba784c6e58ec53)
+
+[Pehlivan et al., §III](https://arxiv.org/html/2509.03093v1#S3) · [Archive audit and reference pair 37](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/18_ARE_WE_SOLID_OCP_ARCHIVE_AUDIT.md) · [Submitted and reference source comparison](https://github.com/WhoSia/EvoNOMOS/commit/f1b8e739de5a868a2526ed6256ba784c6e58ec53)
+
+Bräuer et al. (2018) asked experts which parts of a design principle were captured by measurable practices. Cabral et al. (2024) asked participants how easy they found it to understand and extend code under a bundled SOLID treatment in a machine-learning scenario. Zhu et al. (2026) set repository change tasks and used functional and structural checks. In the next section we fix the patch and ask whether knowing a different requirement or caller contract changes the verdict. [Bräuer DOI](https://doi.org/10.1016/j.jss.2018.03.002) · [Cabral DOI](https://doi.org/10.1145/3644815.3644957) · [Zhu arXiv](https://arxiv.org/abs/2603.27745)
+
+### 5. When the same patch warrants different decisions
+
+We built a small catalog based on Meyer’s example. The client in <code>client.py</code> displays each publication through the catalog function passed to it. The patch adds <code>reports.py</code> to wrap that function. The source of <code>catalog.py</code> and <code>client.py</code> stays identical. The resulting catalog displays technical reports and still rejects errata. For books it now prints <code>BOOK</code> where it used to print <code>book</code>.
+
+Suppose the only new requirement is to handle technical reports. If callers were promised the original book output, the changed prefix is grounds for rejection. If the book output is outside the contract, the same patch can be accepted. Table 2 applies both contracts again when errata are also required. Both contracts protect journal and proceedings output and the rejection of an unsupported type distinct from errata.
+
+<b>Table 2. Two requirements for accepting a fixed patch.</b>
+
+| Request | Book prefix protected | Meets the request | Preserves the contract | Decision |
+| --- | --- | --- | --- | --- |
+| Technical reports | No | Yes | Yes | Accept |
+| Technical reports | Yes | Yes | No | Reject |
+| Technical reports and errata | No | No | Yes | Reject |
+| Technical reports and errata | Yes | No | No | Reject |
+
+Learning that errata are required leaves the last two rows of Table 2. Both reject the patch, so the book contract need not be settled first. Learning that technical reports are the whole request leaves the first two rows. One accepts and one rejects. The next question is whether the original book output is protected.
+
+This procedure assumes that the actual specification is among the cases under consideration. If no row fits what was disclosed, the reviewer needs to recheck the candidate specifications against the facts. If the remaining rows disagree, the same information admits no single binary verdict that is right in every case. The reviewer can give a conditional answer or defer judgment. Appendix A gives the nine ways of disclosing or withholding the two fields in this example.
+
+We ran a second patch to see whether the stricter specification was feasible under the same edit boundary. It adds one module, handles technical reports and errata, and keeps the original book output. A rejection in Table 2 need not end the search for a patch within that boundary. In another case, recording the possible specifications and the evidence for each can tell a reviewer what to check next.
+
+[Reproduction of the four combinations](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/31_OCP_FIXED_PATCH_DEMAND_AND_CONTRACT.md) · [Disclosure replay](https://github.com/WhoSia/EvoNOMOS/blob/6e4232e4dd7d8c330c4d5631caf7f1215344f7d6/active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/34_MAINTENANCE_JUDGMENT_UNDER_PARTIAL_DISCLOSURE.md)
+
+### 6. When the original call path is part of the requirement
+
+Deciding whether to accept a completed patch differs from choosing an architecture for future edits. We retain one observation relevant to acceptance. In the drawing fixture, a new bracketed-rendering option worked through an added function, but the original function still rejected <code>bracketed=True</code>. A requirement to offer the option at a new entry point was met; a requirement to offer it through the existing call path was not.
+
+The presence of a feature is different from <b>its availability along a required route</b>. The operation-by-shape design comparison and existing-file edit counts address a separate question, preserved in <mention url="https://app.notion.com/p/41bef561cf9281e1864afb74a3bbb4ce">Paper B 통합 원고 12 · 한·영 문장 교정</mention> and its [execution record](https://github.com/WhoSia/EvoNOMOS/commit/0ede7b241c8f9f50436be9703561bb9e7cc9fb8b).
+
+### 7. Conclusion
+
+Drawing a square first establishes what a routine does, not whether it must be edited. That depends on whether sorting belongs to the routine's obligations. In our catalog, errata support settled rejection of the fixed patch, while a promise about book output determined the verdict when technical reports alone were required. We did not observe a real OCP label being misused to reject a patch. We asked <b>what additional grounds a design-principle assessment needs before it can justify an engineering decision</b>.
+
+Keeping the specifications compatible with known facts and checking their verdicts is elementary logic. The unresolved task is to identify the requests, API documentation, tests, callers or agreements that support those specifications in a real repository. Our evidence is confined to one benchmark archive and authored executable examples. We do not know how often over-axiomatization occurs in real reviews or how to recover every missing obligation.
+
+### Appendix A · Reproduction
+
+The audit in Sections 3–4 reads JSON and JSONL from the archived ZIP. Sections 5–6 run examples written for this study. The reproduction notes give the SHA-256 digest, commands for Python 3.11 or later, and record and pair locators. The table below gives the nine verdicts for Section 5.
+
+[Reproduction notes](https://github.com/WhoSia/EvoNOMOS/commit/ed443890f0b5f9b171d68d010b605e7cefec7f14)
+
+Both values of a withheld field remain possible. Defer means that the compatible rows include both acceptance and rejection.
+
+| Disclosed request | Book prefix outside contract | Book prefix protected | Prefix contract withheld |
+| --- | --- | --- | --- |
+| Technical reports | Accept | Reject | Defer |
+| Technical reports and errata | Reject | Reject | Reject |
+| Request withheld | Defer | Reject | Defer |
