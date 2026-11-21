@@ -49,8 +49,11 @@ def classify(c: Candidate) -> Gate:
 
 HISTORICAL_TRIAGE = {
     # All are post hoc selections by this research session, not blind trial IDs.
+    # #995's offending singleton middleware is app-authored in the issue body;
+    # editing that application middleware may be feasible without Chi rights.
+    # Other issues require further app-only workaround feasibility analysis.
     "chi-995": Candidate("https://github.com/go-chi/chi/issues/995",
-                          True, False, False, False, False, False, False, False),
+                          True, False, True, False, False, False, False, False),
     "chi-1035": Candidate("https://github.com/go-chi/chi/issues/1035",
                            True, False, False, False, False, False, False, False),
     "chi-1263": Candidate("https://github.com/go-chi/chi/issues/1263",
