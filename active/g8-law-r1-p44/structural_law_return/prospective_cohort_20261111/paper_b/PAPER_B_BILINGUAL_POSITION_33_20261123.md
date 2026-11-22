@@ -13,7 +13,7 @@ SOLID는 소프트웨어 설계에 관해 생각하고 토론하는 데 유용�
 
 Robert Martin의 1996년 도형 예제는 새 도형을 쉽게 추가할 수 있는 설계를 보여 준다. 그런데 원을 사각형보다 먼저 그리라는 요구가 등장하면, 어느 쪽이 그 순서를 책임져야 할지 다시 판단해야 한다. Martin이 말한 *전략적 닫힘*은 모든 변화에 미리 대비할 수 없다는 인정에서 출발했다. 그는 공개 멤버 변수의 나쁜 스타일을 반드시 나쁜 설계로 보지는 않았고, RTTI를 사용하더라도 OCP를 해치지 않는 경우까지 논의했다.
 
-**원칙은 처음부터 조건을 필요로 했다. 그 조건을 잊는 순간이 문제다.**
+**Martin이 논한 개방–폐쇄 원칙에는 어떤 변화에 대비할지에 관한 조건이 있었다. 그 조건을 잊는 순간이 문제다.**
 
 이를테면 다음 두 문장은 다르다. “이 코드는 OCP 위반으로 볼 수 있다.” “OCP 위반이므로 이 패치는 반드시 거절해야 한다.” 앞의 문장은 설계를 평가하지만, 뒤의 문장은 실제 행동을 지시한다. 그 사이에는 앞으로 예상되는 변화, 보호할 기존 동작, 팀이 승인한 설계 정책, 대안의 비용에 관한 판단이 있어야 한다. 연구자가 구성한 동일한 도서관 패치도 기존 책 출력의 보존 여부와 새로 요구한 기능에 따라 승인되거나 거절된다. 코드만 보고 붙인 이름으로는 그 결정을 끝낼 수 없다.
 
@@ -51,7 +51,7 @@ SOLID is useful language for reasoning about software design. Yet the statement 
 
 Robert Martin's 1996 drawing example lets new kinds of shapes be added without rewriting a drawing loop. A new requirement—to draw circles before squares—nevertheless raises another question: who owns their order? Martin's *strategic closure* accepted that no program can anticipate every possible change. He also distinguished poor public-field style from necessarily poor design, and described an instance in which runtime type identification remains compatible with OCP.
 
-**The original advice needed conditions. Losing them is the concern.**
+**Martin's advice came with conditions about anticipated change. Losing them is the concern.**
 
 Consider two sentences, authored here as examples: “This design may violate OCP.” “Because it violates OCP, this patch must be rejected.” The first classifies; the second directs action. Between them belong the expected changes, protected client behavior, authorized project policies, and the costs of alternative designs. In our investigator-constructed library example, the very same patch can be accepted or rejected under different stated requirements and legacy obligations. A label attached to the code cannot settle that maintenance verdict.
 
