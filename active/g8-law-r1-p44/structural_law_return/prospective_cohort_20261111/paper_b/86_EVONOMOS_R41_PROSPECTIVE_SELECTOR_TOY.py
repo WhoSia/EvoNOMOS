@@ -49,12 +49,12 @@ def choice(horizon, signal_count):
     return ("X" if ex < eb else "B", ex == eb)
 
 
-def model_result(horizon, signal_shifted=False):
+def model_result(horizon, signal_shifted=False, signal_independent=False):
     # A regime is selected before both the historical signal and future work.
     # Negative control: signals come from the OPPOSITE regime, without warning.
     rows = {}
     for p in (P_LOW, P_HIGH):
-        q = 1-p if signal_shifted else p
+        q = F(1, 2) if signal_independent else ((1-p) if signal_shifted else p)
         b = expected_cost("B", horizon, p)
         x = expected_cost("X", horizon, p)
         policy_cost, tie_flag = F(0), F(0)
@@ -77,6 +77,7 @@ def model_result(horizon, signal_shifted=False):
         - result["prospective_selector"])
     result["horizon"] = horizon
     result["signal_shifted"] = signal_shifted
+    result["signal_independent"] = signal_independent
     return result
 
 
@@ -93,10 +94,12 @@ def main():
     assert choice(12, 0)[0] == "B" and choice(12, 6)[0] == "X"
     assert choice(12, 3) == ("B", True)
     assert expected_cost("B", 12, F(1, 2)) == expected_cost("X", 12, F(1, 2))
-    rows = [model_result(horizon, shifted)
-            for horizon in (6, 12, 24) for shifted in (False, True)]
+    rows = [model_result(horizon, shifted, independent)
+            for horizon in (6, 12, 24)
+            for shifted, independent in ((False, False), (False, True), (True, False))]
     assert model_result(12)["relative_gain_vs_best_constant"] > 0
     assert model_result(12, True)["relative_gain_vs_best_constant"] < 0
+    assert model_result(12, False, True)["prospective_selector"] == F(42)
     assert model_result(6)["relative_gain_vs_best_constant"] >= 0
     print(json.dumps(
         [{key: display(value) for key, value in row.items()} for row in rows],
