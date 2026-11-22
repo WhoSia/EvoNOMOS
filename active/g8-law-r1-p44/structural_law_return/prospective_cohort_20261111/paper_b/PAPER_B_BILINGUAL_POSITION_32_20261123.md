@@ -33,7 +33,7 @@ Robert Martin은 1996년 글에서 새 도형이 추가되더라도 그리기 �
 
 이 문제를 처음부터 새로 개척한다고 선언할 수는 없다. 2026년에는 코딩 에이전트가 기존 코드의 구현 관례와 새 지시를 어떻게 비교하는지 대규모로 분석한 연구가 발표됐고, 다른 연구는 지시가 도착한 위치·역할·표지가 판단에 미치는 영향을 따로 실험했다. SOLID 위반 분류, 저장소 지침, 오래된 규칙의 영향, 코드 리뷰의 과잉 판정에도 관련 선행연구가 있다.
 
-이 연구들이 Paper B의 질문을 대신 끝내 주지는 않는다. 우리가 제안하는 연결은 **설계 원칙의 역사적 적용 조건 → 현재의 계약과 승인된 지시 → 실제 코드 수정 판단 → 새 증거에 따른 수정 또는 보류**라는 과정이다. 교육서와 개발 지침을 비교하면 적용 조건이 어떻게 전달되는지 살필 수 있고, 독립적으로 확인한 계약을 기준으로 실제 에이전트의 수정·거절·기권을 비교할 수 있다. 유명한 원칙의 이름을 붙였는지에 따른 차이를 측정하는 실험은 이 연구의 한 부분이지, 프로그램 전체를 대신하는 발견은 아니다.
+그래도 원칙의 기술적 적용 조건, 정당한 지시 권한, 실제 패치 판단을 한꺼번에 비교하는 일은 여전히 검토할 가치가 있다. 우리가 제안하는 연결은 **설계 원칙의 역사적 적용 조건 → 현재의 계약과 승인된 지시 → 실제 코드 수정 판단 → 새 증거에 따른 수정 또는 보류**라는 과정이다. 교육서와 개발 지침을 비교하면 적용 조건이 어떻게 전달되는지 살필 수 있고, 독립적으로 확인한 계약을 기준으로 실제 에이전트의 수정·거절·기권을 비교할 수 있다. 유명한 원칙의 이름을 붙였는지에 따른 차이를 측정하는 실험은 이 연구의 한 부분이지, 프로그램 전체를 대신하는 발견은 아니다.
 
 ## 5. 원칙을 무너뜨리지 않고, 적용을 묻다
 
@@ -75,7 +75,7 @@ The apparent paradox disappears once we remember that **patch admissibility depe
 
 We are not the first to study coding agents' choices among competing sources of guidance. A 2026 study of repository precedent versus task intent already tested how agents respond to existing implementation patterns and explicit instructions. Another isolated position, message role, and textual label in instruction conflicts. Related work also covers SOLID-violation classification, repository instruction files, stale guidance, and automated-review overcorrection.
 
-Our proposed connection is narrower in its mechanics but broader in its historical object: **the stated scope of a design principle, the current contracts and authorized directions, the resulting patch disposition, and justified revision or deferral after new evidence**. Historians could investigate how qualifications survive through teaching and development guidance; requirements researchers could supply independently adjudicated contract obligations; agent researchers could examine actual patches, refusals, and revisions. A named-versus-unnamed principle experiment is one diagnostic within this larger inquiry, not its entire contribution.
+The remaining question links what those studies tend to separate: **the stated scope of a design principle, the current contracts and authorized directions, the resulting patch disposition, and justified revision or deferral after new evidence**. Historians could investigate how qualifications survive through teaching and development guidance; requirements researchers could supply independently adjudicated contract obligations; agent researchers could examine actual patches, refusals, and revisions. A named-versus-unnamed principle experiment is one diagnostic within this larger inquiry, not its entire contribution.
 
 ## 5. When should the rule apply?
 
