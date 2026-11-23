@@ -6,6 +6,8 @@ were visually inspected. The rest remain unverified machine OCR. OCR completion 
 """
 from dataclasses import dataclass
 import json
+from pathlib import Path
+import argparse
 
 FILE_ID = '1MB_mDL7TxssCviINpj__Icbdlv-KIkEd'
 PAGES = 31
@@ -33,8 +35,8 @@ class Contact:
 
 
 CONTACTS = (
-    Contact('representation_adequacy', 1, 'framework for evaluating expressive adequacy'),
-    Contact('alternatives_status', 11, 'rejected or waiting for more information'),
+    Contact('representation_adequacy', 1, 'framework for evaluating the expressive adequacy'),
+    Contact('alternatives_status', 11, 'waiting for more information'),
     Contact('argument_sharing', 11, 'Some of the arguments can be shared'),
     Contact('decision_graph', 16, 'structure of a decision graph'),
     Contact('contest_criteria', 21, 'argue about whether a goal is desirable'),
@@ -61,6 +63,21 @@ def audit(contacts=CONTACTS):
             'claim_novelty': 'NOT_ESTABLISHED', 'source_scope': 'SELECTIVE_PAGES'}
 
 
+def verify_excerpts(ocr_dir, contacts=CONTACTS):
+    """Require page-specific OCR bytes, rather than trusting the claim ledger."""
+    root = Path(ocr_dir)
+    for c in contacts:
+        file = root / f'page_{c.pdf_page:02d}.txt'
+        if not file.is_file():
+            raise ValueError(f'missing OCR page {c.pdf_page}')
+        page = ' '.join(file.read_text(encoding='utf-8').casefold().split())
+        expected = ' '.join(c.excerpt.casefold().split())
+        if expected not in page:
+            raise ValueError(f'excerpt not present in OCR page {c.pdf_page}: {c.claim}')
+    return {'matched_claims': len(contacts), 'ocr_pages_read': len({c.pdf_page for c in contacts}),
+            'status': 'OCR_TEXT_MATCH_NOT_FULL_MANUAL_VALIDATION'}
+
+
 def test():
     x = audit()
     assert x['contact_count'] == 11 and x['ocr_checked_pages'] == 13
@@ -81,8 +98,20 @@ def test():
         except ValueError:
             continue
         raise AssertionError('fail-open OCR provenance')
-    return x | {'negative_controls': len(bad), 'result': 'PASS_PAGE_BOUNDARIES'}
+    try:
+        verify_excerpts('/nonexistent-page-corpus')
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('missing OCR corpus incorrectly accepted')
+    return x | {'negative_controls': len(bad) + 1, 'result': 'PASS_PAGE_BOUNDARIES'}
 
 
 if __name__ == '__main__':
-    print(json.dumps(test(), sort_keys=True))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--ocr-dir', default=None)
+    args = parser.parse_args()
+    result = test()
+    if args.ocr_dir:
+        result['ocr_source_check'] = verify_excerpts(args.ocr_dir)
+    print(json.dumps(result, sort_keys=True))
