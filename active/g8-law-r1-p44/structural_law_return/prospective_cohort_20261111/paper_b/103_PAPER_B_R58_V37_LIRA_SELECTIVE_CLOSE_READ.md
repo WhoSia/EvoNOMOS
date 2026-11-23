@@ -18,7 +18,7 @@
 | ID | Exact unit in v37 | Job | Retain 0–1 | Evidence status | Comment / decision |
 | --- | --- | --- | ---: | --- | --- |
 | K1 | “그 판단을 뒷받침하는 조건은 어디에 있는가?” | CORE | **0.98** | CONCEPTUAL | Excellent opening direct question after reviewer voice; **KEEP** |
-| K2 | “프로젝트가 승인한 규칙, 그리고 반드시 성립해야 할 동작의 계약” | DISAMBIGUATION | 0.96 | CONCEPTUAL | Prevents illegitimate policy→heuristic inference; **KEEP** |
+| K2 | “프로젝트가 승인한 규칙, 반드시 성립해야 할 동작의 계약” | DISAMBIGUATION | 0.96 | CONCEPTUAL | Prevents illegitimate policy→heuristic inference; **KEEP** |
 | K3 | “선언되지 않은 공리 같은 권위” | CORE | 0.99 | HYPOTHESIS | Precise project ambition; keep as a **question**, not discovered trend |
 | K4 | “Peter Naur의 1985년 논의는 이 질문에 오래된 토대를 제공한다.” | BRIDGE | 0.91 | SOURCE-READ | Accurate but scholarly link is *our inference*; keep with source |
 | K5 | “그 이름이 언제 충분한 이유가 되는지는 별도로 설명해야 한다.” | CORE | 0.98 | CONCEPTUAL | Defines warrant gap without insulting SOLID; **KEEP** |
@@ -46,7 +46,7 @@
 
 ## REWRITE/READ/STOP
 
-The editorial iteration was: v36 → [R57 attack](102_EVONOMOS_R57_GENRE_AUDIT_NAUR_TOULMIN_AGM_LIRA_V36.md) → v37 clean bilingual manuscript → this strict audit. Full German/English? No: **Korean and English**, both have five matching argumentative paragraphs and aligned source/evidence boundary. Japanese/German content is not present or claimed.
+The editorial iteration was: v36 → [R57 attack](102_EVONOMOS_R57_GENRE_AUDIT_NAUR_TOULMIN_AGM_LIRA_V36.md) → v37 clean bilingual manuscript → this strict audit. The draft is **Korean and English**; both contain five corresponding argumentative paragraphs and aligned source/evidence boundaries.
 
 No further v38 rewrite is justified by taste alone at this checkpoint. Any new version should be driven by real author preference, a newly found close historical predecessor, or a substantive argument/language error. Unverified fields (frequency of near-axiomatic code judgments, social enforcement pathway, unified higher structure, model effects) remain explicitly open.
 
