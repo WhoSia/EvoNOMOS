@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from enum import Enum
 from itertools import product
 import json
+import math
 
 
 class Status(str, Enum):
@@ -55,9 +56,9 @@ class Forecast:
     def __post_init__(self):
         if not self.source_id.strip():
             raise ValueError("forecast must carry provenance")
-        if self.likelihood is not None and not 0 <= self.likelihood <= 1:
+        if self.likelihood is not None and (not math.isfinite(self.likelihood) or not 0 <= self.likelihood <= 1):
             raise ValueError("likelihood outside [0, 1]")
-        if self.impact is not None and self.impact < 0:
+        if self.impact is not None and (not math.isfinite(self.impact) or self.impact < 0):
             raise ValueError("negative forecast impact")
 
     @property
@@ -196,6 +197,10 @@ def test():
     # Fail-closed input controls (rather than converting missing provenance to truth).
     for make in (
         lambda: Forecast(-.01, 1, "x"),
+        lambda: Forecast(float("nan"), 1, "x"),
+        lambda: Forecast(float("inf"), 1, "x"),
+        lambda: Forecast(.5, float("nan"), "x"),
+        lambda: Forecast(.5, float("inf"), "x"),
         lambda: Forecast(1.01, 1, "x"),
         lambda: Forecast(.5, -1, "x"),
         lambda: Forecast(.5, 1, ""),
