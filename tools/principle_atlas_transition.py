@@ -1,7 +1,7 @@
 """Context transitions for a *toy* typed-principle atlas.
 
-This module tests whether a recommendation's stated premises survive a change
-in context. It does not infer causal design quality, validate real SOLID claims,
+This module classifies whether an explicitly stated premise matches a context
+before and after a change. A matching premise is NOT proof of the recommendation. It does not infer causal design quality, validate real SOLID claims,
 or replace existing contract/specification verification.
 No third-party dependencies.
 """
@@ -45,7 +45,7 @@ class Transition:
     kept: FrozenSet[str]
     withdrawn: FrozenSet[str]
     newly_applicable: FrozenSet[str]
-    still_unresolved: FrozenSet[str]
+    not_applicable_either: FrozenSet[str]
 
 
 def compare(before: Context, after: Context,
@@ -56,7 +56,7 @@ def compare(before: Context, after: Context,
     kept = set()
     withdrawn = set()
     newly = set()
-    unresolved = set()
+    neither = set()
     for warrant in warrants:
         old = applies(warrant, before)
         new = applies(warrant, after)
@@ -67,9 +67,9 @@ def compare(before: Context, after: Context,
         elif new:
             newly.add(warrant.name)
         else:
-            unresolved.add(warrant.name)
+            neither.add(warrant.name)
     return Transition(frozenset(kept), frozenset(withdrawn),
-                      frozenset(newly), frozenset(unresolved))
+                      frozenset(newly), frozenset(neither))
 
 
 def tests() -> dict:
@@ -93,8 +93,10 @@ def tests() -> dict:
     assert result.kept == {"preserve_http"}
     assert result.withdrawn == {"extension_payoff"}
     assert result.newly_applicable == {"keep_simple"}
-    assert result.still_unresolved == {"explicit_team_rule"}
+    assert result.not_applicable_either == {"explicit_team_rule"}
     assert compare(before, before, warrants).withdrawn == set()
+    assert compare(before, before, warrants).newly_applicable == set()
+    assert compare(before, before, warrants).kept == {"extension_payoff", "preserve_http"}
     assert compare(after, before, warrants).newly_applicable == {"extension_payoff"}
     objective_only = Context(demand="many_variants", contract="same_http",
                              policy="no_requirement", objective="initial_cost")
