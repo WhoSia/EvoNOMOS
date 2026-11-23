@@ -1,0 +1,32 @@
+name: EvoNOMOS Paper B v21 idea-priority editorial audit
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/PAPER_B_BILINGUAL_INTEGRATED_21_20261122.md'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/audit_paper_b_v21_vision.py'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/test_audit_paper_b_v21_vision.py'
+      - '.github/workflows/paper-b-v21-vision.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  idea-first-v21:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check complete bilingual issue, idea and claim boundaries
+        run: |
+          python -m py_compile audit_paper_b_v21_vision.py test_audit_paper_b_v21_vision.py
+          python audit_paper_b_v21_vision.py
+          python -m unittest -v test_audit_paper_b_v21_vision.py

@@ -1,0 +1,37 @@
+name: P44 Source-Anchored Contract Exposure Conditional Frontier
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/contract_scope_frontier_20261111/**'
+      - '.github/workflows/p44-contract-exposure-frontier.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-anchored-frontier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ensure actual earlier source repair evidence names are preserved
+        run: |
+          test -f active/g8-law-r1-p44/structural_law_return/source_to_repair_20261111/04_DIRECT_CLIENT_SCOPE_SENSITIVE_REPAIR_CONE_VERDICT.md
+          test -f active/g8-law-r1-p44/structural_law_return/client_observation_footprint_20261111/01_ACTUAL_SOURCE_AST_PRESERVATION_AND_CLASSICAL_RIVAL_VERDICT.md
+      - name: Execute 1200 exact robust sign-region cases
+        working-directory: active/g8-law-r1-p44/structural_law_return/contract_scope_frontier_20261111
+        run: |
+          python -m unittest -v test_contract_scope_frontier
+          python contract_scope_frontier.py | tee /tmp/p44-contract-exposure-frontier.jsonl
+      - name: Upload result as workflow artifact without bot contribution
+        uses: actions/upload-artifact@v4
+        with:
+          name: p44-contract-exposure-cost-frontier
+          path: /tmp/p44-contract-exposure-frontier.jsonl

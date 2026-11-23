@@ -1,0 +1,46 @@
+name: EvoNOMOS Paper B v23 evidence and position audit
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/PAPER_B_BILINGUAL_POSITION_23_20261122.md'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/agent_4arm_20261122/evidence_receipt_gate.py'
+      - 'active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b/agent_4arm_20261122/test_evidence_receipt_gate.py'
+      - '.github/workflows/paper-b-v23-evidence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  position-and-record-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        working-directory: active/g8-law-r1-p44/structural_law_return/prospective_cohort_20261111/paper_b
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test agent evidence schema fail-closed
+        run: |
+          python -m py_compile agent_4arm_20261122/evidence_receipt_gate.py agent_4arm_20261122/test_evidence_receipt_gate.py
+          cd agent_4arm_20261122
+          python -m unittest -v test_evidence_receipt_gate.py
+      - name: Source and seven-section bilingual short position paper
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path("PAPER_B_BILINGUAL_POSITION_23_20261122.md").read_text(encoding="utf8")
+          assert s.startswith("# Paper B v23")
+          assert [int(x) for x in re.findall(r"^### ([1-7])\. ",s,re.M)]==list(range(1,8))*2
+          assert "운영상의 준공리화" in s and "operational quasi-axiomatization" in s
+          assert "lexical-echo" in s and "어휘 반복" in s
+          assert all(a in s for a in ("NONE","HARD_SOLID","SCOPED_SOLID","EVIDENCE_CONDITIONAL"))
+          assert "아직 수행하지 않았다" in s and "no randomized fresh-agent invocations" in s
+          print("v23 compact bilingual problem-first position: 7+7 sections PASS")
+          PY

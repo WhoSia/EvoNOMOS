@@ -1,0 +1,81 @@
+[
+  {
+    "design": "dispatch",
+    "demand": "triangle",
+    "boundary": "all",
+    "protected_paths": [
+      "render.py"
+    ],
+    "touched_protected_paths": [
+      "render.py"
+    ],
+    "reference_patch_preserves_boundary": false
+  },
+  {
+    "design": "dispatch",
+    "demand": "triangle",
+    "boundary": "none",
+    "protected_paths": [],
+    "touched_protected_paths": [],
+    "reference_patch_preserves_boundary": true
+  },
+  {
+    "design": "dispatch",
+    "demand": "label",
+    "boundary": "all",
+    "protected_paths": [
+      "render.py"
+    ],
+    "touched_protected_paths": [],
+    "reference_patch_preserves_boundary": true
+  },
+  {
+    "design": "dispatch",
+    "demand": "label",
+    "boundary": "none",
+    "protected_paths": [],
+    "touched_protected_paths": [],
+    "reference_patch_preserves_boundary": true
+  },
+  {
+    "design": "methods",
+    "demand": "triangle",
+    "boundary": "all",
+    "protected_paths": [
+      "circle.py",
+      "square.py"
+    ],
+    "touched_protected_paths": [],
+    "reference_patch_preserves_boundary": true
+  },
+  {
+    "design": "methods",
+    "demand": "triangle",
+    "boundary": "none",
+    "protected_paths": [],
+    "touched_protected_paths": [],
+    "reference_patch_preserves_boundary": true
+  },
+  {
+    "design": "methods",
+    "demand": "label",
+    "boundary": "all",
+    "protected_paths": [
+      "circle.py",
+      "square.py"
+    ],
+    "touched_protected_paths": [
+      "circle.py",
+      "square.py"
+    ],
+    "reference_patch_preserves_boundary": false
+  },
+  {
+    "design": "methods",
+    "demand": "label",
+    "boundary": "none",
+    "protected_paths": [],
+    "touched_protected_paths": [],
+    "reference_patch_preserves_boundary": true
+  }
+]

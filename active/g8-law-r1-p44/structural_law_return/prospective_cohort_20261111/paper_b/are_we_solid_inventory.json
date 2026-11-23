@@ -1,0 +1,74 @@
+{
+  "archive_sha256": "d2cfbe50dd12d189c0ee2b561a842757fa7483251df9025b602c498b753f0353",
+  "ground_truth_counts": {
+    "DIP": 48,
+    "ISP": 48,
+    "LSP": 48,
+    "OCP": 48,
+    "SRP": 48
+  },
+  "raw_c_sharp_labels": {
+    "DIP": [
+      "C#"
+    ],
+    "ISP": [
+      "CSHARP"
+    ],
+    "LSP": [
+      "C#"
+    ],
+    "OCP": [
+      "CSHARP"
+    ],
+    "SRP": [
+      "CSHARP"
+    ]
+  },
+  "ocp": {
+    "fields": {
+      "input": 48,
+      "language": 48,
+      "level": 48,
+      "output": 48,
+      "violation": 48
+    },
+    "python_pair_count": 12,
+    "python_rows_with_removed_declared_method": [
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      45,
+      46,
+      47
+    ],
+    "python_row_37_removed_declared_methods": [
+      "Circle.get_radius",
+      "Rectangle.get_height",
+      "Rectangle.get_width",
+      "Shape.get_type"
+    ]
+  },
+  "ocp_saved_prompts_by_strategy": {
+    "default": {
+      "rows": 192,
+      "distinct_scaffolds": 4
+    },
+    "ensemble": {
+      "rows": 192,
+      "distinct_scaffolds": 8
+    },
+    "example": {
+      "rows": 192,
+      "distinct_scaffolds": 8
+    },
+    "smell": {
+      "rows": 192,
+      "distinct_scaffolds": 4
+    }
+  },
+  "ocp_completion_file_count": 16,
+  "ocp_completion_rows_per_file": 48
+}

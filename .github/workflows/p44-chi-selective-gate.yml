@@ -1,0 +1,49 @@
+name: P44 Original Chi Cost-Sensitive Classical Selective Gate
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35/**'
+      - '.github/workflows/p44-chi-selective-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-go-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check original pre-2020 seal and exact source-pinned Go history
+        run: |
+          git clone --quiet https://github.com/go-chi/chi.git /tmp/original-chi
+          git -C /tmp/original-chi checkout --quiet --detach 67be7d9cafdaeb4e04e887ff78d09e030ee43b00
+          test "$(git -C /tmp/original-chi rev-parse HEAD)" = '67be7d9cafdaeb4e04e887ff78d09e030ee43b00'
+          test "$(git -C /tmp/original-chi rev-parse --is-shallow-repository)" = false
+      - name: Run frozen Python unit tests
+        working-directory: active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35
+        run: python -m unittest discover -p 'test_*.py' -v
+      - name: Run source-exact pre-2020 classifier on bounded original history
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35/selective_gate_original_history.py \
+            --original /tmp/original-chi \
+            --seal tools/p35-p5/seals/predictions-2020.json \
+            --output /tmp/p35-selective-original-result.json
+      - name: Evaluate corrected classical any-plus-top probability gate
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/maintainer_reentry_p35/selective_gate_joint_probability.py \
+            --original /tmp/original-chi \
+            --seal tools/p35-p5/seals/predictions-2020.json \
+            --output /tmp/p35-selective-joint-result.json
+      - name: Publish non-committing evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p35-original-chi-classical-gating
+          path: /tmp/p35-selective-*.json

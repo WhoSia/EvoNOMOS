@@ -1,0 +1,41 @@
+name: P44 Restic External Policy Source Context Reversal
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/restic_future_policy_22140/**'
+      - '.github/workflows/p44-restic-policy-context.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-source-policy-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch original Restic commit prior to independently authored issue
+        run: |
+          git init -q /tmp/restic-original
+          git -C /tmp/restic-original fetch --no-tags --depth=1 https://github.com/restic/restic.git 495982232cf1af184eac0a97871ef8161e8708ee
+          git -C /tmp/restic-original checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/restic-original rev-parse HEAD)" = 495982232cf1af184eac0a97871ef8161e8708ee
+          test "$(git -C /tmp/restic-original hash-object cmd/restic/cmd_prune.go)" = 638a0de5e1fc191c765da9d64b74a261fafaa792
+          test "$(git -C /tmp/restic-original hash-object internal/restic/backend.go)" = df3281641d743d3777a440485e79d1ccc0f3af52
+          test "$(git -C /tmp/restic-original hash-object internal/repository/repack.go)" = c82e63f28aa613b6e9aa834490fe1575c8422d31
+      - name: Check policy source locus without changing upstream
+        run: |
+          python active/g8-law-r1-p44/structural_law_return/restic_future_policy_22140/check_original_restic_source.py --root /tmp/restic-original
+          git -C /tmp/restic-original diff --exit-code
+      - name: Test actual external-issue-inspired bounded decision counterexample
+        working-directory: active/g8-law-r1-p44/structural_law_return/restic_future_policy_22140
+        run: |
+          python -m unittest -v test_cold_storage_policy
+          python cold_storage_policy.py

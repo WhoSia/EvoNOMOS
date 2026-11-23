@@ -1,0 +1,51 @@
+{
+  "distinct_inputs_per_group": {
+    "12": 64
+  },
+  "distinct_masked_prompt_templates": 24,
+  "limits": [
+    "Text/AST mismatch does not establish semantic difference or provenance.",
+    "Code comment prevalence does not establish whether a protected contract was stated.",
+    "Saved rows are repeated code submissions, not independent reviewer decisions.",
+    "Archive code was read as data and never executed."
+  ],
+  "model_strategy_language_groups": 64,
+  "prompt_input_occurrences": {
+    "1": 768
+  },
+  "python_only": {
+    "comment_tokens_across_unique_sources": 46,
+    "parse_errors": [],
+    "saved_rows": 192,
+    "unique_source_ast_matches_with_reference_sides": 0,
+    "unique_sources_with_comment_tokens": 4,
+    "unique_sources_with_docstrings": 0,
+    "unique_submitted_sources": 12
+  },
+  "records": 768,
+  "reference_pairs": 48,
+  "reference_text_matches": {
+    "all_whitespace_removed_unique_submissions": 0,
+    "exact_unique_submissions": 0,
+    "strip_unique_submissions": 0
+  },
+  "rows_per_file": {
+    "48": 16
+  },
+  "rows_per_group": {
+    "12": 64
+  },
+  "saved_jsonl_files": 16,
+  "sha256": "d2cfbe50dd12d189c0ee2b561a842757fa7483251df9025b602c498b753f0353",
+  "templates_per_group": {
+    "1": 64
+  },
+  "templates_per_strategy": {
+    "default": 4,
+    "ensemble": 8,
+    "example": 8,
+    "smell": 4
+  },
+  "unique_saved_record_ids": 48,
+  "unique_submitted_source_strings": 48
+}

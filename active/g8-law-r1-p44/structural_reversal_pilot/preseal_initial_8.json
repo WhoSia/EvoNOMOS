@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-09",
+  "class": "researcher-generated controlled source fixture (not independent upstream)",
+  "scope": "8 real compiled Go module versions with two source architectures and two changes",
+  "prediction": "replacement: direct changes three repeated provider literals vs port one; adding backend-derived Mode: direct adds one service method vs port changes service, interface, and backend; legacy client always passes",
+  "limitations": "no independent rights, human effort, prospective demand, semantic equivalence for all clients, or new theorem"
+}

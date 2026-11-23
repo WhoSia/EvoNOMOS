@@ -1,0 +1,59 @@
+{
+  "fixed_patch_observations": {
+    "book": [
+      "rendered",
+      "[library] BOOK: Algebra (North Press)"
+    ],
+    "journal": [
+      "rendered",
+      "[library] journal: Computing (Vol. 3)"
+    ],
+    "proceedings": [
+      "rendered",
+      "[library] proceedings: Design (1988)"
+    ],
+    "unknown": [
+      "ValueError",
+      "unsupported publication kind: unknown"
+    ],
+    "technical_report": [
+      "rendered",
+      "[library] report: Modules (institution: Research Lab)"
+    ],
+    "erratum": [
+      "ValueError",
+      "unsupported publication kind: erratum"
+    ]
+  },
+  "fixed_patch_judgments": [
+    {
+      "demand": "report",
+      "contract": "journal_proceedings_unknown",
+      "demand_met": true,
+      "contract_preserved": true,
+      "acceptable": true
+    },
+    {
+      "demand": "report",
+      "contract": "plus_book",
+      "demand_met": true,
+      "contract_preserved": false,
+      "acceptable": false
+    },
+    {
+      "demand": "report_and_erratum",
+      "contract": "journal_proceedings_unknown",
+      "demand_met": false,
+      "contract_preserved": true,
+      "acceptable": false
+    },
+    {
+      "demand": "report_and_erratum",
+      "contract": "plus_book",
+      "demand_met": false,
+      "contract_preserved": false,
+      "acceptable": false
+    }
+  ],
+  "one_additive_witness_satisfies_all_four": true
+}

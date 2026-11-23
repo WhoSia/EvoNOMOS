@@ -1,0 +1,126 @@
+{
+  "timestamp_category": "2026-11-10 KST issue search before RESTIC individual issue-body inspection",
+  "repo": "restic/restic",
+  "query": "is:issue created:2026-10-10..2026-11-10",
+  "sort": "created asc",
+  "coverage_note": "GitHub query-observed titles, NOT certified full population; researchers previously saw these titles in earlier tool search, have NOT yet opened bodies in this research unit.",
+  "purpose": "externally authored future demand mix against prior Restic P35 U/C research structures; no claim of causally independent treatment",
+  "observed_issue_count": 23,
+  "items": [
+    {
+      "id": 22109,
+      "title": "Support direct backup of S3 buckets",
+      "url": "https://github.com/restic/restic/issues/22109"
+    },
+    {
+      "id": 22112,
+      "title": "restic stats - inconsistent numbers reported from internal/ui/stats/progress.go",
+      "url": "https://github.com/restic/restic/issues/22112"
+    },
+    {
+      "id": 22113,
+      "title": "support backup reparse points in Windows",
+      "url": "https://github.com/restic/restic/issues/22113"
+    },
+    {
+      "id": 22114,
+      "title": "github: failure for compiling PR for Linux go 1.25.x",
+      "url": "https://github.com/restic/restic/issues/22114"
+    },
+    {
+      "id": 22116,
+      "title": "Recurring truncated pack files (196608 bytes) on rclone backend to pCloud",
+      "url": "https://github.com/restic/restic/issues/22116"
+    },
+    {
+      "id": 22120,
+      "title": "Timeout during prune shows unhelpful errors and stack trace",
+      "url": "https://github.com/restic/restic/issues/22120"
+    },
+    {
+      "id": 22126,
+      "title": "`--skip-if-unchanged` does not work with `--stdin` backups",
+      "url": "https://github.com/restic/restic/issues/22126"
+    },
+    {
+      "id": 22131,
+      "title": "Multiple double wildcards in --exclude are not properly handled",
+      "url": "https://github.com/restic/restic/issues/22131"
+    },
+    {
+      "id": 22132,
+      "title": "Release binaries built with a Go version that trusts the compromised eMudhra/emSign intermediates",
+      "url": "https://github.com/restic/restic/issues/22132"
+    },
+    {
+      "id": 22133,
+      "title": "Restic Should Automatically Exclude The Currently Used Repository to Avoid Infinite Circular Cloning",
+      "url": "https://github.com/restic/restic/issues/22133"
+    },
+    {
+      "id": 22138,
+      "title": "Sign Windows release binaries: Smart App Control blocks restic.exe",
+      "url": "https://github.com/restic/restic/issues/22138"
+    },
+    {
+      "id": 22140,
+      "title": "Cold storage logic for prune and others should be outsourced to a 3rd party engine",
+      "url": "https://github.com/restic/restic/issues/22140"
+    },
+    {
+      "id": 22146,
+      "title": "Mac OS times out too often for CI jobs",
+      "url": "https://github.com/restic/restic/issues/22146"
+    },
+    {
+      "id": 22147,
+      "title": "support for excluding paths listed in FilesNotToBackup",
+      "url": "https://github.com/restic/restic/issues/22147"
+    },
+    {
+      "id": 22148,
+      "title": "restore: --delete --dry-run fails when replacing a file with a directory",
+      "url": "https://github.com/restic/restic/issues/22148"
+    },
+    {
+      "id": 22150,
+      "title": "Add a native Drime Cloud backend",
+      "url": "https://github.com/restic/restic/issues/22150"
+    },
+    {
+      "id": 22154,
+      "title": "backup: allow reusing a parent snapshot when the backup source path has moved (`--parent-path OLD=NEW`)",
+      "url": "https://github.com/restic/restic/issues/22154"
+    },
+    {
+      "id": 22161,
+      "title": "--no-restore-permissions option",
+      "url": "https://github.com/restic/restic/issues/22161"
+    },
+    {
+      "id": 22164,
+      "title": "Add support for AWS process credentials (`credential_process`)",
+      "url": "https://github.com/restic/restic/issues/22164"
+    },
+    {
+      "id": 22168,
+      "title": "Fix an alternative way to test the swift backend.",
+      "url": "https://github.com/restic/restic/issues/22168"
+    },
+    {
+      "id": 22170,
+      "title": "restic restore \"restores\" unchanged directories",
+      "url": "https://github.com/restic/restic/issues/22170"
+    },
+    {
+      "id": 22172,
+      "title": "Container image 0.19.1 ships OpenSSH 10.3_p1-r0 (CVE-2026-60002)",
+      "url": "https://github.com/restic/restic/issues/22172"
+    },
+    {
+      "id": 22173,
+      "title": "Exclude pattern validation accepts some invalid patterns (e.g. x[a]*[); backup prints \"syntax error in pattern\", excludes nothing, exits 0",
+      "url": "https://github.com/restic/restic/issues/22173"
+    }
+  ]
+}

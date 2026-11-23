@@ -1,0 +1,33 @@
+name: P44 Decision-Sufficient Boundary Hypergraph Research
+
+on:
+  push:
+    branches:
+      - research/law-r1-p44-r3-stateful-alias-court
+    paths:
+      - 'active/g8-law-r1-p44/structural_law_return/decision_sufficient_boundaries/**'
+      - '.github/workflows/p44-decision-boundary-hypergraph.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exhaustive-finite-math:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test hypergraph transversals and executable counterexamples
+        working-directory: active/g8-law-r1-p44/structural_law_return/decision_sufficient_boundaries
+        run: |
+          python -m unittest discover -v
+          python - <<'PY'
+          from decision_conflict import *
+          print('restic no contract',certificate(restic_worlds()))
+          print('three-way hidden inconsistency',certificate(triple_conflict_worlds()))
+          print('cheap contract interface',optimize_signals(restic_worlds(),{'billing':{'prepaid':'locked','metered':'metered'}},{'billing':'0.10'}))
+          PY

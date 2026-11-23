@@ -1,0 +1,41 @@
+{
+  "schema": "evonomos-issue-cohort-v1",
+  "repository": "go-chi/chi",
+  "source": "GitHub authenticated issue search and issue readback",
+  "query": "is:issue created:2026-10-10..2026-11-10",
+  "start_utc_date": "2026-10-10",
+  "end_utc_date": "2026-11-10",
+  "source_architecture_created": "2026-10-09",
+  "selection_caveat": "Historical issue #1247 outcome already known; #1241 body first read after initial two-issue census commit 745f600642b3d08207fbd1fb184cf1ff5e60b2a1; GitHub search indexing may omit entries",
+  "items": [
+    {
+      "issue_number": 1241,
+      "created_utc": "2026-10-24T18:16:15Z",
+      "title": "Proposal: Native PASETO middleware",
+      "request_type": "opt_in_new_feature",
+      "arm_specific_current_regression": false,
+      "behavioral_arm_comparison": "not_evaluable",
+      "status": "open",
+      "result": "not_run",
+      "reason": "different feature layer; no existing RouteHeaders bug and no maintainer-approved implementation contract"
+    },
+    {
+      "issue_number": 1247,
+      "created_utc": "2026-11-01T01:28:07Z",
+      "title": "RouteHeaders misses exact mixed-case header value patterns",
+      "request_type": "existing_behavior_regression",
+      "arm_specific_current_regression": true,
+      "behavioral_arm_comparison": "native_executed",
+      "status": "open",
+      "result": "both_arms_pass_after_identical_common_source_fix",
+      "source_native_ci": "https://github.com/WhoSia/EvoNOMOS/actions/runs/42779140245",
+      "caveat": "historical source-informed; no independent coding agent"
+    }
+  ],
+  "total_observed_issues": 2,
+  "regressions": 1,
+  "opt_in_feature_proposals": 1,
+  "architecture_contrasts_native_executed": 1,
+  "positive_architecture_superiority_results": 0,
+  "scientific_gate": "not_identified_law_r2_hold"
+}
