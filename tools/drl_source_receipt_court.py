@@ -1,8 +1,8 @@
 """R78 scanned DRL article: page-grounded, non-exhaustive source audit.
 
 This checks provenance integrity, not scientific novelty. All 31 scanned
-pages have machine OCR output, but only eight page excerpts were manually
-reviewed against images. OCR completion is not full scholarly validation.
+pages have machine OCR output, but thirteen selected page images have been manually
+reviewed against their OCR text. OCR completion is not full scholarly validation.
 """
 from dataclasses import dataclass
 import json
@@ -10,7 +10,7 @@ import json
 FILE_ID = '1MB_mDL7TxssCviINpj__Icbdlv-KIkEd'
 PAGES = 31
 OCR_PAGES = frozenset(range(1, 32))
-CHECKED = frozenset((1, 2, 6, 11, 16, 21, 26, 31))
+CHECKED = frozenset((1, 2, 6, 11, 13, 14, 16, 20, 21, 23, 26, 27, 31))
 
 
 @dataclass(frozen=True)
@@ -39,6 +39,10 @@ CONTACTS = (
     Contact('contest_criteria', 21, 'argue about whether a goal is desirable'),
     Contact('alternative_limit', 21, 'beyond the current expressive power of DRL'),
     Contact('capture_effort', 26, 'failure and frustration'),
+    Contact('criteria_change', 13, 'If the criterion changes'),
+    Contact('issue_dependency', 14, 'What are the issues that depend on this issue'),
+    Contact('relations_are_claims', 20, 'All DRL relations are special types of Claims'),
+    Contact('drl_empirical_claim', 27, 'However, that is a testable claim'),
 )
 
 
@@ -57,7 +61,7 @@ def audit(contacts=CONTACTS):
 
 def test():
     x = audit()
-    assert x['contact_count'] == 7 and x['ocr_checked_pages'] == 8
+    assert x['contact_count'] == 11 and x['ocr_checked_pages'] == 13
     assert x['ocr_text_pages'] == 31 and x['full_manual_review'] is False
     bad = (
         lambda: Contact('bad', 0, 'x'),
