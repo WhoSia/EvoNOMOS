@@ -81,3 +81,39 @@ def test():
 
 if __name__ == "__main__":
     print(json.dumps(test(), ensure_ascii=False, indent=2))
+
+
+def information_equivalence_check():
+    # Exhaustive finite binary decision: renaming data cannot improve
+    # optimal risk if both representations retain the same information.
+    from itertools import product as iter_product
+    states = [0, 1, 2, 3]
+    labels = [0, 1]
+    encoded = {0: "beta", 1: "delta", 2: "alpha", 3: "gamma"}
+    lossy = {0: "X", 1: "X", 2: "Y", 3: "Y"}
+    # Deterministic data labels as a finite illustrative test.
+    truth = {0: 0, 1: 1, 2: 0, 3: 1}
+    def best_risk(encoding):
+        tokens = tuple(sorted(set(encoding.values())))
+        minimum = 1
+        for predictions in iter_product(labels, repeat=len(tokens)):
+            rule = dict(zip(tokens, predictions))
+            error = sum(rule[encoding[s]] != truth[s] for s in states)/len(states)
+            minimum = min(minimum, error)
+        return minimum
+    plain = best_risk({s: s for s in states})
+    bijective = best_risk(encoded)
+    compressed = best_risk(lossy)
+    assert plain == bijective == 0
+    assert compressed == 0.5
+    return {"native_optimal_error": plain, "bijective_recode_optimal_error": bijective,
+            "information_losing_recode_optimal_error": compressed,
+            "scope": "FINITE_DETERMINISTIC_ILLUSTRATION_NOT_HUMAN_COST"}
+
+
+_old_test = test
+def test():
+    result = _old_test()
+    result["information_equivalence"] = information_equivalence_check()
+    result["result"] = "PASS_FIVE_MATHEMATICAL_SANITY_CHECKS"
+    return result
