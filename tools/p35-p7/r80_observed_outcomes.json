@@ -1,0 +1,94 @@
+{
+  "title": "R80 local exact-blob isolated P35 D0/D8 and temporal replay",
+  "date": "2026-11-23",
+  "go_version": "go1.23.2 linux/amd64",
+  "code_replay": "tools/p35-p7/r80_exact_source_replay.py",
+  "execution_scope": "ISOLATED_ROUTER_NOT_FULL_CHI",
+  "go_test_flags": [
+    "-race",
+    "-count=1"
+  ],
+  "git_blob_verified": {
+    "arms/live/route_headers.go": "ad9a2fbc0a30a39475f746068e74e2d3e6c93999",
+    "arms/snapshot/route_headers.go": "e9ca2c3863d5aa06ef0f0b9d168ddcf184713d75",
+    "d8/live/route_headers.go": "e481e73aa1d82497c25011b6468d7e8749c705f7",
+    "d8/snapshot/route_headers.go": "66e88964508cedc38740913a7c00fbf5b6e6220a",
+    "tests/p35_p7_common_test.go": "81f8123d6e24eb92c1ce9529f170be36191dd1c1",
+    "tests/p35_p7_d8_same_requirement_test.go": "ed13ceb8f78ccc923f58ea12584a366cd3080d37",
+    "tests/r80_temporal_contract_test.go": "fe9ea93df2a80e6fee2d8ed437b56f062fa6ce17"
+  },
+  "records": [
+    {
+      "arm": "original_live",
+      "test": "D0",
+      "observed": "PASS"
+    },
+    {
+      "arm": "original_live",
+      "test": "D8",
+      "observed": "FAIL"
+    },
+    {
+      "arm": "original_live",
+      "test": "TEMPORAL",
+      "observed": "PASS"
+    },
+    {
+      "arm": "original_snapshot",
+      "test": "D0",
+      "observed": "PASS"
+    },
+    {
+      "arm": "original_snapshot",
+      "test": "D8",
+      "observed": "FAIL"
+    },
+    {
+      "arm": "original_snapshot",
+      "test": "TEMPORAL",
+      "observed": "PASS"
+    },
+    {
+      "arm": "repaired_live",
+      "test": "D0",
+      "observed": "PASS"
+    },
+    {
+      "arm": "repaired_live",
+      "test": "D8",
+      "observed": "PASS"
+    },
+    {
+      "arm": "repaired_live",
+      "test": "TEMPORAL",
+      "observed": "PASS"
+    },
+    {
+      "arm": "repaired_snapshot",
+      "test": "D0",
+      "observed": "PASS"
+    },
+    {
+      "arm": "repaired_snapshot",
+      "test": "D8",
+      "observed": "PASS"
+    },
+    {
+      "arm": "repaired_snapshot",
+      "test": "TEMPORAL",
+      "observed": "PASS"
+    }
+  ],
+  "original_d8_failure_subcases": [
+    "later-exact-over-earlier-wildcard",
+    "route-any-exact-pattern-matches"
+  ],
+  "record_count": 12,
+  "expected_results_matched": 12,
+  "source_mutation_gate": "FAIL_CLOSED_AND_RESTORED",
+  "original_go_whole_module_run": false,
+  "independent_human_adjudication": false,
+  "real_human_repair_cost": "NOT_MEASURED",
+  "novel_architecture_advantage": "NOT_ESTABLISHED",
+  "conclusion": "BOTH_ARMS_CAN_SATISFY_SAME_D8_AFTER_REPAIR_WHILE_PRESERVING_OPPOSITE_TEMPORAL_CONTRACTS"
+}
