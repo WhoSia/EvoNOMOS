@@ -24,7 +24,7 @@ PRIMARY_LINKS = (
 )
 MANDATORY_SCOPE = (
     "팀 파생", "업스트림", "독립", "미수행", "ATLAS", "강한 ADR",
-    "외부", "기록 비용", "보편", "D8", "음성 결과",
+    "외부", "기록 비용", "일반화", "D8", "음성 결과",
 )
 
 
@@ -50,8 +50,8 @@ def check(text: str) -> dict:
 def test(text: str) -> dict:
     state = check(text)
     negative = [
-        text.replace(HASHES["official_old"], "UNVERIFIED", 1),
-        text.replace(PRIMARY_LINKS[1], "MISSING_EXTERNAL_COMMIT", 1),
+        text.replace(HASHES["official_old"], "UNVERIFIED"),
+        text.replace(PRIMARY_LINKS[1], "MISSING_EXTERNAL_COMMIT"),
         text.replace("미수행", "NOT_PERFORMED_PLACEHOLDER"),
     ]
     for candidate in negative:
