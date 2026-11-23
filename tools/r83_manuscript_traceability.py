@@ -52,7 +52,7 @@ def test(text: str) -> dict:
     negative = [
         text.replace(HASHES["official_old"], "UNVERIFIED", 1),
         text.replace(PRIMARY_LINKS[1], "MISSING_EXTERNAL_COMMIT", 1),
-        text.replace("미수행", "NOT_PERFORMED_PLACEHOLDER", 1),
+        text.replace("미수행", "NOT_PERFORMED_PLACEHOLDER"),
     ]
     for candidate in negative:
         try:
