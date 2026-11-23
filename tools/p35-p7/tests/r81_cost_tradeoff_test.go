@@ -35,6 +35,8 @@ func BenchmarkR81SteadyLookup(b *testing.B) {
     }
 }
 
+var r81HandlerSink http.Handler
+
 func BenchmarkR81ConstructHandler(b *testing.B) {
     r := r81Registry()
     next := http.HandlerFunc(func(http.ResponseWriter, *http.Request) {})
@@ -42,6 +44,7 @@ func BenchmarkR81ConstructHandler(b *testing.B) {
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         h := r.Handler(next)
+        r81HandlerSink = h
         if h == nil {
             b.Fatal("nil constructed handler")
         }
