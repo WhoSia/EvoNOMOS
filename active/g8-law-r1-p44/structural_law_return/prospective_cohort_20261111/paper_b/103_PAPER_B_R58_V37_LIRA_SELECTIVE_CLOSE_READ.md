@@ -50,4 +50,4 @@ The editorial iteration was: v36 → [R57 attack](102_EVONOMOS_R57_GENRE_AUDIT_N
 
 No further v38 rewrite is justified by taste alone at this checkpoint. Any new version should be driven by real author preference, a newly found close historical predecessor, or a substantive argument/language error. Unverified fields (frequency of near-axiomatic code judgments, social enforcement pathway, unified higher structure, model effects) remain explicitly open.
 
-**LIRA STOP: source-claim alignment PASS, 16 selective units audited, core author voice preserved, novelty and empirical efficacy OPEN.**
+**LIRA STOP: source-claim alignment PASS, 17 selective units audited, core author voice preserved, novelty and empirical efficacy OPEN.**
