@@ -97,7 +97,7 @@ EvoNOMOS begins with two questions: **On what grounds can design advice acquire 
 
 [7] Ganter, B. & Wille, R. (1999). *Formal Concept Analysis: Mathematical Foundations*. Springer. [Publisher](https://link.springer.com/book/10.1007/978-3-642-59830-2). Owned book filed in 11_BOOKS; the comparison is background mathematical prior art.
 
-[8] Dunn, J. M. (1976) and Belnap, N. D. (1977), established four-valued evidence and inference traditions. Bibliographic edition details need a separate citation audit; **do not represent the evidence-pair structure as original**.
+[8] Belnap, N. D., Jr. (1977). A Useful Four-Valued Logic. In *Modern Uses of Multiple-Valued Logic*, 8–37. Springer/Reidel. https://doi.org/10.1007/978-94-010-1161-7_2. The information ordering and support/defeat distinction are existing mathematical ideas; this paper does not claim their invention. Also compare earlier Dunn-related four-valued semantics, without treating it as evidence of a proven software-design atlas.
 
 [9] Goguen, J. A. & Burstall, R. M. (1992). Institutions: Abstract Model Theory for Specification and Programming. *Journal of the ACM*, 39(1), 95–146. [Edinburgh bibliographic repository](https://www.lfcs.inf.ed.ac.uk/reports/90/ECS-LFCS-90-106/). Existing abstract model theory, not a finished software heuristic atlas.
 
