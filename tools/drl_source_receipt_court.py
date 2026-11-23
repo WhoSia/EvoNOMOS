@@ -1,14 +1,15 @@
 """R78 scanned DRL article: page-grounded, non-exhaustive source audit.
 
-This checks provenance integrity, not scientific novelty. Eight pages of a
-31-page image-only PDF were selectively OCRed and their reading verified.
-Uninspected pages cannot be cited as verified text.
+This checks provenance integrity, not scientific novelty. All 31 scanned
+pages have machine OCR output, but only eight page excerpts were manually
+reviewed against images. OCR completion is not full scholarly validation.
 """
 from dataclasses import dataclass
 import json
 
 FILE_ID = '1MB_mDL7TxssCviINpj__Icbdlv-KIkEd'
 PAGES = 31
+OCR_PAGES = frozenset(range(1, 32))
 CHECKED = frozenset((1, 2, 6, 11, 16, 21, 26, 31))
 
 
@@ -49,13 +50,15 @@ def audit(contacts=CONTACTS):
             raise ValueError('duplicate claim-page assertion')
         unique.add(key)
     return {'source_id': FILE_ID, 'pages': PAGES, 'ocr_checked_pages': len(CHECKED),
-            'contact_count': len(contacts), 'full_text_ocr': False,
+            'contact_count': len(contacts), 'ocr_text_pages': len(OCR_PAGES),
+            'full_text_ocr': True, 'full_manual_review': False,
             'claim_novelty': 'NOT_ESTABLISHED', 'source_scope': 'SELECTIVE_PAGES'}
 
 
 def test():
     x = audit()
     assert x['contact_count'] == 7 and x['ocr_checked_pages'] == 8
+    assert x['ocr_text_pages'] == 31 and x['full_manual_review'] is False
     bad = (
         lambda: Contact('bad', 0, 'x'),
         lambda: Contact('bad', 32, 'x'),
