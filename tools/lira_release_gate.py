@@ -55,8 +55,8 @@ def audit_release(evidence: Mapping[str, EvidenceGate]) -> dict:
 # verification. The following does NOT claim either source originality or
 # independent referee approval.
 V50_WORKING = {
-    "primary_source_audit": EvidenceGate(True, "R75; gIBIS/AREL/SEI source passages"),
-    "reference_completeness": EvidenceGate(True, "v50 Notion 2026-11-23 references 1-16"),
+    "primary_source_audit": EvidenceGate(False, None),
+    "reference_completeness": EvidenceGate(False, None),
     "complete_bilingual_manuscript": EvidenceGate(False, None),
     "semantic_alignment_review": EvidenceGate(False, None),
     "independent_truth_adjudication": EvidenceGate(False, None),
@@ -70,11 +70,10 @@ V50_WORKING = {
 
 def test():
     status = audit_release(V50_WORKING)
-    assert status["release"] == "HOLD" and status["number_pending"] == 8
+    assert status["release"] == "HOLD" and status["number_pending"] == 10
     assert status["noncompensatory"] is True
     for name in REQUIRED:
-        if name not in {"primary_source_audit", "reference_completeness"}:
-            assert name in status["reasons"]
+        assert name in status["reasons"]
     # An average over high-scoring prose cannot override the release veto.
     almost = dict(V50_WORKING)
     for name in REQUIRED:
