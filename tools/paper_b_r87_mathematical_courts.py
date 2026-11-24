@@ -79,10 +79,6 @@ def test():
             "mathematics_status": "KNOWN_CONSTRUCTIONS_AND_EXPLICIT_COUNTEREXAMPLES"}
 
 
-if __name__ == "__main__":
-    print(json.dumps(test(), ensure_ascii=False, indent=2))
-
-
 def information_equivalence_check():
     # Exhaustive finite binary decision: renaming data cannot improve
     # optimal risk if both representations retain the same information.
@@ -117,3 +113,7 @@ def test():
     result["information_equivalence"] = information_equivalence_check()
     result["result"] = "PASS_FIVE_MATHEMATICAL_SANITY_CHECKS"
     return result
+
+
+if __name__ == "__main__":
+    print(json.dumps(test(), ensure_ascii=False, indent=2))
