@@ -1,0 +1,31 @@
+{
+  "round": "R93",
+  "date": "2026-11-25",
+  "execution": {
+    "runtime": "Node v22.16.0",
+    "method": "GitHub fetched UTF-8 source reconstructed in local runtime; git hash-object exact match before CLI execution",
+    "tests": [
+      {
+        "path": "tools/r93_prefix_menu_gap.mjs",
+        "blob": "f9ab013a75bb8f72c0a7bb7fe5e4371aafbf557a",
+        "commit": "8cd63e61b0f7ec50b2209c274f9ec6bae458bbb8",
+        "status": "PASS_PREFIX_MENU_GAP",
+        "constructed_cases": 8
+      },
+      {
+        "path": "tools/r93_commitment_cost_frontier.mjs",
+        "blob": "84d26642ce7728fe680b89028ed2678f425e10e9",
+        "commit": "c7598e88e48fd46e32d12153937ee34d448767e6",
+        "status": "PASS_COMMITMENT_COST_FRONTIER",
+        "constructed_cases": 75
+      }
+    ]
+  },
+  "limitations": {
+    "lean_kernel": "NOT_EXECUTED_COMPILER_UNAVAILABLE",
+    "empirical_software": "NOT_TESTED",
+    "novelty": "NOT_ESTABLISHED",
+    "prior_art": "K-adaptability and fractional set cover directly relevant",
+    "scope": "finite constructed action menus; not independent developer samples; no real source edit graph measured"
+  }
+}
