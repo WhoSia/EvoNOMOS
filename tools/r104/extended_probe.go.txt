@@ -1,0 +1,34 @@
+package middleware
+
+import (
+ "fmt"
+ "net/http"
+ "net/http/httptest"
+ "testing"
+)
+
+func TestExtendedObservation(t *testing.T) {
+ patterns := []string{"Gold", "Go*", "*OlD", "A*B", "*", "", "İ", "K*"}
+ values := []string{"Gold", "gold", "GOLD", "xxOlD", "xxold", "AxxB", "axxB", "", "i", "kilo", "KILO"}
+ mark := func(next http.Handler) http.Handler {return http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.WriteHeader(201)})}
+ next := http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.WriteHeader(204)})
+ for pi,p := range patterns {for vi,v := range values {
+  pattern:=NewPattern(p)
+  one:=HeaderRoute{MatchOne:pattern,Middleware:mark}
+  any:=HeaderRoute{MatchAny:[]Pattern{NewPattern("__never__"),pattern},Middleware:mark}
+  fmt.Printf("OBS direct %d %d %t\n",pi,vi,pattern.Match(v))
+  fmt.Printf("OBS ismatch %d %d %t\n",pi,vi,one.IsMatch(v))
+  fmt.Printf("OBS ismatchany %d %d %t\n",pi,vi,any.IsMatch(v))
+  for _,mode:=range []string{"route","any","raw","rawany"}{
+   hr:=RouteHeaders()
+   switch mode {case "route":hr.Route("X-Test",p,mark);case "any":hr.RouteAny("X-Test",[]string{"__never__",p},mark);case "raw":hr["x-test"]=[]HeaderRoute{one};case "rawany":hr["x-test"]=[]HeaderRoute{any}}
+   handler:=hr.Handler(next)
+   for repeat:=0;repeat<2;repeat++ {
+    req:=httptest.NewRequest("GET","/",nil);req.Header.Set("X-Test",v);rec:=httptest.NewRecorder();handler.ServeHTTP(rec,req)
+    fmt.Printf("OBS %s%d %d %d %t\n",mode,repeat,pi,vi,rec.Code==201)
+   }
+  }
+  // No mutation of caller's shared Pattern slice may escape routing.
+  fmt.Printf("OBS after %d %d %t\n",pi,vi,any.IsMatch(v))
+ }}
+}
