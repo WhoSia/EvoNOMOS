@@ -1,0 +1,24 @@
+package middleware
+
+import (
+ "fmt"
+ "net/http"
+ "net/http/httptest"
+ "testing"
+)
+
+func TestObservationVector(t *testing.T) {
+ patterns := []string{"Gold", "Go*", "*OlD", "A*B", "*", "", "İ", "K*"}
+ values := []string{"Gold", "gold", "GOLD", "xxOlD", "xxold", "AxxB", "axxB", "", "i", "kilo", "KILO"}
+ mark := func(next http.Handler) http.Handler {return http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.WriteHeader(201)})}
+ next := http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.WriteHeader(204)})
+ for pi,p := range patterns {for vi,v := range values {
+  fmt.Printf("OBS direct %d %d %t\n",pi,vi,NewPattern(p).Match(v))
+  for _,mode:=range []string{"route","any","raw"}{
+   hr:=RouteHeaders()
+   switch mode {case "route": hr.Route("X-Test",p,mark);case "any":hr.RouteAny("X-Test",[]string{p},mark);case "raw":hr["x-test"]=[]HeaderRoute{{MatchOne:NewPattern(p),Middleware:mark}}}
+   req:=httptest.NewRequest("GET","/",nil);req.Header.Set("X-Test",v);rec:=httptest.NewRecorder();hr.Handler(next).ServeHTTP(rec,req)
+   fmt.Printf("OBS %s %d %d %t\n",mode,pi,vi,rec.Code==201)
+  }
+ }}
+}
