@@ -53,6 +53,12 @@ func TestMutation(t *testing.T){
  if request(h,"green")!=wantGreen{t.Fatal("map visibility")}
  if pats[0].Match("blue"){t.Fatal("direct alias modified")}
 }
+func TestLengthBoundary(t *testing.T){
+ words:=[]string{""}; level:=[]string{""}
+ for n:=0;n<3;n++ {next:=[]string{};for _,w:=range level{for _,c:=range []string{"a","A","*","é","\xff"}{next=append(next,w+c)}};words=append(words,next...);level=next}
+ for _,p:=range words{for _,v:=range words{if got,want:=NewPattern(p).Match(v),oracle(p,v);got!=want{t.Fatalf("length %q %q: %t != %t",p,v,got,want)}}}
+ t.Logf("length comparisons=%d",len(words)*len(words))
+}
 type sink struct{code int}
 func(w *sink)Header()http.Header{return nil}
 func(w *sink)Write(p []byte)(int,error){return len(p),nil}
