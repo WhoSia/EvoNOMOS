@@ -110,7 +110,13 @@ class Checks(unittest.TestCase):
 def benchmark():
     print(json.dumps({'python':platform.python_version(),'platform':platform.platform(),'repeats':7,'timing':'parse/filter once per call; baseline costs only, candidate costs+witness+verify; no JSON IO'}))
     rng=random.Random(111)
-    for label,model,goal in [('P42',chi_graph(),'EC')]+[(str(n),random_model(n,111),'g') for n in (128,512,2048)]:
+    rare = random_model(512,111)
+    for state in rare['states'].values():
+        state['goals'] = []
+    next(state for state in rare['states'].values() if state['safe'])['goals'] = ['g']
+    cases = [('P42',chi_graph(),'EC')]+[(str(n),random_model(n,111),'g') for n in (128,512,2048)]
+    cases += [('rare-512',rare,'g'),('absent-512',rare,'absent')]
+    for label,model,goal in cases:
         def baseline():return repeated_forward(graph(model),goal)
         def candidate():
             p=graph(model);r=frontier(p,goal);verify(p,goal,r);return {s:v['cost'] for s,v in r.items()}
