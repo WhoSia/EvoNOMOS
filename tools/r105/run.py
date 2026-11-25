@@ -1,9 +1,8 @@
-"""R105 native differential/benchmark; python run.py live.go snapshot.go [--profile]."""
+"""R105 native differential/benchmark; python run.py live.go snapshot.go."""
 import hashlib
 import os
 from pathlib import Path
 import random
-import re
 import subprocess
 import sys
 import tempfile
@@ -33,6 +32,8 @@ def replace(s, old, new):
 
 
 def patch(s, mode):
+    if mode.endswith('+len'):
+        return replace(patch(s,mode[:-4]), 'len(p.prefix+p.suffix)', 'len(p.prefix)+len(p.suffix)')
     if mode == 'dup':
         return replace(s, 'matcher.IsMatch(value)', 'normalizedRouteMatch(matcher, value)') + '\n' + LOWER + DUP
     if mode == 'shared':
@@ -54,7 +55,11 @@ def main(paths):
         sources[arm] = data.decode()
     env = {**os.environ,'GO111MODULE':'off','GOMAXPROCS':'1'}
     def run(cmd, cwd, arm):
-        return subprocess.run(cmd,cwd=cwd,env={**env,'EVO_ARM':arm},text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,check=True).stdout
+        result = subprocess.run(cmd,cwd=cwd,env={**env,'EVO_ARM':arm},text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        if result.returncode:
+            print(result.stdout,flush=True)
+            result.check_returncode()
+        return result.stdout
     with tempfile.TemporaryDirectory() as d:
         root=Path(d); binaries={}
         def build(arm, mode, source):
@@ -73,6 +78,12 @@ def main(paths):
             for mode in ('shared','compile') if arm=='snapshot' else ('shared',):
                 p=build(arm,mode,sources[arm]);binaries[arm,mode]=p
                 print('TEST',arm,mode,run(['./probe','-test.v'],p,arm),flush=True)
+        p=binaries['snapshot','compile']
+        print('COMPILE PROFILE',run(['./probe','-test.run=^$','-test.bench=^BenchmarkServeMiss64$','-test.benchtime=500ms','-test.cpuprofile=cpu.out'],p,'snapshot'),flush=True)
+        print(run(['go','tool','pprof','-top','-cum','-nodecount=12','probe','cpu.out'],p,'snapshot'),flush=True)
+        for arm,mode in (('live','shared+len'),('snapshot','compile+len')):
+            p=build(arm,mode,sources[arm]);binaries[arm,mode]=p
+            print('TEST',arm,mode,run(['./probe','-test.v'],p,arm),flush=True)
         # Freeze a LIVE registry using the SNAPSHOT construction: intentional negative control.
         p=build('live','compile',sources['snapshot'])
         bad=subprocess.run(['./probe','-test.run=TestMutation','-test.v'],cwd=p,env={**env,'EVO_ARM':'live'},text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
