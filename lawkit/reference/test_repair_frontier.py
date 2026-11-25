@@ -29,6 +29,8 @@ def oracle(model, goal):
 def repeated_forward(parsed, goal):
     states, forward, _ = parsed
     targets = {s for s in forward if goal in states[s]['goals']}
+    if not targets:
+        return dict.fromkeys(forward)
     result = {}
     for start in forward:
         d, queue = {start: 0}, [(0, start)]
