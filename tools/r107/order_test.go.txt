@@ -1,0 +1,61 @@
+package mem_test
+
+import (
+ "bytes"
+ "testing"
+ "google.golang.org/grpc/mem"
+)
+
+type pool struct { mode int; backing []byte; cached *[]byte; alloc, puts int }
+func(p *pool)Get(n int)*[]byte{
+ if p.mode==0 {
+  if len(p.backing)<n { p.backing=make([]byte,n);p.alloc++ };v:=p.backing[:n];return &v
+ }
+ if p.mode==2 && p.cached!=nil && cap(*p.cached)>=n { v:=p.cached;p.cached=nil;*v=(*v)[:n];return v }
+ v:=make([]byte,n);p.alloc++;return &v
+}
+func(p *pool)Put(v *[]byte){p.puts++;if p.mode==2{p.cached=v}}
+
+// All 15 schedules: ordered acquisitions, arbitrary valid releases.
+func schedules()[][]int{
+ var out [][]int
+ var walk func([]int,int,int)
+ walk=func(s []int,n,live int){
+  if len(s)==6{out=append(out,append([]int(nil),s...));return}
+  if n<3{walk(append(s,n+1),n+1,live|1<<n)}
+  for i:=0;i<3;i++{if live&(1<<i)!=0{walk(append(s,-i-1),n,live&^(1<<i))}}
+ }
+ walk(nil,0,0);return out
+}
+func TestOrder(t *testing.T){
+ sizes:=[]int{0,1024,1025,2048,4096};ss:=schedules();if len(ss)!=15{t.Fatal(len(ss))}
+ var cases, observations, bad, sharedAlloc, freshAlloc, leaseAlloc int
+ for _,a:=range sizes{for _,b:=range sizes{for _,c:=range sizes{for _,s:=range ss{for mode:=0;mode<3;mode++{
+  ns:=[3]int{a,b,c};p:=&pool{mode:mode};var buf [3]mem.Buffer;var gen [3]int;var high,generation,expectedPuts int;failed:=false
+  for _,op:=range s{
+   i:=op-1;if op>0{
+    n:=ns[i];gen[i]=-i-1
+    if n>1024{if n>high{high=n;generation++};gen[i]=generation}
+    buf[i]=mem.Copy(bytes.Repeat([]byte{byte(i+1)},n),p)
+    // A live buffer fails isolation at an acquisition iff it shares the current generation.
+    for j:=0;j<i;j++{if buf[j]==nil{continue};got:=bytes.Equal(buf[j].ReadOnlyData(),bytes.Repeat([]byte{byte(j+1)},ns[j]));want:=true
+     if mode==0 && ns[j]>1024 && n>1024 && gen[j]==gen[i]{want=false}
+     // Earlier corruption remains possible even if this acquisition is disjoint.
+     if !got{failed=true};if !want&&got{t.Fatalf("missed alias %v %v %d %d",ns,s,i,j)}
+     if mode!=0&&!got{t.Fatalf("repaired alias %v %v",ns,s)};observations++
+    }
+   }else{i=-op-1;buf[i].Free();buf[i]=nil;if ns[i]>1024{expectedPuts++};if p.puts!=expectedPuts{t.Fatal("returns",p.puts,expectedPuts)}}
+  }
+  // Independent schedule-level predicate: at each pooled acquisition, test overlapping live regions.
+  live:=0;high=0;generation=0;gen=[3]int{};wantBad:=false
+  for _,op:=range s{if op<0{live&=^(1<<(-op-1));continue};i:=op-1;n:=ns[i];if n>1024{if n>high{high=n;generation++};gen[i]=generation;for j:=0;j<i;j++{if live&(1<<j)!=0&&ns[j]>1024&&gen[j]==gen[i]{wantBad=true}}};live|=1<<i}
+  if failed!=(mode==0&&wantBad){t.Fatalf("predict %v %v mode=%d got=%t want=%t",ns,s,mode,failed,wantBad)}
+  cases++;if failed{bad++};switch mode{case 0:sharedAlloc+=p.alloc;case 1:freshAlloc+=p.alloc;case 2:leaseAlloc+=p.alloc}
+ }}}}}
+ t.Logf("cases=%d live_read_checks=%d shared_fail=%d alloc_shared=%d alloc_fresh=%d alloc_lease=%d",cases,observations,bad,sharedAlloc,freshAlloc,leaseAlloc)
+}
+func TestLeaseRef(t *testing.T){
+ p:=&pool{mode:2};a:=mem.Copy(bytes.Repeat([]byte{1},2048),p);a.Ref();a.Free();if p.puts!=0{t.Fatal("premature return")}
+ b:=mem.Copy(bytes.Repeat([]byte{2},2048),p);if a.ReadOnlyData()[0]!=1{t.Fatal("live alias")};a.Free();if p.puts!=1{t.Fatal("last ref")}
+ c:=mem.Copy(bytes.Repeat([]byte{3},1025),p);if p.alloc!=2||b.ReadOnlyData()[0]!=2{t.Fatal("reuse")};b.Free();c.Free();if p.puts!=3{t.Fatal("returns")}
+}
