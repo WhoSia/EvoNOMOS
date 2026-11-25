@@ -1,0 +1,1 @@
+{"states":{"start":{"safe":true,"goals":[]},"local":{"safe":true,"goals":[]},"done":{"safe":true,"goals":["feature"]},"broken":{"safe":false,"goals":["feature"]},"blocked":{"safe":true,"goals":[]}},"allowed_owners":["app"],"edges":[["start","local","app",2],["local","done","app",3],["start","done","upstream",1],["start","broken","app",1],["blocked","done","upstream",1]]}
