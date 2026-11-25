@@ -1,0 +1,76 @@
+package middleware
+
+import (
+ "net/http"
+ "net/http/httptest"
+ "os"
+ "strings"
+ "testing"
+)
+
+func marked(code int) func(http.Handler) http.Handler {
+ h := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){w.WriteHeader(code)})
+ return func(http.Handler) http.Handler { return h }
+}
+var next = http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){w.WriteHeader(204)})
+func request(h http.Handler,v string) int {
+ q:=httptest.NewRequest("GET","/",nil); q.Header.Set("X-Test",v)
+ w:=httptest.NewRecorder(); h.ServeHTTP(w,q); return w.Code
+}
+func oracle(p,v string) bool {
+ a,b,star:=strings.Cut(p,"*")
+ if !star {return p==v}
+ return len(v)>=len(a)+len(b)&&strings.HasPrefix(v,a)&&strings.HasSuffix(v,b)
+}
+func TestContract(t *testing.T){
+ patterns:=[]string{"Gold","Go*","*OlD","A*B","*","","İ","K*","\xff*","a**b"}
+ values:=[]string{"Gold","gold","GOLD","xxOlD","xxold","AxxB","axxB","","i","kilo","KILO","\xffabc","a*b","ab"}
+ count:=0
+ for _,p:=range patterns{for _,v:=range values{
+  pat:=NewPattern(p); old:=oracle(p,v)
+  one:=HeaderRoute{MatchOne:pat,Middleware:marked(201)}
+  any:=HeaderRoute{MatchAny:[]Pattern{NewPattern("__never__"),pat},Middleware:marked(201)}
+  if pat.Match(v)!=old||one.IsMatch(v)!=old||any.IsMatch(v)!=old {t.Fatalf("direct %q %q",p,v)}
+  target:=204;if v!=""&&oracle(strings.ToLower(p),strings.ToLower(v)){target=201}
+  for _,m:=range []string{"route","any","raw","rawany"}{
+   hr:=RouteHeaders();switch m {case "route":hr.Route("X-Test",p,marked(201));case "any":hr.RouteAny("X-Test",[]string{"__never__",p},marked(201));case "raw":hr["x-test"]=[]HeaderRoute{one};case "rawany":hr["x-test"]=[]HeaderRoute{any}}
+   h:=hr.Handler(next);for j:=0;j<2;j++{if got:=request(h,v);got!=target{t.Fatalf("%s %q %q: got %d want %d",m,p,v,got,target)};count++}
+   if any.IsMatch(v)!=old{t.Fatalf("alias changed %q %q",p,v)}
+  }
+ }}
+ t.Logf("route comparisons=%d; direct triples=%d",count,len(patterns)*len(values))
+}
+func TestMutation(t *testing.T){
+ pats:=[]Pattern{NewPattern("GOLD")};hr:=RouteHeaders()
+ hr["x-test"]=[]HeaderRoute{{MatchAny:pats,Middleware:marked(201)}}
+ h:=hr.Handler(next);if request(h,"gold")!=201{t.Fatal("initial")}
+ pats[0]=NewPattern("BLUE")
+ live:=os.Getenv("EVO_ARM")=="live"; wantGold,wantBlue:=201,204
+ if live{wantGold,wantBlue=204,201}
+ if request(h,"gold")!=wantGold||request(h,"blue")!=wantBlue{t.Fatal("slice visibility")}
+ hr["x-test"]=[]HeaderRoute{{MatchOne:NewPattern("GREEN"),Middleware:marked(202)}}
+ wantGreen:=204;if live{wantGreen=202}
+ if request(h,"green")!=wantGreen{t.Fatal("map visibility")}
+ if pats[0].Match("blue"){t.Fatal("direct alias modified")}
+}
+type sink struct{code int}
+func(w *sink)Header()http.Header{return nil}
+func(w *sink)Write(p []byte)(int,error){return len(p),nil}
+func(w *sink)WriteHeader(code int){w.code=code}
+func registry()HeaderRouter{
+ hr:=RouteHeaders();p:=make([]Pattern,64)
+ for i:=range p {p[i]=NewPattern("MiXeD-Pattern-With-Uppercase*Suffix")}
+ hr["x-test"]=[]HeaderRoute{{MatchAny:p,Middleware:marked(201)}};return hr
+}
+func BenchmarkServeMiss64(b *testing.B){
+ h:=registry().Handler(next);q:=httptest.NewRequest("GET","/",nil);q.Header.Set("X-Test","no-match");w:=&sink{}
+ b.ReportAllocs();b.ResetTimer();for i:=0;i<b.N;i++{h.ServeHTTP(w,q)}
+ if w.code!=204{b.Fatal(w.code)}
+}
+func BenchmarkServeHit(b *testing.B){
+ h:=registry().Handler(next);q:=httptest.NewRequest("GET","/",nil);q.Header.Set("X-Test","mixed-pattern-with-uppercase-yes-suffix");w:=&sink{}
+ b.ReportAllocs();b.ResetTimer();for i:=0;i<b.N;i++{h.ServeHTTP(w,q)}
+ if w.code!=201{b.Fatal(w.code)}
+}
+var built http.Handler
+func BenchmarkBuild(b *testing.B){hr:=registry();b.ReportAllocs();b.ResetTimer();for i:=0;i<b.N;i++{built=hr.Handler(next)}}
