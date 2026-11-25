@@ -1,0 +1,33 @@
+package mem_test
+
+import (
+ "bytes"
+ "testing"
+ "google.golang.org/grpc/mem"
+)
+
+// The current observation omits the released priming buffer's size.
+func TestHistoryProjection(t *testing.T) {
+ sizes:=[]int{1025,2048,4096}
+ type visible struct {first, future int; value byte}
+ groups:=map[visible][2]int{}
+ cases,bad:=0,0
+ for _,prime:=range sizes {for _,first:=range sizes {for _,future:=range sizes {for _,value:=range []byte{1,2}{
+  p:=&pool{mode:0}
+  old:=mem.Copy(bytes.Repeat([]byte{3},prime),p);old.Free()
+  want:=bytes.Repeat([]byte{1},first)
+  a:=mem.Copy(want,p)
+  if a.Len()!=first||!bytes.Equal(a.ReadOnlyData(),want)||p.puts!=1 {t.Fatal("prefix observation")}
+  b:=mem.Copy(bytes.Repeat([]byte{value},future),p)
+  changed:=!bytes.Equal(a.ReadOnlyData(),want)
+  predicted:=value!=1&&future<=max(prime,first)
+  if changed!=predicted {t.Fatalf("%d %d %d %d",prime,first,future,value)}
+  b.Free();a.Free();if p.puts!=3{t.Fatal("accounting")}
+  key:=visible{first,future,value};counts:=groups[key]
+  if changed{bad++;counts[1]++}else{counts[0]++};groups[key]=counts;cases++
+ }}}}
+ ambiguous,errors:=0,0
+ for _,c:=range groups{if c[0]>0&&c[1]>0{ambiguous++};errors+=min(c[0],c[1])}
+ if cases!=54||bad!=22||len(groups)!=18||ambiguous!=3||errors!=3{t.Fatal(cases,bad,len(groups),ambiguous,errors)}
+ t.Logf("cases=%d violations=%d visible_groups=%d ambiguous_groups=%d minimum_errors=%d",cases,bad,len(groups),ambiguous,errors)
+}
