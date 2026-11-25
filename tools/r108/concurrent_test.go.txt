@@ -1,0 +1,67 @@
+package mem_test
+
+import (
+ "bytes"
+ "sync"
+ "testing"
+ "google.golang.org/grpc/mem"
+)
+
+// Serialize provider operations, not the caller's entire buffer lifetime.
+type lockedPool struct { mu sync.Mutex; p pool }
+func(p *lockedPool)Get(n int)*[]byte{p.mu.Lock();defer p.mu.Unlock();return p.p.Get(n)}
+func(p *lockedPool)Put(b *[]byte){p.mu.Lock();defer p.mu.Unlock();p.p.Put(b)}
+func(p *lockedPool)counts()(int,int){p.mu.Lock();defer p.mu.Unlock();return p.p.alloc,p.p.puts}
+
+func TestLockDoesNotImplyIsolation(t *testing.T){
+ p:=&lockedPool{p:pool{mode:0}}
+ a:=mem.Copy(bytes.Repeat([]byte{1},2048),p)
+ b:=mem.Copy(bytes.Repeat([]byte{2},1025),p)
+ if a.ReadOnlyData()[0]!=2{t.Fatal("negative control did not alias")}
+ b.Free();a.Free()
+}
+
+func TestConcurrentLeases(t *testing.T){
+ const workers=8
+ const rounds=64
+ for _,mode:=range []int{1,2}{
+  p:=&lockedPool{p:pool{mode:mode}}
+  for round:=0;round<rounds;round++{
+   var ready,done sync.WaitGroup
+   ready.Add(workers);done.Add(workers)
+   release:=make(chan struct{})
+   for i:=0;i<workers;i++{go func(i int){
+    defer done.Done()
+    want:=bytes.Repeat([]byte{byte(i+1)},1025+128*i)
+    b:=mem.Copy(want,p);ready.Done();<-release
+    if !bytes.Equal(b.ReadOnlyData(),want){t.Errorf("mode=%d round=%d worker=%d alias",mode,round,i)}
+    b.Free()
+   }(i)}
+   ready.Wait();close(release);done.Wait()
+  }
+  a,n:=p.counts();if n!=workers*rounds{t.Fatalf("mode=%d puts=%d",mode,n)}
+  t.Logf("mode=%d completed=%d backing_allocations=%d",mode,n,a)
+ }
+}
+
+func TestSplitLifetime(t *testing.T){
+ p:=&lockedPool{p:pool{mode:2}}
+ a:=mem.Copy(bytes.Repeat([]byte{1},2048),p)
+ left,right:=mem.SplitUnsafe(a,1024)
+ left.Free()
+ if _,n:=p.counts();n!=0{t.Fatal("premature Put")}
+ b:=mem.Copy(bytes.Repeat([]byte{2},1025),p)
+ if !bytes.Equal(right.ReadOnlyData(),bytes.Repeat([]byte{1},1024)){t.Fatal("split alias")}
+ var wg sync.WaitGroup;wg.Add(2)
+ go func(){defer wg.Done();right.Free()}()
+ go func(){defer wg.Done();b.Free()}()
+ wg.Wait()
+ if _,n:=p.counts();n!=2{t.Fatal("return count")}
+ // Separate references sharing one backing region can release concurrently.
+ c:=mem.Copy(bytes.Repeat([]byte{3},2048),p)
+ l,r:=mem.SplitUnsafe(c,1024);wg.Add(2)
+ go func(){defer wg.Done();l.Free()}()
+ go func(){defer wg.Done();r.Free()}()
+ wg.Wait()
+ if _,n:=p.counts();n!=3{t.Fatal("split returned more than once")}
+}
