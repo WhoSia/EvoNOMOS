@@ -1,5 +1,15 @@
 # EvoNOMOS
 
+## Run LawKit in one minute
+
+Evaluate the cost of a contract-preserving repair under explicitly declared edit permissions, with an independently checked shortest-path witness. No dependencies beyond Python 3.10+.
+
+```bash
+python lawkit/reference/repair_frontier.py lawkit/fixtures/repair_frontier_example.json feature
+```
+
+[Quickstart, input format, tests and benchmarks](lawkit/README.md). This is a finite-model research tool, not an automatic source-code analyzer or universal SOLID score. The research history follows below.
+
 > **2026-11-25 · CURRENT RESEARCH PROGRAM — EvoNOMOS Generation VIII LAW-R1-P44 — Source-Certified Evolutionary Admissibility: Observational Contracts, Authorized Repair Paths, and the Identification of Structural Laws.** [Official P44 Run](https://app.notion.com/p/40eef561cf928155b2cfce0166ead80f) (promotion 2026-11-04, Running); [P43 predecessor](https://app.notion.com/p/3ffef561cf9281a9b9e9fd8a016c04c9), [P44-R2](https://app.notion.com/p/40eef561cf928152aafadca378f143aa), [P44-R3](https://app.notion.com/p/40eef561cf928198b47bc3c4a7290208). P42 and P43 are historical predecessors, not current-stage gates. P44 source-court evidence and F38 prospective cohort remain scoped; R94–R95 reuse the recorded P42 finite graph, not fresh Go-native evidence. Current mathematical direction: contract-preserving repair under staged information and strategic multi-owner incentives; SOLID remains a conditional explanandum, not axioms. G1–G7 OPEN; LAW-R2 HOLD; Paper B HOLD. No claim of novel general law or identified causal labor effect. [Current research journal](https://app.notion.com/p/421ef561cf92819ca3abe4f345459b53). Historical README statements below, including P43 HOLD and older CURRENT headings, describe their dated evidence only. Branch integration is a separate audit; program promotion does not imply all research branches are merged.
 
 > **2026-11-23 · AUTHORING LOCATION NOTICE:** Paper B and all historical standalone `active/` research prose documents have been migrated to Notion and retired from the working tree. [Paper B canonical Notion page](https://app.notion.com/p/421ef561cf928146a8ebd7855fe07db0), [EvoNOMOS research hub](https://app.notion.com/p/3c4ef561cf9281e69e1cf0dbf1239bbb), [historical document migration collection](https://app.notion.com/p/421ef561cf928167aa1fc101494d0caf). The research statements below are **dated historical snapshots**; relative `active/...md` links point to files removed from `main` and are recoverable in historical commits, but are no longer live canonical research documents. GitHub retains source code, tests and operational contracts. See [repository policy](REPOSITORY_POLICY.md).
