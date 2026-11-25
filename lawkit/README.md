@@ -2,6 +2,28 @@
 
 LawKit is the executable theory/tool layer of EvoNOMOS.
 
+## Quickstart: contract-preserving repair frontier
+
+Python 3.10+; standard library only. From the repository root:
+
+```bash
+python lawkit/reference/repair_frontier.py lawkit/fixtures/repair_frontier_example.json feature
+python lawkit/reference/test_repair_frontier.py
+python lawkit/reference/test_repair_frontier.py --bench
+```
+
+The example returns cost 5 for `start`, 3 for `local`, 0 for `done`, and null for `blocked`. The cheaper upstream-owned edit is excluded, as is the unsafe intermediate state. Each finite non-goal result names the next edge by its zero-based input index. Following these edges reaches a goal with the reported total cost.
+
+Input is a JSON object containing:
+
+- `states`: mapping from state names to objects with Boolean `safe` and a list of string `goals`.
+- `allowed_owners`: explicit list of owner identifiers allowed to perform edits.
+- `edges`: arrays `[source, destination, owner, positive_integer_cost]`.
+
+The solver computes exact costs to a declared goal for every safe starting state in this finite directed graph. It checks distance inequalities and decreasing path witnesses; null means unreachable within this graph, not impossible in the real codebase. An absent goal produces null for all safe states. The model must already encode all relevant history, intermediate safety and permissions. No source parser, inferred authorization, strategic equilibrium or human-effort estimate is implied. The test suite includes an independent Bellman-Ford oracle, invalid-certificate controls, and the recorded P42 finite graph (not a fresh native Chi run).
+
+The benchmark compares repeated forward shortest-path searches with a single reverse multi-source search plus certificate checking. It reports seven interleaved timings per condition, including sparse/absent goals. It is an algorithmic comparison on the same declared graph, not a performance comparison against other architecture tools.
+
 Its purpose is not to encode SOLID, DIP, OCP, ISP, DRY, or another software-design maxim as a commandment. It turns **world evidence + prospectively frozen demands + architecture moderators + lifecycle evidence + authority constraints** into bounded conditional-law statements, falsifiers and abstentions.
 
 ## Product thesis
