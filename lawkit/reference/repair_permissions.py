@@ -33,6 +33,9 @@ def options(model, start, goal, candidates):
         row = labels[u].get(mask)
         if row is None or row[0] != cost:
             continue
+        # Any extension adds cost and can only enlarge the required owner set.
+        if any(m & mask == m and c <= cost for m, (c, _) in targets.items()):
+            continue
         if goal in states[u]['goals']:
             insert(targets, mask, cost, row[1])
             continue
