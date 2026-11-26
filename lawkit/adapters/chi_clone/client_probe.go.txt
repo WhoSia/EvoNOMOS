@@ -1,0 +1,16 @@
+package client
+
+import (
+ "fmt"
+ "testing"
+ "example.org/chi"
+)
+
+func TestPublicObservation(t *testing.T) {
+ x:=chi.NewRouteContext()
+ x.URLParams.Add("id","old")
+ x.RoutePatterns=append(x.RoutePatterns,"/a/*/","b/")
+ y:=Capture(x)
+ x.Reset();x.URLParams.Add("id","new");x.RoutePatterns=append(x.RoutePatterns,"/new")
+ fmt.Printf("OBS public_snapshot %t\n",y!=nil&&y.URLParam("id")=="old"&&y.RoutePattern()=="/a/b")
+}
