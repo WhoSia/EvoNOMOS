@@ -77,7 +77,7 @@ def solve(worlds, labels, tests, actual):
         for j,world in enumerate(worlds):
             w=all_worlds;c=0;path=[]
             while len(counts(w))>1:
-                i=choose(w);name,_,fee=tests[i]
+                i=choose(w,c);name,_,fee=tests[i]
                 nxt=next(v for v in children(w,i) if v & (1<<j))
                 assert nxt!=w
                 w=nxt;c+=fee;path.append(name)
@@ -102,13 +102,40 @@ def solve(worlds, labels, tests, actual):
     fixed=min((cost,ids) for mask,(cost,ids) in panels.items() if sufficient(mask))
     result={'worlds':len(worlds),'classes':len(classes),'fixed_cost':fixed[0],
             'fixed_tests':[tests[i][0] for i in fixed[1]]}
-    for name,choose in [('expected',lambda w:optimal(w,False)[2]),('minimax',lambda w:optimal(w,True)[2]),('greedy',greedy)]:
+    for name,choose in [('expected',lambda w,c:optimal(w,False)[2]),('minimax',lambda w,c:optimal(w,True)[2]),('greedy',lambda w,c:greedy(w))]:
         result[name]=replay(choose)
     for name,worst in [('expected',False),('minimax',True)]:
         assert optimal(all_worlds,worst)[:2]==(result[name]['total'],result[name]['worst'])
     assert result['expected']['total']<=result['greedy']['total']
     assert result['minimax']['worst']<=result['greedy']['worst']
     assert result['minimax']['worst']<=fixed[0]
+    # Exact expected cost subject to a hard per-world budget, not a weighted-sum proxy.
+    @lru_cache(None)
+    def capped(w, remaining):
+        if len(counts(w)) == 1:
+            return 0, -1
+        if remaining < optimal(w, True)[1]:
+            return float('inf'), -1
+        n = w.bit_count()
+        options = []
+        for i, (_, _, c) in enumerate(tests):
+            cs = children(w, i)
+            if len(cs) > 1 and c <= remaining:
+                total = c*n + sum(capped(v, remaining-c)[0] for v in cs)
+                options.append((total, i))
+        return min(options, default=(float('inf'), -1))
+
+    result['capped'] = []
+    if len(tests) > 8:
+        for cap in range(result['minimax']['worst'], result['expected']['worst']+1):
+            total, first = capped(all_worlds, cap)
+            assert result['expected']['total'] <= total <= result['minimax']['total']
+            verified=replay(lambda w,c:capped(w,cap-c)[1])
+            assert verified['total']==total and verified['worst']<=cap
+            result['capped'].append({'cap':cap,**verified})
+        assert result['capped'][-1]['total']==result['expected']['total']
+        assert all(a['total']>=b['total'] for a,b in zip(result['capped'],result['capped'][1:]))
+    capped.cache_clear()
     result['dp_cache']=optimal.cache_info().currsize
     optimal.cache_clear();counts.cache_clear();greedy.cache_clear()
     return result
