@@ -1,0 +1,17 @@
+package middleware
+
+import "testing"
+
+var escapeSink bool
+func BenchmarkEscape(b *testing.B) {
+ cases:=[]struct{name,raw string}{
+ {"slash","application/json; charset=utf-8"},
+ {"token","legacy; charset=utf-8"},
+ {"malformed","application/json; charset=\"utf-8"},
+ {"empty",""},
+ }
+ for _,c:=range cases{b.Run(c.name,func(b *testing.B){
+  b.ReportAllocs()
+  for i:=0;i<b.N;i++{escapeSink=contentEncoding(c.raw,"utf-8","")}
+ })}
+}
