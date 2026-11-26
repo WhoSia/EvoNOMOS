@@ -1,0 +1,56 @@
+package middleware
+
+import (
+ "fmt"
+ "net/http"
+ "net/http/httptest"
+ "strings"
+ "testing"
+)
+
+func TestTokenPolicy(t *testing.T) {
+ for _, token := range []string{"json", "JSON", "legacy", "application/json"} {
+  for _, charset := range []string{"utf-8", "UTF-8"} {
+   header := token+"; charset="+charset
+   for _, mode := range []string{"type", "charset"} {
+    wrap := AllowContentType(strings.ToLower(token))
+    if mode=="charset" {wrap=ContentCharset("utf-8")}
+    called:=0
+    handler:=wrap(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){called++;w.WriteHeader(204)}))
+    req:=httptest.NewRequest("POST","/",strings.NewReader("x"))
+    req.Header.Set("Content-Type",header)
+    rec:=httptest.NewRecorder();handler.ServeHTTP(rec,req)
+    if (rec.Code==204 && called!=1)||(rec.Code==415 && called!=0)||(rec.Code!=204 && rec.Code!=415){t.Fatal("bad status or call count")}
+    fmt.Printf("OBS %s %s %s %d\n",mode,token,charset,rec.Code)
+   }
+  }
+ }
+}
+
+func TestProtected(t *testing.T) {
+ cases := []struct{ mode, header, allow, body string; want int }{
+  {"type", "application/json; charset=\"UTF-8\"", "application/json", "x", 204},
+  {"type", "Application/JSON ; ChArSeT = \"utf-8\"", "application/json", "x", 204},
+  {"type", "text/plain; charset=utf-8", "application/json", "x", 415},
+  {"type", "application/json; a=\"b", "application/json", "x", 415},
+  {"type", "", "", "x", 415},
+  {"type", " \t", "", "x", 415},
+  {"type", "", "application/json", "", 204},
+  {"charset", "", "", "x", 204},
+  {"charset", "", "utf-8", "x", 415},
+  {"charset", "application/json; foo=bar", "", "x", 204},
+  {"charset", "application/json; charset=utf-8; charset=latin-1", "utf-8", "x", 415},
+  {"charset", "application/json; charset=\"UTF-8\"", "utf-8", "x", 204},
+ }
+ for i, c := range cases {
+  wrap := AllowContentType(c.allow)
+  if c.mode=="charset" {wrap=ContentCharset(c.allow)}
+  called:=0
+  handler:=wrap(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){called++;w.WriteHeader(204)}))
+  req:=httptest.NewRequest("POST","/",strings.NewReader(c.body))
+  if c.header!="" {req.Header.Set("Content-Type",c.header)}
+  rec:=httptest.NewRecorder();handler.ServeHTTP(rec,req)
+  expectedCalls:=0;if c.want==204 {expectedCalls=1}
+  if rec.Code!=c.want||called!=expectedCalls {t.Fatalf("protected %d got %d/%d want %d/%d",i,rec.Code,called,c.want,expectedCalls)}
+ }
+}
