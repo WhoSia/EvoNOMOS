@@ -88,6 +88,22 @@ The first adapter, `github_provider_family_v01.mjs`, checks an exact Git checkou
 
 The protocol is canonical; implementation language is not.
 
+### Observed-source repair graph (Chi case study)
+
+The Python adapter verifies local snapshot Git blob identities and compiles supplied Boolean observations, declared transitions, and hypothetical path-to-owner mappings into a finite repair graph. It counts added and deleted lines using Python SequenceMatcher (not engineer effort or minimum edit distance). It rejects mixed-owner transitions; split those into separately evidenced intermediate states. Observations are supplied evidence, not independently authenticated by the generic adapter. It is not a whole-program analyzer.
+
+For a reproducible example, obtain the two original context.go files from [pre-merge](https://github.com/go-chi/chi/blob/6adf733e0ebb79ade04909069f6abdc6f53648a8/context.go) and [merged](https://github.com/go-chi/chi/blob/15767233591fd4267ae99d05299fa3807c375cdd/context.go). Save as base.go and merged.go. The isolated Go 1.23+ harness checks both source blobs, compares them with two authored alternatives, runs tests, and produces a manifest and model.json. It uses type shims, not the full upstream Chi module.
+
+```bash
+PYTHONPATH=lawkit/adapters python lawkit/adapters/chi_clone/run_chi.py base.go merged.go evidence
+PYTHONPATH=lawkit/adapters python lawkit/adapters/chi_clone/test_observed_repair.py evidence
+python lawkit/reference/repair_budget.py evidence/model.json base public --max-additional-owners 0
+python lawkit/reference/repair_budget.py evidence/model.json base full --candidate-owner upstream --max-additional-owners 1
+PYTHONPATH=lawkit/adapters python lawkit/adapters/chi_clone/bench_chi.py evidence
+```
+
+On Windows PowerShell set `$env:PYTHONPATH='lawkit/adapters'` first instead of the inline assignment. The narrow goal returns line cost 9 with app ownership; the stronger sampled goal returns 27 only with hypothetical upstream ownership. These are bounded retrospective comparisons of a declared candidate set, not a blind prediction, full contract, inferred permission, or real maintenance-cost estimate. The optional benchmark fills only public slices; it does not establish full-capability equivalence.
+
 ## Current candidate laws
 
 - **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**
