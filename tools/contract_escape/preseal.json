@@ -1,0 +1,11 @@
+{
+  "title": "Contract-preserving local escape from frozen shared policy",
+  "scope": "Retrospective source intervention on R118/R119 exact matched research arms, not independent F38 or actual maintainer authority.",
+  "input_zip_sha256": "44935a778270a9da950410749a61dedc4b0a0025313b6294a6a7d05e2cccd649",
+  "source": "R118 stage('shared', ('global',))",
+  "rights": "Global parser and type source immutable. Only content_charset.go may be changed. Compare no edit, local parser bypass and conditional fallback; candidate selection fixed before new Go execution.",
+  "goal": "Type behavior equal to shared global starting state; charset behavior equal to independent base on a finite cross-product of raw header, allowed list and body; both frozen R118 tests retained. Preserve composed middleware in both orders, with no new behavior beyond those target component predicates.",
+  "predictions": "No edit fails divergent charset; direct local parse succeeds by restoring historical independent contentEncoding body; conditional fallback on shared rejection succeeds if it rechecks original MIME parsing and handles missing charset; both cost one changed file. G remains exact bytes. Failure of any case falsifies candidate for this declared oracle.",
+  "cost": "File visits, changed lines, and introduced duplicate parser callsites are distinct. No inferred human cost or global minimality. Counterexample to extending prior toggle-menu unreachability beyond its grammar.",
+  "next": "Compare two-step lifecycle cost with and without local escape; count independent extra requirements and coordination costs separately."
+}
