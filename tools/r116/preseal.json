@@ -1,0 +1,25 @@
+{
+  "scope": "R116 synthetic uncertainty on pinned R114 four-state graph; no new source execution or measured test costs",
+  "archive_sha256": "852cf2d6115f747a30b329c21dafa054343d06ade8a6fd47c6ae0bcec895e220",
+  "policy_blob": "0fb8cd4e9b2ad809d96c7c5c8bd44c83179bea0c",
+  "worlds": "all 4096 Boolean completions; sensitivity: all four legacy observations true",
+  "target": "four exact repair costs public/full x budget 0/1",
+  "menus": {
+    "whole": 3,
+    "split_internal": 2,
+    "split_public": 2,
+    "combined": "union"
+  },
+  "objectives": [
+    "minimum fixed panel",
+    "minimum expected uniform cost",
+    "minimum worst cost",
+    "greedy expected cross-class pair cut per cost"
+  ],
+  "gates": [
+    "replay every world",
+    "fixed >= minimax",
+    "greedy expected >= optimum",
+    "greedy worst >= optimum"
+  ]
+}
