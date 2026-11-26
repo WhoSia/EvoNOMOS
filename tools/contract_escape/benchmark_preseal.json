@@ -1,0 +1,5 @@
+{
+  "scope": "Microbenchmark of charset consumer only, no end-to-end claim. Reuse exact local escape result source blobs, GOMAXPROCS=2, Go 1.23.2 local. Compare Bypass and Fallback; global rejected slashless/invalid controls are not contract-equivalent on slashless.",
+  "hypothesis": "Fallback invokes MIME parser twice when shared parser rejects nonempty input; Bypass at most once. On valid slash-bearing inputs both invoke once; runtime magnitude not predicted. Benchmark ns/op, bytes/op, allocs/op, 5 repetitions x 100ms each, separately for valid slash-bearing, valid slashless, malformed, empty. Retain per-cell median and range; no statistical generalization.",
+  "cost_model": "Let g,t,c,e be one-time file-action costs of global, local type, local charset, and local escape; p probability of subsequent divergent request. Compare g+p*e against t+c+p*c, add distinct initial architecture cost and ongoing workload-dependent costs. These are conditional hypothetical weights, not human effort."
+}
