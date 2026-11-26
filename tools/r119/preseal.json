@@ -1,0 +1,30 @@
+{
+  "scope": "R119 retrospective extension of R118: source-state transition checks on already known endpoint observations; not an independent demand or F38",
+  "baseline": "8c6d918542f4069b4b4b61ab1cef36b42f6abcd9",
+  "state": "R118 exact subset states; local type/charset bits T,C; shared parser G bit",
+  "grammar": "One action toggles exactly one production file. Both directions allowed unless G removal is denied; no other repair candidates. State source is reconstructed from exact R118 bytes. Each edge must replay the one-file byte replacement and satisfy the frozen observation checks at destination; while moving from common to divergent, protect all twelve ordinary tests, slash-bearing acceptance, and the new type rejection at each checkpoint. Charset rejection is permitted to change during the transition, as required by new demand.",
+  "prediction": {
+    "independent_common_to_divergent": 1,
+    "shared_local_common_to_divergent": 1,
+    "shared_global_common_to_divergent": 2,
+    "shared_global_safe_order": [
+      "add T",
+      "remove G"
+    ],
+    "shared_global_removal_denied": "unreachable",
+    "total_from_base_common_then_divergent": {
+      "independent": 3,
+      "shared_global": 3,
+      "shared_local": 3
+    },
+    "independent_edges_directed": 8,
+    "shared_edges_directed": 24
+  },
+  "controls": "Same local-only repair subgraph in both arms for these observations; no architecture-wide reversal at equal local costs and rights; one-file edit units not effort. No upstream claims. Negative control remove G before T; evaluate with same Go probes. Edges replay existing states; no novelty from recapitulating P42 option loss.",
+  "falsifiers": [
+    "any edge changes !=1 file",
+    "any native destination observation mismatch",
+    "predicted safe path shorter/longer than exhaustive BFS",
+    "any old protected contract failure"
+  ]
+}
