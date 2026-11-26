@@ -1,0 +1,25 @@
+package chi
+
+import (
+ "context"
+ "fmt"
+ "testing"
+)
+
+func TestInternalObservations(t *testing.T) {
+ x:=NewRouteContext()
+ x.URLParams.Add("id","old")
+ x.RoutePatterns=append(x.RoutePatterns,"/a/*/","b/")
+ x.routeParams.Add("key","old")
+ x.methodsAllowed=append(x.methodsAllowed,1)
+ x.parentCtx=context.Background()
+ fmt.Printf("OBS legacy %t\n",x.URLParam("id")=="old"&&x.RoutePattern()=="/a/b")
+ cl,ok:=any(x).(interface{Clone() *Context})
+ full:=false
+ if ok {
+  y:=cl.Clone()
+  x.Reset();x.routeParams.Add("key","new");x.methodsAllowed=append(x.methodsAllowed,2)
+  full=y.parentCtx==nil&&y.routeParams.Values[0]=="old"&&y.methodsAllowed[0]==1
+ }
+ fmt.Printf("OBS native_private %t\n",full)
+}
