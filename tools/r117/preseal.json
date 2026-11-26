@@ -1,0 +1,26 @@
+{
+  "scope": "R117 decision-focused observation on R114 graph; auxiliary to founding structural-law research",
+  "source_archive_sha256": "852cf2d6115f747a30b329c21dafa054343d06ade8a6fd47c6ae0bcec895e220",
+  "worlds": "all 256 completions of eight nonlegacy bits with four legacy bits true, equal weights",
+  "goals": [
+    "public",
+    "full"
+  ],
+  "owner_budgets": [
+    0,
+    1
+  ],
+  "defer_costs": [
+    12,
+    40,
+    80
+  ],
+  "test_menu": "per snapshot public=2, internal=2, whole=3; fees and edit-line costs assumed commensurable, not measured labor",
+  "comparators": [
+    "no tests robust action",
+    "exact clairvoyant cost identification then act",
+    "joint optimal test/robust action"
+  ],
+  "prediction": "joint cost weakly <= identification and no-test cost; all actions must satisfy goal in every remaining world or defer; expanded authority weakly reduces joint cost, test expenditure need not decrease",
+  "limitations": "fixed candidate paths, no new source execution, no independent demand, classical decision theory"
+}
