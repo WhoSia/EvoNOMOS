@@ -104,6 +104,20 @@ PYTHONPATH=lawkit/adapters python lawkit/adapters/chi_clone/bench_chi.py evidenc
 
 On Windows PowerShell set `$env:PYTHONPATH='lawkit/adapters'` first instead of the inline assignment. The narrow goal returns line cost 9 with app ownership; the stronger sampled goal returns 27 only with hypothetical upstream ownership. These are bounded retrospective comparisons of a declared candidate set, not a blind prediction, full contract, inferred permission, or real maintenance-cost estimate. The optional benchmark fills only public slices; it does not establish full-capability equivalence.
 
+### Incomplete observation evidence
+
+For the archived R114 Chi case, use the independently recorded SHA-256 of the evidence ZIP:
+
+```bash
+python lawkit/reference/observed_bounds.py EvoNOMOS_R114_evidence.zip 852cf2d6115f747a30b329c21dafa054343d06ade8a6fd47c6ae0bcec895e220 base full --candidate-owner upstream --max-additional-owners 1 --hide merged:native_private
+python lawkit/reference/test_observed_bounds.py EvoNOMOS_R114_evidence.zip
+python lawkit/reference/observation_certificate.py EvoNOMOS_R114_evidence.zip
+```
+
+The [R114 evidence archive](https://drive.google.com/file/d/1IasQ0eTXgVDZAprM3Ly1UMpN_mYnWll3/view) is pinned to the SHA above. The checker compares its inventory, file digests, observation logs and declared state predicates/transition endpoints. It does not independently attest execution, recompute source line costs without source files, or establish authenticity from a digest supplied by the archive itself.
+
+The query hides one known observation for a sensitivity experiment, returning optimistic cost 27 and a pessimistic null option (unreachable). For fixed edges, owner budget and positive conjunctive observations, assigning all unknowns true and all unknowns false gives exact extreme costs over independent Boolean completions. Equal costs certify the cost, not necessarily a unique repair path or a real-world contract. The 12-observation fixture has 4,096 masking patterns; the test checks all four goal/budget queries against exhaustive completion extrema. The certificate script is deliberately fixture-specific and exponential; it identifies retrospective sufficient subsets, not a prospective optimal testing strategy.
+
 ## Current candidate laws
 
 - **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**
