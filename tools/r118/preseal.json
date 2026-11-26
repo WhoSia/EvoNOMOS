@@ -1,0 +1,27 @@
+{
+  "scope": "R118 retrospective matched P35-P4 exact research arms; authored new MIME policy, not F38",
+  "ref": "4a619db738e6bba36edbd47379e4e183419afb28",
+  "blobs": {
+    "independent_charset": "7ecb4a2d5e91d7ef775f824e64f2210bf360e5f2",
+    "independent_type": "8751cb40ca041b8f56bc1c6b9260db0a28434ee6",
+    "shared_charset": "53d6ef557bc890cb8727d552e7ab16dc46143a88",
+    "shared_type": "d1fad4adce7225e674c1c035636ef53bb9a27e4c",
+    "shared_parser": "1144b1fd275994fde766a331a9995cafc2ed0eb9"
+  },
+  "normalization": "historical shared-empty-type.patch 206c455379d5bf772421c1dc165cee4448f62664",
+  "demand": "reject media token without slash at both consumers (common) or at type only while protecting charset legacy acceptance (divergent). Preserve sampled ordinary valid/malformed/absent/bodyless behavior.",
+  "actions": "local type, local charset; shared additionally global parser; all subsets; per action one unit, no labor claim",
+  "prediction": {
+    "common": {
+      "independent": 2,
+      "shared": 1
+    },
+    "divergent": {
+      "independent": 1,
+      "shared": 1
+    },
+    "global_divergent": "fails"
+  },
+  "baseline": "both accept json; charset=utf-8 with matching allow lists; verify before interpreting",
+  "falsifier": "missing baseline match, valid alternative cheaper, protected observations fail"
+}
