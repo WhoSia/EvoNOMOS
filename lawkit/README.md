@@ -26,6 +26,20 @@ The benchmark compares repeated forward shortest-path searches with a single rev
 
 Its purpose is not to encode SOLID, DIP, OCP, ISP, DRY, or another software-design maxim as a commandment. It turns **world evidence + prospectively frozen demands + architecture moderators + lifecycle evidence + authority constraints** into bounded conditional-law statements, falsifiers and abstentions.
 
+## Explore permission trade-offs
+
+Find all nondominated repairs from one safe state when named additional owner permissions are considered hypothetically:
+
+```bash
+python lawkit/reference/repair_permissions.py lawkit/fixtures/repair_frontier_example.json start feature --candidate-owner upstream
+python lawkit/reference/test_repair_permissions.py
+python lawkit/reference/benchmark_permissions.py
+```
+
+The example has two options: cost 5 with no additional owner, and cost 1 with hypothetical upstream permission. Each option includes its edge-index path. Permission labels are supplied by the model, not inferred from repository history; this does not grant permission. An empty result means no repair in the declared graph.
+
+The solver prunes labels using set inclusion of required permissions and positive additive path cost. The benchmark includes a cached subset-enumeration baseline and an exponential-output stress case; the solver is not uniformly faster. In the stress case with k independent optional owners, all 2^k permission/cost combinations can be nondominated. Synthetic costs are not engineer hours. Python standard library only.
+
 ## Product thesis
 
 Traditional design guidance often starts from:
