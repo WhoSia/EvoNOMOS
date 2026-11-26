@@ -1,0 +1,19 @@
+package client
+
+import (
+ "fmt"
+ "testing"
+ "example.org/chi"
+)
+
+var captured *chi.Context
+func BenchmarkCapture(b *testing.B) {
+ for _,n:=range []int{1,16,128} { b.Run(fmt.Sprint(n),func(b *testing.B){
+  x:=chi.NewRouteContext()
+  for i:=0;i<n;i++ { x.URLParams.Add(fmt.Sprint(i),"value");x.RoutePatterns=append(x.RoutePatterns,"/x") }
+  b.ReportAllocs();b.ResetTimer()
+  for i:=0;i<b.N;i++ { captured=Capture(x) }
+  b.StopTimer()
+  if captured.URLParam("0")!="value"||len(captured.RoutePatterns)!=n {b.Fatal("invalid capture")}
+ }) }
+}
