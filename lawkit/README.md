@@ -118,6 +118,14 @@ The [R114 evidence archive](https://drive.google.com/file/d/1IasQ0eTXgVDZAprM3Ly
 
 The query hides one known observation for a sensitivity experiment, returning optimistic cost 27 and a pessimistic null option (unreachable). For fixed edges, owner budget and positive conjunctive observations, assigning all unknowns true and all unknowns false gives exact extreme costs over independent Boolean completions. Equal costs certify the cost, not necessarily a unique repair path or a real-world contract. The 12-observation fixture has 4,096 masking patterns; the test checks all four goal/budget queries against exhaustive completion extrema. The certificate script is deliberately fixture-specific and exponential; it identifies retrospective sufficient subsets, not a prospective optimal testing strategy.
 
+### Adaptive observation policies (finite research fixture)
+
+```bash
+python lawkit/reference/observation_policy.py EvoNOMOS_R114_evidence.zip
+```
+
+This experiment evaluates all 4096 independent Boolean completions of the archived 12 observations, with an additional 256-world sensitivity case assuming all legacy observations hold. Test bundles have assumed integer costs (whole=3, internal/public=2), not measured time. The target is the vector of four repair-cost queries. It compares exact fixed panels, exact uniform-mean and worst-case adaptive policies, greedy cross-class pair cutting, and expected-cost optimization subject to a hard per-world cap. All selected policies are replayed over their entire finite world family. This is a decision-tree experiment on declared evidence, not a new source run, calibrated probability model, or an implementation of every general active-learning theorem.
+
 ## Current candidate laws
 
 - **CIL-C1 — Conditional Inversion / Membership-Propagation Law Candidate**
