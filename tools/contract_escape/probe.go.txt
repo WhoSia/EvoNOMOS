@@ -1,0 +1,31 @@
+package middleware
+
+import (
+ "fmt"
+ "net/http"
+ "net/http/httptest"
+ "strings"
+ "testing"
+)
+
+func observe(wrap func(http.Handler) http.Handler, raw, body string) int {
+ called := 0
+ h := wrap(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){called++;w.WriteHeader(204)}))
+ req:=httptest.NewRequest("POST","/",strings.NewReader(body))
+ if raw!="" {req.Header.Set("Content-Type",raw)}
+ rec:=httptest.NewRecorder();h.ServeHTTP(rec,req)
+ if (rec.Code==204 && called!=1)||(rec.Code==415 && called!=0)||(rec.Code!=204 && rec.Code!=415){panic("invalid status/call count")}
+ return rec.Code
+}
+func TestEscapeCorpus(t *testing.T) {
+ headers:=[]string{"", " ", "json", "json; charset=utf-8", "JSON; charset=\"UTF-8\"", "legacy; charset=latin-1", "legacy; foo=bar", "application/json", "application/json; charset=utf-8", "application/json; charset=latin-1", "Application/JSON ; ChArSeT = \"UTF-8\"", "application/json; foo=\"a;b\"; charset=utf-8", "application/json; charset=utf-8; charset=latin-1", "application/json; charset=utf-8; charset=utf-8", "application/json; a=\"b", "text/plain; charset=latin-1", "bad token; charset=utf-8", "foo/bar/baz; charset=utf-8", "foo/; charset=utf-8", "legacy; charset*=utf-8''utf-8"}
+ types:=[][]string{{"application/json"},{"json","legacy"},{""},{"text/plain","application/json","legacy"}}
+ charsets:=[][]string{{"utf-8"},{"latin-1"},{""},{"","UTF-8","latin-1"}}
+ for hi,raw:=range headers {for bi,body:=range []string{"","x"}{for ti,ts:=range types{for ci,cs:=range charsets{
+  a:=AllowContentType(append([]string{},ts...)...)
+  b:=ContentCharset(append([]string{},cs...)...)
+  ab:=func(next http.Handler)http.Handler{return a(b(next))}
+  ba:=func(next http.Handler)http.Handler{return b(a(next))}
+  fmt.Printf("ESC %d %d %d %d %d %d %d %d\n",hi,bi,ti,ci,observe(a,raw,body),observe(b,raw,body),observe(ab,raw,body),observe(ba,raw,body))
+ }}}}
+}
