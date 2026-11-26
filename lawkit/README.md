@@ -40,6 +40,19 @@ The example has two options: cost 5 with no additional owner, and cost 1 with hy
 
 The solver prunes labels using set inclusion of required permissions and positive additive path cost. The benchmark includes a cached subset-enumeration baseline and an exponential-output stress case; the solver is not uniformly faster. In the stress case with k independent optional owners, all 2^k permission/cost combinations can be nondominated. Synthetic costs are not engineer hours. Python standard library only.
 
+## Optimize under an additional-owner budget
+
+Find one minimum-cost safe repair rather than enumerate the entire Pareto frontier:
+
+```bash
+python lawkit/reference/repair_budget.py lawkit/fixtures/repair_frontier_example.json start feature --candidate-owner upstream --max-additional-owners 1
+python lawkit/reference/test_repair_budget.py --bench
+```
+
+The example returns cost 1 and edge 2; a budget of zero returns cost 5. A null option denotes no feasible path in the declared model. Repeated edits by the same extra owner consume one budget unit. Ties need not return the same path as another exact solver.
+
+The search uses (state, additional-owner bitset) and an admissible reverse-distance heuristic that relaxes only the owner budget. The number of possible lifted states is at most |V| times the sum of binomial(k,i) for i=0..min(b,k). It can still be exponential. The benchmark compares against lifted Dijkstra and enumeration of maximal allowed-owner subsets, including path witnesses and their validation. Small queries can favor the simpler subset baseline. No claim of inferred repository authorization or measured maintenance labor.
+
 ## Product thesis
 
 Traditional design guidance often starts from:
