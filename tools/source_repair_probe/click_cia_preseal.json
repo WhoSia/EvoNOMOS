@@ -1,0 +1,16 @@
+{
+  "status": "RETROSPECTIVE_CIA_CALIBRATION",
+  "prior": "95c2d6b49a4484c5dff130527a9b4d3191649485",
+  "source": "Click 8.1.8 4 pinned blobs and previous exact two decorator-body interventions",
+  "source_paper": "https://chapering.github.io/pubs/jss15.pdf §3.1–3.2, §4.2",
+  "seed": "decorators.py:help_option",
+  "tests": "12 prior fixtures, no new independent demands; subprocess per case and arm",
+  "prediction": [
+    "prechange coverage",
+    "PI/EAS first-entry/last-enter-or-return-into per case and union across suite",
+    "cross-test coverage expansion: union of all baseline methods, no postchange information"
+  ],
+  "oracle": "method call count, ordered primitive return signatures, and observed CLI results; partial execution differencing, not full DEA. Methods newly introduced by edit separate from preexisting universe; identical baseline repeated to measure instability; unstable methods excluded explicitly, not after inspecting edit outcomes.",
+  "limits": "Python sys.setprofile event semantics; C calls, generators, exceptions and object values imperfect; no static slice implementation or independent holdout; same-location PI/EAS predictions equal for both edits by construction. No superiority claim.",
+  "stop": "No new law, no score promotion; use results to determine if full semantic CIA or demand-driven repair study is warranted."
+}
