@@ -1,0 +1,25 @@
+{
+  "status": "Author-defined offline boundary stress, not independent future requirement",
+  "versions": {
+    "requests": "2.32.5",
+    "requests_cache": "1.3.2"
+  },
+  "pins": {
+    "models/response.py": "57b7ce20c57f18c28471cdbcc50af4a0046cf39e",
+    "models/raw_response.py": "e895e551ecf44854043038427d92b612565c244d",
+    "serializers/cattrs.py": "a791cd690498ed1f3963255272fd7e402e84e1a1",
+    "serializers/preconf.py": "523599c639a20ba7b7c113502d7c06a77ac23efe"
+  },
+  "arms": "Reuse previously committed normalized internal snapshot and unmodified sidecar foundation. Three known receive declarations (absent, latin-1, utf-8), after header converges and encoding overridden; create native urllib3 HTTPResponse and Requests HTTPAdapter, no network.",
+  "boundaries": [
+    "OriginalResponse.wrap_response in place",
+    "CachedResponse.from_response",
+    "CachedResponse.from_response(existing CachedResponse)",
+    "standard pickle roundtrip on cached object",
+    "requests-cache pickle_serializer roundtrip",
+    "requests-cache json_serializer roundtrip",
+    "requests-cache dict_serializer roundtrip"
+  ],
+  "prediction": "In-place and first conversion preserve internal attribute (copy Response.__attrs__); direct pickle preserves dynamic attribute; attr.evolve and cattrs schema pipelines lose it. Explicit external envelope can preserve independently but not same interface/cost. Verify actual legacy content, text and encoding per boundary, report deviations rather than discarding. Test only locally generated serialization.",
+  "controls": "sidecar separately carried metadata, no claim of compatibility with same native serializer envelope; baseline without internal attr; unknown distinct from absent. Exact source version and dependency receipt, no full tests or human labor."
+}
