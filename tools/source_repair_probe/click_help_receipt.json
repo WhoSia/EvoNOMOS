@@ -1,0 +1,60 @@
+{
+  "status": "RETROSPECTIVE_CALIBRATION_NOT_F38",
+  "preseal": "68edb9d38af525af6b13905fc59f53dbe011f930",
+  "issue": "https://github.com/pallets/click/issues/2832",
+  "installed": "Click 8.1.8; Python 3.13.5; four pinned release blobs verified",
+  "first": {
+    "commit": "397ce2a26918596bd03ee951cfa751df6e6f04e7",
+    "blob": "5c8135b85bdf0466e01157046e6d8f46dff3388a",
+    "observations": 48,
+    "cases": 12,
+    "arms": 4,
+    "source_defaults": [
+      "is_flag",
+      "expose_value",
+      "is_eager",
+      "help",
+      "callback"
+    ],
+    "declaration_fallback": "--help",
+    "core_help_score": {
+      "native": 0,
+      "app_explicit": 5,
+      "app_inherit": 5,
+      "boundary_wrapper": 5
+    },
+    "core_denominator": 5,
+    "explicit_wrapper_observable_mismatch": 0,
+    "first_run_deviation": "in-process CliRunner rather than promised separate subprocess; retained and followed with file-boundary subprocess-per-arm validation"
+  },
+  "second": {
+    "commit": "63fd2896a28c6bc4b585dac3dd94bb18c0618ade",
+    "blob": "d3d61698c485bad19eb9236989743552fd1403b3",
+    "observations": 36,
+    "cases": 12,
+    "arms": 3,
+    "patched_vs_old_body_mismatch": [
+      "custom_callback"
+    ],
+    "old_body": "reconstructed 8.1.7 helper body algorithm transplanted into 8.1.8, not byte-identical full old release",
+    "native_decorators_sha256": "eede85f905a8c2d2e1e85ffa97ee18578638c8d4dca85404bbd8b7ef3233ebcb",
+    "patched_decorators_sha256": "a614a1391c51814e1ea250b6a0a672eb28ee740f048d755296c51f64c531e4cf",
+    "old_transplant_sha256": "a2ec4a56b4e0c429ad708b29bcacd47582a69ea3aff953ab8986cd2b070d13a6"
+  },
+  "evidence": {
+    "drive_file": "https://drive.google.com/file/d/1vTF0-T2GILHPS6XJip2YBhOCuhUH9Pso/view",
+    "bytes": 7966,
+    "sha256": "e6372dca0bfc8f195dcddfc92c4a00e91fa035d8d51b7f25df38fd728a32eec3",
+    "members": 5,
+    "remote_readback_sha256_match": true
+  },
+  "claim": "Source-specific missing initialization obligations along permitted constructor substitution; conventional AST/default-flow explanation suffices. Application-only alternatives refute required library modification for bounded observed help behavior. Callback policy differs; no all-client equivalence or proven global-minimum repair. Inheritance arm changes base/MRO. No independent demand or causal labor measurement.",
+  "limitations": [
+    "Issue body and old/new implementation were seen before preseal",
+    "Selection and AST recognition grammar manually scoped; not general source-to-repair analyzer",
+    "Simple dependency-only predictor not actually benchmarked; no measured predictive superiority over CIA",
+    "No real rights data, no full upstream tests or exact old 8.1.7 execution",
+    "No independent human adjudicator",
+    "bad option with help still rejected, not scored as repair failure because no such issue contract prespecified"
+  ]
+}
