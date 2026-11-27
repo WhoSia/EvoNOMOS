@@ -1,0 +1,16 @@
+{
+  "status": "Follow-up to observed cache extension result, retrospective constructed migration",
+  "baseline": "cache_extension.py 49558646370f5e244a4cdc3479ac7276cb6b8b5e",
+  "scope": "Unmodified Requests 2.32.5 and requests-cache 1.3.2, root response, SQLite, pickle/JSON local synthetic payloads; same extension class and native serializer",
+  "sequences": [
+    "new_write -> old_read -> new_read (no old write)",
+    "new_write -> old_read -> old_save -> new_read",
+    "old_write -> new_read -> new_save -> new_read"
+  ],
+  "expected": [
+    "old reader cannot expose metadata; no-write preserves stored data and new reader recovers",
+    "old overwrite loses data; new reader reports unknown",
+    "old payload contains no metadata; new reader reports unknown on both reads"
+  ],
+  "note": "Test actual original SQLite read/save, not just deserialization. No independent demand or real ACL; old/new refer to configuration, not package release versions. Compare legacy bytes/text/encoding and unknown versus absent."
+}
