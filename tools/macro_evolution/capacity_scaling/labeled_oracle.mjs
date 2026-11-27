@@ -1,0 +1,3 @@
+export function labeledModel(n,h,q,r){const states=Array.from({length:2**n},(_,i)=>i);const count=x=>{let c=0;for(let j=0;j<n;j++)c+=(x>>j)&1;return c};return {states,count,actions:states.map(x=>states.filter(a=>(a&x)===a&&count(a)<=h).map(a=>{const stuck=x&~a;const p=states.map(y=>{if((y&stuck)!==stuck)return 0;let z=1;for(let j=0;j<n;j++)if(!(stuck&(1<<j)))z*=y&(1<<j)?q:1-q;return z});return {a,c:count(x)+r*count(a),p}}))}}
+
+export function labeledSolve(m,g,tol=1e-9){let v=m.states.map(()=>0);const backup=w=>m.actions.map(acts=>Math.min(...acts.map(a=>a.c+g*a.p.reduce((s,p,j)=>s+p*w[j],0))));for(let t=0;t<10000;t++){v=backup(v);const e=Math.max(...backup(v).map((w,i)=>Math.abs(w-v[i])))/(1-g);if(e<tol)return {v,errorBound:e}}throw Error("no convergence")}
