@@ -1,0 +1,25 @@
+{
+  "status": "RETROSPECTIVE_CALIBRATION_NOT_F38",
+  "issue": "https://github.com/pallets/click/issues/2832",
+  "exposure": "Issue body and 8.1.7/8.1.8 decorators already inspected. No upstream repair PR inspected deliberately; change log search seen. Purposively chosen new source family, not blinded or representative.",
+  "pins": {
+    "8.1.8/core.py": "e6305011adf3f7450fa1e9392147e52b8acf2b0c",
+    "8.1.8/decorators.py": "bcf8906e7098a3cf82bdd87855c410e86f4f4279",
+    "8.1.8/parser.py": "600b8436d7c1e833cb3c5efea898b42d15d920c0",
+    "8.1.8/testing.py": "772b2159ccd95d29d8d940fc818d3bb1d2610cbf",
+    "8.1.7/decorators.py": "d9bba9502ca353bca5136f43c92436ff584f06e1"
+  },
+  "question": "Which initialization obligations moved across an extension boundary when helper defaults were relocated into the default HelpOption constructor? Can source extraction identify candidate site and lost defaults without giving graph or patch oracle?",
+  "arms": [
+    "unchanged 8.1.8",
+    "application explicit defaults/callback",
+    "application HelpOption inheritance",
+    "library source repair at help_option decorator based on extracted defaults"
+  ],
+  "oracles": [
+    "actual subprocess-isolated CliRunner outputs/exit code and callback execution",
+    "custom Option subclass identity and explicitly overridden kwargs",
+    "automatic help, explicit help, short-only help, no-argument invocation, explicit help text, custom callback, eager ordering"
+  ],
+  "limitations": "Actual installed 8.1.8 only; 8.1.7 source reference not full native version reproduction. Application inheritance changes base class, does not establish exact class/MRO compatibility. Actual permissions and cost not measured. Include exceptions, failures and default vs custom effects; no automatic universal guarantee."
+}
