@@ -1,0 +1,3 @@
+# Cache carrier audit correction
+
+Initial local run supplied the expected label to the sidecar, rather than independently capturing the receive-time header. Reject that control result, preserve its artifacts, and rerun with the pinned private parser used at the actual receive boundary, assert capture against oracle, and carry the metadata together with the object or the native serializer payload using an explicit outer envelope. The native serializer never consumes the pair directly. This is not API-equivalent to the internal snapshot, and no equal-cost claim follows. The internal arm is unchanged. Amendment is after the first execution, not independent preregistration.
