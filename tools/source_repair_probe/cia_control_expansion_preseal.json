@@ -1,0 +1,55 @@
+{
+  "status": "EXPLORATORY_POSTHOC_CONTROL_EXPANSION",
+  "prior": "7cc522478f06b6a0041cd5b2173088b821706433",
+  "reason": "Five methods absent from all original base traces. Their identities and prior outcomes were already observed; no independent holdout or blind test.",
+  "controls": [
+    {
+      "name": "invalid_option",
+      "kind": "default",
+      "decls": [
+        "-h",
+        "--help"
+      ],
+      "argv": [
+        "--bad"
+      ]
+    },
+    {
+      "name": "missing_value",
+      "kind": "value_option",
+      "decls": [
+        "-h",
+        "--help"
+      ],
+      "argv": [
+        "--value"
+      ]
+    },
+    {
+      "name": "value_help",
+      "kind": "value_option",
+      "decls": [
+        "-h",
+        "--help"
+      ],
+      "argv": [
+        "--help"
+      ]
+    },
+    {
+      "name": "value_present",
+      "kind": "value_option",
+      "decls": [
+        "-h",
+        "--help"
+      ],
+      "argv": [
+        "--value",
+        "x"
+      ]
+    }
+  ],
+  "method": "Execute unmodified 8.1.8 only, each in fresh subprocess twice. Union observed EAS sets and compare original 12-case outcome oracle unchanged. Preserve per-case and suite metrics, no post-change traces enter prediction except prior knowledge used to select controls.",
+  "hypothesis": "Coverage expansion may recover all five missed named methods at added false-positive or acquisition cost; success is conventional CIA remedy, not a new structural law.",
+  "stop": "Do not optimize additional controls after outcome; stop Click calibration and seek independent demand/stronger source-aware analysis."
+}
