@@ -1,0 +1,39 @@
+{
+  "name": "Requests header interpretation — natural dual-demand retrospective intervention",
+  "external_demands": [
+    {
+      "issue": 7647,
+      "created": "2026-11-14T05:27:52Z",
+      "author": "Parveshkumar2211",
+      "requirement": "case-insensitive media type matching; preserve explicit charset and existing default policy"
+    },
+    {
+      "issue": 7644,
+      "created": "2026-11-08T08:15:57Z",
+      "author": "10k11",
+      "requirement": "use text/ prefix and exact application/json instead of substring; preserve explicit charset"
+    }
+  ],
+  "scope": "Both already disclosed. No upstream solution diff opened, no independent prospective outcome claim. Use Requests v2.32.5 installed package only after SHA check. Research interventions, not upstream patches.",
+  "pins": {
+    "utils.py": "8ab55852cc2188c53f08462ec4319c97fa49f04b",
+    "adapters.py": "670c92767c5420a21538688132ce1f4f45e45873",
+    "models.py": "c4b25fa0790da44683dab185c89ac08b69fb7419",
+    "structures.py": "188e13e4829591facb23ae0e2eda84b9807cb818",
+    "upstream_tests/test_utils.py": "f9a287af1b95922741705c538ef4c5a6034bfd05"
+  },
+  "arms": [
+    "LOCAL: normalize media type in get_encoding_from_headers after explicit charset branch; correct predicate in same function",
+    "PARSER: normalize media token inside _parse_content_type_header; correct predicate in caller",
+    "POLICY: add single pure classification helper for canonical token and correct classification there; raw parser unchanged"
+  ],
+  "design": "Run both sequences of known Dcase and Dboundary, with separate stage-specific oracle preserving all non-target outputs on declared domain. Include old published test vectors, direct utility, adapter build_response and direct raw-parser projection. Raw-token preservation is analyst-selected additional contract, not upstream guarantee; report baseline parity and old tests separately.",
+  "predictions": {
+    "local": "both demands pass both sequences; raw parser stays exactly equal",
+    "parser": "both demand outputs pass; mixed-case raw-parser projection changes only if case normalization applied; all existing lower-case tests pass",
+    "policy": "same target outputs and raw parser; added helper overhead and edit footprint; no asserted performance superiority",
+    "competitor": "minimal local edit strong rival; no novel-law or strict architecture reversal anticipated under default rights"
+  },
+  "cost": "Report changed source files, functions, inserted/deleted lines, new helper, Q vector independently. No labor inference. Stage test cross-product finite, no full upstream suite or network.",
+  "stop": "If bytes differ, abort before treatments. Any target mismatch or old official fixture regression retained. Raw parser is private; direct protection is sensitivity, not necessarily production contract."
+}
