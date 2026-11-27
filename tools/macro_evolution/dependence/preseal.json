@@ -1,0 +1,8 @@
+{
+  "status": "MACRO_DEPENDENCE_CALIBRATION_NOT_F38",
+  "hypothesis": "Uniform conditional covariance bound controls fluid approximation error; first two moments do not identify nonlinear overflow or investment sign.",
+  "model": "K' = k-b+sum of m=n-k+b Bernoulli(q) conditional on current state/action/history; fixed greedy capacity b=min(k,h); conditional marginals q and pair covariance absolute sum bounded. Use same independent deterministic fluid map as previous.",
+  "proof_obligation": "Variance of normalized noise <= (m/4+sum ordered offdiagonal absolute conditional covariances)/n^2. If dependency graph max degree D, <=(D+1)/(4n). Conditional L1 bound via Jensen, propagate contraction and discounted cost. Not inferred from static code graph.",
+  "counterexample": "Exchangeable latent mixtures A: theta=1/4,3/4 with equal weights; B: theta=0,1/2,1 with weights 1/8,3/4,1/8. Both mean 1/2 and variance 1/16; same pair covariance and all univariate/pairwise Bernoulli laws. For normalized capacity 3/5, limit expected overflow A=3/40, B=1/20. Incremental unlimited capacity investment 1/16 reverses sign. Single-step avoided overflow only, not full dynamic value.",
+  "checks": "exact integer probability PMFs for n=5,10,20,40,80,160; compare mean, variance, covariance and overflow; moment-problem LP bounds via support<=3 at n=5,10,20,40,80; validate candidate distributions; compare Cantelli bound; use finite correlated block model to verify covariance scaling. No empirical sample or phase transition claim."
+}
