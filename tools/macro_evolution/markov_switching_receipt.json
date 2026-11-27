@@ -1,0 +1,40 @@
+{
+  "status": "CONDITIONAL_MACRO_MODEL_NOT_EMPIRICAL",
+  "preseal": "ed35d8c4bb97840adefc032e4daa2411821dce28",
+  "runner": "b2986236b2bcef5a17c450ee8dbec4d6ac099944",
+  "blob": "b97b676dbffcbf2c61c172f570b0d71be87d9be7",
+  "result_sha256": "fd5e0dd34d927d4d254f0b48ebbaeb5ca5fc61988e188fc36a249c37fcf15816",
+  "grid_cases": 308,
+  "grid_policy_evaluations": 4928,
+  "grid_ties": 6,
+  "additional_tie_cases": 11,
+  "additional_policy_evaluations": 176,
+  "repeat_identical": true,
+  "examples": {
+    "gamma": "9/10",
+    "k": 1,
+    "I": 1,
+    "fixed": 5,
+    "p_0_1_flexible_with_I": "12/5",
+    "p_0_9_flexible_with_I": "6"
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/17ZIZcvM6krEwkUZKtvioOEQZXac0OM6v/view",
+    "bytes": 4820,
+    "members": 3,
+    "sha256": "d7e3e8bf18224d75a89f029687566e3ee68f0c0a80fb415df2630a2ded355e6e",
+    "remote_hash_verified": true
+  },
+  "macro_abstraction": {
+    "status": "PROOF_OUTLINE_CLASSICAL_APPROXIMATE_MDP",
+    "conditions": "Finite discounted fully observed MDP with nonempty identical admissible action sets in each abstraction fiber; cost in [0,C], macro representative also in [0,C]; uniform absolute cost error epsilon and total variation delta for projected next state",
+    "bound": "E=epsilon/(1-gamma)+gamma*delta*C/(1-gamma)^2; lifted optimal value gap <=E; lifted macro-optimal policy regret <=2E; pairwise sign certified only when estimated value difference exceeds E_A+E_B.",
+    "hard_constraint": "Admissibility mismatch invalidates bound; do not replace forbidden actions with arbitrary finite penalty. Use refined partition or explicit restriction and separately quantify lost options.",
+    "novelty": "Classical switching cost/real options and approximate stochastic bisimulation; not a novel general law."
+  },
+  "limits": [
+    "Demand transition and cost assumptions not calibrated on software history; equal marginal demonstration is a conditional counterexample, not an observed real-world reversal.",
+    "No actual human labor, independent demand or F38 promotion.",
+    "No new literature custody; already held Givan et al. 2003 and Sullivan et al. 2001 retrieved."
+  ]
+}
