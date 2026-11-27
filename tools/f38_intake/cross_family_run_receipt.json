@@ -1,0 +1,94 @@
+{
+  "status": "DISCOVERY_AND_RETROSPECTIVE_CHECK_COMPLETE",
+  "frame": {
+    "scope_commit": "6a7e12bd10cafd7129bcd44871eb3221d9c6b6d2",
+    "receipt_commit": "85f51b1b07b4f93185422d64fae9d543b8d503ee",
+    "audit_commit": "3a1bdc6f6c920037096a6db4d47d65a307e22171",
+    "returned": 60,
+    "unique_repository_ids": 60,
+    "capped_queries": 3,
+    "missing_language_stars_fork_license": 60,
+    "selected": 0,
+    "direct_repo_metadata_check": "dateutil/dateutil omitted those fields too",
+    "network_block": "container DNS and public API web open failed",
+    "issue_outcomes_inspected": false
+  },
+  "activation": {
+    "contract_commit": "aa03b19ece3f0e8cbb2137e7ea0edfdcbe65fe11",
+    "code_commit": "b3a04142f4142a33f11f67e970f65fa711ac9c93",
+    "code_blob": "666cd7e28791d29e74597849ffae8aa66b178e50",
+    "negative_controls_passed": 16,
+    "synthetic_complete_status": "METADATA_CONSISTENT_MANUAL_REVIEW_REQUIRED",
+    "actual_activation": false,
+    "external_timestamp_authenticated": false,
+    "actual_independent_adjudicator_verified": false
+  },
+  "classical": {
+    "preseal": "9ea40f241b0fb3beee008722c8bc1b45b803f072",
+    "code_commit": "ec7d62be5545940b9b9b45fb5cd7bbed2c6fea98",
+    "code_blob": "3063d52ad1d07d247eb1a5b67d88d58d91ed93b3",
+    "source_blob": "112cebb78389d51f42d6aa87288d279019dfa249",
+    "states": 96,
+    "edges": 304,
+    "checks": 18816,
+    "mismatches": 0,
+    "feasible_counts": [
+      [
+        72
+      ],
+      [
+        264,
+        226
+      ],
+      [
+        416,
+        392,
+        295
+      ],
+      [
+        416,
+        408,
+        363,
+        226
+      ],
+      [
+        416,
+        408,
+        363,
+        258,
+        116
+      ],
+      [
+        416,
+        408,
+        363,
+        258,
+        128,
+        36
+      ],
+      [
+        416,
+        408,
+        363,
+        258,
+        128,
+        38,
+        5
+      ]
+    ],
+    "terminal_counterexample": {
+      "A": true,
+      "B": false
+    },
+    "verdict": "CLASSICAL_TIE",
+    "scope": "unit-cost historical graph, same closed-form reference; no new source execution or independent demand"
+  },
+  "runtime": "Code-mode JS functions executed and read-back source equality verified; not a local Node CLI run",
+  "limitations": [
+    "gate verifies metadata shape and consistency only, not authentication; not exhaustive malformed-input schema validation",
+    "frame is convenience search results only, no representative selection",
+    "actual source-pair matching and independently frozen predictions still missing",
+    "no new binary evidence archive; receipts preserved in GitHub"
+  ],
+  "prospective_outcomes": 0
+}
