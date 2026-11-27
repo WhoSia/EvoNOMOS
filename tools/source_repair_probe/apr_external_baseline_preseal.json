@@ -1,0 +1,21 @@
+{
+  "status": "EXTERNAL_ARTIFACT_REANALYSIS_NOT_F38",
+  "source": {
+    "repository": "SOLAR-group/overfitting-baseline-artefact",
+    "path": "saved_results/paper_results/rq2/preprocessed.csv",
+    "ref": "main",
+    "blob": "b539da0a433d49d4d35e92ab95cb1b5a69b7921f",
+    "paper": "10.1145/3663529.3663776"
+  },
+  "scope": "Published three-hour submission table; observed tool-bug pools, not all attempted tool-bug pairs, no pooled-bug cross-tool deduplication. File preview already seen; retrospective replication.",
+  "checks": [
+    "validate header, unique tool-bug keys, integer nonnegative counts, sum and unknown labels",
+    "recompute Table 2 fixed pool quantiles for K>0 with exact hypergeometric",
+    "separate K=0 and unknown from no recorded row",
+    "derive expected first correct draw conditional on K>0, use N inspections for K=0 with all labels known",
+    "perfect ranking upper bound on review savings: E[T]-1 if K>0, zero for known K=0 unless independent existence certificate; report in review-count units, not time",
+    "compare no-free-lunch condition: perfect ranking overhead must be below saved review cost; no actual labor measured",
+    "recompute distribution for all recorded pools versus correct-containing pools; disclose selection bias"
+  ],
+  "stop": "No promotion of design laws; use this as calibrated hurdle for patch assessment not as structural causal evidence."
+}
