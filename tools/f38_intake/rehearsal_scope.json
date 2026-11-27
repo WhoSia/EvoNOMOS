@@ -1,0 +1,27 @@
+{
+  "kind": "RETROSPECTIVE_INTAKE_REHEARSAL",
+  "population": [
+    "go-chi/chi",
+    "psf/requests",
+    "requests-cache/requests-cache",
+    "psf/cachecontrol",
+    "requests/toolbelt",
+    "jamielennox/requests-mock"
+  ],
+  "query": "is:issue created:2026-11-01..2026-11-27",
+  "sort": "created",
+  "order": "asc",
+  "cap_per_repository": 10,
+  "include": "all returned issues, regardless of title, labels or status",
+  "fetch": "issue metadata only, record title, id, created_at, state, author login if public, URL; avoid comments, PR and resolution detail",
+  "known_exposed": [
+    "go-chi/chi#995",
+    "go-chi/chi#1035",
+    "go-chi/chi#1263",
+    "psf/requests#7647",
+    "psf/requests#7644",
+    "psf/requests#5084",
+    "psf/requests#2086"
+  ],
+  "limitations": "Purposive prior case families, capped search, search result completeness not certified; metadata intake is not independent future disclosure. No patch/outcome collection and no F38 promotion. Actual prospective scope requires separate activated preseal, independent timestamp, pair matching, external adjudication, and pre-outcome rival."
+}
