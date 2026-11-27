@@ -1,0 +1,92 @@
+{
+  "status": "RETROSPECTIVE_CALIBRATION_NOT_F38",
+  "preseal": "b4f0f2e23f48573fd58db9800863642beeb98f13",
+  "runner": "46c291e3e7177ae4a6148dc1741bffb0e18c85ba",
+  "runner_blob": "f4799fc91ccf24301d0da1fe0f49b795652b0fd7",
+  "result_sha256": "12088161e65d1d88bd0031180682d058df6eac4ca3cad1ed7777df1b3f8571c9",
+  "source_version": "Click 8.1.8; four original pinned blobs",
+  "executions": 48,
+  "case_count": 12,
+  "arms": [
+    "base",
+    "repeat",
+    "patched",
+    "old_transplant"
+  ],
+  "stable_repeat_cases": 12,
+  "method_universe": 483,
+  "baseline_coverage_union": 132,
+  "baseline_eas_union": 132,
+  "metrics": {
+    "patched": {
+      "union_eas": {
+        "tp": 123,
+        "fp": 9,
+        "fn": 5
+      },
+      "per_case_eas": {
+        "tp": 162,
+        "fp": 619,
+        "fn": 449
+      },
+      "per_case_coverage": {
+        "tp": 162,
+        "fp": 730,
+        "fn": 449
+      },
+      "per_case_suite_eas": {
+        "tp": 606,
+        "fp": 978,
+        "fn": 5
+      }
+    },
+    "old_transplant": {
+      "union_eas": {
+        "tp": 124,
+        "fp": 8,
+        "fn": 5
+      },
+      "per_case_eas": {
+        "tp": 160,
+        "fp": 621,
+        "fn": 472
+      },
+      "per_case_coverage": {
+        "tp": 160,
+        "fp": 732,
+        "fn": 472
+      },
+      "per_case_suite_eas": {
+        "tp": 627,
+        "fp": 957,
+        "fn": 5
+      }
+    }
+  },
+  "missed_by_suite_both": [
+    "core.py:Command.get_usage",
+    "core.py:Context.get_usage",
+    "core.py:Parameter.make_metavar",
+    "exceptions.py:NoSuchOption.format_message",
+    "types.py:ParamType.get_metavar"
+  ],
+  "archive": {
+    "url": "https://drive.google.com/file/d/1qjjUYQeYam4kBjvwEt7eku9nscDSIHNW/view",
+    "size": 52044,
+    "members": 9,
+    "sha256": "8ffdf1ee29a14d20a51819ea314ba6aa196827a2e7968ff2c9795d5b41846baa",
+    "remote_hash_verified": true
+  },
+  "deviations": [
+    "First serial runner exceeded tool time budget; preserved first runner in ZIP, parallelized independent subprocesses and checkpointed each arm; no changes to predictor or oracle.",
+    "Full static slicing and source-aware rival not executed in this calibration."
+  ],
+  "limits": [
+    "partial observed call-count and return signature oracle, not complete DEA; generators/resume/exception/C calls and opaque values are limitations",
+    "AST names are not globally unique method identities; excludes anonymous/module/class-body symbols, reports outside universe separately",
+    "12 already exposed researcher-authored fixtures; not independent sample, no confidence intervals or cross-study comparisons",
+    "same edit seed means same PI/EAS predicted set for both interventions; differing impacts not predicted transformation-specifically",
+    "old transplant not full 8.1.7",
+    "No measured human labor or independent rights/outcome"
+  ]
+}
