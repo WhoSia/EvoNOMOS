@@ -1,0 +1,21 @@
+{
+  "question": "Does pairwise common repair feasibility imply joint feasibility in an observation fiber?",
+  "scope": "Finite synthetic formal counterexample derived from existing R95/R98 distinction and observed Requests state collision. Not source-certified new natural demand.",
+  "repair_sets": [
+    [
+      "a",
+      "b"
+    ],
+    [
+      "b",
+      "c"
+    ],
+    [
+      "a",
+      "c"
+    ]
+  ],
+  "prediction": "All pairs intersect; triple intersection empty. Minimum extra observation labels two, whereas pairwise incompatibility graph incorrectly predicts one. Enumerate all nonempty repair menus over 3 actions, worlds up to 4; compare exact feasible partitions vs graph coloring; report ties and counterexamples. Equal-information set-cover or hypergraph baseline should match exact partition minimum.",
+  "rival": "Classical set cover and hypergraph coloring; no novelty claim",
+  "cost": "Unit observation labels only, no labor, permissions represented by allowed actions and assumed fixed."
+}
