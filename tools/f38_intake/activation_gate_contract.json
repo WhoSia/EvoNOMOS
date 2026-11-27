@@ -1,0 +1,31 @@
+{
+  "status": "MECHANICAL_GATE_TEST_PRESEAL_NOT_ACTIVATION",
+  "purpose": "Prevent premature F38 activation and episode promotion; executable checking cannot authenticate independence, licenses, grants, external timestamp services or experimental validity.",
+  "frame_requirements": [
+    "nonempty confirmed repository IDs",
+    "frame digest and independent timestamp receipt binding that digest before window start",
+    "explicit adjudicator, selector and investigator identities and external evidence receipts",
+    "fixed shared protocol and competitor policy digests"
+  ],
+  "episode_requirements": [
+    "repository member of frame",
+    "new issue disclosure during frozen UTC window, no known exposure, external authorship recorded",
+    "two behavior-matched source arms frozen before disclosure, identical declared rights/budget/information/oracle",
+    "task-specific predictions for both competing predictors frozen before repair or outcome",
+    "candidate classes configuration/extension/local/structural considered explicitly; unresolved candidates retained",
+    "evidence of independent adjudication before claim promotion"
+  ],
+  "tests": [
+    "missing required evidence or incomplete frame",
+    "wrong timestamp digest",
+    "late frame freeze",
+    "pre-window issue",
+    "known exposure",
+    "same selector/adjudicator as investigator",
+    "unmatched rights or oracle",
+    "outcome before freeze",
+    "missing configuration competitor",
+    "complete synthetic metadata never auto-admitted"
+  ],
+  "scope": "No claim of genuine independent future outcome. Validity is metadata consistency only."
+}
