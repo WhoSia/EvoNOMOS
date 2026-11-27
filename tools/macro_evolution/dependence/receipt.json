@@ -1,0 +1,51 @@
+{
+  "status": "CONDITIONAL_DEPENDENCE_THEOREM_NOT_F38",
+  "preseal": "8938462d6009efe2d43bfe9ebf0cf29a1cb00363",
+  "results_blob": "568299c0ff5abfaea37a383f807566e09ef941a7",
+  "moment_relaxations_blob": "163fff7789967e28489295c76e721f6a78d2aaf7",
+  "independent_check": {
+    "commit": "2d2bf114d8f240bf7ac1d50e5a9c27eaa8d89920",
+    "blob": "8c34ef15c7a7f836fd3faf342e51f372c4bea2df",
+    "result_sha256": "fb13f216d5b7217e85021d67f627ed9feed5f5b92ca5fd6db98f98ba24f96ee7",
+    "max_lp_error": 6.661338147750939e-16,
+    "exact_mixture_sizes": [
+      5,
+      10,
+      20,
+      40,
+      80,
+      160
+    ],
+    "lp_bound_sizes": [
+      5,
+      10,
+      20,
+      40,
+      80
+    ]
+  },
+  "archive": {
+    "id": "15YrfsAzXuBb10yn_9nFk-fpk2SgyNh8O",
+    "bytes": 2013,
+    "sha256": "d8567f83cdcccb436b22fc303f93effb230f67cbabda8436c423ab80f105663e",
+    "verified": true
+  },
+  "findings": {
+    "same_marginals_and_pairwise_joint_laws": true,
+    "finite_sign_reversal_from_tested_n": 20,
+    "limit_overflows": [
+      "3/40",
+      "1/20"
+    ],
+    "investment": "1/16",
+    "covariance_fluid_bound": "uniform conditional max dependency degree D gives independent bound times sqrt(D+1); conditional dependence graph, not static code graph",
+    "sharp_bounds": "finite exchangeable count distributions with exact first two moments, not necessarily infinitely extendible mixtures"
+  },
+  "limits": [
+    "No actual software data or causal effect",
+    "Single-period overflow utility, not complete dynamic value",
+    "Standalone JS verifier added but not executed as a separate Node run; JS computations executed directly and independent Python LP checked",
+    "No new PDF custody: four missing candidates recorded as comments, canonical TXT body unchanged",
+    "No phase transition, no novel general theorem claim"
+  ]
+}
