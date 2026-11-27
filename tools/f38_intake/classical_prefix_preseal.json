@@ -1,0 +1,12 @@
+{
+  "status": "RETROSPECTIVE_ALGORITHM_CHECK_NOT_F38",
+  "input": {
+    "ref": "3be97da96fffd3dc5d1baf48837f9d78ece93906",
+    "path": "tools/r95_adaptive_prefix.mjs",
+    "blob": "112cebb78389d51f42d6aa87288d279019dfa249"
+  },
+  "scope": "96 P42 finite states, 3 goals, 7 nonempty goal subsets, total integer edit budgets 0..6, common prefix lengths 0..b",
+  "rival": "generic unit-cost directed graph dynamic programming with per-goal backwards bounded reachability and preimage of intersection after full revelation",
+  "oracle": "original closed-form R95 formula; compare each state, budget, delay, goal subset; expected tie; no source-native execution or prospective evidence",
+  "stop": "if equal, preserve classical adequacy and stop extending this finite instance"
+}
