@@ -1,0 +1,20 @@
+{
+  "hypothesis": "Legacy state without _received_declaration is initially unknown, but reserialization inserts None via Response.__getstate__; naive getattr default is insufficient. Normalizing None to unknown restores repeated lifecycle invariant.",
+  "arms": [
+    "snapshot_serialized",
+    "snapshot_normalized"
+  ],
+  "cycles": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "controls": [
+    "known absent",
+    "known declared",
+    "legacy missing field",
+    "direct Response"
+  ],
+  "scope": "Pinned Requests 2.32.5; locally generated state only; preserve encoding/text; no independent future demand claim."
+}
