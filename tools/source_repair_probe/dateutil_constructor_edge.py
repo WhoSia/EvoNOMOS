@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from probe import NATIVE, classes, FIXTURES, signature, fields
+from dateutil_constructor_probe import NATIVE, classes, FIXTURES, signature, fields
 B=NATIVE.relativedelta
 rows=[]
 for arm in ('native','adapter','adapter_reflected'):
