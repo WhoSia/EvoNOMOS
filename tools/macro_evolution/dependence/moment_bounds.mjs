@@ -1,0 +1,4 @@
+import {frac,add,mul,cmp} from './fraction.mjs';
+export function momentBounds(n){const m1=frac(n,2),m2=frac(5*n*(n-1)+8*n,16);let lo=null,hi=null,feasible=0;const target=k=>frac(Math.max(0,5*k-3*n),5*n);
+for(let a=0;a<=n;a++)for(let b=a+1;b<=n;b++)for(let c=b+1;c<=n;c++){const xs=[a,b,c];const w=xs.map((x,i)=>{const [y,z]=xs.filter((_,j)=>j!==i);return mul(add(add(m2,mul(frac(-y-z),m1)),frac(y*z)),frac(1,(x-y)*(x-z)))});if(w.some(x=>x[0]<0n))continue;feasible++;const val=w.reduce((s,p,i)=>add(s,mul(p,target(xs[i]))),frac(0));if(!lo||cmp(val,lo.value)<0)lo={value:val,xs,w};if(!hi||cmp(val,hi.value)>0)hi={value:val,xs,w}}
+if(!lo||!hi)throw Error("infeasible moments");for(const z of [lo,hi]){if(cmp(z.w.reduce(add,frac(0)),frac(1))||cmp(z.w.reduce((s,w,i)=>add(s,mul(w,frac(z.xs[i]))),frac(0)),m1)||cmp(z.w.reduce((s,w,i)=>add(s,mul(w,frac(z.xs[i]**2))),frac(0)),m2))throw Error("invalid extremizer")}return {lo,hi,feasible}}
