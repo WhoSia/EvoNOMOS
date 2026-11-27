@@ -1,0 +1,23 @@
+{
+  "status": "Retrospective follow-up, researcher-authored finite stress; no F38 claim",
+  "question": "Can documented serializer injection and application-owned backend extension preserve receive-stage metadata across SQLite write/read/resave without editing cache package? Does a serializer alone fail before its call on attr.evolve?",
+  "versions": {
+    "requests": "2.32.5",
+    "requests-cache": "1.3.2"
+  },
+  "additional_pins": {
+    "serializers/pipeline.py": "9d1f7972fdf1726c671ff1830ea1f78e26486f4e",
+    "backends/base.py": "e980ae756b27a4da3a24fda9504b950508dde68d",
+    "backends/sqlite.py": "d4116fbd601fe85417905b7236d04a40e0772cc1",
+    "serializers/__init__.py": "b76202ea262682e6422063aae95361ad29056e4b",
+    "session.py": "8d9885b9513dfb3bffbf08ec247f691cee6c4b98"
+  },
+  "arms": [
+    "normalized Requests snapshot + native cache serializer",
+    "normalized Requests snapshot + custom serializer stage only",
+    "normalized Requests snapshot + custom stage + application backend save wrapper",
+    "original unmodified Requests + caller capture at adapter-return + custom stage + application backend save wrapper"
+  ],
+  "test": "Three declared histories, pickle and JSON native format pipelines, three SQLite open/save/get/close cycles, including resaving actual CachedResponse. Compare actual data, body/text/encoding. UNKNOWN is distinct from absent; local generated payloads only. Root response only, no redirect metadata contract. ContextVar reset on exceptions tested; no real owner grant. Verify both packages unchanged in caller-only arm. Compare custom key ignored by old reader and mixed old read/re-save only if separate preseal.",
+  "prediction": "native loses immediately; stage alone works first but loses after evolve; backend wrapper retains root metadata on resave without library package edits. Caller-only uses new app-level contract (not public Requests property) and capture at later adapter-return boundary, not wire."
+}
