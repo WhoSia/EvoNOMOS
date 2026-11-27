@@ -1,0 +1,26 @@
+{
+  "status": "FRAME_DISCOVERY_ONLY_NOT_ACTIVATED",
+  "purpose": "Find independent-family repository candidates without reading issues or outcomes. Search frame is a convenience frame, not a probability sample.",
+  "queries": [
+    "language:Python stars:1000..10000 archived:false fork:false topic:library",
+    "language:Go stars:1000..10000 archived:false fork:false topic:library",
+    "language:TypeScript stars:1000..10000 archived:false fork:false topic:library"
+  ],
+  "page": 1,
+  "per_page": 20,
+  "rule": "Record all returned repos and metadata, deduplicate stable ID/full_name; no replacement for failed queries. Exclude prior exposed research families and forks/archives when confirmed, retain unknowns. Rank within each returned language stratum by lexicographic full_name (casefold); cap 10 per language AFTER metadata verification, no issue titles or outcomes before activation. No assertion that search result order is complete or random.",
+  "excluded": [
+    "go-chi/chi",
+    "psf/requests",
+    "requests-cache/requests-cache",
+    "psf/cachecontrol",
+    "requests/toolbelt",
+    "jamielennox/requests-mock",
+    "sigmavirus24/betamax",
+    "homebridge-plugins/homebridge-ups-monitor",
+    "louislam/uptime-kuma",
+    "WhoSia/EvoNOMOS"
+  ],
+  "window_proposal": "2026-11-28T00:00:00Z to 2026-12-12T00:00:00Z, not effective unless independent timestamp, approved source pairing, equal rights/oracles/rival and independent adjudicator are verified before start; otherwise defer to new prospective window",
+  "warning": "Repo metadata can be time-dependent; connector search completeness, license, language and fork status require verification. Do not call issue search in this discovery step."
+}
