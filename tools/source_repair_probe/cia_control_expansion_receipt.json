@@ -1,0 +1,48 @@
+{
+  "status": "EXPLORATORY_POSTHOC_CONTROL_EXPANSION",
+  "preseal": "62b2b84c55fd649cb801305befaf6a773026c078",
+  "runner": "35993c610c9751f51fbf0827b466edff20841202",
+  "runner_blob": "14e4d8dd2769232f8b0bdd0ec43ee73693b75d1b",
+  "result_sha256": "c02ceae55070e8754dfb87187b4edb34d7bda446fde7783af0e5f1e18d0229da",
+  "source": "Click 8.1.8 original four pinned files",
+  "executions": 8,
+  "control_cases": 4,
+  "repeat_observed_differences": 0,
+  "baseline_eas_union": 132,
+  "expanded_eas_union": 137,
+  "added": [
+    "core.py:Command.get_usage",
+    "core.py:Context.get_usage",
+    "core.py:Parameter.make_metavar",
+    "exceptions.py:NoSuchOption.format_message",
+    "types.py:ParamType.get_metavar"
+  ],
+  "metrics": {
+    "patched": {
+      "tp": 128,
+      "fp": 9,
+      "fn": 0,
+      "f1": 0.9660377358490566
+    },
+    "old_transplant": {
+      "tp": 129,
+      "fp": 8,
+      "fn": 0,
+      "f1": 0.9699248120300752
+    }
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/1TpS-fr3dFF9w5IQCqrWaTYg7Y1Ol2Vit/view",
+    "bytes": 11203,
+    "members": 4,
+    "sha256": "d2c48afa153cdd2cbd6d555189ff422999060ae022949d12e74b9604b5e53942",
+    "remote_hash_verified": true
+  },
+  "limitations": [
+    "Controls selected after inspecting misses; no blind or prospective prediction.",
+    "100% recall only for existing named-method union and partial call-count/return oracle on the original 12 fixtures.",
+    "No complete DEA or static slicing; not proof of absence of unobserved impact.",
+    "No new independent demands, no actual effort or permission measurements."
+  ],
+  "decision": "Conventional CIA remedy succeeds on this calibration. Do not continue tailoring Click controls. Move to transformation-sensitive/source-aware predictions with independent task selection."
+}
