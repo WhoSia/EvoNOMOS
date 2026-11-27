@@ -1,0 +1,80 @@
+{
+  "status": "RETROSPECTIVE_CONTRACT_STRESS_NOT_F38",
+  "issue": "https://github.com/dateutil/dateutil/issues/44",
+  "preseal": "7455bbf28d3e6359b113aa8892765053a8d76ec0",
+  "source_blob": "cd323a549e0f182541ebcde2d2ea1adfbbd9701e",
+  "source_version": "2.9.0.post0",
+  "probe": {
+    "commit": "5e7d4a24a0054aec233412d66949fc343952c1f6",
+    "blob": "4bf26540486e0ee83a2bb3bf6ac35eb5a1551049",
+    "result_sha256": "daff4a676f264deaa095e75b96193ab5107da9fea79f5bbb5b8704305588b368",
+    "observations": 480,
+    "arms": 3,
+    "contexts": 4,
+    "fixtures": 4,
+    "operations": 10,
+    "constructor_sites": 7,
+    "constructor_fields": 16,
+    "native": {
+      "compatible_type": "32/32",
+      "optional_type": "32/32",
+      "optional_tag": "0/32",
+      "required_exceptions": "32/32"
+    },
+    "reverse": {
+      "subclass_type": "0/96",
+      "errors": 0
+    },
+    "app_adapter": {
+      "tag": "64/64",
+      "errors": 0,
+      "base_value": "40/40"
+    }
+  },
+  "edge": {
+    "preseal": "8c8ec7012e2b23960934004a91867e1a2c488130",
+    "initial_runner": "4a1dc640bb0bb73c2b84a6c2a97a01a367085940",
+    "corrected_import": "85dbc5e7aa94979da5cf20fa7d8d015f8cbdf58e",
+    "blob": "a5df45af26906ea16a439a5e2d343a4fcf6557e7",
+    "result_sha256": "1e97b0b34c8a675840b535d2b0a3aa4e0164217ef5e9c74c11b68b4b027c7cf2",
+    "observations": 144,
+    "repeat_same_sha": true,
+    "reflected_mul": {
+      "optional_tag": "0/4 -> 4/4",
+      "required_errors": "4/4 -> 0/4"
+    },
+    "base_left": {
+      "native_values": "8/8 for tagged subclasses",
+      "adapter_values": "0/8",
+      "alias_fixed_adapter_values": "0/8"
+    },
+    "interpretation": "Native inherited reflected addition did not reverse order; original adapter defines a distinct __radd__ triggering reflected subclass priority, reversing noncommutative absolute-field selection. This was introduced by our repair, not an upstream bug."
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/1KpDVOzp0mnWuOohyjMJXwFsYnuCJu4tk/view",
+    "size": 15917,
+    "sha256": "c330ccbaf289328c6038421f1d9af9e66191973cb8351fda8bc446eb4fc08469",
+    "members": 6,
+    "remote_hash_verified": true
+  },
+  "apr_prior_art": [
+    {
+      "doi": "10.1145/2786805.2786825",
+      "finding": "Smith et al. 2015 independent repair-generation and evaluation test suites; study-specific overfitting and coverage effects."
+    },
+    {
+      "doi": "10.1145/3663529.3663776",
+      "finding": "Petke et al. 2024 random selection baseline for a fixed set of plausible patches; study-specific median two plausible patches per bug/tool, correctness assessments including extra tests and independent reviewers."
+    }
+  ],
+  "limitations": [
+    "Historical issue already exposed; tag contract authored by researchers, not independent demand.",
+    "Modern reverse mutant is not exact historical release; only pinned module bytes verified.",
+    "All observations within Python process per runner; 624 distinct arm-context-operation combinations, repeated edge run is not independent evidence.",
+    "Narrow app adapter uses known base fields, not arbitrary subclass semantics; right operand/tag merge and mixed-class semantics not generally defined; alias repair still fails operand-order audit.",
+    "Partial observed value signature uses repr of 16 base fields; not universal observational equivalence or formal source certificate.",
+    "No measured engineer labor, no verified organizational edit permission, no independent F38 outcomes.",
+    "Original Click trace-order audit of existing data showed 12/12 baseline traces equal; no whole-trace order-only differences in two interventions; does not rule out other internal state effects."
+  ],
+  "decision": "Do not promote a law. Compare ordinary APR repair candidate selection, held-out test generation and semantic analysis at equal budget; include random selection when the candidate pool is fixed and known. Stop tailoring the exposed fixture."
+}
