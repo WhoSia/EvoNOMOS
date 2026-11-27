@@ -1,0 +1,17 @@
+{
+  "status": "POSTHOC_EDGE_AUDIT",
+  "prior": "5e7d4a24a0054aec233412d66949fc343952c1f6",
+  "observed_source": "__rmul__ = __mul__ alias; __radd__ delegates self.__add__; subclass priority in Python binary operators",
+  "hypotheses": [
+    "original adapter omitted __rmul__, causing loss/failure for reflected multiply",
+    "explicit reflected alias override repairs the tested tag contract",
+    "base + subclass with conflicting absolute fields may differ from base + base in operand-order semantics because subclass reflected dispatch wins"
+  ],
+  "scope": "4 prior fixtures for reflected multiplication; four conflicting absolute fields and reversed operand orders for binary additions; base oracle is operand-order-specific, no claim this is upstream bug or documented contract. Not independent demands.",
+  "arms": [
+    "native",
+    "original narrow application adapter",
+    "adapter plus reflected alias override"
+  ],
+  "stop": "Record uncovered behavior without asserting universal compatibility or repairing upstream."
+}
