@@ -23,7 +23,7 @@ def normalize(value):
     return UNKNOWN
 
 
-def worker(arm, directory):
+def worker(arm, directory, migration=False):
     from requests import Request
     from requests.adapters import HTTPAdapter
     from requests.utils import _parse_content_type_header
@@ -58,14 +58,14 @@ def worker(arm, directory):
             try: return super().save_response(response,*args,**kwargs)
             finally: ACTIVE.reset(token)
 
-    def serializer(name):
+    def serializer(name,mode=arm):
         base={'pickle':pickle_serializer,'json':json_serializer}[name]
-        if arm=='native': return base
+        if mode=='native': return base
         return SerializerPipeline([PreserveStage(base.stages[0]),*base.stages[1:]],name='carrier-'+name,is_binary=base.is_binary)
 
-    def open_session(path,name):
-        cls=PreserveCache if arm in ('backend','caller') else SQLiteCache
-        backend=cls(str(path),serializer=serializer(name))
+    def open_session(path,name,mode=arm):
+        cls=PreserveCache if mode in ('backend','caller') else SQLiteCache
+        backend=cls(str(path),serializer=serializer(name,mode))
         session=CachedSession(backend=backend)
         assert session.cache is backend
         return session
@@ -79,6 +79,30 @@ def worker(arm, directory):
             setattr(r,ATTR,('declared',v) if isinstance(v,str) else ('absent',None))
         r.headers['Content-Type']='text/plain; charset=utf-8';r.encoding='latin-1'
         return r
+
+    if migration:
+        assert arm=='caller'
+        rows=[]
+        for i,(raw,expected) in enumerate(cc.HISTORIES):
+            for name in ('pickle','json'):
+                for case in ('old_read_only','old_overwrite','legacy_upgrade'):
+                    path=directory/f'{i}-{name}-{case}.sqlite'
+                    old_writer=case=='legacy_upgrade'
+                    with open_session(path,name,'native' if old_writer else 'caller') as s:
+                        s.cache.save_response(fresh(raw),cache_key='probe')
+                    with open_session(path,name,'caller' if old_writer else 'native') as s:
+                        r=s.cache.get_response('probe');assert r is not None
+                        interim=normalize(getattr(r,ATTR,None))
+                        legacy_interim=(r.content,r.encoding,r.text)==(b'\xe0\xe9','latin-1','àé')
+                        if case!='old_read_only': s.cache.save_response(r,cache_key='probe')
+                    with open_session(path,name,'caller') as s:
+                        r=s.cache.get_response('probe');assert r is not None
+                        observed=normalize(getattr(r,ATTR,None))
+                        want=expected if case=='old_read_only' else UNKNOWN
+                        legacy=(r.content,r.encoding,r.text)==(b'\xe0\xe9','latin-1','àé')
+                    rows.append(dict(header=raw,serializer=name,case=case,interim=interim,observed=observed,expected=want,passed=interim==UNKNOWN and observed==want,legacy=legacy and legacy_interim))
+        assert all(r['passed'] and r['legacy'] for r in rows)
+        print(json.dumps(rows));return
 
     rows=[]
     for i,(raw,expected) in enumerate(cc.HISTORIES):
@@ -135,4 +159,11 @@ def main(out):
 
 if __name__=='__main__':
     if sys.argv[1]=='--worker': worker(sys.argv[2],Path(sys.argv[3]))
+    elif sys.argv[1]=='--migration':
+        req=Path(importlib.util.find_spec('requests').origin).parent
+        cache=Path(importlib.util.find_spec('requests_cache').origin).parent
+        for n,h in run.PINS.items(): assert run.blob((req/n).read_bytes())==h,n
+        for n,h in {**cc.CACHE_PINS,**EXTRA_PINS}.items(): assert run.blob((cache/n).read_bytes())==h,n
+        path=Path(sys.argv[2]).resolve();path.mkdir(parents=True,exist_ok=False)
+        worker('caller',path,True)
     else: main(Path(sys.argv[1]).resolve())
