@@ -1,0 +1,38 @@
+{
+  "status": "CONDITIONAL_MACRO_COMPOSITION_NOT_F38",
+  "preseal": "37c24f5d11d7590a17736d6a4cb0abf1ec220aa5",
+  "runner": "fbcb470725c887c08943e420655cafb0741d1880",
+  "runner_blob": "909cf0c63d72528ad1da7c4ea4294be3691124c9",
+  "result_sha256": "b388729d09a866ecf2eadb7002345059a0fabb04e2e63d5e811b10ce0cf0fb4c",
+  "grid_cases": 36,
+  "joint_policy_evaluations": 5832,
+  "full_product_bellman_checks": 144,
+  "delayed_positive_cases": 15,
+  "repeat_identical": true,
+  "example": {
+    "q": "1/4",
+    "r": "1/4",
+    "gamma": "9/10",
+    "initial": "00",
+    "lower": "0",
+    "independent": "45/112",
+    "upper": "171/128",
+    "investment": "1/2",
+    "net_gain": [
+      "-1/2",
+      "-11/112",
+      "107/128"
+    ]
+  },
+  "proof": "W=sum local optimal values; A_i=c_i+gamma E V_i'-V_i>=0. For any lawful policy telescoping gives V_pi-W=E sum gamma^t sum_i A_i, hence G=V*-W solves residual Bellman. With finite state/action nonempty menus, zero-loss set equals greatest fixed point Z={x: exists lawful a with sum A_i=0 and P(Z|x,a)=1}. Local zero-advantage action now not sufficient. Greedy local advantage policy supplies feasible upper bound. Correlated joint transitions allowed as long as local marginal independence of other state/actions holds.",
+  "deviations": "Runner used exhaustive enumeration and Bellman verification instead of additional policy iteration (preseal specified both); no policy iteration executed. Residual enumeration uses same linear solve; fixed-policy telescoping independently checked algebraically, not a separate independent solver.",
+  "archive": {
+    "url": "https://drive.google.com/file/d/1LO_gi6_yPyadLuqMP99Kuq-qDnulSS-1/view",
+    "bytes": 3841,
+    "members": 3,
+    "sha256": "27a110e9b28097c45fcd4a602a1e83f6b82c9aa55720962ba3690af01a09ef70",
+    "remote_hash_verified": true
+  },
+  "prior_art": "Sullivan 2001 §7 independent module-value assumption; Adelman & Mersereau 2008 weakly coupled DP §§1–2, additive approximation/Lagrangian/LP bounds; author PDF web text read, screenshot cache miss, local DNS failure, missing register comment doco.sMmFxnghMiPmkpJPF1NCDA. Mathematical relation is classical performance difference/potential shaping, controlled invariance, not new general theorem.",
+  "limits": "Authored binary-state repair capacity example; action coupling is a hard capacity constraint not actual source contract; joint marginal construction exact but not observed history; costs not empirical; no independent F38 or source-derived structural law; only simple unconstrained local relaxation compared, not Lagrangian or LP baseline."
+}
