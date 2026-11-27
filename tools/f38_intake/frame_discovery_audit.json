@@ -1,0 +1,858 @@
+{
+  "scope_blob": "7e792c64d0ece83bdcb86c7e1e57a9f12648d80d",
+  "receipt_blob": "6ee6266be12a0d66dbf85d486949e329d209c49c",
+  "candidate_count": 60,
+  "unique_ids": 60,
+  "search_caps_reached": 3,
+  "missing_fields": {
+    "language": 60,
+    "stars": 60,
+    "fork": 60,
+    "license": 60
+  },
+  "verified_selected_count": 0,
+  "independent_demand_count": null,
+  "status": "FRAME_NOT_ACTIVATED",
+  "rows": [
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "419555",
+      "repository": "apache/libcloud",
+      "preverification_rank": 1,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "257171886",
+      "repository": "binance/binance-connector-python",
+      "preverification_rank": 2,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "306804548",
+      "repository": "blackjack4494/yt-dlc",
+      "preverification_rank": 3,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "310857764",
+      "repository": "borb-pdf/borb",
+      "preverification_rank": 4,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "245145949",
+      "repository": "ContinualAI/avalanche",
+      "preverification_rank": 5,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "26876372",
+      "repository": "dateutil/dateutil",
+      "preverification_rank": 6,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "115397686",
+      "repository": "fo40225/tensorflow-windows-wheel",
+      "preverification_rank": 7,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "31074280",
+      "repository": "FreeOpcUa/python-opcua",
+      "preverification_rank": 8,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "2792391",
+      "repository": "gruns/furl",
+      "preverification_rank": 9,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "42446168",
+      "repository": "hhursev/recipe-scrapers",
+      "preverification_rank": 10,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "146640524",
+      "repository": "kivymd/KivyMD",
+      "preverification_rank": 11,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "72473727",
+      "repository": "kubernetes-client/python",
+      "preverification_rank": 12,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "185270983",
+      "repository": "MarshalX/yandex-music-api",
+      "preverification_rank": 13,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "23058769",
+      "repository": "nabla-c0d3/sslyze",
+      "preverification_rank": 14,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "60261863",
+      "repository": "nerevu/riko",
+      "preverification_rank": 15,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "2811323",
+      "repository": "oauthlib/oauthlib",
+      "preverification_rank": 16,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "7308334",
+      "repository": "ParallelSSH/parallel-ssh",
+      "preverification_rank": 17,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "1446474",
+      "repository": "pypa/virtualenv",
+      "preverification_rank": 18,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "105757332",
+      "repository": "sepandhaghighi/art",
+      "preverification_rank": 19,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "id": "257655337",
+      "repository": "trailofbits/graphtage",
+      "preverification_rank": 20,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "23218292",
+      "repository": "adrg/xdg",
+      "preverification_rank": 1,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "93619165",
+      "repository": "alecthomas/chroma",
+      "preverification_rank": 2,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "107385967",
+      "repository": "denisbrodbeck/machineid",
+      "preverification_rank": 3,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "170366344",
+      "repository": "dgraph-io/ristretto",
+      "preverification_rank": 4,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "432717637",
+      "repository": "duke-git/lancet",
+      "preverification_rank": 5,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "74203833",
+      "repository": "faiface/pixel",
+      "preverification_rank": 6,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "163148360",
+      "repository": "go-pkgz/auth",
+      "preverification_rank": 7,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "58821882",
+      "repository": "grpc-ecosystem/go-grpc-middleware",
+      "preverification_rank": 8,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "662620190",
+      "repository": "IBM/fp-go",
+      "preverification_rank": 9,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "145790679",
+      "repository": "MontFerret/ferret",
+      "preverification_rank": 10,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "48582772",
+      "repository": "ory/fosite",
+      "preverification_rank": 11,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "16974335",
+      "repository": "parnurzeal/gorequest",
+      "preverification_rank": 12,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "3087541",
+      "repository": "patrickmn/go-cache",
+      "preverification_rank": 13,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "296373527",
+      "repository": "pterm/pterm",
+      "preverification_rank": 14,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "85597991",
+      "repository": "sanity-io/litter",
+      "preverification_rank": 15,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "108450241",
+      "repository": "schollz/progressbar",
+      "preverification_rank": 16,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "11405722",
+      "repository": "sevlyar/go-daemon",
+      "preverification_rank": 17,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "176644153",
+      "repository": "vugu/vugu",
+      "preverification_rank": 18,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "342486216",
+      "repository": "wechatpay-apiv3/wechatpay-go",
+      "preverification_rank": 19,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "id": "221917370",
+      "repository": "zitadel/oidc",
+      "preverification_rank": 20,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "82070216",
+      "repository": "alexjoverm/typescript-library-starter",
+      "preverification_rank": 1,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "625569080",
+      "repository": "basementstudio/scrollytelling",
+      "preverification_rank": 2,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "80701067",
+      "repository": "bitjson/typescript-starter",
+      "preverification_rank": 3,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "383777434",
+      "repository": "chakra-ui/zag",
+      "preverification_rank": 4,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "1093708164",
+      "repository": "coder/ghostty-web",
+      "preverification_rank": 5,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "995504072",
+      "repository": "heroui-inc/heroui-native",
+      "preverification_rank": 6,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "102369738",
+      "repository": "Hopding/pdf-lib",
+      "preverification_rank": 7,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "823738767",
+      "repository": "ibelick/motion-primitives",
+      "preverification_rank": 8,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "231953283",
+      "repository": "intlify/vue-i18n",
+      "preverification_rank": 9,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "184500850",
+      "repository": "jamiebuilds/unstated-next",
+      "preverification_rank": 10,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "5430389",
+      "repository": "jkbrzt/rrule",
+      "preverification_rank": 11,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "103130316",
+      "repository": "KingSora/OverlayScrollbars",
+      "preverification_rank": 12,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "881965371",
+      "repository": "kokonut-labs/kokonutui",
+      "preverification_rank": 13,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "814092544",
+      "repository": "margelo/nitro",
+      "preverification_rank": 14,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "486967534",
+      "repository": "margelo/react-native-graph",
+      "preverification_rank": 15,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "340402576",
+      "repository": "margelo/react-native-vision-camera",
+      "preverification_rank": 16,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "66119977",
+      "repository": "remarkablemark/html-react-parser",
+      "preverification_rank": 17,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "769189766",
+      "repository": "rolldown/tsdown",
+      "preverification_rank": 18,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "4366849",
+      "repository": "serkanyersen/ifvisible.js",
+      "preverification_rank": 19,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "id": "850821713",
+      "repository": "Vanilagy/mediabunny",
+      "preverification_rank": 20,
+      "status": "METADATA_UNVERIFIED",
+      "missing_fields": [
+        "language",
+        "stars",
+        "fork",
+        "license"
+      ],
+      "selected": false
+    }
+  ]
+}
