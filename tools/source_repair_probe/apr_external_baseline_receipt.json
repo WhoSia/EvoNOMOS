@@ -1,0 +1,72 @@
+{
+  "status": "EXTERNAL_ARTIFACT_REANALYSIS_NOT_F38",
+  "preseal": "ad9bf597c9cde8190b1e62f224555e5ff16dd12d",
+  "source": {
+    "url": "https://github.com/SOLAR-group/overfitting-baseline-artefact/blob/main/saved_results/paper_results/rq2/preprocessed.csv",
+    "blob": "b539da0a433d49d4d35e92ab95cb1b5a69b7921f",
+    "bytes": 4793,
+    "sha256": "9e15c4d4022676f7fce2b8c1890cf3a542252e37d4592ac998c40f7017b6f9b3",
+    "transfer": "raw GitHub DNS failed; connector text transferred to local CSV, exact upstream Git blob hash verified"
+  },
+  "checks": {
+    "unique_tool_bug_keys": 136,
+    "tools": 10,
+    "bugs": 43,
+    "patch_counts": 558,
+    "unknown_rows": 0,
+    "all_correct_pools": 49,
+    "mixed_pools": 33,
+    "zero_correct_pools": 54,
+    "zero_correct_candidates": 278,
+    "median_n": 2,
+    "mean_n": "279/68",
+    "positive_pools": 82
+  },
+  "ranking": {
+    "expected_random": "6244/15",
+    "perfect_rank": 360,
+    "max_saving": "844/15",
+    "always_rank_overhead_break_even": "211/510",
+    "h1_profitable_even_perfect": 10,
+    "h1_ties": 9,
+    "h1_always_net": "-1196/15",
+    "h1_size_ge_10": {
+      "pools": 13,
+      "mixed": 4,
+      "net_upper_bound": "433/30"
+    },
+    "top_two_savings_share": "345/844"
+  },
+  "pruning": {
+    "identity": "E[T(N,K)]-E[T(N-m,K)]=m/(K+1), including K=0; all m exclusions must be known false, random order of retained candidates, K=0 exhaustion",
+    "finite_checks": 285,
+    "perfect_exclusion_saving": "5014/15",
+    "always_apply_overhead_break_even": "2507/1020"
+  },
+  "replication": {
+    "runner": "c09c0065ea275a41906a63f8098fdee5b7c43e40",
+    "blob": "c008aa0bffccbea691dbb5b12feff55751f71cae",
+    "result_sha256": "eeff0d57a0c5ac76a5b43c9b9dd04a8b800a0dbf6054eaf23c23539b3de9028d",
+    "pruning_runner": "6dc25e0c933817a0603a82eb9d1c2d4b463d87a1",
+    "pruning_blob": "c948e76f9ba42e5f49a12d94113a0851d90d2656",
+    "pruning_result_sha256": "999774d19844f557086ab087916e5c3337ed7bb320e4731fac4c8d756149c169",
+    "independent_js_and_python_expectations_agree": true,
+    "reruns_exact": true,
+    "table_2": "Positive-pool counts and maxima match all ten tools (Nopol no correct pool, null rather than 0). Exact even-sample medians dynamoth 2.5/2.5/4 and jKali 4.5/5.5/6 versus printed 2/2/4 and 4/5/6; compatible with truncation, actual formatting cause unverified."
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/1GhDGXgM_8Id5r2PXRZdmix2pqwIrtoHB/view",
+    "bytes": 6454,
+    "members": 6,
+    "sha256": "2ecfe3d85e97836ed1dcd6a160b4b264a3815646da910251d941c77685f00275",
+    "remote_hash_verified": true
+  },
+  "limits": [
+    "43 selected bugs with known correct patch in at least one tool, not 395-bug full study or all 430 pairs; no pooled cross-tool deduplication.",
+    "Source labels inherit partial original assessment and no unknowns in this subset, not independent correctness verification.",
+    "All costs review-count units, perfect ranking and pruning are mathematical ceilings not observed tools, no labor or runtime claims.",
+    "Size gate sensitivity explored post hoc on same sample; no claim about policy generalization; ideal label-informed gate is not implementable without labels.",
+    "No independent demand, source analysis of actual patches, or new structural-law evidence."
+  ],
+  "next": "Task B: independently frozen candidate grammar and requirements. Compete against direct semantic/synthesis constraint solver and random/size-only routing, with identical source, rights and oracle access. For each candidate report certified rejection vs unknown vs observed acceptance, false exclusion including valid alternative, evidence acquisition/construction/checking overhead, retained feasible Pareto frontier. No-solution claims only within bounded grammar; no post hoc omission of costly admissible candidates. Ranking and rejection distinct objectives. F38 OPEN."
+}
