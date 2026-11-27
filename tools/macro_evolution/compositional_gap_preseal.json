@@ -1,0 +1,45 @@
+{
+  "status": "CONDITIONAL_MACRO_COMPOSITION_NOT_F38",
+  "question": "Can locally optimal independent module adaptation be composed under hard joint feasibility, and how does joint environmental correlation change the option value?",
+  "theory": "Additive bounded costs and local transition marginals depending only on own state/action; joint transition correlations allowed; joint admissible set subset of product, nonempty. W=sum local optimal V_i. Local advantage A_i>=0; J_pi-W=E_pi sum gamma^t sum A_i. Zero-loss iff there is a policy staying almost surely in states allowing zero-advantage joint actions, greatest controlled invariant set. Coupled residual MDP exact, classical Bellman potential shaping, not claimed novelty.",
+  "grid": {
+    "local_states": [
+      0,
+      1
+    ],
+    "local_actions": [
+      0,
+      1
+    ],
+    "cost": "x+r*a",
+    "next_bad": "q if x=0 or a=1, else 1",
+    "q": [
+      "1/4",
+      "1/2",
+      "3/4"
+    ],
+    "r": [
+      "1/4",
+      "3/4"
+    ],
+    "gamma": [
+      "1/2",
+      "9/10"
+    ],
+    "couplings": [
+      "Frechet lower",
+      "independent",
+      "Frechet upper"
+    ],
+    "joint_menus": [
+      "at most one repair",
+      "both repairs allowed"
+    ],
+    "initial": [
+      0,
+      0
+    ]
+  },
+  "verification": "exact rational policy iteration plus exhaustive 81 deterministic stationary policies on cap1; verify full product Bellman W, zero-advantage greatest invariant, exact residual identity for chosen optimum, correlation comparisons; no ranking significance claims",
+  "limitations": "authored toy model, not measured source costs, actual software contracts or independent demands. Pairwise local marginal equality holds by construction. Existing weakly coupled MDP and real options literature strong rival."
+}
