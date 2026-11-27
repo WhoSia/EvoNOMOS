@@ -1,0 +1,11 @@
+{
+  "status": "Researcher-authored intervention; second boundary experiment",
+  "base": "cache_carrier.py exact blob 1eceacce3746474b9f77f28dcb583901a05bb294; Requests normalized snapshot and requests-cache v1.3.2 pinned files",
+  "arms": [
+    "unchanged cache schema",
+    "one added attrs field typed Optional[Tuple[str, Optional[str]]] with default None"
+  ],
+  "hypothesis": "Field extension permits attr.evolve and native cattrs serializers to preserve metadata without external envelope; legacy serialized payloads load as unknown; reverse reading old consumer with extra field is separately tested, not assumed.",
+  "test": "known absent/latin-1/utf-8, repeated conversion and all three native pipelines; verify existing body/text/encoding; serialize original schema, restore new schema, reverse restore new payload in original schema. No actual maintainer ACL or labor inferred.",
+  "stop": "If extension works, report conditional ownership requirement; no extra synthetic enlargement."
+}
