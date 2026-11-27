@@ -1,0 +1,189 @@
+{
+  "scope_commit": "ad2d22d8edb3f02e9b3961cf6e8a193bafba201d",
+  "receipts": [
+    {
+      "repo": "go-chi/chi",
+      "returned": 4,
+      "cap": 10,
+      "rows": [
+        {
+          "number": 1247,
+          "title": "RouteHeaders misses exact mixed-case header value patterns",
+          "url": "https://github.com/go-chi/chi/issues/1247",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 1257,
+          "title": "A regexp route can match an empty path segment, and which one matches depends on the registration order",
+          "url": "https://github.com/go-chi/chi/issues/1257",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 1259,
+          "title": "URLFormat returns 404 for IDs with an encoded slash and a format suffix",
+          "url": "https://github.com/go-chi/chi/issues/1259",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 1263,
+          "title": "RouteHeaders can choose different matching handlers for identical requests",
+          "url": "https://github.com/go-chi/chi/issues/1263",
+          "created_at": null,
+          "state": null,
+          "author": null
+        }
+      ]
+    },
+    {
+      "repo": "psf/requests",
+      "returned": 10,
+      "cap": 10,
+      "rows": [
+        {
+          "number": 7639,
+          "title": "test_stream_timeout and test_urllib3_pool_connection_closed pass without asserting when no exception is raised",
+          "url": "https://github.com/psf/requests/issues/7639",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7641,
+          "title": "Targeted unit tests for same-scheme non-default redirect ports and Response.is_permanent_redirect",
+          "url": "https://github.com/psf/requests/issues/7641",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7642,
+          "title": "Invalid `params` type (e.g. int) raises misleading \"TypeError: Cannot mix str and non-str arguments\"",
+          "url": "https://github.com/psf/requests/issues/7642",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7643,
+          "title": "parse_header_links drops parameters when a value contains '=' or a quoted ';'",
+          "url": "https://github.com/psf/requests/issues/7643",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7644,
+          "title": "get_encoding_from_headers treats any content type containing 'text' as text/* (ISO-8859-1)",
+          "url": "https://github.com/psf/requests/issues/7644",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7645,
+          "title": "`iter_lines(decode_unicode=True, delimiter=<str>)` raises `TypeError` when `Response.encoding` is `None`",
+          "url": "https://github.com/psf/requests/issues/7645",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7646,
+          "title": "Quickstart timeout example shows HTTP connection for HTTPS request",
+          "url": "https://github.com/psf/requests/issues/7646",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7647,
+          "title": "get_encoding_from_headers is case-sensitive to media type tokens (RFC 9110 §8.3.1)",
+          "url": "https://github.com/psf/requests/issues/7647",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7648,
+          "title": "HTTPDigestAuth fails to select auth when qop contains a comma followed by a space",
+          "url": "https://github.com/psf/requests/issues/7648",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 7649,
+          "title": "[Bug] RequestsCookieJar — multiple_domains() returns incorrect results for repeated and distinct cookie domains",
+          "url": "https://github.com/psf/requests/issues/7649",
+          "created_at": null,
+          "state": null,
+          "author": null
+        }
+      ]
+    },
+    {
+      "repo": "requests-cache/requests-cache",
+      "returned": 2,
+      "cap": 10,
+      "rows": [
+        {
+          "number": 1217,
+          "title": "Filesystem cache changes the bytes of text responses that have no UTF-8 charset",
+          "url": "https://github.com/requests-cache/requests-cache/issues/1217",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 1223,
+          "title": "OverflowError from out-of-range Expires dates and delta-seconds values (follow-up to #1213)",
+          "url": "https://github.com/requests-cache/requests-cache/issues/1223",
+          "created_at": null,
+          "state": null,
+          "author": null
+        }
+      ]
+    },
+    {
+      "repo": "psf/cachecontrol",
+      "returned": 2,
+      "cap": 10,
+      "rows": [
+        {
+          "number": 497,
+          "title": "Stale cache refresh fails on Windows with PyPy",
+          "url": "https://github.com/psf/cachecontrol/issues/497",
+          "created_at": null,
+          "state": null,
+          "author": null
+        },
+        {
+          "number": 503,
+          "title": "Drop `uv_build` as build backend",
+          "url": "https://github.com/psf/cachecontrol/issues/503",
+          "created_at": null,
+          "state": null,
+          "author": null
+        }
+      ]
+    },
+    {
+      "repo": "requests/toolbelt",
+      "returned": 0,
+      "cap": 10,
+      "rows": []
+    },
+    {
+      "repo": "jamielennox/requests-mock",
+      "returned": 0,
+      "cap": 10,
+      "rows": []
+    }
+  ]
+}
