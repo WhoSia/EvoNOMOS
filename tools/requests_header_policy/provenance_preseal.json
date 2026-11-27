@@ -1,0 +1,20 @@
+{
+  "title": "Declared vs effective encoding: temporal contract separation and serialization obligations",
+  "basis": [
+    5084,
+    2086,
+    7647,
+    7644
+  ],
+  "scope": "Researcher-defined alternative contract, not exact simultaneous acceptance of contradictory real requests. Same direct utility cannot return None and ISO-8859-1 for the same missing-charset text header. Keep legacy effective encoding and text; expose separately received declared encoding.",
+  "source": "Requests v2.32.5 pinned four files; local case+boundary correction from preceding experiment.",
+  "contract": "Received explicit charset as observed at adapter construction, distinct known absent vs unknown old snapshot; later header and effective encoding mutations cannot alter recorded declaration. Preserve legacy Response.encoding/text, serialize and restore provenance; load old serialized state as unknown, not guessed. Finite corpus.",
+  "arms": [
+    "External caller sidecar captures header declaration and serializes pair with unmodified Response (strong local alternative)",
+    "Live property reads current header",
+    "Snapshot attr set by adapter, omitted from Response.__attrs__",
+    "Snapshot attr plus serialization and old-state unknown handling"
+  ],
+  "predictions": "Sidecar and serialized snapshot satisfy declared received-time contract; live fails after mutation; naive snapshot fails round-trip; old serialized Response without provenance must be unknown in internal snapshot arms. Compare extra production files/function/lines and ownership scope, not human effort. No universal ISP law.",
+  "rules": "No upstream code changes external sidecar; do not claim exact old issue API solved. Baseline external clients must explicitly retain sidecar. No unsafe pickle inputs; self-produced data only."
+}
