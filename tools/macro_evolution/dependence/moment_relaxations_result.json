@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "n": 5,
+      "sharp": 0.10833333333333334,
+      "cantelli": 0.3636363636363637,
+      "stop_loss": 0.11583123951777002
+    },
+    {
+      "n": 10,
+      "sharp": 0.10089285714285715,
+      "cantelli": 0.35616438356164387,
+      "stop_loss": 0.10103807466993214
+    },
+    {
+      "n": 20,
+      "sharp": 0.09261363636363637,
+      "cantelli": 0.35114503816793896,
+      "stop_loss": 0.093069039278245
+    },
+    {
+      "n": 40,
+      "sharp": 0.08885869565217391,
+      "cantelli": 0.3481781376518219,
+      "stop_loss": 0.08891319231808043
+    },
+    {
+      "n": 80,
+      "sharp": 0.08677325581395348,
+      "cantelli": 0.3465553235908142,
+      "stop_loss": 0.08678792892649556
+    }
+  ],
+  "scope": "Analytic cheap upper bounds evaluated on same fixed moment constraints, no data estimation"
+}
