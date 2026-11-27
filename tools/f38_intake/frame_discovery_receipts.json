@@ -1,0 +1,689 @@
+{
+  "scope_commit": "6a7e12bd10cafd7129bcd44871eb3221d9c6b6d2",
+  "receipts": [
+    {
+      "query": "language:Python stars:1000..10000 archived:false fork:false topic:library",
+      "rows": [
+        {
+          "id": "72473727",
+          "full_name": "kubernetes-client/python",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/kubernetes-client/python"
+        },
+        {
+          "id": "1446474",
+          "full_name": "pypa/virtualenv",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/pypa/virtualenv"
+        },
+        {
+          "id": "23058769",
+          "full_name": "nabla-c0d3/sslyze",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "release",
+          "url": "https://github.com/nabla-c0d3/sslyze"
+        },
+        {
+          "id": "115397686",
+          "full_name": "fo40225/tensorflow-windows-wheel",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/fo40225/tensorflow-windows-wheel"
+        },
+        {
+          "id": "310857764",
+          "full_name": "borb-pdf/borb",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/borb-pdf/borb"
+        },
+        {
+          "id": "306804548",
+          "full_name": "blackjack4494/yt-dlc",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/blackjack4494/yt-dlc"
+        },
+        {
+          "id": "2811323",
+          "full_name": "oauthlib/oauthlib",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/oauthlib/oauthlib"
+        },
+        {
+          "id": "257171886",
+          "full_name": "binance/binance-connector-python",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/binance/binance-connector-python"
+        },
+        {
+          "id": "2792391",
+          "full_name": "gruns/furl",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/gruns/furl"
+        },
+        {
+          "id": "26876372",
+          "full_name": "dateutil/dateutil",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/dateutil/dateutil"
+        },
+        {
+          "id": "105757332",
+          "full_name": "sepandhaghighi/art",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/sepandhaghighi/art"
+        },
+        {
+          "id": "257655337",
+          "full_name": "trailofbits/graphtage",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/trailofbits/graphtage"
+        },
+        {
+          "id": "146640524",
+          "full_name": "kivymd/KivyMD",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/kivymd/KivyMD"
+        },
+        {
+          "id": "42446168",
+          "full_name": "hhursev/recipe-scrapers",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/hhursev/recipe-scrapers"
+        },
+        {
+          "id": "419555",
+          "full_name": "apache/libcloud",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "trunk",
+          "url": "https://github.com/apache/libcloud"
+        },
+        {
+          "id": "245145949",
+          "full_name": "ContinualAI/avalanche",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/ContinualAI/avalanche"
+        },
+        {
+          "id": "60261863",
+          "full_name": "nerevu/riko",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/nerevu/riko"
+        },
+        {
+          "id": "31074280",
+          "full_name": "FreeOpcUa/python-opcua",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/FreeOpcUa/python-opcua"
+        },
+        {
+          "id": "185270983",
+          "full_name": "MarshalX/yandex-music-api",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/MarshalX/yandex-music-api"
+        },
+        {
+          "id": "7308334",
+          "full_name": "ParallelSSH/parallel-ssh",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/ParallelSSH/parallel-ssh"
+        }
+      ],
+      "count": 20,
+      "archive_filter": null,
+      "owner_prefix": null
+    },
+    {
+      "query": "language:Go stars:1000..10000 archived:false fork:false topic:library",
+      "rows": [
+        {
+          "id": "3087541",
+          "full_name": "patrickmn/go-cache",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/patrickmn/go-cache"
+        },
+        {
+          "id": "170366344",
+          "full_name": "dgraph-io/ristretto",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/dgraph-io/ristretto"
+        },
+        {
+          "id": "58821882",
+          "full_name": "grpc-ecosystem/go-grpc-middleware",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/grpc-ecosystem/go-grpc-middleware"
+        },
+        {
+          "id": "145790679",
+          "full_name": "MontFerret/ferret",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/MontFerret/ferret"
+        },
+        {
+          "id": "296373527",
+          "full_name": "pterm/pterm",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/pterm/pterm"
+        },
+        {
+          "id": "432717637",
+          "full_name": "duke-git/lancet",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/duke-git/lancet"
+        },
+        {
+          "id": "93619165",
+          "full_name": "alecthomas/chroma",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/alecthomas/chroma"
+        },
+        {
+          "id": "176644153",
+          "full_name": "vugu/vugu",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/vugu/vugu"
+        },
+        {
+          "id": "108450241",
+          "full_name": "schollz/progressbar",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/schollz/progressbar"
+        },
+        {
+          "id": "74203833",
+          "full_name": "faiface/pixel",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/faiface/pixel"
+        },
+        {
+          "id": "16974335",
+          "full_name": "parnurzeal/gorequest",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "develop",
+          "url": "https://github.com/parnurzeal/gorequest"
+        },
+        {
+          "id": "48582772",
+          "full_name": "ory/fosite",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/ory/fosite"
+        },
+        {
+          "id": "11405722",
+          "full_name": "sevlyar/go-daemon",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/sevlyar/go-daemon"
+        },
+        {
+          "id": "662620190",
+          "full_name": "IBM/fp-go",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/IBM/fp-go"
+        },
+        {
+          "id": "221917370",
+          "full_name": "zitadel/oidc",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/zitadel/oidc"
+        },
+        {
+          "id": "85597991",
+          "full_name": "sanity-io/litter",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/sanity-io/litter"
+        },
+        {
+          "id": "163148360",
+          "full_name": "go-pkgz/auth",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/go-pkgz/auth"
+        },
+        {
+          "id": "342486216",
+          "full_name": "wechatpay-apiv3/wechatpay-go",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/wechatpay-apiv3/wechatpay-go"
+        },
+        {
+          "id": "107385967",
+          "full_name": "denisbrodbeck/machineid",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/denisbrodbeck/machineid"
+        },
+        {
+          "id": "23218292",
+          "full_name": "adrg/xdg",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/adrg/xdg"
+        }
+      ],
+      "count": 20,
+      "archive_filter": null,
+      "owner_prefix": null
+    },
+    {
+      "query": "language:TypeScript stars:1000..10000 archived:false fork:false topic:library",
+      "rows": [
+        {
+          "id": "340402576",
+          "full_name": "margelo/react-native-vision-camera",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/margelo/react-native-vision-camera"
+        },
+        {
+          "id": "102369738",
+          "full_name": "Hopding/pdf-lib",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/Hopding/pdf-lib"
+        },
+        {
+          "id": "850821713",
+          "full_name": "Vanilagy/mediabunny",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/Vanilagy/mediabunny"
+        },
+        {
+          "id": "823738767",
+          "full_name": "ibelick/motion-primitives",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/ibelick/motion-primitives"
+        },
+        {
+          "id": "383777434",
+          "full_name": "chakra-ui/zag",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/chakra-ui/zag"
+        },
+        {
+          "id": "103130316",
+          "full_name": "KingSora/OverlayScrollbars",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/KingSora/OverlayScrollbars"
+        },
+        {
+          "id": "769189766",
+          "full_name": "rolldown/tsdown",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/rolldown/tsdown"
+        },
+        {
+          "id": "82070216",
+          "full_name": "alexjoverm/typescript-library-starter",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/alexjoverm/typescript-library-starter"
+        },
+        {
+          "id": "184500850",
+          "full_name": "jamiebuilds/unstated-next",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/jamiebuilds/unstated-next"
+        },
+        {
+          "id": "5430389",
+          "full_name": "jkbrzt/rrule",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/jkbrzt/rrule"
+        },
+        {
+          "id": "995504072",
+          "full_name": "heroui-inc/heroui-native",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/heroui-inc/heroui-native"
+        },
+        {
+          "id": "80701067",
+          "full_name": "bitjson/typescript-starter",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/bitjson/typescript-starter"
+        },
+        {
+          "id": "1093708164",
+          "full_name": "coder/ghostty-web",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/coder/ghostty-web"
+        },
+        {
+          "id": "231953283",
+          "full_name": "intlify/vue-i18n",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/intlify/vue-i18n"
+        },
+        {
+          "id": "486967534",
+          "full_name": "margelo/react-native-graph",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/margelo/react-native-graph"
+        },
+        {
+          "id": "881965371",
+          "full_name": "kokonut-labs/kokonutui",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/kokonut-labs/kokonutui"
+        },
+        {
+          "id": "66119977",
+          "full_name": "remarkablemark/html-react-parser",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/remarkablemark/html-react-parser"
+        },
+        {
+          "id": "814092544",
+          "full_name": "margelo/nitro",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/margelo/nitro"
+        },
+        {
+          "id": "4366849",
+          "full_name": "serkanyersen/ifvisible.js",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "master",
+          "url": "https://github.com/serkanyersen/ifvisible.js"
+        },
+        {
+          "id": "625569080",
+          "full_name": "basementstudio/scrollytelling",
+          "language": null,
+          "stars": null,
+          "fork": null,
+          "archived": false,
+          "license": null,
+          "default_branch": "main",
+          "url": "https://github.com/basementstudio/scrollytelling"
+        }
+      ],
+      "count": 20,
+      "archive_filter": null,
+      "owner_prefix": null
+    }
+  ]
+}
