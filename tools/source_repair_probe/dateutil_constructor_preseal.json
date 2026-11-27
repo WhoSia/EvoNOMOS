@@ -1,0 +1,40 @@
+{
+  "status": "RETROSPECTIVE_CONTRACT_STRESS_NOT_F38",
+  "source": "dateutil/dateutil 2.9.0.post0 src/dateutil/relativedelta.py",
+  "blob": "cd323a549e0f182541ebcde2d2ea1adfbbd9701e",
+  "historical_issue": "https://github.com/dateutil/dateutil/issues/44",
+  "exposure": "Issue body, release note and modern constructor sites seen. No blind forecast; historical issue requests only subclass return of add/sub/neg.",
+  "arms": [
+    "native modern module",
+    "reverse constructor mutant replacing seven self.__class__ calls with base class, not historical release",
+    "application-only explicit constructor adapter for tagged subclass, same original module"
+  ],
+  "contexts": [
+    "base",
+    "constructor-compatible subclass",
+    "tagged subclass with default tag",
+    "tagged subclass with required tag"
+  ],
+  "operations": [
+    "add delta",
+    "add timedelta",
+    "sub delta",
+    "neg",
+    "abs",
+    "mul",
+    "div",
+    "normalized",
+    "date addition",
+    "reverse date addition"
+  ],
+  "observations": [
+    "exact return class",
+    "numeric/calendar semantics relative to base operation",
+    "tag retention on delta outputs",
+    "exception type",
+    "date output type"
+  ],
+  "predictions": "Native retains compatible subclass type on delta-producing ops but may reset optional tag or fail required tag; reverse mutant loses subclass type while avoiding new constructor failures. Explicit adapter for researcher-owned tagged class can preserve tag and values without library edit. Native and mutant base behavior expected equal on tested inputs. Date-valued operations excluded from subclass-return obligation.",
+  "limits": "Tag semantics researcher authored not requested by issue; adapter narrow, not general preservation or actual permissions/labor. No claims about 2.3/2.4 full behavior or universal laws.",
+  "stop": "Record failures/ties, do not extend Click-specific tailoring."
+}
