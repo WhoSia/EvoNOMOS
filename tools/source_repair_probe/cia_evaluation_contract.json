@@ -1,0 +1,68 @@
+{
+  "status": "DRAFT_RETROSPECTIVE_CALIBRATION_NOT_F38",
+  "purpose": "Separate predicting consequences of a specified edit from proposing a repair for an independent demand; do not mistake a developer's chosen patch for the set of necessary repairs.",
+  "sources": [
+    {
+      "doi": "10.1002/stvr.1475",
+      "scope": "CIA survey Table III: dependency, repository, coupling and execution information; hybrid analyses"
+    },
+    {
+      "doi": "10.1016/j.jss.2015.02.018",
+      "scope": "Cai and Santelices 2015 sections 3.1, 5.2, 5.3: PI/EAS predicts method impact from prechange enter/return-into events; execution differencing for observed ground truth under same tests"
+    },
+    {
+      "doi": "10.1007/s10664-010-9148-2",
+      "scope": "Posnett et al. sections 6.4–6.5: incremental R-squared for class role given size and release below 2 percentage points in examined pattern/project combinations; size may mediate, not causal null"
+    }
+  ],
+  "tasks": {
+    "A": {
+      "input": "specified edit location and transformation, frozen base source and tests",
+      "output": "predicted impacted symbols/observations",
+      "oracle": "paired execution differencing for fixed edit and test inputs; unobserved effects UNKNOWN",
+      "comparators": [
+        "static dependency/slicing",
+        "PI/EAS-style method execution-order",
+        "history/cochange where available",
+        "contract-aware predictor with identical inputs"
+      ]
+    },
+    "B": {
+      "input": "frozen source, independent demand, rights, existing contracts, common evidence budget",
+      "output": "candidate repair menu and predicted admissibility/cost",
+      "oracle": "independently verified bounded candidate execution, not unique maintainer patch",
+      "comparators": [
+        "configuration",
+        "extension",
+        "local",
+        "structural",
+        "equal-information ordinary semantic analysis and search"
+      ]
+    }
+  },
+  "metrics": {
+    "A": [
+      "set precision",
+      "set recall",
+      "coverage and abstentions",
+      "analysis time and information acquisition cost"
+    ],
+    "B": [
+      "validated candidate coverage within declared grammar",
+      "false admissibility",
+      "false rejection",
+      "Pareto frontier errors",
+      "abstention and unexamined candidate classes",
+      "separate actual measured costs from proxy counts"
+    ]
+  },
+  "controls": [
+    "same prechange tests and source visibility",
+    "do not expose changed traces to prospective predictors",
+    "runtime coverage does not prove global absence",
+    "size-only baseline for change-proneness; do not condition on post-intervention size for total causal effect",
+    "repository and developer clustering",
+    "no score promotion from Click already inspected calibration"
+  ],
+  "stop": "If conventional semantic analysis matches on same information, retain tie; only extend when a discriminating out-of-sample question is available."
+}
