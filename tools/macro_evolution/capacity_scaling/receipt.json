@@ -1,0 +1,63 @@
+{
+  "status": "CONDITIONAL_MACRO_SCALING_NOT_F38",
+  "preseal": "7fb7168eec16571087c5a00482d6542e147ff531",
+  "commits": [
+    "4496e20444e3db7049294be05312b1fac47c85c0",
+    "8e238dcb92723e93a3ab5df0f16f664af0a28ba5",
+    "1a530a4df27e232bee4ae2124e9a43a594ee14de",
+    "d5974744dac8885a3ad6a001326071510687b25f",
+    "dbd9950b7c12b7af44671b1fda024988b75907b6",
+    "4d7e14ff0c319054e0272b56657cb1e1abea894e",
+    "df6cb6e3d31d7990335cb61cde7930ec9f02978e",
+    "b2cb2097cfdb9201b773d852beff0380fdde135b",
+    "422536cb182f8a1e1a0ccc063742be1225ba7a02",
+    "3d3912074b966c3467487ba6ff9034d9f976a92f"
+  ],
+  "blob_checks": "All nine mjs files and counterexamples.py transferred verbatim and local Git blob hashes match remote.",
+  "result_sha256": "ddab7107b90fcadd7f277b04b6a9528c57d03f7b8d734f48cc723701cb48e305",
+  "models": 896,
+  "labeled_cases": 384,
+  "count_state_comparisons": 17312,
+  "coupling_checks": 3075104,
+  "max_bellman_residual": 4.87698104123524e-10,
+  "max_labeled_difference": 3.4924596548080444e-10,
+  "max_flow_error": 3.0654820903919244e-9,
+  "dual_violations": 0,
+  "fluid_violations": 0,
+  "max_fluid_error_bound_ratio": 0.1294402198578467,
+  "repeat_identical": true,
+  "dual_max_gap": {
+    "n": 16,
+    "h": 1,
+    "q": 0,
+    "r": 0,
+    "gamma": 0.9,
+    "gap": 31.381059609000005
+  },
+  "counterexamples": {
+    "sha256": "dd97ff986ca23d2ccd3c96b53dd0b2f811c728b68e2129a231d20f0b49f91214",
+    "heterogeneous_same_count_values": [
+      "10",
+      "41/4"
+    ],
+    "common_shock_per_module": "891/256",
+    "independent_fluid": "45/16",
+    "nonvanishing_difference": "171/256"
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/1BFaES1LJNMRhrgxTPDbH5LeoEtwZYcAS/view",
+    "bytes": 22813,
+    "members": 13,
+    "sha256": "b8f3df730b008796dbf2ea09c6484d9127cc907b781f57224e649643c5534798",
+    "remote_hash_verified": true
+  },
+  "limitations": [
+    "Homogeneous authored repair-capacity model; no actual source-derived costs or authorization.",
+    "Floating-point Bellman residuals not exact rational certificate; counterexamples exact rational.",
+    "Constant multiplier bound only, no full Adelman-Mersereau implementation, no runtime speed comparison.",
+    "Coupling checks repeated across cost/probability grid, not independent evidence.",
+    "Fluid bound assumes conditional independent Bernoulli outcomes; common-shock example explicitly violates that assumption.",
+    "No novel theorem claim, no independent F38 outcomes or version promotion."
+  ],
+  "next": "Heterogeneous equivalence classes, contract hypergraph separators, nonexchangeable ecology and computable certified abstractions; compare against stronger factored MDP/LP rival."
+}
