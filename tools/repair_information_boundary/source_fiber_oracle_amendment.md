@@ -1,0 +1,3 @@
+# Retrospective oracle amendment
+
+The frozen audit compares all four statuses with the independent arm. Reading the old escape runner after that audit shows the historical oracle was instead a hybrid: type status from global, charset status from independent, and both orders equal to conjunction of their acceptance. These are different questions. Preserve the first audit as an alternate full-reference sensitivity result, not a reproduction of the original experiment. Add the hybrid oracle as a separate named audit using the same input keys, candidates and observer. No inference of independent demands or empirical prevalence. Results already known; this amendment is transparent retrospective reanalysis, not prospective pre-registration.
