@@ -1,0 +1,203 @@
+{
+  "search_commit": "04814237a09dece45fae41a276c10746c80ed530",
+  "records": [
+    {
+      "repository": "go-chi/chi",
+      "number": 1247,
+      "url": "https://github.com/go-chi/chi/issues/1247",
+      "title": "RouteHeaders misses exact mixed-case header value patterns",
+      "created_at": "2026-11-01T01:28:07Z",
+      "author": "agammann",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "go-chi/chi",
+      "number": 1257,
+      "url": "https://github.com/go-chi/chi/issues/1257",
+      "title": "A regexp route can match an empty path segment, and which one matches depends on the registration order",
+      "created_at": "2026-11-11T19:32:32Z",
+      "author": "shounakjoshi88-a11y",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "go-chi/chi",
+      "number": 1259,
+      "url": "https://github.com/go-chi/chi/issues/1259",
+      "title": "URLFormat returns 404 for IDs with an encoded slash and a format suffix",
+      "created_at": "2026-11-11T21:07:40Z",
+      "author": "ub3dqy",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "go-chi/chi",
+      "number": 1263,
+      "url": "https://github.com/go-chi/chi/issues/1263",
+      "title": "RouteHeaders can choose different matching handlers for identical requests",
+      "created_at": "2026-11-16T16:54:03Z",
+      "author": "pawangopallavudya-commits",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7639,
+      "url": "https://github.com/psf/requests/issues/7639",
+      "title": "test_stream_timeout and test_urllib3_pool_connection_closed pass without asserting when no exception is raised",
+      "created_at": "2026-11-01T00:49:34Z",
+      "author": "jeffev",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7641,
+      "url": "https://github.com/psf/requests/issues/7641",
+      "title": "Targeted unit tests for same-scheme non-default redirect ports and Response.is_permanent_redirect",
+      "created_at": "2026-11-04T14:13:19Z",
+      "author": "janmejai2002",
+      "state": "closed",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7642,
+      "url": "https://github.com/psf/requests/issues/7642",
+      "title": "Invalid `params` type (e.g. int) raises misleading \"TypeError: Cannot mix str and non-str arguments\"",
+      "created_at": "2026-11-06T08:56:06Z",
+      "author": "murainah",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7643,
+      "url": "https://github.com/psf/requests/issues/7643",
+      "title": "parse_header_links drops parameters when a value contains '=' or a quoted ';'",
+      "created_at": "2026-11-08T08:13:06Z",
+      "author": "10k11",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7644,
+      "url": "https://github.com/psf/requests/issues/7644",
+      "title": "get_encoding_from_headers treats any content type containing 'text' as text/* (ISO-8859-1)",
+      "created_at": "2026-11-08T08:15:57Z",
+      "author": "10k11",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7645,
+      "url": "https://github.com/psf/requests/issues/7645",
+      "title": "`iter_lines(decode_unicode=True, delimiter=<str>)` raises `TypeError` when `Response.encoding` is `None`",
+      "created_at": "2026-11-09T12:22:00Z",
+      "author": "MarcoGorelli",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7646,
+      "url": "https://github.com/psf/requests/issues/7646",
+      "title": "Quickstart timeout example shows HTTP connection for HTTPS request",
+      "created_at": "2026-11-14T03:43:06Z",
+      "author": "jasonapierce",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7647,
+      "url": "https://github.com/psf/requests/issues/7647",
+      "title": "get_encoding_from_headers is case-sensitive to media type tokens (RFC 9110 §8.3.1)",
+      "created_at": "2026-11-14T05:27:52Z",
+      "author": "Parveshkumar2211",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7648,
+      "url": "https://github.com/psf/requests/issues/7648",
+      "title": "HTTPDigestAuth fails to select auth when qop contains a comma followed by a space",
+      "created_at": "2026-11-14T05:57:43Z",
+      "author": "Zainalithegreat",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/requests",
+      "number": 7649,
+      "url": "https://github.com/psf/requests/issues/7649",
+      "title": "[Bug] RequestsCookieJar — multiple_domains() returns incorrect results for repeated and distinct cookie domains",
+      "created_at": "2026-11-15T09:27:00Z",
+      "author": "Vayuz-M",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "requests-cache/requests-cache",
+      "number": 1217,
+      "url": "https://github.com/requests-cache/requests-cache/issues/1217",
+      "title": "Filesystem cache changes the bytes of text responses that have no UTF-8 charset",
+      "created_at": "2026-11-16T04:23:29Z",
+      "author": "jayhemnani9910",
+      "state": "closed",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "requests-cache/requests-cache",
+      "number": 1223,
+      "url": "https://github.com/requests-cache/requests-cache/issues/1223",
+      "title": "OverflowError from out-of-range Expires dates and delta-seconds values (follow-up to #1213)",
+      "created_at": "2026-11-23T01:19:37Z",
+      "author": "waw666waw666",
+      "state": "open",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/cachecontrol",
+      "number": 497,
+      "url": "https://github.com/psf/cachecontrol/issues/497",
+      "title": "Stale cache refresh fails on Windows with PyPy",
+      "created_at": "2026-11-08T17:14:34Z",
+      "author": "notatallshaw",
+      "state": "closed",
+      "labels": [],
+      "is_pull_request": false
+    },
+    {
+      "repository": "psf/cachecontrol",
+      "number": 503,
+      "url": "https://github.com/psf/cachecontrol/issues/503",
+      "title": "Drop `uv_build` as build backend",
+      "created_at": "2026-11-23T18:33:10Z",
+      "author": "woodruffw",
+      "state": "closed",
+      "labels": [],
+      "is_pull_request": false
+    }
+  ]
+}
