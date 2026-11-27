@@ -1,0 +1,17 @@
+{
+  "status": "MACRO_MODEL_CONDITIONAL_THEOREM_NOT_EMPIRICAL",
+  "source": "P44 prior demand-distribution/option-value work and user-requested macro correction",
+  "model": {
+    "demand": "symmetric two-state Markov chain with switch probability p, stationary marginal (1/2,1/2)",
+    "architecture": "two regimes, can switch before service of observed demand at cost k≥0; matching costs 0, mismatching 1; fixed baseline cannot switch; discount γ∈(0,1), initial match probability 1/2, one-time flexibility investment I≥0",
+    "assumptions": "exogenous stationary demand, same service costs and contracts in both arms, no forbidden transitions in toy model, perfect state observation; not a source-derived cost or causal estimate"
+  },
+  "predictions": [
+    "optimal matched action stay",
+    "unmatched switch iff k≤1/[1−γ(1−2p)] (tie allowed)",
+    "initial flexible discounted value equals min(1/[2(1−γ)], k(1/2+γp/(1−γ)))",
+    "with γ=.9,k=1,I=1: p=.1 flexible+I 2.4 vs fixed 5, p=.9 flexible+I 6 vs fixed 5; opposite signs despite identical marginal"
+  ],
+  "verification": "exact rational policy enumeration of all 16 stationary deterministic policies of 4-state micro MDP; compare closed form over predefined rational grid p=0..1 by .1, γ=.1,.5,.9,.99, k=0,.25,.5,1,2,4,10; include boundary ties and counterexamples to IID marginal-only model",
+  "novelty": "standard switching-cost stochastic control / real options; no new general theorem claim. Macro proposal: source-derived lawful action sets and aggregation diagnostics; P44 gates unchanged."
+}
