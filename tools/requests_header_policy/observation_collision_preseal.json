@@ -1,0 +1,6 @@
+{
+  "scope": "Requests 2.32.5 pinned source; existing researcher-defined received declaration demand, not F38. No live network.",
+  "question": "Can exact legacy serialized Response state determine original declaration after headers and encoding converge? Compare normalized snapshot and external pair as carriers; prove collision for deterministic functions of legacy state only, not unrestricted implementations.",
+  "prediction": "Two or more different original declarations produce identical legacy state bytes after identical mutation and encoding overwrite; distinct expected declaration makes exact recovery impossible from that state alone. Internal snapshot and external pair preserve values but move representation boundary. With two known declarations plus known absence, at least three distinguishable carrier states are necessary for this finite observer; unknown adds a fourth if historical objects are in scope.",
+  "controls": "Same URL/body/request/status/reason, same final header and encoding, explicit initial variation only. Check exact pickle bytes (self-generated only), direct state equality, normalized snapshot and caller pair. No general architecture superiority; classical observational quotient rival predicts same."
+}
