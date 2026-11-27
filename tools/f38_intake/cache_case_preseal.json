@@ -1,0 +1,6 @@
+{
+  "status": "RETROSPECTIVE_SOURCE_DIAGNOSTIC_NOT_F38",
+  "selection": "requests-cache/requests-cache#1217, selected from rehearsal based on direct link to earlier cache content protection; closed state already observed, title already read; not blind",
+  "scope": "read issue body and reporter reproduction, inspect exact available release code, test locally generated input on installed pinned v1.3.2 if relevant, no upstream change or claim of fixing historical bug unless exact affected revision reproduced",
+  "controls": "compare input and output bytes, text, encoding; distinguish default serializer versus issue-specified format; preserve all mismatches and not-reproduced outcomes; stop if original environment cannot be reconstructed"
+}
