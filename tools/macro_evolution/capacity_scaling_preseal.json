@@ -1,0 +1,42 @@
+{
+  "status": "CONDITIONAL_MACRO_SCALING_NOT_F38",
+  "scope": "Homogeneous exchangeable binary modules, independent Bernoulli transitions conditional on state/action; capacity h per step, bad-state cost 1, repair cost r>=0, probability q of bad after repair or if healthy, otherwise bad persists; gamma in (0,1). No source-derived parameters or actual software contract.",
+  "claims": [
+    "count k is exact quotient under permutation and action-count aggregation; healthy repairs dominated for r>=0",
+    "discounted flow gives J=C0+(r-R) E sum gamma^t b_t, R=gamma(1-q)/(1-gamma(1-q))",
+    "greedy max feasible bad repairs maximizes discounted repair count via monotone count coupling and drift; no repair optimal when r>=R, all policies tie at r=R",
+    "constant Lagrange multiplier optimum occurs at lambda=0 or max(0,R-r); bound via relaxed independent local problems",
+    "test count DP, labeled state DP for small n, closed form greedy policy and dual bound; test heterogeneous counterexample to count aggregation"
+  ],
+  "grid": {
+    "n": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "q": [
+      0,
+      0.25,
+      0.75,
+      1
+    ],
+    "r": [
+      0,
+      0.25,
+      1,
+      4
+    ],
+    "gamma": [
+      0.5,
+      0.9
+    ],
+    "h": "unique 0,1,floor(n/2),n"
+  },
+  "tolerance": "float Bellman residual reported; finite horizon 100 or sufficient truncation to 1e-9; no runtime superiority claim without benchmark",
+  "prior_art": "Givan et al. 2003 stochastic bisimulation; Adelman & Mersereau 2008 weakly coupled DP; classical workload conservation and monotone coupling; no novelty claim"
+}
