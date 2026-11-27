@@ -1,0 +1,36 @@
+{
+  "status": "retrospective reanalysis, prior outcomes known; not F38",
+  "chi_escape": {
+    "input_keys": [
+      "header",
+      "body",
+      "type_allowlist",
+      "charset_allowlist"
+    ],
+    "observer": "global arm 4 status outputs",
+    "oracle": "independent arm same input 4 status outputs",
+    "candidates": [
+      "global",
+      "bypass",
+      "fallback"
+    ],
+    "menu": "candidate passes all four observed outputs",
+    "note": "each row is an observation scenario, not independent demand; matching reference only within measured scope"
+  },
+  "requests": {
+    "observer": "Local base direct and adapter encodings",
+    "oracle": "case+boundary target direct and adapter encoding plus raw token/params from Local base",
+    "candidates": [
+      "local",
+      "parser",
+      "policy"
+    ],
+    "menu": "both encodings match target and raw token/params preserved; researcher-imposed raw property"
+  },
+  "chi_clone": {
+    "observer": "legacy sampled URLParam/RoutePattern pass only",
+    "worlds": "public and full sampled contract under same legacy observation",
+    "menu": "observed candidate snapshots base/local/shallow/merged satisfying selected goal and legacy"
+  },
+  "checks": "for each fiber, report empty menus separately, nonempty pairwise intersections and empty full intersection; separate observation-signature counts, independent external demands and statistical effective sample size (not estimated). No cross-project pooling or evidence inflation."
+}
