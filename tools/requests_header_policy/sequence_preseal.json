@@ -1,0 +1,20 @@
+{
+  "scope": "Retrospective known demands; no prospective claim",
+  "prediction": "All six order/arm combinations execute actual successive edits and converge to the corresponding previously verified source; intermediate public/fixture oracles pass; policy incurs an initial file visit. Parser fails raw-token preservation after case edit. AST cost must include class methods; snapshot provenance affects class and adapter methods.",
+  "arms": [
+    "local",
+    "parser",
+    "policy"
+  ],
+  "orders": [
+    [
+      "case",
+      "boundary"
+    ],
+    [
+      "boundary",
+      "case"
+    ]
+  ],
+  "rule": "Construct successive modifications against current bytes, without replacing with independently generated target snapshots; fail closed if unique anchors or SHA equivalence fail. Compare AST methods via qualified names."
+}
