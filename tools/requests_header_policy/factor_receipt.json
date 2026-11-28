@@ -1,0 +1,72 @@
+{
+  "status": "SOURCE_PINNED_FACTOR_AND_MIGRATION_CASE_CLASSICAL_TIE_NOT_F38",
+  "base_head": "553a550eeb2b84f77c86fc929a5dc94223a76280",
+  "preseals": [
+    "a3d09cae8301eddc3207f0ef7db91d150fe70475",
+    "f34ede5f66313ca18650c1649fa1acbbddde2073",
+    "702aca92f5f2031048aa8058486d7807e7e4b8f3"
+  ],
+  "runtime": {
+    "python": "3.13",
+    "requests": "2.32.5",
+    "node": "22.16.0",
+    "source_pins": "all four Git blobs match earlier run.py pins"
+  },
+  "results": {
+    "factor": {
+      "worlds": 16,
+      "observations": 1152,
+      "mismatches": 0,
+      "selected_legacy_mismatches": 0,
+      "admitted": [
+        [
+          true,
+          true,
+          "normalized"
+        ]
+      ],
+      "cost": 3,
+      "baseline": "explicit finite CSP conjunction TIE",
+      "blob": "8328cfb46abd20da401c7d107846d6ddf87c350a"
+    },
+    "negative": {
+      "unsupported_AST_patterns_rejected": 4,
+      "boundary_assertions": 5
+    },
+    "paths": {
+      "worlds_reexecuted": 16,
+      "rights_sets": 8,
+      "safe_worlds": 3,
+      "shortest_safe_orders": 1,
+      "distance": 2,
+      "protected_violations_whitelist_first": 36,
+      "blob": "6384486d02363c6cdaf333a890064c31915d711d"
+    },
+    "migration": {
+      "source_worlds": 3,
+      "input_pairs_per_world": 1,
+      "artifact_collisions": 2,
+      "distinct_pair": 1,
+      "destination_unknown": 4,
+      "destination_known": 2,
+      "blob": "faa648744717004b7d0ed0e6b409eb5f24cf28e7"
+    },
+    "terminal_replay": {
+      "code": "579e322172a91e6f1eb5008fadb22c34520997f2",
+      "results": "c52b64a49c867e6cfd82522cb8263476ca2193a5",
+      "rightsChecks": "(matrix, syndrome, removed column) triples feasible before and after deletion; original weights preserved",
+      "exact_count": 5944,
+      "standalone_node": "PASS",
+      "scope": "terminal only, not independent dynamic replay"
+    }
+  },
+  "limits": [
+    "Known researcher-authored contract and edit grammar, not an independent external demand, upstream release or F38 activation.",
+    "Narrow template AST extraction, not complete sound static analysis of arbitrary changed source; helper fixed by materializer. Selected legacy encoding/text comparisons after overriding effective encoding; not full legacy regression.",
+    "Declared edit-unit cost, not minimum over all possible source patches nor labor. External sidecar remains a viable alternative.",
+    "Path edges are one-coordinate source snapshots; cross-source pickle decode separately tested on two authored inputs, not rolling deployment.",
+    "Pickle artifacts generated locally and removed by temporary directory cleanup; SHA values are execution receipts, not retained original binary custody or promised identical cross-process hashes.",
+    "No new general mathematical theorem, classical advantage or causal effect. No new external literature introduced. Standalone JS terminal replay adds reproducibility, not new discovery."
+  ],
+  "github": "Source modules/results compared with local executed Git blob SHAs; each new commit author/committer verified WhoSia. No GitHub Actions."
+}
