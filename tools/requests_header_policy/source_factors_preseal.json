@@ -1,0 +1,67 @@
+{
+  "title": "Source-derived contract factors: received declaration across serialization boundaries",
+  "basis": "Existing provenance/provenance_cycle results are known; factorial extension and structural prediction, NOT blinded external demand.",
+  "pins": {
+    "models.py": "c4b25fa0790da44683dab185c89ac08b69fb7419",
+    "adapters.py": "670c92767c5420a21538688132ce1f4f45e45873",
+    "utils.py": "8ab55852cc2188c53f08462ec4319c97fa49f04b",
+    "structures.py": "188e13e4829591facb23ae0e2eda84b9807cb818"
+  },
+  "extraction": "Parse exact original and each patched Response class / HTTPAdapter.build_response with Python AST. Fail closed if __getstate__ is not dict comprehension over self.__attrs__ using getattr(self, attr, None), __setstate__ not setattr loop over state.items, or insertion markers not unique. Determine capture by assignment to response._received_declaration, serialization by membership in Response.__attrs__, accessor by AST pattern (absent/live/raw/normalized). No fit to runtime outcomes.",
+  "grammar": {
+    "capture": [
+      false,
+      true
+    ],
+    "whitelist": [
+      false,
+      true
+    ],
+    "accessor": [
+      "absent",
+      "live",
+      "raw",
+      "normalized"
+    ],
+    "cost": "one declared edit site per capture, whitelist and non-absent accessor (helper and property co-located). Separate sites, not measured labor; external sidecar previously known, not excluded as architecture-wide rival."
+  },
+  "observers": [
+    "known declared/absent at adapter creation",
+    "mutation of headers to a different declaration",
+    "legacy/direct unknown",
+    "0,1,2,3 self-produced pickle round trips",
+    "legacy encoding/text against untouched source, per stage"
+  ],
+  "cases": {
+    "raw": [
+      "text/plain",
+      "text/plain; charset=latin-1",
+      "application/json; charset=utf-8"
+    ],
+    "mutated": [
+      "application/xml; charset=UTF-16",
+      "text/plain"
+    ],
+    "origin": [
+      "adapter",
+      "direct",
+      "legacy"
+    ],
+    "cycles": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "predictions": [
+    "For adapter origin, received-value persistence requires capture AND whitelist AND normalized or raw accessor; direct/legacy unknown after serialization additionally requires normalization if whitelist present. All observers therefore require capture AND whitelist AND normalized accessor in this bounded internal grammar.",
+    "AST factor prediction must equal native observation for every case, otherwise record counterexample; no silent repairs.",
+    "Equal-information exhaustive CSP over all 16 candidate assignments and factor conditions must tie on admitted worlds/cost; compare naive capture-only / serialization-only shortcuts but no novelty claim from defeating weak rivals."
+  ],
+  "limits": [
+    "No external networking or untrusted pickle.",
+    "Previously authored requirements and edits; no F38, causal labor, upstream patch or general source analyzer.",
+    "Freeze before writing factorial runner or observing its outputs. Tests must preserve baseline legacy text/encoding; if baseline cannot run, HOLD."
+  ]
+}
