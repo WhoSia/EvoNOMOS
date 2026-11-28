@@ -1,0 +1,228 @@
+[
+  {
+    "sha": "accbb4e7c1b3b17ced46298c1cda138ae3faa2cf",
+    "date": "2024-12-24T07:15:32Z",
+    "parents": [
+      "edb471dbf03cd56bf2f5440ff44871ea457cb93f"
+    ],
+    "files": [
+      {
+        "path": "docs/documentation.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "4336056169ca0cc5f34323f2ce71ef2a43c6c87e",
+    "date": "2024-12-24T07:10:57Z",
+    "parents": [
+      "9d7c7dce1113dc76326166c03bcdf7f2815d059d"
+    ],
+    "files": [
+      {
+        "path": "docs/documentation.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2a6b6bf9b45b8ee75f8bd2844a4e9eed40d21914",
+    "date": "2024-12-24T07:10:36Z",
+    "parents": [
+      "9d7c7dce1113dc76326166c03bcdf7f2815d059d"
+    ],
+    "files": [
+      {
+        "path": "docs/documentation.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "9d7c7dce1113dc76326166c03bcdf7f2815d059d",
+    "date": "2024-12-23T02:27:45Z",
+    "parents": [
+      "76db878dc9a4096df2a663f5d721ddbe29f935c7"
+    ],
+    "files": [
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "76db878dc9a4096df2a663f5d721ddbe29f935c7",
+    "date": "2024-12-23T02:13:34Z",
+    "parents": [
+      "5961d31fb566f089ad468a5b26a32f1ebfa7f63e"
+    ],
+    "files": [
+      {
+        "path": "docs/documentation.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "7fc377138a1d61c71c5bec2048ec6bb6de1015aa",
+    "date": "2024-12-22T21:12:01Z",
+    "parents": [
+      "3c64403946a9471130d85a912a7324ec7cb40dfa"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "3c64403946a9471130d85a912a7324ec7cb40dfa",
+    "date": "2024-12-22T21:11:18Z",
+    "parents": [
+      "098f61468096609337b1670bb9ba82a032eff48c"
+    ],
+    "files": [
+      {
+        "path": "tests/test_shell_completion.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "098f61468096609337b1670bb9ba82a032eff48c",
+    "date": "2024-12-22T21:11:18Z",
+    "parents": [
+      "45f89cd5d39db37b9aa1a014da000f12da532ddc"
+    ],
+    "files": [
+      {
+        "path": "src/click/shell_completion.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "45f89cd5d39db37b9aa1a014da000f12da532ddc",
+    "date": "2024-12-22T20:37:43Z",
+    "parents": [
+      "4ffa1ef3b6d23208f65ac54f688f02856aa0d660"
+    ],
+    "files": [
+      {
+        "path": "src/click/_compat.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_winconsole.py",
+        "status": "modified"
+      },
+      {
+        "path": "tox.ini",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "4ffa1ef3b6d23208f65ac54f688f02856aa0d660",
+    "date": "2024-12-22T20:34:46Z",
+    "parents": [
+      "b5464b7e065bdfd952b1532880941f1be07e4e2b"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/termui.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "b5464b7e065bdfd952b1532880941f1be07e4e2b",
+    "date": "2024-12-22T20:25:57Z",
+    "parents": [
+      "88328fc8743d43566081d9f17acad5f5552f5a87"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_info_dict.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "934813e4d421071a1b3db3973c02fe2721359a6e",
+    "date": "2024-12-19T17:04:12Z",
+    "parents": [
+      "c23223b13c847ae472faa258907ffb5c27b504fa"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/__init__.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "88328fc8743d43566081d9f17acad5f5552f5a87",
+    "date": "2024-12-19T16:54:32Z",
+    "parents": [
+      "5961d31fb566f089ad468a5b26a32f1ebfa7f63e"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/testing.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_testing.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "822d4fd0bcfcd0ab22c9eec550ee2dae2a3d260c",
+    "date": "2024-12-07T07:01:00Z",
+    "parents": [
+      "8e7bed0466fd49acf8bcf1399f54d7dc783fd6a1"
+    ],
+    "files": [
+      {
+        "path": "docs/contrib.rst",
+        "status": "modified"
+      }
+    ]
+  }
+]
