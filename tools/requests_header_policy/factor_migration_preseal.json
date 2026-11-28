@@ -1,0 +1,43 @@
+{
+  "basis": "After factorial and snapshot path evidence; fresh cross-revision local execution, researcher-selected case, not external demand",
+  "pinned": "Same four source files as factor preseal",
+  "cases": [
+    "text/plain; charset=latin-1",
+    "text/plain; charset=utf-8"
+  ],
+  "common_mutation": "application/xml; charset=UTF-16",
+  "common_encoding": "latin-1",
+  "common_content_hex": "e0e9",
+  "source_worlds": [
+    [
+      true,
+      false,
+      "raw"
+    ],
+    [
+      true,
+      false,
+      "normalized"
+    ],
+    [
+      true,
+      true,
+      "normalized"
+    ]
+  ],
+  "destination_world": [
+    true,
+    true,
+    "normalized"
+  ],
+  "procedure": "Construct actual Response through adapter in each isolated source world; change headers and effective encoding to identical values, set identical content. Serialize self-produced object with standard pickle protocol 4. Compare artifact bytes, state projection, observed received declaration on source. Decode in a fresh destination source process. No untrusted artifacts, no network.",
+  "predictions": [
+    "Both no-whitelist worlds erase distinguishing received declaration: two byte strings equal within each world and new destination observer unknown for both.",
+    "Whitelisted normalized source preserves distinct bytes and destination known declarations.",
+    "Later normalization cannot reconstruct information absent from indistinguishable archived bytes. This is an information-cut example, not a universal impossibility over auxiliary sidecars or all data sources."
+  ],
+  "limits": [
+    "Exact two-case comparison, not actual upstream release migration or production traffic.",
+    "Fix effective encoding to compare the same legacy observation. No real labor costs."
+  ]
+}
