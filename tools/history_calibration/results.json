@@ -1,0 +1,667 @@
+{
+  "source_count": 16,
+  "train_attrition": {
+    "commits": 42,
+    "zero": 19,
+    "one": 15,
+    "multi": 8,
+    "matched_paths": 32,
+    "all_path_records": 101
+  },
+  "test_attrition": {
+    "commits": 34,
+    "zero": 26,
+    "one": 4,
+    "multi": 4,
+    "matched_paths": 16,
+    "all_path_records": 112
+  },
+  "anchor_count": 12,
+  "test_eligible": 4,
+  "threshold_met": false,
+  "scores": {
+    "uniform": {
+      "mrr": 0.32578942831690083,
+      "auc": 0.5,
+      "top1": 0.13333333333333333
+    },
+    "marginal": {
+      "mrr": 0.645803020282187,
+      "auc": 0.7129693223443223,
+      "top1": 0.47916666666666663
+    },
+    "historical_pair": {
+      "mrr": 0.5451499118165785,
+      "auc": 0.7115766178266179,
+      "top1": 0.29166666666666663
+    },
+    "binary_import": {
+      "mrr": 0.3979519138482831,
+      "auc": 0.6473214285714286,
+      "top1": 0.17813552188552187
+    },
+    "lexical_exposure": {
+      "mrr": 0.7439493105112642,
+      "auc": 0.7590335012210012,
+      "top1": 0.6041666666666666
+    },
+    "fusion": {
+      "mrr": 0.6677083333333333,
+      "auc": 0.7843120421245421,
+      "top1": 0.5208333333333333
+    }
+  },
+  "per_commit": [
+    {
+      "sha": "4ece17a107d7b2e8bc3bd14356c2b53038fe41cf",
+      "date": "2025-01-12T14:59:58Z",
+      "files": [
+        "src/click/core.py",
+        "src/click/exceptions.py",
+        "src/click/types.py"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/click/core.py",
+          "positives": [
+            "src/click/exceptions.py",
+            "src/click/types.py"
+          ],
+          "uniform": {
+            "mrr": 0.3311755704612847,
+            "auc": 0.5,
+            "top1": 0.13333333333333333
+          },
+          "marginal": {
+            "mrr": 0.21944444444444444,
+            "auc": 0.6923076923076923,
+            "top1": 0
+          },
+          "historical_pair": {
+            "mrr": 1,
+            "auc": 0.8461538461538461,
+            "top1": 1
+          },
+          "binary_import": {
+            "mrr": 0.403975468975469,
+            "auc": 0.6538461538461539,
+            "top1": 0.18181818181818182
+          },
+          "lexical_exposure": {
+            "mrr": 0.5,
+            "auc": 0.8076923076923077,
+            "top1": 0
+          },
+          "fusion": {
+            "mrr": 0.5,
+            "auc": 0.8846153846153846,
+            "top1": 0
+          }
+        },
+        {
+          "anchor": "src/click/exceptions.py",
+          "positives": [
+            "src/click/core.py",
+            "src/click/types.py"
+          ],
+          "uniform": {
+            "mrr": 0.3311755704612847,
+            "auc": 0.5,
+            "top1": 0.13333333333333333
+          },
+          "marginal": {
+            "mrr": 0.75,
+            "auc": 0.8269230769230769,
+            "top1": 0.5
+          },
+          "historical_pair": {
+            "mrr": 0.5,
+            "auc": 0.7692307692307693,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.45724206349206353,
+            "auc": 0.7307692307692307,
+            "top1": 0.2222222222222222
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 0.7884615384615384,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 1,
+            "auc": 0.8461538461538461,
+            "top1": 1
+          }
+        },
+        {
+          "anchor": "src/click/types.py",
+          "positives": [
+            "src/click/core.py",
+            "src/click/exceptions.py"
+          ],
+          "uniform": {
+            "mrr": 0.3311755704612847,
+            "auc": 0.5,
+            "top1": 0.13333333333333333
+          },
+          "marginal": {
+            "mrr": 0.75,
+            "auc": 0.8269230769230769,
+            "top1": 0.5
+          },
+          "historical_pair": {
+            "mrr": 0.75,
+            "auc": 0.8269230769230769,
+            "top1": 0.5
+          },
+          "binary_import": {
+            "mrr": 0.530952380952381,
+            "auc": 0.8076923076923077,
+            "top1": 0.2857142857142857
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 0.8461538461538461,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 1,
+            "auc": 0.8846153846153846,
+            "top1": 1
+          }
+        }
+      ],
+      "uniform": {
+        "mrr": 0.3311755704612847,
+        "auc": 0.5,
+        "top1": 0.13333333333333333
+      },
+      "marginal": {
+        "mrr": 0.5731481481481482,
+        "auc": 0.7820512820512819,
+        "top1": 0.3333333333333333
+      },
+      "historical_pair": {
+        "mrr": 0.75,
+        "auc": 0.8141025641025642,
+        "top1": 0.5
+      },
+      "binary_import": {
+        "mrr": 0.4640566378066378,
+        "auc": 0.7307692307692308,
+        "top1": 0.22991822991822994
+      },
+      "lexical_exposure": {
+        "mrr": 0.8333333333333334,
+        "auc": 0.8141025641025642,
+        "top1": 0.6666666666666666
+      },
+      "fusion": {
+        "mrr": 0.8333333333333334,
+        "auc": 0.8717948717948718,
+        "top1": 0.6666666666666666
+      }
+    },
+    {
+      "sha": "0b7a9acc63dac907088de7d9238f7f4b2afe02ea",
+      "date": "2025-03-18T17:47:50Z",
+      "files": [
+        "src/click/__init__.py",
+        "src/click/core.py",
+        "src/click/decorators.py"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/click/__init__.py",
+          "positives": [
+            "src/click/core.py",
+            "src/click/decorators.py"
+          ],
+          "uniform": {
+            "mrr": 0.3311755704612847,
+            "auc": 0.5,
+            "top1": 0.13333333333333333
+          },
+          "marginal": {
+            "mrr": 0.75,
+            "auc": 0.6923076923076923,
+            "top1": 0.5
+          },
+          "historical_pair": {
+            "mrr": 0.75,
+            "auc": 0.6923076923076923,
+            "top1": 0.5
+          },
+          "binary_import": {
+            "mrr": 0.45724206349206353,
+            "auc": 0.7307692307692307,
+            "top1": 0.2222222222222222
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 0.9807692307692307,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 1,
+            "auc": 0.9615384615384616,
+            "top1": 1
+          }
+        },
+        {
+          "anchor": "src/click/core.py",
+          "positives": [
+            "src/click/__init__.py",
+            "src/click/decorators.py"
+          ],
+          "uniform": {
+            "mrr": 0.3311755704612847,
+            "auc": 0.5,
+            "top1": 0.13333333333333333
+          },
+          "marginal": {
+            "mrr": 0.12037037037037038,
+            "auc": 0.4230769230769231,
+            "top1": 0
+          },
+          "historical_pair": {
+            "mrr": 0.12037037037037038,
+            "auc": 0.4230769230769231,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.403975468975469,
+            "auc": 0.6538461538461539,
+            "top1": 0.18181818181818182
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 0.6923076923076923,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 0.2,
+            "auc": 0.5769230769230769,
+            "top1": 0
+          }
+        },
+        {
+          "anchor": "src/click/decorators.py",
+          "positives": [
+            "src/click/__init__.py",
+            "src/click/core.py"
+          ],
+          "uniform": {
+            "mrr": 0.3311755704612847,
+            "auc": 0.5,
+            "top1": 0.13333333333333333
+          },
+          "marginal": {
+            "mrr": 0.75,
+            "auc": 0.6923076923076923,
+            "top1": 0.5
+          },
+          "historical_pair": {
+            "mrr": 0.41666666666666663,
+            "auc": 0.6538461538461539,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.7222222222222222,
+            "auc": 0.9230769230769231,
+            "top1": 0.5
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 0.9230769230769231,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 1,
+            "auc": 0.9230769230769231,
+            "top1": 1
+          }
+        }
+      ],
+      "uniform": {
+        "mrr": 0.3311755704612847,
+        "auc": 0.5,
+        "top1": 0.13333333333333333
+      },
+      "marginal": {
+        "mrr": 0.5401234567901234,
+        "auc": 0.6025641025641025,
+        "top1": 0.3333333333333333
+      },
+      "historical_pair": {
+        "mrr": 0.4290123456790123,
+        "auc": 0.5897435897435898,
+        "top1": 0.16666666666666666
+      },
+      "binary_import": {
+        "mrr": 0.5278132515632515,
+        "auc": 0.7692307692307692,
+        "top1": 0.3013468013468013
+      },
+      "lexical_exposure": {
+        "mrr": 1,
+        "auc": 0.8653846153846153,
+        "top1": 1
+      },
+      "fusion": {
+        "mrr": 0.7333333333333334,
+        "auc": 0.8205128205128206,
+        "top1": 0.6666666666666666
+      }
+    },
+    {
+      "sha": "f14b75063fb36b9208b13a920326926363616b39",
+      "date": "2025-05-10T21:38:12Z",
+      "files": [
+        "src/click/_termui_impl.py",
+        "src/click/_winconsole.py",
+        "src/click/core.py",
+        "src/click/formatting.py"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/click/_termui_impl.py",
+          "positives": [
+            "src/click/_winconsole.py",
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ],
+          "uniform": {
+            "mrr": 0.41959130612976764,
+            "auc": 0.5,
+            "top1": 0.2
+          },
+          "marginal": {
+            "mrr": 1,
+            "auc": 0.5277777777777778,
+            "top1": 1
+          },
+          "historical_pair": {
+            "mrr": 0.3333333333333333,
+            "auc": 0.6111111111111112,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.15250935932754117,
+            "auc": 0.3333333333333333,
+            "top1": 0
+          },
+          "lexical_exposure": {
+            "mrr": 0.15250935932754117,
+            "auc": 0.3333333333333333,
+            "top1": 0
+          },
+          "fusion": {
+            "mrr": 0.25,
+            "auc": 0.5416666666666666,
+            "top1": 0
+          }
+        },
+        {
+          "anchor": "src/click/_winconsole.py",
+          "positives": [
+            "src/click/_termui_impl.py",
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ],
+          "uniform": {
+            "mrr": 0.41959130612976764,
+            "auc": 0.5,
+            "top1": 0.2
+          },
+          "marginal": {
+            "mrr": 1,
+            "auc": 0.7222222222222222,
+            "top1": 1
+          },
+          "historical_pair": {
+            "mrr": 0.5,
+            "auc": 0.6666666666666666,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.27448913266220953,
+            "auc": 0.4583333333333333,
+            "top1": 0
+          },
+          "lexical_exposure": {
+            "mrr": 0.27448913266220953,
+            "auc": 0.4583333333333333,
+            "top1": 0
+          },
+          "fusion": {
+            "mrr": 0.5,
+            "auc": 0.6666666666666666,
+            "top1": 0
+          }
+        },
+        {
+          "anchor": "src/click/core.py",
+          "positives": [
+            "src/click/_termui_impl.py",
+            "src/click/_winconsole.py",
+            "src/click/formatting.py"
+          ],
+          "uniform": {
+            "mrr": 0.41959130612976764,
+            "auc": 0.5,
+            "top1": 0.2
+          },
+          "marginal": {
+            "mrr": 1,
+            "auc": 0.5277777777777778,
+            "top1": 1
+          },
+          "historical_pair": {
+            "mrr": 0.3333333333333333,
+            "auc": 0.4722222222222222,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.27453430407975865,
+            "auc": 0.25,
+            "top1": 0.09090909090909091
+          },
+          "lexical_exposure": {
+            "mrr": 0.14285714285714285,
+            "auc": 0.2222222222222222,
+            "top1": 0
+          },
+          "fusion": {
+            "mrr": 0.16666666666666666,
+            "auc": 0.3055555555555556,
+            "top1": 0
+          }
+        },
+        {
+          "anchor": "src/click/formatting.py",
+          "positives": [
+            "src/click/_termui_impl.py",
+            "src/click/_winconsole.py",
+            "src/click/core.py"
+          ],
+          "uniform": {
+            "mrr": 0.41959130612976764,
+            "auc": 0.5,
+            "top1": 0.2
+          },
+          "marginal": {
+            "mrr": 1,
+            "auc": 0.8055555555555556,
+            "top1": 1
+          },
+          "historical_pair": {
+            "mrr": 1,
+            "auc": 0.8055555555555556,
+            "top1": 1
+          },
+          "binary_import": {
+            "mrr": 0.4083333333333334,
+            "auc": 0.4583333333333333,
+            "top1": 0.16666666666666666
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 0.5555555555555556,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 1,
+            "auc": 0.6944444444444444,
+            "top1": 1
+          }
+        }
+      ],
+      "uniform": {
+        "mrr": 0.41959130612976764,
+        "auc": 0.5,
+        "top1": 0.2
+      },
+      "marginal": {
+        "mrr": 1,
+        "auc": 0.6458333333333333,
+        "top1": 1
+      },
+      "historical_pair": {
+        "mrr": 0.5416666666666666,
+        "auc": 0.6388888888888888,
+        "top1": 0.25
+      },
+      "binary_import": {
+        "mrr": 0.27746653235071067,
+        "auc": 0.37499999999999994,
+        "top1": 0.06439393939393939
+      },
+      "lexical_exposure": {
+        "mrr": 0.3924639087117234,
+        "auc": 0.3923611111111111,
+        "top1": 0.25
+      },
+      "fusion": {
+        "mrr": 0.47916666666666663,
+        "auc": 0.5520833333333333,
+        "top1": 0.25
+      }
+    },
+    {
+      "sha": "ba770cbc96f522e9dab1bf54dc642dfa5b053956",
+      "date": "2025-05-10T22:04:47Z",
+      "files": [
+        "src/click/core.py",
+        "src/click/types.py"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/click/core.py",
+          "positives": [
+            "src/click/types.py"
+          ],
+          "uniform": {
+            "mrr": 0.22121526621526624,
+            "auc": 0.5,
+            "top1": 0.06666666666666667
+          },
+          "marginal": {
+            "mrr": 0.18988095238095237,
+            "auc": 0.6785714285714286,
+            "top1": 0
+          },
+          "historical_pair": {
+            "mrr": 0.16984126984126985,
+            "auc": 0.6428571428571429,
+            "top1": 0
+          },
+          "binary_import": {
+            "mrr": 0.27453430407975865,
+            "auc": 0.6428571428571429,
+            "top1": 0.09090909090909091
+          },
+          "lexical_exposure": {
+            "mrr": 0.5,
+            "auc": 0.9285714285714286,
+            "top1": 0
+          },
+          "fusion": {
+            "mrr": 0.25,
+            "auc": 0.7857142857142857,
+            "top1": 0
+          }
+        },
+        {
+          "anchor": "src/click/types.py",
+          "positives": [
+            "src/click/core.py"
+          ],
+          "uniform": {
+            "mrr": 0.22121526621526624,
+            "auc": 0.5,
+            "top1": 0.06666666666666667
+          },
+          "marginal": {
+            "mrr": 0.75,
+            "auc": 0.9642857142857143,
+            "top1": 0.5
+          },
+          "historical_pair": {
+            "mrr": 0.75,
+            "auc": 0.9642857142857143,
+            "top1": 0.5
+          },
+          "binary_import": {
+            "mrr": 0.3704081632653062,
+            "auc": 0.7857142857142857,
+            "top1": 0.14285714285714285
+          },
+          "lexical_exposure": {
+            "mrr": 1,
+            "auc": 1,
+            "top1": 1
+          },
+          "fusion": {
+            "mrr": 1,
+            "auc": 1,
+            "top1": 1
+          }
+        }
+      ],
+      "uniform": {
+        "mrr": 0.22121526621526624,
+        "auc": 0.5,
+        "top1": 0.06666666666666667
+      },
+      "marginal": {
+        "mrr": 0.4699404761904762,
+        "auc": 0.8214285714285714,
+        "top1": 0.25
+      },
+      "historical_pair": {
+        "mrr": 0.45992063492063495,
+        "auc": 0.8035714285714286,
+        "top1": 0.25
+      },
+      "binary_import": {
+        "mrr": 0.3224712336725324,
+        "auc": 0.7142857142857143,
+        "top1": 0.11688311688311688
+      },
+      "lexical_exposure": {
+        "mrr": 0.75,
+        "auc": 0.9642857142857143,
+        "top1": 0.5
+      },
+      "fusion": {
+        "mrr": 0.625,
+        "auc": 0.8928571428571428,
+        "top1": 0.5
+      }
+    }
+  ],
+  "scope": "Historical co-change proxy only; lexical exposure not contracts or dynamic calls; conditional on at least two cutoff source paths; no population or causal claim."
+}
