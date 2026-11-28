@@ -1,0 +1,109 @@
+{
+  "status": "PINNED_NON_SERIALIZATION_FACTOR_TRANSFER_CLASSICAL_AND_APPLICATION_RIVAL_TIE",
+  "base": "53c6f259ffc1eb1eb81b1d03391eaafb5542c40c",
+  "preseals": [
+    "41232afb9b24a0a0e6529c128bef16976734a638",
+    "8504a5eb6419923a899092810b279feabd568cf6"
+  ],
+  "runtime": {
+    "python": "3.13.5",
+    "dateutil": "2.9.0.post0",
+    "source_pin": "cd323a549e0f182541ebcde2d2ea1adfbbd9701e"
+  },
+  "commands": [
+    "python run.py > results.json",
+    "python history.py > history_results.json",
+    "python paths.py > path_results.json",
+    "python diagnostic.py > diagnostic_results.json",
+    "python rival.py > rival_results.json",
+    "python exposure.py > exposure_results.json"
+  ],
+  "factorial": {
+    "worlds": 512,
+    "observations": 45056,
+    "model_mismatches": 0,
+    "protected_safe_worlds": 258,
+    "admitted": [
+      [
+        127,
+        true,
+        true
+      ]
+    ],
+    "classical_tie": true
+  },
+  "history": {
+    "worlds": 128,
+    "paired_histories": 20736,
+    "retained": 6144,
+    "collision": 14592,
+    "irreversible_after_later_hook": 4224,
+    "prediction_mismatches": 0,
+    "core_mismatches": 0
+  },
+  "paths": {
+    "rights_sets": 512,
+    "reachable": 1,
+    "shortest_distance": 9,
+    "full_rights_orders": 45360,
+    "classical_tie": true
+  },
+  "rival": {
+    "arms": [
+      {
+        "name": "source_hook",
+        "observations": 88,
+        "failures": 0,
+        "paired_histories": 162,
+        "losses": 0
+      },
+      {
+        "name": "app_no_alias",
+        "observations": 88,
+        "failures": 4,
+        "paired_histories": 162,
+        "losses": 34
+      },
+      {
+        "name": "app_alias",
+        "observations": 88,
+        "failures": 0,
+        "paired_histories": 162,
+        "losses": 0
+      }
+    ],
+    "base_left": "All three arms retain baseline numeric values but return base object, not tagged subclass, in four probes each; explicitly outside fitted left-receiver contract.",
+    "cost_scope": "Separate implementation sites and attachment points; no measured effort and no claim of library intervention necessity."
+  },
+  "exposure": {
+    "budget": 3,
+    "without_mul": "1/9",
+    "with_mul": "25/81",
+    "distribution": "uniform ordered operation grid, independent two-step draws, not observed usage"
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/1E2urj1r2CJiz0GTLBegSHHDJ1LGS8szi/view",
+    "bytes": 15727,
+    "sha256": "010c411bccef4b9bbd67ee28248f25c6460ff8e104a080c2e083b79e9fe8cb50",
+    "members": 16,
+    "verified": "remote materialization, SHA256, ZIP CRC and all member manifest hashes passed"
+  },
+  "raw_results_sha256": {
+    "results.json": "dc076eb9bc3d9a73d4997126265415c961d95ed39a6b529b148ca75b62404fe4",
+    "history_results.json": "381bccc48ca448e8661fdd76da1380da9ac68bc3acc43eb9dfecf880aca3b648",
+    "path_results.json": "cfdd71604501c7c86e1769dfeeafa854046506a7330f5179a694634872c845c5",
+    "diagnostic_results.json": "0cff482bca985011b5d04df4630dd87c6e25c9912cb6303b9dcc7a876055ad66",
+    "rival_results.json": "eb0f0d54ef90733c3d7f4188ff81e8658f98a3951932430bd7e608c2c23c6abd",
+    "exposure_results.json": "9209ae426c707d729a37c6e988767a81496536b197356daf326188d202e92ab7"
+  },
+  "limitations": [
+    "Previously known dateutil source and authored tag contract; no external demand, independent human validation, F38 evidence, upstream patch or full suite.",
+    "Exact source pin and constrained source grammar; mapping encoded from source and checked against AST, not a general automatic extractor.",
+    "The two-tag collision is a tag + selected core observer collision, not proof of equality of all possible hidden object state or auxiliary histories.",
+    "All-rights reachability count is grammar-specific, monotone single-unit source snapshot edits; not rolling deployment.",
+    "Classical CSP and graph baseline tie; strong shared application mixin ties on same contract. No novel theorem or generic SOLID superiority.",
+    "Only uniform grid retention, no production workload, no actual human labor estimate.",
+    "Original dateutil source is not redistributed; install pinned package and run in ordinary Python without -O."
+  ],
+  "github": "Exact local executed Python and exposure JSON Git blob SHA match; commits individually checked for WhoSia author and committer. No Actions or bot."
+}
