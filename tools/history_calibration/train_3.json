@@ -1,0 +1,304 @@
+[
+  {
+    "sha": "273fb90106726daa16e1033eca0d677de76345eb",
+    "date": "2024-11-09T21:57:12Z",
+    "parents": [
+      "26aa7bf3189e19a8a63890b1c2cc7eca24312d6f"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/shell_completion.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "fde47b4b4f978f179b9dff34583cb2b99021f482",
+    "date": "2024-11-09T17:06:13Z",
+    "parents": [
+      "3b06e0b75aaa68533c7fbd4f89053309f2e4ed8a"
+    ],
+    "files": [
+      {
+        "path": "src/click/_compat.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "3b06e0b75aaa68533c7fbd4f89053309f2e4ed8a",
+    "date": "2024-11-09T00:22:58Z",
+    "parents": [
+      "2cabbe3175026695210fe0bf9b179fd62d52634f"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_utils.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2cabbe3175026695210fe0bf9b179fd62d52634f",
+    "date": "2024-11-08T23:57:43Z",
+    "parents": [
+      "0d69b6ce8b25fe31ea580c608adb8e45df3805bb"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/termui.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/typing/typing_progressbar.py",
+        "status": "added"
+      }
+    ]
+  },
+  {
+    "sha": "e26d89d96abc43cf5b8613f0a239a3131e7a6bb8",
+    "date": "2024-11-08T07:03:45Z",
+    "parents": [
+      "424d0e7e41d16307026d039e7e5304dc35a99163"
+    ],
+    "files": [
+      {
+        "path": "docs/arguments.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "424d0e7e41d16307026d039e7e5304dc35a99163",
+    "date": "2024-11-08T06:58:20Z",
+    "parents": [
+      "82ffa4be57b3f0ce8a1892543cc1c6040175059e"
+    ],
+    "files": [
+      {
+        "path": "docs/arguments.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/parameters.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "0d69b6ce8b25fe31ea580c608adb8e45df3805bb",
+    "date": "2024-11-07T22:42:59Z",
+    "parents": [
+      "d791537317947448a3960662d00acf160eff2602"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/termui.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_termui.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "dea4ff7763e0d6233ab3689a038344d122de9d3a",
+    "date": "2024-11-05T00:04:57Z",
+    "parents": [
+      "7ee6b6612641bd40064b0aa1c01450916b018416"
+    ],
+    "files": [
+      {
+        "path": "src/click/decorators.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/exceptions.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "0ef55fda47bb3d0dece21197d81d8d72a4250e73",
+    "date": "2024-11-03T20:38:31Z",
+    "parents": [
+      "d8763b93021c416549b5f8b4b5497234619410db"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/shell_completion.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_shell_completion.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "d8763b93021c416549b5f8b4b5497234619410db",
+    "date": "2024-11-03T19:56:41Z",
+    "parents": [
+      "4271fe283dc9365563aebb369ada8d20eee015a8"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/exceptions.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_commands.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "4271fe283dc9365563aebb369ada8d20eee015a8",
+    "date": "2024-11-03T14:54:02Z",
+    "parents": [
+      "1787497713fa389435ed732c9b26274c3cdc458d"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/api.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/types.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_types.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "1787497713fa389435ed732c9b26274c3cdc458d",
+    "date": "2024-11-03T14:40:46Z",
+    "parents": [
+      "380008389b32ca2b7de7c73f670a9eee1562004e"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_arguments.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "380008389b32ca2b7de7c73f670a9eee1562004e",
+    "date": "2024-11-03T14:11:58Z",
+    "parents": [
+      "fcd85032cff78aa536a6d2b455fb83bfcc02b228"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_arguments.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_options.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "fcd85032cff78aa536a6d2b455fb83bfcc02b228",
+    "date": "2024-11-03T13:12:05Z",
+    "parents": [
+      "c326df95e9e3da0425360e030413f6a3ee25fdee"
+    ],
+    "files": [
+      {
+        "path": ".gitignore",
+        "status": "modified"
+      },
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/termui.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_termui.py",
+        "status": "modified"
+      }
+    ]
+  }
+]
