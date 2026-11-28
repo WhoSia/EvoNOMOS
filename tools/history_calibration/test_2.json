@@ -1,0 +1,230 @@
+[
+  {
+    "sha": "17040b9936ab2af43c8d28d2be861ad185d7d5ff",
+    "date": "2025-02-16T07:53:18Z",
+    "parents": [
+      "614085d93ff1ce20e36ffc6631f1f31117546bc2"
+    ],
+    "files": [
+      {
+        "path": "docs/testing.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "e5abf2002d8d91a367eb7b4f4481bed8b8d4650c",
+    "date": "2025-02-17T06:22:56Z",
+    "parents": [
+      "17040b9936ab2af43c8d28d2be861ad185d7d5ff"
+    ],
+    "files": [
+      {
+        "path": "docs/conf.py",
+        "status": "modified"
+      },
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/testing.md",
+        "status": "added"
+      },
+      {
+        "path": "docs/testing.rst",
+        "status": "removed"
+      },
+      {
+        "path": "requirements/dev.in",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/dev.txt",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/docs.in",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/docs.txt",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "439888744ed989fae2eaf52f0eeaf5406dcc1ec2",
+    "date": "2025-03-02T08:05:49Z",
+    "parents": [
+      "e5abf2002d8d91a367eb7b4f4481bed8b8d4650c"
+    ],
+    "files": [
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/testing.md",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "0b7a9acc63dac907088de7d9238f7f4b2afe02ea",
+    "date": "2025-03-18T17:47:50Z",
+    "parents": [
+      "0bf333e1b77b4ae0e85d387531b38930fc657f12"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/__init__.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/decorators.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_options.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "808037279b42370584c5a92e76a7b4251b83f31a",
+    "date": "2025-03-26T11:23:56Z",
+    "parents": [
+      "361915bbc3ccbe59a09585ecfd1fc30bb0697272"
+    ],
+    "files": [
+      {
+        "path": "CONTRIBUTING.rst",
+        "status": "removed"
+      }
+    ]
+  },
+  {
+    "sha": "07207ad34d2cfba4806f7bf551cf68bed8c6ff10",
+    "date": "2025-03-27T14:33:07Z",
+    "parents": [
+      "2e86ea076229ae909f22d2af1fdcd6899a17ab9d"
+    ],
+    "files": [
+      {
+        "path": "requirements/dev.txt",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/docs.txt",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2e86ea076229ae909f22d2af1fdcd6899a17ab9d",
+    "date": "2025-03-27T14:33:07Z",
+    "parents": [
+      "32c2decf794a9aa2cd0cf81cbc6bf2f1cbec8eb7"
+    ],
+    "files": [
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "32c2decf794a9aa2cd0cf81cbc6bf2f1cbec8eb7",
+    "date": "2025-03-27T14:33:07Z",
+    "parents": [
+      "808037279b42370584c5a92e76a7b4251b83f31a"
+    ],
+    "files": [
+      {
+        "path": "tests/typing/typing_aliased_group.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/typing/typing_confirmation_option.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/typing/typing_options.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/typing/typing_version_option.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "46c32a1afcb9ae94d222eacaa6143e8afb6dbd65",
+    "date": "2025-03-27T14:33:07Z",
+    "parents": [
+      "07207ad34d2cfba4806f7bf551cf68bed8c6ff10"
+    ],
+    "files": [
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2a20acaedaeacf64f92533b578e802f329578a5e",
+    "date": "2025-03-27T14:54:59Z",
+    "parents": [
+      "a12f2464c6a18bab1a42162e9bb337fbeee1c984"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "pyproject.toml",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2a6606b77fc18b6bd09139b239319e88c39fcf0d",
+    "date": "2025-03-27T14:54:59Z",
+    "parents": [
+      "43a7d70f1e2a4a929af99b848612e0fd478e6e50"
+    ],
+    "files": [
+      {
+        "path": ".github/workflows/tests.yaml",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "43a7d70f1e2a4a929af99b848612e0fd478e6e50",
+    "date": "2025-03-27T14:54:59Z",
+    "parents": [
+      "46c32a1afcb9ae94d222eacaa6143e8afb6dbd65"
+    ],
+    "files": [
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_utils.py",
+        "status": "modified"
+      }
+    ]
+  }
+]
