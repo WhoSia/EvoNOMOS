@@ -1,0 +1,15 @@
+{
+  "status": "proposal for next disjoint pilot; not yet executed or F38 approval",
+  "motivation": "Initial date-filtered Click history failed sample floor and ancestry availability. Do not reuse its four holdout commits as untouched evidence.",
+  "cutoff": "Choose a public release or immutable first-parent integration SHA, predefine source universe and fixed observation horizon; verify all train commits are cutoff ancestors by explicit SHA-rooted enumeration. Holdout use first-parent integration sequence along frozen descendant end SHA; inclusion by integration order, not committer date. Merge diff is relative to first parent, avoid double-counting topic commits. Verify parent links, unique transaction IDs, branch lineage, rename policy and source blob hashes before scoring.",
+  "cohort": "Preseal independent repository selection and horizon before accessing changed-file outcomes; no outcome-conditioned refill. Quantify eligible-event rate and cluster coverage first. Design power from pilot variance across independent repository clusters, not anchors or synthetic operation counts. Author-only historical calibration, not independently adjudicated external demand.",
+  "features": "Require exact pinned bytes and native AST/name-resolution parser or clearly separate lexical fallback. Use ordinary dependency graph, transitive graph reachability, source size/degree, frequency, conditional cochange association-rule/ROSE-style baseline and calibrated fusion; contract-specific features added only with preregistered extraction, same outcome information for rivals.",
+  "outcomes": "Use integration transaction touched files as proxy; actual contractual necessity, unnecessary bundled edits, edit effort and runtime behavior separate. Stratify mass formatting/refactor or generated-file commits under presealed rules. Paired per-commit metrics and per-repository aggregation; no population claim from one repo. No claims of causal labor or novelty.",
+  "gates": [
+    "All input provenance and ancestry verified",
+    "Predefined sample floor and cluster floor met, otherwise HOLD",
+    "Native source feature verification and reproducible standalone evaluation",
+    "Measure incremental prediction with uncertainty and compare strong equal-information baselines",
+    "Retain negative results; no posthoc thresholds or confirmation on already observed holdout"
+  ]
+}
