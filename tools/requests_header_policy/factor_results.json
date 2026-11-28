@@ -1,0 +1,238 @@
+{
+  "worlds": 16,
+  "observations": 1152,
+  "prediction_mismatches": 0,
+  "legacy_mismatches": 0,
+  "factor_admitted": [
+    [
+      true,
+      true,
+      "normalized"
+    ]
+  ],
+  "native_admitted": [
+    [
+      true,
+      true,
+      "normalized"
+    ]
+  ],
+  "classical_csp_admitted": [
+    [
+      true,
+      true,
+      "normalized"
+    ]
+  ],
+  "minimum_site_cost": 3,
+  "rows": [
+    {
+      "world": [
+        false,
+        false,
+        "absent"
+      ],
+      "cost": 0,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 72,
+      "model_contract_failures": 72,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        false,
+        "live"
+      ],
+      "cost": 1,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 68,
+      "model_contract_failures": 68,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        false,
+        "raw"
+      ],
+      "cost": 1,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 24,
+      "model_contract_failures": 24,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        false,
+        "normalized"
+      ],
+      "cost": 1,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 24,
+      "model_contract_failures": 24,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        true,
+        "absent"
+      ],
+      "cost": 1,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 72,
+      "model_contract_failures": 72,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        true,
+        "live"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 68,
+      "model_contract_failures": 68,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        true,
+        "raw"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 60,
+      "model_contract_failures": 60,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        false,
+        true,
+        "normalized"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 24,
+      "model_contract_failures": 24,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        false,
+        "absent"
+      ],
+      "cost": 1,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 72,
+      "model_contract_failures": 72,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        false,
+        "live"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 68,
+      "model_contract_failures": 68,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        false,
+        "raw"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 18,
+      "model_contract_failures": 18,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        false,
+        "normalized"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 18,
+      "model_contract_failures": 18,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        true,
+        "absent"
+      ],
+      "cost": 2,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 72,
+      "model_contract_failures": 72,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        true,
+        "live"
+      ],
+      "cost": 3,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 68,
+      "model_contract_failures": 68,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        true,
+        "raw"
+      ],
+      "cost": 3,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 36,
+      "model_contract_failures": 36,
+      "legacy_mismatches": 0
+    },
+    {
+      "world": [
+        true,
+        true,
+        "normalized"
+      ],
+      "cost": 3,
+      "rows": 72,
+      "prediction_mismatches": 0,
+      "native_contract_failures": 0,
+      "model_contract_failures": 0,
+      "legacy_mismatches": 0
+    }
+  ]
+}
