@@ -1,0 +1,46 @@
+{
+  "title": "Non-serialization constructor dispatch: source-derived preservation factors and prefix constraints",
+  "basis": "Known dateutil 2.9.0.post0 constructor and reflected-dispatch case; new factorial and path experiment, not independent demand or blinded outcome",
+  "pin": "cd323a549e0f182541ebcde2d2ea1adfbbd9701e",
+  "extraction": "Python AST: enumerate calls to self.__class__ within relativedelta, grouped by owning method and occurrence order; require seven sites, identical keyword signatures; inspect aliases __rmul__=__mul__, __truediv__=__div__, __div__ delegates to self.__mul__. Derive operation-to-site map from source branches and call relationships, not fitted outcomes. Reject nonmatching pinned bytes and unsupported patterns.",
+  "grammar": "512 combinations of seven individual call-site substitutions self.__class__→self._evo_rebuild, base default hook H (delegates exact kwargs to self.__class__), and optional application subclass override T (forwards original tag). Existing dateutil source and class semantics otherwise unchanged. Cost = declared edit units (7 sites, 1 base hook, 1 application override).",
+  "operations": [
+    "normalize",
+    "add_delta",
+    "add_timedelta",
+    "sub_delta",
+    "neg",
+    "abs",
+    "mul",
+    "rmul",
+    "div",
+    "date_add",
+    "reverse_date_add"
+  ],
+  "contexts": [
+    "base",
+    "compatible",
+    "optional_tag",
+    "required_tag"
+  ],
+  "fixtures": [
+    {
+      "days": 1.5,
+      "hours": 2,
+      "day": 20
+    },
+    {
+      "days": -3,
+      "minutes": -45,
+      "month": 2
+    }
+  ],
+  "probes": "Compare numeric/absolute delta fields or date result against untouched original on same operands, exact output type for delta; preserve optional and required tag KEEP for delta outputs. Native errors count as failure. Date controls have no delta-output tag obligation. Mixed base-left/sub-left as separate diagnostic not claimed fixed. For all worlds with H, T use two tags A/B over two-step ordered delta-output operations; observed tag pair equality predicts history erasure iff at least one traversed site unhooked; verify no claim for application sidecars.",
+  "predictions": [
+    "Base and compatible safe iff no site is replaced or H exists (all seven covered by protected probes).",
+    "With H, T, a delta-output operation retains tag iff its constructor site is substituted. __mul__ substitution covers mul, rmul and div. Without T optional tag defaults and required tag errors even with H.",
+    "All contract probes satisfied iff H AND T AND all seven sites. Exact equal-information classical Boolean conjunction/coverage and exhaustive native table tie. Prefix path H before first site; T order free under base-only protection. For all-rights shortest paths count combinatorially, verify via DAG DP over native safe snapshots. Restrict rights and compare reachability.",
+    "Unhooked operations collapse tags A/B, later hooked operations cannot reconstruct them from resulting object state; contrast with preserved-tag paths. This is a local authored metadata contract, not measured workload or general repair law."
+  ],
+  "limits": "No upstream patch, no network, source pin and restricted grammar; prior dateutil probes known. Full library suite and independent human validation not claimed; sidecar or app-only overrides remain rivals outside grammar. No new theorem."
+}
