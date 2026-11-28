@@ -1,0 +1,12 @@
+{
+  "status": "CONDITIONAL_DYNAMIC_CLOSURE",
+  "extension": "Before dynamic computation; original terminal result already observed",
+  "model": "x'=M x xor N a xor xi, observed z=B x (affine constants omitted without loss for fiber equality); fixed same action menu and costs measurable in z,a; exogenous noise law independent of x conditional on a.",
+  "claims": [
+    "deterministic exact quotient on Bx iff ker B subset ker BM (for all states and nonempty shared actions)",
+    "observable closure O=[B;BM;...;BM^(d-1)], row space invariant under M, minimal refinement preserving observation trajectories under deterministic common input",
+    "additive state-independent noise suffices for closure but necessity can fail under noise invariant to shifts; test counterexample with uniform projected noise",
+    "rank(B) bounds immediate observation classes, rank(O) bounds exact dynamically closed classes; no lower bound on all value approximations"
+  ],
+  "grid": "d=2 with 1,2 output rows and d=3 with 2 output rows; all binary row matrices B,M; compare exact fiber successor and trace partition against ranks; no stochastic dynamics fit to source."
+}
