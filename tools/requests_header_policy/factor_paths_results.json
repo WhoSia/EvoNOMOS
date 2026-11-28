@@ -1,0 +1,278 @@
+{
+  "safe_worlds": [
+    [
+      true,
+      false,
+      "raw"
+    ],
+    [
+      true,
+      false,
+      "normalized"
+    ],
+    [
+      true,
+      true,
+      "normalized"
+    ]
+  ],
+  "goal_worlds": [
+    [
+      true,
+      true,
+      "normalized"
+    ]
+  ],
+  "world_rows": [
+    {
+      "world": [
+        false,
+        false,
+        "absent"
+      ],
+      "protected_failures": 54,
+      "model_protected_failures": 54
+    },
+    {
+      "world": [
+        false,
+        false,
+        "live"
+      ],
+      "protected_failures": 53,
+      "model_protected_failures": 53
+    },
+    {
+      "world": [
+        false,
+        false,
+        "raw"
+      ],
+      "protected_failures": 6,
+      "model_protected_failures": 6
+    },
+    {
+      "world": [
+        false,
+        false,
+        "normalized"
+      ],
+      "protected_failures": 6,
+      "model_protected_failures": 6
+    },
+    {
+      "world": [
+        false,
+        true,
+        "absent"
+      ],
+      "protected_failures": 54,
+      "model_protected_failures": 54
+    },
+    {
+      "world": [
+        false,
+        true,
+        "live"
+      ],
+      "protected_failures": 53,
+      "model_protected_failures": 53
+    },
+    {
+      "world": [
+        false,
+        true,
+        "raw"
+      ],
+      "protected_failures": 42,
+      "model_protected_failures": 42
+    },
+    {
+      "world": [
+        false,
+        true,
+        "normalized"
+      ],
+      "protected_failures": 6,
+      "model_protected_failures": 6
+    },
+    {
+      "world": [
+        true,
+        false,
+        "absent"
+      ],
+      "protected_failures": 54,
+      "model_protected_failures": 54
+    },
+    {
+      "world": [
+        true,
+        false,
+        "live"
+      ],
+      "protected_failures": 53,
+      "model_protected_failures": 53
+    },
+    {
+      "world": [
+        true,
+        false,
+        "raw"
+      ],
+      "protected_failures": 0,
+      "model_protected_failures": 0
+    },
+    {
+      "world": [
+        true,
+        false,
+        "normalized"
+      ],
+      "protected_failures": 0,
+      "model_protected_failures": 0
+    },
+    {
+      "world": [
+        true,
+        true,
+        "absent"
+      ],
+      "protected_failures": 54,
+      "model_protected_failures": 54
+    },
+    {
+      "world": [
+        true,
+        true,
+        "live"
+      ],
+      "protected_failures": 53,
+      "model_protected_failures": 53
+    },
+    {
+      "world": [
+        true,
+        true,
+        "raw"
+      ],
+      "protected_failures": 36,
+      "model_protected_failures": 36
+    },
+    {
+      "world": [
+        true,
+        true,
+        "normalized"
+      ],
+      "protected_failures": 0,
+      "model_protected_failures": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "rights": [],
+      "distance": null,
+      "shortest_orders": 0,
+      "paths": []
+    },
+    {
+      "rights": [
+        "capture"
+      ],
+      "distance": null,
+      "shortest_orders": 0,
+      "paths": []
+    },
+    {
+      "rights": [
+        "whitelist"
+      ],
+      "distance": null,
+      "shortest_orders": 0,
+      "paths": []
+    },
+    {
+      "rights": [
+        "accessor"
+      ],
+      "distance": null,
+      "shortest_orders": 0,
+      "paths": []
+    },
+    {
+      "rights": [
+        "capture",
+        "whitelist"
+      ],
+      "distance": null,
+      "shortest_orders": 0,
+      "paths": []
+    },
+    {
+      "rights": [
+        "capture",
+        "accessor"
+      ],
+      "distance": null,
+      "shortest_orders": 0,
+      "paths": []
+    },
+    {
+      "rights": [
+        "whitelist",
+        "accessor"
+      ],
+      "distance": 2,
+      "shortest_orders": 1,
+      "paths": [
+        [
+          [
+            true,
+            false,
+            "raw"
+          ],
+          [
+            true,
+            false,
+            "normalized"
+          ],
+          [
+            true,
+            true,
+            "normalized"
+          ]
+        ]
+      ]
+    },
+    {
+      "rights": [
+        "capture",
+        "whitelist",
+        "accessor"
+      ],
+      "distance": 2,
+      "shortest_orders": 1,
+      "paths": [
+        [
+          [
+            true,
+            false,
+            "raw"
+          ],
+          [
+            true,
+            false,
+            "normalized"
+          ],
+          [
+            true,
+            true,
+            "normalized"
+          ]
+        ]
+      ]
+    }
+  ],
+  "scope": "snapshot safety; no actual cross-version migration; null distance means unreachable in declared grammar"
+}
