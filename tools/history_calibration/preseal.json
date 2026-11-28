@@ -1,0 +1,33 @@
+{
+  "title": "Temporal co-change calibration, source-boundary exposure vs historical baselines",
+  "status": "preseal; retrospective author-only calibration, not F38",
+  "repo": "pallets/click",
+  "cutoff": "2025-01-01T00:00:00Z",
+  "train": {
+    "until": "2024-12-31T23:59:59Z",
+    "count": 50,
+    "selection": "latest 50 API commits at cutoff, then exclude merges; no replenishment"
+  },
+  "test": {
+    "since": "2025-01-01T00:00:00Z",
+    "until": "2025-06-30T23:59:59Z",
+    "count": 50,
+    "selection": "oldest 50 from complete paginated interval (committer date ascending, SHA tiebreak), then exclude merges; no replenishment"
+  },
+  "source": "tree of most recent commit before cutoff; fixed universe src/click/*.py (direct children), no test paths; derive direct import graph and imported identifier use in each module using Python AST; separate directional symbol count and unweighted edge; if AST cannot execute locally, use declared restricted text parser and label accordingly, do not substitute silently",
+  "outcome": "One anchor touched file given, predict other touched files in same commit, restricted to fixed universe; exclude <2 matched paths; rename old and new path if both known; no future fit. Commit-weighted mean across anchors; tie-aware expected reciprocal rank of first hit and pairwise AUC; top-1 tie probability optional.",
+  "baselines": [
+    "uniform",
+    "smoothed historical frequency",
+    "historical pair co-change (Jaccard or conditional frequency, ties via marginal frequency)",
+    "unweighted source import adjacency",
+    "source identifier exposure weighted adjacency",
+    "history + exposure rank fusion equal weights (fixed, no tuning)"
+  ],
+  "controls": "Only commit metadata touched paths; no issue interpretation or protected contracts. Source path universe fixed before holdout. If fewer than five held-out eligible commits report insufficiency, do not backfill or change cutoff. Record attrition, source parser, raw metadata, exact selection, comparison by commit and no claim of causal costs.",
+  "predictions": [
+    "Exposure may rank co-changes better than binary import edge when different source edges have different use intensity; historical pair baseline may dominate. Negative result retained.",
+    "No evidence of contract-specific advantage from import exposure alone; use as classical baseline for later actual contract features."
+  ],
+  "scope": "Public historical calibration, not independent demand prediction, source contracts, actual workload frequency, labor or structural law; no source modification upstream."
+}
