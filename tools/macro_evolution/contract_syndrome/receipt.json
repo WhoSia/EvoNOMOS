@@ -1,0 +1,78 @@
+{
+  "status": "CONDITIONAL_TERMINAL_CONTRACT_AND_DYNAMIC_CLOSURE_NOT_F38",
+  "blobs": {
+    "preseal.json": "a2c873b34e7dc2b5262d5336abcbe84d2aff2c79",
+    "gf2.mjs": "c1910cb077570bf58d6b9530b00aeef681f39a82",
+    "certificate.mjs": "1df2ca51b381134a113294611618072b7f4dfce6",
+    "syndrome_dp.mjs": "b49033df85ca6888e275d548fee27093a9a2e7a2",
+    "brute_oracle.mjs": "1ce9dbd151c7fc08958f3ca5b5da40f8bac18aed",
+    "parity_chain.mjs": "72b3b718b2b7acc472901b659fa783401efc85d3",
+    "results.json": "836b8b07c19450e5a117d2b4a9607974bb48bbd1",
+    "dynamic_preseal.json": "cfb010b94c3df6d0b1239d61a84f0657e0981d80",
+    "observability.mjs": "8a193a1db241bf5fcd5c499a595eb46cbef1a115",
+    "dynamic_grid.mjs": "d0d1b336dba590ab1bb3fb614743f8db8d90c4df",
+    "dynamic_results.json": "09dd8845ff17d5667823a16d5e192c6dcd591d44",
+    "gaussian_certificate.mjs": "fe0129c2908d1081abff4258809f1aac03dd3c5f"
+  },
+  "terminal": {
+    "matrices": 685,
+    "syndromes": 5050,
+    "feasible": 3134,
+    "impossible": 1916,
+    "rightsChecks": 5944,
+    "gaussianWitnessChecks": 5050
+  },
+  "dynamic": {
+    "pairs": 33088,
+    "closed": 8800,
+    "expanded": 24288,
+    "full": 20352,
+    "maxRankIncrease": 2
+  },
+  "parity": {
+    "sizes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "properMarginalAgreement": true,
+    "meanCosts": [
+      0,
+      1
+    ]
+  },
+  "independent": {
+    "sha256": "475208cc66ea88d52e1b5c51230e526a8ad049c0c2f1b5545bb26e03768a81d8",
+    "script_sha256": "deacbad632f6d13fc833b45ef5dc1e62be13c0f32eb60acc124474f180f22330",
+    "scope": "Python independent row-based enumeration and fixed point partition refinement checked feasibility counts, trace partitions, parity marginal equality. Not independently compared per-syndrome costs or JS deletion-cost counts; local rightsChecks counts matrix-column pairs only."
+  },
+  "archive": {
+    "url": "https://drive.google.com/file/d/16W3v1FkkOfipyxXarUDryPUNUfMOgLMH/view",
+    "bytes": 2301,
+    "sha256": "831b8b38b895fdf1a42cccae5f6e0d5802e2891c808d66a7d862720e0b6987e3",
+    "remote_hash_verified": true
+  },
+  "literature": {
+    "held": "Dechter 1999 bucket elimination",
+    "missing_comments": [
+      "doco.D9Uem-3bLWYR9VMkUgG1Pw",
+      "doco.lcLLqlyqxqRrsSwSLfTFxQ"
+    ],
+    "limitations": "Koller-Parr targeted text, BMT abstract only; screenshot cache misses, Koller-Parr local DNS failure; no new PDF or ledger body update."
+  },
+  "limits": [
+    "Terminal linear GF(2) authored grammar, not source-derived or prefix-safe repair certificate.",
+    "JS bitwise implementation small-instance scope; not a general large-rank solver.",
+    "JS computations executed directly in tool context, committed modules not separately executed as a standalone runner.",
+    "Exact quotient theorem assumes common action menus and cost/observation aligned; state-independent additive noise may make deterministic rank condition unnecessary.",
+    "Grid not a sampled software population; no causal estimate, no F38 activation, no new general theorem claim."
+  ]
+}
