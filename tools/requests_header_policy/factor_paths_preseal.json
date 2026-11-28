@@ -1,0 +1,17 @@
+{
+  "basis": "Post-factorial analysis, predictions informed by previous results. Not blinded and not an independent demand.",
+  "source": "factor_run.py results and same exact pinned package",
+  "protected": "Adapter origin at cycle zero retains declaration; legacy/direct origins at all four cycles stay unknown; selected encoding/text baseline unchanged after override.",
+  "goal": "All factor_run contract observations.",
+  "start": [
+    true,
+    false,
+    "raw"
+  ],
+  "edit": "One coordinate per step; replacement of accessor mode or toggling capture/whitelist. All source worlds share same rights unless explicitly restricted.",
+  "predictions": [
+    "Add whitelist first violates protected legacy/direct unknown semantics; normalize first preserves all protected observations.",
+    "Full rights: exactly one two-step safe order among the two shortest edit orders. Whitelist-only cannot reach goal; normalization-only cannot reach goal; unrestricted atomic two-coordinate commit could skip invalid snapshot, but live migration untested."
+  ],
+  "comparison": "Exhaustive BFS on native per-world accepted states; compare model-derived BFS under same rights. No general new law."
+}
