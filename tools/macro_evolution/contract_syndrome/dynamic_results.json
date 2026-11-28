@@ -1,0 +1,64 @@
+{
+  "result": {
+    "pairs": 33088,
+    "closed": 8800,
+    "expanded": 24288,
+    "full": 20352,
+    "maxRankIncrease": 2,
+    "by": [
+      {
+        "d": 2,
+        "b": 1,
+        "pairs": 64,
+        "closed": 40,
+        "expanded": 24,
+        "full": 24
+      },
+      {
+        "d": 2,
+        "b": 2,
+        "pairs": 256,
+        "closed": 184,
+        "expanded": 72,
+        "full": 168
+      },
+      {
+        "d": 3,
+        "b": 2,
+        "pairs": 32768,
+        "closed": 8576,
+        "expanded": 24192,
+        "full": 20160
+      }
+    ]
+  },
+  "ex": {
+    "B": [
+      1
+    ],
+    "M": [
+      2,
+      1
+    ],
+    "sameInitial": [
+      0,
+      2
+    ],
+    "nextDeterministic": [
+      0,
+      1
+    ],
+    "nextUniformProjectedNoise": [
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "closureRank": 2
+  },
+  "scope": "Deterministic binary linear models, fixed shared action menu, no empirical source costs; uniform independent projected noise counterexample."
+}
