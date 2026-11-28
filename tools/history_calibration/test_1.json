@@ -1,0 +1,266 @@
+[
+  {
+    "sha": "e2f2d84ef0bbcec4f024ea8ea21f3994eddde5f7",
+    "date": "2025-01-07T06:23:15Z",
+    "parents": [
+      "8a47580a00f3404e7071b9ecfec3692a1e18309f"
+    ],
+    "files": [
+      {
+        "path": "docs/advanced.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/commands-and-groups.rst",
+        "status": "added"
+      },
+      {
+        "path": "docs/commands.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/parameters.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "4ece17a107d7b2e8bc3bd14356c2b53038fe41cf",
+    "date": "2025-01-12T14:59:58Z",
+    "parents": [
+      "8a47580a00f3404e7071b9ecfec3692a1e18309f"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/options.rst",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/exceptions.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/types.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_basic.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_formatting.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_info_dict.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_normalization.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_types.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "82089af2e66f5150edd1355f390f7b5e4028aeff",
+    "date": "2025-01-12T15:17:33Z",
+    "parents": [
+      "4ece17a107d7b2e8bc3bd14356c2b53038fe41cf"
+    ],
+    "files": [
+      {
+        "path": "docs/api.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/documentation.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/option-decorators.rst",
+        "status": "added"
+      },
+      {
+        "path": "docs/options.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/parameter-types.rst",
+        "status": "added"
+      },
+      {
+        "path": "docs/parameters.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "24969c08cd312c01e7f590cf199452c6f51f6e0c",
+    "date": "2025-01-12T15:21:18Z",
+    "parents": [
+      "82089af2e66f5150edd1355f390f7b5e4028aeff"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "8fcf9b0c5bbfcc9231298d76cde29ae8b0fc50d0",
+    "date": "2025-01-12T15:31:07Z",
+    "parents": [
+      "24969c08cd312c01e7f590cf199452c6f51f6e0c"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2cd85af1113abe3a7a70e33bfaaee60c2a45badb",
+    "date": "2025-01-14T21:43:53Z",
+    "parents": [
+      "4cef9665faf0bbbec97d8919382e28d16e160f07"
+    ],
+    "files": [
+      {
+        "path": "CONTRIBUTING.rst",
+        "status": "removed"
+      },
+      {
+        "path": "README.md",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "a31c4636f60afdbf5992b5ef113c8eb3e14ac37e",
+    "date": "2025-01-15T00:45:35Z",
+    "parents": [
+      "b72256a7a61840909376d229824b694b6c1befbd"
+    ],
+    "files": [
+      {
+        "path": "docs/commands-and-groups.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/index.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "9b640af7ab8afbd1324fb255279efbbef8f526ec",
+    "date": "2025-01-16T06:04:05Z",
+    "parents": [
+      "a31c4636f60afdbf5992b5ef113c8eb3e14ac37e"
+    ],
+    "files": [
+      {
+        "path": "docs/commands-and-groups.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "2014b8d44567703ecc65a873b222aff58d38321a",
+    "date": "2025-01-24T08:02:39Z",
+    "parents": [
+      "8fcf9b0c5bbfcc9231298d76cde29ae8b0fc50d0"
+    ],
+    "files": [
+      {
+        "path": "docs/advanced.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/option-decorators.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/options.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/prompts.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "e2288bb36c3b30264bf8b78ec0e6ab8e4a81b699",
+    "date": "2025-01-26T01:52:27Z",
+    "parents": [
+      "8fcf9b0c5bbfcc9231298d76cde29ae8b0fc50d0"
+    ],
+    "files": [
+      {
+        "path": ".readthedocs.yaml",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "ff4b7f7b78620e23757e9d761e4c4f60fd222ec1",
+    "date": "2025-01-28T07:23:12Z",
+    "parents": [
+      "680e8880744bbdb337a5abf2a966eb81633e8d21"
+    ],
+    "files": [
+      {
+        "path": "docs/option-decorators.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/options.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/prompts.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "614085d93ff1ce20e36ffc6631f1f31117546bc2",
+    "date": "2025-02-13T06:53:25Z",
+    "parents": [
+      "5dd628854c0b61bbdc07f22004c5da8fa8ee9481"
+    ],
+    "files": [
+      {
+        "path": "docs/api.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/testing.rst",
+        "status": "modified"
+      }
+    ]
+  }
+]
