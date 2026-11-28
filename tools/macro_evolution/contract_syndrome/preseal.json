@@ -1,0 +1,12 @@
+{
+  "status": "CONDITIONAL_LINEAR_CONTRACT_NOT_F38",
+  "model": "Binary terminal repair grammar: observed x, authorized edit vector a, hard linear constraints A a = B x xor c over GF(2), additive nonnegative costs. A includes only authorized columns. No path/prefix guarantee except if separately modeled.",
+  "claims": [
+    "feasibility iff s in im A; certificate y orthogonal to all authorized columns with y dot s=1",
+    "weighted min-cost repair via min-plus syndrome DP, O(m 2^rank(A)) states-updates using reachable syndrome map; brute force comparator",
+    "parity chain local factor scopes <=3, primal treewidth <=2, eliminate prefix bits to obtain global parity; even/odd uniform distributions share every proper marginal; if endpoint constraint enforced by a single unit-cost edit, costs 0 vs 1; investment I=1/2 to remove cost reverses",
+    "unrestricted terminal decoding classical NP-hard, no generic source or dynamic closure claim"
+  ],
+  "verification": "All binary A with row count 1..3 and column count 0..3, all syndromes, integer weights j+1; compare brute force and DP, check dual witness by dot product, rank count. parity chain n=2..12 enumerate distributions, all (n-1)-marginals by omitted coordinate, check local factor witness and cost; test rank-versus-width counterexample and cost fiber vs dynamics distinction. Independent verification in tool JS, no claim of runtime improvement.",
+  "literature": "Dechter bucket elimination, Koller Parr factored value functions, BMT syndrome decoding; mathematical machinery classical. Source extraction not yet established."
+}
