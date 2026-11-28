@@ -1,0 +1,164 @@
+{
+  "rows": [
+    {
+      "source": [
+        true,
+        false,
+        "raw"
+      ],
+      "destination": [
+        true,
+        true,
+        "normalized"
+      ],
+      "artifacts_equal": true,
+      "before": [
+        {
+          "declaration": [
+            "declared",
+            "latin-1"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9",
+          "sha256": "429738ff70bafdd60aa5b046603071d8f771a8b464b7cd2363f67e68615ac308",
+          "bytes": 1011
+        },
+        {
+          "declaration": [
+            "declared",
+            "utf-8"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9",
+          "sha256": "429738ff70bafdd60aa5b046603071d8f771a8b464b7cd2363f67e68615ac308",
+          "bytes": 1011
+        }
+      ],
+      "after": [
+        {
+          "declaration": [
+            "unknown",
+            null
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9"
+        },
+        {
+          "declaration": [
+            "unknown",
+            null
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9"
+        }
+      ]
+    },
+    {
+      "source": [
+        true,
+        false,
+        "normalized"
+      ],
+      "destination": [
+        true,
+        true,
+        "normalized"
+      ],
+      "artifacts_equal": true,
+      "before": [
+        {
+          "declaration": [
+            "declared",
+            "latin-1"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9",
+          "sha256": "f4a5c7529e103fbb54740f5824c3fb12164cd90425db97373c85b059cb451a60",
+          "bytes": 1011
+        },
+        {
+          "declaration": [
+            "declared",
+            "utf-8"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9",
+          "sha256": "f4a5c7529e103fbb54740f5824c3fb12164cd90425db97373c85b059cb451a60",
+          "bytes": 1011
+        }
+      ],
+      "after": [
+        {
+          "declaration": [
+            "unknown",
+            null
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9"
+        },
+        {
+          "declaration": [
+            "unknown",
+            null
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9"
+        }
+      ]
+    },
+    {
+      "source": [
+        true,
+        true,
+        "normalized"
+      ],
+      "destination": [
+        true,
+        true,
+        "normalized"
+      ],
+      "artifacts_equal": false,
+      "before": [
+        {
+          "declaration": [
+            "declared",
+            "latin-1"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9",
+          "sha256": "214ee43191a5f7f17743088bd634851f5da453aa0d631ac6874805657d047ff6",
+          "bytes": 1058
+        },
+        {
+          "declaration": [
+            "declared",
+            "utf-8"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9",
+          "sha256": "85ecbb6d7715af9db68cd39d89e53a7179be8c1b1757d7e1ca74173f8fde6969",
+          "bytes": 1056
+        }
+      ],
+      "after": [
+        {
+          "declaration": [
+            "declared",
+            "latin-1"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9"
+        },
+        {
+          "declaration": [
+            "declared",
+            "utf-8"
+          ],
+          "encoding": "latin-1",
+          "text": "\u00e0\u00e9"
+        }
+      ]
+    }
+  ],
+  "scope": "two authored inputs, locally generated protocol 4 pickle artifacts; actual cross-source decode; no upstream deployment"
+}
