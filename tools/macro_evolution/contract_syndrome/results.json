@@ -1,0 +1,98 @@
+{
+  "matrices": 685,
+  "syndromes": 5050,
+  "feasible": 3134,
+  "impossible": 1916,
+  "rightsChecks": 5944,
+  "chain": [
+    {
+      "n": 2,
+      "even": 2,
+      "odd": 2,
+      "proper_marginal_pairs": 4,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 3,
+      "even": 4,
+      "odd": 4,
+      "proper_marginal_pairs": 12,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 4,
+      "even": 8,
+      "odd": 8,
+      "proper_marginal_pairs": 32,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 5,
+      "even": 16,
+      "odd": 16,
+      "proper_marginal_pairs": 80,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 6,
+      "even": 32,
+      "odd": 32,
+      "proper_marginal_pairs": 192,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 7,
+      "even": 64,
+      "odd": 64,
+      "proper_marginal_pairs": 448,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 8,
+      "even": 128,
+      "odd": 128,
+      "proper_marginal_pairs": 1024,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 9,
+      "even": 256,
+      "odd": 256,
+      "proper_marginal_pairs": 2304,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 10,
+      "even": 512,
+      "odd": 512,
+      "proper_marginal_pairs": 5120,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 11,
+      "even": 1024,
+      "odd": 1024,
+      "proper_marginal_pairs": 11264,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    },
+    {
+      "n": 12,
+      "even": 2048,
+      "odd": 2048,
+      "proper_marginal_pairs": 24576,
+      "mean_cost_even": 0,
+      "mean_cost_odd": 1
+    }
+  ],
+  "scope": "Exhaustive binary matrices up to 3 by 3 with deterministic positive weights, authored terminal grammar. Not actual source evidence."
+}
