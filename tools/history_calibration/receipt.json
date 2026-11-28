@@ -1,0 +1,64 @@
+{
+  "status": "HOLD_SAMPLE_AND_ANCESTRY_GATES_FAILED",
+  "base": "b971bfd2a0be550286ac8e881d97eff2b0978702",
+  "preseal": "b674e63c625ed488c0ddf2203baee7e273c2a8c3",
+  "selection": "a7fd23b4710d5c2ca64e867a3cabde1557bed456",
+  "source_snapshot": "8a47580a00f3404e7071b9ecfec3692a1e18309f",
+  "source": "16 cutoff-pinned files fetched through GitHub connector; connector blob identities matched tree; no independent local source-byte verification. All installed Click 8.1.8 blobs differed; git DNS unavailable.",
+  "lexical": {
+    "amendment": "063d7ea8f7e1c2bbc6c165ddf36d6e16188f5ac2",
+    "directed_edges": 58,
+    "raw_identifier_exposure": 665,
+    "zero_exposure_edges": 6,
+    "scope": "Restricted relative one-line imports and raw lexical occurrences including comments/docstrings/shadowing; no semantic or dynamic call graph."
+  },
+  "train": {
+    "nonmerge": 42,
+    "zero": 19,
+    "one": 15,
+    "multi": 8,
+    "all_path_records": 101
+  },
+  "test": {
+    "nonmerge": 34,
+    "zero": 26,
+    "one": 4,
+    "multi": 4,
+    "all_path_records": 112,
+    "anchors": 12,
+    "threshold": 5,
+    "pass": false
+  },
+  "results": "b1251718c76219b07f3a80d06dc1b3712ae68014",
+  "ancestry": {
+    "candidates": 50,
+    "cutoff_list_intersection": 24,
+    "diverged": 26,
+    "nonmerge_excluded": 21,
+    "remaining_nonmerge": 21,
+    "remaining_multi": 8,
+    "comparisons": [
+      "34243df096d2400ef06cee7135409a00812656d6",
+      "924d2b104d52d5bd60bdac9571d6382993735b3b"
+    ],
+    "scope": "Nonancestor commits are not cutoff-integrated, not proof they were private or unavailable to all developers."
+  },
+  "sensitivity": "9a76ac74b46784b9df15737fbd1818caf96521bf",
+  "execution": "Lexical extraction, evaluation with metric self-check, sensitivity using independent combinatorial MRR formula executed in connector JavaScript context. Offline Node wrapper committed, not run in local container. GitHub frozen public metadata fixtures retained; separate Drive raw archive not uploaded.",
+  "literature": {
+    "held": [
+      "Zimmermann, Diehl & Zeller 2003 How History Justifies System Architecture (or not)",
+      "Hong et al. 2024 co-changed functions",
+      "Ajienka et al. 2018 semantic coupling and co-change",
+      "Geipel & Schweitzer 2012 dependency and cochange (duplicate-named holding)"
+    ],
+    "missing_candidate": "Zimmermann et al. ICSE 2004 Mining Version Histories to Guide Software Changes; exact filename not located, lab page inspected, public PDF URL identified but curl DNS failed; canonical TXT comment doco.Jrs70ASczNk_kVz63aAsnA, body unchanged; no full-paper reading claim."
+  },
+  "next_protocol": "8552ad7f49c0316308585bc9132c0af7e90317ca",
+  "scope": [
+    "Neither date-only scores nor posthoc ancestor-subset scores are confirmatory. No holdout refill.",
+    "Actual cochanged files are a proxy for developer choices, not causal repair necessity or cost.",
+    "Four eligible commits in one repository; no independent human selection or adjudication, F38 OPEN/0.",
+    "No model promotion; use a disjoint first-parent integration pilot and stronger conventional baseline."
+  ]
+}
