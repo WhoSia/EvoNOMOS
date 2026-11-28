@@ -1,0 +1,14 @@
+{
+  "matrices": 685,
+  "syndromes": 5050,
+  "feasible": 3134,
+  "impossible": 1916,
+  "gaussianWitnessChecks": 5050,
+  "allDeletionTriples": 14356,
+  "previouslyFeasible": 9082,
+  "rightsChecks": 5944,
+  "deletionMakesImpossible": 3138,
+  "sameCost": 5505,
+  "higherCost": 439,
+  "lowerCost": 0
+}
