@@ -1,0 +1,264 @@
+[
+  {
+    "sha": "a12f2464c6a18bab1a42162e9bb337fbeee1c984",
+    "date": "2025-03-27T14:54:59Z",
+    "parents": [
+      "2a6606b77fc18b6bd09139b239319e88c39fcf0d"
+    ],
+    "files": [
+      {
+        "path": ".github/workflows/pre-commit.yaml",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "82313af804f071330f4edb879dbcca7c2d38aa11",
+    "date": "2025-04-03T16:55:39Z",
+    "parents": [
+      "d79f0fb61ceed72e309b792063f395694541710a"
+    ],
+    "files": [
+      {
+        "path": "docs/commands-and-groups.rst",
+        "status": "modified"
+      },
+      {
+        "path": "docs/options.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "134dba74f82582571f670f9e4db58735c5f58521",
+    "date": "2025-04-12T07:54:31Z",
+    "parents": [
+      "82313af804f071330f4edb879dbcca7c2d38aa11"
+    ],
+    "files": [
+      {
+        "path": "docs/advanced.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "d50c82f4e9ac4792dae43255d291b25f36bd8fde",
+    "date": "2025-04-12T08:05:26Z",
+    "parents": [
+      "c9f7d9d8a02f0cf9b24db6210b083e687a5cf020"
+    ],
+    "files": [
+      {
+        "path": ".github/workflows/pre-commit.yaml",
+        "status": "modified"
+      },
+      {
+        "path": ".github/workflows/tests.yaml",
+        "status": "modified"
+      },
+      {
+        "path": ".pre-commit-config.yaml",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "bd7afd459a83f86ca363b9200ae505406af7a5f3",
+    "date": "2025-04-12T08:07:00Z",
+    "parents": [
+      "d50c82f4e9ac4792dae43255d291b25f36bd8fde"
+    ],
+    "files": [
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "b1e72b47705830a2f29ac97733fe53cab635b96f",
+    "date": "2025-04-12T08:07:47Z",
+    "parents": [
+      "d50c82f4e9ac4792dae43255d291b25f36bd8fde"
+    ],
+    "files": [
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "7318f5f11bd59de62e4f7f73585d19300deb32b2",
+    "date": "2025-05-10T00:38:02Z",
+    "parents": [
+      "b7c0ab471c339488766d9413349947b2a7b21543"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "9982faee85f2715a9cde03639f8c0382561c09ce",
+    "date": "2025-05-10T00:39:35Z",
+    "parents": [
+      "7318f5f11bd59de62e4f7f73585d19300deb32b2"
+    ],
+    "files": [
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "f14b75063fb36b9208b13a920326926363616b39",
+    "date": "2025-05-10T21:38:12Z",
+    "parents": [
+      "9982faee85f2715a9cde03639f8c0382561c09ce"
+    ],
+    "files": [
+      {
+        "path": ".github/workflows/pre-commit.yaml",
+        "status": "modified"
+      },
+      {
+        "path": ".github/workflows/publish.yaml",
+        "status": "modified"
+      },
+      {
+        "path": ".github/workflows/tests.yaml",
+        "status": "modified"
+      },
+      {
+        "path": ".pre-commit-config.yaml",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/build.txt",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/dev.txt",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/docs.txt",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/tests.txt",
+        "status": "modified"
+      },
+      {
+        "path": "requirements/typing.txt",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_termui_impl.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/_winconsole.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/formatting.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_arguments.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_utils.py",
+        "status": "modified"
+      }
+    ]
+  },
+  {
+    "sha": "ba770cbc96f522e9dab1bf54dc642dfa5b053956",
+    "date": "2025-05-10T22:04:47Z",
+    "parents": [
+      "f14b75063fb36b9208b13a920326926363616b39"
+    ],
+    "files": [
+      {
+        "path": ".github/workflows/tests.yaml",
+        "status": "modified"
+      },
+      {
+        "path": "CHANGES.rst",
+        "status": "modified"
+      },
+      {
+        "path": "examples/aliases/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/colors/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/completion/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/complex/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/imagepipe/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/inout/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/naval/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/repo/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/termui/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "examples/validation/pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "pyproject.toml",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/core.py",
+        "status": "modified"
+      },
+      {
+        "path": "src/click/types.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_utils.py",
+        "status": "modified"
+      },
+      {
+        "path": "tox.ini",
+        "status": "modified"
+      }
+    ]
+  }
+]
