@@ -1,0 +1,759 @@
+{
+  "snapshot": "8a47580a00f3404e7071b9ecfec3692a1e18309f",
+  "source": [
+    {
+      "path": "src/click/__init__.py",
+      "blob": "f2360fa155edb0f8803f4f2e40c9763b35610446",
+      "size": 4522
+    },
+    {
+      "path": "src/click/_compat.py",
+      "blob": "f2726b93afe2ed69ba20d8e709c9cbd22b9d2339",
+      "size": 18693
+    },
+    {
+      "path": "src/click/_termui_impl.py",
+      "blob": "833b9fe5d2b78c794896be5cf3fe050224f2f81c",
+      "size": 25260
+    },
+    {
+      "path": "src/click/_textwrap.py",
+      "blob": "97fbee3dc6ce372600e702d38d9139bcf6a40bec",
+      "size": 1400
+    },
+    {
+      "path": "src/click/_winconsole.py",
+      "blob": "b01035b29984c26861869e7e74b552c9b923ac92",
+      "size": 8443
+    },
+    {
+      "path": "src/click/core.py",
+      "blob": "e783729c7ec4cbd3c8b26ec69df3dda068278cee",
+      "size": 116559
+    },
+    {
+      "path": "src/click/decorators.py",
+      "blob": "901f831ad9c4ceb584e4af277eca6a36d1336a2d",
+      "size": 18864
+    },
+    {
+      "path": "src/click/exceptions.py",
+      "blob": "c41c20676ef5bc3661fc718fd22d569d7a5eda50",
+      "size": 9841
+    },
+    {
+      "path": "src/click/formatting.py",
+      "blob": "a6e78fe04a65c0b038a7c5938c5ea425923e1444",
+      "size": 9721
+    },
+    {
+      "path": "src/click/globals.py",
+      "blob": "a2f91723d21cefdf658be327174e1f8ccdc20fcd",
+      "size": 1923
+    },
+    {
+      "path": "src/click/parser.py",
+      "blob": "a8b7d2634a89df3c9e0b7a1f85dfd4bace60a608",
+      "size": 18979
+    },
+    {
+      "path": "src/click/shell_completion.py",
+      "blob": "c8655b12aabea2f1f0bb3d36f78ba07ec45df13c",
+      "size": 19681
+    },
+    {
+      "path": "src/click/termui.py",
+      "blob": "dcbb22216c4bac521eee02fbac97e3b67f302076",
+      "size": 30847
+    },
+    {
+      "path": "src/click/testing.py",
+      "blob": "9972d66b345526c23e84ea47b86dc2032fe3dc50",
+      "size": 18351
+    },
+    {
+      "path": "src/click/types.py",
+      "blob": "354c7e381701af621b2e46353f1c8c929cee5f0d",
+      "size": 36526
+    },
+    {
+      "path": "src/click/utils.py",
+      "blob": "ab2fe5889cee75d559092442696f9b23bf20ebfb",
+      "size": 20245
+    }
+  ],
+  "rows": [
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Argument",
+        "Command",
+        "CommandCollection",
+        "Context",
+        "Group",
+        "Option",
+        "Parameter",
+        "_BaseCommand",
+        "_MultiCommand"
+      ],
+      "exposure": 4
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/decorators.py",
+      "identifiers": [
+        "HelpOption",
+        "argument",
+        "command",
+        "confirmation_option",
+        "group",
+        "help_option",
+        "make_pass_decorator",
+        "option",
+        "pass_context",
+        "pass_obj",
+        "password_option",
+        "version_option"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "Abort",
+        "BadArgumentUsage",
+        "BadOptionUsage",
+        "BadParameter",
+        "ClickException",
+        "FileError",
+        "MissingParameter",
+        "NoSuchOption",
+        "UsageError"
+      ],
+      "exposure": 0
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/formatting.py",
+      "identifiers": [
+        "HelpFormatter",
+        "wrap_text"
+      ],
+      "exposure": 0
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/globals.py",
+      "identifiers": [
+        "get_current_context"
+      ],
+      "exposure": 0
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/termui.py",
+      "identifiers": [
+        "clear",
+        "confirm",
+        "echo_via_pager",
+        "edit",
+        "getchar",
+        "launch",
+        "pause",
+        "progressbar",
+        "prompt",
+        "secho",
+        "style",
+        "unstyle"
+      ],
+      "exposure": 0
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/types.py",
+      "identifiers": [
+        "BOOL",
+        "Choice",
+        "DateTime",
+        "FLOAT",
+        "File",
+        "FloatRange",
+        "INT",
+        "IntRange",
+        "ParamType",
+        "Path",
+        "STRING",
+        "Tuple",
+        "UNPROCESSED",
+        "UUID"
+      ],
+      "exposure": 0
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "echo",
+        "format_filename",
+        "get_app_dir",
+        "get_binary_stream",
+        "get_text_stream",
+        "open_file"
+      ],
+      "exposure": 0
+    },
+    {
+      "from": "src/click/__init__.py",
+      "to": "src/click/parser.py",
+      "identifiers": [
+        "_OptionParser"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/_compat.py",
+      "to": "src/click/_winconsole.py",
+      "identifiers": [
+        "_get_windows_console_stream"
+      ],
+      "exposure": 4
+    },
+    {
+      "from": "src/click/_termui_impl.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "CYGWIN",
+        "WIN",
+        "_default_text_stdout",
+        "get_best_encoding",
+        "isatty",
+        "open_stream",
+        "strip_ansi",
+        "term_len"
+      ],
+      "exposure": 24
+    },
+    {
+      "from": "src/click/_termui_impl.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "ClickException"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/_termui_impl.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "echo"
+      ],
+      "exposure": 6
+    },
+    {
+      "from": "src/click/_winconsole.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "_NonClosingTextIOWrapper"
+      ],
+      "exposure": 3
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/types.py",
+      "identifiers": [
+        "types"
+      ],
+      "exposure": 12
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "Abort",
+        "BadParameter",
+        "ClickException",
+        "Exit",
+        "MissingParameter",
+        "NoArgsIsHelpError",
+        "UsageError"
+      ],
+      "exposure": 15
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/formatting.py",
+      "identifiers": [
+        "HelpFormatter",
+        "join_options"
+      ],
+      "exposure": 12
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/globals.py",
+      "identifiers": [
+        "pop_context",
+        "push_context"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/parser.py",
+      "identifiers": [
+        "_OptionParser",
+        "_flag_needs_value",
+        "_split_opt"
+      ],
+      "exposure": 16
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/termui.py",
+      "identifiers": [
+        "confirm",
+        "prompt",
+        "style"
+      ],
+      "exposure": 39
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "PacifyFlushWrapper",
+        "_detect_program_name",
+        "_expand_args",
+        "echo",
+        "make_default_short_help",
+        "make_str"
+      ],
+      "exposure": 11
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/shell_completion.py",
+      "identifiers": [
+        "CompletionItem",
+        "shell_complete"
+      ],
+      "exposure": 23
+    },
+    {
+      "from": "src/click/core.py",
+      "to": "src/click/decorators.py",
+      "identifiers": [
+        "command",
+        "group"
+      ],
+      "exposure": 172
+    },
+    {
+      "from": "src/click/decorators.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Argument",
+        "Command",
+        "Context",
+        "Group",
+        "Option",
+        "Parameter"
+      ],
+      "exposure": 51
+    },
+    {
+      "from": "src/click/decorators.py",
+      "to": "src/click/globals.py",
+      "identifiers": [
+        "get_current_context"
+      ],
+      "exposure": 4
+    },
+    {
+      "from": "src/click/decorators.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "echo"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/exceptions.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "get_text_stderr"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/exceptions.py",
+      "to": "src/click/globals.py",
+      "identifiers": [
+        "resolve_color_default"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/exceptions.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "echo",
+        "format_filename"
+      ],
+      "exposure": 5
+    },
+    {
+      "from": "src/click/exceptions.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Command",
+        "Context",
+        "Parameter"
+      ],
+      "exposure": 10
+    },
+    {
+      "from": "src/click/formatting.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "term_len"
+      ],
+      "exposure": 8
+    },
+    {
+      "from": "src/click/formatting.py",
+      "to": "src/click/parser.py",
+      "identifiers": [
+        "_split_opt"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/formatting.py",
+      "to": "src/click/_textwrap.py",
+      "identifiers": [
+        "TextWrapper"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/globals.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Context"
+      ],
+      "exposure": 6
+    },
+    {
+      "from": "src/click/parser.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "BadArgumentUsage",
+        "BadOptionUsage",
+        "NoSuchOption",
+        "UsageError"
+      ],
+      "exposure": 7
+    },
+    {
+      "from": "src/click/parser.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Context",
+        "CoreArgument",
+        "CoreOption",
+        "CoreParameter"
+      ],
+      "exposure": 10
+    },
+    {
+      "from": "src/click/parser.py",
+      "to": "src/click/shell_completion.py",
+      "identifiers": [
+        "split_arg_string"
+      ],
+      "exposure": 3
+    },
+    {
+      "from": "src/click/shell_completion.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Argument",
+        "Command",
+        "Context",
+        "Group",
+        "Option",
+        "Parameter",
+        "ParameterSource"
+      ],
+      "exposure": 21
+    },
+    {
+      "from": "src/click/shell_completion.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "echo"
+      ],
+      "exposure": 6
+    },
+    {
+      "from": "src/click/termui.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "isatty",
+        "strip_ansi"
+      ],
+      "exposure": 4
+    },
+    {
+      "from": "src/click/termui.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "Abort",
+        "UsageError"
+      ],
+      "exposure": 8
+    },
+    {
+      "from": "src/click/termui.py",
+      "to": "src/click/globals.py",
+      "identifiers": [
+        "resolve_color_default"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/termui.py",
+      "to": "src/click/types.py",
+      "identifiers": [
+        "Choice",
+        "ParamType",
+        "convert_type"
+      ],
+      "exposure": 6
+    },
+    {
+      "from": "src/click/termui.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "LazyFile",
+        "echo"
+      ],
+      "exposure": 26
+    },
+    {
+      "from": "src/click/termui.py",
+      "to": "src/click/_termui_impl.py",
+      "identifiers": [
+        "Editor",
+        "ProgressBar",
+        "f",
+        "open_url",
+        "pager"
+      ],
+      "exposure": 31
+    },
+    {
+      "from": "src/click/testing.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "_compat",
+        "_find_binary_reader"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/testing.py",
+      "to": "src/click/formatting.py",
+      "identifiers": [
+        "formatting"
+      ],
+      "exposure": 3
+    },
+    {
+      "from": "src/click/testing.py",
+      "to": "src/click/termui.py",
+      "identifiers": [
+        "termui"
+      ],
+      "exposure": 9
+    },
+    {
+      "from": "src/click/testing.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "utils"
+      ],
+      "exposure": 3
+    },
+    {
+      "from": "src/click/testing.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Command"
+      ],
+      "exposure": 3
+    },
+    {
+      "from": "src/click/types.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "_get_argv_encoding",
+        "open_stream"
+      ],
+      "exposure": 2
+    },
+    {
+      "from": "src/click/types.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "BadParameter"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/types.py",
+      "to": "src/click/utils.py",
+      "identifiers": [
+        "LazyFile",
+        "format_filename",
+        "safecall"
+      ],
+      "exposure": 10
+    },
+    {
+      "from": "src/click/types.py",
+      "to": "src/click/core.py",
+      "identifiers": [
+        "Context",
+        "Parameter"
+      ],
+      "exposure": 44
+    },
+    {
+      "from": "src/click/types.py",
+      "to": "src/click/shell_completion.py",
+      "identifiers": [
+        "CompletionItem"
+      ],
+      "exposure": 8
+    },
+    {
+      "from": "src/click/utils.py",
+      "to": "src/click/_compat.py",
+      "identifiers": [
+        "WIN",
+        "_default_text_stderr",
+        "_default_text_stdout",
+        "_find_binary_writer",
+        "auto_wrap_for_ansi",
+        "binary_streams",
+        "open_stream",
+        "should_strip_ansi",
+        "strip_ansi",
+        "text_streams"
+      ],
+      "exposure": 15
+    },
+    {
+      "from": "src/click/utils.py",
+      "to": "src/click/globals.py",
+      "identifiers": [
+        "resolve_color_default"
+      ],
+      "exposure": 1
+    },
+    {
+      "from": "src/click/utils.py",
+      "to": "src/click/exceptions.py",
+      "identifiers": [
+        "FileError"
+      ],
+      "exposure": 2
+    }
+  ],
+  "coverage": [
+    {
+      "path": "src/click/__init__.py",
+      "recognized": 66,
+      "skipped": []
+    },
+    {
+      "path": "src/click/_compat.py",
+      "recognized": 1,
+      "skipped": []
+    },
+    {
+      "path": "src/click/_termui_impl.py",
+      "recognized": 10,
+      "skipped": []
+    },
+    {
+      "path": "src/click/_textwrap.py",
+      "recognized": 0,
+      "skipped": []
+    },
+    {
+      "path": "src/click/_winconsole.py",
+      "recognized": 1,
+      "skipped": []
+    },
+    {
+      "path": "src/click/core.py",
+      "recognized": 28,
+      "skipped": []
+    },
+    {
+      "path": "src/click/decorators.py",
+      "recognized": 8,
+      "skipped": []
+    },
+    {
+      "path": "src/click/exceptions.py",
+      "recognized": 7,
+      "skipped": []
+    },
+    {
+      "path": "src/click/formatting.py",
+      "recognized": 3,
+      "skipped": []
+    },
+    {
+      "path": "src/click/globals.py",
+      "recognized": 1,
+      "skipped": []
+    },
+    {
+      "path": "src/click/parser.py",
+      "recognized": 9,
+      "skipped": []
+    },
+    {
+      "path": "src/click/shell_completion.py",
+      "recognized": 8,
+      "skipped": []
+    },
+    {
+      "path": "src/click/termui.py",
+      "recognized": 17,
+      "skipped": []
+    },
+    {
+      "path": "src/click/testing.py",
+      "recognized": 6,
+      "skipped": []
+    },
+    {
+      "path": "src/click/types.py",
+      "recognized": 9,
+      "skipped": []
+    },
+    {
+      "path": "src/click/utils.py",
+      "recognized": 12,
+      "skipped": []
+    }
+  ]
+}
