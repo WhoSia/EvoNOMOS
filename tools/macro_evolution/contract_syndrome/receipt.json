@@ -20,7 +20,8 @@
     "feasible": 3134,
     "impossible": 1916,
     "rightsChecks": 5944,
-    "gaussianWitnessChecks": 5050
+    "gaussianWitnessChecks": 5050,
+    "rightsChecks_definition": "Count (matrix, syndrome, removed column) triples with feasible syndrome both before and after deletion, retaining original column weights; 5944 of 9082 initially feasible triples."
   },
   "dynamic": {
     "pairs": 33088,
@@ -74,5 +75,12 @@
     "JS computations executed directly in tool context, committed modules not separately executed as a standalone runner.",
     "Exact quotient theorem assumes common action menus and cost/observation aligned; state-independent additive noise may make deterministic rank condition unnecessary.",
     "Grid not a sampled software population; no causal estimate, no F38 activation, no new general theorem claim."
-  ]
+  ],
+  "standalone_terminal_replay": {
+    "runner_commit": "579e322172a91e6f1eb5008fadb22c34520997f2",
+    "results_commit": "c52b64a49c867e6cfd82522cb8263476ca2193a5",
+    "runtime": "Node v22.16.0",
+    "result": "PASS; original four module Git blob SHAs matched local executable bytes; per-syndrome optimum DP/brute, witness masks and dual certificates checked, all 14356 deletion triples classified.",
+    "scope": "This follow-up resolves terminal standalone replay only; independent Python scope and prior dynamic verification limitations remain unchanged."
+  }
 }
