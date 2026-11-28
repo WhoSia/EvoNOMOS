@@ -1,0 +1,79 @@
+{
+  "nonancestor_candidates": 26,
+  "nonancestor_nonmerge": 21,
+  "remaining_training_commits": 21,
+  "remaining_training_multi": 8,
+  "unchanged_test_commits": 4,
+  "posthoc_ancestor_subset_mrr": {
+    "marginal": 0.6491236772486773,
+    "historical_pair": 0.5006407076719577,
+    "lexical_exposure": 0.7439493105112642,
+    "fusion": 0.6517361111111111
+  },
+  "original_lexical_mrr": 0.7439493105112642,
+  "original_mrr_leave_one_commit_out": {
+    "uniform": {
+      "min": 0.2945221357126119,
+      "max": 0.36064748235077904
+    },
+    "marginal": {
+      "min": 0.5277373603762493,
+      "max": 0.7044238683127572
+    },
+    "historical_pair": {
+      "min": 0.4768665490887713,
+      "max": 0.5838624338624339
+    },
+    "binary_import": {
+      "min": 0.3546648012766269,
+      "max": 0.43811370768080726
+    },
+    "lexical_exposure": {
+      "min": 0.6585990806816856,
+      "max": 0.8611111111111112
+    },
+    "fusion": {
+      "min": 0.6124999999999999,
+      "max": 0.7305555555555556
+    }
+  },
+  "rows": [
+    {
+      "sha": "4ece17a107d7b2e8bc3bd14356c2b53038fe41cf",
+      "mrr": {
+        "marginal": 0.5972222222222222,
+        "historical_pair": 0.5833333333333334,
+        "lexical_exposure": 0.8333333333333334,
+        "fusion": 0.7777777777777777
+      }
+    },
+    {
+      "sha": "0b7a9acc63dac907088de7d9238f7f4b2afe02ea",
+      "mrr": {
+        "marginal": 0.5497089947089947,
+        "historical_pair": 0.4343584656084656,
+        "lexical_exposure": 1,
+        "fusion": 0.75
+      }
+    },
+    {
+      "sha": "f14b75063fb36b9208b13a920326926363616b39",
+      "mrr": {
+        "marginal": 1,
+        "historical_pair": 0.5416666666666666,
+        "lexical_exposure": 0.3924639087117234,
+        "fusion": 0.47916666666666663
+      }
+    },
+    {
+      "sha": "ba770cbc96f522e9dab1bf54dc642dfa5b053956",
+      "mrr": {
+        "marginal": 0.44956349206349205,
+        "historical_pair": 0.4432043650793651,
+        "lexical_exposure": 0.75,
+        "fusion": 0.6
+      }
+    }
+  ],
+  "scope": "Posthoc exclusion, no refill; sensitivity diagnostic only. Four original held-out commits; not a repaired confirmatory test. Does not validate holdout ancestry or branch observability."
+}
